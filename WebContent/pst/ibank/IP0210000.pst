@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>台幣存款帳戶查詢</title>
+
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+
+function chkSubmit(acctStr){
+
+	var acctArray = acctStr.split("@");
+       	
+       	if ( (!acctArray.length ) || (acctArray.length<3) || acctArray[2].length < 12 ){
+		alert("請選擇帳號！");
+		return;      	     
+       	}
+       	
+       	document.submitform.SEND_BR_NAME.value   = acctArray[0];
+       	document.submitform.SEND_ACCT_DESC.value = acctArray[1];
+	document.submitform.SEND_ACCT_NO.value   = acctArray[2];
+	
+	document.all.msg.style.visibility="visible";
+	document.submitform.selAccount.disabled = true;
+	document.submitform.goBtn.disabled	= true;
+	document.submitform.submit();
+	
+	//alert('帳號幣別歸戶中，請稍待');
+}
+</SCRIPT>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form name="submitform" method="POST" action="LoadAP">
+<b>　台幣存款帳戶查詢&gt;</b><font color="#0066FF"><b>定期存款中途解約試算</b></font> <br>
+<br>
+<table width="763" border="0">
+  <tr> 
+    <td width="757" colspan="2"><font color="#663300" face="Arial, Helvetica, sans-serif"> 
+      　</font><font face="Arial, Helvetica, sans-serif">定存帳號&nbsp;&nbsp;</font><font color="#663300" face="Arial, Helvetica, sans-serif"> 
+      <select name="selAccount" onChange="JavaScript:chkSubmit(this.value);">
+       <option value="0" selected>==請選擇帳號==</option>
+       
+       <!--option value = "測試分行@定存帳戶@1002400019755" >[測試分行 &nbsp;&nbsp;定存帳戶 <script language="javascript">
+				document.write(getAcctStr("1002400019755")); 
+			</script></option-->	
+       <!--[[%%LOOP_SEC SEND-ACCT-NO%%]]-->
+       <option value = "[[%%SEND-BR-NAME%%]]@[[%%SEND-ACCT-DESC%%]]@[[%%SEND-ACCT-NO%%]]" >[[%%SEND-BR-NAME%%]] &nbsp;[[%%SEND-ACCT-DESC%%]] <script language="javascript">
+				document.write(getAcctStr("[[%%SEND-ACCT-NO%%]]")); 
+			</script></option>
+	<!--[[%%ELOOP_SEC%%]]-->
+	 </select>
+
+      </font></td>
+  </tr>
+  <tr>
+    <td colspan="2">　存單字號&nbsp;&nbsp;<font color="#663300" face="Arial, Helvetica, sans-serif"> 
+      <select name="select" disabled="true">
+        <option selected>==請選擇存單字號==</option>      
+      </select>
+      &nbsp;&nbsp;<img name="goBtn" src="graph/go.gif" width="19" height="19" border="0" align="absmiddle" onClick="chkSubmit('');"></font><br><br>
+      <div id="msg" style="visibility:hidden; color:#FF0000">　帳號存單搜尋中，請稍待</div></td>
+  </tr>
+
+</table>
+
+<input type="hidden" name="aptype" 	   value="ibank">
+<input type="hidden" name="pageid" 	   value="IP0210001">
+<input type="hidden" name="SEND_ACCT_NO"   value="">
+<input type="hidden" name="SEND_BR_NAME"   value="">
+<input type="hidden" name="SEND_ACCT_DESC" value="">
+</form>
+</body>
+</html>

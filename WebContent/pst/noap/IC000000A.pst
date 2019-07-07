@@ -1,0 +1,208 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+<title>iPASS PAY約定連結聯邦存款帳戶付款</title>
+<SCRIPT language="JavaScript">
+
+var reveweb = "[[%%REVE_WEB%%]]";
+
+function chkSubmit(){
+	if(document.IP000000A.checkbox1.checked){
+		document.IP000000A.submit();
+	}
+	else{
+		alert("您尚未同意約定事項！");
+		return;
+	}
+}
+function back_old(){
+	if(confirm("是否確定取消帳戶綁定交易，如您確定取消將會回到登入畫面，請您再回到IPASS進行後續作業。")){
+		closeWindow();
+	}
+}
+
+function back(){
+	if(reveweb=="TRUE"){
+		window.location.href="https://www.ipasspay.com.tw/Views/payment-settings.aspx";
+	}else{
+		document.IP000000A.action = "IPASS003.jsp";
+  		document.IP000000A.submit();
+	}
+}
+</SCRIPT>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 14pt;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #f2f2f2;
+}
+iframe {
+	height: 400px;
+	width: 100%;
+}
+
+
+input, textarea {
+	border: 1px solid #CFCFCF;
+}
+.input-xlarge {
+    width: 90%;
+	height: 20px;
+	padding: 5px;
+}
+
+.t13 {
+	color: #9292a0;
+	font-size: 13pt;
+	line-height: 18pt;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.t13a {
+	color: #333333;
+	font-size: 13pt;
+	line-height: 15pt;
+}
+.t15 {
+	color: #9292a0;
+	font-size: 15pt;
+	line-height: 26pt;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.t15a {
+	color: #000000;
+	font-size: 15pt;
+	line-height: 26pt;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+a:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+a:hover {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+a:active {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+#div3 {
+	position: absolute;
+	bottom: 0px;
+}
+
+ 
+
+-->
+</style>
+</head>
+
+<body>
+<form name="IP000000A" method="POST" action="LoadAP2">
+<table width="100%" border="0" cellpadding="5" cellspacing="0" class="t15" >
+  <tr>
+    <td><img src="img/logo.png" width="40%" hspace="15" /></td>
+  </tr>
+  <tr>
+    <td class="t13"><div align="center">iPASS PAY約定連結聯邦存款帳戶付款</div></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellpadding="5" cellspacing="0" >
+  <tr>
+    <td><table width="90%" border="0" align="center" cellpadding="10" cellspacing="0">
+      <tr>
+        <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="100%" border="1" cellpadding="1" cellspacing="1" bgcolor="#ffffff">
+
+               <td>
+               <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" scrolling="auto">
+							  <tr>
+							    <td valign="top" nowrap="nowrap" class="t13_Grey"><div align="right"><strong>一、</strong></div></td>
+							    <td valign="top" class="t13_Grey"><strong>立約人應為iPASS PAY支付帳戶及所連結存款帳戶之所有人，約定連結付款之帳戶以開立於貴行之存款帳戶(包含活期存款、活期儲蓄存款、行員儲蓄存款、綜合存款、支票存款)為限，惟約定以支票存款帳戶連結付款者，如因扣款後致存款不足而遭退票者，概由立約人自行負責。</strong></td>
+							  </tr>
+							  <tr>
+							    <td valign="top" class="t13_Grey"><div align="right"><strong>二、</strong></div></td>
+							    <td valign="top" class="t13_Grey"><strong>立約人委託貴行以本人之存款帳戶支付本人開立之iPASS PAY帳戶之各種款項，應以網路或其他經貴行與一卡通票證股份有限公司(以下簡稱一卡通公司)同意之方式申請。立約人如擬終止本項服務或約定增刪變更連結其他存款帳戶時，應依一卡通公司規範之申請流程辦理。</strong></td>
+							  </tr>
+							  <tr>
+							    <td valign="top" class="t13_Grey"><div align="right"><strong>三、</strong></div></td>
+							    <td valign="top" class="t13_Grey"><strong>立約人約定連結成功後，即授權貴行得逕依一卡通公司傳送予貴行之扣款指示自約定之存款帳戶辦理扣款，立約人不另開立取款條或簽發支票，交易額度之限制悉依照貴行及一卡通公司電子支付帳戶之規定辦理。立約人對本約定事項相關之扣款交易明細有疑義時，得逕向一卡通公司查詢處理，或於扣款交易後60個日曆日內通知貴行協助查證。其他關於iPASS PAY交易明細、費率、金額之計算及退補費等事項，立約人應逕向一卡通公司詢問辦理。立約人在未終止約定連結存款帳戶付款服務前，如自行結清所指定之連結存款帳戶，則本契約視同終止，若因此所生之損失及責任，概由立約人自行負擔。</strong></td>
+							  </tr>
+							  <tr>
+							    <td valign="top" class="t13_Grey"><div align="right"><strong>四、</strong></div></td>
+							    <td valign="top" class="t13_Grey"><strong>立約人請留存E-mail電子郵件信箱，以利貴行依指示自立約人約定存款帳戶扣款成功時，作為通知立約人之用，未提供者恕不提供本服務。立約人留存貴行之E-mail電子郵件信箱如有變更，應通知貴行進行資料變更。</strong></td>
+							  </tr>
+							  <tr>
+							    <td valign="top" class="t13_Grey"><div align="right"><strong>五、</strong></div></td>
+							    <td valign="top" class="t13_Grey"><strong>本約定事項如有未盡事宜，立約人同意悉依相關法令及貴行有關規定辦理。</strong></td>
+							  </tr>
+							</table>
+               </td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td><table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td height="5" colspan="2"><img src="img/spacer.gif" width="100" height="5" /></td>
+                </tr>
+              <tr>
+                <td valign="top"><div align="right">
+                  <input name="checkbox1" type="checkbox" value="0"  style="width:15px;" />
+                </div></td>
+                <td height="35" valign="top"><span class="t13a">已閱讀過以上約定事項，<strong>並同意約定事項內容</strong></span></td>
+              </tr>
+
+            </table>              
+             </td>
+          </tr>
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="50%"><div align="right"><a href="javascript:void(0);" onclick="javascript:chkSubmit();"><img src="img/next.gif" width="80%" hspace="10" vspace="5" border="0" /></a></div></td>
+                <td><div align="left"><a href="javascript:void(0);" onclick="javascript:back();"><img src="img/cancelapp.gif" width="80%" hspace="10" vspace="5" border="0" /></a></div></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table>
+    <br /></td>
+  </tr>
+  <tr>
+    <td bgcolor="#7f7f7f"><table width="100%" border="0" cellspacing="0" cellpadding="10">
+      <tr>
+        <td class="t13a"><font color="#FFFFFF">本行保留本行網站內容之一切法律權利，非經本行授權使用或同意，本行網站之資料均不得以任何形式，或利用任何電子、機械方式進行重製、轉製或製作衍生物。@聯邦商業銀行</font></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<input type="hidden" name="aptype" value="IBANK">
+<input type="hidden" name="pageid" value="IC0000010">
+<input type="hidden" name="REVE_ECARD_SN" value="[[%%REVE_ECARD_SN%%]]">
+<input type="hidden" name="REVE_TXSEQ" value="[[%%REVE_TXSEQ%%]]">
+<input type="hidden" name="SID" value="[[%%REVE-ID-NO%%]]">
+<input type="hidden" name="REVE_INITOR" value="[[%%REVE_INITOR%%]]">
+<input type="hidden" name="REVE_WEB" value="[[%%REVE_WEB%%]]">
+</form>
+</body>
+</html>

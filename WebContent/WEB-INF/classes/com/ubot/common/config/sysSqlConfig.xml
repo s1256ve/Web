@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SQL>
+
+	<getRtnMsg ><![CDATA[
+		SELECT * FROM DB2IBANK.RTNMSG WHERE RTNMSGCODE = '[[%%RTNMSGCODE%%]]'	
+		]]></getRtnMsg>
+
+	<getSysMsg ><![CDATA[
+		SELECT * FROM DB2IBANK.SYSMSG WHERE SYSMSGCODE = '[[%%SYSMSGCODE%%]]'	
+		]]></getSysMsg>
+
+	<getAct><![CDATA[
+		SELECT * FROM DB2IBANK.ACTINFO ORDER BY ACTNAME	
+		]]></getAct>
+		
+	<getActByName><![CDATA[
+		SELECT * FROM DB2IBANK.ACTINFO   WHERE ACTNAME = '[[%%ACTNAME%%]]'	
+		]]></getActByName>
+
+	<getSvc><![CDATA[
+		SELECT * FROM DB2IBANK.SVCINFO  ORDER BY SVCNAME 
+		]]></getSvc>
+		
+	<getSvcByName><![CDATA[
+		SELECT * FROM DB2IBANK.SVCINFO   WHERE SVCNAME = '[[%%SVCNAME%%]]'	
+		]]></getSvcByName>	
+	
+	<getCont><![CDATA[
+		SELECT * FROM DB2IBANK.CONTENT   ORDER  BY PAGEID 
+		]]></getCont>
+		
+	<getContByName><![CDATA[
+		SELECT * FROM DB2IBANK.CONTENT   WHERE PAGEID  = '[[%%PAGEID%%]]' 
+		]]></getContByName>
+	
+	<getWsvc><![CDATA[
+		SELECT * FROM DB2IBANK.WEBSVC   ORDER  BY SVCID 
+		]]></getWsvc>
+		
+	<getWsvcByName><![CDATA[
+		SELECT * FROM DB2IBANK.WEBSVC   WHERE SVCID  = '[[%%SVCID%%]]' 
+		]]></getWsvcByName>
+		
+	<getTxn><![CDATA[
+		SELECT * FROM DB2IBANK.TXNSCHEMA WHERE STATUS= 1	ORDER BY TID 
+		]]></getTxn>
+		
+	<getTxnByName><![CDATA[
+		SELECT * FROM DB2IBANK.TXNSCHEMA WHERE TID  = '[[%%TID%%]]'	AND STATUS= 1	
+		]]></getTxnByName>
+
+	<getAp><![CDATA[
+		SELECT * FROM DB2IBANK.APINFO ORDER BY PRIORITY
+		]]></getAp>
+
+	<getApByName><![CDATA[
+		SELECT * FROM DB2IBANK.APINFO WHERE APNAME  = '[[%%APNAME%%]]'  
+		]]></getApByName>
+	
+	<getvar relation=""><![CDATA[
+		SELECT VNAME  , VALUE  , DESC 
+		FROM DB2IBANK.GVAR
+		WHERE  VNAME  = '[[%%REVE-VNAME%%]]'
+	]]></getvar>
+	
+	<updvar relation=""><![CDATA[
+		UPDATE DB2IBANK.GVAR
+		SET    VALUE = '[[%%REVE-VALUE%%]]'
+		WHERE  VNAME = '[[%%REVE-VNAME%%]]'
+	]]></updvar>
+	
+	<altseq relation=""><![CDATA[
+		ALTER SEQUENCE [[%%SEQUENCENAME%%]] RESTART WITH 1
+	]]></altseq>
+	
+	<getPageAuth><![CDATA[
+
+		SELECT * FROM DB2IBANK.PAGEAUTH  ORDER  BY PAGEID 
+
+		]]></getPageAuth>
+	
+</SQL>

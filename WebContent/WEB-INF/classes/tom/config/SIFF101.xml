@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="Big5"?>
+<!-- IVR FUND F101 Last updated date 23-4-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="F101i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id="F101i02">
+		<name>REVE-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>身分證字號或統一編號</description>
+	</field>
+	<field id="F101i03">
+		<name>REVE-TXN-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>交易日期</description>
+	</field>
+	<field id="F101i04">
+		<name>REVE-BUSI-TYPE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>信託業務別</description>
+	</field>
+	<field id="F101i05">
+		<name>REVE-FUND-ID</name>
+		<length>4</length>
+		<type>String</type>
+		<description>基金代號</description>
+	</field>
+	<field id="F101i06">
+		<name>REVE-BUY-AMT</name>
+		<length>15</length>
+		<type>String</type>
+		<description>申購金額</description>
+	</field>
+	<field id="F101i07">
+		<name>REVE-ACCT-NO</name>
+		<length>14</length>
+		<type>String</type>
+		<description>扣款帳號</description>
+	</field>
+	<field id="F101i08">
+		<name>REVE-FEE-RATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>手續費率</description>
+	</field>
+	<field id="F101i09">
+		<name>REVE-FEE-AMT</name>
+		<length>13</length>
+		<type>String</type>
+		<description>手續費</description>
+	</field>
+	<field id="F101i10">
+		<name>REVE-PIN</name>
+		<security>DESYSDES</security>
+		<length>4</length>
+		<type>String</type>
+		<description>PIN</description>
+	</field>
+	<field id="F101i11">
+		<name>REVE-TXN-DATE-TYPE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>是否為次營業日</description>
+	</field>
+	<field id="F101i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="F101i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="F101i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="F101i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

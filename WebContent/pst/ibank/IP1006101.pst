@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>線上申請</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------------
+*EAI100065          2011.09.08      YiSyun 
+***********************************************************************/
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT language="JavaScript">
+   
+	function chkSubmit(){
+	     var f = document.IP1006101;
+	     f.submit();   
+	}
+	function goCancel(){
+	    var f = document.IP1006101;
+        f.pageid.value="IP1006100";
+		f.submit();
+	}
+</SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<p><b>　服務台&gt;<font color="#0066FF">申請/變更/取消非約定帳戶</font><font color="#003399"><font color="#0066FF"> 
+  </font></font></b></p>
+<form method="POST" name="IP1006101" action="LoadAP">
+<table width="730" border="0">
+  <tr> 
+    <td colspan="5"> 
+      <img src="graph/point.gif" width="12" height="12" align="absmiddle"><font color="#006600">申請非約定帳戶交易服務</font><br>
+      <table width="100%"  border="0">
+        <tr>
+          <td><div align="center">以下是您申請「非約定帳戶交易服務」約定事項：
+            </div>            <table border="1" align="center" bordercolor="#999999">
+              <tr>
+                <td width="182" valign="top" bgcolor="#C4CBB8"><p>設定手機門號 </p></td>
+                <td width="186" valign="top"><p>[[%%REVE-MOBILE%%]] </p></td>
+              </tr>
+              <tr>
+                <td width="182" valign="top" bgcolor="#C4CBB8"><p>自訂每筆交易上限金額 </p></td>
+                <td width="186" valign="top"><p>新台幣 [[%%REVE-TEMP-RECLIMIT%%]] 萬元 </p></td>
+              </tr>
+              <tr>
+                <td width="182" valign="top" bgcolor="#C4CBB8"><p>自訂每日交易上限金額 </p></td>
+                <td width="186" valign="top"><p>新台幣 [[%%REVE-TEMP-DAYLIMIT%%]] 萬元 </p></td>
+              </tr>
+              <tr>
+                <td width="182" valign="top" bgcolor="#C4CBB8"><p>自訂每月交易上限金額 </p></td>
+                <td width="186" valign="top"><p>新台幣 [[%%REVE-TEMP-MONLIMIT%%]] 萬元 </p></td>
+              </tr>
+              <tr>
+                <td width="182" valign="top" bgcolor="#C4CBB8"><p>聯邦銀行約定轉出帳號</p></td>
+                <td width="186" valign="top"><p>[[%%REVE-ACCT-NO%%]] </p></td>
+              </tr>
+          <!--<tr>
+                <td width="182" valign="top" bgcolor="#C4CBB8"><p>Email </p></td>
+                <td width="186" valign="top"><p>[[%%REVE-EMAIL-ADDR%%]]&nbsp;</p></td>
+              </tr>-->
+            </table></td>
+        </tr>
+      </table>      
+      </p>
+      <table width="724" border="0">
+        <tr> 
+          <td width="718">           
+            <div align="center"> 
+              <input type="button" name="sure" value="確定" onclick="chkSubmit();">
+              <input type="button" name="cancel" value="取消" onclick="goCancel();">
+          </div></td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="5" valign="bottom" height="1" bgcolor="#663300"></td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="IP1006102">
+<input type="hidden" name="REVE_ACCT_NO" value="[[%%REVE-ACCT-NO%%]]">
+<input type="hidden" name="REVE_BID" value="[[%%REVE-BID%%]]">
+<input type="hidden" name="REVE_RECLIMIT" value="[[%%REVE-RECLIMIT%%]]">
+<input type="hidden" name="REVE_DAYLIMIT" value="[[%%REVE-DAYLIMIT%%]]">
+<input type="hidden" name="REVE_MONLIMIT" value="[[%%REVE-MONLIMIT%%]]">
+<input type="hidden" name="REVE_MOBILE" value="[[%%REVE-MOBILE%%]]">
+<input type="hidden" name="REVE_EMAIL_ADDR" value="[[%%REVE-EMAIL-ADDR%%]]">
+<input type="hidden" name="REVE_TEMP_RECLIMIT" value="[[%%REVE-TEMP-RECLIMIT%%]]">
+<input type="hidden" name="REVE_TEMP_DAYLIMIT" value="[[%%REVE-TEMP-DAYLIMIT%%]]">
+<input type="hidden" name="REVE_TEMP_MONLIMIT" value="[[%%REVE-TEMP-MONLIMIT%%]]">
+</form>
+</body>
+</html>

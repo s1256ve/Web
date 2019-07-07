@@ -1,0 +1,439 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>基金申購</title>
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: Carl
+* Change List:
+*	SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI98021           2009.03.26     Carl
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<script>
+	var a;
+		a = "[[%%SEND-IS-NONRPT%%]]";
+		if(a.length ==1)
+			alert("該筆為未核備基金，無法申請增加每月投資日期，僅能申請減少每月投資日期。");              	
+		else
+			;       
+</script>
+<script language="JavaScript">
+	var newtimes = 0;
+	var oldtimes = 0;
+	var OverOneYear = false;
+	var Errmsg="";
+	
+		if([[%%REVE-SCHD-DATE%%]] != "00")
+		oldtimes++;
+		if([[%%REVE-SCHD-DATE2%%]] != "00")
+		oldtimes++;
+		if([[%%REVE-SCHD-DATE3%%]] != "00")
+		oldtimes++;
+		if([[%%REVE-SCHD-DATE4%%]] != "00")
+		oldtimes++;
+		if([[%%REVE-SCHD-DATE5%%]] != "00")
+		oldtimes++;
+		if([[%%REVE-SCHD-DATE6%%]] != "00")
+		oldtimes++;
+	
+	function diffDate(DateA,DateB){
+	var diffA = new Date(eval(DateA.substr(0,4)),eval(DateA.substr(4,2)-1),eval(DateA.substr(6,2))).getTime();
+	var diffB = new Date(eval(DateB.substr(0,4)),eval(DateB.substr(4,2)-1),eval(DateB.substr(6,2))).getTime();
+	//二個date相減為毫秒差，再將它除(1000*60*60*24)
+	//return ((diffA - diffB) / (1000*60*60*24));
+	if((diffA - diffB) / (1000*60*60*24)>366)
+	{
+		OverOneYear = true;
+	}
+}
+		
+	function rtnMonth(strDate){
+		return strDate.substring(0,6);	
+	}
+	function chkForm1(){
+		var doc = document.IF0601501
+		var rtnFlag = false
+		newtimes = 0;
+		
+		if (doc.RSCHDDATE.checked){
+				setSCHD("02");
+				rtnFlag = true;
+				newtimes++;
+		}
+		if (doc.RSCHDDATE2.checked){
+				setSCHD("08");
+				rtnFlag = true;
+				newtimes++;
+		}
+		if(doc.RSCHDDATE3.checked){
+				setSCHD("12");
+				rtnFlag = true;		
+				newtimes++;
+		}
+		if (doc.RSCHDDATE4.checked){
+				setSCHD("18");
+				rtnFlag = true;
+				newtimes++;
+		}
+		if (doc.RSCHDDATE5.checked){
+				setSCHD("22");
+				rtnFlag = true;
+				newtimes++;
+		}
+		if(doc.RSCHDDATE6.checked){
+				setSCHD("28");
+				rtnFlag = true;	
+				newtimes++;	
+		}		
+		if (!rtnFlag) Errmsg="未選擇扣款日期";
+		return rtnFlag;
+	}	
+	
+	function setSCHD(sDate){
+		var doc = document.IF0601501
+		if (doc.REVE_SCHD_DATE.value == "00"){
+			doc.REVE_SCHD_DATE.value = sDate;
+		}else if(doc.REVE_SCHD_DATE2.value == "00"){
+			doc.REVE_SCHD_DATE2.value = sDate;
+		}else if(doc.REVE_SCHD_DATE3.value == "00"){
+			doc.REVE_SCHD_DATE3.value = sDate;
+		}else if(doc.REVE_SCHD_DATE4.value == "00"){
+			doc.REVE_SCHD_DATE4.value = sDate;
+		}else if(doc.REVE_SCHD_DATE5.value == "00"){
+			doc.REVE_SCHD_DATE5.value = sDate;
+		}else if(doc.REVE_SCHD_DATE6.value == "00"){
+			doc.REVE_SCHD_DATE6.value = sDate;
+		}
+	}
+	function alertMsg()
+	{
+	var result_style = document.getElementById('table1').style;
+	result_style.display = 'block';
+							document.IF0601501.Submit.disabled = true;
+	}
+	function chksubmit(nextPageid){
+		var ukyc = 0[[%%SEND-KYC-VALUE%%]];
+		var fkyc = 0[[%%SEND-FUND-RANK%%]];
+		var result_style = document.getElementById('table1').style;
+		var result_style0 = document.getElementById('table0').style;
+		var doc = document.IF0601501;
+    var NONRPT;
+    NONRPT = "[[%%SEND-IS-NONRPT%%]]";        
+		doc.REVE_SCHD_DATE.value = "00";
+		doc.REVE_SCHD_DATE2.value = "00";
+		doc.REVE_SCHD_DATE3.value = "00";
+		doc.REVE_SCHD_DATE4.value = "00";
+		doc.REVE_SCHD_DATE5.value = "00";
+		doc.REVE_SCHD_DATE6.value = "00";
+		if (document.IF0601501.REVE_PWD.value == ""){
+      alert("請輸入密碼");
+      return;
+    }
+		doc.pageid.value = nextPageid;
+
+		if (nextPageid == "IF0601500"){
+			disableButton2(doc.Submit, doc.Submit2);
+			doc.submit();
+		}
+		else if(NONRPT.length == 1)
+			{
+			chkForm1();
+			disableButton2(doc.Submit, doc.Submit2);
+			doc.REVE_TXN_DATE_TYPE.vlaue = chkBusTime("[[%%REVE-SYS-TIME%%]]");
+			doc.REVE_SCHD_ALL.value = dispSCHD(doc.REVE_SCHD_DATE.value) + dispSCHD(doc.REVE_SCHD_DATE2.value) + dispSCHD(doc.REVE_SCHD_DATE3.value)+dispSCHD(doc.REVE_SCHD_DATE4.value) + dispSCHD(doc.REVE_SCHD_DATE5.value) + dispSCHD(doc.REVE_SCHD_DATE6.value);			
+			
+			doc.submit();
+			}
+		else if (chkForm1())
+			{
+			if(OverOneYear == true &&  newtimes>oldtimes) {
+							result_style0.display = 'block';
+							document.IF0601501.Submit.disabled = true;
+							return;	 
+							}
+							else
+            			 ;
+			if(ukyc+1 < fkyc && newtimes>oldtimes) {
+							result_style.display = 'block';
+							document.IF0601501.Submit.disabled = true;								
+							return;	 
+							}
+			else
+			{
+			disableButton2(doc.Submit, doc.Submit2);
+			doc.REVE_TXN_DATE_TYPE.vlaue = chkBusTime("[[%%REVE-SYS-TIME%%]]");
+			doc.REVE_SCHD_ALL.value = dispSCHD(doc.REVE_SCHD_DATE.value) + dispSCHD(doc.REVE_SCHD_DATE2.value) + dispSCHD(doc.REVE_SCHD_DATE3.value)+dispSCHD(doc.REVE_SCHD_DATE4.value) + dispSCHD(doc.REVE_SCHD_DATE5.value) + dispSCHD(doc.REVE_SCHD_DATE6.value);			
+			doc.submit();
+			}
+		}else{
+			alert(Errmsg);		
+		}
+	}
+	function chksubmit2(nextPageid){
+		disableButton2(document.IF0601501.Submit, document.IF0601501.Submit2);
+		document.IF0601501.pageid.value = nextPageid;
+		document.IF0601501.submit();	
+	}
+</script>
+<script>
+//var kbWin = null;
+/*
+function getKeyBoard()
+{
+		var Mytype="width=450,height=250,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+		var PWD = "window.opener.document.IF0601501.PWD.value";  //show在畫面上的密碼個數
+		var KBPWD = "window.opener.document.IF0601501.REVE_PWD.value";  //User真正key的密碼
+		kbWin = window.open( "LoadAP?pageid=IP2001000&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IF0601501.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IF0601501.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+*/
+var kbWin = null;
+function getKeyBoard()
+{
+ var Mytype="width=230,height=280,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IF0601501.PWD.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IF0601501.REVE_PWD.value";  //User真正key的密碼
+ var DESC = "語音";
+ //var DESC = "動態簡訊";
+ kbWin = window.open("LoadAP?pageid=IP2001003&PWD="+PWD+"&KBPWD="+KBPWD+"&DESC="+DESC+"&REVE_DESC=&REVE_KB_KEYCODE="+document.IF0601501.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IF0601501.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+function onTop() {
+  	if (kbWin==null) return;
+  	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+//新增alertMsg()
+var email = "[[%%SEA%%]]";  	
+function alertMsg(){    	
+	var m = "[[%%REVE-MOBILE%%]]";
+	if (m == ""){
+		alert("您未在聯邦銀行存留手機資料，無法使用簡訊做授權交易。");
+		document.IF0601501.pageid.value = "IF0601000";
+		document.IF0601501.submit();
+	}
+	else if(email==""){
+		alert("您未於聯邦銀行留存電子郵件資料，將無法進行網路銀行或樂活APP之基金交易(包含申購、轉換、贖回及變更交易)，僅能執行查詢作業。如有相關疑問，請致電本行24小時客服專線02-25451788或洽本行各營業單位理財顧問。");
+		document.IF0601501.pageid.value = "IF0601000";
+		document.IF0601501.submit();
+	}
+	else{
+		alert("系統將產生一組簡訊通知交易授權碼至您的手機門號" + m + "，\n若2分鐘內未輸入密碼，本交易將自動取消。");
+	}
+}
+</script>
+</head>
+<link rel="stylesheet" type="text/css" media="all" href="theme/YesFund.css" title="win2k-cold-1" />
+<body bgcolor="#FFFFFF" onLoad="alertMsg();" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0601501">
+<font color="#006666"><b>交易資料變更&gt;</b></font><div align="right">
+<font color="#0000CC"face="Arial, Helvetica, sans-serif">資料時間： <script language="javascript">
+		document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));                  
+			      		   				//document.write(getNowTime());
+			      		   				</script></font> </div>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center">請輸入變更之投資日期</div>
+    </td>
+  </tr>
+</table>
+  <table width="770" border="0">
+    <tr> 
+    <td colspan="3" height="137"> 
+      <div align="center">交易資料變更<b><br>
+        </b> </div>
+        <table width="660" border="0" align="center" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td width="360"> 
+              <table width="300" border="0">
+                <tr> 
+                <td colspan="2" bgcolor="#C5DECF"> 
+                  <div align="right"></div>
+                  原留存資料 </td>
+              </tr>
+              <tr> 
+                <td width="34%" height="22"> 
+                  <div align="left">基金名稱</div>
+                </td>
+                <td width="66%" height="20"> [[%%REVE-FUND-CNAME%%]]</td>
+              </tr>
+              <tr> 
+                <td width="34%" height="22"> 
+                  <div align="left">憑證號碼</div>
+                </td>
+                <td width="66%" height="20">[[%%REVE-CERT-NO%%]]</td>
+              </tr>
+              <tr> 
+                <td width="34%" height="22"> 
+                  <div align="left">投資金額</div>
+                </td>
+                <td width="66%" height="20">[[%%FROM-CURRENCY-NAME%%]]&nbsp;
+            <script>
+              	document.write(moneyAddDot("[[%%REVE-AMT%%]]"));              	
+            </script>           </td>
+              </tr>
+              <tr> 
+                <td width="34%" height="22"> 
+                  <div align="left">扣款方式</div>
+                </td>
+                <td width="66%" height="20">[[%%REVE-BANK-NAME%%]]</td>
+              </tr>
+              <tr>
+                <td width="34%" height="22">扣款帳號</td>
+                <td width="66%" height="20">[[%%REVE-ACCT-NO%%]]</td>
+              </tr>
+            </table>
+          </td>
+            <td width="300" valign="top"> 
+              <table width="350" border="0">
+              <tr> 
+                <td colspan="2" bgcolor="#58C681">變更資料處</td>
+              </tr>
+              <tr bgcolor="#E7F1EE"> 
+                <td width="29%">原投資日期</td>
+                <td width="71%" height="20"> 每月 <script>document.write(dispSCHD("[[%%REVE-SCHD-DATE%%]]"));document.write(dispSCHD("[[%%REVE-SCHD-DATE2%%]]"));document.write(dispSCHD("[[%%REVE-SCHD-DATE3%%]]"));document.write(dispSCHD("[[%%REVE-SCHD-DATE4%%]]"));document.write(dispSCHD("[[%%REVE-SCHD-DATE5%%]]"));document.write(dispSCHD("[[%%REVE-SCHD-DATE6%%]]"));</script> 日 </td>
+              </tr>
+              <tr bgcolor="#E7F1EE"> 
+                <td width="29%"> 
+                  <div align="left">變更為每月</div>
+                </td>
+                <td width="71%" height="20"> 
+
+                  <input type="checkbox" name="RSCHDDATE" value="02">
+                  02日&nbsp; 
+                  <input type="checkbox" name="RSCHDDATE2" value="08">
+                  08日&nbsp; 
+                  <input type="checkbox" name="RSCHDDATE3" value="12">
+                  12日 投資
+                  <br>
+				   				<input type="checkbox" name="RSCHDDATE4" value="18">
+                  18日&nbsp; 
+                  <input type="checkbox" name="RSCHDDATE5" value="22">
+                  22日&nbsp; 
+                  <input type="checkbox" name="RSCHDDATE6" value="28">
+                  28日 投資
+				  </td>
+              </tr>
+              <tr bgcolor="#E7F1EE"> 
+                <td width="29%">簡訊通知交易授權碼</td>
+                <td width="71%" height="20"><input type="password" name="PWD" size="8" onclick="getKeyBoard();onTop();" readonly>
+				<input type="hidden" name="REVE_PWD" value=""></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"> 
+      <div align="center">
+          <table width="660" border="0">
+            <tr>
+            <td><B>注意事項：</B><BR>
+              1.委託人須於<B><FONT 
+color=#ff0000>每月投資日之前一個營業日下午3:00前完成變更申請手續</FONT></B>，經本行同意後始生效力，惟若扣款帳號非屬本行存款帳戶或本行信用卡，而有其他作業規定者，依其規定辦理。<BR>
+                <BR>
+                2 .投資日(遇例假日順延)：<br>
+                <table width="80%" border="0">
+                  <tr> 
+                    <td colspan="2"><img src="graph/fund/graph/in-point.gif" border="0"><b>聯邦銀行帳戶投資：</b>每月2日、8日、12日、18日、22日及28日。</td>
+                  </tr>
+                  <tr> 
+                    <td colspan="2"><img src="graph/fund/graph/in-point.gif" border="0"><b>聯邦銀行信用卡投資：</b>每月2日、8日、12日、18日、22日及28日。
+                    </td>
+                  </tr>
+                  <tr> 
+                    <td colspan="2"><img src="graph/fund/graph/in-point.gif" border="0"><b>郵局帳號投資：</b>每月28日。</td>
+                  </tr>
+                   <script>
+                var a;
+                a = "[[%%SEND-IS-NONRPT%%]]";
+                if(a.length ==1)
+              		document.write("3.該筆為未核備基金，無法申請增加每月投資日期，僅能申請減少每月投資日期。");              	
+            		else
+            			document.write("3.此筆基金為已核備基金，請放心操作");          
+            		</script>
+                </table>
+              </td>
+          </tr>
+          </table>
+          <table width="500" border="1" cellpadding="0" bordercolor="#999999" name="table0" id="table0" style="display:none";>
+          <tr bgcolor="#E7F1EE">
+            <td width="68%" height="25" bgcolor="#ffeba4"><img src="graph/fund/graph/confirm_icon.gif" width="25" height="26" align="absmiddle"><strong>依主管機關規定，風險承受度分析結果超逾一年者，無法增加投資金額/增加扣款次數，僅能依原訂(或減少)投資金額/次數繼續扣款投資，請您重新選擇，以完成本次交易。</strong></td>
+          </tr>
+          <tr bgcolor="#E7F1EE">
+            <td width="68%" height="25" bgcolor="#fcffd9"><table width="97%" border="0" align="center" cellpadding="3" cellspacing="0">
+                <tr>
+                	<div align="center">
+       						<input type="button" name="Submit2" value="回上一頁，重新選擇" onClick='JavaScript:chksubmit2("IF0601500");'>
+       						<input type="button" name="Submit2" value="重新評估風險承受度" onClick='JavaScript:chksubmit2("IFK0000021");'>
+                	</div>
+                </tr>
+            </table>
+            </td>
+          </tr>
+        </table>
+          <table width="500" border="1" cellpadding="0" bordercolor="#999999" name="table1" id="table1" style="display:none";>
+          <tr bgcolor="#E7F1EE">
+            <td width="68%" height="25" bgcolor="#ffeba4"><img src="graph/fund/graph/confirm_icon.gif" width="25" height="26" align="absmiddle"><strong>您的風險屬性與商品風險等級與本行之適配原則不相符，無法增加投資金額/變更扣款日期/增加扣款次數，僅能依原訂(或減少)投資金額/次數繼續扣款投資，請您重新選擇，以完成本次交易。</strong></td>
+          </tr>
+          <tr bgcolor="#E7F1EE">
+            <td width="68%" height="25" bgcolor="#fcffd9"><table width="97%" border="0" align="center" cellpadding="3" cellspacing="0">
+                <tr>
+                	<div align="center">
+       						<input type="button" name="Submit2" value="回上一頁，重新選擇" onClick='JavaScript:chksubmit2("IF0601500");'>
+       						<input type="button" name="Submit2" value="重新評估風險承受度" onClick='JavaScript:chksubmit2("IFK0000021");'>
+                	</div>
+                </tr>
+            </table>
+            </td>
+          </tr>
+        </table>
+        	<input type="button" name="Submit" value="確定" onClick='JavaScript:chksubmit("IF0601502");'>
+      		<input type="button" name="Submit2" value="取消" onClick='JavaScript:chksubmit2("IF0601000");'>
+      </div>
+    </td>
+  </tr>
+</table>
+<br>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="REVE_SYS_DATE" value="[[%%REVE-SYS-DATE%%]]">
+<input type="hidden" name="REVE_TXN_DATE_TYPE" value="">
+<input type="hidden" name="REVE_CERT_NO" value="[[%%REVE-CERT-NO%%]]">
+<input type="hidden" name="REVE_FUND_ID" value="[[%%REVE-FUND-ID%%]]">
+<input type="hidden" name="REVE_FUND_CNAME" value="[[%%REVE-FUND-CNAME%%]]">
+<input type="hidden" name="REVE_AMT" value="[[%%REVE-AMT%%]]">
+<input type="hidden" name="REVE_ACCT_NO" value="[[%%REVE-ACCT-NO%%]]">
+<input type="hidden" name="REVE_BANK_NAME" value="[[%%REVE-BANK-NAME%%]]">
+<input type="hidden" name="REVE_SCHD_DATE" value="00">
+<input type="hidden" name="REVE_SCHD_DATE2" value="00">
+<input type="hidden" name="REVE_SCHD_DATE3" value="00">
+<input type="hidden" name="REVE_SCHD_DATE4" value="00">
+<input type="hidden" name="REVE_SCHD_DATE5" value="00">
+<input type="hidden" name="REVE_SCHD_DATE6" value="00">
+<input type="hidden" name="REVE_SCHD_ALL" value="">
+<input type="hidden" name="FROM_CURRENCY_NAME" value="[[%%FROM-CURRENCY-NAME%%]]">
+<input type="hidden" name="FROM_CURRENCY_CODE" value="[[%%FROM-CURRENCY-CODE%%]]">
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+</form>
+<script language="JavaScript">
+diffDate("[[%%SYSDATE%%]]",getADDateStr(parseInt("[[%%SEND-KYC-DATE%%]]",10).toString(),-1));
+</script>
+</body>
+</html>

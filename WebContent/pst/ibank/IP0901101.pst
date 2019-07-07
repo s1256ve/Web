@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>掛失業務</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<link rel="stylesheet" type="text/css" media="all" href="theme/portal.css" />
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　服務台&gt;<font color="#0066FF">掛失服務</font></b>
+<p>　<img src="graph/point.gif" width="12" height="12">金融卡掛失<br>
+</p>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5"> 
+      <div align="center"><font color="#0000CC">金融卡掛失交易成功</font> </div><br>
+      <table width="300" border="1" bordercolor="#999999" align="center">
+        <tr> 
+          <td bgcolor="#C4CBB8" align="center">帳號</td>
+          <td height="25"><SCRIPT language="JavaScript">
+                	document.write(getAcctStr('[[%%REVE-ACCT-NO%%]]'));  
+                </Script></td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" align="center"> 掛失日期</td>
+          <td height="25"> <Script>document.write(getRCDateStr("[[%%SEND-SYSDATE%%]]","0"))</script></td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" align="center"> 掛失時間 </td>
+          <td height="25"> <Script>document.write(getRCTimeStr("[[%%SEND-SYSTIME%%]]","0"))</script> </td>
+        </tr>
+      </table>
+       <br>
+       <tr>
+      <td>註:</td>
+      <td rowspan="2">您的金融卡已完成掛失手續，請於營業時間攜帶您的身份證正本、第二證件及原留印鑑至原分行辦理金融卡之取消掛失或重新補發手續。</td>
+      </tr>
+       <tr>
+         <td>&nbsp;</td>
+       </tr>
+</table>
+</body>
+</html>

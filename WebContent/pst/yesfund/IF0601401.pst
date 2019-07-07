@@ -1,0 +1,471 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>基金申購</title>
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: Carl
+* Change List:
+*	SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI98021           2009.03.26     Carl
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<script language="JavaScript">
+
+	var Errmsg =""
+	
+	function rtnMonth(strDate){
+		return strDate.substring(0,6);	
+	}
+	function chkForm1(){
+		if (document.IF0601401.REVE_NEW_ACCT[0].checked && document.IF0601401.REVE_BANK_ACCT.value == "0") {
+				Errmsg="帳號未選擇";
+				return false;									 					
+			}else{				
+				Errmsg="";
+			 	return true;					
+			}
+	}
+	function chkForm2(){
+		var chk01 = document.IF0601401.REVE_NEW_ACCTNO2.value;
+		
+		if (!document.IF0601401.REVE_NEW_ACCT[0].checked) {
+			if (chk01.trim() == ""){
+				Errmsg="帳號未輸入";
+				return false;
+			}else if (!checkNum(chk01.trim())){
+				alert("帳號請輸入數字");
+				return false;
+			}		
+		}
+			Errmsg="";
+			return true;
+		
+	}
+	function chkForm3(){
+		var rtnFlag = false
+		var iAcctLen = document.IF0601401.REVE_NEW_ACCT 
+			for (i=0;i<iAcctLen.length;i++){
+				if (iAcctLen[i].checked){
+					rtnFlag =  true;					
+					break;
+				}			
+			}
+			if (!rtnFlag) Errmsg="未選擇扣款方式";
+			return rtnFlag;	
+	}	
+	
+	function chkForm4(){		
+			if (document.IF0601401.REVE_NEW_ACCT[1].checked ){
+				var sExMonth = document.IF0601401.REVE_NEW_EXPDATE_MONTH.value
+				var sExYear = document.IF0601401.REVE_NEW_EXPDATE_YEAR.value
+				
+				if (sExMonth.trim() == "" && sExYear.trim() == "" ){					
+					Errmsg="信用卡有效日期未填";
+						return false;				
+				} 	
+			}
+			return true; 	
+	}
+	function chkFormStatic(){
+				
+			if (chkForm1() && chkForm2() && chkForm3() && chkForm4()) {
+				return true;}
+			else{
+				alert("資料輸入不完全!\n" + Errmsg);
+				return false;
+			}
+		 		
+	}
+	function chksubmit(nextPageid){
+		var doc = document.IF0601401;
+		if (document.IF0601401.REVE_PWD.value == ""){
+      alert("請輸入密碼");
+      return;
+    }
+		if(doc.REVE_NEW_ACCT[1].checked){
+			doc.REVE_NEW_EXPDATE.value = doc.REVE_NEW_EXPDATE_MONTH.value + 
+				 doc.REVE_NEW_EXPDATE_YEAR.value.substring(2,4) ;	
+				 		
+		}/*else if(doc.REVE_NEW_ACCT[2].checked){
+				 doc.REVE_BANK_CODE.value = "701";
+		}*/		
+		doc.pageid.value = nextPageid;
+		doc.REVE_TXN_DATE_TYPE.value = chkBusTime("[[%%REVE-SYS-TIME%%]]");
+		doc.REVE_BEGIN_SUSPEND.value = rtnMonth("[[%%REVE-SYS-DATE%%]]");
+		if (doc.REVE_NEW_ACCT[0].checked){
+			doc.REVE_NEW_ACCTNO.value = doc.REVE_BANK_ACCT.value;			
+		}
+		else{
+			doc.REVE_NEW_ACCTNO.value = doc.REVE_NEW_ACCTNO2.value;			
+		}
+		
+		if (chkFormStatic()){
+			disableButton2(doc.Submit, doc.Submit2);			
+			var sAcct = "[[%%REVE-EXPIRE-DATE%%]]"
+			if(sAcct == "0000"){
+				doc.REVE_CHG_TYPE.value = "02";		
+			}else{
+				doc.REVE_CHG_TYPE.value = "06";		
+			}
+			if (doc.REVE_NEW_ACCT[0].checked){
+				doc.REVE_BANK_NAME.value = "聯邦銀行帳號";								
+			}else if (doc.REVE_NEW_ACCT[1].checked){
+				doc.REVE_BANK_NAME.value = "聯邦信用卡";
+				doc.REVE_SCHD_DATE.value = "18";
+				doc.REVE_SCHD_DATE2.value = "00";
+				doc.REVE_SCHD_DATE3.value = "00";
+			}
+			doc.REVE_SCHD_ALL.value = dispSCHD(doc.REVE_SCHD_DATE.value) + dispSCHD(doc.REVE_SCHD_DATE2.value) + dispSCHD(doc.REVE_SCHD_DATE3.value)+ dispSCHD(doc.REVE_SCHD_DATE4.value)+ dispSCHD(doc.REVE_SCHD_DATE5.value)+ dispSCHD(doc.REVE_SCHD_DATE6.value);
+			doc.submit();
+		}
+	}
+	
+	function chkExpireDate(sExpireDate){
+		if (sExpireDate=="0000"){
+			return "無";
+		}else{
+			return sExpireDate.substring(2,4) +" / "+sExpireDate.substring(0,2);
+		}	
+	}
+	
+	
+	function ChgAcct1(){		    
+	 			document.all.ACCTAREA.style.visibility="visible";
+	 			document.all.CARDAREA.style.visibility="hidden";
+		    a = document.getElementById("TD01");		
+		    a.innerHTML = "每月 " +dispSCHD(doc.REVE_SCHD_DATE.value) + dispSCHD(doc.REVE_SCHD_DATE2.value) + dispSCHD(doc.REVE_SCHD_DATE3.value)+dispSCHD(doc.REVE_SCHD_DATE4.value) + dispSCHD(doc.REVE_SCHD_DATE5.value) + dispSCHD(doc.REVE_SCHD_DATE6.value) + "日";
+		    document.IF0601401.REVE_BANK_ACCT.disabled = false;
+		    document.IF0601401.REVE_NEW_ACCTNO2.value = "";
+		    document.IF0601401.REVE_NEW_ACCTNO2.disabled = true;
+		    document.getElementById("creditCardDate").style.display="none";
+		    setStatExpireDate(0);		    
+	}	
+	function ChgAcct3(){
+			document.all.ACCTAREA.style.visibility="hidden";
+	 		document.all.CARDAREA.style.visibility="visible";	
+			a = document.getElementById("TD01");		
+		  a.innerHTML = "每月 " +dispSCHD(doc.REVE_SCHD_DATE.value) + dispSCHD(doc.REVE_SCHD_DATE2.value) + dispSCHD(doc.REVE_SCHD_DATE3.value)+dispSCHD(doc.REVE_SCHD_DATE4.value) + dispSCHD(doc.REVE_SCHD_DATE5.value) + dispSCHD(doc.REVE_SCHD_DATE6.value) + "日";
+			document.IF0601401.REVE_BANK_ACCT.options[0].selected = true;
+			document.IF0601401.REVE_BANK_ACCT.disabled = true;
+			document.IF0601401.REVE_NEW_ACCTNO2.disabled = false;
+			 document.getElementById("creditCardDate").style.display="";
+			setStatExpireDate(1);		  	
+	}
+	function setStatExpireDate(stat){
+	 	if (stat==0){
+	 		document.IF0601401.REVE_NEW_EXPDATE_MONTH.disabled = true;
+	 		document.IF0601401.REVE_NEW_EXPDATE_YEAR.disabled = true;
+	 	}else{
+	 		document.IF0601401.REVE_NEW_EXPDATE_MONTH.disabled = false;
+	 		document.IF0601401.REVE_NEW_EXPDATE_YEAR.disabled = false;	 	
+	 	}
+	}
+	
+	function chksubmit2(nextPageid){
+		disableButton2(document.IF0601401.Submit, document.IF0601401.Submit2);
+		document.IF0601401.pageid.value = nextPageid;
+		document.IF0601401.submit();	
+	}
+	
+	function clearSelect(list){
+		var index=list.options.length -1;
+		for(; index >= 0 ; index--){
+			list.options.remove(index);			
+		}
+		list.options[0]=new Option("=請選擇你的帳號=", "0");		
+	}
+	
+	function addOption(list, text, value){
+		var index=list.options.length;
+		for (i = 0 ; i<text.length ; i++){
+			if (text.indexOf('\n')>=0){
+				text = text.substr(text.indexOf('\n')+1,text.length); 
+			}else{
+				break;
+			}
+		}
+		list.options[index]=new Option(text, value);
+	}	
+	
+	function addBankAcct(sAcct){
+		var exitflag = false
+		var list = document.IF0601401.REVE_BANK_ACCT
+		var index=list.options.length; 
+		for (i = 0 ; i < index ; i++){
+			if (list.options[i].value == sAcct){
+				 exitflag = true;
+				 break;
+			}	 		
+		}
+		
+		if (exitflag == false) addOption(list,sAcct,sAcct);
+		
+	}
+</script>
+<script>
+//var kbWin = null;
+/*
+function getKeyBoard()
+{
+		var Mytype="width=450,height=250,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+		var PWD = "window.opener.document.IF0601401.PWD.value";  //show在畫面上的密碼個數
+		var KBPWD = "window.opener.document.IF0601401.REVE_PWD.value";  //User真正key的密碼
+		kbWin = window.open( "LoadAP?pageid=IP2001000&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IF0601401.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IF0601401.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+*/
+var kbWin = null;
+function getKeyBoard()
+{
+ var Mytype="width=230,height=280,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IF0601401.PWD.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IF0601401.REVE_PWD.value";  //User真正key的密碼
+ var DESC = "語音";
+ //var DESC = "動態簡訊";
+ kbWin = window.open("LoadAP?pageid=IP2001003&PWD="+PWD+"&KBPWD="+KBPWD+"&DESC="+DESC+"&REVE_DESC=&REVE_KB_KEYCODE="+document.IF0601401.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IF0601401.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+function onTop() {
+  	if (kbWin==null) return;
+  	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+//新增alertMsg()
+var email = "[[%%SEA%%]]";  	
+function alertMsg(){    	
+	var m = "[[%%REVE-MOBILE%%]]";
+	if (m == ""){
+		alert("您未在聯邦銀行存留手機資料，無法使用簡訊做授權交易。");
+		document.IF0601401.pageid.value = "IF0601000";
+		document.IF0601401.submit();
+	}
+	else if(email==""){
+		alert("您未於聯邦銀行留存電子郵件資料，將無法進行網路銀行或樂活APP之基金交易(包含申購、轉換、贖回及變更交易)，僅能執行查詢作業。如有相關疑問，請致電本行24小時客服專線02-25451788或洽本行各營業單位理財顧問。");
+		document.IF0601401.pageid.value = "IF0601000";
+		document.IF0601401.submit();
+	}
+	else{
+		alert("系統將產生一組簡訊通知交易授權碼至您的手機門號" + m + "，\n若2分鐘內未輸入密碼，本交易將自動取消。");
+	}
+}
+</script>
+</head>
+<link rel="stylesheet" type="text/css" media="all" href="theme/YesFund.css" title="win2k-cold-1" />
+<body bgcolor="#FFFFFF" onLoad="alertMsg();" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0601401">
+<font color="#006666"><b>交易資料變更&gt;</b></font><div align="right">
+<font color="#0000CC"face="Arial, Helvetica, sans-serif">資料時間： <script language="javascript">
+		document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));                  
+			      		   				//document.write(getNowTime());
+			      		   				</script></font> </div><br>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center">請選擇欲變更之項目</div>
+    </td>
+  </tr>
+</table>
+  <table width="770" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+    <td colspan="3" height="138"> 
+      <div align="center">交易資料變更<b><br>
+        </b> </div>
+        <table width="660" border="0" align="center" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td width="317" valign="top"> 
+              <table width="300" border="0">
+                <tr> 
+                <td colspan="2" bgcolor="#C5DECF"> 原留存資料</td>
+              </tr>
+              <tr> 
+                  <td width="33%" height="22">基金名稱</td>
+                  <td width="67%" height="20">[[%%REVE-FUND-CNAME%%]]</td>
+              </tr>
+              <tr> 
+                  <td width="33%" height="22">憑證號碼</td>
+                  <td width="67%" height="20">[[%%REVE-CERT-NO%%]]</td>
+              </tr>
+              <tr> 
+                  <td width="33%" height="22">投資金額</td>
+                  <td width="67%" height="20">[[%%FROM-CURRENCY-NAME%%]]&nbsp; 
+                    <script>
+              	document.write(moneyAddDot("[[%%REVE-AMT%%]]"));              	
+            </script>            </td>
+              </tr>
+              <tr> 
+                  <td width="33%" height="22">扣款方式</td>
+                  <td width="67%" height="20">[[%%REVE-BANK-NAME%%]]</td>
+              </tr>
+              <tr> 
+                  <td width="33%" height="22">扣款帳號(卡號)</td>
+                  <td width="67%" height="20">[[%%REVE-ACCT-NO%%]]</td>
+              </tr>
+              <tr> 
+                  <td width="33%" height="22">信用卡有效日期</td>
+                  <td width="67%" height="20"> 
+                    <script>
+                		document.write(chkExpireDate("[[%%REVE-EXPIRE-DATE%%]]"));
+                	</script>	
+                </td>
+              </tr>
+              <tr> 
+                  <td width="33%" height="22">每月投資日</td>
+                  <td width="67%" height="20"> 每月 <script>document.write(dispSCHD("[[%%REVE-SCHD-DATE%%]]"));document.write(dispSCHD("[[%%REVE-SCHD-DATE2%%]]"));document.write(dispSCHD("[[%%REVE-SCHD-DATE3%%]]"));document.write(dispSCHD("[[%%REVE-SCHD-DATE4%%]]"));document.write(dispSCHD("[[%%REVE-SCHD-DATE5%%]]"));document.write(dispSCHD("[[%%REVE-SCHD-DATE6%%]]"));</script> 日</td>
+              </tr>
+            </table>
+          </td>
+            <td width="333" valign="top"> 
+              <table width="350" border="0">
+              <tr> 
+                <td colspan="2" bgcolor="#58C681">變更資料處</td>
+              </tr>
+              <tr bgcolor="#E7F1EE"> 
+                <td width="28%" height="2"> 
+                  <div align="left">變更扣款方式</div>
+                </td>
+                <td width="72%" height="2"> 
+                  <input type="radio" name="REVE_NEW_ACCT" value="UB_ACCT" onClick="ChgAcct1();" checked>
+                  聯邦帳號
+                  <input type="radio" name="REVE_NEW_ACCT" value="CARD_ACCT" onClick="ChgAcct3();">
+                  信用卡卡號
+				  </td>
+              </tr>
+              <tr bgcolor="#E7F1EE"> 
+                <td width="28%"> 
+                  <div align="left">變更帳號或卡號</div>
+                </td>
+                <td width="72%" height="20">
+                <span id="ACCTAREA">
+                	<select name="REVE_BANK_ACCT"></select>
+                </span><BR>
+              	<span id="CARDAREA"> 
+                	<input type="text" name="REVE_NEW_ACCTNO2" value="">  
+                </sapn>	
+                </td>
+              </tr>
+              <tr bgcolor="#E7F1EE" id="creditCardDate"> 
+                <td width="28%"> 
+                  	<div align="left">信用卡有效日期</div>
+                </td>
+                <td width="72%" height="20" >
+                		<select name="REVE_NEW_EXPDATE_MONTH" >
+                			<option value="01" selected>01</option>
+                			<option value="02">02</option>
+			                <option value="03">03</option>
+			                <option value="04">04</option>
+			                <option value="05">05</option>
+			                <option value="06">06</option>
+			                <option value="07">07</option>
+			                <option value="08">08</option>
+			                <option value="09">09</option>
+			                <option value="10">10</option>
+			                <option value="11">11</option>
+			                <option value="12">12</option>
+	                </select>  月
+              			<select name="REVE_NEW_EXPDATE_YEAR" >
+              			</select> 
+              			年 止         
+                 </td>
+              </tr>
+              <tr bgcolor="#E7F1EE"> 
+                <td width="28%"> 
+                	<div align="left"> 每月投資日</div>
+                  
+                </td>
+                <td width="72%" height="20" id="TD01"> 
+                		<script>document.write(dispSCHD("[[%%REVE-SCHD-DATE%%]]"));document.write(dispSCHD("[[%%REVE-SCHD-DATE2%%]]"));document.write(dispSCHD("[[%%REVE-SCHD-DATE3%%]]"));document.write(dispSCHD("[[%%REVE-SCHD-DATE4%%]]"));document.write(dispSCHD("[[%%REVE-SCHD-DATE5%%]]"));document.write(dispSCHD("[[%%REVE-SCHD-DATE6%%]]"));</script>  
+                </td>
+              </tr>
+              <tr bgcolor="#E7F1EE"> 
+                <td width="28%"> 
+                	<div align="left"> 簡訊通知交易授權碼</div>
+                </td>
+                <td width="72%" height="20"> 
+   								<input type="password" name="PWD" size="8" onclick="getKeyBoard();onTop();" readonly>
+								<input type="hidden" name="REVE_PWD" value="">  
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+        <table width="660" border="0" align="center">
+          <tr>
+            <td><b>注意事項：</b><br>
+              1 .委託人須於<b><font color="#FF0000">每月投資日之前一個營業日下午3:00前完成變更申請手續</font></b>，經本行同意後始生效力，惟若扣款帳號非屬本行存款帳戶或本行信用卡，而有其他作業規定者，依其規定辦理。<br>
+              2 .投資日(遇例假日順延)：<br>
+              <table width="80%" border="0">
+                <tr>
+                  <td colspan="2"><img src="graph/fund/graph/in-point.gif" border="0" ><b>聯邦銀行帳戶投資：</b>每月2日、8日、12日、18日、22日及28日。</td>
+                </tr>
+                <tr>
+                  <td colspan="2"><img src="graph/fund/graph/in-point.gif" border="0" ><b>聯邦銀行信用卡投資：</b>每月2日、8日、12日、18日、22日及28日。</td>
+                </tr>
+              </table>
+              </td>
+          </tr>
+        </table></td>
+  </tr>
+  <tr>
+    <td colspan="3"> 
+      <div align="center"> 
+      	<input type="button" name="Submit" value="確定" onClick='JavaScript:chksubmit("IF0601402");'>
+      	<input type="button" name="Submit2" value="取消" onClick='JavaScript:chksubmit2("IF0601000");'>
+      </div>
+    </td>
+  </tr>
+</table>
+<br>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="REVE_SYS_DATE" value="[[%%REVE-SYS-DATE%%]]">
+<input type="hidden" name="REVE_TXN_DATE_TYPE" value="">
+<input type="hidden" name="REVE_CERT_NO" value="[[%%REVE-CERT-NO%%]]">
+<input type="hidden" name="REVE_FUND_ID" value="[[%%REVE-FUND-ID%%]]">
+<input type="hidden" name="REVE_FUND_CNAME" value="[[%%REVE-FUND-CNAME%%]]">
+<input type="hidden" name="REVE_NEW_ACCTNO" value="">
+<input type="hidden" name="REVE_AMT" value="[[%%REVE-AMT%%]]">
+<input type="hidden" name="REVE_SCHD_DATE" value="[[%%REVE-SCHD-DATE%%]]">
+<input type="hidden" name="REVE_SCHD_DATE2" value="[[%%REVE-SCHD-DATE2%%]]">
+<input type="hidden" name="REVE_SCHD_DATE3" value="[[%%REVE-SCHD-DATE3%%]]">
+<input type="hidden" name="REVE_SCHD_DATE4" value="[[%%REVE-SCHD-DATE4%%]]">
+<input type="hidden" name="REVE_SCHD_DATE5" value="[[%%REVE-SCHD-DATE5%%]]">
+<input type="hidden" name="REVE_SCHD_DATE6" value="[[%%REVE-SCHD-DATE6%%]]">
+<input type="hidden" name="REVE_SCHD_ALL" value="">
+<input type="hidden" name="REVE_BEGIN_SUSPEND" value="">
+<input type="hidden" name="REVE_CHG_TYPE" value="">
+<input type="hidden" name="REVE_NEW_EXPDATE" value="">
+<input type="hidden" name="REVE_BANK_NAME" value="[[%%REVE-BANK-NAME%%]]">
+<input type="hidden" name="REVE_BANK_CODE" value="">
+<input type="hidden" name="FROM_CURRENCY_NAME" value="[[%%FROM-CURRENCY-NAME%%]]">
+<input type="hidden" name="FROM_CURRENCY_CODE" value="[[%%FROM-CURRENCY-CODE%%]]">
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+</form>
+<script>	
+	var doc = document.IF0601401
+	ChgAcct1();
+	clearSelect(doc.REVE_BANK_ACCT);
+	<!--[[%%LOOP_SEC SEND-ACCT-NO%%]]-->
+			addBankAcct("[[%%SEND-ACCT-NO%%]]");        
+  <!--[[%%ELOOP_SEC%%]]-->	
+	addYearOption(document.IF0601401.REVE_NEW_EXPDATE_YEAR,"[[%%SYSDATE%%]]",20);
+	if (document.IF0601401.FROM_CURRENCY_NAME.value != "NTD"){
+		document.IF0601401.REVE_NEW_ACCT[1].disabled = true;
+		//document.IF0601401.REVE_NEW_ACCT[2].disabled = true;
+	}
+</script>
+</body>
+</html>

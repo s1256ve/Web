@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- UCPTB720 存單明細查詢 Last updated date 5-15-2003 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPT">
+	<field id="B720i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id="B289i02">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="B720i03">
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="B289i04">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="B289i05">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>帳號</description>
+	</field>
+	<field id="B289i06">
+		<name>REVE-V-NO</name>
+		<length>8</length>
+	  <type>String</type>    
+		<description>存單字號</description>
+	</field>
+	<field id="B289i07">
+		<name>REVE-CONTINUE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>續存記號</description>
+	</field> 
+	<field id="B289i08">
+		<name>REVE-TXN-AMT</name>
+		<length>14</length>
+		<type>String</type>
+		<description>轉帳金額</description>
+	</field>
+	<field id="B289i09">
+		<name>REVE-PWD</name>
+		<length>10</length>
+		<type>String</type>
+		<description>使用者密碼</description>
+	</field>
+  <field id="B289i10">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="B289i10">
+		<name>REVE-CHANNEL</name>
+		<length></length>
+		<type>String</type>
+		<description>交易通路(1:個銀)</description>
+	</field>
+	<field id="A289i11">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="A289i12">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="A289i13">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="A289i14">
+		<name>REVE-AMT</name>
+		<length>16</length>
+		<type>String</type>
+		<description>存單金額</description>
+	</field>
+</catalog>

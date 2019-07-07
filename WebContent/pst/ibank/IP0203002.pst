@@ -1,0 +1,202 @@
+<html>
+<head>
+<title>台幣存款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<!--取消畫面(1)-->
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script language="JavaScript" SRC="script/acctfmt.js"></script>
+<script language="JavaScript" SRC="script/datefmt.js"></script>
+<script language="JavaScript" SRC="script/moneyfmt.js"></script>
+<script language="JavaScript">
+<!--
+	var info = "[[%%REVE-INFO%%]]" ;
+	var infoArray = info.split("@");
+	//alert('info='+info);
+	var brName = infoArray[0];
+	var fromAcct = infoArray[1];
+	var bankName = infoArray[2];
+	var bankCode = infoArray[3];
+	var toAcct = infoArray[4];
+	var txnAmt = infoArray[5];
+	var schdDate = infoArray[6];
+	var txnSNO = infoArray[7];
+	var channelAdd = infoArray[8];
+	var schdSNO = infoArray[9];
+	function getBRNAME(){
+	    return brName;
+	}
+	function getFROMACCT(){
+	    return getAcctStr(fromAcct);
+	}
+	function getBANKNAME(){
+	    return bankName;
+	}
+	function getBANKCODE(){
+	    return bankCode;
+	}
+	function getTOACCT(){
+	    return getAcctStr(toAcct);
+	}
+	function getTXNAMT(){
+	    return moneyAddDot2(txnAmt);
+	}
+	function getSCHDDATE(){
+	    return getRCDateStr(schdDate,0);
+	}
+	function getSAVEDATE(){
+	    if (txnSNO.length>8){
+            return getRCDateStr(txnSNO.substr(0,8),0);
+        }
+	}
+	function getTXNSNO(){
+	    return txnSNO;
+	}
+	function getCHANNELADD(){
+	    if (channelAdd=="") return "其它";
+        if (channelAdd=="IBANK"){
+            return "網路預約";
+        }else{
+            return "其它";
+        }
+	}
+	function getSCHDSNO(){
+	    return schdSNO;
+	}
+	
+	function ChkSubmit(){
+        var f=document.IP0203002;
+        f.pageid.value="IP0203003";
+        f.brName.value = brName;
+        f.fromAcct.value = fromAcct;
+        f.bankName.value = bankName;
+        f.bankCode.value = bankCode;
+        f.toAcct.value = toAcct;
+        f.txnAmt.value = txnAmt;
+        f.schdDate.value = schdDate;
+        f.txnSNO.value = txnSNO;
+        f.channelAdd.value = channelAdd; 
+        f.schdSNO.value = schdSNO;
+        if (confirm('確定要取消此預約交易嗎?')){
+            f.submit();
+        }
+    }
+-->
+</script>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　台幣存款帳戶查詢&gt;<font color="#003399"><font color="#0066FF">查詢/取消預約轉帳</font></font></b><font color="#003399"><font color="#0066FF"><b>&gt;</b></font></font><b><font color="#0066FF">待執行交易</font></b><br>
+<font color="#0000CC"><br>
+</font> 
+<form name="IP0203002" method="POST" action="LoadAP">
+<table border="0">
+  <tr>
+    <td width="764"><font color="#000099"> </font><font color="#0000CC"> </font> <font color="#0000CC"> 
+      </font><font color="#000099"></font>　您要取消下列預約轉帳交易？</td>
+  </tr>
+  <tr>
+    <td><font color="#0000CC"> </font> <font color="#0000CC"> </font> 
+      <table border="1" bordercolor="#999999" cellpadding="2">
+        <tr> 
+          <td width="120" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">轉出分行/帳號</div>
+          </td>
+          <td width="120" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">轉入銀行/帳號</div>
+          </td>
+          <td width="118" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">轉帳金額</div>
+          </td>
+          <td width="62" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">轉帳日</div>
+          </td>
+          <td width="70" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">預約日</div>
+          </td>
+          <td width="88" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">預約方式</div>
+          </td>
+          <td width="102" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">預約序號</div>
+          </td>
+        </tr>
+        <tr> 
+          <td width="120" height="26">
+            <SCRIPT language="JavaScript">     
+                    document.write(getBRNAME());
+            </SCRIPT><br>
+            <SCRIPT language="JavaScript">     
+                    document.write(getFROMACCT());
+            </SCRIPT></td>
+          <td width="120" bgcolor="#FFFFDD" height="26">
+            <SCRIPT language="JavaScript">     
+                    document.write(getBANKNAME());
+            </SCRIPT>
+            <SCRIPT language="JavaScript">     
+                    document.write(getBANKCODE());
+            </SCRIPT><br>
+            <SCRIPT language="JavaScript">     
+                    document.write(getTOACCT());
+            </SCRIPT>
+          </td>
+          <td width="118" height="26"> 
+            <div align="center">台幣
+            <SCRIPT language="JavaScript">     
+                    document.write(getTXNAMT());
+            </SCRIPT>元</div>
+          </td>
+          <td width="62" height="26"> 
+            <div align="center">&nbsp;
+            <SCRIPT language="JavaScript">     
+                    document.write(getSCHDDATE());
+            </SCRIPT></div>
+          </td>
+          <td width="70" height="26"> 
+            <div align="center">&nbsp;
+            <SCRIPT language="JavaScript">     
+                    document.write(getSAVEDATE());
+            </SCRIPT></div>
+          </td>
+          <td width="88" height="26"> 
+            <div align="center">
+            <SCRIPT language="JavaScript">     
+                    document.write(getCHANNELADD());
+            </SCRIPT></div>
+          </td>
+          <td align="center" width="102" height="26">&nbsp;
+            <SCRIPT language="JavaScript">     
+                    document.write(getSCHDSNO());
+            </SCRIPT></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td> 
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td colspan="2"> 
+            <div align="center">　 
+              <input type="button" name="sure" value="確定" onclick="javascript:ChkSubmit();">
+              <input type="button" name="cancel" value="取消" onclick = "javascript:window.close();">
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="txnSNO" value="">
+<input type="hidden" name="brName" value="">
+<input type="hidden" name="fromAcct" value="">
+<input type="hidden" name="bankName" value="">
+<input type="hidden" name="toAcct" value="">
+<input type="hidden" name="bankCode" value="">
+<input type="hidden" name="txnAmt" value="">
+<input type="hidden" name="schdDate" value="">
+<input type="hidden" name="channelAdd" value="">
+<input type="hidden" name="schdSNO" value="">
+</form>
+</body>
+</html>

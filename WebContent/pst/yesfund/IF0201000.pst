@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>基金申購</title>
+<!--script language="JavaScript" SRC="script/PreviousPageBlock.js"></script-->
+<script language="javaScript">
+window.parent.closeform();
+function chksubmit(nextPageid){		
+		document.IF0201000.pageid.value = nextPageid;
+		document.IF0201000.submit();		
+}
+</script>
+</head>
+<link rel="stylesheet" type="text/css" media="all" href="theme/YesFund.css" title="win2k-cold-1" />
+<body bgcolor="#FFFFFF" onLoad="window.scrollTo(0,0);" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0201000">
+<table width="770" border="0" cellpadding="0">
+  <tr>
+    <td> 
+      <div align="center"><b>資料處理中，請稍候....</b></div>
+    </td>
+  </tr>
+<br>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="REVE_FUND_ID" value="[[%%REVE-FUND-ID%%]]">
+<input type="hidden" name="REVE_EX_DIVIDEND" value="[[%%REVE-FUND-ID%%]]">
+<input type="hidden" name="SEND_KYC_VALUE" value="[[%%SEND-KYC-VALUE%%]]">
+<input type="hidden" name="SEND_FUND_RANK" value="[[%%SEND-FUND-RANK%%]]">
+<input type="hidden" name="SEND_FUND_CNAME" value="[[%%SEND-FUND-CNAME%%]]">
+<input type="hidden" name="SEND_CURRENCY" value="[[%%SEND-CURRENCY%%]]">
+</form>
+<script>
+	chksubmit('IF0201001');
+</script>
+</body>
+</html>

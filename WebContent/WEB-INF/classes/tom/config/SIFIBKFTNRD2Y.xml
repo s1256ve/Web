@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="Big5"?>
+<!-- IVR FUND IBKFTNRD2  基金贖回交易 Last updated date 3-17-2004 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="TNRD2i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='TNRD2i54' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="TNRD21i55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="TNRD2i03">
+		<name>REVE-CERT-NO</name>
+		<length>10</length>
+		<type>String</type>
+		<description>憑証號碼</description>
+	</field>
+	<field id="TNRD2i05">
+		<name>REVE-FUND-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>基金代碼</description>
+	</field>
+	<field id="TNRD2i06">
+		<name>REVE-SELL-TYPE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>贖回方式</description>
+	</field>
+	<field id="TNRD2i07">
+		<name>REVE-SELL-AMT</name>
+		<length>10</length>
+		<type>String</type>
+		<description>贖回信託金額</description>
+	</field>
+	<field id="TNRD2i08">
+		<name>REVE-TO-ACCTNO</name>
+		<length>10</length>
+		<type>String</type>
+		<description>贖回帳號</description>
+	</field>	
+	<field id="TNRD2i12">
+		<name>REVE-CHANNEL</name>
+		<length>10</length>
+		<type>String</type>
+		<description>交易管道</description>
+	</field>
+	<field id="TNRD2i13">
+		<name>REVE-BANK-CODE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>銀行代號</description>
+	</field>	
+	<field id="TNRD2i14">
+		<name>REVE-BID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>分行代號</description>
+	</field>	
+	<field id="TNRD2i15">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="TNRD2i16">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="TNRD2i17">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="TNRD2i18">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+		<field id="TNRD2i19">
+		<name>REVE-FROM-AMT</name>
+		<length>10</length>
+		<type>String</type>
+		<description>匯率轉出金額</description>
+	</field>	
+	<field id="TNRD2i20">
+		<name>REVE-FROM-CURRENCY</name>
+		<length>10</length>
+		<type>String</type>
+		<description>轉出幣別</description>
+	</field>
+	<field id="TNRD2i21">
+		<name>REVE-TO-CURRENCY</name>
+		<length>10</length>
+		<type>String</type>
+		<description>轉入幣別</description>
+	</field>	
+	<field id="TNRD2i22">
+		<name>REVE-QRY-ND2US</name>
+		<length>1</length>
+		<type>String</type>
+		<description>查詢台幣對美金之賣匯</description>
+	</field>
+	<field id="TNRD2i23">
+		<name>REVE-CURRENCY-NAME</name>
+		<length>10</length>
+		<type>String</type>
+		<description>申購基金幣別NAME</description>
+	</field>
+	<field id="TNRD2i24">
+		<name>REVE-SEARCH-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>營業日查詢: 基金 : 3</description>
+	</field>
+	<field id="TNRD2i25">
+		<name>REVE-COME-FROM</name>
+		<length>16</length>
+		<type>String</type>
+		<description>來源位置</description>
+	</field>
+	<field id="TNRD2i26">
+		<name>REVE-ID-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+		<field id="TNRD2i27">
+		<name>SEND-CUT-YORN</name>
+		<length>1</length>
+		<type>String</type>
+		<description>暫停扣款</description>
+	</field>
+		<field id="TNRD2i27">
+		<name>SEND-EMAIL-ADDR</name>
+		<length>1</length>
+		<type>String</type>
+		<description>電子郵件</description>
+	</field>
+</catalog>

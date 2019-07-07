@@ -1,0 +1,189 @@
+<html>
+<head>
+<title>聯邦理財金融網</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+
+<style type="text/css">
+    body,p,td,form,select{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:12pt}
+    .t1{  font-family: "新細明體"; font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-family: "新細明體"; font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+</style>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" link="#0000FF" vlink="#0000FF" alink="#000000" background="graph/bg.gif" onLoad="">
+
+
+<table width="780" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><img src="graph/blank.gif" width="5" height="1"><img src="graph/ub-logo.gif" border="0"></td>
+    <td align="right" valign="top"><img border="0" src="graph/map-01.gif"></td>
+  </tr>
+</table>
+<table width="780" border="0" cellspacing="0" cellpadding="0">
+  <tr align="left" valign="top"> 
+    <td> 
+      <table width="780" border="0" cellspacing="0" cellpadding="0">
+        <tr bgcolor="#80836E"> 
+          <td><img src="graph/blank.gif" width="1" height="1"></td>
+        </tr>
+        <tr bgcolor="#C4CBB8"> 
+          <td>
+            <table width="780" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td width="204" valign="bottom"><img src="graph/map-08.gif" width="213" height="21"></td>
+                <td width="566" align="right" valign="bottom" height=11>
+
+<!-- PLEASE INSERT THESE CODES BETWEEN <BODY> ... </BODY> TAGS! -->
+<!-- START Javascript Menu Builder PLATINUM 1.0 config parameters. Don't modify these codes by yourself -->
+<!-- (C)Copyright 2002 USINGIT.COM, All rights reserved! Javascript Menu Builder PLATINUM 1.0 -->
+
+<script language="JavaScript">
+
+var AWgmnBSpm=null;var aWGmnBSpm;var awGMnBSpm;var AWGmnBSpm=false;
+var aWGMnBSpm=true;var AWGMnBSpm=null;var awgmnbSPm;var AwgmnbSPm=aWGmNbspm;var aWGMnbSpm=0;
+
+awgmnbspm=(document.layers);
+Awgmnbspm=(document.getElementById&&!document.all);
+aWgmnbspm=(document.getElementById&&document.all);
+awGmnbspm=(navigator.userAgent.indexOf("Netscape6/6.0")!=-1);
+awgMnbspm=(navigator.userAgent.indexOf('OPERA')!=-1)||(navigator.appName.indexOf('OPERA')!=-1)||(window.opera);
+AWgmnbspm=(document.all&&!awgMnbspm);
+aWGmnbspm=((AWgmnbspm)&&(navigator.appVersion.indexOf ("Mac")!=-1));
+awGMnbspm=document.getElementById&&!awgmnbspm&&!AWgmnbspm&&!awgMnbspm;
+AWGmnbspm=(navigator.appVersion.indexOf("Windows")!=-1||navigator.appVersion.indexOf("WinNT")!=-1);
+if(awGMnbspm||awgmnbspm||AWgmnbspm||awgMnbspm){var aWGMnbspm;
+var AWGMnbspm;var awgmNbspm;var AwgmNbspm;var aWgmNbspm;var awGmNbspm;var awgMNbspm;var AWgmNbspm;var aWGmNbspm;var awGMNbspm;
+var AWGmNbspm;var aWGMNbspm;var AWGMNbspm;var awgmnBspm;var AwgmnBspm;var aWgmnBspm;var awGmnBspm;var awgMnBspm;var AWgmnBspm;
+var aWGmnBspm;var awGMnBspm;var AWGmnBspm;var aWGMnBspm;var AWGMnBspm;var awgmnbSpm;var AwgmnbSpm;var aWgmnbSpm;var awGmnbSpm;
+var awgMnbSpm;var AWgmnbSpm;var aWGmnbSpm;var awGMnbSpm;var AWGmnbSpm;};
+function AWGMnbSpm(awgmnbsPm,AwgmnbsPm,aWgmnbsPm,awGmnbsPm,awgMnbsPm,AWgmnbsPm,aWGmnbsPm,
+	awGMnbsPm,AWGmnbsPm,aWGMnbsPm,AWGMnbsPm,awgmnbspM,AwgmnbspM,aWgmnbspM,awGmnbspM,
+	awgMnbspM,AWgmnbspM,aWGmnbspM,awGMnbspM,AWGmnbspM,aWGMnbspM,AWGMnbspM,awgmNBspm,
+	AwgmNBspm,aWgmNBspm,awGmNBspm,awgMNBspm,AWgmNBspm,aWGmNBspm,awGMNBspm,AWGmNBspm,
+	aWGMNBspm,AWGMNBspm){
+	aWGMnbspm=awgmnbsPm;AWGMnbspm=AwgmnbsPm;
+	awgmNbspm=aWgmnbsPm;AwgmNbspm=awGmnbsPm;
+	aWgmNbspm=awgMnbsPm;awGmNbspm=AWgmnbsPm;
+	awgMNbspm=aWGmnbsPm;AWgmNbspm=awGMnbsPm;
+	aWGmNbspm=AWGmnbsPm;awGMNbspm=aWGMnbsPm;
+	AWGmNbspm=AWGMnbsPm;aWGMNbspm=awgmnbspM;
+	AWGMNbspm=AwgmnbspM;awgmnBspm=aWgmnbspM;
+	AwgmnBspm=awGmnbspM;aWgmnBspm=awgMnbspM;
+	awGmnBspm=AWgmnbspM;awgMnBspm=aWGmnbspM;
+	AWgmnBspm=awGMnbspM;aWGmnBspm=AWGmnbspM;
+	awGMnBspm=aWGMnbspM;AWGmnBspm=AWGMnbspM;
+	aWGMnBspm=awgmNBspm;AWGMnBspm=AwgmNBspm;
+	awgmnbSpm=aWgmNBspm; AwgmnbSpm=awGmNBspm;
+	aWgmnbSpm=awgMNBspm;awGmnbSpm=AWgmNBspm;
+	awgMnbSpm=aWGmNBspm;AWgmnbSpm=awGMNBspm;
+	aWGmnbSpm=AWGmNBspm;awGMnbSpm=aWGMNBspm;
+	AWGmnbSpm=AWGMNBspm;awgmnBSpm=AwgmnbSpm;
+	AwgmnBSpm=awGmnbSpm;aWgmnBSpm=aWgmnbSpm;awGmnBSpm=awgMnbSpm;
+};
+
+AWGMnbSpm(2000,1,10,1,9999,0,0,0,100,-3,3,0,"#C0C0C0",2,1,"graph","scrollup_black.gif","scrolldown_black.gif",
+	"arrowright_black.gif",8,8,0,"main",1,5,"#000000","#FFFFFF","#C0C0C0","#C0C0C0","新細明體","12px",false,false);
+
+awgMnBSpm11 = new Array("公司簡介","javaScript:;",0,"main","","關係企業","javaScript:;",0,"main","","財務訊息","javaScript:;",0,"main","", "聯邦新聞網","javaScript:;",0,"main","");
+awgMnBSpm12 = new Array("網路客服中心","javaScript:;",1,"main","","答客問","javaScript:;",0,"main","","線上申請","javaScript:;",1,"main","","表格下載","javaScript:;",1,"main","","定型化契約","javaScript:;",1,"main","","程式下載專區","javaScript:;",1,"main","","服務據點","javaScript:;",1,"main","","客戶服務專線","javaScript:;",0,"main","");
+awgMnBSpm12_1 = new Array("使用說明","javaScript:;",0,"main","","線上即時服務","javaScript:;",0,"main","","客戶信箱","javaScript:;",0,"main","","下載更新程式","javaScript:;",0,"main","");
+awgMnBSpm12_3 = new Array("預約申請","javaScript:;",1,"main","","索取申請書","javaScript:;",1,"main","");
+awgMnBSpm12_3_1 = new Array("國民現金卡","javaScript:;",0,"main","","SSL 轉帳","javaScript:;",0,"main","","信用卡電子帳單","javaScript:;",0,"main","","UMA 智慧理財專戶","javaScript:;",0,"main","","YesFund 基金天地","javaScript:;",0,"main","","證券下單","javaScript:;",0,"main","");
+awgMnBSpm12_3_2 = new Array("信用卡","javaScript:;",0,"main","","Cyber","javaScript:;",0,"main","");awgMnBSpm12_4 = new Array("存戶基本資料變更通知書","javaScript:;",0,"main","");awgMnBSpm12_5 = new Array("汽車借款約定書","javaScript:;",0,"main","","動產抵押約定書﹙汽車專用﹚","javaScript:;",0,"main","","網路銀行服務申請﹙註銷〉約定書","javaScript:;",0,"main","");
+awgMnBSpm12_6 = new Array("網路銀行","javaScript:;",0,"main","","證券下單","javaScript:;",0,"main","","下載更新程式","javaScript:;",0,"main","");awgMnBSpm12_7 = new Array("分行位址","javaScript:;",0,"main","","ATM","javaScript:;",0,"main","","保管箱","javaScript:;",0,"main","");awgMnBSpm13 = new Array("客戶信箱","javaScript:;",0,"main","","服務據點","javaScript:;",1,"main","","客戶服務專線","javaScript:;",0,"main","","網路客服中心","javaScript:;",0,"main","");awgMnBSpm13_2 = new Array("分行位址","javaScript:;",0,"main","","ATM","javaScript:;",0,"main","","保管箱","javaScript:;",0,"main","");
+awgMnBSpm2="";
+
+if(AWGmnBspm){
+	if(document.URL.lastIndexOf("\\")>document.URL.lastIndexOf("/")){
+		awgMnBSpm3="\\";
+	}else{awgMnBSpm3="/";}
+	awgMnBSpm2=document.URL.substring(0,document.URL.lastIndexOf(awgMnBSpm3)+1);
+};
+
+if(awgmnbspm){document.write("<script language=\'JavaScript1.2\' src=\'script/menunstrl.js\'><\/script>");}
+else{if(aWgmnbspm||Awgmnbspm){document.write("<script language=\'JavaScript1.2\' src=\'script/menuietrl.js\'><\/script>");}};
+
+document.write("<style type=\'text\/css\'>");document.write(".awgMnBSpm4{text-decoration:none;color:"+AwgmnbSpm+";}");
+
+if(!awGMnbspm){document.write(".awgMnBSpm5{position:relative}");}
+
+document.write(((awgmnbspm)?".awgMnBSpm6":".awgMnBSpm7")+"{padding-left:5px;padding-right:5px;line-height:7pt}");
+document.write("<\/style>");
+
+</script>
+
+<table cellspacing="0" cellpadding="1" border="0" bgcolor="#C0C0C0">
+<tr><td>
+	<table class="awgMnBSpm6" width="100%" cellspacing="0" cellpadding="3" border="0" >
+		<tr align="center"><td onmouseover="awgMnBSpmc('awgMnBSpma0',1);awgMnBSpmd('awgMnBSpm11','awgMnBSpma0');" 
+				       onmouseout="awgMnBSpmc('awgMnBSpma0',0);awgMnBSpme('awgMnBSpm11');" id='awgMnBSpma0'  bgcolor="#C0C0C0" class="awgMnBSpm7" style="color:#000000; font-family:新細明體; font-size:12px;">
+				       <a id="awgMnBSpma0awgMnBSpmb" class="awgMnBSpm4" href="javaScript:;" target="main" style=\'text-decoration:none\' 
+				       		onMouseOver="awgMnBSpmf('awgMnBSpm11')" 
+				       		onmouseout="awgMnBSpmg('awgMnBSpm11')" ><div id='awgMnBSpm11aWGmnbSPMaaa' class='awgMnBSpm5'>關於聯邦<img width="8" height="8" src="graph/arrowdown_black.gif" align="texttop" border="0" /></div></a></td>
+				   <td onmouseover="awgMnBSpmc('awgMnBSpma1',1);awgMnBSpmd('awgMnBSpm12','awgMnBSpma1');" 
+				       onmouseout="awgMnBSpmc('awgMnBSpma1',0);awgMnBSpme('awgMnBSpm12');" id='awgMnBSpma1'  bgcolor="#C0C0C0" class="awgMnBSpm7" style="color:#000000; font-family:新細明體; font-size:12px;">
+				       <a id="awgMnBSpma1awgMnBSpmb" class="awgMnBSpm4" href="javaScript:;" target="main" style=\'text-decoration:none\' 
+				       		onMouseOver="awgMnBSpmf('awgMnBSpm12')" 
+				       		onmouseout="awgMnBSpmg('awgMnBSpm12')" ><div id='awgMnBSpm12aWGmnbSPMaaa' class='awgMnBSpm5'>客服中心<img width="8" height="8" src="graph/arrowdown_black.gif" align="texttop" border="0" /></div></a></td>
+				   <td onmouseover="awgMnBSpmc('awgMnBSpma2',1);awgMnBSpmd('awgMnBSpm13','awgMnBSpma2');" 
+				       onmouseout="awgMnBSpmc('awgMnBSpma2',0);awgMnBSpme('awgMnBSpm13');" id='awgMnBSpma2'  bgcolor="#C0C0C0" class="awgMnBSpm7" style="color:#000000; font-family:新細明體; font-size:12px;">
+				       <a id="awgMnBSpma2awgMnBSpmb" class="awgMnBSpm4" href="javaScript:;" target="main" style=\'text-decoration:none\' 
+				       		onMouseOver="awgMnBSpmf('awgMnBSpm13')" 
+				       		onmouseout="awgMnBSpmg('awgMnBSpm13')" ><div id='awgMnBSpm13aWGmnbSPMaaa' class='awgMnBSpm5'>聯絡我們<img width="8" height="8" src="graph/arrowdown_black.gif" align="texttop" border="0" /></div></a></td>
+				   <td id='awgMnBSpma3'  bgcolor="#C0C0C0" class="awgMnBSpm7" style="color:#000000; font-family:新細明體; font-size:12px;">
+				   	<a id="awgMnBSpma3awgMnBSpmb" class="awgMnBSpm4" href="http://ibank.ubot.com.tw/ibank/" target="main" style=\'text-decoration:none\'<div id='awgMnBSpm14aWGmnbSPMaaa' class='awgMnBSpm5'>網路銀行家</div></a></td>
+				   <!--<td id='awgMnBSpma4'  bgcolor="#C0C0C0" class="awgMnBSpm7" style="color:#000000; font-family:新細明體; font-size:12px;">
+				   	<a id="awgMnBSpma4awgMnBSpmb" class="awgMnBSpm4" href="javaScript:;" target="main" style=\'text-decoration:none\'<div id='awgMnBSpm15aWGmnbSPMaaa' class='awgMnBSpm5'>本站導覽</div></a></td>-->
+				   <td id='awgMnBSpma5'  bgcolor="#C0C0C0" class="awgMnBSpm7" style="color:#000000; font-family:新細明體; font-size:12px;">
+				   	<a id="awgMnBSpma5awgMnBSpmb" class="awgMnBSpm4" href="http://www.ubot.com.tw" target="main" style=\'text-decoration:none\'<div id='awgMnBSpm16aWGmnbSPMaaa' class='awgMnBSpm5'>聯邦首頁</div></a></td>
+		</tr></table></td></tr></table>
+
+<!-- END Javascript Menu Builder PLATINUM 1.0 config parameters -->
+<!-- PLEASE INSERT THESE CODES BETWEEN <BODY> ... </BODY> TAGS! -->
+
+
+</td>
+                <td width="10"><img src="graph/blank.gif" width="10" height="8"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr bgcolor="#80836E"> 
+          <td><img src="graph/blank.gif" width="1" height="1"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!--width="142"  height="500" -->
+
+<iframe name="left" id="left"  style="z-index=-1; position: absolute; top:1; left:0" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="LoadAP?pageid=IC0000002"/>
+<iframe name="main" id="main"  style="z-index=-1; position: absolute; top:3; width="800" scrolling="auto" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="LoadAP?pageid=IC0000003"/>
+<iframe name="down" id="down"" style="z-index=-1; position: relative; left:0" width="780" height="22"  frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?pageid=IC0000004"/>
+
+<script>
+
+var iParent = parent.document.getElementById("IC0000000");
+
+var iLeft = this.document.getElementById("left");
+var iMain = this.document.getElementById("main");
+var iDown = this.document.getElementById("down");
+
+iParent.style.height=this.document.body.scrollHeight+"px";
+iParent.style.width=this.document.body.scrollWidth+"px";
+
+</script>
+<!--
+<table  cellspacing="0" cellpadding="1" border="0" width=100%>
+<tr><td><iframe name="left" id="left" style="z-index=-1; position: relative; top:3; left:0" width="142"  height="500" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="LoadAP?pageid=IC0000002"/></td>
+    <td><iframe name="main" id="main" style="z-index=-1; position: relative; top:3; width="800" scrolling="auto" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="LoadAP?pageid=IC0000003"/></td></tr>
+<tr><td colspan="2">
+	<iframe name="dowm" id="dowm"" style="z-index=-1; position: relative; left:0" width="780" height="22"  frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?pageid=IC0000004"/></td></tr>
+</table>
+-->
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--/******************************************************************************/
+/* 
+ * Remark Area                                                                
+ *
+ * Create name	: Deanke         Create Date : 		      
+ * Function	: 	LoadAP 服務	     
+ * Notice       : 
+ * I/O   	:
+ *
+ * Change List:                                                               
+ * Date Modified     Modified by     Comments
+ * =============    =============   ================================================
+ * 20040406          Alma           將舊有potlog機制停止，由SysemConfig.xml設定新服務      
+*/
+/******************************************************************************/-->
+<root>
+	<pst	ServiceMng="/com/ubot/common/config/PMNG01.pst" />
+		 
+
+	<service name="LOADAP"
+			 descript="LoadAP Service" 
+			 type="0">com.ubot.portal.LoadAP</service>		
+	<!--		  		 
+	<service name="LOADAPLOG"
+			 descript="LoadAP Log Service" 
+			 type="1">com.ubot.portal.LoadAPLog</service>
+	-->
+	<logquery	where_0 =" ORDER BY LOADAPBEGIN.LOGID DESC"
+				where_1 =" WHERE STARTTIME >= '[[%%STARTTIME%%]]' AND 
+						 		 TXNID	    = '[[%%TXNID%%]]'     AND
+						 		 ( LOADAPEND.TXNMSGCODE LIKE '[[%%RTNMSGCODE%%]]%'    OR
+						 		 LOADAPEND.SYSMSGCODE LIKE '[[%%RTNMSGCODE%%]]%')
+						   ORDER BY LOADAPBEGIN.LOGID DESC"
+				where_2 =" WHERE STARTTIME >= '[[%%STARTTIME%%]]'					
+						   ORDER BY LOADAPBEGIN.LOGID DESC"
+				where_3 =" WHERE TXNID	   = '[[%%TXNID%%]]'     					
+						   ORDER BY LOADAPBEGIN.LOGID DESC"
+				where_4 =" WHERE ( LOADAPEND.TXNMSGCODE LIKE '[[%%RTNMSGCODE%%]]%'    OR
+						 		 LOADAPEND.SYSMSGCODE LIKE '[[%%RTNMSGCODE%%]]%')	
+						   ORDER BY LOADAPBEGIN.LOGID DESC"
+				where_5 =" WHERE STARTTIME >= '[[%%STARTTIME%%]] AND 
+								 TXNID	    = '[[%%TXNID%%]]'
+						   ORDER BY LOADAPBEGIN.LOGID DESC"
+				where_6 =" WHERE TXNID	    = '[[%%TXNID%%]]' AND 
+								 ( LOADAPEND.TXNMSGCODE LIKE '[[%%RTNMSGCODE%%]]%'    OR
+						 		 LOADAPEND.SYSMSGCODE LIKE '[[%%RTNMSGCODE%%]]%')
+						   ORDER BY LOADAPBEGIN.LOGID DESC"
+				where_7 =" WHERE STARTTIME >= '[[%%STARTTIME%%]]' AND 
+							 	 ( LOADAPEND.TXNMSGCODE LIKE '[[%%RTNMSGCODE%%]]%'    OR
+						 		 LOADAPEND.SYSMSGCODE LIKE '[[%%RTNMSGCODE%%]]%')
+						   ORDER BY LOADAPBEGIN.LOGID DESC">
+					
+			SELECT LOADAPBEGIN.LOGID , PAGEID , SESSID , APTYPE , TXNID , STARTTIME ,
+			LOADAPEND.ENDTIME , COMEFROM , LOADAPEND.TXNMSGCODE , LOADAPEND.SYSMSGCODE , LOADAPEND.RUNTIME
+			FROM   DB2IBANK.LOADAPBEGIN AS LOADAPBEGIN 
+		    FULL OUTER JOIN DB2IBANK.LOADAPEND  AS LOADAPEND ON LOADAPBEGIN.LOGID   = LOADAPEND.LOGID 
+
+	</logquery>		
+	
+</root>

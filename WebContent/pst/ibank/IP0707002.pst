@@ -1,0 +1,131 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="javascript">
+<!--
+function chgAcct(acctStr) {
+	var acctArray = acctStr.split("@");
+	var i = 0;
+	var acctNo = document.IP0707002.SEND_ACCT_NO.value;
+	if((acctArray[0] == "")||(acctNo == acctArray[0])||(acctStr == "")){
+		return;
+	}
+	document.IP0707002.SEND_BR_NAME.value = acctArray[0];
+	document.IP0707002.SEND_ACCT_DESC.value = acctArray[1];
+	document.IP0707002.SEND_ACCT_NO.value = acctArray[2];
+	if(document.IP0707002.SEND_ACCT_NO.value != ""){
+	document.IP0707002.pageid.value = "IP0707002";
+	document.IP0707002.submit();
+	}
+}
+
+function selAcct(){
+	var f = document.IP0707002;
+        var len = f.chkAcct.length;
+    	for (i = 0 ; i < len ; i++){
+    	    var temparray = f.chkAcct.options[i].value.split("@");
+    	    if (temparray[2]=="[[%%PRE-ACCT-NO%%]]"){
+    	    	f.chkAcct.options[i].selected=true;
+    	    }
+    	}  	
+}
+
+function chkShowVno(tmp1,tmp2,tmp3){
+	var title = tmp1;	
+	var val = tmp2;
+	var vno = tmp3;
+	if(title == "零整"){
+		return "<option value='" + val + "'>" + vno + "</option>";
+	}
+}
+
+function chkVno(vnoStr) {
+	var vnoArray = vnoStr.split("@");
+	document.IP0707002.SEND_V_NO.value = vnoArray[0];
+	document.IP0707002.SEND_TITLE.value = vnoArray[1];
+	document.IP0707002.SEND_B_DATE.value = vnoArray[2];
+	document.IP0707002.SEND_E_DATE.value = vnoArray[3];
+	document.IP0707002.SEND_INTEREST.value = vnoArray[4];
+	document.IP0707002.SEND_INTEREST.value = vnoArray[5];
+	document.IP0707002.SEND_INT_PAY.value = vnoArray[6];
+	document.IP0707002.SEND_SAVE_DATE.value = vnoArray[7];
+	document.IP0707002.SEND_SAVE_AMT.value = vnoArray[8];
+}
+
+function chkSubmit(){
+	var acct = document.IP0707002.SEND_ACCT_NO.value;
+	var vno = document.IP0707002.Vno.value;
+	if(acct == ""){
+		alert("請選擇帳號!");
+		return;
+	}
+	if(vno == "0"){
+		alert("請選擇存單字號!");
+		return;
+	}
+	chkVno(vno);
+	document.IP0707002.pageid.value = "IP0707003";
+	document.IP0707002.submit();
+}
+-->
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="selAcct();" background="graph/bg.gif" leftmargin="0" topmargin="0">
+
+<form method="post" action="LoadAP" name="IP0707002">
+<p><b>　帳戶交易&gt;<font color="#003399"><font color="#0066FF">活存轉繳零存整付<br>
+  <br>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5">　定存帳號<font color="#663300" face="Arial, Helvetica, sans-serif">　 
+      <select name="chkAcct" onChange="JavaScript:chgAcct(this.value);">
+				
+				<!--[[%%LOOP_SEC SEND-ACCT-NO%%]]-->
+        <option value="[[%%SEND-BR-NAME%%]]@[[%%SEND-ACCT-DESC%%]]@[[%%SEND-ACCT-NO%%]]">
+        [[%%SEND-BR-NAME%%]] [[%%SEND-ACCT-DESC%%]] [[%%SEND-ACCT-NO%%]]
+        </option>
+        <!--[[%%ELOOP_SEC%%]]-->
+        
+      </select>
+      <img src="graph/go.gif" width="19" height="19" align="absmiddle" border="0" onClick="chkSubmit();">
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="5">　存單字號　 
+      <select name="Vno" onChagne="JavaScript:chkVno(this.value);">
+        <option value='0' selected>==請選擇存單字號==</option>
+        [[%%LOOP_SEC SEND-V-NO%%]]
+        <script>
+        var tit = "[[%%SEND-TITLE%%]]";
+        var val = "[[%%SEND-V-NO%%]]@[[%%SEND-TITLE%%]]@[[%%SEND-B-DATE%%]]@[[%%SEND-E-DATE%%]]@[[%%SEND-INTEREST%%]]@[[%%SEND-BALANCE%%]]@[[%%SEND-INT-PAY%%]]@[[%%SEND-SAVE-DATE%%]]@[[%%SEND-SAVE-AMT%%]]";
+        var vno = "[[%%SEND-V-NO%%]]";
+        document.write(chkShowVno(tit,val,vno));
+        </script>
+        [[%%ELOOP_SEC%%]]
+      </select>
+    </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="5" valign="bottom" height="1"></td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="IP0707003">
+<input type="hidden" name="SEND_BR_NAME" value="[[%%REVE-BR-NAME%%]]">
+<input type="hidden" name="SEND_ACCT_DESC" value="[[%%REVE-ACCT-DESC%%]]">
+<input type="hidden" name="SEND_ACCT_NO" value="[[%%REVE-ACCT-NO%%]]">
+<input type="hidden" name="PRE_ACCT_NO" value="">
+<input type="hidden" name="SEND_V_NO" value="[[%%SEND-V-NO%%]]">
+<input type="hidden" name="SEND_TITLE" value="[[%%SEND-TITLE%%]]">
+<input type="hidden" name="SEND_B_DATE" value="[[%%SEND-B-DATE%%]]">
+<input type="hidden" name="SEND_E_DATE" value="[[%%SEND-E-DATE%%]]">
+<input type="hidden" name="SEND_BALANCE" value="[[%%SEND-BALANCE%%]]">
+<input type="hidden" name="SEND_INTEREST" value="[[%%SEND-INTEREST%%]]">
+<input type="hidden" name="SEND_INT_PAY" value="[[%%SEND-INT-PAY%%]]">
+<input type="hidden" name="SEND_SAVE_AMT" value="">
+<input type="hidden" name="SEND_SAVE_DATE" value="">
+</form>
+</body>
+</html>

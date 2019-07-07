@@ -1,0 +1,39 @@
+/***********************************************************************
+* Remark Area
+* Create name	: Alma 
+* Change List:
+*SerialNo           Date Modified  Modified by   
+*-------------      ----------     ----------
+*EAI99008						2010.01.27		 Alma
+***********************************************************************/
+
+BODY {
+	FONT-SIZE: 9pt; COLOR: #000000; LINE-HEIGHT: 12pt; FONT-FAMILY: "新細明體"
+}
+P {
+	FONT-SIZE: 9pt; COLOR: #000000; LINE-HEIGHT: 12pt; FONT-FAMILY: "新細明體"
+}
+TD {
+	FONT-SIZE: 9pt; COLOR: #000000; LINE-HEIGHT: 12pt; FONT-FAMILY: "新細明體"
+}
+FORM {
+	FONT-SIZE: 9pt; COLOR: #000000; LINE-HEIGHT: 12pt; FONT-FAMILY: "新細明體"
+}
+SELECT {
+	FONT-SIZE: 9pt; COLOR: #000000; LINE-HEIGHT: 12pt; FONT-FAMILY: "新細明體"
+}
+.t1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 9pt; COLOR: #cc0000; LINE-HEIGHT: 14pt; FONT-FAMILY: "新細明體"
+}
+.t2 {
+	FONT-SIZE: 8pt; COLOR: #000000; LINE-HEIGHT: 11pt; FONT-FAMILY: "新細明體"
+}
+.t3 {
+	FONT-SIZE: 9pt; COLOR: #ffffff; LINE-HEIGHT: 14pt; FONT-FAMILY: "新細明體"
+}
+INPUT {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; FONT-SIZE: 8pt; VERTICAL-ALIGN: middle; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid; FONT-FAMILY: "Arial"; BACKGROUND-COLOR: #ffffff
+}
+A:hover {
+	COLOR: #000000; TEXT-DECORATION: underline
+}

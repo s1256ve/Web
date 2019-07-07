@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>首次登入</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg01.gif" leftmargin="0" topmargin="0">
+<form name="IP0802100" method="POST" action="LoadAP">
+<p><b>首次登入<font color="#003399"><font color="#0066FF"> </font></font></b></p>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5"> 
+      <table width="49%" border="0" align="center">
+        <tr> 
+          <td height="74">本行尚未收到您的"電子銀行服務申請書"，請您於寄出五個工作日後，
+										再執行首次登入。<br>若寄送"電子銀行服務申請書"已經超過五個工作日，請與本行連絡！ </td>
+        </tr>
+      </table>
+      <div align="center"> 
+        <input type="button" name="Submit" value="確 定" onclick="javascript:window.open('[[%%HOSTNAME%%]]/','_top');">
+      </div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="5" valign="bottom" height="1" bgcolor="#663300"></td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="IC0000003">
+</form>
+</body>
+</html>

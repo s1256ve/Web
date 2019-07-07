@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>台幣存款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script language="JavaScript" SRC="script/acctfmt.js"></script>
+<script language="JavaScript">
+    function ChkSubmit(){
+        var f=document.IP0203000;
+        f.pageid.value="IP0203001";
+        f.submit(); 
+    }
+</script>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　台幣存款帳戶查詢&gt;<font color="#003399"><font color="#0066FF">查詢/取消預約轉帳</font></font></b><font color="#003399"><font color="#0066FF"><b>&gt;</b></font></font><b><font color="#0066FF">待執行交易</font></b><br>
+<br>
+<form name="IP0203000" method="POST" action="LoadAP">
+<font color="#0000CC"> </font> 
+<table width="755" border="0">
+  <tr> 
+    <td width="749" colspan="5" valign="bottom"> 
+      <table width="100%" border="0">
+        <tr> 
+		　<td width="1%"></td>
+          <td width="10%">查詢帳號</td>
+          <td width="89%"> 
+            <select name="REVE_ACCT_NO">
+            <!--[[%%LOOP_SEC SEND-FROM-ACCT-NO%%]]-->
+                <option value="[[%%SEND-FROM-ACCT-NO%%]]">[[%%SEND-FROM-BR-NAME%%]]&nbsp;
+                <SCRIPT language="JavaScript">     
+                    document.write(getAcctStr('[[%%SEND-FROM-ACCT-NO%%]]'));
+                </SCRIPT>
+                </option>
+            <!--[[%%ELOOP_SEC%%]]-->
+            <option value="">==全部==</option>
+            </select>
+          </td>
+        </tr>
+        <tr> 
+		  <td></td>
+          <td width="10%">交易類別</td>
+          <td width="89%"> 
+            <input type="radio" name="REVE_TID" value="" checked>
+            全部 
+            <input type="radio" name="REVE_TID" value="PREVTRTR">
+            一般台幣轉帳 
+            <input type="radio" name="REVE_TID" value="PREVTRTC">
+            轉繳本行信用卡 
+            <img src="graph/go.gif" width="19" height="19" align="absmiddle" border="0" onclick="javascript:ChkSubmit();">
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="5" valign="bottom" height="1"></td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="SEND_BR_NAME" value="[[%%SEND-BR-NAME%%]]">
+<input type="hidden" name="SEND_ACCT_DESC" value="[[%%SEND-ACCT-DESC%%]]">
+</form>
+</body>
+</html>

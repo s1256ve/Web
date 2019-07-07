@@ -1,0 +1,94 @@
+<html xmlns="undefined">
+<head>
+<title>約定扣繳停車費</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/parking.js"></SCRIPT>
+<style type="text/css">
+<!--
+.style1 {color: #0066FF}
+.style2 {color: #0000FF}
+-->
+</style>
+<SCRIPT language="JavaScript">
+
+function back(){
+    document.IP1009302.pageid.value = 'IP1009000';
+    document.IP1009302.submit();    
+}
+
+var acctno = '[[%%SEND-ACCT-NO%%]]';
+    function getDesc(){
+        if (acctno!=''){
+            var str = '取消作業已於&nbsp;民國&nbsp;<span class="style2">'+
+                      getRCDateStr('[[%%SYSDATE%%]]',3)+
+                      '</span>&nbsp;完成，取消資料經停管處確認後，本行將於3~5個工作天內正式生效，且取消生效日起您停車費之繳費通知單本行將不再自動代繳，'+
+                      '本行將依您約定之通知方式通知您。欲查詢取消代繳資料請至本行「個人網路銀行」/「申請專區」/「約定代繳停車費」/「  查詢已約定代繳停車費明細」中查詢。';
+                      
+            return str;        
+        }else{
+            return '';
+        }
+    }
+</SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<p><strong>約定代繳停車費&gt;<span class="style1">取消已約定代繳停車費功能</span></strong></p>
+<form name="IP1009302" method="POST" action="LoadAP">
+<table width="750" border="0">
+  <tr>
+    <td colspan="5"><table width="650" border="0" align="center">
+        <tr>
+          <td><div align="center"><strong>交易完成訊息</strong></div>
+            <br>
+            停車費代繳取消資料明細：
+            
+            <table width="100%" border="1" bordercolor="#999999">
+              <tr>
+                <td width="22%" bgcolor="#C4CBB8"><div align="center">車號 </div></td>
+                <td width="10%" bgcolor="#C4CBB8"><div align="center">車種 </div></td>
+                <td width="27%" bgcolor="#C4CBB8"><div align="center">約定扣款帳號 </div></td>
+                <td width="14%" bgcolor="#C4CBB8"><div align="center">地區 </div></td>
+              </tr>
+              <!--[[%%LOOP_SEC SEND-ACCT-NO%%]]
+              <tr>
+                <td><div align="center">[[%%SEND-VEH-NO%%]]</div></td>
+                <td><div align="center"><script>document.write(getVEHTYPE('[[%%SEND-VEH-TYPE%%]]'));</script></div></td>
+                <td><div align="center"><script>document.write(getAcctStr('[[%%SEND-ACCT-NO%%]]'));</script></div></td>
+                <td><div align="center">[[%%SEND-AREA-DESC%%]]</div></td>
+              </tr>
+              <!--[[%%ELOOP_SEC%%]]-->
+            </table>
+            <p></p>
+            <!--[[%%LOOP_SEC SEND-NOK-VEHNO%%]]  
+              <tr>
+                <td><font color="red">您的車號&nbsp;<span class="style2">([[%%SEND-NOK-VEHNO%%]])</span>&nbsp;於本行取消&nbsp;<span class="style2"><script>document.write(getRegion('[[%%SEND-NOK-AREA%%]]'));</script></span>&nbsp;停管處約定代繳時發生以下錯誤，[[%%SEND-NOK-TXNMSG%%]] ： [[%%SEND-NOK-MSGDESC%%]]</font></td>
+              </tr>
+            <!--[[%%ELOOP_SEC%%]]-->
+            <p></p>
+            <table width="100%" border="0">
+              <tr>
+                <td><p><script>document.write(getDesc());</script></p>
+                </td>
+              </tr>
+          </table></td>
+        </tr>
+      </table>
+      <br>
+      <br>
+      <div align="center">
+        <input type="button" name="button1" value="回約定代繳停車費主頁" onclick="javascript:back()">
+        <input type="button" name="button2" value="列印" onclick="javascript:print();"
+      </div>
+      <input type="hidden" name="pageid" value="">
+      <input type="hidden" name="aptype" value="IBANK">
+</td>
+  </tr>
+  <tr>
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

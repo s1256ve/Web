@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- IVR CARD 3060 Input Schema, Last updated date 3-11-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="MWPREVTRTR01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='MWPREVTRTR03' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="MWPREVTRTR02">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="MWPREVTRTR03">
+		<name>REVE-SEARCH-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>查詢代碼(1:台幣)(</description>
+	</field>
+	<field id="MWPREVTRTR50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="MWPREVTRTR51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="MWPREVTRTR52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="MWPREVTRTR53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

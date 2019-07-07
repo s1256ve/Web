@@ -1,0 +1,103 @@
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI98016           2009.03.03     Alan 
+***********************************************************************/
+</script>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5" />
+<title>個人基本資料變更</title>
+</head>
+<body>
+<table width="630">
+  <tr>
+    <td><p>親愛的[[%%REVE-CNAME%%]]客戶您好：</p>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您於[[%%REVE-DSP-TXN-TIME%%]]，變更「信託帳戶」之個人資料 [[%%REVE-CHANGE-ITEM%%]] 成功。</td>
+  </tr>
+  <tr>
+    <td>
+     <br>
+    <!--
+	  <table width="90%" border="1" align="center">
+        <tr>
+          <td width="20%">原通訊地址</td>
+          <td width="464">[[%%REVE-PRE-CONTACT-ZIP%%]][[%%REVE-PRE-CONTACT-ADDR1%%]]</td>
+        </tr>
+        <tr>
+          <td>新通訊地址</td>
+          <td>[[%%REVE-CUR-CONTACT-ZIP%%]][[%%REVE-CUR-CONTACT-ADDR1%%]]</td>
+        </tr>
+      </table>
+      <br>
+	  <table width="90%" border="1" align="center">
+        <tr>
+          <td width="20%">原電話(O)</td>
+          <td width="458">[[%%REVE-PRE-DAILY-PHONE%%]]</td>
+        </tr>
+        <tr>
+          <td>新電話(O)</td>
+          <td>[[%%REVE-CUR-DAILY-PHONE%%]]</td>
+        </tr>
+      </table>
+	  <br>
+	  <table width="90%" border="1" align="center">
+        <tr>
+          <td width="20%">原電話(H)</td>
+          <td width="458">[[%%REVE-PRE-NIGHT-PHONE%%]]</td>
+        </tr>
+        <tr>
+          <td>新電話(H)</td>
+          <td>[[%%REVE-CUR-NIGHT-PHONE%%]]</td>
+        </tr>
+      </table>
+	  <br>	  
+      <table width="90%" border="1" align="center">
+        <tr>
+          <td width="20%">原EMAIL地址</td>
+          <td width="461">[[%%REVE-PRE-EMAIL-ADDR%%]]&nbsp;</td>
+        </tr>
+        <tr>
+          <td>新EMAIL地址</td>
+          <td>[[%%REVE-CUR-EMAIL-ADDR%%]]&nbsp;</td>
+        </tr>
+      </table>
+       -->
+	  <br>      </td>
+  </tr>
+  <tr>
+    <td>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;倘有任何疑問，請逕與本行24小時客戶服務專線聯繫，將有專人為您服務。
+    <br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因目前網際網路上充斥含有病毒或木馬程式或詐騙意圖的惡意電子郵件，為確保貴客戶之網路安全，本行網路服務系統所發送之通知類電子郵件將儘量避免在郵件內提供超連結或聯絡電話，如您需要與本行聯繫，可直接輸入本行網址連線至本行網站，或由本行之信用卡或金融卡上取得本行客服聯絡電話向本行客服中心洽詢。
+    <br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;感謝您對本行的支持與愛護。<font color=red>因本信件為系統自動發送,請勿直接以此郵件回覆。</font>
+    </td>
+  </tr>
+  <tr>
+    <td><div align="right">聯邦銀行</div></td>
+  </tr>  
+  <tr>
+    <td><br><br>
+    本通訊及其所有附件所含之資訊均屬機密，僅供指定之收件人使用，未經寄件人許可不得揭露、複製或散布本通訊。若您並
+非指定之收件人，請勿使用、保存或揭露本通訊之任何部份，並請即通知寄件人並完全刪除本通訊。網路通訊可能含有病毒
+，收件人應自行確認本郵件是否安全，若因此造成損害，寄件人恕不負責。
+    <br>
+    <div  style="text-align:justify; text-justify:Distribute-all-lines">
+      The information contained in this communication and attachment is confidential and
+      is intended only for the use of the recipient to which this communication is
+      addressed. Any disclosure, copying or distribution of this communication without the
+      sender's consents is strictly prohibited. If you are not the intended recipient,
+      please notify the sender and delete this communication entirely without using,
+      retaining, or disclosing any of its contents. Internet communications cannot be
+      guaranteed to be virus-free. The recipient is responsible for ensuring that this
+      communication is virus free and the sender accepts no liability for any damages
+    caused by virus transmitted by this communication.</div></td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+</table>
+</body>
+</html>

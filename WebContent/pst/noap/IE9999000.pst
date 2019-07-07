@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>訊息代號及說明</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript">
+<!--
+    var errorCode = '[[%%ERRORCODE%%]]';
+    var homepage = "https://mybank.ubot.com.tw";
+    var m054 = "http://web.ubot.com.tw/ub/ebank_5/page04_2.asp";
+    
+    function showButton(){
+        if (errorCode=="PS013" || errorCode=="PS012" || errorCode=="PA013"){
+        return "<input type=\"button\" name=\"back\" value=\"重新登入\" onclick=\"javascript:redirect(this.value);\">";
+        //form1.back.value='重新登入'; 
+        }else{
+        //form1.back.value='回上頁'; 
+        return "";
+        }
+    }
+    
+    function showButton2(){
+        if (errorCode=="M054"){
+        return "<input type=\"button\" name=\"back\" value=\"安全宣告密碼管理\" onclick=\"javascript:redirect2(this.value);\">"; 
+        }else{
+        return "";
+        }
+    }
+
+    function redirect(back){
+        if (back=='回上頁'){
+            window.history.back();
+            form1.aptype.value='[[%%APTYPE%%]]'; 
+        }
+        if (back=='重新登入'){
+            form1.aptype.value="NOAP";
+            top.location.href = homepage;
+            document.form1.submit();
+        }
+    }
+    
+    function redirect2(back){
+        if (back=='安全宣告密碼管理'){
+            window.open(m054);
+        }
+    }
+-->
+</SCRIPT>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>訊息代號及說明<font color="#003399"><font color="#0066FF"></font></font></b><br>
+<br>
+<form name="form1">
+<table width="630" border="0">
+  <tr>
+    <td> 
+      <table width="75%" border="0" align="center">
+        <tr bgcolor="#C4CBB8"> 
+          <td colspan="2">訊息代號：</td>
+        </tr>
+        <tr> 
+          <td width="13%">&nbsp;</td>
+          <td width="87%">[[%%ERRORCODE%%]]</td>
+        </tr>
+        <tr bgcolor="#C4CBB8"> 
+          <td colspan="2">說　　明：</td>
+        </tr>
+        <tr> 
+          <td width="13%">&nbsp;</td>
+          <td width="87%">[[%%ERRORMSG%%]]</td>
+        </tr>
+        <tr> 
+          <td width="13%">
+            <!--input type="button" name="back" value="回上頁" onclick="javascript:history.back();"-->
+            <!--<input type="button" name="back" value="回上頁" onclick="javascript:redirect(this.value);">-->
+            <SCRIPT language="JavaScript">
+                document.write(showButton());
+                document.write(showButton2());
+            </SCRIPT>
+          </td>
+          <td width="87%">
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="aptype" value="[[%%APTYPE%%]]" >
+<input type="hidden" name="pageid" value="IE9999001" >
+
+</form>
+</body>
+</html>

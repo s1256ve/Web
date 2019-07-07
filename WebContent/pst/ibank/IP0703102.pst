@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI99055           2010.09.20     Carl
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF"  background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　帳戶交易&gt;<font color="#0066ff">外幣轉台幣</font></b><br>
+<form method="post" action="LoadAP" name="IP0703102" >
+<input type="hidden" name="SEND_FROM_BR_NAME%" value="[[%%SEND_FROM_BR_NAME%%]]">
+<input type="hidden" name="SEND_FROM_ACCT_NO" value="[[%%SEND_FROM_ACCT_NO%%]]">
+<input type="hidden" name="SEND_FROM_ACCT_C_CURRENCY" value="[[%%SEND_FROM_ACCT_C_CURRENCY%%]]">
+<input type="hidden" name="SEND_TXN_AMT" value="[[%%SEND_TXN_AMT%%]]">
+<input type="hidden" name="SEND_TO_BR_NAME" value="[[%%SEND_TO_BR_NAME%%]]">
+<input type="hidden" name="SEND_TO_ACCT_NO" value="[[%%SEND_TO_ACCT_NO%%]]">
+<input type="hidden" name="SEND_BUY_RATE" value="[[%%SEND_BUY_RATE%%]]">
+<input type="hidden" name="SEND_TO_ACCT_C_CURRENCY" value="[[%%SEND_TO_ACCT_C_CURRENCY%%]]">
+<input type="hidden" name="SEND-FROM-AVAL-BALANCE" value="[[%%SEND-FROM-AVAL-BALANCE%%]]">
+<input type="hidden" name="SEND-AVAL-BALANCE" value="[[%%SEND-AVAL-BALANCE%%]]">
+<input type="hidden" name="SEND_TXN_MEMO" value="[[%%SEND_TXN_MEMO%%]]">
+<input type="hidden" name="SEND_TO_AMT" value="[[%%SEND-TO-AMT%%]]">
+<input type="hidden" name="pageid" value="IP0703103">
+<input type="hidden" name="BUY_TYPE" value="[[%%BUY_TYPE%%]]">
+<input type="hidden" name="SEND_BALANCE2" value="[[%%SEND-BALANCE2%%]]">
+<input type="hidden" name="SEND_TXN_AMT2" value="[[%%SEND-TXN-AMT2%%]]">
+<script>
+document.IP0703102.submit();
+</script>
+</form>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- UCPTB032 存單明細查詢 Last updated date 5-15-2003 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPT">
+	<field id="B032i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id="B032i02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>帳號</description>
+	</field>
+	<field id="B032i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="B032i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="B032i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="B032i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

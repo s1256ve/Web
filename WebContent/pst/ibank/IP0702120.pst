@@ -1,0 +1,220 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/CertScript.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+    var mobile = '[[%%MOBILE%%]]';
+    var email = '[[%%EMAIL_ADDR%%]]';
+    //字串去空白
+    String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");}
+ 
+var kbWin = null;
+function getKeyBoard()
+{
+ var Mytype="width=230,height=280,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IP0702120.PWD.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IP0702120.REVE_PWD.value";  //User真正key的密碼
+ var DESC = "語音";
+ //var DESC = "動態簡訊";
+ kbWin = window.open("LoadAP?pageid=IP2001003&PWD="+PWD+"&KBPWD="+KBPWD+"&DESC="+DESC+"&REVE_DESC=&REVE_KB_KEYCODE="+document.IP0702120.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP0702120.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+function replaceAcct(acct){
+	if(acct.length>5){
+		acct = acct.substr(0,acct.length-5)+"*****";
+	}
+	return acct;
+}
+
+function onTop() {
+  	if (kbWin==null) return;
+  	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+
+ 
+    function ChkSubmit(){
+        var f=document.IP0702120;
+        f.Submit1.disabled = true;
+        f.Submit2.disabled = true;
+        var toacct = document.IP0702120.TO_ACCTNO.value;
+        toacct = toacct.substr(toacct.length-5,5);
+        var toacct5 = document.IP0702120.SEND_TO_ACCTNO2.value;
+        if(toacct==toacct5){
+	        if (f.REVE_PWD.value.Trim() == ""){
+	            alert("請輸入密碼!");
+	            f.Submit1.disabled = false;
+	            f.Submit2.disabled = false;
+	            return;
+	        }
+	        document.onmousedown=noClick;
+	        f.submit();
+	     }
+	     else{
+	      	alert("您輸入的轉入帳號後五碼不正確，請重新輸入！");
+	      	document.IP0702120.Submit1.disabled = false;
+	      	document.IP0702120.Submit2.disabled = false;
+	      	return;
+	     }
+    }
+    function getNotifyType(){
+    	var f=document.IP0702120;
+        if (mobile!=''){
+            
+            f.REVE_MSG_SENDTO.value = mobile;
+            f.REVE_MSG_TYPE.value = "2";
+            return " 簡訊通知 "+ mobile;
+        }
+        else if (email!=''){
+            
+            f.REVE_MSG_SENDTO.value = email;
+            f.REVE_MSG_TYPE.value = "1";
+            return " 電子郵件通知 "+ email;
+        }
+        else {
+        	
+        	f.REVE_MSG_TYPE.value = "0";
+        	return "不通知";
+        }
+    }
+    
+    function alertMsg(){
+    	var m = "[[%%SEND-MPHONE%%]]";
+    	if (m == ""){
+    		alert("您未在聯邦銀行存留手機資料，無法使用簡訊做SSL交易。");
+    		document.IP0702120.pageid.value = "IP0702100";
+    		document.IP0702120.submit();
+    	}
+    	else{
+    		alert("系統將產生一組簡訊通知交易授權碼及轉入帳號後五碼至您的手機門號" + m + "，\n若2分鐘內未輸入密碼，本交易將自動取消。");
+    	}
+    }
+    
+    function chkSubmit2(){
+    	document.IP0702120.pageid.value = "IP0702100";
+    	document.onmousedown=noClick;
+    	document.IP0702120.submit();
+    }
+    
+    function noClick() {
+	if ((event.button==1)||(event.button==2)) {
+		alert('交易執行中，請稍候 ....');
+	}
+    }
+    
+//-->
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="alertMsg();" onfocus="onTop();" background="bg01.gif" tppabs="graph/bg01.gif" leftmargin="0" topmargin="0">
+<b>　帳戶交易&gt;<font color="#0066FF">預約台幣轉帳</font></b><br>
+<form name="IP0702120" method="POST" action="LoadAP">
+<table width="630" border="0">
+  <tr>
+    <td> 
+      <div align="center"><font color="#0000CC">您的轉帳設定為： </font></div>
+      <table width="350" border="1" align="center" bordercolor="#999999">
+        <tr> 
+          <td width="35%" bgcolor="#C4CBB8">轉帳類別</td>
+          <td width="65%" height="25">預約轉帳</td>
+        </tr>
+        <tr> 
+          <td width="35%" bgcolor="#C4CBB8">轉帳日期</td>
+          <td width="65%" height="25">
+          <SCRIPT language="JavaScript">
+                document.write(getRCDateStr('[[%%SEND-SCHD-DATE%%]]',3));
+          </SCRIPT>
+          </td>
+        </tr>
+        <tr> 
+          <td width="35%" bgcolor="#C4CBB8"> 轉出帳號</td>
+          <td width="65%" height="25">
+          [[%%FROM_BR_NAME%%]]
+          <SCRIPT language="JavaScript">
+                document.write(getAcctStr('[[%%FROM_ACCT_NO%%]]'));
+          </SCRIPT>
+          </td>
+        </tr>
+        <tr> 
+          <td width="35%" bgcolor="#C4CBB8">轉入銀行</td>
+          <td width="65%" height="25">[[%%TO_BANK_NAME%%]]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="35%">轉入帳號</td>
+          <td height="25" width="65%">
+          <SCRIPT language="JavaScript">
+                document.write(replaceAcct(getAcctStr('[[%%TO_ACCTNO%%]]')));
+          </SCRIPT>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="35%">幣別/金額</td>
+          <td height="25" width="65%"> 
+            <p>新台幣
+            <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot('[[%%TXN_AMT%%]]')));
+            </SCRIPT>           
+             元</p>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="35%">交易附註</td>
+          <td height="25" width="65%">[[%%SEND_MEMO%%]]&nbsp;</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="35%"> 通知方式</td>
+          <td height="25" width="65%" bgcolor="#FFFFDD">
+          <input type="hidden" name="REVE_MSG_SENDTO">
+          <input type="hidden" name="REVE_MSG_TYPE">
+          <script>
+          document.write(getNotifyType());
+          </script>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="35%"><font color=red>轉入帳號後五碼</font></td>
+          <td height="25" width="65%"> 
+          <input type="text" name="SEND_TO_ACCTNO2" maxlength="5" size="8"></td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="35%"><font color=red>簡訊通知交易授權碼</font></td>
+          <td height="25" width="65%"> 
+            <input type="password" name="PWD" size="8" onclick="getKeyBoard();onTop();" readonly>
+            <input type="hidden" name="REVE_PWD" value="">
+          </td>
+        </tr>
+      </table>
+      <br>
+      <div align="center">
+        <input type="button" name="Submit1" value="確定於預約當日轉出款項" onclick="ChkSubmit()";>
+        <input type="button" name="Submit2" value="取消" onClick="chkSubmit2();">
+      </div>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="FROM_ACCT_NO" value="[[%%FROM_ACCT_NO%%]]">
+<input type="hidden" name="FROM_BR_NAME" value="[[%%FROM_BR_NAME%%]]">
+<input type="hidden" name="TO_ACCTNO" value="[[%%TO_ACCTNO%%]]">
+<input type="hidden" name="TO_BANK_CODE" value="[[%%TO_BANK_CODE%%]]">
+<input type="hidden" name="TO_BANK_NAME" value="[[%%TO_BANK_NAME%%]]">
+<input type="hidden" name="TXN_AMT" value="[[%%TXN_AMT%%]]">
+<input type="hidden" name="SEND_MEMO" value="[[%%SEND_MEMO%%]]">
+<input type="hidden" name="CURRENCY-CNAME" value="[[%%CURRENCY-CNAME%%]]">
+<input type="hidden" name="pageid" value="IP0702121">
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+<input type="hidden" name="MOBILE" value="[[%%mobile%%]]">
+<input type="hidden" name="EMAIL_ADDR" value="[[%%EMAIL_ADDR%%]]">
+<input type="hidden" name="REVE_MSG" value="[[%%REVE_MSG%%]]">
+<input type="hidden" name="SEND-SCHD-DATE" value="[[%%SEND-SCHD-DATE%%]]">
+</form>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>設為首頁</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<script language="JavaScript">
+	function chksubmit(nextPageid){
+		document.submitform.pageid.value = nextPageid;
+		document.submitform.submit();
+	}
+</script>
+
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<link rel="stylesheet" type="text/css" media="all" href="theme/portal.css" />
+
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+<p><b>帳務&gt;<font color="#0066FF">線上申請</font><font color="#003399"><font color="#0066FF"> 
+  </font></font></b></p>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5"> 
+      <div align="center"></div>
+      <img src="graph/point.gif" width="12" height="12" align="absmiddle"><font color="#006600">SSL轉帳 
+      <font color="#663300" face="Arial, Helvetica, sans-serif"> </font></font><font color="#663300" face="Arial, Helvetica, sans-serif"><br>
+      </font><font face="Arial, Helvetica, sans-serif">服務說明：<br>
+      SSL低風險交易係提供您可在以下限額透過電子金融服務由&quot;已約定轉出帳戶&quot;進行帳務性交易，同一客戶：<br>
+      1. 每筆交易金額上限新台幣5萬元，<br>
+      2. 每日交易金額上限新台幣10萬元，<br>
+      3. 每月交易金額上限20萬元。 <br>
+      </font></td>
+  </tr>
+  <tr> 
+    <td colspan="5"> 
+      <div align="center"><font face="Arial, Helvetica, sans-serif"> 
+        <input type="submit" name="Submit" value="下載申請書">
+        </font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="5" valign="bottom" height="1" bgcolor="#663300"></td>
+  </tr>
+</table>
+</body>
+</html>

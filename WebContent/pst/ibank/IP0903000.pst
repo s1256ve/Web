@@ -1,0 +1,229 @@
+<html>
+<head>
+<title>低風險交易轉出餘額查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/datefmt.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript">
+	var date = getRCDateStr("[[%%SEND-SYSDATE%%]]", 0);
+	var yymm = date.substring(0,6);
+	function getYYMM(){
+		return yymm;
+	}
+  
+  function trimSpStr1(srcStr){
+	 var pot001 = parseInt(srcStr,10);
+	 return pot001.toString();
+}
+  
+	function getAMT(txnamt){
+		//var txnamt = txnamt;
+		//return txnamt.substring(0,txnamt.length-4);
+    	var txnamt = trimSpStr1(txnamt);
+    	var txnamt = parseInt(txnamt);
+    	return txnamt;
+	}
+	var smsDayTxn = 0;
+	var smsMonTxn = 0;
+	var certDayTxn = 0;
+	var certMonTxn = 0;
+	var DayLmt = 0;
+	var MonLmt = 0;
+	function getTxnSum(amt,type,date){
+		if (type=="2"&&date=="[[%%SEND-SYSDATE%%]]"){//非約定
+			smsMonTxn = smsMonTxn + amt;
+			smsDayTxn = smsDayTxn + amt;
+		}else if(type=="2"){;
+			smsMonTxn = smsMonTxn + amt;		
+		}
+		if (type=="3"&&date=="[[%%SEND-SYSDATE%%]]"){//憑証
+			certDayTxn = certDayTxn + amt;
+			certMonTxn = certMonTxn + amt;
+		}else if(type=="3"){
+			certMonTxn = certMonTxn + amt;	
+		}		
+	}
+	function getSMSMonTxn(){
+		return	moneyAddDot2(smsMonTxn+"");
+	}
+	function getSMSDayTxn(){
+		return	moneyAddDot2(smsDayTxn+"");
+	}
+	function getCertMonTxn(){
+		return	moneyAddDot2(certMonTxn+"");
+	}
+	function getCertDayTxn(){
+		return	moneyAddDot2(certDayTxn+"");
+	}
+	function getSmsDayLmt(){
+  	  var day = "[[%%SEND-SMS-DAYLIMIT%%]]";  //當日限額
+      var day = trimSpStr1(day);
+      var day = day + "0000";
+      var day = parseInt(day);
+		DayLmt = day - smsDayTxn;
+		
+	  var mon = "[[%%SEND-SMS-MONLIMIT%%]]";  //當月限額
+      var mon = trimSpStr1(mon);
+      var mon = mon + "0000";
+      var mon = parseInt(mon);
+  
+		MonLmt = mon - smsMonTxn;
+			
+		if (DayLmt<0 || MonLmt<=0){
+		  return 0;
+		}else {
+		  return moneyAddDot2(DayLmt+""); //加千分位
+		  //return [[%%SEND-SMS-DAYLIMIT%%]]-smsDayTxn;		
+		}			
+			
+	}
+	function getSmsMonLmt(){
+      var mon = "[[%%SEND-SMS-MONLIMIT%%]]";  //當月限額
+      var mon = trimSpStr1(mon);
+      var mon = mon + "0000";
+      var mon = parseInt(mon);
+  
+		MonLmt = mon - smsMonTxn;
+		if (MonLmt<0){
+		  return 0;
+		}else {
+		  return moneyAddDot2(MonLmt+""); //加千分位 	
+		}
+			
+	}
+	function getCertDayLmt(){
+		return [[%%SEND-CERT-DAYLIMIT%%]]-certDayTxn;
+	}
+	
+</SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　服務台&gt;<font color="#0066FF">非約定帳戶交易限額查詢</font></b><br>
+</font>
+<table width="700" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td height="2"> 
+      <div align="right"><font color="#0000CC">查詢時間： 
+      	<SCRIPT language="JavaScript">
+	document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+        //document.write(getNowTime());
+        </SCRIPT></font></div>
+    </td>
+  </tr>
+</table>
+<table width="762" border="0">
+  <tr> 
+    <td width="756" height="21" colspan="5">　<font color="#663300" face="Arial, Helvetica, sans-serif"> 
+      </font> <img src="graph/point.gif" width="12" height="12" align="absbottom">本月份(
+      <script language="JavaScript">
+          				document.write(getYYMM());
+    	    		</script>)非約定轉帳轉出餘額查詢結果：<br>
+      <table width="100%" border="00">
+          <tr>
+		  　<td></td>
+            <td height="170"> 
+              <div>
+                <table width="734" height="42" border="0">
+                  <tr>
+                    <td width="728">
+                      <div align="right">金額單位：新台幣/元 </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    
+                  <td><b>簡訊通知授權碼之非約定帳戶交易服務</b><font color="#0000CC">（每筆限額<SCRIPT language="JavaScript">
+        document.write(getAMT('[[%%SEND-SMS-RECLIMIT%%]]'));
+        </SCRIPT>萬，每日限額<SCRIPT language="JavaScript">
+        document.write(getAMT('[[%%SEND-SMS-DAYLIMIT%%]]'));
+        </SCRIPT>萬，每月限額<SCRIPT language="JavaScript">
+        document.write(getAMT('[[%%SEND-SMS-MONLIMIT%%]]'));
+        </SCRIPT>萬）</font></td>
+                  </tr>
+                </table>
+                
+              </div>
+              <table width="100%" border="1" cellpadding="2" bordercolor="#999999">
+                <tr bgcolor="#C4CBB8"> 
+                  <td>日期</td>
+                  <td>帳 號</td>
+                  <td>所屬分行</td>
+                  <td>帳戶類別</td>
+                  <td>累計轉出</td>
+                </tr>
+                [[%%LOOP_SEC SEND-SMS-ACCTNO%%]]
+                <tr>
+                  <td>
+                    <script language="JavaScript">
+          				document.write(getRCDateStr("[[%%SEND-SMS-TXNDATE%%]]", 0));
+    	    		</script>&nbsp;</td>
+                  <td>
+                  	<script language="javascript">
+						document.write(getAcctStr("[[%%SEND-SMS-ACCTNO%%]]")); 
+					</script>&nbsp;</td>
+                  <td>[[%%SEND-SMS-BRNAME%%]]</td>
+                  <td>[[%%SEND-SMS-ACCTDESC%%]]</td>
+                  <td align="right">&nbsp;
+               	  <script language="JavaScript">
+                		document.write(moneyAddDot2("[[%%SEND-SMS-TXNAMT%%]]"));
+				  	</script></td>
+                </tr>
+                	<script language="JavaScript">
+                		getTxnSum([[%%SEND-SMS-TXNAMT%%]],"2","[[%%SEND-SMS-TXNDATE%%]]");
+				  	</script>
+                [[%%ELOOP_SEC%%]]
+                <!--tr>
+                  <td>93/02/05</td>
+                  <td>007-50-236465</td>
+                  <td>通化分行</td>
+                  <td>活儲存款</td>
+                  <td>15,500</td>
+                </tr-->
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>總計</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td align="right">&nbsp;<script language="JavaScript">
+                		document.write(getSMSMonTxn());
+				  	</script></td>
+                </tr>
+              </table>
+              
+              <table width="350" border="0" align="center">
+                <tr bgcolor="#FFFFE1"> 
+                  <td height="8">本日（<script language="JavaScript">
+          				document.write(getRCDateStr("[[%%SEND-SYSDATE%%]]", 0));
+    	    		</script>）<br>
+                  </td>
+                  <td height="8"> 
+                    <div align="right">尚可轉出金額：</div>
+                  </td>
+                  <td height="8"> 新台幣 <script language="JavaScript">
+          				document.write(getSmsDayLmt());
+    	    		</script>元</td>
+                </tr>
+                <tr bgcolor="#FFFFE1"> 
+                  <td>本月份（<script language="JavaScript">
+          				document.write(yymm);
+    	    		</script>）</td>
+                  <td> 
+                    <div align="right">尚可轉出金額：</div>
+                  </td>
+                  <td> 新台幣 <script language="JavaScript">
+          				document.write(getSmsMonLmt());
+    	    		</script>元 </td>
+                </tr>
+              </table>
+              <div>
+      </div>
+    </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="5" valign="bottom" height="1"></td>
+  </tr>
+</table>
+</body>
+</html>

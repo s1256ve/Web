@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>台幣存款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<script>
+function chkSeq(tmp){
+	if(tmp == "TOT"){
+		return "總計";
+	}
+	else return tmp;
+}
+
+function chkSubmit(){
+	document.IP0212000.submit();
+}
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<form method="post" name="IP0212000" action="LoadAP">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　台幣存款帳戶查詢&gt;</b><font color="#0066FF"><b>吉祥理財儲蓄存款繳款查詢</b></font> <br>
+<br>
+<table width="658" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td width="658" height="2"> 
+      <div align="right"><font color="#0000CC">查詢時間： 
+      <script>
+        	document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+        </script>
+      </font></div>
+    </td>
+  </tr>
+</table>
+<table width="763" border="0">
+  <tr> 
+    <td width="757" colspan="2"><font face="Arial, Helvetica, sans-serif">
+    　定期帳號：
+      <script language="javascript">document.write(getAcctStr("[[%%SEND-ACCT-NO%%]]")); </script><br>
+    　存單字號：[[%%SEND-V-NO%%]]<br>
+    　存款期間：
+    <script>
+    document.write(getRCDateStr("[[%%SEND-B-DATE%%]]",0)+ " - ");
+    document.write(getRCDateStr("[[%%SEND-E-DATE%%]]",0));
+    </script><br>
+    </font> 
+    <table width="620" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td> 
+            <div align="right">單位：新台幣/元</div>
+          </td>
+        </tr>
+      </table>
+      <table width="558" border="1" align="center" bordercolor="#999999">
+        <tr bgcolor="#C4CBB8"> 
+          <td width="150"> 
+            <div align="center">繳款次數</div>
+          </td>
+          <td width="180"> 
+            <div align="center">繳款日</div>
+          </td>
+          <td width="206"> 
+            <div align="center">繳款金額</div>
+          </td>
+          
+        </tr>
+        [[%%LOOP_SEC SEND-TXN-DATE%%]]
+        <tr> 
+          <td> 
+            <div align="center">
+            <script>
+            document.write(chkSeq("[[%%SEND-SEQ-NO%%]]"));
+            </script>&nbsp;
+            </div>
+          </td>
+          <td> 
+            <div align="center">
+            <script>
+            document.write(getRCDateStr("[[%%SEND-TXN-DATE%%]]",0));            
+            </script>
+            &nbsp;</div>
+          </td>
+          <td> 
+            <div align="center">&nbsp;
+            <script>
+            document.write(trimSpStr("[[%%SEND-TXN-AMT%%]]","*"));
+            </script>
+            </div>
+          </td>        
+        </tr>
+        [[%%ELOOP_SEC%%]]
+      </table>    </td>
+  </tr>
+</table>
+<br>
+<table width="763" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td width="763" colspan="2"> 
+      <div align="center"><img src="graph/top.gif" width="64" height="16" onClick="chkSubmit();"></div>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="IP0208000">
+</form>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- UATM 1297, 預約活存轉吉祥理財. Last updated date 08-22-2005 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPM">
+	<field id="1297i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='1297i54' attr='I' default=''>
+        		<name>REVE-ACTOR</name>
+        		<length>0</length>
+        		<type>STRING</type>
+        		<description></description>
+     	</field>
+	<field id="1297i55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="1297i02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>帳號</description>
+	</field>
+	<field id="1297i03">
+		<name>REVE-VCHR-NO</name>
+		<length>8</length>
+		<type>String</type>
+		<description>存單字號</description>
+	</field>
+	<field id="1297i04">
+		<name>REVE-TXN-AMT</name>
+		<length>14</length>
+		<type>String</type>
+		<description>轉帳金額</description>
+	</field>
+	<field id="1297i56">
+		<name>REVE-PWD</name>
+		<length>10</length>
+		<type>String</type>
+		<description>使用者密碼</description>
+	</field>
+	<field id="1297i07">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="1297i13">
+		<name>REVE-TXN-MEMO</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="1297i13">
+		<name>REVE-SCHD-DATE</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="1297i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="1297i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="1297i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="1297i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

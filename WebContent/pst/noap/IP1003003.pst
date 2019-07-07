@@ -1,0 +1,204 @@
+<html>
+<head>
+<title>忘記密碼</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="JavaScript">
+<!--
+
+var kbWin = null;
+
+function getKeyBoard()
+{
+ var Mytype="width=230,height=280,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IP1003003.PWD.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IP1003003.REVE_PIN.value";  //User真正key的密碼
+ var DESC = "語音";
+ //var DESC = "動態簡訊";
+ kbWin = window.open("LoadAP?pageid=IP2001001&PWD="+PWD+"&KBPWD="+KBPWD+"&DESC="+DESC+"&REVE_DESC=&REVE_KB_KEYCODE="+document.IP1003003.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP1003003.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+
+function getKeyBoard1()
+{
+ var Mytype="width=450,height=250,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IP1003003.PWD1.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IP1003003.REVE_NEW_PWD.value";  //User真正key的密碼
+       kbWin = window.open( "LoadAP?pageid=IP2001000&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IP1003003.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP1003003.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+function getKeyBoard2()
+{
+ var Mytype="width=450,height=250,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IP1003003.PWD2.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IP1003003.REVE_CFM_PWD.value";  //User真正key的密碼
+       kbWin = window.open( "LoadAP?pageid=IP2001000&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IP1003003.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP1003003.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+function onTop() {
+  	if (kbWin==null) return;
+  	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+
+function check_id()
+ {
+   var sid=IP1003003.REVE_ID_NO.value;
+   var idx=sid.length;
+ 
+   if(!(idx==8 || idx==10))        //10和8位數,方可進行判斷並加入檢核字母(A/C), 否則直接送出 ,不處理
+     {
+        //IP1003003.submit();    // 不為10和8位數,不予處理,直接送出
+     }else  if(idx == 10)                            //字串為10碼
+           {
+               var chr=sid.charCodeAt(0);
+               if(chr<65 || chr>122 || (chr>90 && chr<97)) //第一碼不為英文字
+                	{
+             
+              			chr1=sid.charCodeAt(8);
+             			chr2=sid.charCodeAt(9);
+              				  //未兩碼其中有一碼不為英文字
+             			 if((chr1<65||chr1>122||(chr1<141&&chr1>90))||(chr2<65||chr2>122||(chr2<141&&chr2>90)))
+              					   IP1003003.submit();    // 10位數,但不為外籍人士編碼,不予處理,直接送出
+            			 else
+               					 {
+                  					IP1003003.REVE_ID_NO.value=sid+'C';   //為外國人身份
+                 					 //IP1003003.submit();
+                				}
+                 
+             		 }else   //第一碼為英文字
+                 				{
+                  					 IP1003003.REVE_ID_NO.value=sid+'A';   //為自然人身份
+                   					 //IP1003003.submit();
+                  				}
+          	}else{    //字串為8碼
+                  if(!isNaN(sid))
+                      	IP1003003.REVE_ID_NO.value=sid+'A';   //為企業戶
+                   		//IP1003003.submit();
+                   } 
+       	    
+}
+
+function chkSubmit(){
+	if (!confirm('※若您已申請”非約定帳戶交易服務”\n，重設網路密碼時，該服務將取消!')) return;
+	var id = document.IP1003003.REVE_ID_NO.value;
+	var pwd = document.IP1003003.REVE_NEW_PWD.value;
+	var pwd2 = document.IP1003003.REVE_CFM_PWD.value;
+	var acct = document.IP1003003.REVE_ACCT_NO.value;
+	var pin = document.IP1003003.REVE_PIN.value;
+	if(!id){
+		alert("請輸入身分證字號!");
+		return;
+	}
+	if(!pwd){
+		alert("請輸入新密碼!");
+		return;
+	}
+	if(!pwd2){
+		alert("請再確認新的網路密碼!");
+		return;
+	}
+	if(pwd != pwd2){
+		alert("您輸入的兩次密碼不相同!");
+		return;
+	}
+	if(!acct){
+		alert("請輸入您的銀行帳號!");
+		retuen;
+	}
+	if(!pin){
+		alert("請輸入您的語音密碼!");
+		return;
+	}
+	check_id();
+	chkFristWord();
+	document.IP1003003.submit();
+}
+
+function chkFristWord(){
+	var id = document.IP1003003.REVE_ID_NO.value;
+	var fristWord = id.substr(0,1);
+	wordArray = new Array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+	wordArray2 = new Array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z");
+	for(i=0;i<26;i++){
+		if(fristWord == wordArray2[i]){
+			document.IP1003003.REVE_ID_NO.value = wordArray[i]+id.substr(1,id.length-1);
+		}
+	}
+}
+
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+
+-->
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onfocus="onTop();" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+
+<form method="post" action="LoadAP" name="IP1003003">
+<p><b><font color="#006600">忘記密碼/使用者代號</font><font color="#003399"><font color="#0066FF"></font></font><font color="#003399"><font color="#0066FF"><br>
+  </font></font></b><br>
+  <img src="graph/point.gif" width="12" height="12">忘記網路密碼 
+<table width="630" border="0">
+  <tr> 
+    <td>請點選螢幕鍵盤設定網路密碼並輸入語音密碼： 
+      <table width="310" border="1" bordercolor="#999999" align="center">
+        <tr> 
+          <td width="47%">身分證字號</td>
+          <td height="25" width="53%"> 
+            <input type="text" name="REVE_ID_NO">
+          </td>
+        </tr>
+        <tr>
+          <td width="47%">聯邦銀行帳號</td>
+          <td height="25" width="53%">
+            <input type="text" name="REVE_ACCT_NO">
+          </td>
+        </tr>
+        <tr> 
+          <td width="42%">新的網路密碼</td>
+          <td height="25" width="58%">
+          <input type="password" name="PWD1" size="10" onclick="getKeyBoard1();onTop();" readonly> 
+            <input type="hidden" name="REVE_NEW_PWD" value="">
+          </td>
+        </tr>
+        <tr> 
+          <td width="42%">確認新的網路密碼</td>
+          <td height="25" width="58%"> 
+          <input type="password" name="PWD2" size="10" onclick="getKeyBoard2();onTop();" readonly>
+            <input type="hidden" name="REVE_CFM_PWD" value="">
+          </td>
+        </tr>
+        <tr> 
+          <td width="42%">語音密碼</td>
+          <td height="25" width="58%"> 
+          <input type="password" name="PWD" size="10" onclick="getKeyBoard();onTop();" readonly>
+            <input type="hidden" name="REVE_PIN" value="">
+          </td>
+        </tr>
+      </table>
+       <table width="320" border="0"  align="center">
+       <tr><td>
+      ※若您忘記語音密碼，您必須親臨聯邦銀行重新辦理申請。
+      </td></tr>
+      <tr><td>
+      <font color="#FF0000">※若您已申請”非約定帳戶交易服務”，重設網路密碼時該服務將取消，您須重新申請”非約定帳戶交易服務”。 </font>
+      </td></tr>
+      </table>
+      <div align="center"> 
+        <input type="button" name="Submit" value="確定" onClick="javascript:chkSubmit();">
+        <input type="button" name="Submit2" value="取消" onClick="javascript:history.back();">
+        <input type="reset" name="Reset" value="重填">
+      </div>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="IP1003004">
+  <input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+  <input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+</table>
+</form>
+</body>
+</html>

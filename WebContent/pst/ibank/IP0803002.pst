@@ -1,0 +1,92 @@
+<html>
+<script language="JavaScript">
+<!--
+function chkSubmit(act){
+
+    document.IP0803002.pageid.value="IP0803002";
+    document.IP0803002.act.value=act;
+    document.IP0803002.target="msgbody"
+    document.IP0803002.submit();
+}
+
+-->
+</script>
+<head>
+<title>設為首頁</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0"><!--
+<p><b>服務台&gt;<font color="#0066FF">訊息通知</font><font color="#003399"><font color="#0066FF"><br>
+  </font></font></b></p>-->
+
+<form method="post" name="IP0803002" target="_parent" action="LoadAP">
+<table width="750" border="0">
+  <tr> 
+    <td> 
+      <div align="right"> </div>
+      <table width="85%" border="0" align="center">
+        <tr bgcolor="#C4CBB8"> 
+          <td> 
+            <table width="100%" border="0" cellpadding="2">
+              <tr> 
+                <td colspan="2"> <b>帳務訊息</b></td>
+              </tr>
+              <tr bgcolor="#FFFFFF"> 
+                <td width="15%">公告時間：</td>
+                <td width="85%"> [[%%SEND-MAIN-START-DATE%%]] [[%%SEND-MAIN-START-TIME%%]]</td>
+              </tr>
+              <tr bgcolor="#FFFFFF"> 
+                <td width="15%">訊息主題：</td>
+                <td width="85%">[[%%SEND-MAIN-SUBJECT%%]]</td>
+              </tr>
+              <tr bgcolor="#FFFFFF"> 
+                <td colspan="2"> [[%%SEND-MAIN-CONTENT%%]]</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <table width="85%" border="1" align="center" bordercolor="#999999">
+        <tr bgcolor="#C4CBB8"> 
+          <td width="57%" bgcolor="#C4CBB8"> 
+            <div align="center"> 
+              <div align="center">帳務訊息主題</div>
+            </div>
+          </td>
+          <td width="30%"> 
+            <div align="center">公告時間</div>
+          </td>
+          <td width="12%"> 
+            <div align="center">刪除</div>
+          </td>
+        </tr>
+				<!--[[%%LOOP_SEC SEND-MID%%]]-->
+        <tr> 
+          <td width="57%"> <a href="LoadAP?pageid=IP0803002&aptype=ibank&mid=[[%%SEND-MID%%]]">[[%%SEND-SUBJECT%%]]</a></td>
+          <td width="30%"> 
+            <div align="center">[[%%SEND-START-DATE%%]] [[%%SEND-START-TIME%%]]</div>
+          </td>
+          <td width="12%"> 
+            <div align="center"> 
+              <input type="button" onclick="javascript:chkSubmit('[[%%SEND-MID%%]]')" value="刪除">
+            </div>
+          </td>
+        </tr>
+        <!--[[%%ELOOP_SEC%%]]-->
+      </table>
+      <div align="center"> </div>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="bottom" height="1" bgcolor="#663300"></td>
+  </tr>
+</table>
+<input type="hidden" name="aptype" value="ibank">
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="act" value="">
+</form>
+</body>
+</html>

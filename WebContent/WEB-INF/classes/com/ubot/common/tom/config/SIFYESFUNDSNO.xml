@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="BIG5"?>
+<catalog>
+	<field id="YESFUNDSNOi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id="YESFUNDSNOi01">
+		<name>REVE-ID-NO</name>
+		<length>10</length>
+		<type>String</type>
+		<description>身分証字號</description>
+	</field>
+	<field id="YESFUNDSNOi03">
+		<name>REVE-CNAME</name>
+		<length>10</length>
+		<type>String</type>
+		<description>中文姓名</description>
+	</field>
+ 	<field id='YESFUNDSNOi04'>
+    	<name>REVE-CONTACT-ZIP</name>
+    	<length>0</length>
+    	<type>STRING</type>
+    	<description>郵遞區號</description>
+ 	</field>
+ 	<field id='YESFUNDSNOi05'>
+    	<name>REVE-CONTACT-ADDR</name>
+    	<length>0</length>
+    	<type>STRING</type>
+    	<description>地址</description>
+ 	</field>
+ 	<field id='YESFUNDSNOi06'>
+    	<name>REVE-DAILY-PHONE1</name>
+    	<length>0</length>
+    	<type>STRING</type>
+    	<description>白天電話1</description>
+ 	</field>
+ 	<field id='YESFUNDSNOi07'>
+    	<name>REVE-DAILY-PHONE2</name>
+    	<length>0</length>
+    	<type>STRING</type>
+    	<description>白天電話2</description>
+ 	</field>
+ 	<field id='YESFUNDSNOi08'>
+    	<name>REVE-EMAIL-ADDR</name>
+    	<length>0</length>
+    	<type>STRING</type>
+    	<description>電子郵件</description>
+ 	</field>
+ 	<field id='YESFUNDSNOi09'>
+    	<name>REVE-REG-PWD</name>
+    	<length>0</length>
+    	<type>STRING</type>
+    	<description>啟用密碼</description>
+ 	</field>
+	<field id="YESFUNDSNOi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="YESFUNDSNOi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="YESFUNDSNOi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="YESFUNDSNOi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

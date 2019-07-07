@@ -1,0 +1,223 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+
+<script language="javascript"> 
+	
+	function dispReg(sReg){
+	   if (sReg == "0"){
+	   	return "否";
+	   }else{
+	   	return "是";	   
+	   }
+	}
+	function dispAcct(sAcct,sReg){
+		var rtnStr = ""
+		if (sAcct.substring(3,6) != "508"){
+		  rtnStr = "<tr><td width='20%'><div align='center'>"+ getAcctStr(sAcct) + "</div>" +
+          	  "</td><td width='32%'><div align='center'>"+ dispReg(sReg) +"</div></td></tr>"
+          	}  
+		return rtnStr;	
+	}
+	
+	var kbWin = null;
+function getKeyBoard()
+{
+ var Mytype="width=450,height=250,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IP1008000B.PWD.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IP1008000B.REVE_PWD.value";  //User真正key的密碼
+ kbWin = window.open( "LoadAP?pageid=IP2001000&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IP1008000B.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP1008000B.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+function onTop() {
+  	if (kbWin==null) return;
+  	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+function chkSubmit(){
+	    document.IP1008000B.pageid.value="IP1008001B";
+	    document.IP1008000B.submit();  
+}
+
+
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onfocus="onTop();" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+<form method="post" action="LoadAP" name="IP1008001A">
+	
+<b>
+申請專區&gt;<font color="#0066FF">申請/取消電子對帳單服務</font><font color="#003399"><font color="#0066FF"></font></font></b><br>
+	<input type="hidden" name="SEND-EMAIL-ADDR" value="[[%%SEND-EMAIL-ADDR%%]]">
+<input type="hidden" name="SEND-E-BILL" value="[[%%SEND-E-BILL%%]]">
+<input type="hidden" name="REVE-E-BILL" value="[[%%REVE-E-BILL%%]]">
+	
+      <table align="center" border="0">
+      	<tr>
+      		<td  align="center">
+      			交易訊息:交易成功
+      		</td>
+      </tr>
+      <tr>
+      		<td  align="center">
+      			交易時間:<SCRIPT LANGUAGE="JavaScript">
+						RightNow = new Date();
+
+						document.write( RightNow.getFullYear()+"年"+(RightNow.getMonth()+1)+"月"+ RightNow.getDate()+"日"+"  "+ RightNow.getHours() + ":" + RightNow.getMinutes() +"."+ RightNow.getSeconds()) 
+						
+						</SCRIPT> 
+      		</td>
+      </tr>
+      </table>
+      
+      <table align="center" border="0" width="75%">
+      	<tr>
+      		<td >
+      			◎您的交易資料如下：
+      		</td>
+      	</tr>
+      	
+      </table>
+    
+      <table align="center" border="1" width="75%">
+      	<tr>
+      		<td width="20%">
+      			目前設定之Email
+      		</td>
+      				<td>
+      					<script>
+          		
+	            //document.location.href="LoadAP?aptype=ibank&pageid=IP1003000A";
+          		var mailcon="[[%%REVE-EMAIL-ADDR%%]]";
+          		if(mailcon=="")
+          		document.location.href="LoadAP?aptype=ibank&pageid=IE9999000A";
+          		else
+          			document.write("[[%%REVE-EMAIL-ADDR%%]]");
+       			
+         		 	//document.write(replaceEmail('[[%%REVE-EMAIL-ADDR%%]]'));
+          	 
+          	
+        		  </script>
+      				</td>
+      	</tr>
+      	<tr>
+      		<td width="20%">
+      			電子對帳單申請狀態
+    		  		</td>
+      				<td>
+      					 <script>
+      			    var billcon="[[%%REVE-E-BILL%%]]";
+         				 if(billcon=='0')
+      				    {
+        				  document.write("未申請");
+          
+      				  }
+    			      else if(billcon=='1')
+    		      	{
+     			     document.write("已申請");
+    				   //   document.IP1008000A.SEND-E-BILL.value=0;
+   			     
+     					   }
+     					   else 
+     					   	 document.write("未申請");
+          
+          	
+          </script>
+      				</td>
+      	</tr>
+      </table>
+      
+	    <!--
+      <div align="center">
+      	<input type="button" name="confirm" value="確定" onclick="chkSubmit();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="cancel" value="取消">
+      </div>
+      
+     -->
+      	
+     
+
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+<input type="hidden" name="SEND-ID-NO" value="[[%%SEND-ID-NO%%]]">
+<input type="hidden" name="pageid" value="IP1008001">
+<input type="hidden" name="REVE_PWD" value="">
+<input type="hidden" name="REVE_ID_NO" value="">
+</form>
+
+ <table width="75%" border="0" align="center" bordercolor="#999999">
+      	<tr> 
+          <td width="6%" Style="vertical-align:top"> 
+            <div align="left">說明:</div>
+          </td>
+          <td>
+          </td>
+          </tr>
+        <tr> 
+          <td width="5%" Style="vertical-align:top"> 
+            1.
+          </td>
+          <td><font color="red">當您申請電子對帳單服務，本行將不再提供實體對帳單的寄送</font>(包含綜合對帳單、無摺提款對帳單、定期(儲蓄)存款中途解約對帳單、帳戶往來對帳單等)。
+          </td>
+          </tr>
+          <tr>
+          <td width="5%" Style="vertical-align:top"> 
+            2.
+          </td>
+          <td><font color="red">當您申請電子對帳單成功後，各類對帳單寄送時間如下:</font>
+          <table  border="0"> 
+          		<tr>
+          			<td>(1)</td><td>綜合對帳單:於月底最後一個營業日(含)前申請，將於次月起收到前一月份的電子綜合對帳單。</td>
+          		</tr>
+          	<tr><td >(2)<br>&nbsp;</td><td>帳戶往來、無摺提款、定期(儲蓄)存款中途解約對帳單:申請完成當日起之交易即以電子對帳單方式寄送，寄送時間為隔週。</td>
+          	</tr>
+          	</table>
+          </td>
+          </tr>
+          <tr> 
+          <td width="5%" Style="vertical-align:top"> 
+            3.
+          </td>
+          <td><font color="red">電子對帳單將寄送至您目前設定之E-mail</font>，若欲變更E-mail，請洽本行24小時客戶服務專線(02)2545-1788輸入速撥碼19，轉接客服專人變更。
+          </td>
+          </tr>
+          <tr> 
+          <td width="5%" Style="vertical-align:top"> 
+            4.
+          </td>
+          <td><font color="red">請您確認留存的E-mail是否正確</font>，及電子對帳單是否被您的E-mail主機當成垃圾信件，或E-mail信箱容量是否已超過限制規定，避免無法收到電子對帳單。
+          </td>
+          </tr>
+          <tr> 
+          <td width="5%" Style="vertical-align:top"> 
+            5.
+          </td>
+          <td><font color="red">若欲補寄電子綜合對帳單，至個人網路銀行>申請專區>電子對帳單>電子綜合對帳單補寄辦理，或請洽本行24小時客戶服務專線(02)2545-1788輸入速撥碼19，轉接客服專人協助補寄(補寄之對帳單限自客戶申請電子對帳單服務完成後及申請補寄日近3個月份之資料為限)。</font>
+          </td>
+          </tr>
+          <!--
+          <tr>
+           <td width="5%" Style="vertical-align:top"> 
+            6.
+          </td>
+          <td>若欲補寄電子對帳單，請洽本行24小時客戶服務專線(02)2545-1788輸入速撥碼19，轉接客服專人協助補寄。
+          </td>
+          
+        </tr>
+        -->
+       
+  <tr> 
+    <td colspan="5" valign="bottom" height="1" bgcolor="#663300"></td>
+  </tr>
+
+</table>
+</body>
+</html>

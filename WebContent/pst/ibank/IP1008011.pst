@@ -1,0 +1,224 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<!--<link type="text/css" rel="stylesheet" href="theme/portal.css">-->
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript" src="script/calendar.js"></script>
+<script language="JavaScript" src="script/calendar-zh.js"></script>
+<script language="JavaScript" src="script/calendar-setup.js"></script>
+<script language="JavaScript" src="script/calendarface.js"></scrip
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+
+ 	var sysdate = "[[%%SYSDATE%%]]";
+    var nowDate = new Date(sysdate.substr(0,4), sysdate.substr(4,2)-1, 01);
+    
+	var Year = nowDate.getFullYear()-1911;
+	var Month = (nowDate.getMonth()+1)+"";
+	if (Month.length<2) Month = "0"+Month;
+	//推算前三個月的年月
+	nowDate.setMonth(nowDate.getMonth()-1);
+	var preMonth = (nowDate.getMonth()+1)+"";
+	if (preMonth.length<2) preMonth = "0"+preMonth;
+    var preYear = nowDate.getFullYear()-1911;
+   
+    nowDate.setMonth(nowDate.getMonth()-1);
+    var preMonth2 = (nowDate.getMonth()+1)+"";
+	if (preMonth2.length<2) preMonth2 = "0"+preMonth2;
+    var preYear2 = nowDate.getFullYear()-1911;
+    
+    nowDate.setMonth(nowDate.getMonth()-1);
+    var preMonth3 = (nowDate.getMonth()+1)+"";
+	if (preMonth3.length<2) preMonth3 = "0"+preMonth3;
+    var preYear3 = nowDate.getFullYear()-1911;
+    
+</SCRIPT>
+
+<script language="javascript"> 
+	
+	
+     var kbWin = null;
+function getKeyBoard()
+{
+ var Mytype="width=450,height=250,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IP1008011.PWD.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IP1008011.REVE_PWD.value";  //User真正key的密碼
+ kbWin = window.open( "LoadAP?pageid=IP2001000&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IP1008011.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP1008011.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+
+function onTop() {
+  	if (kbWin==null) return;
+  	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+function chkSubmit(){
+	
+	var f = document.IP1008011;
+	var billcon="[[%%SEND-E-BILL%%]]";
+	
+    if(billcon=='0')
+      {
+        alert("您尚未申請電子對帳單服務，請至「申請專區>電子對帳單申請/取消」申請，電子對帳單將於自申請日起下個月份開始寄送至您的EMAL信箱。");
+      }
+	if(billcon=='1')
+	  {
+
+
+	//   if (f.notitype1[0].checked){ //當月
+    //     f.REVE_STMT_DATE.value=(Year+1911)+'/'+Month;    
+    //   }
+       if (f.notitype1[0].checked){ //104年3月
+        f.REVE_STMT_DATE.value= (preYear+1911)+'/'+preMonth;     
+       }
+       if (f.notitype1[1].checked){ //104年2月
+        f.REVE_STMT_DATE.value=(preYear2+1911)+'/'+preMonth2;     
+       } 
+	   if (f.notitype1[2].checked){ //104年1月
+        f.REVE_STMT_DATE.value=(preYear3+1911)+'/'+preMonth3;     
+       } 
+       
+	    f.pageid.value = "IP1008012";
+		
+		f.submit();
+	  }	
+    
+}
+</script>
+
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onfocus="onTop();" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+	
+<!--<form method="post action">-->
+<form method="post" action="LoadAP" name="IP1008011">
+	<input type="hidden" name="REVE_E_BILL" value="">
+<b>
+申請專區&gt;<font color="#0066FF">電子綜合對帳單補寄</font><font color="#003399"><font color="#0066FF"></font></font></b><br>
+	
+	 <table width="75%" border="1" align="center" bordercolor="#999999" >
+        <tr> 
+          <td width="20%"> 
+            <div align="center">目前設定之Email</div>
+          </td>
+          <td>
+          	
+          	<script>
+          		
+	            //document.location.href="LoadAP?aptype=ibank&pageid=IP1003000A";
+	            
+          		var mailcon="[[%%SEND-EMAIL-ADDR%%]]";
+          		if(mailcon=="")
+          		document.location.href="LoadAP?aptype=ibank&pageid=IE9999000A";
+          		else
+          		document.write("[[%%SEND-EMAIL-ADDR%%]]");
+	
+          	//document.write(replaceEmail('[[%%SEND-EMAIL-ADDR%%]]'));
+          	 
+          	
+          </script>  
+          </td>
+          </tr>
+         
+		 
+     
+          <tr>
+          <td width="20%"> 
+            <div align="center">補寄月份</div>
+          </td>
+          <td>
+		
+		<!--<input name="notitype1" type="radio" value="0"  checked> 當月 -->
+            <input name="notitype1" type="radio" value="0"  checked> <script>document.write( preYear+"年"+preMonth+"月"); </script>
+            <input name="notitype1" type="radio" value="1" > <script>document.write( preYear2+"年"+preMonth2+"月"); </script>
+			<input name="notitype1" type="radio" value="2" > <script>document.write( preYear3+"年"+preMonth3+"月"); </script>
+  
+          </td>
+          </tr>
+         
+          
+          <tr>
+           <td width="20%"> 
+            <div align="center">網路密碼</div>
+          </td>
+          <td>
+          <input type="password" name="PWD" size="8" onclick="getKeyBoard();onTop();" readonly>
+         <!-- <input type="hidden" name="REVE_PWD" value="">-->
+          
+          </td>
+          
+        </tr>
+
+        
+      </table><P>
+      	<div align="center">
+      	<input type="button" name="confirm" value="確定" onclick="chkSubmit();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="cancel" value="取消">
+      </div>
+      	
+
+      <div align="center"> </div>
+     
+      <table width="75%" border="0" align="center" bordercolor="#999999">
+      	  <tr> 
+          <td width="6%"> 
+            <div align="left">說明:</div>
+          </td>
+          <td>
+          </td>
+          </tr>
+		  
+          <tr> 
+          <td width="5%" Style="vertical-align:top"> 
+            1.
+          </td>
+          <td><font color="red">本交易可提供近三個月「電子綜合對帳單補寄」申請</font>，期間若您的綜合對帳單為紙本對帳單，則該月不提供補寄申請，請利用「帳戶查詢」服務進行核帳。
+          </td>
+          </tr>
+		  
+          <tr> 
+          <td width="5%" Style="vertical-align:top"> 
+            2.
+          </td>
+          <td><font color="red">申請補寄之「電子綜合對帳單」將寄送至您目前設定之E-mail</font>，若欲變更E-mail，請洽本行24小時客戶服務專線(02)2545-1788輸入速撥碼19，轉接客服專人變更。
+          </td>
+          </tr>
+		 
+  <tr> 
+    <td colspan="5" valign="bottom" height="1" bgcolor="#663300"></td>
+  </tr>
+
+</table>
+   
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+<input type="hidden" name="REVE_DAILY_PHONE" value="[[%%SEND-DAILY-PHONE%%]]">
+<input type="hidden" name="REVE_DAILY_PHONE_EXT" value="[[%%SEND-DAILY-PHONE-EXT%%]]">
+<input type="hidden" name="REVE_NIGHT_PHONE" value="[[%%SEND-NIGHT-PHONE%%]]">
+<input type="hidden" name="REVE_NIGHT_PHONE_EXT" value="[[%%SEND-NIGHT-PHONE-EXT%%]]">
+<input type="hidden" name="REVE_MPHONE" value="[[%%SEND-MPHONE%%]]">
+<input type="hidden" name="REVE_CONTACT_ZIP" value="[[%%SEND-CONTACT-ZIP%%]]">
+<input type="hidden" name="REVE_CONTACT_ADDR1" value="[[%%SEND-CONTACT-ADDR1%%]]">
+<input type="hidden" name="REVE_CONTACT_ADDR2" value="[[%%SEND-CONTACT-ADDR2%%]]">
+<input type="hidden" name="REVE_CONTACT_ADDR3" value="[[%%SEND-CONTACT-ADDR3%%]]">
+<input type="hidden" name="SEND-EMAIL-ADDR" value="[[%%SEND-EMAIL-ADDR%%]]">
+<input type="hidden" name="REVE_EMAIL_ADDR" value="[[%%SEND-EMAIL-ADDR%%]]">
+<input type="hidden" name="REVE_STMT_DATE" value="">
+<!--<input type="hidden" name="REVE_E_BILL" value="1">-->
+<input type="hidden" name="REVE_PWD" value="">
+<input type="hidden" name="pageid" value="">
+<!--<input type="hidden" name="REVE-KB-IDX" value="[[%%SEND-KB-IDX%%]]">-->
+
+<!--<input type="hidden" name="REVE_ID_NO" value="[[%%SEND-ID-NO%%]]">-->
+
+
+</form>
+<p>
+</body>
+</html>

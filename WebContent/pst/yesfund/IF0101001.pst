@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>基金申購</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: YiSyun 
+* Change List:
+*SerialNo           Date Modified  Modified by   
+*-------------      ----------     ----------
+*EAI98031           2009.05.07     YiSyun 
+*EAI99052           2010.8.25      David 
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body onLoad="window.scrollTo(0,0);" bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0101001">
+<font color="#006666"><b>基金申購&gt;</b></font><br>
+
+  <table width="770" border="0">
+    <tr>
+    <td> 
+      <div align="center">依類別選擇欲申購的基金</div>
+    </td>
+    
+  </tr>
+</table>
+  <table width="770" border="0">
+    <tr> 
+    <td colspan="3" align="center"><font face="Arial, Helvetica, sans-serif"> 
+      <select onChange="javascript:window.open(this.options[this.selectedIndex].value,'_self');" name="select2">
+        <option selected>==請選擇==</option>
+        <option value="http://www.yesfund.com.tw/w/wq/wq02ubot.djhtm">本行銷售國內基金績效排名查詢</option>
+        <option value="http://www.yesfund.com.tw/w/ww/ww01ubot.djhtm">本行銷售國內投信公司查詢</option>
+        <option value="http://www.yesfund.com.tw/w/wd/wd01ubot_NA_NA_NA_NA.djhtm">本行銷售國外基金績效排名查詢</option>
+        <option value="http://www.yesfund.com.tw/w/wc/wc02ubot.djhtm">本行銷售國外基金公司查詢</option>
+      </select>
+      </font>
+       </td>
+       <td>
+ <!--   <a href="#"><img src="graph/Learning_icon.gif" width="96" height="49" border="0"  onClick="window.open('https://web.ubot.com.tw/UBOT2005/Learning/data/ubot410.asp','基金申購','width=650,height=500')"></a>-->
+       </td>
+        </tr>
+      </table>
+        <table width="550" border="1" align="center" cellpadding="10" cellspacing="15">
+        <tr bordercolor="#FFFFFF" bgcolor="#E7F1EE">  
+          <td><b>1.申購交易之完成：</b><br>
+            委託人完成申購手續後，應依選擇之付款方式繳交投資本金及手續費，經本行確認款項已入帳無誤後，該筆申購交易始為完成。 <br>
+            <br>
+            <b>2.交易時間之切點： </b><br>
+            申購交易於<font color="#FF0000"><b>本行營業日下午3:00前完成者</b></font>，視為當日交易，逾時則作為次一營業日交易。 
+            <br>
+            <br>
+            <b>3.投資報告：</b> <br>
+            本行將每月寄送「信託資金通知書」供委託人對帳。 <br>
+            <br>
+            <b>4.信用卡申購基金：</b><br>
+            辦理信用卡申購基金，限用聯邦銀行信用卡。目前<b><font color="#FF0000">單筆申購僅開放臨櫃辦理。<br>實收手續費率低於1%之基金，不得使用投資行白金卡扣款。<br>
+            </font></b><br>
+            <b>5.風險警告：</b><br>
+          本行指定用途信託資金皆經證券期貨局核准，惟並不表示該基金絕無風險，本行除應盡善良管理人之注意義務外，不負責基金之盈虧，亦不保證最低之收益，投資人申購前應審慎評估。<br>以信用卡申購基金，倘動用循環信用功能，其所額外負擔之循環利息成本，請委託人納入整體投資報酬率內考量。<br></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<br>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

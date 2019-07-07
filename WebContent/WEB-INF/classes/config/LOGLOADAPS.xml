@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<conn type="datasource" dbdriver="" 
+			  dsn="jdbc/potlog" 
+              user="db2ibank" pass="db2ibank" isautocommit="1" />
+	
+	<sql type="update" reletion="" isloop="0"  loopargv="LOGID">
+	    INSERT INTO db2ibank.LOADAPBEGIN ( LOGID, PAGEID,STARTTIME, SESSID, TXNID, APTYPE, COMEFROM, SIF)
+		VALUES ( '[[%%LOGID%%]]' , '[[%%PAGEID%%]]' , '[[%%STARTTIME%%]]' , '[[%%SESSIONID%%]]' , '[[%%TXNID%%]]' , 
+		                '[[%%APTYPE%%]]' , '[[%%COMEFROM%%]]' , '[[%%SIF%%]]' )
+			 
+	</sql>
+	
+	<argv type="VAR" vname="LOGID"      value="LOGID"       preIdx="0" />	
+	<argv type="VAR" vname="PAGEID"  value="PAGEID"   preIdx="0" />	
+	<argv type="VAR" vname="STARTTIME"  value="STARTTIME"   preIdx="0" />	
+	<argv type="VAR" vname="SESSIONID"  value="SESSIONID"   preIdx="0" />	
+	<argv type="VAR" vname="TXNID"      value="TXNID"       preIdx="0" />
+	<argv type="VAR" vname="APTYPE"     value="APTYPE"      preIdx="0" />
+	<argv type="VAR" vname="COMEFROM"   value="COMEFROM"    preIdx="0" />
+	<argv type="VAR" vname="SIF"        value="SIF"         preIdx="0" />
+	
+</root>

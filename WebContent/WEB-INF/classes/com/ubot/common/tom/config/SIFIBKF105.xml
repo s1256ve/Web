@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="Big5"?>
+<!-- IVR FUND F105 Last updated date 23-4-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="F105i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='F105i54' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="F105i55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="F105i03">
+		<name>REVE-TXN-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>交易日期</description>
+	</field>
+	<field id="F105i04">
+		<name>REVE-TXN-DATE-TYPE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>是否為次營業日</description>
+	</field>
+	<field id="F105i05">
+		<name>REVE-CHG-TYPE</name>
+		<length>2</length>
+		<type>String</type>
+		<description>變更種類</description>
+	</field>
+	<field id="F105i06">
+		<name>REVE-CERT-NO</name>
+		<length>11</length>
+		<type>String</type>
+		<description>憑證號碼</description>
+	</field>
+	<field id="F105i07">
+		<name>REVE-NEW-SCHDDATE</name>
+		<length>2</length>
+		<type>String</type>
+		<description>新每月扣款日</description>
+	</field>
+	<field id="F105i072">
+		<name>REVE-NEW-SCHDDATE2</name>
+		<length>2</length>
+		<type>String</type>
+		<description>新每月扣款日2</description>
+	</field>
+	<field id="F105i073">
+		<name>REVE-NEW-SCHDDATE3</name>
+		<length>2</length>
+		<type>String</type>
+		<description>新每月扣款日3</description>
+	</field>		
+	<field id="F105i08">
+		<name>REVE-FUND-ID</name>
+		<length>4</length>
+		<type>String</type>
+		<description>扣款基金代碼</description>
+	</field>
+	<field id="F105i09">
+		<name>REVE-NEW-AMT</name>
+		<length>7</length>
+		<type>String</type>
+		<description>新扣款金額</description>
+	</field>
+	<field id="F105i10">
+		<name>REVE-BEGIN-SUSPEND</name>
+		<length>6</length>
+		<type>String</type>
+		<description>暫停扣款起月</description>
+	</field>
+	<field id="F105i11">
+		<name>REVE-END-SUSPEND</name>
+		<length>6</length>
+		<type>String</type>
+		<description>暫停扣款迄月</description>
+	</field>
+	<field id="F105i12">
+		<name>REVE-BEGIN-RESUME</name>
+		<length>6</length>
+		<type>String</type>
+		<description>恢復扣款起月</description>
+	</field>
+	<field id="F105i13">
+		<name>REVE-NEW-ACCTNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>新扣款帳號或卡號</description>
+	</field>
+	<field id="F105i14">
+		<name>REVE-NEW-EXPDATE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>新有效期限</description>
+	</field>
+	<field id="F105i15">
+		<name>REVE-BANK-CODE</name>
+		<length>3</length>
+		<type>String</type>
+		<description>銀行代號</description>
+	</field>
+	<field id="F105i16">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="F105i17">
+		<name>REVE-SEARCH-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>查詢營業時間</description>
+	</field>
+	<field id="F105i18">
+		<name>REVE-O2ND-RATE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>轉出原幣兌台幣匯率</description>
+	</field>
+	<field id="F105i19">
+		<name>REVE-ND2US-RATE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>台幣兌美金匯率</description>
+	</field>
+	<field id="F105i20">
+		<name>REVE-CHANNEL</name>
+		<length>10</length>
+		<type>String</type>
+		<description>交易管道</description>
+	</field>
+	<!--for mail-->
+	<field id="F105i21">
+		<name>REVE-FUND-CNAME</name>
+		<length>3</length>
+		<type>String</type>
+		<description>基金名稱</description>
+	</field>
+	<field id="F105i22">
+		<name>REVE-BANK-NAME</name>
+		<length>3</length>
+		<type>String</type>
+		<description>扣款方式</description>
+	</field>
+	<field id="F105i23">
+		<name>REVE-AMT</name>
+		<length>3</length>
+		<type>String</type>
+		<description>每月投資金額</description>
+	</field>
+	<field id="F105i24">
+		<name>REVE-ACCT-NO</name>
+		<length>3</length>
+		<type>String</type>
+		<description>扣款帳號</description>
+	</field>
+	<field id="F1051i25">
+		<name>REVE-SCHD-DATE</name>
+		<length>3</length>
+		<type>String</type>
+		<description>每月投資日</description>
+	</field>
+	<field id="F105i0252">
+		<name>REVE-SCHD-DATE2</name>
+		<length>2</length>
+		<type>String</type>
+		<description>每月扣款日2</description>
+	</field>
+	<field id="F105i0253">
+		<name>REVE-SCHD-DATE3</name>
+		<length>2</length>
+		<type>String</type>
+		<description>每月扣款日3</description>
+	</field>
+	<field id="F105i0254">
+		<name>REVE-SCHD-ALL</name>
+		<length>2</length>
+		<type>String</type>
+		<description>顯示所有日期</description>
+	</field>
+	<field id="F105i26">
+		<name>REVE-HTML-PATH</name>
+		<length>3</length>
+		<type>String</type>
+		<description>回覆信件之HTML路徑</description>
+	</field>	
+	<field id="F105i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="F105i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="F105i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	 <field id='fieldi010'>
+        <name>FROM-CURRENCY-NAME</name>
+        <length>20</length>
+        <type>STRING</type>
+        <description></description>
+   </field>
+   <field id="F105i54">
+		<name>REVE-COME-FROM</name>
+		<length>16</length>
+		<type>String</type>
+		<description>來源位置</description>
+	</field>
+	<field id="F105i55">
+		<name>REVE-ID-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+</catalog>

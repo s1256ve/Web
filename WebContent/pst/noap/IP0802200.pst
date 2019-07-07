@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>首次登入</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg01.gif" leftmargin="0" topmargin="0">
+<form name="IP0802200" method="POST" action="LoadAP">
+<p><b>首次登入<font color="#003399"><font color="#0066FF"> </font></font></b></p>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5"> 
+      <table width="49%" border="0" align="center">
+        <tr> 
+          <td height="74"> 您已經註冊過電子銀行服務! <br>請您依所設定之網路銀行使用者代號及網路密碼，重新登入本網站！</td>
+        </tr>
+      </table>
+      <div align="center"> 
+        <input type="button" name="Submit" value="確 定" onclick="javascript:window.open('[[%%HOSTNAME%%]]/','_top');">
+      </div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="5" valign="bottom" height="1" bgcolor="#663300"></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

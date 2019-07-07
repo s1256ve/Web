@@ -1,0 +1,169 @@
+<html>
+<head>
+<title>信用卡查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------------
+*EAI98019           2009.3.19      YiSyun 
+*EAI98024           2009.4.07      YiSyun 
+*EAI98035           2009.5.20      YiSyun 
+*EAI98059           2009.12.03     YiSyun
+*EAI99026           2010.04.07     David 
+*EAI99041	        2010.05.10	   David
+*EAI99062           2010.10.19     serene
+***********************************************************************/
+</script>
+<!--script language="JavaScript" SRC="script/PreviousPageBlock.js"></script-->
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/datefmt.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript">
+<!--
+   // var nowDate=new Date();
+  var sysdate = "[[%%SYSDATE%%]]";
+  var nowDate = new Date(sysdate.substr(0,4), sysdate.substr(4,2)-1, sysdate.substr(6,2));
+    
+	var Year = nowDate.getYear()-1911;
+	var Month = (nowDate.getMonth()+1)+"";
+	if (Month.length<2) Month = "0"+Month;
+	//推算前三個月的年月
+	nowDate.setMonth(nowDate.getMonth()-1);
+	var preMonth = (nowDate.getMonth()+1)+"";
+	if (preMonth.length<2) preMonth = "0"+preMonth;
+    var preYear = nowDate.getYear()-1911;
+   
+    nowDate.setMonth(nowDate.getMonth()-1);
+    var preMonth2 = (nowDate.getMonth()+1)+"";
+	if (preMonth2.length<2) preMonth2 = "0"+preMonth2;
+    var preYear2 = nowDate.getYear()-1911;
+    
+    nowDate.setMonth(nowDate.getMonth()-1);
+    var preMonth3 = (nowDate.getMonth()+1)+"";
+	if (preMonth3.length<2) preMonth3 = "0"+preMonth3;
+    var preYear3 = nowDate.getYear()-1911;
+    
+	function chkSubmit(predate){
+		var f = document.IP0601000;
+		f.REVE_STMT_DATE.value = predate;
+		f.pageid.value = "IP0602001";
+		f.submit();
+		
+	}
+-->
+</SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　信用卡&gt;<font color="#003399"><font color="#0066FF">信用卡額度及帳單查詢</font></font></b><br>
+<font class="t3">　聯邦銀行個人網路銀行交易結果</font><br>
+<br>
+<form name="IP0601000" method="post" action="LoadAP">
+<table width="720" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td width="720" height="2"> 
+      <div align="right">　<font color="#0000FF">　查詢時間： 
+        <script>
+        	document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+        </script>
+        </font></div>
+      </td>
+  </tr>
+</table>
+<font color="#0000CC"> </font> <font color="#0000CC"> </font> 
+<table width="720" border="0">
+  <tr> 
+    <td width="714"> 
+      <table width="391" border="1" align="center" bordercolor="#999999">
+        <tr> 
+          <td width="40%" bgcolor="#C4CBB8">信用額度（註）</td>
+          <td width="60%" height="25"><SCRIPT language="JavaScript">
+            document.write(moneyAddDot2('[[%%SEND-CARD-LIMIT%%]]'));
+          </SCRIPT></td>
+        </tr>
+        <tr>
+          <td width="40%" bgcolor="#C4CBB8">可用額度</td>
+          <td width="60%" height="25"><SCRIPT language="JavaScript">
+            document.write(moneyAddDot2('[[%%SEND-CARD-AVAL-CREDIT%%]]'));
+          </SCRIPT></td>
+        </tr>
+        <tr> 
+          <td width="40%" bgcolor="#C4CBB8">本期應繳金額</td>
+          <td width="60%" height="25"><SCRIPT language="JavaScript">
+            document.write(moneyAddDot2('[[%%SEND-CARD-DUE-AMT%%]]'));
+          </SCRIPT>元</td>
+        </tr>
+        <tr> 
+          <td width="40%" bgcolor="#C4CBB8">本期最低應繳金額</td>
+          <td width="60%" height="25"><SCRIPT language="JavaScript">
+            document.write(moneyAddDot2('[[%%SEND-CARD-MIN-AMT%%]]'));
+          </SCRIPT>元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="40%">繳款截止日</td>
+          <td height="25" width="60%"><SCRIPT language="JavaScript">
+                document.write(getRCDateStr('[[%%SEND-CARD-DUE-DAY%%]]',3));
+            </SCRIPT>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="40%">當期帳單最近一次繳款金額</td>
+          <td height="25" width="60%"><SCRIPT language="JavaScript">
+                document.write(moneyAddDot2('[[%%SEND-CARD-LSTPAY-AMT%%]]'));
+              </SCRIPT>元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="40%">當期帳單最近一次繳款日期</td>
+          <td height="25" width="60%"><SCRIPT language="JavaScript">
+                    document.write(getRCDateStr('[[%%SEND-CARD-LSTPAY-DATE%%]]',3));
+              </SCRIPT>&nbsp;</td>
+        </tr>
+       <!-- <tr> 
+          <td bgcolor="#C4CBB8" width="40%">帳單明細查詢</td>
+          <td height="25" width="60%">
+          	<a href="javaScript:chkSubmit((Year+1911)+Month)" >
+	        <SCRIPT language="JavaScript">
+	            //document.write(Year+"/"+Month);
+	            document.write("最近一期");
+	        </SCRIPT>
+			</a>&nbsp; 
+			<a href="javaScript:chkSubmit((preYear+1911)+preMonth)" >
+                <SCRIPT language="JavaScript">
+                    document.write(preYear+"/"+preMonth);
+                </SCRIPT>
+			</a>&nbsp; 
+			<a href="javaScript:chkSubmit((preYear2+1911)+preMonth2)">
+                <SCRIPT language="JavaScript">
+                document.write(preYear2+"/"+preMonth2);
+                </SCRIPT>
+		    </a>&nbsp; 
+		    <a href="javaScript:chkSubmit((preYear3+1911)+preMonth3)">
+                <SCRIPT language="JavaScript">
+                document.write(preYear3+"/"+preMonth3);
+                </SCRIPT>
+		    </a>&nbsp; 
+
+            </td>
+        </tr> -->
+      </table>
+      <table width="391" border="0" align="center">
+        <tr> 
+          <td><p>註：<br>
+           1.&nbsp;若您持有多張聯邦信用卡，原則上是共用同一信用額度，惟 金援卡、 Cyber X 卡、新學友卡附卡及部分借貸款專案之額度係獨立於共用額度外。<br>
+           2.&nbsp;上表所列「本期應繳金額」及「本期最低應繳金額」係最近一期帳單資料，如您已繳款，則毋須重覆繳款。<br>
+           3.&nbsp;當期帳單如尚未繳款，上表所列之『當期帳單最近一次繳款金額』欄位將顯示為0元，『當期帳單最近一次繳款日期』欄位將顯示為0年00月00日。<br>
+	        </td>
+        </tr>
+      </table>
+      <table width="350" border="0" align="center">
+        <tr>
+          <td><a href="https://www.yesgogogo.com" target="_blank">典藏紅利兌換</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="REVE_STMT_DATE" value="">
+</form>
+</body>
+</html>

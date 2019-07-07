@@ -1,0 +1,441 @@
+<html xmlns="undefined">
+<head>
+<title>轉帳交易常用帳號管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<style type="text/css">
+<!--
+.style1 {color: #0066FF}
+.style2 {color: #0000FF}
+-->
+</style>
+<SCRIPT language="JavaScript">
+
+var i = 0 ;
+function getIndex(){
+    i++;
+    return i;    
+}
+   
+   
+   
+
+   
+   
+   
+      
+    
+function chkActNo(){   
+    var f = document.IP0990430;
+    var j = 1;
+    f.changeact.value = '';
+    if (typeof(f.chkindex.checked) == 'undefined'){    
+        for (i = 0 ; i<f.chkindex.length ; i++){
+            if (f.chkindex[i].checked&&j==1){
+                f.changeact.value = f.changeact.value + f.chkindex[i].value ;
+                j++;
+            }else if (f.chkindex[i].checked&&j!=1){
+                f.changeact.value = f.changeact.value + "," + f.chkindex[i].value ;
+                j++;
+            }
+        }
+        if (j==1){
+            alert('請勾選欲變更之常用帳號項目!');
+            return;    
+        }   
+    }else{  
+        if (f.chkindex.checked){
+            f.changeact.value = f.chkindex.value;   
+        }else{
+            alert('請勾選欲變更之常用帳號項目!');
+            return;
+        }      
+    }
+}
+
+
+
+function UchkActNo(){   
+    var f = document.IP0990430;
+    var j = 1;
+    f.changeact.value = '';
+    
+    
+    
+    if (typeof(f.chkindex.checked) == 'undefined'){    
+        for (i = 0 ; i<f.chkindex.length ; i++){
+            if (f.chkindex[i].checked&&j==1){
+                f.changeact.value = f.changeact.value + f.chkindex[i].value ;
+                j++;
+            }else if (f.chkindex[i].checked&&j!=1){
+            f.changeact.value = '';
+               alert('請只勾選一項欲修改之常用帳號項目!');
+                 return;
+            }
+        }
+        if (j==1){
+            alert('請勾選欲修改之常用帳號項目!');
+            return;    
+        }   
+    }else{  
+        if (f.chkindex.checked){
+            f.changeact.value = f.chkindex.value;   
+        }else{
+            alert('請勾選欲修改之常用帳號項目!');
+            return;
+        }      
+    }
+}
+
+
+
+function DchkActNo(){   
+    var f = document.IP0990430;
+    var j = 1;
+    f.changeact.value = '';
+    
+    
+    
+    if (typeof(f.chkindex.checked) == 'undefined'){   
+        for (i = 0 ; i<f.chkindex.length ; i++){
+            if (f.chkindex[i].checked&&j==1){
+                f.changeact.value = f.changeact.value + f.chkindex[i].value ;
+                j++;
+            }else if (f.chkindex[i].checked&&j!=1){
+            f.changeact.value = '';
+               alert('請只勾選一項欲刪除之常用帳號項目!');
+                 return;
+            }
+        }
+        if (j==1){
+            alert('請勾選欲刪除之常用帳號項目!');
+            return;    
+        }   
+    }else{  
+        if (f.chkindex.checked){
+            f.changeact.value = f.chkindex.value;   
+        }else{
+            alert('請勾選欲刪除之常用帳號項目!');
+            return;
+        }      
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function substr(s){
+
+var s;
+
+var subs=s.substring(0,10);
+
+return subs;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function chkStatus(toactdesc,toacctinfo,acctno,txndesc,notitype,mobile,email){
+    var str = "";
+   
+        str = "<tr><td width=\"7%\"><div align=\"center\"><input type=\"checkbox\" name=\"chkindex\" value=\""+toactdesc+"#"+toacctinfo+"#"+acctno+"#"+txndesc+"#"+notitype+"#"+mobile+"#"+email+"\"></div></td>"; 
+        str = str + "<td width=\"7%\"><div align=\"center\">"+getIndex()+"</div></td>"; 
+        str = str + "<td width=\"18%\"><div align=\"center\">"+toactdesc+"</div></td>";  
+        str = str + "<td width=\"15%\"><div align=\"center\">"+toacctinfo+"</div></td>";
+        str = str + "<td width=\"16%\"><div align=\"center\">"+acctno+"</div></td>";
+        str = str + "<td width=\"20%\"><div align=\"center\">"+substr(txndesc)+"</div></td>";
+        
+        if(notitype==0) {
+        str = str + "<td width='20%'><div align='center'>不通知</td></tr>";
+        }
+        if(notitype==1) {
+        str = str + "<td width='20%'><div align='center'>簡訊通知<br></div><div align=\'center\'>"+mobile+"</div></td></tr>";
+        }
+         if(notitype==2) {
+        str = str + "<td width='20%'><div align='center'>EMAIL通知<br></div><div align=\'center\'>"+email+"</div></td></tr>";
+        }
+       
+       
+        
+    
+    //alert('str='+str);
+    return str;
+}
+
+function chkSubmit(){
+    var f = document.IP0990430;
+    
+     if(typeof(f.chkindex) == 'undefined'){
+    	alert('目前尚無常用帳號資料！');
+ 
+    }
+    
+    DchkActNo();
+    if (f.changeact.value=='') return;
+    //alert('f.changeact.value='+f.changeact.value);
+    f.pageid.value = 'IP0990433';
+    f.submit();
+}
+
+
+
+function update(){
+    var f = document.IP0990430;
+    
+    
+     if(typeof(f.chkindex) == 'undefined'){
+    	alert('目前尚無常用帳號資料！');
+ 
+    }
+      
+    
+    UchkActNo();
+    if (f.changeact.value=='') return;
+    //alert('f.changeact.value='+f.changeact.value);
+    f.pageid.value = 'IP0990434';
+    f.submit();
+}
+
+
+
+
+
+   
+  
+
+
+
+
+
+
+
+
+
+function add(){
+    var f = document.IP0990430;
+
+     //alert('f.chkindex.length='+f.chkindex.length);
+     
+     
+    if(typeof(f.chkindex) == 'undefined'){
+    	f.pageid.value = 'IP0990431';
+    	f.submit();
+ 
+    }
+    
+    if(typeof(f.chkindex.length) == 'undefined'){
+    	f.pageid.value = 'IP0990431';
+    	f.submit();
+     
+    }
+    
+    if(f.chkindex.length < 20){
+    	f.pageid.value = 'IP0990431';
+    	f.submit();
+          	
+    } 
+       
+    if(f.chkindex.length >=20){     	
+    	alert('常用帳號已達20組，無法再新增！');
+    				
+    }
+    			       
+   
+}
+
+</SCRIPT>
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<p><strong>轉帳交易常用帳號&gt;<span class="style1">轉帳交易常用帳號管理</span></strong></p>
+<form name="IP0990430" method="POST" action="LoadAP">
+<table width="750" border="0">
+  <tr>
+    <td colspan="5"><table width="650" border="0" align="center">
+        <tr>
+          <td>
+            已設定之常用帳號資料如下：
+            <table width="100%" border="1" bordercolor="#999999">
+              <tr>
+                <td width="7%" bgcolor="#C4CBB8">請選擇 </td>
+                <td width="7%" bgcolor="#C4CBB8"><div align="center">編號 </div></td>
+                <td width="18%" bgcolor="#C4CBB8"><div align="center">帳號暱稱 </div></td>
+                <td width="15%" bgcolor="#C4CBB8"><div align="center">銀行代號 </div></td>
+                <td width="16%" bgcolor="#C4CBB8"><div align="center">轉入帳號 </div></td>
+                <td width="20%" bgcolor="#C4CBB8"><div align="center">交易附註 </div></td>
+                <td width="20%" bgcolor="#C4CBB8"><div align="center">通知方式 </div></td>
+              </tr>
+              <!--[[%%LOOP_SEC SID%%]]
+                <script>document.write(chkStatus('[[%%TOACTDESC%%]]','[[%%TOACCTINFO%%]]','[[%%ACCTNO%%]]','[[%%TXNDESC%%]]','[[%%NOTITYPE%%]]','[[%%MOBILE%%]]','[[%%EMAIL%%]]'));</script>
+              <!--[[%%ELOOP_SEC%%]]-->
+     
+            </table>
+            
+          
+           <br>
+            說明：
+          
+           <table width="100%" border="0">
+              <tr>
+                <td width="2%" valign="top"><p>1.</p></td>
+                <td width="98%">常用帳號功能僅適用於非約定轉帳，最多可設定20組常用帳號。 </td>
+              </tr>
+              
+             
+              
+              <tr>
+                <td valign="top">2.</td>
+                <td>每欄交易附註內容可輸入最多50字，清單僅顯示前10個字。</td>
+              </tr>
+             
+            </table>
+          
+           
+           <P>
+           
+           
+           
+           
+      <div align="center">
+        <input type="button" name="button1" value="新增" onclick="javascript:add();">
+        <input type="button" name="button1" value="修改" onclick="javascript:update();">
+        <input type="button" name="button2" value="刪除" onclick="javascript:chkSubmit();">
+         
+      </div>
+           
+           
+           
+ <hr  color="#663300">
+        
+           
+   
+           <P>
+           
+           <table>
+            
+              <tr>
+                <td  bgcolor=aqua>  常用帳號資料儲存及使用聲明：</td>
+              </tr>
+           
+            </table>
+           
+           
+            <br>
+
+            <table width="100%" border="0">
+           
+             
+           
+           
+              <tr>
+                <td width="2%" valign="top">1.</td>
+                <td width="98%">本服務係由本行於系統中提供貴客戶適當儲存空間，供貴客戶自行透過本功能建立並儲存非約定轉帳之常用帳號資 </td>
+              </tr>
+               <tr>
+                <td width="2%" valign="top">&nbsp</td>
+                <td width="98%">料。貴客戶所建立並儲存於本系統中的資料，僅供貴客戶登入本系統後自行操作讀取與應用，祈使貴客戶於使用本</td>
+              </tr>
+                
+               <tr>
+                <td width="2%" valign="top">&nbsp</td>
+                <td width="98%">系統時可迅速運用已建立之轉帳資料。 </td>
+              </tr>
+              
+              <tr>
+                <td width="2%" valign="top">&nbsp</td>
+                <td width="98%">&nbsp</td>
+              </tr>
+               
+              
+               <tr>
+                <td width="2%" valign="top">2.</td>
+                <td width="98%"> 貴客戶得隨時透過本系統查詢、編輯、刪除在本系統所建立並儲存之常用帳號資料；在本系統所建立的常用帳號資</td>
+              </tr>
+               <tr>
+                <td width="2%" valign="top">&nbsp</td>
+                <td width="98%"> 料，除由貴客戶自行透過本系統進行運用外，本行非經 貴客戶之書面同意將不會為其他蒐集、處理及利用之行為。</td>
+              </tr>
+              
+              
+              
+              
+               <tr>
+                <td width="2%" valign="top">&nbsp</td>
+                <td width="98%">&nbsp</td>
+              </tr>
+              
+              
+              
+                <tr>
+                <td width="2%" valign="top">3.</td>
+                <td width="98%">本系統為本行基於服務貴客戶便利使用網路交易所提供之儲存空間，貴客戶除本系統外應自行於他處留存常用帳號 </td>
+              </tr>
+               <tr>
+                <td width="2%" valign="top">&nbsp</td>
+                <td width="98%"> 之備份資料，本行並保留隨時通知貴客戶後即終止提供本項服務之權利。 </td>
+              </tr>
+              
+             
+            </table>
+            
+           
+           
+           
+           
+           
+           
+           
+           
+           
+          
+          </td>
+        </tr>
+      </table>
+      <br>
+      <br>
+      <div align="center">
+        
+        
+        
+         
+      </div>
+      </div>
+      </div>
+      <div align="center"> </div></td>
+  </tr>
+ 
+ 
+ 
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="aptype" value="IBANK">
+<input type="hidden" name="changeact" value="">
+</form>
+</body>
+</html>

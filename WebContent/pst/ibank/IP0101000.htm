@@ -1,0 +1,742 @@
+<html>
+<head>
+<title>總歸戶</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="expires" CONTENT="0">
+
+</head>
+<script language="JavaScript" SRC="script/acctfmt.js"></script>
+<script language="JavaScript" SRC="script/moneyfmt.js"></script>
+<script language="JavaScript" SRC="script/datefmt.js"></script>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/iBank.js"></SCRIPT>
+
+<SCRIPT LANGUAGE="JAVASCRIPT">
+	function chkSubmit(selectAcct){
+		var f = document.IP0101000;
+		alert('selectAcct='+selectAcct);
+		if (selectAcct.indexOf("@")>1){
+			var pageidArray = selectAcct.split("@");
+			f.pageid.value = pageidArray[0];
+			f.nextpage.value = pageidArray[1];
+		}else{
+			f.pageid.value = selectAcct;
+			if (selectAcct.substr(0,2)=="IF"){
+				f.aptype.value = "YESFUND";	
+			}
+		}
+		f.submit();
+	}
+	function getDataTime(){
+	    var datatime = '';
+	    if (datatime == '') datatime = '200508241003';
+		if (!datatime==''&&datatime.length>=12){
+			return	datatime.substr(0,4)+"/"+datatime.substr(4,2)+"/"+datatime.substr(6,2)+" "
+			        +datatime.substr(8,2)+":"+datatime.substr(10,2)+":00";
+		}else{
+			return getNowTime();
+		}
+	}
+	function showRegAcct(type){
+		if (type=='0') return "&nbsp;";
+		if (type=='1') return "V";	
+		return "&nbsp;";
+	}
+	
+	function getAcctOption(Acct,AcctDesc){
+		var str = "";
+	    //alert('Acct.substr(3,5)='+Acct.substr(3,2));
+		if (Acct.substr(3,2)=="20" || Acct.substr(3,2)=="30" || Acct.substr(3,2)=="50"){
+			str = 	"<option value=\"IP0201000\" selected>交易明細</option>\n"+
+					"<option value=\"IP0202000\">當日匯入匯款</option>\n"+
+					"<option value=\"IP0204000\">當日餘額</option>\n"+
+					"<option value=\"IP0901000\">掛失服務</option>\n"+
+					"<option value=\"IP0701000\">即時轉帳</option>\n"+
+					"<option value=\"IP0702100\">預約轉帳</option>\n"+
+					"<option value=\"IP0203100\">查詢/取消預約轉帳</option>\n"+
+					"<option value=\"IP0703000\">台幣轉外幣</option>\n";
+			if (Acct.substr(3,3)=="508"){
+				str = str + "<option value=\"IP0706000\">綜存活存轉定存</option>\n";	
+			}
+			str = str + "<option value=\"IP0707000\">活存轉繳零存整付</option>\n"+
+						"<option value=\"IP0708000\">活存轉繳吉祥理財</option>\n";
+			//alert('str='+str);
+		}
+		if (Acct.substr(3,2)=="40" ){
+			str = 	"<option value=\"IP0208000\" selected>定期存款</option>\n"+
+					"<option value=\"IP0210000\">定存中途解約試算</option>\n"+
+					"<option value=\"IP0901000\">掛失服務</option>\n";	
+			//alert('str='+str);
+		}
+		if (Acct.substr(3,2)=="77" ){
+			str = 	"<option value=\"IP0401000\" selected>外幣交易明細</option>\n"+
+					"<option value=\"IP0402000\">外幣存款餘額</option>\n";
+					
+			if (Acct.substr(3,3)=="775"){
+				str = str + "<option value=\"IP0404000\">綜存活存轉定存</option>\n";	
+			}
+			str = str + "<option value=\"IP0703100\">外幣轉台幣</option>\n"+
+						"<option value=\"IP0703200\">外幣轉外幣</option>\n";
+			//alert('str='+str);
+		}
+		if (Acct.substr(3,2)=="88" ){
+			str = "<option value=\"IP0403000\" selected>外幣定期存款</option>\n";
+			//alert('str='+str);
+		}
+		//IP0500001
+		if (Acct.substr(3,2)=="51"&&AcctDesc=="國民現金" ){
+			str = 	"<option value=\"IP0500001@IP0501000\" selected>國民現金帳戶查詢</option>\n"+
+					"<option value=\"IP0500001@IP0503000\">國民現金交易明細</option>\n"+
+					"<option value=\"IP0500001@IP0504000\">本期最低應繳金額</option>\n"+
+					"<option value=\"IP0500001@IP0505000\">結清應繳總額</option>\n"+
+					"<option value=\"IP0500001@IP0705000\">馬上繳款</option>\n";
+			alert('str='+str);
+		}
+		if (Acct.substr(3,2)=="51"&&AcctDesc=="達文西卡" ){
+			str = 	"<option value=\"IP0500002@IP0511000\" selected>達文西A+理財卡帳戶查詢</option>\n"+
+					"<option value=\"IP0500002@IP0513000\">達文西A+理財卡交易明細</option>\n"+
+					"<option value=\"IP0500002@IP0514000\">本期最低應繳金額</option>\n"+
+					"<option value=\"IP0500002@IP0515000\">結清應繳總額</option>\n"+
+					"<option value=\"IP0500002@IP0512000\">馬上繳款</option>\n";
+			//alert('str='+str);
+		}
+		return str;
+	}
+	
+	function reloadData(){
+		var f = document.IP0101000;
+		if(checkTag()==false){
+			return;
+		}
+		f.pageid.value="IP0101001";
+		f.submit();
+	}
+
+	function checkTag(){
+		var f = document.IP0101000;
+		f.chktag.value = eval(f.chktag.value) + 1;
+		//alert(f.chktag.value);
+		if(f.chktag.value>1){
+			alert("交易執行中!");
+			return false;
+		}
+	}
+
+</SCRIPT>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b> 帳戶查詢&gt;<font color="#003399"><font color="#0066FF">總歸戶</font></font></b> 
+<form name="IP0101000" method="POST" action="LoadAP">
+<table width="766" height="15" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="739">
+      	<div align="right">資料時間:
+          	<script language="JavaScript">
+                //document.write(getNowTime());	//目前時間
+             	document.write(getDataTime()); 
+      		</script>
+    	</div>
+    </td>
+  </tr>
+  <tr>
+    <td width="739">
+    	<div align="right"><img src="graph/theone.gif" width="99" height="20" onclick="javascript:reloadData();"></div>
+    </td>
+  </tr>
+</table>
+<table width="766" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="766"> <img src="graph/point.gif" width="12" height="12" align="absmiddle"><font color="#FF0000">台幣存款</font>
+      <table width="762" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td width="762"> 
+            <div align="right">單位：新台幣/元</div>
+          </td>
+        </tr>
+      </table>
+      <font color="#FF0000"> </font> 
+      <table width="769" border="1" bordercolor="#999999" cellpadding="2">
+        <tr> 
+          <td width="108" bgcolor="#C4CBB8"> 
+            <div align="center">帳號</div>
+          </td>
+          <td width="108" bgcolor="#C4CBB8"> 
+            <div align="center">所屬分行</div>
+          </td>
+          <td width="85" bgcolor="#C4CBB8"> 
+            <div align="center">帳戶類別</div>
+          </td>
+          <td width="60" bgcolor="#C4CBB8"> 
+            <div align="center">約定轉出</div>
+          </td>
+          <td width="92" bgcolor="#C4CBB8"> 
+            <div align="center"> 帳戶餘額</div>
+          </td>
+          <td width="92" bgcolor="#C4CBB8"> 
+            <div align="center">可用餘額</div>
+          </td>
+          <td colspan="2" bgcolor="#C4CBB8" width="161"> 
+            <div align="center">轉帳╱查詢</div>
+          </td>
+        </tr>
+
+        <tr> 
+          <td width="108"><font color="#003300" face="Arial, Helvetica, sans-serif">
+            <SCRIPT language="JavaScript">
+            document.write(getAcctStr('001510022161'));
+                  </SCRIPT>
+            </font>            </td>
+          <td width="108">&nbsp;營業部</td>
+          <td width="85"> 
+            <div align="center">國民現金</div>
+          </td>
+          <td width="60"> 
+            <div align="center"><SCRIPT language="JavaScript">
+                document.write(showRegAcct('0'));
+            </SCRIPT></div>
+          </td>
+          <td width="92" bgcolor="#FFFFDD" align="right"><font face="Arial, Helvetica, sans-serif">&nbsp;
+              <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot2('-9991.00')));
+            </SCRIPT></font></td>
+          <td width="92" bgcolor="#FFFFDD" align="right"><font face="Arial, Helvetica, sans-serif">&nbsp; 
+            <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot2('290009.00')));
+            </SCRIPT></font></td>
+          <td colspan="2" width="161"> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td width="52%"> 
+                  <select name="select_001510022161">
+                    <SCRIPT language="JavaScript">
+            			document.write(getAcctOption('001510022161','國民現金'));
+                  	</SCRIPT>
+                  </select>
+				</td>
+                <td width="48%"><img src="graph/go.gif" width="19" height="19" border="0" onclick="chkSubmit(document.IP0101000.select_001510022161.value);"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+          <td width="108"><font color="#003300" face="Arial, Helvetica, sans-serif">
+            <SCRIPT language="JavaScript">
+            document.write(getAcctStr('002200902969'));
+                  </SCRIPT>
+            </font>            </td>
+          <td width="108">&nbsp;台北分行</td>
+          <td width="85"> 
+            <div align="center">行員存款</div>
+          </td>
+          <td width="60"> 
+            <div align="center"><SCRIPT language="JavaScript">
+                document.write(showRegAcct('0'));
+            </SCRIPT></div>
+          </td>
+          <td width="92" bgcolor="#FFFFDD" align="right"><font face="Arial, Helvetica, sans-serif">&nbsp;
+              <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot2('534456.00')));
+            </SCRIPT></font></td>
+          <td width="92" bgcolor="#FFFFDD" align="right"><font face="Arial, Helvetica, sans-serif">&nbsp; 
+            <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot2('534456.00')));
+            </SCRIPT></font></td>
+          <td colspan="2" width="161"> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td width="52%"> 
+                  <select name="select_002200902969">
+                    <SCRIPT language="JavaScript">
+            			document.write(getAcctOption('002200902969','行員存款'));
+                  	</SCRIPT>
+                  </select>
+				</td>
+                <td width="48%"><img src="graph/go.gif" width="19" height="19" border="0" onclick="chkSubmit(document.IP0101000.select_002200902969.value);"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+          <td width="108"><font color="#003300" face="Arial, Helvetica, sans-serif">
+            <SCRIPT language="JavaScript">
+            document.write(getAcctStr('002517777777'));
+                  </SCRIPT>
+            </font>            </td>
+          <td width="108">&nbsp;台北分行</td>
+          <td width="85"> 
+            <div align="center">達文西卡</div>
+          </td>
+          <td width="60"> 
+            <div align="center"><SCRIPT language="JavaScript">
+                document.write(showRegAcct('0'));
+            </SCRIPT></div>
+          </td>
+          <td width="92" bgcolor="#FFFFDD" align="right"><font face="Arial, Helvetica, sans-serif">&nbsp;
+              <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot2('-19119.00')));
+            </SCRIPT></font></td>
+          <td width="92" bgcolor="#FFFFDD" align="right"><font face="Arial, Helvetica, sans-serif">&nbsp; 
+            <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot2('180881.00')));
+            </SCRIPT></font></td>
+          <td colspan="2" width="161"> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td width="52%"> 
+                  <select name="select_002517777777">
+                    <SCRIPT language="JavaScript">
+            			document.write(getAcctOption('002517777777','達文西卡'));
+                  	</SCRIPT>
+                  </select>
+				</td>
+                <td width="48%"><img src="graph/go.gif" width="19" height="19" border="0" onclick="chkSubmit(document.IP0101000.select_002517777777.value);"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+          <td width="108"><font color="#003300" face="Arial, Helvetica, sans-serif">
+            <SCRIPT language="JavaScript">
+            document.write(getAcctStr('033408020055'));
+                  </SCRIPT>
+            </font>            </td>
+          <td width="108">&nbsp;中山分行</td>
+          <td width="85"> 
+            <div align="center">定期存款</div>
+          </td>
+          <td width="60"> 
+            <div align="center"><SCRIPT language="JavaScript">
+                document.write(showRegAcct('0'));
+            </SCRIPT></div>
+          </td>
+          <td width="92" bgcolor="#FFFFDD" align="right"><font face="Arial, Helvetica, sans-serif">&nbsp;
+              <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot2('')));
+            </SCRIPT></font></td>
+          <td width="92" bgcolor="#FFFFDD" align="right"><font face="Arial, Helvetica, sans-serif">&nbsp; 
+            <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot2('0.0')));
+            </SCRIPT></font></td>
+          <td colspan="2" width="161"> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td width="52%"> 
+                  <select name="select_033408020055">
+                    <SCRIPT language="JavaScript">
+            			document.write(getAcctOption('033408020055','定期存款'));
+                  	</SCRIPT>
+                  </select>
+				</td>
+                <td width="48%"><img src="graph/go.gif" width="19" height="19" border="0" onclick="chkSubmit(document.IP0101000.select_033408020055.value);"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+          <td width="108"><font color="#003300" face="Arial, Helvetica, sans-serif">
+            <SCRIPT language="JavaScript">
+            document.write(getAcctStr('033506032216'));
+                  </SCRIPT>
+            </font>            </td>
+          <td width="108">&nbsp;中山分行</td>
+          <td width="85"> 
+            <div align="center">活期儲蓄</div>
+          </td>
+          <td width="60"> 
+            <div align="center"><SCRIPT language="JavaScript">
+                document.write(showRegAcct('0'));
+            </SCRIPT></div>
+          </td>
+          <td width="92" bgcolor="#FFFFDD" align="right"><font face="Arial, Helvetica, sans-serif">&nbsp;
+              <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot2('537000.00')));
+            </SCRIPT></font></td>
+          <td width="92" bgcolor="#FFFFDD" align="right"><font face="Arial, Helvetica, sans-serif">&nbsp; 
+            <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot2('-0.00')));
+            </SCRIPT></font></td>
+          <td colspan="2" width="161"> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td width="52%"> 
+                  <select name="select_033506032216">
+                    <SCRIPT language="JavaScript">
+            			document.write(getAcctOption('033506032216','活期儲蓄'));
+                  	</SCRIPT>
+                  </select>
+				</td>
+                <td width="48%"><img src="graph/go.gif" width="19" height="19" border="0" onclick="chkSubmit(document.IP0101000.select_033506032216.value);"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+          <td width="108"><font color="#003300" face="Arial, Helvetica, sans-serif">
+            <SCRIPT language="JavaScript">
+            document.write(getAcctStr('033508211193'));
+                  </SCRIPT>
+            </font>            </td>
+          <td width="108">&nbsp;中山分行</td>
+          <td width="85"> 
+            <div align="center">綜合存款</div>
+          </td>
+          <td width="60"> 
+            <div align="center"><SCRIPT language="JavaScript">
+                document.write(showRegAcct('0'));
+            </SCRIPT></div>
+          </td>
+          <td width="92" bgcolor="#FFFFDD" align="right"><font face="Arial, Helvetica, sans-serif">&nbsp;
+              <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot2('198947.00')));
+            </SCRIPT></font></td>
+          <td width="92" bgcolor="#FFFFDD" align="right"><font face="Arial, Helvetica, sans-serif">&nbsp; 
+            <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot2('198947.00')));
+            </SCRIPT></font></td>
+          <td colspan="2" width="161"> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td width="52%"> 
+                  <select name="select_033508211193">
+                    <SCRIPT language="JavaScript">
+            			document.write(getAcctOption('033508211193','綜合存款'));
+                  	</SCRIPT>
+                  </select>
+				</td>
+                <td width="48%"><img src="graph/go.gif" width="19" height="19" border="0" onclick="chkSubmit(document.IP0101000.select_033508211193.value);"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <img src="graph/point.gif" width="12" height="12" align="absmiddle"> <font color="#FF0000">外幣存款</font> 
+      <table width="763" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td width="763"> 
+            <div align="right">單位：元</div>
+          </td>
+        </tr>
+      </table>
+      <table width="769" border="1" bordercolor="#999999" cellpadding="2">
+        <tr> 
+          <td width="109" bgcolor="#C4CBB8" height="20"> 
+            <div align="center">帳號</div>          </td>
+          <td width="109" bgcolor="#C4CBB8" height="20"> 
+            <div align="center">所屬分行</div>          </td>
+          <td width="90" bgcolor="#C4CBB8" height="20"> 
+            <div align="center">帳戶類別</div>          </td>
+          <td width="65" bgcolor="#C4CBB8" height="20"> 
+            <div align="center">約定轉出</div>          </td>
+          <td width="88" bgcolor="#C4CBB8" height="20"> 
+            <div align="center"> 帳戶餘額</div>          </td>
+          <td width="84" bgcolor="#C4CBB8" height="20"> 
+            <div align="center"> 可用餘額</div>          </td>
+          <td width="161" bgcolor="#C4CBB8" height="20"> 
+            <div align="center">轉帳╱查詢</div>          </td>
+        </tr>
+
+   
+      </table>
+      <br>
+      <img src="graph/point.gif" width="12" height="12" align="absmiddle"> <font color="#FF0000">一般貸款帳戶</font><br>
+      <table width="763" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td width="763"> 
+            <div align="right">單位：新台幣/元</div>
+          </td>
+        </tr>
+      </table>
+      <table width="769" border="1" bordercolor="#999999" cellpadding="2">
+        <tr> 
+          <td width="109" bgcolor="#C4CBB8"> 
+            <div align="center">帳號<br>
+              (委託繳息帳號) </div>
+          </td>
+          <td width="109" bgcolor="#C4CBB8"> 
+            <div align="center">所屬分行</div>
+          </td>
+          <td width="66" bgcolor="#C4CBB8"> 
+            <div align="center">初貸日/<br>
+              到期日 </div>
+          </td>
+          <td width="90" bgcolor="#C4CBB8"> 
+            <div align="center">額度</div>
+          </td>
+          <td width="93" bgcolor="#C4CBB8"> 
+            <div align="center">現貸餘額</div>
+          </td>
+          <td width="78" bgcolor="#C4CBB8"> 
+            <div align="center">每月還款日</div>
+          </td>
+          <td width="161" bgcolor="#C4CBB8"> 
+            <div align="center">查詢╱繳款</div>
+          </td>
+        </tr>
+
+
+      </table>
+      <br>
+      <img src="graph/point.gif" width="12" height="12" align="absmiddle"> <font color="#FF0000">國民現金-現金卡</font> 
+      <table width="762" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td width="762"> 
+            <div align="right">單位：新台幣/元</div>
+          </td>
+        </tr>
+      </table>
+      <table width="769" border="1" bordercolor="#999999" cellpadding="2">
+        <tr> 
+          <td width="109" bgcolor="#C4CBB8"> 
+            <div align="center">帳號</div>
+          </td>
+          <td width="109" bgcolor="#C4CBB8"> 
+            <div align="center">所屬分行</div>
+          </td>
+          <td width="67" bgcolor="#C4CBB8"> 
+            <div align="center">核准日</div>
+          </td>
+          <td width="87" bgcolor="#C4CBB8"> 
+            <div align="center">額度</div>
+          </td>
+          <td width="92" bgcolor="#C4CBB8"> 
+            <div align="center">現貸餘額</div>
+          </td>
+          <td width="81" bgcolor="#C4CBB8"> 
+            <div align="center">本期還款日</div>
+          </td>
+          <td width="161" bgcolor="#C4CBB8"> 
+            <div align="center">查詢/繳款</div>
+          </td>
+        </tr>
+
+        <tr> 
+          <td width="109" height="2"> <font color="#003300">
+          <SCRIPT language="JavaScript">
+            document.write(getAcctStr('001510022161'));
+          </SCRIPT></font></td>
+          <td width="109" height="2"> 
+            <div align="center">營業部</div>
+          </td>
+          <td width="67" height="2"> 
+            <div align="center"><font face="Arial, Helvetica, sans-serif">
+            <SCRIPT language="JavaScript">
+                document.write(getRCDateStr('',0));
+            </SCRIPT></font>&nbsp;</div>
+          </td>
+          <td width="87" height="2"> 
+            <div align="center">&nbsp;</div>
+          </td>
+          <td width="92" height="2"> 
+            <div align="center">&nbsp;</div>
+          </td>
+          <td width="81" height="2"> 
+            <div align="center">
+            <SCRIPT language="JavaScript">
+                document.write(getRCDateStr('20050919',0));
+            </SCRIPT>&nbsp;</div>
+          </td>
+          <td width="161" height="2"> 
+            <table width="55%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td width="52%">
+                  <select name="select2_001510022161">
+                    <SCRIPT language="JavaScript">
+            			document.write(getAcctOption('001510022161','國民現金'));
+                  	</SCRIPT>
+                  </select>
+                </td>
+                <td width="48%"><img src="graph/go.gif" width="19" height="19" border="0" onclick="chkSubmit(document.IP0101000.select2_001510022161A.value);"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+          <td width="109" height="2"> <font color="#003300">
+          <SCRIPT language="JavaScript">
+            document.write(getAcctStr('002517777777'));
+          </SCRIPT></font></td>
+          <td width="109" height="2"> 
+            <div align="center">台北分行</div>
+          </td>
+          <td width="67" height="2"> 
+            <div align="center"><font face="Arial, Helvetica, sans-serif">
+            <SCRIPT language="JavaScript">
+                document.write(getRCDateStr('',0));
+            </SCRIPT></font>&nbsp;</div>
+          </td>
+          <td width="87" height="2"> 
+            <div align="center">&nbsp;</div>
+          </td>
+          <td width="92" height="2"> 
+            <div align="center">&nbsp;</div>
+          </td>
+          <td width="81" height="2"> 
+            <div align="center">
+            <SCRIPT language="JavaScript">
+                document.write(getRCDateStr('20050924',0));
+            </SCRIPT>&nbsp;</div>
+          </td>
+          <td width="161" height="2"> 
+            <table width="55%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td width="52%">
+                  <select name="select2_002517777777">
+                    <SCRIPT language="JavaScript">
+            			document.write(getAcctOption('002517777777','達文西卡'));
+                  	</SCRIPT>
+                  </select>
+                </td>
+                <td width="48%"><img src="graph/go.gif" width="19" height="19" border="0" onclick="chkSubmit(document.IP0101000.select2_002517777777A.value);"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <img src="graph/point.gif" width="12" height="12" align="absmiddle"> <font color="#FF0000">信用卡</font> 
+      (含國民現金卡-信用卡) 
+      <table width="630" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td> 
+            <div align="right">單位：新台幣/元</div>
+          </td>
+        </tr>
+      </table>
+      <table width="769" border="1" bordercolor="#999999" cellpadding="2">
+        <tr> 
+          <td width="144" bgcolor="#C4CBB8"> 
+            <div align="center">可用額度</div>
+          </td>
+          <td width="147" bgcolor="#C4CBB8"> 
+            <div align="center">本期應繳金額</div>
+          </td>
+          <td width="146" bgcolor="#C4CBB8"> 
+            <div align="center">最低應繳金額</div>
+          </td>
+          <td width="102" bgcolor="#C4CBB8"> 
+            <div align="center">繳款截止日</div>
+          </td>
+          <td width="183" bgcolor="#C4CBB8"> 
+            <div align="center">查詢/繳款</div>
+          </td>
+        </tr>
+
+        <tr> 
+          <td width="144" height="2"> 
+            <div align="center">
+            <SCRIPT language="JavaScript">
+                document.write(moneyAddDot2('49633'));
+            </SCRIPT></div>
+          </td>
+          <td width="147" height="2"> 
+            <div align="center">
+            <SCRIPT language="JavaScript">
+                document.write(moneyAddDot2('13234'));
+            </SCRIPT></div>
+          </td>
+          <td width="146" height="2"> 
+            <div align="center"><font face="Arial, Helvetica, sans-serif">
+            <SCRIPT language="JavaScript">
+                document.write(moneyAddDot2('2365'));
+            </SCRIPT></font></div>
+          </td>
+          <td width="102" height="2"> 
+            <div align="center"><font face="Arial, Helvetica, sans-serif">
+            <SCRIPT language="JavaScript">
+                document.write(getRCDateStr('20040630',0));
+            </SCRIPT></font></div>
+          </td>
+          <td width="183" height="2"> 
+            <table width="55%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td width="52%"> 
+                  <select name="select_13234">
+                    <option value="IP0601000" selected>信用卡額度及帳單查詢</option>
+                    <option value="IP0704000">本行信用卡繳款</option>
+                  </select>
+                </td>
+                <td width="48%"><img src="graph/go.gif" width="19" height="19" border="0" onclick="chkSubmit(document.IP0101000.select_13234.value);"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <img src="graph/point.gif" width="12" height="12" align="absmiddle"> <font color="#FF0000">基金帳戶 
+      </font> 
+      <table width="763" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td width="763" height="13"> 
+            <div align="right">單位：新台幣/元</div>
+          </td>
+        </tr>
+      </table>
+      <table width="770" border="1" bordercolor="#999999" cellpadding="2">
+        <tr> 
+          <td width="64" bgcolor="#C4CBB8" height="40"> 
+            <div align="center">憑證號碼</div>
+          </td>
+          <td width="117" bgcolor="#C4CBB8" height="40"> 
+            <div align="center">基金名稱</div>
+          </td>
+          <td width="69" bgcolor="#C4CBB8" height="40"> 
+            <div align="center">信託金額</div>
+          </td>
+          <td width="70" bgcolor="#C4CBB8" height="40"> 
+            <div align="center">淨值日期</div>
+          </td>
+          <td width="129" bgcolor="#C4CBB8" height="40"> 
+            <div align="center">參考現值 </div>
+          </td>
+          <td width="129" bgcolor="#C4CBB8" height="40"> 
+            <div align="center">損益</div>
+          </td>
+          <td width="128" bgcolor="#C4CBB8" height="40"> 
+            <div align="center">功能選項</div>
+          </td>
+        </tr>
+
+      </table>
+      <br>
+    </td>
+  </tr>
+</table>
+<table width="769" border="0">
+  <tr>
+    <td width="763">註：<br>
+      1. 本頁資料，不得做為　&quot;存款餘額證明&quot;　或往來憑證之用。<br>
+      2. 國民現金之可用餘額包含可動用額度，以讓您靈活運用資金。<br>
+      3. 金援卡、Cyber X卡、新學友卡及部分借貸款專案之額度是獨立於共用額度之外。 <br>
+      4. 信用卡之帳單金額、應繳金額係您與聯邦銀行所有往來信用卡之總計。 <br>
+      5. 本階段尚未將證券、期貨帳戶納入總歸戶查詢，若您若欲查詢您的證券、期貨帳戶資料，請點選UMA。 <br>
+    </td>
+  </tr>
+</table>
+
+<input type="hidden" name="chktag" value="0">
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="aptype" value="IBANK">
+<input type="hidden" name="nextpage" value="">
+
+</form>
+</body>
+</html>
+<script>
+
+/*
+checkIFrameSize(this.document, "main", false, true);
+if (document.readyState ) {
+	while (document.readyState != "complete") {
+	}
+	alert(document.readyState);
+	setParentIFrameSize("main", false, true);
+}
+setParentIFrameSize("main", false, true);
+*/
+
+
+//alert("IP0101000:" + this.document.body.scrollHeight);
+</script>
+                                            

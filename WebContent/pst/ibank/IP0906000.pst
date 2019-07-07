@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>各類扣憑</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+</head>
+
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<script language="JavaScript">
+function chgAcctDisp(code){
+	var link="LoadAP?aptype=IBANK&pageid=IP0906001&[[%%SESSIONID%%]]&REVE_FUNC_CODE=";
+	document.getElementById("link").href=link+document.IP0906000.REVE_FUNC_CODE.value;
+}
+</script>
+
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<link rel="stylesheet" type="text/css" media="all" href="theme/portal.css" />
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　服務台&gt;<font color="#0066FF">各類扣憑</font></b>
+<form name="IP0906000" method="POST" action="LoadAP">
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5" height="69"><font color="#663300" face="Arial, Helvetica, sans-serif"> 
+      </font> 
+      <table width="600" border="0">
+        <tr> 
+          <td>　 請選擇各類扣憑項目 
+            <select name="REVE_FUNC_CODE" onChange="chgAcctDisp(this);">
+              <option value="01">扣繳憑單</option>
+              <option value="02">補充保費單</option>
+              <option value="03">房屋繳息單</option>
+            </select>
+			<a  id="link" target="_blank" href="LoadAP?aptype=IBANK&pageid=IP0906001&[[%%SESSIONID%%]]&REVE_FUNC_CODE=01"><img src="graph/go.gif" width="19" height="19" align="absmiddle" border="0"></a>	
+		   </td> 
+		 </tr>
+      </table>
+    </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="5" valign="bottom" height="1"></td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="IP0906001">
+</form>
+</body>
+</html>

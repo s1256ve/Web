@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- 
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo           Date Modified  Modified by   
+* =========          =============  ===========
+* EAI97076           2010.01.12     David 
+* EAI96073           2009.04.01     David
+***********************************************************************/
+ -->
+<!-- NCR VEY, EAI 預約繳稅. Last updated date 4-7-2005 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/NCR">
+	<field id="SDGVEYi01">
+		<name>REVE-CODE</name>
+		<length>3</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+		<field id="SDGVEYi54" attr='I' default=''>
+        	<name>REVE-ACTOR</name>
+        	<length>0</length>
+        	<type>STRING</type>
+        	<description></description>
+     	</field>
+	<field id="SDGVEYi55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="SDGVEYi02">
+		<name>REVE-PWD</name>
+		<length>12</length>
+		<type>String</type>
+		<description>密碼</description>
+	</field>
+	<field id="SDGVEYi02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>轉出帳號</description>
+	</field>
+	<field id="SDGVEYi03">
+		<name>REVE-TXN-AMT</name>
+		<length>14</length>
+		<type>String</type>
+		<description>轉帳金額</description>
+	</field>
+	<field id="SDGVEYi04">
+		<name>REVE-TXN-TYPE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>交易類別</description>
+	</field>
+	<field id="SDGVEYi05">
+		<name>REVE-TXN-FEE</name>
+		<length>5</length>
+		<type>String</type>
+		<description>轉帳手續費</description>
+	</field>
+	<field id="SDGVEYi06">
+		<name>REVE-TXN-MEMO</name>
+		<length>10</length>
+		<type>String</type>
+		<description>交易摘要</description>
+	</field>
+	<field id="SDGVEYi07">
+		<name>REVE-MEMO</name>
+		<length>14</length>
+		<type>String</type>
+		<description>說明摘要</description>
+	</field>
+	<field id="SDGVEYi08">
+		<name>REVE-OFFICE-CODE</name>
+		<length>3</length>
+		<type>String</type>
+		<description>稽徵機關代號</description>
+	</field>
+	<field id="VPYi09">
+		<name>REVE-NOTICE-NO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>銷帳編號</description>
+	</field>
+	<field id="VPYi10">
+		<name>REVE-DUE-DATE</name>
+		<length>6</length>
+		<type>String</type>
+		<description>繳款期限</description>
+	</field>	
+ 	<field id="VPYi11">
+		<name>REVE-PAY-TYPE</name>
+		<length>5</length>
+		<type>String</type>
+		<description>繳款類別</description>
+	</field>
+	<field id="SDGVEYi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="SDGVEYi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="SDGVEYi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="SDGVEYi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="SDGVEYi12">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description>螢幕密碼索引</description>
+        </field>
+	<field id="SDGVEYi13">
+		<name>REVE-SCHD-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>預約日期</description>
+	</field>
+	<field id="SDGVEYi14">
+		<name>REVE-MSG-SENDTO</name>
+		<length>8</length>
+		<type>String</type>
+		<description>通知對象之Email/行動電話號碼</description>
+	</field>
+	<field id="SDGVEYi15">
+		<name>REVE-MSG-CONTENT</name>
+		<length>8</length>
+		<type>String</type>
+		<description>訊息內容</description>
+	</field>
+	<field id="SDGVEYi16">
+		<name>REVE-MSG-TYPE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>訊息種類</description>
+	</field>
+	<field id="SDGVEYi17">
+		<name>REVE-MSG-SUBJECT</name>
+		<length>8</length>
+		<type>String</type>
+		<description>訊息標題</description>
+	</field>
+	<field id="SDGVEYi18">
+		<name>REVE-MAIL-KEY</name>
+		<length>8</length>
+		<type>String</type>
+		<description>電子郵件選項</description>
+	</field>
+	<field id="SDGVEYi19">
+		<name>REVE-FROM-CURRENCY</name>
+		<length>20</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="SDGVEYi20">
+		<name>REVE-IGNORE-CASE</name>
+		<length>20</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="SDGVEYi21">
+		<name>REVE-TIME-RANGE</name>
+		<length>20</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="SDGVEYi22">
+		<name>REVE-DY-PWD</name>
+		<length>20</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="SDGVEYi23">
+		<name>SEND_NOTICE_NO_MARK</name>
+		<length>20</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="SDGVEYi24">
+		<name>REVE_PAY_TYPE_CHINESE</name>
+		<length>20</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="VTRTRi21">
+		<name>REVE-CURRENTTICK</name>
+		<length></length>
+		<type>String</type>
+		<description>簡訊發送時間</description>
+	</field>
+</catalog>

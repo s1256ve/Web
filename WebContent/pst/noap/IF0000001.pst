@@ -1,0 +1,273 @@
+<html>
+<head>
+<title>聯邦銀行 新版首頁</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------------
+*EAI99052           2010.8.25      David 
+***********************************************************************/
+</script>
+<SCRIPT LANGUAGE=javascript>
+<!--
+//----- 基金英雄榜所使用到的 open window function START -----
+// TargetWebSite 為linkwebsite
+var TargetWebSite1 = "http://www.yesfund.com.tw";
+
+function TargetWebSite(val)
+{
+
+	if (!(val.substring(0,4) == "HTTP" || val.substring(0,4) == "http"))
+	{
+		val = TargetWebSite1 + val;
+	}		
+		window.open(val,"_self");
+	
+}
+//----- 基金英雄榜所使用到的 open window function END -----
+
+function goSetHeight() {
+  if (parent == window) return;
+  // no way to obtain id of iframe object doc loaded into? no parentNode or parentElement or ...
+  else parent.setIframeHeight('fundmain');
+}
+
+//-->
+</SCRIPT>
+</head>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+.t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+.t2{  font-size: 8pt; color: #000000; line-height:11pt}
+.t3{font-size: 9pt; color: #000000;line-height:14pt}
+input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+a:hover {  color: #000000; text-decoration: underline}
+body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+<body bgcolor="#FFFFFF" background="../../graph/fund/graph/bg01.gif" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" link="#003366">
+<!-- 第一個主要 TABLE -->
+</SCRIPT>
+<table width="630" border="0" cellspacing="0">
+<tr>
+<td width="8">&nbsp;</td>
+<td width="350"> 
+<!-- 特惠活動 TABLE -->
+&nbsp;            
+
+</td>
+<td width="235" valign="top"> 
+<!-- 金融指數 Applet TABLE -->
+	<table width="227" border="0" cellpadding="0" cellspacing="0">
+	<tr> 
+	<td height="7"><img src="../../graph/fund/graph/in002.gif" width="227" height="23"></td>
+	</tr>
+	<tr><td> 
+		<IFRAME id="SysJustMarquee" src="http://jpc.moneydj.com/z/js/Marquee/DJMarquee.asp?ASPID=ubot&A=1&B=0&C=0&W=227&H=150&CW=60,60,54,53&CH=16" width="227" height="150" frameborder="0" scrolling="no">
+		</IFrame>
+		<!--
+		<APPLET code=ZAA1.class height=150 style="LEFT: 0px; TOP: 0px" width=227 border=0 archive="ZAA1.jar" codebase="http://www.yesfund.com.tw/w/wa" VIEWASTEXT id=Appletzaa9>
+		<param name="TXT" value="http://www.yesfund.com.tw/w/wa/CZAA1_1.DJBCD">
+		</APPLET>
+		-->
+	</td></tr>
+	</table>
+</td>
+</tr>
+</table>
+<br>
+<table width="630" border="0" cellspacing="0">
+<tr> 
+<td width="11" height="2">&nbsp;</td>
+<td height="2" colspan="2"> 
+	<table width="607" border="0" cellspacing="0" cellpadding="0" >
+	<tr> 
+	<td><img src="../../graph/fund/graph/in007.gif" width="607" height="15"></td>
+	</tr>
+	<tr background="../../graph/fund/graph/in001-02.gif"> 
+	<td height="2"><img src="../../graph/fund/graph/in006-001.gif" width="607" height="14"></td>
+	</tr>
+	<tr> 
+	<td height="2" background="../../graph/fund/graph/in006-003.gif"> 
+		<table width="100%" border="0">
+		<tr> 
+		<td width="307" valign="top" height="55">
+		<!-- 基金英雄榜 國外基金 Start -->
+		<script language="JavaScript" src="http://www.yesfund.com.tw/w/js/wfundjs.djjs?aspid="></script>
+		<script language="JavaScript" src="http://www.yesfund.com.tw/w/js/wa01D.djjs"></script>
+		<!-- 基金英雄榜 國外基金 End -->
+		</td>
+		<td width="1" valign="top" bgcolor="#89B1BA" height="0"></td>
+		<td width="290" valign="top" height="55"> 
+		<!-- 基金英雄榜 國內基金 Start -->	
+		<script language="JavaScript" src="http://www.yesfund.com.tw/w/js/wtfundjsubot.djjs"></script>
+		<script language="JavaScript" src="http://www.yesfund.com.tw/w/js/wo01B.djjs"></script>
+		<!-- 基金英雄榜 國內基金 End -->	
+		</td>
+		</tr>
+		</table>
+<br>
+<!-- 第三個主要 TABLE -->
+<table width="630" border="0" cellspacing="0">
+<tr> 
+<td width="11" height="2">&nbsp;</td>
+<td height="2" width="304" valign="top"> 
+	<table width="298" border="0" cellspacing="0" cellpadding="0" >
+	<tr> 
+	<td><img src="../../graph/fund/graph/in004.gif" width="298" height="21"></td>
+	</tr>
+	<tr background="../../graph/fund/graph/in001-02.gif"> 
+	<td height="35"> 
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr> 
+		<td colspan="2" background="../../graph/fund/graph/in004-002.gif"> 
+			<!-- 國際財經新聞 TABLE Start -->
+			<script language="JavaScript" src="http://www.yesfund.com.tw/w/js/UbotIndex2.djjs"></script>
+			<!-- 國際財經新聞 TABLE End -->
+		</td>
+		</tr>
+		</table>
+	</td>
+	</tr>
+	<tr> 
+	<td height="21"><img src="../../graph/fund/graph/in004-001.gif" width="298" height="14" border="0" usemap="#MapNews1"></td>
+	</tr>
+	</table>	
+</td>
+<td height="2" width="309" valign="top">
+	<table width="298" border="0" cellspacing="0" cellpadding="0" >
+	<tr> 
+	<td><img src="../../graph/fund/graph/in005.gif" width="298" height="21"></td>
+	</tr>
+	<tr background="../../graph/fund/graph/in001-02.gif"> 
+	<td height="35"> 
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr> 
+		<td colspan="2" background="../../graph/fund/graph/in005-002.gif"> 
+			<!-- 國內基金新聞 TABLE Start --> 
+			<script language="JavaScript" src="http://www.yesfund.com.tw/w/js/UbotIndex3.djjs"></script>
+			<!-- 國內基金新聞 TABLE End --> 
+		</td>
+		</tr>
+		</table>
+	</td>
+	</tr>
+	<tr> 
+	<td height="21"><img src="../../graph/fund/graph/in005-001.gif" width="298" height="13" border="0" usemap="#MapNews1"></td>
+	</tr>
+	</table>
+</td>
+</tr>
+</table>
+<br>
+<!-- 第二個主要 TABLE -->
+<table width="630" border="0" cellspacing="0">
+<tr> 
+<td width="9" height="2">&nbsp;</td>
+<td colspan="2" height="2" width="617"> 
+	<table width="369" border="0" cellspacing="0" cellpadding="0" >
+	<tr> 
+	<td><img src="../../graph/fund/graph/in003.gif" width="606" height="24"></td>
+	</tr>
+	<tr background="../../graph/fund/graph/in001-02.gif"> 
+	<td height="35"> 
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+		<td rowspan="6" width="73%"> 
+			<!-- 基金研究報告 TABLE Start -->
+			<script language="JavaScript" src="http://www.yesfund.com.tw/w/js/UbotIndex1.djjs"></script>
+			<!-- 基金研究報告 TABLE End -->
+		</td>
+		<td rowspan="6" width="27%" valign="bottom"><img src="../../graph/fund/graph/in003-002.gif" width="228" height="107" border="0" usemap="#MapReport"></td>
+		</tr>
+		<tr> </tr>
+		<tr> </tr>
+		<tr> </tr>
+		<tr> </tr>
+		<tr> </tr>
+		</table>
+	</td>
+	</tr>
+	<tr> 
+	<td height="2"><img src="../../graph/fund/graph/in003-001.gif" width="606" height="3"></td>
+	</tr>
+	</table>
+</td>
+</tr>
+</table>
+	</td>
+	</tr>
+	<tr valign="top"> 
+	<td height="21"><img src="../../graph/fund/graph/in006-002.gif" width="607" height="11"></td>
+	</tr>
+	</table>
+</td>
+</tr>
+</table>
+
+<br>
+<table width="630" border="0">
+  <tr>
+    <td><table width="606" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td><img src="../../graph/fund/graph/in006_0701.gif" width="607" height="15"></td>
+      </tr>
+      <tr>
+        <td><img src="../../graph/fund/graph/in006_0701_1.gif" width="606" height="10"></td>
+      </tr>
+      <tr>
+        <td background="../../graph/fund/graph/in006_0701_2.gif"><table width="98%" border="0" align="center">
+            <tr>
+              <td valign="top" nowrap class="t3">註1:</td>
+              <td class="t3"> 本國內、境外基金經行政院金融監督管理委員會核准或申報生效在國內募集及銷售，惟不表示絕無風險。基金經理公司以往之經理績效不保證基金之最低投資收益；基金經理公司除盡善良管理人之注意義務外，不負責本基金之盈虧，亦不保證最低之收益，投資人申購前應詳閱基金公開說明書。 </td>
+            </tr>
+            <tr>
+              <td valign="top" nowrap class="t3">註2: </td>
+              <td class="t3">有關基金應負擔之費用（含分銷費用）已揭露於基金之公開說明書及投資人須知中，投資人可至境外基金資訊觀測站(<a href="http://www.fundclear.com.tw" target="_blank">http://www.fundclear.com.tw</a>)下載，或逕向總代理人網站查閱。</td>
+            </tr>
+            <tr>
+              <td valign="top" nowrap class="t3">註3:</td>
+              <td class="t3">基金配息率不代表基金報酬率，且過去配息率不代表未來配息率。所有基金績效，均為過去績效，不代表未來之績效表現，亦不保證基金之最低投資收益。</td>
+            </tr>
+            <tr>
+              <td valign="top" nowrap class="t3">註4: </td>
+              <td class="t3">基金淨值可能因市場因素而上下波動，基金淨值僅供參考，實際以基金公司公告之淨值為準；海外市場指數類型基金，以交易日當天收盤價為淨值參考價。</td>
+            </tr>
+            <tr>
+              <td valign="top" nowrap class="t3">註5:</td>
+              <td class="t3"> 為配合主管機關規定，每一投資人每日國內及境外基金電子交易之申購或買回金額均各以相當新臺幣五百萬元或等值外幣為上限。 </td>
+            </tr>
+            <tr>
+            <tr>
+              <td valign="top" nowrap class="t3">註6:</td>
+              <td class="t3"> 本行辦理信託業務，將善盡善良管理人之注意義務及忠實義務。 </td>
+            </tr>
+            <tr>
+              <td valign="top" nowrap class="t3">註7: </td>
+              <td class="t3">本行不擔保信託業務之管理或運用績效，委託人或受益人應自負盈虧。 </td>
+            </tr>
+            <tr>
+              <td valign="top" nowrap class="t3">註8:</td>
+              <td class="t3"> 信託財產經運用於存款以外之標的者，不受存款保險的保障。 </td>
+            </tr>
+            <tr>
+              <td valign="top" nowrap class="t3">註9: </td>
+              <td class="t3">網站基金資料訊息係由基智網提供，僅供投資人參考使用，但如有錯漏或疏忽，本公司或關係企業與其任何董事或任何受僱人，恕不負任何法律責任。</td>
+            </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><img src="../../graph/fund/graph/in006_0701_3.gif" width="606" height="10"></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<!-- 圖檔 URL-Link Mapping -->
+<map name="MapReport"><area shape="rect" coords="162,91,194,104" href="javascript:TargetWebSite('/w/wh/wh01B_NA_0.djhtm');"></map>
+<map name="MapNews1"><area shape="rect" coords="252,0,292,14" href="javascript:TargetWebSite('/w/wa/wa02.djhtm');"></map>
+<map name="MapNews2"><area shape="rect" coords="253,0,296,15" href="javascript:TargetWebSite('/w/wu/wu01.djhtm');"></map>
+<iframe name="fundmain1" style="position: absolute; top:0 ; left:12" width="350" height="200" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="no" src="https://www.ubot.com.tw/UBOT2005/Fund/Fund.asp" /> 
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="BIG5"?>
+<?xml-stylesheet type="text/xsl" href="UCPMi.xsl"?>
+<!-- UCPM SDGIVTRR Last updated date 1-4-2002 -->
+<!--catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPM"-->
+<catalog>
+	<field id="SDGIVTRRi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='SDGIVTRRi54' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="SDGIVTRRi55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="SDGIVTRRi02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>帳號</description>
+	</field>
+	<field id="SDGIVTRRi03">
+		<name>REVE-BEGIN-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>開始日期</description>
+	</field>
+	<field id="SDGIVTRRi04">
+		<name>REVE-END-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>結束日期</description>
+	</field>
+	<field id="SDGIVTRRi05">
+		<name>REVE-INQ-TYPE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>查詢代號</description>
+	</field>
+	<field id="SDGIVTRRi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="SDGIVTRRi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="SDGIVTRRi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="SDGIVTRRi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

@@ -1,0 +1,198 @@
+<html>
+<head>
+<title>台幣存款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="JavaScript" SRC="script/acctfmt.js"></script>
+<script language="JavaScript" SRC="script/datefmt.js"></script>
+<script language="JavaScript" SRC="script/moneyfmt.js"></script>
+<script language="JavaScript">
+    var GType = "" ;
+    var result = "" ;
+    var result1 = "" ;
+    function getTxnType(type){
+        if ( type == "" ){
+            GType = "全部";    
+        }
+        if ( type == "SDGAVTRR" ){
+            GType = "一般台幣轉帳";    
+        }
+        if ( type == "SDGAVTRC" ){
+            GType = "轉繳本行信用卡";    
+        }
+        return GType;
+    }
+
+    function getSaveDate(sdate){
+        var saveDate = "";
+        if (sdate=="") return;
+        if (sdate.length>8){
+            saveDate = getRCDateStr(sdate.substr(0,8),0);
+        }
+        return saveDate;
+    }
+    function getChlName(channel){
+        if (channel=="") return "其它";
+        if (channel=="IBANK"){
+            return "網路預約";
+        }else{
+            return "其它";
+        }
+        return channel;
+    }
+    function getDelChannel(delchl){
+        if (delchl=="") return "其它";
+        if (delchl=="IBANK"){
+            return "網路";
+        }else{
+            return "其它";
+        }
+        return delchl;
+    }
+    function BackSubmit(){
+        
+        document.IP0203201.submit();
+    }
+</script>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form name="IP0203201" method="POST" action="LoadAP">
+<b>　台幣存款帳戶查詢&gt;<font color="#003399"><font color="#0066FF">查詢/取消預約轉帳</font></font></b><font color="#003399"><font color="#0066FF"><b>&gt;</b></font></font><b><font color="#0066FF">已取消交易</font></b><br>
+<table width="769" border="0">
+  <tr>
+    <td width="763">
+      <table width="762" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+            <td width="486">
+                <font color="#0000CC">　</font><font color="#0000CC"><img src="graph/point.gif" width="12" height="12" align="absmiddle"></font>
+                <font color="#0000CC">以下是您已取消預約轉帳之查詢結果：</font>
+            </td>
+            <td width="276" height="2"> 
+                <div align="right"><font color="#0000CC">查詢時間： 
+                <SCRIPT language="JavaScript">
+                    document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+                    //document.write(getNowTime());
+                </SCRIPT></font>
+                </div>
+            </td>
+        </tr>
+      </table>
+      </td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <td><font color="#0000CC"> </font> 　查詢期間： 預約日
+      <SCRIPT language="JavaScript">     
+                    document.write(getRCDateStr('[[%%REVE-START-DATE%%]]',0));
+                    document.write(' ~ ');
+                    document.write(getRCDateStr('[[%%REVE-END-DATE%%]]',0));
+    </SCRIPT> 
+    <br>
+      　交易類別：
+            <SCRIPT language="JavaScript">
+                document.write(getTxnType('[[%%REVE-TID%%]]'));
+            </SCRIPT><br>
+      </font> 
+      <table width="625" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td> 
+            <div align="right">單位：新台幣/元</div>
+          </td>
+        </tr>
+      </table>
+      <font color="#0000CC"> </font> 
+      <table width="763" border="1" bordercolor="#999999" cellpadding="2">
+        <tr> 
+          <td width="119" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">轉出分行/帳號</div>
+          </td>
+          <td width="118" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">轉入銀行/帳號</div>
+          </td>
+          <td width="88" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">轉帳金額</div>
+          </td>
+          <td width="79" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">轉帳日/<br>
+              預約日</div>
+          </td>
+          <td width="86" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">預約方式</div>
+          </td>
+          <td width="79" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">預約序號</div>
+          </td>
+          <td width="66" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">取消通路</div>
+          </td>
+          <td width="60" bgcolor="#C4CBB8" height="11"><div align="center">取消日</div></td>
+        </tr>
+<!--[[%%LOOP_SEC SEND-TXN-SERNO%%]]-->
+        <tr> 
+          <td width="119" height="26"> <font color="#003300">[[%%SEND-BR-NAME%%]]<br>
+            <SCRIPT language="JavaScript">     
+                    document.write(getAcctStr('[[%%SEND-ACCT-NO%%]]'));
+            </SCRIPT></font></td>
+          <td width="118" bgcolor="#FFFFDD" height="26"> [[%%SEND-BANK-NAME%%]][[%%SEND-BANK-CODE%%]]<br>
+            <SCRIPT language="JavaScript">     
+                    document.write(getAcctStr('[[%%SEND-TO-ACCTNO%%]]'));
+            </SCRIPT></td>
+          <td width="88" height="26"> 
+            <div>台幣
+            <SCRIPT language="JavaScript">     
+                    document.write(moneyAddDot2('[[%%SEND-TXN-AMT%%]]'));
+            </SCRIPT>元</div>
+          </td>
+          <td width="79" height="26"> 
+            <div align="center">
+            <SCRIPT language="JavaScript">     
+                    document.write(getRCDateStr('[[%%SEND-SCHD-DATE%%]]',0));
+            </SCRIPT><br>
+            <SCRIPT language="JavaScript">     
+                    document.write(getSaveDate('[[%%SEND-TXN-SERNO%%]]'));
+            </SCRIPT>
+              </div>
+          </td>
+          <td width="86" height="26"> 
+            <div align="center">&nbsp;
+            <SCRIPT language="JavaScript">     
+                    document.write(getChlName('[[%%SEND-CHANNEL-ADD%%]]'));
+            </SCRIPT></div>
+          </td>
+          <td width="79" height="26"> 
+            <div align="center">[[%%SEND-SCHD-SNO%%]]</div>
+          </td>
+          <td width="66" height="26"> 
+            <div align="center">&nbsp;
+            <SCRIPT language="JavaScript">     
+                    document.write(getDelChannel('[[%%SEND-CHANNEL-DEL%%]]'));
+            </SCRIPT> 
+            </div>
+          </td>
+          <td width="60" height="26"> 
+            <div align="center">[[%%SEND-DEL-DATE%%]]</div>
+          </td>
+        </tr>
+<!--[[%%ELOOP_SEC%%]]-->
+      </table>
+    附註：<br>
+      1.本頁資料，不得做為往來憑證之用。<br>
+     <!-- 2.點選轉帳金額，可查詢該筆轉帳之交易明細--> </td>
+  </tr>
+  <tr>
+    <td> 
+      <table width="762" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td colspan="2"> 
+            <div align="center">　 <img src="graph/top.gif" width="64" height="16" onclick="BackSubmit();"></div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="IP0203200">
+</form>
+</body>
+</html>

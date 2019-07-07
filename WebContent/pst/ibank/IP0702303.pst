@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>帳戶交易</title>
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+*SerialNo           Date Modified  Modified by   
+*-------------      ----------     ----------
+*EAI97076           2010.01.12     David 
+*EAI96072           2009.03.02     David 
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+</head>
+<body>
+<form method="post" action="LoadAP" name="IP0702303">
+<input type="hidden" name="pageid" value="IP0702304">
+<input type="hidden" name="SEND-FROM-BR-NAME" value="[[%%SEND-FROM-BR-NAME%%]]">
+<input type="hidden" name="SEND-FROM-ACCT-NO" value="[[%%SEND-FROM-ACCT-NO%%]]">
+<input type="hidden" name="SEND-MEMO" value="[[%%SEND-MEMO%%]]">
+<input type="hidden" name="SEND-TXN-AMT" value="[[%%SEND-TXN-AMT%%]]">
+<input type="hidden" name="SEND-TO-YOU" value="[[%%SEND-TO-YOU%%]]">
+<input type="hidden" name="HOW-TO-SEND" value="[[%%HOW-TO-SEND%%]]">
+<input type="hidden" name="SEND-CARD-NO" value="[[%%SEND-CARD-NO%%]]">
+<input type="hidden" name="SEND-ID-NO" value="[[%%SEND-ID-NO%%]]">
+<input type="hidden" name="SEND-SCHD-SNO" value="[[%%SEND-SCHD-SNO%%]]">
+<input type="hidden" name="SEND-EMAIL-ADDR" value="[[%%SEND-EMAIL-ADDR%%]]">
+<input type="hidden" name="SEND-MOBILE" value="[[%%SEND-MOBILE%%]]">
+<input type="hidden" name="SEND-TXN-DATE" value="[[%%SEND-TXN-DATE%%]]">
+<script>
+document.IP0702303.submit();
+</script>
+</form>
+</body>
+</html>

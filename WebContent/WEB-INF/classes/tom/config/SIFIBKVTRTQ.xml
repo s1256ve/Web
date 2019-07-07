@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- NCR VTR (composite to period) input Schema, Last updated date 2-2-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/NCR">
+	<field id="VTRTQi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='VTRTQ03' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="VTRTQ02">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="VTRTQ56">
+		<name>REVE-PWD</name>
+		<length>10</length>
+		<type>String</type>
+		<description>使用者密碼</description>
+	</field>
+	<field id="VTRTQi02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>帳號</description>
+	</field>
+	<field id="VTRTQi03">
+		<name>REVE-PIN</name>
+		<security>DESYSDES</security>		
+		<length>4</length>
+		<type>String</type>
+		<description>PIN</description>
+	</field>
+	<field id="VTRTQi04">
+		<name>REVE-RESERVED-1</name>
+		<length>4</length>
+		<type>String</type>
+		<description>保留-1</description>
+	</field>
+	<field id="VTRTQi05">
+		<name>REVE-SAVING-CODE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>存款類別</description>
+	</field>
+	<field id="VTRTQi06">
+		<name>REVE-PERIOD</name>
+		<length>2</length>
+		<type>String</type>
+		<description>期間別</description>
+	</field>
+	<field id="VTRTQi07">
+		<name>REVE-INT-CODE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>利率別</description>
+	</field>
+	<field id="VTRTQi08">
+		<name>REVE-CONTINUE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>續存記號</description>
+	</field>
+	<field id="VTRTQi09">
+		<name>REVE-RESERVED-2</name>
+		<length>4</length>
+		<type>String</type>
+		<description>保留-2</description>
+	</field>
+	<field id="VTRTQi10">
+		<name>REVE-TXN-AMT</name>
+		<length>12</length>
+		<type>String</type>
+		<description>交易金額</description>
+	</field>
+	<field id="VTRTQi11">
+		<name>REVE-FROM-CURRENCY</name>
+		<length>2</length>
+		<type>String</type>
+		<description>轉入幣別</description>
+	</field>
+	<field id="VTRTQi12">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="VTRTQi13">
+		<name>REVE-TXN-MEMO</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="VTRTQi14">
+		<name>REVE-TO-ACCTNO</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="VTRTQi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="VTRTQi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="VTRTQi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="VTRTQi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="VTRTQi54">
+		<name>SEND-PAY-NAME</name>
+		<length>20</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="VTRTQi55">
+		<name>SEND-INT-NAME</name>
+		<length>20</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="VTRTQi56">
+		<name>SEND-CONTINUE-NAME</name>
+		<length>20</length>
+		<type>String</type>
+		<description></description>
+	</field>		
+</catalog>

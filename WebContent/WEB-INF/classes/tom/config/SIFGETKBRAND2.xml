@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- IBKGETKBRAND 取得混合式螢幕鍵盤 input schema, last updated date 1-09-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/NCR">
+	<field id="GETKBRANi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='GETKBRANi03' attr='I' default=''>
+	        <name>REVE-ACTOR</name>
+	        <length>0</length>
+	        <type>STRING</type>
+	        <description></description>
+        </field>
+	<field id="GETKBRANi02">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="GETKBRANi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="GETKBRANi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="GETKBRANi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="GETKBRANi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

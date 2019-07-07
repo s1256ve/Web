@@ -1,0 +1,640 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>帳戶交易</title>
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: Sandie Hsieh 
+* Change List:
+* SerialNo           Date Modified  Modified by   
+* -------------      ----------     ----------
+*            		 2010.10.26     Sandie Hsieh
+***********************************************************************/
+</script>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript" src="script/calendar.js"></script>
+<script language="JavaScript" src="script/calendar-zh.js"></script>
+<script language="JavaScript" src="script/calendar-setup.js"></script>
+<script language="JavaScript" src="script/calendarface.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<style>
+.tr{
+	text-indent:10px;
+	line-height:10pt;
+}
+</style>
+<script language="javascript">
+function chgAcct(acctStr) {
+	var acctArray = acctStr.split("@");
+	var i = 0;
+	document.IP0702610.SEND_BR_NAME.value = acctArray[0];
+	document.IP0702610.SEND_ACCT_NO.value = acctArray[1];
+	document.IP0702610.SEND_AVAL_BALANCE.value = acctArray[2];
+}
+
+function checkTitle(tmp){
+	var temp=tmp;
+	document.IP0702610.TERM_CODE.value=temp;		
+}
+
+function checkFeild(tmp){
+
+	if (tmp == 0){
+		document.IP0702610.SEND_INT_CODE.value="0";
+		document.IP0702610.SEND_INT_NAME.value="固定利率";
+	}
+	else if (tmp == 1){
+		document.IP0702610.SEND_INT_CODE.value="1";
+		document.IP0702610.SEND_INT_NAME.value="機動利率";
+	}
+	else{
+		document.IP0702610.SEND_INT_CODE.value="0";
+		document.IP0702610.SEND_INT_NAME.value="固定利率";
+        }
+}
+
+function checkFeild2(tmp){
+
+	if(tmp==0){
+		document.IP0702610.SEND_INT_PAY.value="2";
+		document.IP0702610.SEND_PAY_NAME.value="每月領息";
+	}
+	else if(tmp==1){
+		document.IP0702610.SEND_INT_PAY.value="1";
+		document.IP0702610.SEND_PAY_NAME.value="到期領息";
+	}
+        else{
+        	document.IP0702610.SEND_INT_PAY.value="2";
+        	document.IP0702610.SEND_PAY_NAME.value="每月領息";
+	}
+}
+
+function checkFeild3(tmp){
+
+	if(tmp==0){
+		document.IP0702610.SEND_CONTINUE.value="0";
+	}
+	else{
+		document.IP0702610.SEND_CONTINUE.value="1";
+	}
+}
+
+function chkSubmit(){                              
+           
+	var acct = document.IP0702610.SEND_ACCT_NO.value;
+	if (acct==""){
+		alert("請選擇轉出帳號!");
+		return;
+	}
+	if (document.IP0702610.TXN_AMT.value ==""){
+		alert("請輸入轉存金額");
+		return;
+	}
+	if (isNaN(document.IP0702610.TXN_AMT.value)){
+            		alert("轉帳金額格式錯誤!");
+            		return;
+  	}
+  	if(document.IP0702610.TXN_AMT.value.indexOf(".",0)!=-1){
+	    	alert("轉帳金額須為正整數!");
+	    	return;   
+	}
+	if(document.IP0702610.TXN_AMT.value.indexOf("-",0)!=-1){
+	    	alert("轉帳金額須為正整數!");
+	    	return;   
+	}
+	if(document.IP0702610.TXN_AMT.value.indexOf("+",0)!=-1){
+	    	alert("台幣轉帳不可帶正號!");
+	    	return;   
+	}
+	if(document.IP0702610.TXN_AMT.value.substr(0,1)==0){
+		alert("金額開頭不得為零!");
+		return;
+	}
+	if (eval(document.IP0702610.TXN_AMT.value) < 10000){
+		alert("轉存金額不得小於10000元");
+		return;
+	}
+	var count = eval(document.IP0702610.TXN_AMT.value);
+	var balance = eval(document.IP0702610.SEND_AVAL_BALANCE.value);
+	document.IP0702610.SEND_TXN_AMT.value = count;
+	var f2=document.IP0702610.SEND_INT_PAY.value;
+	var f=document.IP0702610.SEND_INT_CODE.value;
+	var m=document.IP0702610.TERM_CODE.value;
+
+	var d="定期存款";
+	var z="整存整付";
+	var s="存本取息";
+	    if(m>0 && m<12){
+	    	document.IP0702610.SEND_SC_CODE.value="0";
+	    	document.IP0702610.SEND_TITLE.value=d;
+	    	document.IP0702610.SEND_SAVING_CODE.value="1";
+	    	document.IP0702610.SEND_PERIOD.value=m;
+	    	if(f2==1){
+	    		if(confirm("轉存期間於11個月內只能選擇每月領息,是否確定繼續執行?")==true){
+	    			document.IP0702610.SEND_INT_PAY.value = 2;
+	    			document.IP0702610.SEND_PAY_NAME.value="每月領息";
+	    		}
+	    		else{
+	    			return;
+	    		}
+	    	}
+	    }
+	    if(m>0 && m>11 && f2==1){
+	    	document.IP0702610.SEND_SC_CODE.value="1";
+	    	document.IP0702610.SEND_TITLE.value=z;
+	    	document.IP0702610.SEND_SAVING_CODE.value="3";
+	    	document.IP0702610.SEND_PERIOD.value=m;
+	    }
+	    if(m>0 && m>11 && f2==2){
+	    	document.IP0702610.SEND_SC_CODE.value="0";
+	    	document.IP0702610.SEND_TITLE.value=s;
+	    	document.IP0702610.SEND_SAVING_CODE.value="2";
+	    	document.IP0702610.SEND_PERIOD.value=m;
+	    }    
+	   //alert(f2 + document.IP0702610.SEND_TITLE.value);
+	   
+	   onSend('IP0702610');
+	document.IP0702610.SEND_TXN_DATE.value=document.IP0702610.DateBegin.value;
+	
+   	date = eval(document.IP0702610.SEND_TXN_DATE.value);
+	date2 = "[[%%SYSDATE%%]]";
+        	if(date2==""){
+        		date2 = eval(getADDateStr(getNowDate(),-1));
+        	}
+	else{
+		date2 = eval(getADDateStr(date2,-1));
+	}
+	if(chkDateRule(document.IP0702610.DateBegin.value,"",
+		"[[%%SYSDATE%%]]",
+		0,	//A年
+		1,	//A月
+		0,	//A日
+		0,	//B年
+		1,	//B月
+		0	//B日
+		)==false){
+	alert("預約轉帳限預約最近一個月,如93/05/23可預約93/05/24-93/06/23期間執行之交易");
+	return ;
+	}
+	if(date > date2){
+		if (confirm("您所選擇轉存期間為"+m+"個月,定存種類為"+document.IP0702610.SEND_TITLE.value))
+		document.IP0702610.SEND_MEMO.value = HalfshapeToFullshape(document.IP0702610.SEND_MEMO.value);
+		document.IP0702610.submit();
+	}
+	else{
+		alert("預約轉帳限預約最近一個月,如93/05/23可預約93/05/24-93/06/23期間執行之交易");
+		return;
+	}
+	 	
+	
+		
+}
+
+
+function chkNowRate(){
+	int_type = document.IP0702610.SEND_INT_CODE.value;
+	int_pay = document.IP0702610.SEND_INT_PAY.value;
+	int_code = document.IP0702610.SEND_INT_CODE.value;
+	int_name = document.IP0702610.SEND_INT_NAME.value;
+	int_month = document.IP0702610.TERM_CODE.value;
+	
+	if(int_pay==1){
+		if(int_month<12){
+				document.getElementById("nowRate").innerHTML = "<font color=red>轉存期間於11個月內只能選擇\"每月領息\"。</font>";
+
+		}else if(int_month==12){
+			if(int_code==0){
+				document.getElementById("nowRate").innerHTML = "一般固定利率："+eval(RecAry03[0][2])
+																			+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																			+" 大額固定利率："+eval(RecAry03[0][4]) 
+																			+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																			+"(定期儲蓄存款：整存整付)"
+																			+"<br>公教固定利率："+eval(RecAry03[2][2])
+																			+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																			+" 公教大額固定利率："+eval(RecAry03[2][4])
+																			+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																			+"(定期儲蓄存款：整存整付)";
+				document.IP0702610.SEND_RATE.value=eval(RecAry03[0][2])+"%";
+				document.IP0706000.SEND_RATE2.value=eval(RecAry03[2][2])+"%";
+			}else{
+				document.getElementById("nowRate").innerHTML = "一般機動利率："+eval(RecAry03[0][3])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 大額機動利率："+eval(RecAry03[0][5])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期儲蓄存款：整存整付)"
+																											+"<br>公教機動利率："+eval(RecAry03[2][3])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 公教大額機動利率："+eval(RecAry03[2][5])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期儲蓄存款：整存整付)";
+				document.IP0702610.SEND_RATE.value=eval(RecAry03[0][3])+"%";
+				document.IP0706000.SEND_RATE2.value=eval(RecAry03[2][3])+"%";
+			}
+		}else if(int_month>12&&int_month<24){
+			if(int_code==0){
+				document.getElementById("nowRate").innerHTML = "一般固定利率："+eval(RecAry03[1][2])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 大額固定利率："+eval(RecAry03[1][4])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期儲蓄存款：整存整付)";
+				document.IP0702610.SEND_RATE.value=eval(RecAry03[1][2]) +"%";
+			}else{
+				document.getElementById("nowRate").innerHTML = "一般機動利率："+eval(RecAry03[1][3])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 大額機動利率："+eval(RecAry03[1][5])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期儲蓄存款：整存整付)";
+				document.IP0702610.SEND_RATE.value=eval(RecAry03[1][3]) +"%";																											
+			}
+		}else if(int_month>23&&int_month<36){
+			if(int_code==0){
+				document.getElementById("nowRate").innerHTML = "一般固定利率："+eval(RecAry03[2][2])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 大額固定利率："+eval(RecAry03[2][4])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期儲蓄存款：整存整付)";
+				document.IP0702610.SEND_RATE.value=eval(RecAry03[2][2]) +"%";				
+			}else{
+				document.getElementById("nowRate").innerHTML = "一般機動利率："+eval(RecAry03[2][3])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 大額機動利率："+eval(RecAry03[2][5])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期儲蓄存款：整存整付)";
+				document.IP0702610.SEND_RATE.value=eval(RecAry03[2][3])+"%";																											
+			}
+		}else if(int_month==36){
+			if(int_code==0){
+				document.getElementById("nowRate").innerHTML = "一般固定利率："+eval(RecAry03[3][2])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 大額固定利率："+eval(RecAry03[3][4])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期儲蓄存款：整存整付)";
+				document.IP0702610.SEND_RATE.value=eval(RecAry03[3][2]) +"%";																											
+			}else{
+				document.getElementById("nowRate").innerHTML = "一般機動利率："+eval(RecAry03[3][3])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 大額機動利率："+eval(RecAry03[3][5])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期儲蓄存款：整存整付)";
+				document.IP0702610.SEND_RATE.value=eval(RecAry03[3][3]) +"%";							
+			}
+		}else{
+			document.getElementById("nowRate").innerHTML = "一般利率："+" 大額利率：";
+			
+		}
+	}else if(int_pay==2){
+		if(int_month<12){
+			if(int_code==0){
+				document.getElementById("nowRate").innerHTML = "一般固定利率："+eval("RecAry02["+int_month+"][2]")
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 大額固定利率："+eval("RecAry02["+int_month+"][4]")
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期存款)";
+				document.IP0702610.SEND_RATE.value=eval("RecAry02["+int_month+"][2]")+"%";																		
+			}else{
+				document.getElementById("nowRate").innerHTML = "一般機動利率："+eval("RecAry02["+int_month+"][3]")
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 大額機動利率："+eval("RecAry02["+int_month+"][5]")
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期存款)";
+				document.IP0702610.SEND_RATE.value=eval("RecAry02["+int_month+"][3]")+"%";																											
+			}
+		}else if(int_month==12){
+			if(int_code==0){
+				document.getElementById("nowRate").innerHTML = "一般固定利率："+eval(RecAry03[0][2])
+																			+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																			+" 大額固定利率："+eval(RecAry03[0][4]) 
+																			+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																			+"(定期儲蓄存款：存本取息)"
+																			+"<br>公教固定利率："+eval(RecAry03[2][2])
+																			+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																			+" 公教大額固定利率："+eval(RecAry03[2][4]) 
+																			+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																			+"(定期儲蓄存款：存本取息)";
+				document.IP0702610.SEND_RATE.value=eval(RecAry03[0][2])+"%";
+				document.IP0706000.SEND_RATE2.value=eval(RecAry03[2][2])+"%";
+			}else{
+				document.getElementById("nowRate").innerHTML = "一般機動利率："+eval(RecAry03[0][3])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 大額機動利率："+eval(RecAry03[0][5])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期儲蓄存款：存本取息)"
+																											+"<br>公教機動利率："+eval(RecAry03[2][3])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 公教大額機動利率："+eval(RecAry03[2][5])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期儲蓄存款：存本取息)";
+				document.IP0702610.SEND_RATE.value=eval(RecAry03[0][3])+"%";
+				document.IP0706000.SEND_RATE2.value=eval(RecAry03[2][3])+"%";
+			}
+		}else if(int_month>12&&int_month<24){
+			if(int_code==0){
+				document.getElementById("nowRate").innerHTML = "一般固定利率："+eval(RecAry03[1][2])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 大額固定利率："+eval(RecAry03[1][4])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期儲蓄存款：存本取息)";
+				document.IP0702610.SEND_RATE.value=eval(RecAry03[1][2]) +"%";																						
+			}else{
+				document.getElementById("nowRate").innerHTML = "一般機動利率："+eval(RecAry03[1][3])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 大額機動利率："+eval(RecAry03[1][5])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期儲蓄存款：存本取息)";
+				document.IP0702610.SEND_RATE.value=eval(RecAry03[1][3])+"%";																											
+			}
+		}else if(int_month>23&&int_month<36){
+			if(int_code==0){
+				document.getElementById("nowRate").innerHTML = "一般固定利率："+eval(RecAry03[2][2])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 大額固定利率："+eval(RecAry03[2][4])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期儲蓄存款：存本取息)";
+				document.IP0702610.SEND_RATE.value=eval(RecAry03[2][2])+"%";
+			}else{
+				document.getElementById("nowRate").innerHTML = "一般機動利率："+eval(RecAry03[2][3])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 大額機動利率："+eval(RecAry03[2][5])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期存款：存本取息)";
+				document.IP0702610.SEND_RATE.value=eval(RecAry03[2][3])+"%";																											
+			}
+		}else if(int_month==36){
+			if(int_code==0){
+				document.getElementById("nowRate").innerHTML = "一般固定利率："+eval(RecAry03[3][2])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 大額固定利率："+eval(RecAry03[3][4])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期儲蓄存款：存本取息)";
+				document.IP0702610.SEND_RATE.value=eval(RecAry03[2][2]) +"%";																											
+			}else{
+				document.getElementById("nowRate").innerHTML = "一般機動利率："+eval(RecAry03[3][3])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+" 大額機動利率："+eval(RecAry03[3][5])
+																											+"&nbsp;&nbsp;&nbsp;&nbsp;"
+																											+"(定期儲蓄存款：存本取息)";
+				document.IP0702610.SEND_RATE.value=eval(RecAry03[3][3])+"%";																											
+			}
+		}else{
+			document.getElementById("nowRate").innerHTML = "一般利率："+" 大額利率：";
+		}
+	}
+}
+
+var RecAry02 = new Array();
+var RecAry03 = new Array();
+var len02 = 1;
+var len03 = 0;
+
+/****************************************************************
+AddtoArray(利率類別，期間，一般固定，一般機動，大額固定，大額機動)
+sINT_TYPE(2：定期存款 3：定儲存款)
+千萬(含)以上為大額
+*****************************************************************/
+
+function AddtoArray(sINT_TYPE,sPERIOD,sFIX_INT,sFLO_INT,sB_FIX_INT,sB_FLO_INT){
+	if(sINT_TYPE=="2"){
+		RecAry02[len02] = new Array(6);
+		RecAry02[len02][0] = sINT_TYPE;
+		RecAry02[len02][1] = sPERIOD;
+		RecAry02[len02][2] = ((sFIX_INT== "")?"-":sFIX_INT);
+		RecAry02[len02][3] = ((sFLO_INT== "")?"-":sFLO_INT);
+		RecAry02[len02][4] = ((sB_FIX_INT== "")?"-":sB_FIX_INT);
+		RecAry02[len02][5] = ((sB_FLO_INT== "")?"-":sB_FLO_INT);
+		len02++;					
+	}else if(sINT_TYPE=="3"){
+		RecAry03[len03] = new Array(6);
+		RecAry03[len03][0] = sINT_TYPE;
+		RecAry03[len03][1] = sPERIOD;
+		RecAry03[len03][2] = ((sFIX_INT== "")?"-":sFIX_INT);
+		RecAry03[len03][3] = ((sFLO_INT== "")?"-":sFLO_INT);
+		RecAry03[len03][4] = ((sB_FIX_INT== "")?"-":sB_FIX_INT);
+		RecAry03[len03][5] = ((sB_FLO_INT== "")?"-":sB_FLO_INT);
+		len03++;					
+	}
+}
+
+</script>
+<script language="JavaScript">
+	<!--[[%%LOOP_SEC SEND-INT-TYPE%%]]-->
+		AddtoArray("[[%%SEND-INT-TYPE%%]]","[[%%SEND-PERIOD%%]]","[[%%SEND-FIX-INT%%]]","[[%%SEND-FLO-INT%%]]","[[%%SEND-BIG-FIX-INT%%]]","[[%%SEND-BIG-FLO-INT%%]]");				
+	<!--[[%%ELOOP_SEC%%]]-->
+</script>
+
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg01.gif" leftmargin="0" topmargin="0">
+
+<form action=LoadAP method="post" name="IP0702610">
+<b>帳戶交易&gt;<font color="#003399"><font color="#0066FF">預約綜存活存轉定存<br>
+</font></font></b>
+<table width="750" border="0">
+  <tr>
+    <td> <br>
+      <table width="630" align="center" border="1" bordercolor="#999999">
+        <tr>
+          <td width="18%" height="25" bgcolor="#C4CBB8">轉帳日期</td>
+          <td width="82%"> 
+            <script>
+                 var selDate = getRCDateStr("[[%%SYSDATE%%]]",0);
+                 crtDateInputObj("DateBegin");
+                 //lockCalSelObj('IP0702610',0,selDate);
+                 lockCalSelObj('IP0702610',-1,selDate);
+             </script>
+          </td>
+        </tr>
+        <tr> 
+          <td width="18%" height="25" bgcolor="#C4CBB8">綜存帳號</td>
+          <td width="82%"><font color="#663300" face="Arial, Helvetica, sans-serif"> 
+            <select name="selAcct" onChange="javascript:chgAcct(this.value);">
+              <option selected>==請選擇帳號　可用餘額==</option>
+
+              [[%%LOOP_SEC SEND-FROM-ACCT-NO%%]]
+              <option value="[[%%SEND-FROM-BR-NAME%%]]@[[%%SEND-FROM-ACCT-NO%%]]@[[%%SEND-FROM-AVAL-BALANCE%%]]">
+              [[%%SEND-FROM-BR-NAME%%]] 
+              	<SCRIPT language="JavaScript">
+                	document.write(getAcctStr('[[%%SEND-FROM-ACCT-NO%%]]'));
+          	</SCRIPT>
+               新台幣
+               <SCRIPT language="JavaScript">
+                	document.write(trimDecimal(moneyAddDot('[[%%SEND-FROM-AVAL-BALANCE%%]]')));
+            	</SCRIPT>
+               元
+              </option>
+              [[%%ELOOP_SEC%%]]
+
+            </select>
+            </td>
+        </tr>
+         <tr> 
+          <td width="18%" height="25" bgcolor="#C4CBB8">轉存金額</td>
+          <td width="82%">新台幣 
+            <input type="text" name="TXN_AMT" value="" size="15" onkeyup='this.value=this.value.replace(/\D/gi,"")' style="ime-mode:disabled">
+            元 <font color="#FF0000">(轉存金額最低為新台幣10,000元)</font></td>
+        </tr>
+        <tr> 
+          <td width="18%" height="25" bgcolor="#C4CBB8">轉存期間</td>
+          <td width="82%"> 
+            <select name="TERM_CODE" onChange="JavaScript:checkTitle(this.value);chkNowRate();">
+              <option value=01 selected>1</option>
+              <option value=02>2</option>
+              <option value=03>3</option>
+              <option value=04>4</option>
+              <option value=05>5</option>
+              <option value=06>6</option>
+              <option value=07>7</option>
+              <option value=08>8</option>
+              <option value=09>9</option>
+              <option value=10>10</option>
+              <option value=11>11</option>
+              <option value=12>12</option>
+              <option value=13>13</option>
+              <option value=14>14</option>
+              <option value=15>15</option>
+              <option value=16>16</option>
+              <option value=17>17</option>
+              <option value=18>18</option>
+              <option value=19>19</option>
+              <option value=20>20</option>
+              <option value=21>21</option>
+              <option value=22>22</option>
+              <option value=23>23</option>
+              <option value=24>24</option>
+              <option value=25>25</option>
+              <option value=26>26</option>
+              <option value=27>27</option>
+              <option value=28>28</option>
+              <option value=29>29</option>
+              <option value=30>30</option>
+              <option value=31>31</option>
+              <option value=32>32</option>
+              <option value=33>33</option>
+              <option value=34>34</option>
+              <option value=35>35</option>
+              <option value=36>36</option>
+            </select>月
+          </td>
+        </tr>
+        <tr> 
+          <td width="18%" height="25" bgcolor="#C4CBB8">利　　率</td>
+          <td width="82%"> 
+            <input type="radio" name="rate" value="0" onClick="javascript:checkFeild(this.value);" checked >
+            固定利率 
+            <input type="radio" name="rate" value="1" onClick="javascript:checkFeild(this.value);">
+            機動利率</td>
+        </tr>
+        <tr>
+        	<td width="18%" height="25" bgcolor="#C4CBB8">參考利率</td>
+        	<td id=nowRate>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="18%" height="25" bgcolor="#C4CBB8">領息方式</td>
+          <td width="82%"> 
+          	<input type="radio" name="rate2" value="0" onClick="javascript:checkFeild2(this.value);chkNowRate();"  checked>
+           每月領息(每月計息，利息每月自動存入轉出帳號) <br>
+            <input type="radio" name="rate2" value="1" onClick="javascript:checkFeild2(this.value);chkNowRate();" >
+            到期領息(每月計息，利息到期整筆存入轉出帳號)
+           </td>
+        </tr>
+        <tr> 
+          <td width="18%" height="25" bgcolor="#C4CBB8">轉存定存種類</td>
+          <td width="82%">定期存款或存本取息或整存整付</td>
+        </tr>
+        <tr> 
+          <td width="18%" height="25" bgcolor="#C4CBB8">到期是否續存</td>
+          <td width="82%"> 
+            <input type="radio" name="count2" value="1" onClick="javascript:checkFeild3(this.value);" checked>
+            是&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="count2" value="0" onClick="javascript:checkFeild3(this.value);">
+            否</td>
+        </tr>
+        <tr> 
+          <td width="18%" bgcolor="#C4CBB8">交易附註</td>
+          <td width="82%" height="25"> 
+	  <input type="text" name="SEND_MEMO" value="" size="80" MAXLENGTH="50">
+	  <br>
+            <font color="#FF0000">(如您輸入交易附註，則於交易成功後可至『帳戶查詢』>『台幣存款帳戶』>『交易明細』點選查詢類別為『網銀轉出交易』查詢您所記錄之交易附註。) 
+            </font>  
+          </td>
+        </tr>
+      </table>
+<table width="630" border="0" align="center">
+        <tr>
+          <td>
+          	<table width="90%" align="center">
+          		<tr>
+          			<td width="40" valign="top">說明：</td><td>&nbsp;</td>
+          		</tr>
+          		<tr>
+          			<td><table>
+          					<tr>
+          						<td>1.一年期以下存單及一年期(含)以上每月領息存單，利息計算均為每月單利計息。</td>
+          					</tr>
+          					<tr>
+          						<td>2.本筆預約交易將於預約當日上午執行轉出帳戶之扣款，並於扣款成功後才開立定存單；如預約轉帳日</td>
+ 	        					</tr>
+ 	        					<tr>
+          						<td class="tr">非於本行營業時間內，轉存時間將自動改為次一營業日上午再執行轉帳交易，如執行扣款交易失敗，</td>
+          					</tr>
+          					<tr>
+          						<td class="tr">將依貴客戶在本行留存之行動電話號碼發送簡訊通知。請於預約轉帳日或其次一營業日再查詢交易結</td>
+          					</tr>
+          					<tr>
+          					<td class="tr">果，查詢路徑為『帳務查詢>台幣存款帳戶>定存明細』。如欲需改行動電話以利接收簡訊通知，請至</td>
+          					</tr>
+          					<tr>
+          					<td class="tr" style="text-indent:6px;">『個人設定>個人基本資料維護>台幣帳戶』進行變更。</td>
+          					</tr>
+          					<tr>
+          						<td>3.透由本行自動化設備通路(包含ATM、個人網路銀行、電話銀行及聯邦樂活APP等)執行活存</td>
+			          		</tr>
+          					<tr>
+          						<td class="tr">轉定存交易，每人(以同一身分證字號/統編歸戶)每月交易限額為500萬元(含)。</td>
+          					</tr>
+          			</table></td>
+          		</tr>
+          	</table>
+          </td>
+        </tr>
+      </table>
+      <table width="630">
+      <tr><td>
+      <table width="90%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
+        <tr>
+          <td bgcolor="#FFFFFF"><strong><font color="#FF0000">定存條件判別</font></strong><br>
+            1.『轉存期間』選擇1至11個月→『定存種類』僅能選擇『定期存款類別』之領息方式。<br>
+          2.『轉存期間』選擇12個月至36個月→『定存種類』僅能選擇『定期儲蓄存款類別』之領息方式。</td>
+        </tr>
+      </table>      
+      <div align="center">
+        <input type="button" name="Submit" value="確定" onClick="javascript:chkSubmit();">
+        <input type="reset" name="Reset" value="重填">
+      </div>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="IP0702611">
+<input type="hidden" name="SEND_BR_NAME" value="">
+<input type="hidden" name="SEND_ACCT_NO" value="">
+<input type="hidden" name="SEND_AVAL_BALANCE" value="">
+<input type="hidden" name="SEND_PERIOD" value="1">
+<input type="hidden" name="SEND_INT_CODE" value="0">
+<input type="hidden" name="SEND_INT_PAY" value="2">
+<input type="hidden" name="SEND_TITLE" value="">
+<input type="hidden" name="SEND_SC_CODE" value="">
+<input type="hidden" name="SEND_SAVING_CODE" value="1">
+<input type="hidden" name="SEND_TXN_AMT" value="">
+<input type="hidden" name="SEND_CONTINUE" value="1">
+<input type="hidden" name="SEND_PAY_NAME" value="每月領息">
+<input type="hidden" name="SEND_INT_NAME" value="固定利率">
+<input type="hidden" name="SEND_TXN_DATE">
+<input type="hidden" name="SEND_RATE" value="">
+<input type="hidden" name="SEND_RATE2" value="">
+</form>
+</body>
+</html>

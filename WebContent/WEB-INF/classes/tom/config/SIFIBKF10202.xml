@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="Big5"?>
+<!-- IVR FUND TNSUB2Y  基金定期定額申購 Last updated date 3-17-2004 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="TNSUB2Yi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='F10201i02' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="F10201i03">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="TNSUB2Yi04">
+		<name>REVE-BUSI-TYPE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>信託業務別</description>
+	</field>
+	<field id="TNSUB2Yi05">
+		<name>REVE-FUND-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>基金代號</description>
+	</field>
+	<field id="TNSUB2Yi06">
+		<name>REVE-AMT</name>
+		<length>10</length>
+		<type>String</type>
+		<description>申購金額</description>
+	</field>
+	<field id="F10201i07">
+		<name>REVE-BANK-CODE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>扣款銀行代碼</description>
+	</field>
+	<field id="TNSUB2Yi08">
+		<name>REVE-ACCT-NO</name>
+		<length>10</length>
+		<type>String</type>
+		<description>扣款帳號</description>
+	</field>
+	<field id="TNSUB2Yi09">
+		<name>REVE-SCHD-DATE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>每月扣款日期</description>
+	</field>
+	<field id="F10211i102">
+		<name>REVE-SCHD-DATE2</name>
+		<length>10</length>
+		<type>String</type>
+		<description>每月扣款日期2</description>
+	</field>
+	<field id="F10211i103">
+		<name>REVE-SCHD-DATE3</name>
+		<length>10</length>
+		<type>String</type>
+		<description>每月扣款日期3</description>
+	</field>	
+	<field id="F10211i103">
+		<name>REVE-SCHD-ALL</name>
+		<length>10</length>
+		<type>String</type>
+		<description>每月扣款日期顯示</description>
+	</field>	
+	<field id="TNSUB2Yi10">
+		<name>REVE-CARD-NO</name>
+		<length>10</length>
+		<type>String</type>
+		<description>信用卡號</description>
+	</field>
+	<field id="TNSUB2Yi11">
+		<name>REVE-EXP-DATE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>信用卡有效期限</description>
+	</field>
+	<field id="TNSUB2Yi12">
+		<name>REVE-FEE-RATE</name>
+		<length>5</length>
+		<type>String</type>
+		<description>手續費率</description>
+	</field>
+	<field id="TNSUB2Yi13">
+		<name>REVE-FEE-AMT</name>
+		<length>11</length>
+		<type>String</type>
+		<description>手續費</description>
+	</field>
+	<field id="TNSUB2Yi14">
+		<name>REVE-O2ND-RATE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>原幣兌台幣匯率</description>
+	</field>
+	<field id="TNSUB2Yi15">
+		<name>REVE-ND2US-RATE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>台幣兌美金匯率</description>
+	</field>
+	<field id="TNSUB2Yi16">
+		<name>REVE-CURRENCY-NAME</name>
+		<length>10</length>
+		<type>String</type>
+		<description>申購基金幣別NAME</description>
+	</field>	
+	<field id="TNSUB2Yi17">
+		<name>REVE-CHANNEL</name>
+		<length>10</length>
+		<type>String</type>
+		<description>交易管道</description>
+	</field>
+	<field id="F10201i18">
+		<name>REVE-SEARCH-NO</name>
+		<length>10</length>
+		<type>String</type>
+		<description>查詢基金營業時間 : 3</description>
+	</field>
+	<field id="F10201i19">
+		<name>REVE-HOW-PAY</name>
+		<length>10</length>
+		<type>String</type>
+		<description>付款方式</description>
+	</field>
+	<field id="TNSUB2Yi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="TNSUB2Yi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="TNSUB2Yi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="TNSUB2Yi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+		<field id="TNSUB2Yi54">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description>定期定額密碼檢核</description>
+</field>
+	<field id="TNSUB2Yi55">
+		<name>REVE-PWD</name>
+		<length>0</length>
+		<type>String</type>
+		<description>密碼驗測</description>
+	</field>
+		<field id="TNSUB2Yi56">
+		<name>SEND-INTACCT-NO</name>
+		<length>14</length>
+		<type>String</type>
+		<description>配息帳號</description>
+	</field>
+	<field id="TNSUB2Yi57">
+		<name>REVE-COME-FROM</name>
+		<length>16</length>
+		<type>String</type>
+		<description>來源位置</description>
+	</field>
+	<field id="TNSUB2Yi58">
+		<name>REVE-ID-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+		<field id="TNSUB2Yi59">
+		<name>REVE-SCHD-DATE4</name>
+		<length>10</length>
+		<type>String</type>
+		<description>每月扣款日期4</description>
+	</field>
+	<field id="TNSUB2Yi60">
+		<name>REVE-SCHD-DATE5</name>
+		<length>10</length>
+		<type>String</type>
+		<description>每月扣款日期5</description>
+	</field>
+	<field id="TNSUB2Yi61">
+		<name>REVE-SCHD-DATE6</name>
+		<length>10</length>
+		<type>String</type>
+		<description>每月扣款日期6</description>
+	</field>
+		<field id="TNSUB2Yi62">
+		<name>REVE-RECOMMAND</name>
+		<length>10</length>
+		<type>String</type>
+		<description>推薦人</description>
+	</field>
+	<field id="TNRD2i30">
+		<name>SEND-EMAIL-ADDR</name>
+		<length>1</length>
+		<type>String</type>
+		<description>電子郵件</description>
+	</field>
+	<field id="TNRD2i31">
+		<name>REVE-DY-PWD</name>
+		<length>1</length>
+		<type>String</type>
+		<description>動態密碼</description>
+	</field>
+	<field id="TNRD2i32">
+		<name>REVE-IGNORE-CASE</name>
+		<length>1</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="TNRD2i33">
+		<name>REVE-TIME-RANGE</name>
+		<length>1</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="TNRD2i34">
+		<name>REVE-CURRENTTICK</name>
+		<length>1</length>
+		<type>String</type>
+		<description></description>
+	</field>
+</catalog>

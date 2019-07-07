@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="big5"?>
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPM">
+        <field id="9350i53">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>交易類型</description>
+	</field>
+	<field id="9350i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>交易代號</description>
+	</field>
+	<field id="9350i03">
+		<name>REVE-ID-ORG</name>
+		<length>10</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+		<field id="9350i04">
+		<name>REVE-ACCT-NO</name>
+		<length>14</length>
+		<type>String</type>
+		<description>帳號</description>
+	</field>
+		<field id="9350i05">
+		<name>REVE-PWD</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音密碼</description>
+	</field>
+	<field id="9350i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>	
+	<field id="9350i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="9350i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	  <field id="fieldi07">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description></description>	
+	</field>				
+</catalog>

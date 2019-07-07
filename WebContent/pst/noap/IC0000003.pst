@@ -1,0 +1,479 @@
+<html>
+<head>
+<title>歡迎光臨-聯邦銀行個人金融網</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI99041	        2010.05.10	   David
+* EAI99052          2010.8.25      David 
+***********************************************************************/
+</script>
+<SCRIPT language=JavaScript> 
+function surfto(form) {
+	var myindex=form.menu1.selectedIndex
+	window.open(form.menu1.options[myindex].value, "", "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes, resizable=yes,copyhistory=yes,width=770,height=500");
+}
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+</SCRIPT>
+
+<script language="JavaScript">
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+//-->
+</script>
+<style type="text/css">
+<!--
+    body,p,td,form,select{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:12pt}
+    .t1{  font-family: "新細明體"; font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-family: "新細明體"; font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" link="#333333" vlink="#0000FF" alink="#000000" background="graph/bg01.gif" onLoad="MM_preloadImages('graph/logo001a.gif','graph/logo002a.gif','graph/logo003a.gif','graph/logo004a.gif','graph/logo005a.gif','graph/logo006a.gif','graph/logo001.gif','graph/logo002.gif','graph/logo003.gif','graph/logo004.gif','graph/logo005.gif','graph/logo006.gif','graph/table2a.gif','graph/table3a.gif')">
+<p></p>
+<table width="630" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td width="5" height="98">&nbsp;</td>
+    <td valign="top" rowspan="2" colspan="4"> <br>
+      <table width="600" border="0" cellspacing="0" cellpadding="0" align="center">
+        <tr> 
+          <td colspan="4" background="graph/list001a.gif"> 
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+              <tr> 
+                <td width="95%"><img src="graph/list001.gif" width="89" height="24"></td>
+                <td width="5%" valign="top"> 
+                  <div align="center"><a href="https://www.ubot.com.tw/UBOT2005/online.asp"><img src="graph/login04.gif" width="80" height="18" border="0"></a></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" width="288"> 
+            <table width="285" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td height="2"><img src="graph/blank.gif" width="1" height="8"></td>
+              </tr>
+              <tr> 
+                <td> 
+                  <table width="100%" border="0" cellspacing="0">
+                    <tr> 
+                      <td><span class="t1"><img src="graph/arrow.gif" width="10" height="9"><font size="3" color="#416A8B">理財卡／現金卡</font></span></td>
+                    </tr>
+                    <tr> 
+                      <td> 
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr> 
+                            <td width="4%"><a href="personallist_news/index_more.htm#01" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image56','','graph/logo001.gif',1)"><img name="Image56" border="0" src="graph/logo001a.gif" width="50" height="50"></a></td>
+                            <td width="96%"> 
+                              <table width="100%" border="0">
+                                <tr> 
+                                  <td><font color="#000000"><img src="graph/fund/graph/in-point.gif"> </font><a href="http://adm.uitc.com.tw/ubot/news/2004/0041208.htm" target="_blank">達文西A+理財卡...</a><font color="#000000"><br>
+                                   <img src="graph/fund/graph/in-point.gif"><a href="https://www.ubot.com.tw/news/2004/0041130.htm" target="_blank"> 動用達文西A+理財卡/寬鬆貸...</a></font></td>
+                                </tr>
+                                <tr> 
+                                  <td> 
+                                    <div align="right"><a href="personallist_news/index_more.htm#01"><img src="graph/more.gif" width="27" height="10" border="0"></a></div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr> 
+                      <td height="8"> </td>
+                    </tr>
+                  </table>
+                  <table width="100%" border="0" cellspacing="0">
+                    <tr> 
+                      <td><span class="t1"><img src="graph/arrow.gif"><font size="3" color="#416A8B">信用卡</font></span></td>
+                    </tr>
+                    <tr> 
+                      <td> 
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr> 
+                            <td width="4%"><a href="personallist_news/index_more.htm#02" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image57','','graph/logo002.gif',1)"><img name="Image57" border="0" src="graph/logo002a.gif" width="50" height="50"></a></td>
+                            <td width="96%"> 
+                              <table width="100%" border="0">
+                                <tr> 
+                                  <td><img src="graph/fund/graph/in-point.gif"> <a href="https://card.ubot.com.tw/activity/senseio/senseio.htm" target="_blank">新學友年終超級卡友日..</a>.<br>
+                                   <img src="graph/fund/graph/in-point.gif"> <a href="https://card.ubot.com.tw/activity/carefour/carref.htm">家樂福家電分期0%利率...</a></td>
+                                </tr>
+                                <tr> 
+                                  <td> 
+                                    <div align="right"><a href="personallist_news/index_more.htm#02"><img src="graph/more.gif" width="27" height="10" border="0"></a></div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr> 
+                      <td height="8"> </td>
+                    </tr>
+                  </table>
+                  <table width="100%" border="0" cellspacing="0">
+                    <tr> 
+                      <td><span class="t1"><img src="graph/arrow.gif"><font size="3" color="#416A8B">個人貸款</font></span></td>
+                    </tr>
+                    <tr> 
+                      <td> 
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr> 
+                            <td width="20%"><a href="personallist_news/index_more.htm#03" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image55','','graph/logo003.gif',1)"><img name="Image55" border="0" src="graph/logo003a.gif" width="50" height="50"></a></td>
+                            <td width="80%"> 
+                              <table width="100%" border="0">
+                                <tr> 
+                                  <td><img src="graph/fund/graph/in-point.gif"> <a href="https://www.ubot.com.tw/houseloan/houseloan.htm" target="_blank">房貸寬鬆專案-還沒來舒壓的...</a><br>
+                                   <img src="graph/fund/graph/in-point.gif"> <a href="https://www.ubot.com.tw/b/b01/b01_06_09.htm">夢想實現專案－聯邦銀行加盟創業 
+                                    ...</a></td>
+                                </tr>
+                                <tr> 
+                                  <td> 
+                                    <div align="right"><a href="personallist_news/index_more.htm#03"><img src="graph/more.gif" width="27" height="10" border="0"></a></div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr> 
+                      <td> </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td background="graph/line-01.gif" width="20">&nbsp;</td>
+          <td valign="top" colspan="2"> 
+            <table width="285" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td height="2"><img src="graph/blank.gif" width="1" height="8"></td>
+              </tr>
+              <tr> 
+                <td> 
+                  <table width="100%" border="0" cellspacing="0">
+                    <tr> 
+                      <td><span class="t1"><img src="graph/arrow.gif"><font size="3" color="#416A8B">UMA智慧理財專戶</font></span></td>
+                    </tr>
+                    <tr> 
+                      <td> 
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr> 
+                            <td width="4%"><a href="personallist_news/index_more.htm#04" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image58','','graph/logo004.gif',1)"><img name="Image58" border="0" src="graph/logo004a.gif" width="50" height="50"></a></td>
+                            <td width="96%"> 
+                              <table width="100%" border="0">
+                                <tr> 
+                                  <td><img src="graph/fund/graph/in-point.gif"> 理財節稅講座<br>
+                                   <img src="graph/fund/graph/in-point.gif"> <a href="https://www.ubot.com.tw/news/2004/0040911.htm" target="_blank">投資結合存款 
+                                    定存利率可加碼2%或...</a></td>
+                                </tr>
+                                <tr> 
+                                  <td> 
+                                    <div align="right"><a href="personallist_news/index_more.htm#04"><img src="graph/more.gif" width="27" height="10" border="0"></a></div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr> 
+                      <td height="8"> </td>
+                    </tr>
+                  </table>
+                  <table width="100%" border="0" cellspacing="0">
+                    <tr> 
+                      <td><span class="t1"><img src="graph/arrow.gif"><font size="3" color="#416A8B">基金／信託</font></span></td>
+                    </tr>
+                    <tr> 
+                      <td> 
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr> 
+                            <td width="4%"><a href="personallist_news/index_more.htm#05" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image59','','graph/logo005.gif',1)"><img name="Image59" border="0" src="graph/logo005a.gif" width="50" height="50"></a></td>
+                            <td width="96%"> 
+                              <table width="100%" border="0">
+                                <tr> 
+                                  <td height="25"><img src="graph/fund/graph/in-point.gif"><a href="#">「8年期步步高升連動債券...</a><br>
+                                   <img src="graph/fund/graph/in-point.gif"> <a href="#">配息只升不降！ 本行白金...</a></td>
+                                </tr>
+                                <tr> 
+                                  <td> 
+                                    <div align="right"><a href="personallist_news/index_more.htm#05"><img src="graph/more.gif" width="27" height="10" border="0"></a></div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr> 
+                      <td height="8"> </td>
+                    </tr>
+                  </table>
+                  <table width="100%" border="0" cellspacing="0">
+                    <tr> 
+                      <td><span class="t1"><img src="graph/arrow.gif"><font size="3" color="#416A8B">儲蓄／其他</font></span></td>
+                    </tr>
+                    <tr> 
+                      <td> 
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tr> 
+                            <td width="4%"><a href="personallist_news/index_more.htm#06" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image60','','graph/logo006.gif',1)"><img name="Image60" border="0" src="graph/logo006a.gif" width="50" height="50"></a></td>
+                            <td width="96%"> 
+                              <table width="100%" border="0">
+                                <tr> 
+                                  <td><img src="graph/fund/graph/in-point.gif"> <a href="https://www.ubot.com.tw/news/2004/0041108.htm" target="_blank">刷萬用金融卡，聯邦就送現金... 
+                                    </a><br>
+                                   <img src="graph/fund/graph/in-point.gif"> <a href="https://www.ubot.com.tw/news/2001/0420002.htm" target="_blank">開戶送保險，生活有保障！...</a></td>
+                                </tr>
+                                <tr> 
+                                  <td> 
+                                    <div align="right"><a href="personallist_news/index_more.htm#06"><img src="graph/more.gif" width="27" height="10" border="0"></a></div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <tr> 
+                      <td> </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <hr size="1" color="6AA64E" width="600">
+      <table width="600" border="0" align="center">
+        <tr> 
+          <td width="70%" valign="top" height="132"> 
+            <table width="350" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td background="graph/table-08.gif"> 
+                  <table width="1%" border="0" cellpadding="0" cellspacing="0">
+                    <tr> 
+                      <td><img name="Image61" border="0" src="graph/tablea.gif" width="122" height="25"></td>
+                      <td><a href="mid_personal02.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image62','','graph/table2a.gif',1)"><img name="Image62" border="0" src="graph/table2.gif" width="102" height="25"></a></td>
+                      <td><a href="mid_personal03.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image63','','graph/table3a.gif',1)"><img name="Image63" border="0" src="graph/table3.gif" width="108" height="25"></a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr> 
+                <td> 
+                  <table width="100%" border="0" cellspacing="1" cellpadding="1" bgcolor="#CC9933">
+                    <tr bgcolor="#FFFFFF" align="left" valign="top"> 
+                      <td height="62"> 
+                        <table width="435" border="0" align="center" cellspacing="0" cellpadding="3">
+                          <tr> 
+                            <td width="66" bgcolor="#FFFFEC"> 
+                              <div align="center">2004/12/30</div>
+                            </td>
+                            <td width="357" bgcolor="#FFFFEC"><img src="graph/blank.gif" width="1" height="8"><img src="graph/fund/graph/in-point.gif"> <a href="personallist_news/new_001.htm">聯邦銀行信託業務紛爭處理程序</a></td>
+                          </tr>
+                          <tr> 
+                            <td width="66"> 
+                              <div align="center">2004/12/30</div>
+                            </td>
+                            <td width="357"><font color="#000000"><img src="graph/fund/graph/in-point.gif"> <a href="personallist_news/new_002.htm">國民現金 
+                              動用珍藏禮 -「輕概念浴品七件組」</a></font></td>
+                          </tr>
+                          <tr> 
+                            <td width="66" bgcolor="#FFFFEC"> 
+                              <div align="center">2004/12/30</div>
+                            </td>
+                            <td width="357" bgcolor="#FFFFEC"><img src="graph/fund/graph/in-point.gif">「刷卡買基金，紅利抽獎雙重送」得獎名單出爐了！</td>
+                          </tr>
+                          <tr> 
+                            <td width="66"> 
+                              <div align="center">2004/12/30</div>
+                            </td>
+                            <td width="357"><img src="graph/fund/graph/in-point.gif"> 好消息!!本行自93年10月21日起調降存單質借之放款利率</td>
+                          </tr>
+                          <tr> 
+                            <td width="66" bgcolor="#FFFFEC"> 
+                              <div align="center">2004/12/30</div>
+                            </td>
+                            <td bgcolor="#FFFFEC" width="357"><img src="graph/fund/graph/in-point.gif"> 聯邦銀行信託業務紛爭處理程序</td>
+                          </tr>
+                          <tr> 
+                            <td width="66"> 
+                              <div align="center">2004/12/30</div>
+                            </td>
+                            <td width="357"><img src="graph/fund/graph/in-point.gif"> 聯邦銀行 您方便的好鄰居 代收業務一覽表</td>
+                          </tr>
+                          <tr> 
+                            <td width="66" bgcolor="#FFFFEC"> 
+                              <div align="center">2004/12/30</div>
+                            </td>
+                            <td width="357" bgcolor="#FFFFEC"><img src="graph/fund/graph/in-point.gif"> 夢想實現專案－聯邦銀行加盟創業貸款 
+                            </td>
+                          </tr>
+                          <tr> 
+                            <td width="66"> 
+                              <div align="center">2004/12/30</div>
+                            </td>
+                            <td width="357"><img src="graph/fund/graph/in-point.gif"> 夢想實現專案－聯邦銀行加盟創業貸款 </td>
+                          </tr>
+                        </table>
+                        <div align="right"><a href="personallist_news/new_more.htm">更多消息</a></div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr> 
+                <td><img src="graph/table-03.gif" width="440" height="11"></td>
+              </tr>
+            </table>
+          </td>
+          <td width="30%" valign="top"> 
+            <table border="0" cellspacing="0" cellpadding="0" bgcolor="#99B37F" width="129" align="center">
+              <tr bgcolor="#FFFFFF" align="center" valign="top"> 
+                <td bgcolor="#FFFFFF"> <img src="graph/usert02.gif" width="150" height="16"> 
+                  <table width="150" border="1" cellspacing="0" cellpadding="0" bordercolordark="#006600" bordercolorlight="#006600" align="center">
+                    <tr bordercolor="#FFFFFF"> 
+                      <td><img src="graph/title.gif" width="147" height="16"> 
+                        <table width="100%" border="0" cellpadding="0" bgcolor="#D9EDCB">
+                          <tr bgcolor="#B8DE9E"> 
+                            <td height="13" class="t2" width="37%"><font color="#003300">精業嘉實</font></td>
+                            <td height="13" class="t2" width="32%"> 
+                              <div align="right"><font color="#003300">加權</font></div>
+                            </td>
+                            <td height="13" class="t2" width="31%"> 
+                              <div align="right"><font color="#003300">櫃檯</font></div>
+                            </td>
+                          </tr>
+                          <tr> 
+                            <td width="37%" class="t2">指數</td>
+                            <td width="32%" class="t2"> 
+                              <div align="right"><font color="#006600">6463.09</font></div>
+                            </td>
+                            <td width="31%" class="t2"> 
+                              <div align="right"><font color="#006600">138.63</font></div>
+                            </td>
+                          </tr>
+                          <tr> 
+                            <td width="37%" class="t2">漲跌</td>
+                            <td width="32%" class="t2"> 
+                              <div align="right"><font color="#006600">109.47</font></div>
+                            </td>
+                            <td width="31%" class="t2"> 
+                              <div align="right"><font color="#006600">2.17</font></div>
+                            </td>
+                          </tr>
+                          <tr> 
+                            <td width="37%" class="t2">量</td>
+                            <td width="32%" class="t2"> 
+                              <div align="right">167.39億</div>
+                            </td>
+                            <td width="31%" class="t2"> 
+                              <div align="right">234.19億</div>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <table width="75%" border="0" cellpadding="0">
+                    <tr> 
+                      <td> 
+                        <div align="center"> 
+                          <table width="150" border="1" cellspacing="0" cellpadding="0" bordercolorlight="#006600" bordercolordark="#006600">
+                            <tr bgcolor="#FFFFFF" align="center" valign="top" bordercolor="#FFFFFF"> 
+                              <td height="11"><img src="graph/title02.gif" width="147" height="16"></td>
+                            </tr>
+                            <form name="form1">
+                              <tr align="center" bgcolor="#DEE6BF" height="35" bordercolor="#FFFFFF"> 
+                                <td height="25"> 
+                                  <select name="menu1" onChange="surfto(form1);">
+                                    <option selected>--請選查詢項目--</option>
+                                    <!--
+                                    <option value="https://ibank.ubot.com.tw/ibank/inqrate.asp?txn=RERATE">匯率查詢</option>
+                                    <option value="https://ibank.ubot.com.tw/ibank/inqrate.asp?txn=NTRATE">台幣利率查詢</option>
+                                    <option value="https://ibank.ubot.com.tw/ibank/inqrate.asp?txn=FXRATE">外幣利率查詢</option>
+                                    -->
+                                    <option value="LoadAP?pageid=IP0907100&aptype=IBANK">匯率查詢</option>
+                                    <option value="LoadAP?pageid=IP0907200&aptype=IBANK">台幣利率查詢</option>
+                                    <option value="LoadAP?pageid=IP0907300&aptype=IBANK">外幣利率查詢</option>
+                                  </select>
+                                </td>
+                              </tr>
+                            </form>
+                          </table>
+                          <a href="http://210.243.119.40/ubotfin/money/money_all.htm"  target="_self"><img src="graph/title03.gif" width="147" height="22" border="0"></a></div>
+                      </td>
+                    </tr>
+                    <tr> 
+                      <td> 
+                        <div align="center"><a href="https://www.ubot.com.tw/d/d_index.htm" target="_self"><img src="graph/title04.gif" width="147" height="22" border="0"></a></div>
+                      </td>
+                    </tr>
+                    <tr> 
+                      <td> 
+                        <div align="center"><b><a href="https://mgt.ubot.com.tw/money/index.htm" target="_blank"><img src="graph/title05.gif" width="147" height="22" border="0"></a></b></div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td width="5" height="364"><img src="graph/blank.gif" width="5" height="1"></td>
+  </tr>
+</table>
+
+<p class="t3">&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<html>
+<head>
+<title>個人資料查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<script>
+
+function chkSubmit(){
+	//chkWord();
+	document.IP1002003.pageid.value = "IP1002100";
+	document.IP1002003.submit();
+}
+
+function chkAcct(){
+		document.IP1002003.acct[0].disabled = true;
+		document.IP1002003.pageid.value = "IP1002004";
+		document.IP1002003.submit();
+}
+
+function chkWord(){
+	var w = '[[%%SEND-CONTACT-ADDR1%%]]';
+	var len = w.length;
+	if(w.substr(0,1)=="臺"){
+		document.IP1002003.SEND_CONTACT_ADDR1.value = '台' + w.substr(1,len-1);
+	}
+	else{
+		document.IP1002003.SEND_CONTACT_ADDR1.value = w;
+	}
+}
+
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form action="LoadAP" name="IP1002003" method="post">
+   　
+<img src="graph/point.gif" width="12" height="12">
+<b>個人設定&gt;<font color="#0066FF">基本資料維護</font><font color="#003399"><font color="#0066FF"></font></font></b><br>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="4"> 
+      <div align="right"> </div>
+      <table width="500" border="0" align="center">
+        <tr>
+          <td> 
+            <div align="right">
+              <input type="button" name="Submit" value="變更個人資料" onClick="chkSubmit();">
+            </div>
+          </td>
+        </tr>
+      </table>
+      <table width="500" border="1" align="center" cellpadding="3" bordercolor="#999999">
+        <tr bgcolor="#C4CBB8"> 
+          <td colspan="3"> 
+            <div align="center">個人基本資料： 
+              <input type="radio" name="acct" value="0" checked>
+              台幣帳戶 
+              <input type="radio" name="acct" value="1" onClick="chkAcct();">
+              信託帳戶</div>
+          </td>
+        </tr>
+        <!--
+        <tr> 
+          <td width="122">身份證字號</td>
+          <td width="354">
+          <script>
+          	var id = '[[%%SEND-ID-NO%%]]';
+          	document.write(id.substr(0,id.length-1));
+          </script>
+          &nbsp;</td>
+        </tr>
+        -->
+        <tr> 
+          <td width="122">姓名</td>
+          <td width="354">
+          <script>
+          	document.write(showCName('[[%%SEND-NAME%%]]'));
+          </script>
+          &nbsp;
+          </td>
+        </tr>
+        <!--
+        <tr> 
+          <td width="122">出生年月日</td>
+          <td width="354">民國
+          <script>
+          document.write(getRCDateStr("[[%%SEND-BIRTH-DATE%%]]",3));
+          </script>&nbsp;</td>      
+        </tr>
+        -->
+        <tr> 
+          <td width="122">戶籍地址</td>
+          <td width="354">[[%%SEND-NATIVE-ADDR1%%]][[%%SEND-NATIVE-ADDR2%%]]
+          <script>
+	          var nativeAdd = '[[%%SEND-NATIVE-ADDR3%%]][[%%SEND-NATIVE-ADDR4%%]]';
+	          document.write(replaceWord(nativeAdd.length));
+          </script>
+          &nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122">  <font color="#FF0000">*</font>通訊地址：台幣帳戶</td>
+          <td width="354">[[%%SEND-CONTACT-ZIP%%]]&nbsp;[[%%SEND-CONTACT-ADDR1%%]][[%%SEND-CONTACT-ADDR2%%]]
+          <script>
+	          var add3 = '[[%%SEND-CONTACT-ADDR3%%]]';
+	          document.write(replaceWord(add3.length));
+          </script>
+          &nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122"> <font color="#FF0000">*</font>日間電話</td>
+          <td width="354"> 
+          <script>
+	          var dp = '[[%%SEND-DAILY-PHONE%%]]';
+	          document.write(replaceWord2(dp,1));
+          </script>
+          &nbsp;分機[[%%SEND-DAILY-PHONE-EXT%%]]&nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122"> <font color="#FF0000">*</font>夜間電話</td>
+          <td width="354">
+          <script>
+          	if('[[%%SEND-NIGHT-PHONE%%]]'=="")
+          	document.write("未設定");
+          	else
+          	{
+          	var np = '[[%%SEND-NIGHT-PHONE%%]]';
+          	document.write(replaceWord2(np,1));
+          	}
+          </script>       	
+          &nbsp;
+          <script>
+          	if('[[%%SEND-NIGHT-PHONE%%]]'!="")document.write("分機")
+          </script>
+          	[[%%SEND-NIGHT-PHONE-EXT%%]]&nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122"> <font color="#FF0000">*</font>行動電話</td>
+          <td width="354">
+          <script>
+          	if('[[%%SEND-MPHONE%%]]'=="")
+          	document.write("未設定");
+          	else
+          		{
+          	var mp = '[[%%SEND-MPHONE%%]]';
+          	document.write(replaceWord2(mp,2));
+          		}
+          </script>
+          &nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122"> <font color="#FF0000">*</font>E-mail</td>
+          <td width="354">
+          <script>
+          	if('[[%%SEND-EMAIL-ADDR%%]]'=="")
+          	document.write("未設定");
+          	//alert('[[%%SEND-EMAIL-ADDR%%]]');
+          	//if(document.IP1002003.SEND-EMAIL-ADDR.value=="")
+          	//document.write("未設定");
+          	else
+          	document.write(replaceEmail('[[%%SEND-EMAIL-ADDR%%]]'));
+          </script>
+          &nbsp;</td>
+        </tr>
+      </table>
+      <div align="center"> 
+        <table width="500" border="0">
+          <tr> 
+            <td>註：「<font color="#FF0000">*</font>」表示可於線上變更之資料欄位，請按<font color="#FF0000">變更個人資料</font>進行變更，如須變更身份證字號、姓名、戶籍地址等欄位，請您攜帶身份證及印鑑至原開戶行辦理。</td>
+          </tr>
+        </table>
+        
+      </div>
+    </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="4" valign="bottom" height="1"></td>
+  </tr>
+  	<input type="hidden" name="SEND-ID-NO" value=[[%%SEND-ID-NO%%]]>
+        <input type="hidden" name="SEND-NAME" value=[[%%SEND-NAME%%]]>
+        <input type="hidden" name="SEND-BIRTH-DATE" value=[[%%SEND-BIRTH-DATE%%]]>
+        <input type="hidden" name="SEND-NATIVE-ADDR1" value=[[%%SEND-NATIVE-ADDR1%%]]>
+        <input type="hidden" name="SEND-NATIVE-ADDR2" value=[[%%SEND-NATIVE-ADDR2%%]]>
+        <input type="hidden" name="SEND-NATIVE-ADDR3" value=[[%%SEND-NATIVE-ADDR3%%]]>
+        <input type="hidden" name="SEND-NATIVE-ADDR4" value=[[%%SEND-NATIVE-ADDR4%%]]>
+        <input type="hidden" name="SEND-CONTACT-ZIP" value=[[%%SEND-CONTACT-ZIP%%]]>
+        <input type="hidden" name="SEND_CONTACT_ADDR1" value=[[%%SEND-CONTACT-ADDR1%%]]>
+        <input type="hidden" name="SEND-CONTACT-ADDR2" value=[[%%SEND-CONTACT-ADDR2%%]]>
+        <input type="hidden" name="SEND-CONTACT-ADDR3" value=[[%%SEND-CONTACT-ADDR3%%]]>
+        <input type="hidden" name="SEND-DAILY-PHONE" value=[[%%SEND-DAILY-PHONE%%]]>
+        <input type="hidden" name="SEND-DAILY-PHONE-EXT" value=[[%%SEND-DAILY-PHONE-EXT%%]]>
+        <input type="hidden" name="SEND-NIGHT-PHONE" value=[[%%SEND-NIGHT-PHONE%%]]>
+        <input type="hidden" name="SEND-NIGHT-PHONE-EXT" value=[[%%SEND-NIGHT-PHONE-EXT%%]]>
+        <input type="hidden" name="SEND-MPHONE" value=[[%%SEND-MPHONE%%]]>
+        <input type="hidden" name="SEND-EMAIL-ADDR" value=[[%%SEND-EMAIL-ADDR%%]]>
+        <input type="hidden" name="SEND-E-BILL" value=[[%%SEND-E-BILL%%]]>
+  	<input type="hidden" name="pageid">
+</table>
+</form>
+</body>
+</html>

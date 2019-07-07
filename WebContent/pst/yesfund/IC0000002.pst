@@ -1,0 +1,354 @@
+<html>
+<head>
+<title>聯邦銀行個人金融網</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI99041	        2010.05.10	   David
+* EAI99052          2010.8.25      David 
+***********************************************************************/
+</script>
+<style type="text/css">
+<!--
+    body,p,td,form,select{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:12pt}
+    .t1{  font-family: "新細明體"; font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-family: "新細明體"; font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+-->
+</style>
+<script language="JavaScript">
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+
+function getErrMsg(){
+	var msgID = '[[%%MSGID%%]]';
+	var errorID = '[[%%RETNCODE%%]]';
+	if ((msgID==''&&errorID=='')||(msgID=='0000'&&errorID=='0000')){
+		return "";
+	}else{
+		if (msgID!=''&&msgID!='0000'){
+			return "[[%%MSGID%%]] : [[%%MSGDESC%%]]";
+		}else{
+			return "[[%%RETNCODE%%]] : [[%%RETNCODEDESC%%]]";
+		}
+	}
+}
+
+var kbWin = null;
+function getKeyBoard()
+{
+ 	var Mytype="width=450,height=250,scrollbars=auto,center=yes,border=thin,help=no,status=no,position=relative,left=160px,top=180px";
+ 	var PWD = "window.opener.document.IC0000002.PWD.value";  //show在畫面上的密碼個數
+ 	var KBPWD = "window.opener.document.IC0000002.REVE_PWD.value";  //User真正key的密碼
+ 	kbWin = window.open("LoadAP?pageid=IP2001002&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IC0000002.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IC0000002.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+function onTop() {
+  if (kbWin==null) return;
+  if (kbWin != null && (!kbWin.closed)){
+  	kbWin.focus();	
+  }
+}
+
+function check_id()
+ {
+   var sid=IC0000002.sid.value;
+   var idx=sid.length;
+ 
+   if(!(idx==8 || idx==10))        //10和8位數,方可進行判斷並加入檢核字母(A/C), 否則直接送出 ,不處理
+     {
+        //IC0000002.submit();    // 不為10和8位數,不予處理,直接送出
+     }else  if(idx == 10)                            //字串為10碼
+           {
+               var chr=sid.charCodeAt(0);
+               if(chr<65 || chr>122 || (chr>90 && chr<97)) //第一碼不為英文字
+                	{
+             
+              			chr1=sid.charCodeAt(8);
+             			chr2=sid.charCodeAt(9);
+              				  //未兩碼其中有一碼不為英文字
+             			 if((chr1<65||chr1>122||(chr1<141&&chr1>90))||(chr2<65||chr2>122||(chr2<141&&chr2>90)))
+              					   return true;    // 10位數,但不為外籍人士編碼,不予處理,直接送出
+            			 else
+               					 {
+                  					IC0000002.sid.value=sid+'C';   //為外國人身份
+                 					 //IC0000002.submit();
+                				}
+                 
+             		 }else   //第一碼為英文字
+                 				{
+                  					 IC0000002.sid.value=sid+'A';   //為自然人身份
+                   					 //IC0000002.submit();
+                  				}
+          	}else{    //字串為8碼
+                  if(!isNaN(sid))
+                      	IC0000002.sid.value=sid+'A';   //為企業戶
+                   		//IC0000002.submit();
+                   } 
+       	    return true;
+} 	
+
+function chkSubmit(){
+	if (document.IC0000002.sid.value==""){
+		alert('請輸入身份証字號');
+		document.IC0000002.sid.focus();
+		return false;
+	}else if(document.IC0000002.REVE_NICK_NAME.value==""){
+		alert('請輸入使用者代號');
+		document.IC0000002.REVE_NICK_NAME.focus();
+		return false;
+	}else if(document.IC0000002.PWD.value==""){
+		alert('請輸入網路密碼');
+		return false;
+	}else if(!check_id()){
+    		alert('請輸入身份証字號');
+    		document.IC0000002.sid.value = "";
+    		document.IC0000002.sid.focus();
+    		return false;
+    }else{
+	    document.IC0000002.pageid.value="IC0000008";
+	    document.IC0000002.REVE_ID_NO.value=document.IC0000002.sid.value;	    
+	    document.IC0000002.submit();
+	    
+    }
+    
+}
+//-->
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" onfocus="onTop();" topmargin="0" leftmargin="0" link="#0000FF" vlink="#0000FF" alink="#000000" onLoad="MM_preloadImages('graph/icon001a.gif','graph/icon002a.gif','graph/icon003a.gif','graph/icon004a.gif','graph/icon005a.gif','graph/icon006a.gif','graph/icon007a.gif')">
+<p></p>
+<form method="post" name="IC0000002" target="_parent" action="LoadAP" >
+<table border="0" cellspacing="0" cellpadding="0" width="128">
+  <tr> 
+    <td height="335"> 
+      <table width="138" border="0" cellspacing="1" cellpadding="0" bgcolor="#80836E">
+        <tr bgcolor="#FFFFFF" align="center" valign="top"> 
+          <td> 
+            <table width="137" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td>
+                	<font color="red">
+                	<script language="JavaScript">
+                		document.write(getErrMsg());
+                	</script>
+                	</font>
+                	<img src="graph/user.gif" width="138" height="22">
+                </td>
+              </tr>
+              <tr align="center" valign="top"> 
+                <td bgcolor="#E0EFF0" height="10"> 
+                  <table width="137" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                      <td colspan="3" height="18"> 
+                        <div align="center">身分證字號 
+                          <input type="text" name="sid" size="8">
+                        </div>
+                      </td>
+                    </tr>
+                    <tr> 
+                      <td height="2" colspan="3"> 
+                        <div align="center">使用者代號 
+                          <input type="text" size="8" value="" name="REVE_NICK_NAME">
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td height="2" colspan="3">
+                        <div align="center"> 　網路密碼 
+                          <input type="password" name="PWD" size="8" onclick="getKeyBoard();onTop();" readonly>
+                          <!--<input type="password" name="REVE_PWD" size="8">-->
+                        </div>
+                      </td>
+                    </tr>
+                    <tr> 
+                      <td height="18" width="70"> 
+                        <div align="right"><img src="graph/login02.gif" width="57" height="18" border="0"> 
+                        </div>
+                      </td>
+                      <td height="18" width="11">&nbsp;</td>
+                      <td height="18" width="56"><div align="middle">
+                      <image name="Login01" src="graph/login.gif" align="middle" width="35" height="18" border="0" onclick="chkSubmit()">
+                      </div>
+                      </td>
+                    </tr>
+                    <tr> 
+                      <td colspan="3"><img src="graph/blank.gif" width="1" height="5"></td>
+                    </tr>
+                    <tr> 
+                      <td colspan="3"> 
+                        <div align="center"><a href="LoadAP?aptype=NOAP&pageid=IP0810000" target="main"><img src="graph/register.gif" border="0" width="58" height="18"></a><img src="graph/blank.gif" width="10" height="8"><a href="LoadAP?aptype=NOAP&pageid=IP1003000" target="main"><img src="graph/kwordsearch.gif" border="0" width="58" height="18"></a></div>
+                      </td>
+                    </tr>
+                    <tr> 
+                      <td height="2" colspan="3"> 
+                        <div align="center"><a href="">安全宣告</a>　<a href="">服務介紹</a></div>
+                      </td>
+                    </tr>
+                    <tr> 
+                      <td colspan="3"><img src="graph/blank.gif" width="1" height="5"></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <table border="0" cellspacing="0" cellpadding="0" width="141">
+        <tr> 
+          <td><img name="Image1" border="0" src="graph/button-01.gif" width="140" height="22"></td>
+        </tr>
+        <tr> 
+          <td> 
+            <table width="141" border="0" cellspacing="1" cellpadding="0">
+              <tr bgcolor="#B0B6A7"> 
+                <td height="140"> 
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                      <td>
+							<a href="http://card.ubot.com.tw" target="_blank" 
+							onClick="MM_swapImage('Image01','','graph/icon001a.gif',1)
+							;MM_swapImage('Image02','','graph/icon002.gif',1)
+							;MM_swapImage('Image03','','graph/icon003.gif',1)
+							;MM_swapImage('Image04','','graph/icon004.gif',1)
+							;MM_swapImage('Image05','','graph/icon005.gif',1)
+							;MM_swapImage('Image06','','graph/icon006.gif',1)
+							;MM_swapImage('Image07','','graph/icon007.gif',1)
+							;MM_swapImage('Image08','','graph/icon008.gif',1)"><img name="Image01" border="0" src="graph/icon001.gif" width="140" height="21"></a></td>
+                    </tr>
+                    <tr> 
+                      <td>
+							<a href="cash/cash_all.htm" target="mainFrame" 
+							onClick="MM_swapImage('Image02','','graph/icon002a.gif',1)
+							;MM_swapImage('Image01','','graph/icon001.gif',1)
+							;MM_swapImage('Image03','','graph/icon003.gif',1)
+							;MM_swapImage('Image04','','graph/icon004.gif',1)
+							;MM_swapImage('Image05','','graph/icon005.gif',1)
+							;MM_swapImage('Image06','','graph/icon006.gif',1)
+							;MM_swapImage('Image07','','graph/icon007.gif',1)
+							;MM_swapImage('Image08','','graph/icon008.gif',1)"><img name="Image02" border="0" src="graph/icon002.gif" width="140" height="21"></a></td>
+                    </tr>
+                    <tr> 
+                      <td> 
+							<a href="https://uma.ubot.com.tw/index1.htm" target="mainFrame" 
+							onClick="MM_swapImage('Image03','','graph/icon003a.gif',1)
+							;MM_swapImage('Image02','','graph/icon002.gif',1)
+							;MM_swapImage('Image01','','graph/icon001.gif',1)
+							;MM_swapImage('Image04','','graph/icon004.gif',1)
+							;MM_swapImage('Image05','','graph/icon005.gif',1)
+							;MM_swapImage('Image06','','graph/icon006.gif',1)
+							;MM_swapImage('Image07','','graph/icon007.gif',1)
+							;MM_swapImage('Image08','','graph/icon008.gif',1)"><img name="Image03" border="0" src="graph/icon003.gif" width="140" height="22"></a></td>
+                    </tr>
+                    <tr> 
+                      <td>
+							<a href="LoadAP?aptype=NOAP&pageid=IF0000000" target="main" 
+							onClick="MM_swapImage('Image04','','graph/icon004a.gif',1)
+							;MM_swapImage('Image02','','graph/icon002.gif',1)
+							;MM_swapImage('Image03','','graph/icon003.gif',1)
+							;MM_swapImage('Image01','','graph/icon001.gif',1)
+							;MM_swapImage('Image05','','graph/icon005.gif',1)
+							;MM_swapImage('Image06','','graph/icon006.gif',1)
+							;MM_swapImage('Image07','','graph/icon007.gif',1)
+							;MM_swapImage('Image08','','graph/icon008.gif',1)"><img name="Image04" border="0" src="graph/icon004.gif" width="140" height="21"></a></td>
+                    </tr>
+                    <tr> 
+                      <td>
+							<a href="https://stock.ubot.com.tw/" target="_blank" 
+							onClick="MM_swapImage('Image05','','graph/icon005a.gif',1)
+							;MM_swapImage('Image02','','graph/icon002.gif',1)
+							;MM_swapImage('Image03','','graph/icon003.gif',1)
+							;MM_swapImage('Image04','','graph/icon004.gif',1)
+							;MM_swapImage('Image01','','graph/icon001.gif',1)
+							;MM_swapImage('Image06','','graph/icon006.gif',1)
+							;MM_swapImage('Image07','','graph/icon007.gif',1)
+							;MM_swapImage('Image08','','graph/icon008.gif',1)"><img name="Image05" border="0" src="graph/icon005.gif" width="140" height="21"></a></td>
+                    </tr>
+                    <tr> 
+                      <td>
+							<a href="product/product_all.htm" target="mainFrame" 
+							onClick="MM_swapImage('Image06','','graph/icon006a.gif',1)
+							;MM_swapImage('Image02','','graph/icon002.gif',1)
+							;MM_swapImage('Image03','','graph/icon003.gif',1)
+							;MM_swapImage('Image04','','graph/icon004.gif',1)
+							;MM_swapImage('Image05','','graph/icon005.gif',1)
+							;MM_swapImage('Image01','','graph/icon001.gif',1)
+							;MM_swapImage('Image07','','graph/icon007.gif',1)
+							;MM_swapImage('Image08','','graph/icon008.gif',1)"><img name="Image06" border="0" src="graph/icon006.gif" width="140" height="21"></a></td>
+                    </tr>
+                    <tr> 
+                      <td>
+							<a href="#" 
+							onClick="MM_swapImage('Image07','','graph/icon007a.gif',1)
+							;MM_swapImage('Image02','','graph/icon002.gif',1)
+							;MM_swapImage('Image03','','graph/icon003.gif',1)
+							;MM_swapImage('Image04','','graph/icon004.gif',1)
+							;MM_swapImage('Image05','','graph/icon005.gif',1)
+							;MM_swapImage('Image06','','graph/icon006.gif',1)
+							;MM_swapImage('Image01','','graph/icon001.gif',1)
+							;MM_swapImage('Image08','','graph/icon008.gif',1)"><img name="Image07" border="0" src="graph/icon007.gif" width="140" height="21"></a></td>
+                    </tr>
+                    <tr>
+                      <td>
+							<a href="#" 
+							onClick="MM_swapImage('Image08','','graph/icon008a.gif',1)
+							;MM_swapImage('Image02','','graph/icon002.gif',1)
+							;MM_swapImage('Image03','','graph/icon003.gif',1)
+							;MM_swapImage('Image04','','graph/icon004.gif',1)
+							;MM_swapImage('Image05','','graph/icon005.gif',1)
+							;MM_swapImage('Image06','','graph/icon006.gif',1)
+							;MM_swapImage('Image07','','graph/icon007.gif',1)
+							;MM_swapImage('Image01','','graph/icon001.gif',1)"><img name="Image08" border="0" src="graph/icon008.gif" width="140" height="21"></a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="REVE_ID_NO" value="">
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="REVE_PWD" value="">
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+</form>
+</body>
+</html>

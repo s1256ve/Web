@@ -1,0 +1,362 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+*SerialNo           Date Modified  Modified by   
+*-------------      ----------     ----------
+*EAI96072           2009.03.02     David 
+*EAI97076           2010.01.12     David 
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="javascript">
+<!--
+var mobile = '[[%%SEND-MOBILE%%]]';
+var email = '[[%%SEND-EMAIL-ADDR%%]]';
+//字串去空白
+String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");}
+
+var kbWin = null;
+
+function getKeyBoard()
+{
+ var Mytype="width=230,height=280,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IP0704001.PWD.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IP0704001.REVE_PWD.value";  //User真正key的密碼
+ //var DESC = "語音";
+ var DESC = "動態簡訊";
+ kbWin = window.open("LoadAP?pageid=IP2001001&PWD="+PWD+"&KBPWD="+KBPWD+"&DESC="+DESC+"&REVE_DESC=&REVE_KB_KEYCODE="+document.IP0704001.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP0704001.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+function onTop() {
+  	if (kbWin==null) return;
+  	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+function idToCard(id){
+
+  var str1 = id;
+	var str2 = str1.charAt(0).toUpperCase();
+	var srt3;
+		
+		switch(str2){
+			case 'A':
+				str3 = "01";
+				break;
+			
+			case 'B':
+			 	str3 ="02";
+			 	break;
+			 	
+			case 'C':
+				str3 = "03";
+				break;
+				
+			case 'D':
+				str3 = "04";
+				break;
+				
+			case 'E':
+				str3 = "05";
+				break;
+				
+	    case 'F':		
+				str3 = "06";
+				break;
+			
+			case 'G':
+			 	str3 ="07";
+			 	break;
+			 	
+			case 'H':
+				str3 = "08";
+				break;
+				
+			case 'I':
+				str3 = "09";
+				break;
+				
+			case 'J':
+				str3 = "10";
+				break;
+				
+			case 'K':
+				str3 = "11";
+				break;
+			
+			case 'L':
+			 	str3 ="12";
+			 	break;
+			 	
+			case 'M':
+				str3 = "13";
+				break;
+				
+			case 'N':
+				str3 = "14";
+				break;
+				
+			case 'O':
+				str3 = "15";
+				break;
+				
+			case 'P':
+				str3 = "16";
+				break;
+			
+			case 'Q':
+			 	str3 ="17";
+			 	break;
+			 	
+			case 'R':
+				str3 = "18";
+				break;
+				
+			case 'S':
+				str3 = "19";
+				break;
+				
+			case 'T':
+				str3 = "20";
+				break;
+				
+			case 'U':
+				str3 = "21";
+				break;
+			
+			case 'V':
+			 	str3 ="22";
+			 	break;
+			 	
+			case 'W':
+				str3 = "23";
+				break;
+				
+			case 'X':
+				str3 = "24";
+				break;
+				
+			case 'Y':
+				str3 = "25";
+				break;
+
+      case 'Z':
+				str3 = "26";
+				break;
+				
+			default:
+			  alert("您輸入的第1碼字元非英文,請重新輸入!");
+			  return;
+			}
+
+		 var subid ="12345"+str3+str1.slice(1,10);
+     document.IP0704001.SEND_NO.value = subid;
+}
+
+function chkCard(){
+	var card = "[[%%SEND-CARD-NO%%]]";//客戶輸入繳他人的信用卡卡號
+	var id = "[[%%SEND-ID-NO%%]]";//客戶輸入繳他人信用卡的身分證字號
+	if(id == ""){
+		document.IP0704001.SEND_CARD_NO.value = card;
+		document.IP0704001.SEND_NO.value = card;
+		document.IP0704001.SEND_CARD_NO_ALWAYS.value = card;
+		return card;
+	}
+	else{
+		document.IP0704001.SEND_CARD_NO.value = idToCard(id);
+		return "[[%%SEND-ID-NO%%]]";
+	}
+}
+
+function chkSubmit(){
+   document.IP0704001.Submit.disabled = true;
+   document.IP0704001.Submit2.disabled = true;
+   var sendTo = "[[%%SEND-TO-YOU%%]]";
+   if(sendTo == 1){
+   	document.IP0704001.REVE_MSG_SENDTO.value = "[[%%SEND-EMAIL-ADDR%%]]";
+   }
+   if(sendTo == 2){
+   	document.IP0704001.REVE_MSG_SENDTO.value = "[[%%SEND-MOBILE%%]]";
+   }
+   if(document.IP0704001.REVE_PWD.value==""){
+	alert("請輸入網路密碼!");
+	document.IP0704001.Submit.disabled = false;
+	return;
+   }
+   
+  
+   
+   
+   document.onmousedown=noClick;
+   document.IP0704001.submit();	
+}
+
+function chkSubmit2(){
+	document.IP0704001.Submit.disabled = true;
+   	document.IP0704001.Submit2.disabled = true;
+	document.IP0704001.pageid.value = "IP0704000";
+	document.IP0704001.submit();
+}
+
+ function getNotifyType()
+ {
+    if (mobile!='')
+    {
+       document.IP0704001.REVE_MSG_SENDTO.value = mobile;
+       document.IP0704001.REVE_MSG_TYPE.value = "2";
+       return " 簡訊通知 "+ mobile;
+    }
+    else if (email!='')
+    {
+       document.IP0704001.REVE_MSG_SENDTO.value = email;
+       document.IP0704001.REVE_MSG_TYPE.value = "1";
+       return " 電子郵件通知 "+ email;
+    }
+    else 
+    {
+       document.IP0704001.REVE_MSG_TYPE.value = "3";
+       return "不通知";
+    }
+ }
+
+ function alertMsg(){
+    	var m = "[[%%SEND-MPHONE%%]]";
+    	if (m == ""){
+    		alert("您未在聯邦銀行存留手機資料，無法使用簡訊做SSL交易。");
+    		document.IP0704001.pageid.value = "IP0704000";
+    		document.IP0704001.submit();
+    	}
+    	else{
+    		alert("系統將產生一組簡訊通知交易授權碼至您的手機門號" + m + "，若2分鐘內未輸入密碼或收到密碼，本交易將自動取消。");
+    	}
+    }
+
+function noClick() {
+	if ((event.button==1)||(event.button==2)) {
+		alert('交易執行中，請稍候 ....');
+	}
+}
+-->
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+</head>
+<body bgcolor="#FFFFFF" onLoad="alertMsg();" onfocus="onTop();" background="bg01.gif" leftmargin="0" topmargin="0">
+
+<form method="post" action="LoadAP" name="IP0704001">
+<b>帳戶交易&gt;<font color="#003399"><font color="#0066FF">本行信用卡繳款<br>
+<br>
+</font><font color="#0000CC"> 
+<img src="graph/point.gif" width="12" height="12">
+</font>信用卡繳款</b>  
+<table width="630" border="0">
+  <tr> 
+    <td height="276"> 
+      <div align="center"></div>
+      <table width="368" border="1" align="center" bordercolor="#999999">
+        <tr> 
+          <td width="150" bgcolor="#C4CBB8">轉帳類別</td>
+          <td width="202" height="25" bgcolor="#FFFFDD">即時轉帳</td>
+        </tr>
+        <tr> 
+          <td width="150" bgcolor="#C4CBB8">轉出帳號</td>
+          <td width="202" height="25">[[%%SEND-FROM-BR-NAME%%]]  
+          <script language="JavaScript">
+                            document.write(getAcctStr('[[%%SEND-FROM-ACCT-NO%%]]'));
+          </script>
+          </td>
+        </tr>
+        <tr> 
+          <td width="150" bgcolor="#C4CBB8">轉入銀行</td>
+          <td width="202" height="25"> 聯邦銀行</td>
+        </tr>
+        <tr> 
+          <td width="150" bgcolor="#C4CBB8">轉入身分證字號/信用卡卡號</td>
+          <td width="202" height="25">
+          <input type="hidden" name="SEND_CARD_NO" value="[[%%SEND-CARD-NO%%]]">
+          <input type="hidden" name="SEND_NO">
+          <input type="hidden" name="SEND_CARD_NO_ALWAYS">
+          <script>
+          document.write(chkCard());
+          </script>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="150">轉入金額</td>
+          <td height="25" width="202">新台幣
+          <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot('[[%%SEND-TXN-AMT%%]]')));
+          </SCRIPT>
+          元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="150">交易附註</td>
+          <td height="25" width="202">[[%%SEND-MEMO%%]]&nbsp;</td>
+        </tr>
+         <tr> 
+          <td bgcolor="#C4CBB8" width="35%"> 通知方式</td>
+          <td height="25" width="65%" bgcolor="#FFFFDD">
+          <input type="hidden" name="REVE_MSG_SENDTO">
+          <input type="hidden" name="REVE_MSG_TYPE">
+          <script>
+          document.write(getNotifyType());
+          </script>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="150">簡訊通知交易授權碼</td>
+          <td height="25" width="202">
+          <input type="password" name="PWD" size="8" onclick="getKeyBoard();onTop();" readonly>
+            <input type="hidden" name="REVE_PWD" value="">
+          </td>
+        </tr>
+      </table>
+      <div align="center"><br>
+        <input type="button" name="Submit" value="確定轉帳" onClick="chkSubmit();">
+        <input type="button" name="Submit2" value="取消" onClick="chkSubmit2();">
+      </div>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="IP0704002">
+  <input type="hidden" name="SEND-FROM-BR-NAME" value="[[%%SEND-FROM-BR-NAME%%]]">
+  <input type="hidden" name="SEND-FROM-ACCT-DESC" value="[[%%SEND-FROM-ACCT-DESC%%]]">
+  <input type="hidden" name="SEND-FROM-ACCT-NO" value="[[%%SEND-FROM-ACCT-NO%%]]">
+  <input type="hidden" name="SEND-FROM-AVAL-BALANCE" value="[[%%SEND-FROM-AVAL-BALANCE%%]]">
+  <input type="hidden" name="SEND-MEMO" value="[[%%SEND-MEMO%%]]">
+  <input type="hidden" name="SEND-MSG" value="[[%%SEND-MSG%%]]">
+  <input type="hidden" name="SEND-EMAIL-ADDR" value="[[%%SEND-EMAIL-ADDR%%]]">
+  <input type="hidden" name="SEND-MOBILE" value="[[%%SEND-MOBILE%%]]">
+  <input type="hidden" name="HOW-TO-SEND" value="[[%%HOW-TO-SEND%%]]">
+  <input type="hidden" name="SEND-TO-YOU" value="[[%%SEND-TO-YOU%%]]">
+  <input type="hidden" name="SEND-TXN-AMT" value="[[%%SEND-TXN-AMT%%]]">
+  <input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+  <input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+  <input type="hidden" name="REVE_MSG_SENDTO">
+  <input type="hidden" name="SEND_ID_OR_SEND_CARD" value="[[%%SEND_ID_OR_SEND_CARD%%]]">
+  <input type="hidden" name="SEND_ID_ALWAYS" value="[[%%SEND_ID_ALWAYS%%]]">
+  <input type="hidden" name="SEND-ID-NO" value="[[%%SEND-ID-NO%%]]">
+  <input type="hidden" name="REVE_ID_NOA" value="">
+  <input type="hidden" name="REVE_ID_NOA_MARK" value="">
+  <input type="hidden" name="REVE_CARD_NO_NOMARK" value="">
+  <input type="hidden" name="REVE_CARD_NO_MARK" value="">
+  <script>
+  if( document.IP0704001.SEND_ID_ALWAYS.value == "" || document.IP0704001.SEND_ID_ALWAYS.value == "null"){
+  	document.IP0704001.REVE_CARD_NO_NOMARK.value = "[[%%SEND-CARD-NO%%]]";
+  	document.IP0704001.REVE_ID_NOA_MARK.value = document.IP0704001.REVE_CARD_NO_NOMARK.value.substring(0,4)+"-XXXX-XXXX-"+document.IP0704001.REVE_CARD_NO_NOMARK.value.substring(12,16);}
+  else{
+  	document.IP0704001.REVE_ID_NOA.value = "[[%%SEND_ID_ALWAYS%%]]";
+  	document.IP0704001.REVE_ID_NOA_MARK.value = document.IP0704001.REVE_ID_NOA.value.substring(0,1).toUpperCase()+"XXXXX"+document.IP0704001.REVE_ID_NOA.value.substring(6,10);}
+  </script>  
+</table>
+</form>
+</body>
+</html>

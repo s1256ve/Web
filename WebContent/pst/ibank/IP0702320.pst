@@ -1,0 +1,698 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>帳戶交易</title>
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo           Date Modified  Modified by   
+* -------------      ----------     ----------
+* EAI97076           2010.01.12     David 
+* EAI96073           2009.04.01     David
+* EAI96072           2009.03.02     David 
+* EAI98053					 2009.08.25		  YiSyun
+* EAI98060           2009.12.03     YiSyun
+* EAI100018          2011.03.15     YiSyun    
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript" src="script/calendar.js"></script>
+<script language="JavaScript" src="script/calendar-zh.js"></script>
+<script language="JavaScript" src="script/calendar-setup.js"></script>
+<script language="JavaScript" src="script/calendarface.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<script language="Javascript">
+    //字串去空白
+    String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");} 
+</script>
+<script language="javascript">
+<!--
+/*
+function hindSms(){  //繳本人信用卡隱藏簡訊通知
+				
+   if(document.IP0702300.SEND_CARDCASH[0].checked){
+	    document.all.mail.style.display="block";
+	    document.all.sms.style.display="none";
+	    document.all.no.style.display="block";
+	     
+	  }
+	 if(document.IP0702300.SEND_CARDCASH[1].checked){
+      document.all.mail.style.display="block";
+	    document.all.sms.style.display="block";
+	    document.all.no.style.display="block";
+     
+	 }
+}
+*/
+
+/*
+ function chkSSL(tmp){
+    	var ssl = tmp;
+    	if(ssl == 2){
+    		return " ";
+    	}
+    	else{
+    	  document.IP0702300.SEND_CARDCASH[1].disabled=true;
+    		return " ";
+    	}
+    }
+ */
+function cardNo(arg){
+
+ if(document.IP0702300.SEND_CARDCASH[1].checked){
+	var card = eval('document.IP0702300.card'+arg+'.value');
+	if(isNaN(card)){
+		alert("卡號只能輸入數字!");
+		return;
+	}
+	if(card.length == 4){
+		eval('document.IP0702300.card'+(arg+1)+'.focus()');
+	}
+ }
+ 
+ else{};
+}
+
+function chgAcct(acctStr) {
+	var acctArray = acctStr.split("@");
+	var i = 0;
+	document.IP0702300.SEND_FROM_BR_NAME.value = acctArray[0];
+	document.IP0702300.SEND_FROM_ACCT_DESC.value = acctArray[1];
+	document.IP0702300.SEND_FROM_ACCT_NO.value = acctArray[2];
+	document.IP0702300.SEND_FROM_AVAL_BALANCE.value = acctArray[3];
+
+}
+
+function chkCard(temp) {
+	var card = temp;
+	document.IP0702300.CHECK_CARD.value = card;
+	if(card == '1'){
+		document.all.mine.style.display="block";
+		document.all.other.style.display="none";
+		
+	}
+	else {
+		document.all.mine.style.display="none";
+		document.all.other.style.display="block";
+		
+	}
+}
+/*
+function chkHowToPay(tmp){
+	if(tmp == '1'){
+		document.all.a1.style.display="none";
+	}
+  if(tmp == '2'){
+  	document.all.a1.style.display="block";
+  }	
+}
+*/
+function chkSendTo(tmp){
+	document.IP0702300.SEND_TO_YOU.value = tmp;
+	if(tmp == '1'){
+		document.all.a.style.display="block";
+		//document.all.b.style.display="none";		
+		document.IP0702300.HOW_TO_SEND.value = "電子郵件通知";
+
+	}
+	if(tmp == '2'){
+		document.all.a.style.display="none";
+		document.all.b.style.display="block";
+		document.IP0702300.HOW_TO_SEND.value = "簡訊通知";
+
+	}
+	if(tmp == '3'){
+		document.all.a.style.display="none";
+		//document.all.b.style.display="none";
+		document.IP0702300.HOW_TO_SEND.value = "不通知";
+
+	}
+}
+
+function chkSubmit(){
+
+  if(document.IP0702300.check[0].checked){
+		document.IP0702300.SEND_CARD_NO.value = "";
+		document.IP0702300.SEND_ID_OR_SEND_CARD.value = "1";
+	}
+	
+	if(document.IP0702300.check[1].checked){
+		document.IP0702300.SEND_ID.value = "";
+		document.IP0702300.SEND_ID_OR_SEND_CARD.value = "2";
+	}
+  
+  
+	/*
+	if(document.IP0702300.SEND_CARDCASH[0].checked)
+  {
+   	document.IP0702300.SEND_ID.value = document.IP0702300.SEND_ID1.value;
+   	document.IP0702300.pageid.value = "IP0702301"; //繳本人的
+	} 
+	
+	if(document.IP0702300.SEND_CARDCASH[1].checked)
+  {	
+		document.IP0702300.SEND_ID.value = document.IP0702300.SEND_ID2.value
+		document.IP0702300.SEND_ID_ALWAYS.value = document.IP0702300.SEND_ID2.value
+		document.IP0702300.pageid.value = "IP0702311"; //繳他人的
+	}	
+	*/
+  
+  document.IP0702300.SEND_ID.value = document.IP0702300.SEND_ID2.value
+	document.IP0702300.SEND_ID_ALWAYS.value = document.IP0702300.SEND_ID2.value
+	document.IP0702300.pageid.value = "IP0702311"; //繳他人的 
+   
+	var acct = document.IP0702300.SEND_FROM_ACCT_NO.value;
+
+	var avalBalance = eval(document.IP0702300.SEND_FROM_AVAL_BALANCE.value);
+
+	if(acct=="" || acct=="undefined"){
+		alert("請選擇轉出帳號！");
+		return;
+	}
+	if(acct.substr(3,2)=="51"){
+		alert("如您動用到達文西A+理財卡或國民現\n金貸款額度，且動用金額大於100元\n時，每筆計收提領費100元。");
+	}
+	var send = document.IP0702300.SEND_TO_YOU.value;
+	
+	if(document.IP0702300.check[1].checked){
+		document.IP0702300.SEND_CARD_NO.value = document.IP0702300.card1.value + document.IP0702300.card2.value + document.IP0702300.card3.value + document.IP0702300.card4.value;
+	}
+	if(document.IP0702300.check[0].checked ){
+	
+	   document.IP0702300.card1.value="";
+	   document.IP0702300.card2.value="";
+	   document.IP0702300.card3.value="";
+	   document.IP0702300.card4.value="";
+		 
+		if("0123456789".indexOf(document.IP0702300.SEND_ID.value.charAt(1),0)<0){
+			alert("您輸入的第2碼字元非數字,請重新輸入!");
+			return;
+		}
+    
+    
+		
+		if(checkID(document.IP0702300.SEND_ID.value) == false){
+			return;
+		}
+		
+    
+    
+		document.IP0702300.SEND_ID.value = document.IP0702300.SEND_ID.value.toUpperCase();
+		document.IP0702300.SEND_CARD_NO.value = "";
+	}	
+	
+ else if(document.IP0702300.check[1].checked ){
+		document.IP0702300.SEND_ID.value = "";
+		if((document.IP0702300.card1.value=="")||(document.IP0702300.card2.value=="")||(document.IP0702300.card3.value=="")||(document.IP0702300.card4.value=="")){
+			alert("請輸入完整卡號!");
+			return;
+		}
+		document.IP0702300.SEND_CARD_NO.value = document.IP0702300.card1.value + document.IP0702300.card2.value + document.IP0702300.card3.value + document.IP0702300.card4.value;
+		}
+	
+else{};
+	
+	/**
+	if(document.IP0702300.check[0].checked && leg2==0){
+		alert("請輸入身分證字號!");
+		return;
+	}
+	else{
+  	chkFristWord();
+	}
+	if(document.IP0702300.check[0].checked && document.IP0702300.SEND_ID.value.length != 10){
+		alert("您輸入的身分證字號位數不對,請檢查後重新輸入!");
+		return;
+	}
+	if(document.IP0702300.check[0].checked && document.IP0702300.SEND_ID.value.length == 10){
+		if (!isNaN(document.IP0702300.SEND_ID.value.substr(0,1))){
+    			alert("您的身分證字號第一碼輸入錯誤!");
+    			return;
+  		}
+  	}
+  	*/
+  	
+ 	var card = document.IP0702300.SEND_CARD_NO.value;
+  var leg = document.IP0702300.SEND_CARD_NO.value.length;
+	var leg2 = document.IP0702300.SEND_ID.value.length;
+	if(document.IP0702300.check[1].checked){
+		if(checkCard(document.IP0702300.SEND_CARD_NO.value)==false){
+			return;
+		}
+	}
+	/**
+	if(document.IP0702300.check[1].checked && leg==0){
+		alert("請輸入卡號");
+	}
+	if(document.IP0702300.check[1].checked && leg!=16){
+		alert("您輸入的卡號位數有誤!");
+		return;
+	}
+	*/
+
+	if(document.IP0702300.SEND_TXN_AMT.value==""){
+		alert("請輸入轉帳金額!");
+		return;
+	}
+	if (isNaN(document.IP0702300.SEND_TXN_AMT.value)){
+            		alert("轉帳金額格式錯誤!");
+           		return;
+  	}
+  	if (IP0702300.SEND_TXN_AMT.value.indexOf(".")>-1){
+            		alert("轉帳金額須為正整數!");
+            		return;
+    	}
+    	if (IP0702300.SEND_TXN_AMT.value.indexOf("-")>-1){
+            		alert("轉帳金額須為正整數!");
+            		return;
+    	}
+    	if (IP0702300.SEND_TXN_AMT.value.indexOf("+")>-1){
+            		alert("台幣轉帳不可帶正號!");
+            		return;
+    	}
+    	if(eval(IP0702300.SEND_TXN_AMT.value)==0){
+            		alert("轉帳金額不可為零!");
+            		return;   
+        }
+	var send = document.IP0702300.SEND_TO_YOU.value;
+	var msg = document.IP0702300.SEND_MSG.value;
+	var mail = document.IP0702300.SEND_EMAIL_ADDR.value;
+	//var mobile = document.IP0702300.SEND_MOBILE.value;
+
+	if(send == 1){
+		if(mail == ""){
+			alert("請填寫通知對象電子郵件地址!");
+			return;
+		}
+		chkEmail = mail.match(/^\S+@\S+\.\S+$/);
+		if(!chkEmail || !mail){
+    	    		alert("電子郵件位址格式有誤!");
+    	    		return;
+    	    	}
+    	    	if(document.IP0702300.SEND_E_MSG.value==""){
+			alert("請填寫訊息內容!");
+			return;
+		}
+		if(document.IP0702300.SEND_E_MSG.value.length>250){
+			alert("您輸入郵件字數超過250個字，請重新輸入!");
+			return;
+		}
+		//document.IP0702300.SEND_MOBILE.value = "";
+		document.IP0702300.SEND_MSG.value = addMailTitle(document.IP0702300.SEND_E_MSG.value);
+	}
+	/**
+	if(send == 2){
+		if(mobile == ""){
+			alert("請填寫通知對象行動電話號碼!");
+			return;
+		}
+		if (isNaN(mobile)){
+            			alert("電話號碼格式錯誤!");
+            			return;
+        	    	}
+        	    	if (mobile.length!=10){
+            			alert("電話號碼格式錯誤!");
+            			return;
+        	    	}
+        	    	if(mobile.substr(0,2)!=09){
+ 			alert("您輸入的行動電話號碼有誤!");
+ 			return;
+ 		}
+      if(document.IP0702300.SEND_M_MSG.value==""){
+			alert("請填寫訊息內容!");
+			return;
+		}
+		if(document.IP0702300.SEND_M_MSG.value.length>60){
+			alert("您輸入簡訊字數超過60個字，請重新輸入!");
+			return;
+		}
+		var y = getADDateStr("[[%%SYSDATE%%]]",3)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",1); 
+		document.IP0702300.SEND_EMAIL_ADDR.value = "";
+		document.IP0702300.SEND_MSG.value = addMobileTitle2(document.IP0702300.SEND_M_MSG.value,y);
+	}
+	**/
+	if(send== 3){
+		//document.IP0702300.SEND_MOBILE.value = "";
+		document.IP0702300.SEND_EMAIL_ADDR.value = "";
+	}
+	onSend('IP0702300');
+	document.IP0702300.SEND_TXN_DATE.value=document.IP0702300.DateBegin.value;
+	date = eval(document.IP0702300.SEND_TXN_DATE.value);
+	date2 = "[[%%SYSDATE%%]]";
+        	if(date2==""){
+        		date2 = eval(getADDateStr(getNowDate(),-1));
+        	}
+	else{
+		date2 = eval(getADDateStr(date2,-1));
+	}
+	if(chkDateRule(document.IP0702300.DateBegin.value,"",
+		"[[%%SYSDATE%%]]",
+		0,	//A年
+		1,	//A月
+		0,	//A日
+		0,	//B年
+		1,	//B月
+		0	//B日
+		)==false){
+	alert("預約轉帳限預約最近一個月,如93/05/23可預約93/05/24-93/06/23期間執行之交易");
+	return ;
+	}
+	if(date > date2){
+			if(document.IP0702300.check[0].checked){
+			document.IP0702300.SEND_CARD_NO.value = "";
+		}
+			if(document.IP0702300.check[1].checked){
+			document.IP0702300.SEND_ID.value = "";
+		}
+		//document.IP0702300.pageid.value = "IP0702301";
+		document.IP0702300.SEND_MEMO.value = HalfshapeToFullshape(document.IP0702300.SEND_MEMO.value);
+		document.IP0702300.submit();
+	}
+	else{
+		alert("預約轉帳限預約最近一個月,如93/05/23可預約93/05/24-93/06/23期間執行之交易");
+		return;
+	}	
+}
+
+function chkSubmit2(){
+		document.IP0702300.pageid.value = "IP0903000";
+		document.IP0702300.submit();
+}
+
+function chkSubmit3(){
+		document.IP0702300.pageid.value = "IP0601000";
+		document.IP0702300.submit();
+}
+
+function chkFristWord(){
+	var id = document.IP0702300.SEND_ID.value;
+	var fristWord = id.substr(0,1);
+	wordArray = new Array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+	wordArray2 = new Array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z");
+	for(i=0;i<26;i++){
+		if(fristWord == wordArray2[i]){
+			document.IP0702300.SEND_ID.value = wordArray[i]+id.substr(1,id.length-1);
+		}
+	}
+}
+
+-->
+</script>
+
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal3.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　帳戶交易&gt;<font color="#0066FF">預約轉繳信用卡款</font></b><br>
+<form method="post" action="LoadAP" name="IP0702300"> 
+
+<!--
+<table width="630" border="0">
+  <tr> 
+    <td colspan="4">　<img src="graph/point.gif" width="12" height="12">預約轉繳信用卡款/預約轉繳本行非本人信用卡費<font color="#000099"><br> 
+      <table width="446" border="1" bordercolor="#999999" align="center">
+        <tr> 
+          <td bgcolor="#C4CBB8" width="159">可用額度</td>
+          <td height="25" width="271">
+          <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot('[[%%SEND-CARD-AVAL-CREDIT%%]]')));
+          </SCRIPT>
+          元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="159">本期應繳金額</td>
+          <td height="25" width="271">
+          <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot('[[%%SEND-CARD-DUE-AMT%%]]')));
+          </SCRIPT>
+          元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="159">本期最低應繳金額</td>
+          <td height="25" width="271">
+          <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot('[[%%SEND-CARD-MIN-AMT%%]]')));
+          </SCRIPT>
+          元</td>
+        </tr>
+        <tr> 
+          <td height="14" bgcolor="#C4CBB8" width="159"> 繳款截止日</td>
+          <td height="25" width="271">
+          <script>
+          document.write(getRCDateStr("[[%%SEND-CARD-DUE-DAY%%]]",0));
+          </script>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="159"> 最近一次繳款金額</td>
+          <td height="25" width="271">
+          <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot('[[%%SEND-CARD-LSTPAY-AMT%%]]')));
+          </SCRIPT>
+          元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="159"> 最近一次繳款日期</td>
+          <td height="25" width="271">
+          <script>
+          document.write(getRCDateStr("[[%%SEND-CARD-LSTPAY-DATE%%]]",0));
+          </script>
+        </tr>
+        <tr> 
+          <td height="2" bgcolor="#C4CBB8" width="159">本期帳單明細查詢</td>
+          <td height="25" width="271"><a href="javascript:chkSubmit3();">最近一期</a></td>
+        </tr>
+      </table>
+      <table width="446" border="0" align="center">
+        <tr>
+          <td><p>註： <br>
+        1.&nbsp;若您持有多張聯邦信用卡，原則上是共用同一信用額度，惟 金援卡、 Cyber X 卡、新學友卡附卡、分期 0 利卡及部分借貸款專案之額度係獨立於共用額度外。<br>
+        2.&nbsp;上表所列「本期應繳金額」及「本期最低應繳金額」係最近一期帳單資料，如您已繳款，則毋須重覆繳款。 </p></td>
+        </tr>
+      </table>  -->
+      
+      <table width="620" border="0">
+        <tr>
+          <td colspan="2"> 
+            <table width="598" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td>　<img src="graph/point.gif" width="12" height="12" align="absmiddle">轉帳日期 
+                 <script>
+                 var selDate = getRCDateStr("[[%%SYSDATE%%]]",0);
+                 crtDateInputObj("DateBegin");
+                 //lockCalSelObj('IP0702300',0,selDate);
+                 lockCalSelObj('IP0702300',-1,selDate);
+                 </script>
+                 <font color="#FF0000">(例如：預定轉帳日期為94年6月1日，則請輸入94/06/01)</font>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+            <td colspan="2">　轉出帳號： 
+              <select name="SELECT-ACCT-NO"  onChange="JavaScript:chgAcct(this.value);">
+                <option selected>==請選擇帳號 可用餘額==</option>
+
+                [[%%LOOP_SEC SEND-FROM-ACCT-NO%%]]
+                <option value="[[%%SEND-FROM-BR-NAME%%]]@[[%%SEND-FROM-ACCT-DESC%%]]@[[%%SEND-FROM-ACCT-NO%%]]@[[%%SEND-FROM-AVAL-BALANCE%%]]">
+                [[%%SEND-FROM-BR-NAME%%]] 
+                <SCRIPT language="JavaScript">
+                	document.write(getAcctStr('[[%%SEND-FROM-ACCT-NO%%]]'));
+                </SCRIPT>
+	        <SCRIPT language="JavaScript">
+                	document.write(trimDecimal(moneyAddDot('[[%%SEND-FROM-AVAL-BALANCE%%]]')));
+                </SCRIPT>
+                元</option>
+                [[%%ELOOP_SEC%%]]
+
+              </select>
+              </td>
+          </tr>
+         <!-- 
+         <tr> 
+         	<td bgcolor="#C4CBB8"><input type="radio" name="SEND_CARDCASH" value="1" checked onclick="javascript:chkHowToPay(this.value);">繳本人信用卡費</td>
+         </tr> -->
+         
+         
+        <tr>
+      		<td bgcolor="#C4CBB8">
+          		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+          			<tr>
+          	 <!--<td valign="top"><input type="radio" name="SEND_CARDCASH" value="2" onclick="javascript:chkHowToPay(this.value);"></td>  -->
+                 <td valign="top"> 繳他人信用卡費，身分證字號/信用卡卡號<font color="#FF0000">(請擇一輸入，如您繳交聯合信用卡卡款限以輸入身分證字號方式繳款)</font></td>
+                </tr>
+              </table>
+        
+        
+          <!-- <table id="a1" style="display:none" width="100%" border="0"> -->
+               <tr> 
+                <td colspan="2" height="2">
+                	     
+	               <input type="radio" name="check" value="1" checked onclick="">
+                 身分證字號 ：<input type="text" name="SEND_ID2" value="" maxlength="10"><br>
+                </td>
+               </tr>
+          <tr>
+            <td colspan="2" height="2">
+              <input type="radio" name="check" value="2" onclick="">
+              信用卡卡號  ： 
+              <input type="Text"  maxlength="4" name="card1" size="4" onkeyup="cardNo(1);">
+              -
+              <input type="Text"  maxlength="4" name="card2" size="4" onkeyup="cardNo(2);">
+              -
+              <input type="Text"  maxlength="4" name="card3" size="4" onkeyup="cardNo(3);">
+              -
+              <input type="Text"  maxlength="4" name="card4" size="4">
+            </td>  
+          </tr>
+        </table>
+        </td>
+    </tr>
+         
+        <tr> 
+            <td colspan="2" height="2">
+            <div id="mine" style="display:block">
+            　　金　　  &nbsp;&nbsp;額 ： 新台幣 <input type="text" name="SEND_TXN_AMT" value="">元<br>
+            </div>
+            </td>
+          </tr>
+        <tr> 
+          <td colspan="2">　　交 易 附 註 ：
+          <input type="text" name="SEND_MEMO" value="" size="80" maxlength="50">
+          <br>
+            <font color="#FF0000">(限50字，如您輸入交易附註，則於交易成功後可至『帳戶查詢』&gt;『台幣存款帳戶』&gt;『交易明細』點選查詢類別為『網銀轉出交易』查詢您所記錄之交易附註。) 
+            </font>
+          </td>
+        </tr>
+    </table>
+    <table width="620" border="0">    
+        <tr> 
+          <td colspan="2"><b>通知方式</b><font color="#FF0000">（您可利用下列方式於本次轉帳成功後通知相關人員)</font></td>
+        </tr>
+        
+        <table width="100%" border="0" >        
+        <tr> 
+            <td colspan="2" bgcolor="#C4CBB8">            
+              <input type="radio" name="SEND_TO" value="1" onClick="chkSendTo(this.value);">
+              電子郵件通知 </td>
+          </tr>
+          <tr>
+          <td colspan="2">	
+          <div id="a" style="display:none">           
+		通知對象電子郵件地址 
+              <input onpaste="return false;" type="text" name="SEND_EMAIL_ADDR" value="" size="85" style="ime-mode:disabled"><br>
+		訊息內容（限250字）<br>
+              <textarea name="SEND_E_MSG" cols="80" rows="3" maxlength="250"></textarea>
+          </div>
+		      </td>
+          </tr>
+          </table>
+          
+          <!--
+              <table width="100%" border="0" id="sms" style="display:none">
+                <tr> 
+                  <td colspan="2" bgcolor="#C4CBB8"> 
+                    <input type="radio" name="SEND_TO" value="2" onClick="javascript:chkSendTo(this.value);">
+                    簡訊通知</td>
+                </tr>
+
+                <tr>
+                <td colspan="2">
+                <div id="b" style="display:none"> 
+                  通知對象行動電話號碼
+                    <input onpaste="return false;" type="text" name="SEND_MOBILE" maxlength="10" value="" style="ime-mode:disabled"><br>
+		  //簡訊通知費用 3元/通<font color="#FF0000">（簡訊通知成功後，將由您的轉出帳號扣款）</font><br>
+		  訊息內容（簡訊開頭語為<聯邦網銀代理通知>，您可輸入42個字）<br>
+                    <textarea name="SEND_M_MSG" cols="80" rows="3" maxlength="70"></textarea>
+                </div>
+                </td>
+                </tr>
+
+              </table>
+              -->
+             <table width="100%" border="0" >
+                <tr> 
+                  <td colspan="2" bgcolor="#C4CBB8"> 
+                    <input type="radio" name="SEND_TO" value="3" checked onClick="javascript:chkSendTo(this.value);">
+                    不通知</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      註：<br>
+	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">1.</td>
+            <td valign="top">預約轉帳交易限預約最近一個月，如 93/05/23 可預約時間為 93/05/24-93/06/23 ； 欲註銷預約轉帳交易，應於預約轉帳日前辦理。</td>
+          </tr>
+          <tr>
+            <td valign="top">2.</td>
+            <td valign="top">若遇執行轉帳交易發生網路傳輸異常時，請至查詢 / 取消預約轉帳內確認預約交易是否設定成功。</td>
+          </tr>
+          <tr>
+            <td valign="top">3.</td>
+            <td valign="top">選擇輸入信用卡號時，請直接輸入16位數卡號不需再加入&quot;－&quot;(dash)鍵。</td>
+          </tr>
+          <tr>
+            <td valign="top">4.</td>
+            <td valign="top">若遇執行繳交本行卡款交易發生網路傳輸異常時，請至查詢當日網銀交易內確認交易是否成功。</td>
+          </tr>
+           <tr>
+            <td valign="top">5.</td>
+            <td valign="top">如欲繳非本人信用卡費用，請先至申請專區完成非約定轉帳交易之相關申請手續後，才能透過約定之行動電話號碼接收簡訊動態授權碼執行交易。</td>
+          </tr>
+          <tr>
+            <td valign="top">6.</td>
+            <td valign="top"><font color="#FF0000">繳交本人本人信用卡費將以網路密碼執行交易授權；繳交非本人信用卡費則以簡訊動態授權碼執行交易授權。</font></td>
+          </tr>
+          
+          <tr>
+            <td valign="top">7.</td>
+            <td valign="top">本行將於<font color="#FF0000"><B>每日上午8點起，開始執行當日之預約轉帳交易</B></font>。<U>惠請客戶注意依預約交易之執行時間及實際資金需求時點規劃適當的預約日期。</U></td>
+          </tr>
+          
+          
+     </table>
+     	<script language="JavaScript">
+              document.write(chkSSL('[[%%SEND-STATUS%%]]'));
+  	  </script>
+      <table width="620" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td colspan="2"> 
+            <div align="center">　 
+              <input type="button" name="Submit" value=" 確定 " onClick="chkSubmit();">
+              <input type="reset" name="Submit2" value="重填">
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="">
+  <input type="hidden" name="SEND_FROM_AVAL_BALANCE" value="">
+  <input type="hidden" name="SEND_FROM_BR_NAME" value="">
+  <input type="hidden" name="SEND_FROM_ACCT_DESC" value="">
+  <input type="hidden" name="SEND_FROM_ACCT_NO"  value="">
+  <input type="hidden" name="SEND_CARD_NO" value="">
+  <input type="hidden" name="SEND_TO_YOU" value="3">
+  <input type="hidden" name="HOW_TO_SEND" value="不通知">
+  <input type="hidden" name="SEND_MSG" value="">
+  <input type="hidden" name="SEND_TXN_DATE" value="">
+  <input type="hidden" name="CHECK_CARD" value="1">
+  <input type="hidden" name="SEND_ID1" value="[[%%SEND-ID-NO%%]]">
+  <input type="hidden" name="SEND_ID" value="">
+  <input type="hidden" name="SEND_ID_OR_SEND_CARD" value="">
+  <input type="hidden" name="SEND_ID_ALWAYS" value="[[%%SEND_ID_ALWAYS%%]]">
+</table>
+</form>
+<p><p><p><p><p><p><p><p><p><p><p><p>
+</body>
+</html>

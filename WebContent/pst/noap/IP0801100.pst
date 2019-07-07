@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>首次登入</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg01.gif" leftmargin="0" topmargin="0">
+<form name="IP0801100" method="POST" action="LoadAP">
+<p><b>首次登入<font color="#003399"><font color="#0066FF"> </font></font></b></p>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5"> 
+      <table width="49%" border="0" align="center">
+        <tr> 
+          <td height="74">親愛的客戶，因本行尚未取得您的授權，您的語音密碼目前仍無法在個人網路銀行上使用。請您立即撥打(02)2545-1788按73，完成"授權網路使用語音密碼"交易，再至本網站重新利用語音密碼進行首次登入，申請使用「電子銀行服務」與個人網路銀行！<br>
+          </td>
+        </tr>
+      </table>
+      <div align="center"> 
+        <input type="button" name="Submit" value="確 定" onclick="javascript:window.open('[[%%HOSTNAME%%]]/','_top');">
+      </div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="5" valign="bottom" height="1" bgcolor="#663300"></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

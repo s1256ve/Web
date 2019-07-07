@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="Big5"?>
+<!-- IVR FUND F205 Last updated date 23-4-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="F2051i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='F2051i02' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="F2051i03">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>	
+	<field id="F2051i04">
+		<name>REVE-TYPE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>查詢功能碼</description>
+	</field>
+	<field id="F2051i05">
+		<name>SEND-FCID</name>
+		<length>2</length>
+		<type>String</type>
+		<description>基金公司代號</description>
+	</field>
+	<field id="F2051i06">
+		<name>SEND-FID</name>
+		<length>2</length>
+		<type>String</type>
+		<description>基金代號</description>
+	</field>
+		
+</catalog>

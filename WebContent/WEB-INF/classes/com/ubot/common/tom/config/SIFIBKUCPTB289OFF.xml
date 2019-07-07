@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- UATM B289 Last updated date 10-13-2010 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPT">
+	<field id="B289i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id="B289i01">
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="B289i02">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="B289i03">
+		<name>REVE-BR-NAME</name>
+		<length>20</length>
+		<type>String</type>
+		<description>銀行代碼</description>
+	</field>
+	<field id="B289i04">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>轉出帳號</description>
+	</field>
+	<field id="B289i05">
+		<name>REVE-VCHR-NO</name>
+		<length>8</length>
+		<type>String</type>
+		<description>定存存單號碼</description>
+	</field>
+	<field id="B289i06">
+		<name>REVE-CURRENCY</name>
+		<length>8</length>
+		<type>String</type>
+		<description>幣別</description>
+	</field>
+	<field id="B289i07">
+		<name>REVE-PRINCIPAL-BALANCE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>存單金額</description>
+	</field>
+	<field id="B289i08">
+		<name>REVE-INT-DATE</name>
+		<length>12</length>
+		<type>String</type>
+		<description>原存單起息日</description>
+	</field>
+	<field id="B289i06">
+		<name>REVE-EXP-DATE</name>
+		<length>12</length>
+		<type>String</type>
+		<description>原存單到期日</description>
+	</field>
+	<field id="B289i07">
+		<name>REVE-RESCIND-DATE</name>
+		<length>12</length>
+		<type>String</type>
+		<description>解約日期</description>
+	</field>
+	<field id="B289i08">
+		<name>REVE-INT-RATE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>原定存利率</description>
+	</field>
+	<field id="B289i09">
+		<name>REVE-EXP-RATE</name>
+		<length>12</length>
+		<type>String</type>
+		<description>解約定存利息</description>
+	</field>
+	<field id="B289i10">
+		<name>REVE-TO-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>轉入帳號</description>
+	</field>
+	<field id="B289i11">
+		<name>REVE-NET-AMOUNT</name>
+		<length>12</length>
+		<type>String</type>
+		<description>轉入金額</description>
+	</field>
+	<field id="B289i12">
+		<name>REVE-TO-BALANCE</name>
+		<length>12</length>
+		<type>String</type>
+		<description>轉入帳號餘額</description>
+	</field>
+		<field id="B289i13">
+		<name>REVE-SYSDATE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>現在日期時間</description>
+	</field>	
+	<field id="B289i14">
+		<name>REVE_DETAIN_TAXATION</name>
+		<length>20</length>
+		<type>String</type>
+		<description>代扣稅款</description>
+	</field>	
+	<field id="B289i15">
+		<name>REVE_TO_ACCT_NO_MARK</name>
+		<length>20</length>
+		<type>String</type>
+		<description>轉入帳號遮蔽</description>
+	</field>		
+	<field id="B289i16">
+		<name>REVE_ACCT_NO_MARK</name>
+		<length>20</length>
+		<type>String</type>
+		<description>轉出帳號遮蔽</description>
+	</field>		
+	<field id="B289i17">
+		<name>REVE_VCHR_NO_MARK</name>
+		<length>20</length>
+		<type>String</type>
+		<description>存單號碼遮蔽</description>
+	</field>					
+	<field id="B289i14">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="B289i15">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="B289i16">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="B289i17">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo           Date Modified  Modified by   
+* =========          =============  ===========
+* EAI99039           2010.04.29     David       將HOSTNAME由http://mybank.ubot.com.tw更改為https://mybank.ubot.com.tw
+***********************************************************************/
+ -->
+<root>
+	<HOSTNAME value="https://mybank.ubot.com.tw"/>
+	<IP value="210.65.249.137"/>
+	<NOAP value="0" home="IC0000104" pst="/pst/noap2/" errmsg="/pst/noap2/IE9999006.pst"></NOAP>
+	<IBANK value="1" home="IC000001B" pst="/pst/accessible/" errmsg="/pst/noap2/IE9999007.pst"></IBANK>
+	<!--
+    <EAIMNGR value="2" home="IC0100000" pst="/pst/eaimngr/" errmsg="/pst/noap/IE9999000.pst"></EAIMNGR>
+    <UMA value="3" home="IC0300000" pst="/pst/uma/" errmsg="/pst/noap/IE9999000.pst"></UMA>
+    <UMAMAG value="4" home="IC1300000" pst="/pst/umamag/" errmsg="/pst/noap/IE9999000.pst"></UMAMAG>
+	<YESFUND value="5" home="IC0200000" pst="/pst/yesfund/" errmsg="/pst/noap/IE9999000.pst"></YESFUND>
+	<CERT value="6" home="IC0400000" pst="/pst/cert/" errmsg="/pst/noap/IE9999000.pst"></CERT>
+	<CERTMAG value="7" home="IC1400000" pst="/pst/certmag/" errmsg="/pst/noap/IE9999000.pst"></CERTMAG>-->
+	<!--conn_pottxn type="driver" dbdriver="COM.ibm.db2.jdbc.app.DB2Driver" dsn="jdbc:db2:pottxn" user="db2ibank" pass="db2ibank"/-->
+	<conn_pottxn type="datasource" dbdriver="" dsn="jdbc/pottxn" user="db2ibank" pass="db2ibank"/>
+	<conn_potlog type="datasource"  dbdriver="" dsn="jdbc/potlog" user="db2ibank" pass="db2ibank" />
+	<loadpage relation=""> 
+          SELECT * FROM db2ibank.content WHERE pageid='[[%%PAGEID%%]]' AND startdate &lt;= '[[%%DATE%%]]' AND stopdate >= '[[%%DATE%%]]'
+	</loadpage>
+	<expage relation=""> 
+          SELECT * FROM db2ibank.excppage WHERE pageid='[[%%PAGEID%%]]'
+    </expage>
+    <logmaxid relation=""> 
+		SELECT MAX(LOGID) AS LID FROM DB2IBANK.LOADAPBEGIN
+		WHERE LOGID LIKE '[[%%LOGDATE%%]]%'	
+	</logmaxid>
+	<p0001 relation="">
+		INSERT INTO db2ibank.content ( pageid, para, tom, session, startdate, stopdate, ischeck, pst)
+		VALUES ( '[[%%PAGEID%%]]' , '[[%%PARA%%]]' , '[[%%TOM%%]]' , '[[%%SESSION%%]]' , 
+		                '[[%%STARTDATE%%]]' , '[[%%STOPDATE%%]]' , [[%%ISCHECK%%]] , '[[%%PST%%]]' )
+	</p0001>
+	<loadapbegin relation="">
+		INSERT INTO db2ibank.LOADAPBEGIN ( LOGID, STARTTIME, SESSID, TXNID, APTYPE, COMEFROM, SIF)
+		VALUES ( '[[%%LOGID%%]]' , '[[%%STARTTIME%%]]' , '[[%%SESSID%%]]' , '[[%%TXNID%%]]' , 
+		                '[[%%APTYPE%%]]' , '[[%%COMEFROM%%]]' , '[[%%SIF%%]]' )
+	</loadapbegin>
+	<loadapend relation="">
+		INSERT INTO db2ibank.LOADAPEND ( LOGID, ENDTIME, SOF, SYSMSGCODE, TXNMSGCODE, RUNTIME)
+		VALUES ( '[[%%LOGID%%]]' , '[[%%ENDTIME%%]]' , ? , 
+		                '[[%%SYSMSGCODE%%]]' , '[[%%TXNMSGCODE%%]]' , [[%%RUNTIME%%]] )
+	</loadapend>
+	<!-- <config_log filedir="C:\IBM\" /> -->
+	<config_log filedir="/usr/IBM/" />
+</root>
+	

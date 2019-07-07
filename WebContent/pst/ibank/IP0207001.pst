@@ -1,0 +1,304 @@
+<html>
+<head>
+<title>台幣存款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: Alma 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI99041	        2010.05.10	   Alma
+***********************************************************************/
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript">
+var nowDate = new Date();
+var nowDay = nowDate.getDate();
+var nowMonth = nowDate.getMonth();
+var nowYear = nowDate.getFullYear();
+var nowDateStr = getRCDateStr(nowYear + "/" + (nowMonth+1) + "/" + nowDay,0);
+var nowTimeStr = nowDate.getHours() + ":" + nowDate.getMinutes() ;
+var selDate = nowDateStr + "," + nowDateStr;
+
+function chkSubmit(){
+	document.IP0207001.submit();
+}
+</SCRIPT>
+</head>
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form method="post" action="LoadAP" name="IP0207001">
+<b>　台幣存款帳戶查詢&gt;<font color="#003399"><font color="#0066FF">領用票據資料</font></font></b><br>
+<font class="t3">　聯邦銀行個人網路銀行交易結果</font><br>
+<br>
+<table width="763" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td width="763" height="2"> 
+      <div align="right"><font color="#0000CC">查詢時間： <script language="javascript">
+      	document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+				      		   		//document.write(getNowTime());
+							</script></font></div>
+    </td>
+  </tr>
+</table>
+<table width="769" border="0">
+  <tr> 
+    <td width="763"><font color="#0000CC"> 　 <img src="graph/point.gif" width="12" height="12" align="absmiddle">以下是您 
+      [[%%SEND-BR-NAME%%]] [[%%SEND-ACCT-DESC%%]] 
+        <script language="javascript">
+				document.write(getAcctStr("[[%%SEND-ACCT-NO%%]]")); 
+			</script> 領用票據資料（單本） 查詢結果：</font> 
+      <table width="759" border="1" bordercolor="#999999">
+        <tr bgcolor="#C4CBB8"> 
+          <td width="155"> 
+            <div align="center">票據起迄號碼</div>
+          </td>
+          <td width="113"> 
+            <div align="center">票據張數</div>
+          </td>
+          <td width="113"> 
+            <div align="center">付兌張數</div>
+          </td>
+          <td width="113"> 
+            <div align="center">作廢張數</div>
+          </td>
+          <td width="113"> 
+            <div align="center">種類</div>
+          </td>
+          <td width="112"> 
+            <div align="center">領用日期</div>
+          </td>
+        </tr>
+        <tr> 
+          <td width="155"> 
+     
+            <div align="center"><script>
+            				var fBillNo = parseFloat("[[%%SEND-BILL-ST-NO%%]]", 10);
+            				var tBillNo = fBillNo + parseFloat("[[%%SEND-BILL-CNT%%]]", 10) -1;
+            				document.write(fBillNo + " - " + tBillNo);
+            			</script></div>
+          </td>
+          <td width="113"> 
+            <div align="center">[[%%SEND-BILL-CNT%%]]</div>
+          </td>
+          <td width="113"> 
+            <div align="center">[[%%SEND-PAID-BILL-CNT%%]]</div>
+          </td>
+          <td width="113"> 
+            <div align="center">[[%%SEND-INV-BILL-CNT%%]]</div>
+          </td>
+          <td width="113"> 
+            <div align="center">
+		<script>
+      		var bk = "[[%%SEND-BILL-KIND%%]]";
+      		if (bk == "0") {  document.write("支票");}
+      		else	       {  document.write("本票");}
+      	</script></div>
+          </td>
+          <td width="112"> 
+            <div align="center">&nbsp;<script language="javascript">
+                 		document.write(getRCDateStr("[[%%SEND-APLY-DATE%%]]", 0));
+    		</script></div>
+          </td>
+        </tr>
+    </table>    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <table width="760" border="1" bordercolor="#999999">
+        <tr> 
+          <td bgcolor="#C4CBB8" width="155"> 
+            <div align="center">票號</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">1-5</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">6-10</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">11-15</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">16-20</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">21-25</div>
+          </td>
+        </tr>
+        
+        
+  <script language="javascript">
+  	var billSerial_01 = null;
+  	var billSerial_02 = null;
+  	var billSerial_03 = null;
+  	var billSerial_04 = null;
+  	
+  	[[%%LOOP_SEC SEND-BILL-STATUS%%]]
+  		if      (billSerial_01 == null){ billSerial_01 = "[[%%SEND-BILL-STATUS%%]]";  		}
+  		else if (billSerial_02 == null){ billSerial_02 = "[[%%SEND-BILL-STATUS%%]]";  		}
+  		else if (billSerial_03 == null){ billSerial_03 = "[[%%SEND-BILL-STATUS%%]]";  		}
+  		else    		       { billSerial_04 = "[[%%SEND-BILL-STATUS%%]]";  		}
+
+  	[[%%ELOOP_SEC%%]]  	
+
+	function getBillStatus(billSerial, startNum) {
+		if (startNum < 1) {
+			return "";
+		}
+
+		billSerial += "";
+		if (billSerial.length < startNum + 4) {
+			return billSerial.substring(startNum-1,billSerial.length);		
+		}else{
+			return billSerial.substring(startNum-1,startNum+4);
+		}
+	}	
+
+  </script>
+  
+        <tr align=center> 
+          <td width="155"> 
+            <div align="center"><script>
+					//document.write(fBillNo + " - " + tBillNo);
+            			</script>
+            			000001-000025
+            			</div>
+          </td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_01, 1));</script></td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_01, 6));</script></td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_01, 11));</script></td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_01, 16));</script></td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_01, 21));</script></td>
+        </tr> 
+        <tr> 
+          <td bgcolor="#C4CBB8" width="155"> 
+            <div align="center">票號</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">26-30</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">31-35</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">36-40</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">41-45</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">46-50</div>
+          </td>
+        </tr>
+        <tr align=center> 
+          <td width="155"> 
+            <div align="center">000026-000050</div>
+          </td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_02, 1));</script></td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_02, 6));</script></td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_02, 11));</script></td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_02, 16));</script></td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_02, 21));</script></td>
+        </tr>
+          <tr>  
+          <td bgcolor="#C4CBB8" width="155"> 
+            <div align="center">票號</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">51-55</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">56-60</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">61-65</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">66-70</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">71-75</div>
+          </td>
+        </tr>
+        <tr align=center> 
+          <td width="155"> 
+            <div align="center">000051-000075</div>
+          </td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_03, 1));</script></td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_03, 6));</script></td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_03, 11));</script></td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_03, 16));</script></td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_03, 21));</script></td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="155"> 
+            <div align="center">票號</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">76-80</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">81-85</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">86-90</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">91-95</div>
+          </td>
+          <td bgcolor="#C4CBB8" width="113"> 
+            <div align="center">96-100</div>
+          </td>
+        </tr>
+        <tr align=center> 
+          <td width="155"> 
+            <div align="center">000076-000100</div>
+          </td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_04, 1));</script></td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_04, 6));</script></td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_04, 11));</script></td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_04, 16));</script></td>
+          <td width="113">&nbsp;<script>document.write(getBillStatus(billSerial_04, 21));</script></td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table width="337" border="0" cellspacing="2">
+        <tr bgcolor="#FFFFCC"> 
+          <td width="103">　票據狀況說明：</td>
+          <td width="72">0：未回收 </td>
+          <td colspan="2">1：已兌付</td>
+          <td width="75"> 9：已作廢 </td>
+        </tr>
+      </table>
+      <table width="75%" border="0">
+        <tr>
+          <td>　註：本頁資料，不得做為往來憑證之用。</td>
+        </tr>
+      </table>
+      <table width="763" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td width="50%"> 
+            <div align="right"><a href="javascript:window.print()"><img src="graph/print.gif" width="52" height="24" border="0"></a>　 
+            </div>
+          </td>
+          <td width="50%"><img src="graph/top.gif" width="64" height="16" onClick="chkSubmit();"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="IP0207000">
+</table>
+</form>
+</body>
+</html>

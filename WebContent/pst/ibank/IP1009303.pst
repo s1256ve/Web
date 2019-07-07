@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>約定扣繳停車費</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<style type="text/css">
+<!--
+.style1 {color: #0066FF}
+-->
+</style>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+<p><strong>約定代繳停車費&gt;<span class="style1">取消已約定代繳停車費功能</span></strong></p>
+<table width="750" border="0">
+  <tr>
+    <td colspan="5"><table width="650" border="0" align="center">
+        <tr>
+          <td><p>您目前尚未登錄任何代繳停車費的資料，若欲申辦此服務，請點選「新增代繳停車費功能」。 </p></td>
+        </tr>
+      </table>
+      </div>
+<div align="center"> </div></td>
+  </tr>
+  <tr>
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+</body>
+</html>

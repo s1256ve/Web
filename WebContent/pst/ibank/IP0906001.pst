@@ -1,0 +1,637 @@
+<html>
+<head>
+<title>各類扣憑</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+var id_no="[[%%SEND-ID-NO%%]]";
+id_no=id_no.substring(0,10);
+
+function incomeTransfer(incomeCode){
+	if(incomeCode=="5A")
+		return "金融業利息";
+	else if(incomeCode=="5B")
+		return "其他利息所得";
+	else if(incomeCode=="5C")
+		return "公債、公司債、金融債券利息";
+	else if(incomeCode=="50")
+		return "薪資所得";
+	else if(incomeCode=="51")
+		return "租賃所得";
+	else if(incomeCode=="60")
+		return "資產基礎證券分配之利息所得";
+	else if(incomeCode=="61")
+		return "附條件交易之利息所得";
+	else if(incomeCode=="62")
+		return "獎金";
+	else if(incomeCode=="63")
+		return "兼職薪資";
+	else if(incomeCode=="65")
+		return "執行業務收入";
+	else if(incomeCode=="66")
+		return "股利";
+	else if(incomeCode=="67")
+		return "利息";
+	else if(incomeCode=="68")
+		return "租金";
+	else if(incomeCode=="9A")
+		return "執行業務所得";
+	else if(incomeCode=="92")
+		return "其他所得";
+	else if(incomeCode=="93")
+		return "退職所得";
+	else if(incomeCode=="96")
+		return "結構型商品交易之所得";
+	else if(incomeCode=="97")
+		return "受贈所得";
+}
+</script>
+<style type="text/css">
+td{
+	line-height:14px;
+	font-size:11px;
+}
+</style>
+</head>
+<body>
+<div style="display:none" id="type1">
+<!--[[%%LOOP_SEC SEND-WITHHOLDING-NO%%]]-->
+<table width="80%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="3">
+      <tr>
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="64%" nowrap><div align="center" class="t15">各類所得扣繳暨免扣繳憑單</div>
+                <div align="center" class="t13">(媒體申報專用)</div></td>
+              <td><table width="100%" border="1" bordercolorlight="#000000" cellspacing="0" cellpadding="3" bordercolordark="#FFFFFF" style="border-collapse: separate;">
+                  <tr  class="t1">
+                    <td width="12%" nowrap ><div align="center" class="t13a">
+                      <div align="left" class="t13">租賃房屋之房屋稅籍編號：</div>
+                    </div></td>
+                    </tr>
+                  <tr  class="t1">
+                    <td height="60" valign="top" class="t13" >租賃房屋地址:<br></td>
+                    </tr>
+              </table></td>
+            </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="1" bordercolorlight="#000000" cellspacing="0" cellpadding="5" bordercolordark="#FFFFFF" style="border-collapse: separate;">
+          <tr>
+            <td colspan="2" nowrap class="t13a">扣繳單位統一編號</td>
+            <td colspan="2" nowrap class="t13a">稽徵機關</td>
+            <td colspan="3" nowrap class="t13a">製單編號</td>
+            <td width="27%" class="t13a">格　　式</td>
+            </tr>
+          <tr>
+            <td colspan="2" class="t13"><div align="center" class="t13a">[[%%SEND-WITHHOLDING-NO%%]]</div></td>
+            <td colspan="2" class="t13"><div align="center" class="t13a">[[%%SEND-TAX-OFFICE%%]]</div></td>
+            <td colspan="3" class="t13a">[[%%SEND-SHEET-NO%%]]</td>
+            <td class="t13a">[[%%SEND-INCOME-CODE%%]]</td>
+            </tr>
+          <tr>
+            <td colspan="3" class="t13a">所得人統一編號</td>
+            <td colspan="3" nowrap class="t13"><div align="center" class="t13a">國內有無住所</div></td>
+            <td colspan="2" nowrap class="t13"><div align="center" class="t13a">所得人代號(帳號)或外僑護照號碼</div></td>
+            </tr>
+          <tr>
+            <td colspan="3" class="t13">
+				<div align="center" class="t13a">
+					<script>
+						document.write(id_no);
+					</script>
+				</div>
+			</td>
+            <td colspan="3" class="t13"><p align="center" class="t13a">有(V) 無( ) </p>              </td>
+            <td colspan="2" class="t13"><div align="center" class="t13a">[[%%SEND-ACCT-NO%%]]</div></td>
+            </tr>
+          <tr>
+            <td width="12%" nowrap class="t13">所得人姓名</td>
+            <td colspan="7" class="t13">[[%%SEND-NAME%%]]</td>
+            </tr>
+          <tr>
+            <td class="t13">所得人地址</td>
+            <td colspan="7" class="t13">[[%%SEND-ADDR%%]]</td>
+            </tr>
+          <tr>
+            <td colspan="5" class="t13"><div align="center" class="t13a">所得所屬年月</div></td>
+            <td colspan="2" class="t13"><div align="center" class="t13a">所得給付年度</div></td>
+            <td class="t13"><div align="center" class="t13a">扣繳率</div></td>
+            </tr>
+          <tr>
+            <td colspan="5" ><table border="0" align="center" cellpadding="3" cellspacing="0">
+              <tr>
+                <td height="15" class="t13a">自</td>
+                <td class="t13a">
+					<script>
+						document.write("[[%%SEND-INCOME-BEGIN%%]]".substring(0,3));
+					</script>
+				</td>
+                <td class="t13a">年</td>
+                <td class="t13a">
+					<script>
+						document.write("[[%%SEND-INCOME-BEGIN%%]]".substring(3,5));
+					</script>
+				</td>
+                <td nowrap class="t13a">月至</td>
+                <td class="t13a">
+					<script>
+						document.write("[[%%SEND-INCOME-END%%]]".substring(0,3));
+					</script>
+				</td>
+                <td class="t13a">年</td>
+                <td class="t13a">
+					<script>
+						document.write("[[%%SEND-INCOME-END%%]]".substring(3,5));
+					</script>
+				</td>
+                <td class="t13a">月</td>
+              </tr>
+            </table>
+             </td>
+            <td colspan="2" class="t13"><div align="center" class="t13a">[[%%SEND-INCOME-YEAR%%]]</div></td>
+            <td class="t13"><div align="center" class="t13a">[[%%SEND-TAX-RATE%%]]</div></td>
+            </tr>
+          <tr>
+            <td colspan="3" class="t13"><div align="center" class="t13a">給付總額(A)</div></td>
+            <td colspan="3" class="t13"><div align="center" class="t13a">扣繳稅額(B)</div></td>
+            <td colspan="2" nowrap class="t13"><div align="center" class="t13a">給付淨額(A)-(B)</div></td>
+            </tr>
+          <tr>
+            <td colspan="3" class="t13"><div align="center" class="t13a">[[%%SEND-PAID-TOTAL%%]]</div></td>
+            <td colspan="3" class="t13"><div align="center" class="t13a">[[%%SEND-TAX%%]]</div></td>
+            <td colspan="2" class="t13"><div align="center" class="t13a">[[%%SEND-NET-TOTAL%%]]</div></td>
+            </tr>
+        </table></td>
+      </tr>
+
+    </table></td>
+    <td valign="top" class="t13a"><div align="center">第<br>
+      一<br>
+      聯<br>
+      ：<br>
+      留<br>
+      底<br>
+      聯 </div></td>
+  </tr>
+  <tr>
+    <td class="t13"><table width="100%" border="0" cellspacing="0" cellpadding="3">
+      <tr>
+        <td><table width="100%" border="1" bordercolorlight="#000000" cellspacing="0" cellpadding="3" bordercolordark="#FFFFFF" style="border-collapse: separate;">
+          <tr>
+            <td colspan="2"><div align="center" class="t13">扣　　繳　　單　　位</div></td>
+            <td width="40%" class="t13"><div align="center">格式代號說明</div></td>
+          </tr>
+          <tr>
+            <td width="20%" class="t13"><div align="center">名　　稱</div></td>
+            <td width="40%" class="t13"><div align="left">
+                <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td nowrap class="t13">聯邦商業銀行股份有限公司</td>
+                  </tr>
+                </table>
+            </div></td>
+            <td rowspan="3" valign="top" class="t13"><div align="center">
+                <table width="90%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="t13">
+						[[%%SEND-INCOME-CODE%%]]
+						<script>
+							document.write(incomeTransfer("[[%%SEND-INCOME-CODE%%]]"));
+						</script>
+					</td>
+                  </tr>
+                </table>
+            </div></td>
+          </tr>
+          <tr class="t13">
+            <td><div align="center">地　　址</div></td>
+            <td><div align="center">
+                <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td nowrap class="t13">臺北市松山區民生東路三段109號</td>
+                  </tr>
+                </table>
+            </div></td>
+          </tr>
+          <tr class="t13">
+            <td nowrap><div align="center">扣繳義務人</div></td>
+            <td><div align="center">
+                <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td nowrap class="t13">李憲章</td>
+                  </tr>
+                </table>
+            </div></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<br>
+<hr>
+<!--[[%%ELOOP_SEC%%]]-->
+</div>
+
+<div style="display:none" id="type2">
+<!--[[%%LOOP_SEC SEND-WITHHOLDING-NO%%]]-->
+<table width="80%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><table width="100%" border="0" cellspacing="0" cellpadding="5">
+      <tr>
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="64%"><div align="center" class="t15">全　民　健　康　保　險<br>
+各類所得(收入)扣繳補充保險費證明單</div></td>
+              <td>&nbsp;</td>
+            </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="1" bordercolorlight="#000000" cellspacing="0" cellpadding="3" bordercolordark="#FFFFFF" style="border-collapse: separate;">
+          <tr>
+            <td width="26%" nowrap class="t13"><div align="center">扣費單位統一編號</div></td>
+            <td width="23%" nowrap class="t13"><div align="center">所得人身份證號</div></td>
+            <td colspan="2" nowrap class="t13"><div align="center">所得(收入)類別</div></td>
+            <td width="29%" nowrap class="t13"><div align="center">投保單位代號</div></td>
+          </tr>
+          <tr>
+            <td class="t13"><div align="center">[[%%SEND-WITHHOLDING-NO%%]]</div></td>
+            <td class="t13">
+				<div align="center">
+					<script>
+						document.write(id_no);
+					</script>
+				</div>
+			</td>
+            <td colspan="2" class="t13"><div align="center">[[%%SEND-INCOME-CODE%%]]</div></td>
+            <td rowspan="2"><div align="center" class="t13">&nbsp;</div></td>
+          </tr>
+          <tr>
+            <td class="t13"><div align="center">所得人姓名</div></td>
+            <td colspan="3" class="t13"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="20" ></td>
+                <td class="t13">[[%%SEND-NAME%%]]</td>
+              </tr>
+            </table></td>
+            </tr>
+          <tr>
+            <td class="t13"><div align="center">所得人地址</div></td>
+            <td colspan="4" class="t13"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="20" ></td>
+                <td class="t13">[[%%SEND-ADDR%%]]</td>
+              </tr>
+            </table></td>
+            </tr>
+          <tr>
+            <td class="t13"><div align="center">所得給付期間</div></td>
+            <td colspan="2" class="t13"><div align="center">給付總額</div></td>
+            <td colspan="2" class="t13"><div align="center">扣繳補充保險費金額</div></td>
+            </tr>
+          <tr>
+            <td class="t13">
+				<div align="center">
+					<script>
+						document.write("[[%%SEND-INCOME-BEGIN%%]]".substring(0,3)+"/"+"[[%%SEND-INCOME-BEGIN%%]]".substring(3,5)+"-"+"[[%%SEND-INCOME-END%%]]".substring(0,3)+"/"+"[[%%SEND-INCOME-END%%]]".substring(3,5));
+					</script>
+				</div>
+			</td>
+            <td colspan="2" class="t13"><div align="center">[[%%SEND-PAID-TOTAL%%]]</div></td>
+            <td colspan="2" class="t13"><div align="center">[[%%SEND-TAX%%]]</div></td>
+            </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="1" bordercolorlight="#000000" cellspacing="0" cellpadding="3" bordercolordark="#FFFFFF" style="border-collapse: separate;">
+          <tr>
+            <td colspan="2"><div align="center" class="t13">扣　　繳　　單　　位</div></td>
+            <td width="40%" class="t13"><div align="center">所得(收入)類別說明</div></td>
+          </tr>
+          <tr>
+            <td width="20%" class="t13"><div align="center">名　　稱</div></td>
+            <td width="40%" class="t13"><div align="left">
+                <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td nowrap class="t13">聯邦商業銀行股份有限公司</td>
+                  </tr>
+                </table>
+            </div></td>
+            <td rowspan="3" valign="top" class="t13"><div align="center">
+                <table width="90%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="t13">
+						[[%%SEND-INCOME-CODE%%]]
+						<script>
+							document.write(incomeTransfer("[[%%SEND-INCOME-CODE%%]]"));
+						</script>
+					</td>
+                  </tr>
+                </table>
+            </div></td>
+          </tr>
+          <tr class="t13">
+            <td><div align="center">地　　址</div></td>
+            <td><div align="center">
+                <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td nowrap class="t13">臺北市松山區民生東路三段109號</td>
+                  </tr>
+                </table>
+            </div></td>
+          </tr>
+          <tr class="t13">
+            <td nowrap><div align="center">扣繳義務人</div></td>
+            <td><div align="center">
+                <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td nowrap class="t13">李憲章</td>
+                  </tr>
+                </table>
+            </div></td>
+          </tr>
+        </table>
+          </td>
+      </tr>
+
+    </table></td>
+    <td valign="top" class="t13a"><div align="center"><br>
+      <br>
+      <br>
+      <br>
+      第<br>
+      一<br>
+      聯<br>
+      ：<br>
+      留<br>
+      底<br>
+      聯 </div></td>
+  </tr>
+</table>
+<br>
+<hr>
+<!--[[%%ELOOP_SEC%%]]-->
+</div>
+
+<div style="display:none" id="type3">
+<!--[[%%LOOP_SEC SEND-NAME%%]]-->
+<table width="80%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><table width="100%" border="1" bordercolorlight="#000000" cellspacing="0" cellpadding="0" bordercolordark="#FFFFFF" >
+      <tr>
+        <td><table width="100%" border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="64%"><div align="center" class="t15"><u>聯邦銀行房屋借款繳息清單</u></div></td>
+                  <td><table width="100%" border="1" bordercolorlight="#000000" cellspacing="0" cellpadding="3" bordercolordark="#FFFFFF" style="border-collapse: separate;">
+                      <tr  class="t1">
+                        <td width="12%" ><div align="center" class="t13a"><br>
+                          戳<br>
+                          記<br>
+                          欄<br>
+                          <br>
+                        </div></td>
+                        <td width="88%"><div align="center" class="t13"><table border="0" background="graph/ub.gif" width="125" height="83">
+       <tr>
+          <td width="88%"><table width="100" border="0" align="center">
+              <tr>
+                <td align="center" valign="middle">106.12.31</td>
+              </tr>
+          </table></td>
+                        
+       </tr>
+</table>
+</div></td>
+                      </tr>
+                  </table></td>
+                </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td><table width="100%" border="1" bordercolorlight="#000000" cellspacing="0" cellpadding="3" bordercolordark="#FFFFFF" style="border-collapse: separate;">
+                <tr>
+                  <td width="12%" nowrap class="t13"><div align="center">借戶姓名</div></td>
+                  <td width="34%" class="style1">[[%%SEND-NAME%%]]</td>
+                  <td width="4%" rowspan="2" class="t13a"><div align="center">統<br>
+                    一<br>
+                    編<br>
+                    號</div></td>
+                  <td colspan="2" class="t13">
+					<script>
+						document.write(id_no);
+					</script>
+				  </td>
+                  <td width="9%" nowrap class="t13">房屋稅籍</td>
+                  <td width="24%"><span class="t13">※</span></td>
+                </tr>
+                <tr>
+                  <td class="t13"><div align="center">房屋所有<br>
+                    權人姓名</div></td>
+                  <td valign="top" class="t13">※</td>
+                  <td colspan="4" valign="top" class="t13">※</td>
+                </tr>
+                <tr>
+                  <td class="t13"><div align="center">房屋所有<br>
+                    權取得日</div></td>
+                  <td valign="top"><span class="t13">※</span></td>
+                  <td colspan="2" valign="top"><div align="center"><span class="t13">房屋座落</span><br>
+                  </div></td>
+                  <td colspan="3" valign="top"><span class="t13">※</span></td>
+                  </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td><table width="100%" border="1" bordercolorlight="#000000" cellspacing="0" cellpadding="3" bordercolordark="#FFFFFF" style="border-collapse: separate;">
+                <tr>
+                  <td width="23%" class="t13"><div align="center">貸款帳號</div></td>
+                  <td width="23%" class="t13"><div align="center">最初貸款金額(元)</div></td>
+                  <td width="23%" class="t13"><div align="center">貸款起訖日</div></td>
+                  <td class="t13"><div align="center">本期未償還本金餘額(元)</div></td>
+                </tr>
+                <tr>
+                  <td class="t13"><div align="center">[[%%SEND-ACCT-NO%%]]</div></td>
+                  <td class="t13"><div align="center" class="style1">
+                    <div align="right">[[%%SEND-INIT-AMT%%]]</div>
+                  </div></td>
+                  <td class="t13"><div align="center">
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td width="9%" class="t13a"><div align="center">自</div></td>
+                          <td width="20%" class="t13a">
+							  <div align="center">
+								<script>
+									document.write("[[%%SEND-LOAN-BEGIN%%]]".substring(1,4));
+								</script>
+							  </div>
+						  </td>
+                          <td width="12%" class="t13a"><div align="center">年</div></td>
+                          <td width="18%" class="t13a">
+							  <div align="center">
+								<script>
+									document.write("[[%%SEND-LOAN-BEGIN%%]]".substring(4,6));
+								</script>
+							  </div>
+						  </td>
+                          <td width="11%" class="t13a"><div align="center">月</div></td>
+                          <td width="19%" class="t13a">
+							<div align="center">
+								<script>
+									document.write("[[%%SEND-LOAN-BEGIN%%]]".substring(6,8));
+								</script>
+							  </div>
+						  </td>
+                          <td width="11%" class="t13a"><div align="center">日</div></td>
+                        </tr>
+                        <tr>
+                          <td class="t13a"><div align="center">至</div></td>
+                          <td class="t13a">
+							<div align="center">
+								<script>
+									document.write("[[%%SEND-LOAN-END%%]]".substring(1,4));
+								</script>
+							  </div>
+						  </td>
+                          <td class="t13a"><div align="center">年</div></td>
+                          <td class="t13a">
+							<div align="center">
+								<script>
+									document.write("[[%%SEND-LOAN-END%%]]".substring(4,6));
+								</script>
+							  </div>
+						  </td>
+                          <td class="t13a"><div align="center">月</div></td>
+                          <td class="t13a">
+							<div align="center">
+								<script>
+									document.write("[[%%SEND-LOAN-END%%]]".substring(6,8));
+								</script>
+							  </div>
+						  </td>
+                          <td class="t13a"><div align="center">日</div></td>
+                        </tr>
+                      </table>
+                  </div></td>
+                  <td class="t13"><div align="center" class="style1">
+                    <div align="right">[[%%SEND-BALANCE%%]]</div>
+                  </div></td>
+                </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td><table width="100%" border="1" bordercolorlight="#000000" cellspacing="0" cellpadding="3" bordercolordark="#FFFFFF" style="border-collapse: separate;">
+                <tr>
+                  <td width="23%" class="t13"><div align="center">繳息所屬年月</div></td>
+                  <td width="23%" class="t13"><div align="center">
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td width="9%" class="t13a"><div align="center">自</div></td>
+                          <td width="20%" class="t13a">
+							<div align="center">
+								<script>
+									document.write("[[%%SEND-PAYMENT-BEGIN%%]]".substring(1,4));
+								</script>
+							  </div>
+						  </td>
+                          <td width="12%" class="t13a"><div align="center">年</div></td>
+                          <td width="18%" class="t13a">
+							<div align="center">
+								<script>
+									document.write("[[%%SEND-PAYMENT-BEGIN%%]]".substring(4,6));
+								</script>
+							  </div>
+						  </td>
+                          <td width="11%" class="t13a"><div align="center">月</div></td>
+                          <td width="19%" class="t13a">
+							<div align="center">
+								<script>
+									document.write("[[%%SEND-PAYMENT-BEGIN%%]]".substring(6,8));
+								</script>
+							  </div>
+						  </td>
+                          <td width="11%" class="t13a"><div align="center">日</div></td>
+                        </tr>
+                        <tr>
+                          <td class="t13a"><div align="center">至</div></td>
+                          <td class="t13a">
+							<div align="center">
+								<script>
+									document.write("[[%%SEND-PAYMENT-END%%]]".substring(1,4));
+								</script>
+							  </div>
+						  </td>
+                          <td class="t13a"><div align="center">年</div></td>
+                          <td class="t13a">
+							<div align="center">
+								<script>
+									document.write("[[%%SEND-PAYMENT-END%%]]".substring(4,6));
+								</script>
+							  </div>
+						  </td>
+                          <td class="t13a"><div align="center">月</div></td>
+                          <td class="t13a">
+							<div align="center">
+								<script>
+									document.write("[[%%SEND-PAYMENT-END%%]]".substring(6,8));
+								</script>
+							  </div>
+						  </td>
+                          <td class="t13a"><div align="center">日</div></td>
+                        </tr>
+                      </table>
+                  </div></td>
+                  <td width="23%" class="t13"><div align="center">繳息金額</div></td>
+                  <td class="t13"><div align="center" class="style1">
+                    <div align="right">[[%%SEND-PAID-AMT%%]]</div>
+                  </div></td>
+                </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td><p class="t13">科子 (細) 目代號暨說明：<span class="style1">[[%%SEND-TITLE-CODE%%]] [[%%SEND-TITLE-DESC%%]]</span></p>
+              </td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+    <td valign="top" class="t13a"><div align="center">第<br>
+      二<br>
+      聯<br>
+      ：<br>
+      客<br>
+      戶<br>
+      收<br>
+      執<br>
+    聯 </div></td>
+  </tr>
+  <tr>
+    <td class="t13">※(請借戶自行確實填載，以利稅捐稽徵機關查核)</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<br><br><br>
+<hr>
+<br><br><br>
+<!--[[%%ELOOP_SEC%%]]-->
+</div>
+<blockquote>&nbsp;</blockquote>
+
+<div align="center">
+	<input type="button" value="列印" onclick="window.print();">   
+</div>
+<script>
+	var REVE_FUNC_CODE="[[%%REVE-FUNC-CODE%%]]"
+	
+	if(REVE_FUNC_CODE == '01')
+		document.getElementById("type1").style.display="block";
+	else if(REVE_FUNC_CODE == '02')
+		document.getElementById("type2").style.display="block";
+	else if(REVE_FUNC_CODE == '03')
+		document.getElementById("type3").style.display="block";
+</script>
+</body>
+</html>

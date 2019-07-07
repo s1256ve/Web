@@ -1,0 +1,641 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>基金申購</title>
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: Carl 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI98057	    2009.10.27	   Carl
+* EAI99006	    2010.01.19	   Alma
+* EAI99014	    2010.02.23	   Alma
+* EAI99032	    2010.04.02	   Alma
+* EAI99060		  2010.10.06		 David
+* EAI99061      2010.10.07     David
+***********************************************************************/
+</script>
+<!--script language="JavaScript" SRC="script/PreviousPageBlock.js"></script-->
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<script language="javascript">
+var date = getNowDate();
+var newDate = getADDateStr(date, -1);
+var fundCury = "[[%%REVE-CURRENCY-TYPE%%]]"
+var LAcctAry0 = new Array()
+var LAcctAry1 = new Array()
+var FAcctAry0 = new Array()
+var FAcctAry1 = new Array()
+var iLAcct = 0
+var iFAcct = 0
+
+function chkSubmit(){
+	var doc = document.IF0301002
+	if (doc.AppType[0].checked){
+		doc.pageid.value = "IF0301003";
+	}else{
+		doc.pageid.value = "IF0301013";
+	}	
+	
+	doc.SEND_TXN_DATE.value = newDate;
+	var choAct = doc.choseAct.value;
+	var min = parseInt("[[%%SEND-TWD-MINSMLBUYAMT%%]]",10);
+	var AMTval = doc.SEND_BUY_AMT.value
+	var CardNo = doc.cardNum.value;
+	var CardNo1 = doc.cardNum1.value;
+	
+	
+	if (!(doc.choseDay[0].checked || doc.choseDay[1].checked || doc.choseDay[2].checked || doc.choseDay[3].checked || doc.choseDay[4].checked || doc.choseDay[5].checked)){
+		 alert("請選擇扣款日期");
+		 return;
+	}		
+	
+	if (document.IF0301002.choseAct.options[0].selected){
+			document.IF0301002.SEND_CHOSEACT_TYPE.value = "0";
+	}
+	else if (document.IF0301002.choseAct.options[1].selected){
+			document.IF0301002.SEND_CHOSEACT_TYPE.value = "1";
+	}
+	/**
+	else if (document.IF0301002.choseAct.options[2].selected){
+      document.IF0301002.SEND_CHOSEACT_TYPE.value = "2";
+	}	
+	**/
+	if(choAct == 1){		
+		var Acct2 = doc.cardNum2.value
+		var Acct3 = doc.cardNum3.value
+		var AcctAry = Acct2.split("@")	
+		var AcctAry3 = Acct3.split("@")			
+	
+		doc.HOW_TO_PAY.value ="聯邦銀行帳號";
+		doc.SEND_ACCT_NO.value= AcctAry[0];		
+		doc.SEND_INTACCT_NO.value = AcctAry3[0];
+		doc.gMonth.value = "";
+		doc.gYear.value = "";
+		doc.SEND_CARD_NO.value = "";
+		doc.SEND_EXP_DATE.value= "";
+		doc.SEND_BANK_CODE.value= "";
+		doc.REVE_ACCT_TYPE.value = "1";
+		clearSCHD();
+		if (doc.choseDay[0].checked)	setSCHD("02");
+		if (doc.choseDay[1].checked)	setSCHD("08");
+		if (doc.choseDay[2].checked)	setSCHD("12");
+		if (doc.choseDay[3].checked)	setSCHD("18");
+		if (doc.choseDay[4].checked)	setSCHD("22");
+		if (doc.choseDay[5].checked)	setSCHD("28");
+	}
+	if(choAct == 2){
+		if(CardNo1.trim() == ""){
+			alert("請輸入郵局帳號");
+			return;
+		} 
+		clearSCHD();
+		setSCHD("28");
+		
+		var Acct3 = doc.cardNum3.value
+		var AcctAry3 = Acct3.split("@")		
+			
+		doc.SEND_INTACCT_NO.value = AcctAry3[0];
+		doc.HOW_TO_PAY.value ="郵局帳號";
+		doc.SEND_ACCT_NO.value=CardNo1.trim();
+		doc.SEND_BANK_CODE.value = "701";	
+		doc.gMonth.value = "";
+		doc.gYear.value = "";
+		doc.SEND_CARD_NO.value = "";
+		doc.SEND_EXP_DATE.value= "";
+		doc.REVE_ACCT_TYPE.value = "2";	
+		
+	}
+	if(choAct == 3){
+		if(CardNo.trim() == ""){
+			alert("請輸入聯邦銀行信用卡卡號");
+			return;
+		}
+		
+		doc.HOW_TO_PAY.value ="聯邦銀行信用卡";
+		if(checkCard(CardNo.trim())==false){
+			return;
+		}
+		var Acct3 = doc.cardNum3.value
+		var AcctAry3 = Acct3.split("@")		
+			
+		doc.SEND_INTACCT_NO.value = AcctAry3[0];
+		doc.SEND_ACCT_NO.value = "";
+		doc.SEND_CARD_NO.value=CardNo.trim();
+		doc.SEND_BANK_CODE.value= "";
+		doc.REVE_ACCT_TYPE.value = "3";
+		var year = doc.gYear.value;
+		var month = doc.gMonth.value;
+    doc.SEND_EXP_DATE.value =  month + year.substring(2,4)  ; 
+    
+    clearSCHD();
+		if (doc.choseDay[0].checked)	setSCHD("02");
+		if (doc.choseDay[1].checked)	setSCHD("08");
+		if (doc.choseDay[2].checked)	setSCHD("12");
+		if (doc.choseDay[3].checked)	setSCHD("18");
+		if (doc.choseDay[4].checked)	setSCHD("22");
+		if (doc.choseDay[5].checked)	setSCHD("28");
+	}
+		var acc = "[[%%SEND-EX-DIVIDEND%%]]";
+	  if(acc!='Y'){
+	 	 doc.SEND_INTACCT_NO.value= "";
+	 	}	
+		
+	if (AMTval.trim() == "請輸入申購金額" || AMTval.trim() == ""){
+		alert("請輸入申購金額");
+		return;
+	}else if(!checkNum(AMTval.trim())){
+		alert("申購金額以元為單位");
+		doc.SEND_BUY_AMT.focus();
+		return;	
+	}else if(doc.AppType[0].checked && parseInt(AMTval) < min){
+		alert("每月投資金額不得低於每月投資最低金額");		
+		return;
+			}else if(doc.AppType[1].checked && parseInt(AMTval) < 100 && fundCury == "USD"){
+		alert("每月投資金額不得低於每月投資最低金額");		
+		return;
+	}else if(doc.SEND_INTACCT_NO.value == "" && acc=='Y'){
+		alert("您無配息帳號，無法申購此基金");
+		doc.AppType[0].focus();	
+	}else	{
+		if(doc.SEND_RECOMMAND.value.length ==0 || (checkNum(doc.SEND_RECOMMAND.value) && doc.SEND_RECOMMAND.value.length == 7))	{	
+			disableButton2(doc.Submit, doc.Submit2);		
+			doc.SEND_SCHD_ALL.value = dispSCHD(doc.SEND_SCHD_DATE.value) + dispSCHD(doc.SEND_SCHD_DATE2.value) + dispSCHD(doc.SEND_SCHD_DATE3.value)+dispSCHD(doc.SEND_SCHD_DATE4.value)+dispSCHD(doc.SEND_SCHD_DATE5.value)+dispSCHD(doc.SEND_SCHD_DATE6.value);    	
+			doc.submit(); 
+		}	
+		else
+			alert("您輸入的轉介人員編有誤，請輸入7位數字，不足請於第一碼補0");
+  }
+}
+
+function chkSubmit2(){
+	var doc = document.IF0301002		
+	disableButton2(doc.Submit, doc.Submit2);	
+	doc.pageid.value = "IF0101001";	
+	doc.SEND_SCHD_DATE.value = "00";
+	doc.SEND_SCHD_DATE2.value = "00";
+	doc.SEND_SCHD_DATE3.value = "00";
+	doc.SEND_SCHD_DATE4.value = "00";
+	doc.SEND_SCHD_DATE5.value = "00";
+	doc.SEND_SCHD_DATE6.value = "00";
+	doc.SEND_SCHD_ALL.value = "";
+  doc.SEND_CARD_NO.value = "" ;
+  doc.SEND_ACCT_NO.value = "" ;
+  doc.SEND_BANK_CODE.value = "";
+  doc.SEND_EXP_DATE.value = "";
+  doc.SEND_TXN_DATE.value = "" ;
+  doc.SEND_FUND_ID.value = "";
+  doc.HOW_TO_PAY.value = "";
+	doc.submit();
+}
+
+function ChgAcct(){
+		var doc = document.IF0301002;
+		var curr = doc.AppType.value;
+		if (doc.choseAct.options[0].selected){
+				doc.choseDay[0].checked = false;
+				doc.choseDay[1].checked = false;
+				doc.choseDay[2].checked = false;
+				doc.choseDay[3].checked = false;
+				doc.choseDay[4].checked = false;
+				doc.choseDay[5].checked = false;
+				doc.choseDay[0].disabled = false;
+				doc.choseDay[1].disabled = false;
+				doc.choseDay[2].disabled = false;
+				doc.choseDay[3].disabled = false;
+				doc.choseDay[4].disabled = false;
+				doc.choseDay[5].disabled = false;
+		    doc.SEND_BUY_AMT.value = "";
+		    document.all.ACCTNO.style.visibility="visible";	
+		    document.all.POSTNO.style.visibility="hidden";
+	 			document.all.CARDNO.style.visibility="hidden";	  		    		
+		    setStatExpireDate(0);
+		}
+		/**
+		else if(doc.choseAct.options[2].selected) {
+				doc.choseDay[0].checked = false;
+				doc.choseDay[1].checked = false;
+				doc.choseDay[2].checked = false;
+				doc.choseDay[3].checked = false;
+				doc.choseDay[4].checked = false;
+				doc.choseDay[5].checked = true;
+				doc.choseDay[0].disabled = true;
+				doc.choseDay[1].disabled = true;
+				doc.choseDay[2].disabled = true;
+				doc.choseDay[3].disabled = true;
+				doc.choseDay[4].disabled = true;
+				doc.choseDay[5].disabled = false;
+		    doc.SEND_BUY_AMT.value = "";
+		    document.all.ACCTNO.style.visibility="hidden";
+		    document.all.POSTNO.style.visibility="visible";	
+	 			document.all.CARDNO.style.visibility="hidden";
+		    setStatExpireDate(0);   			
+		}
+		**/
+		else if(doc.choseAct.options[1].selected) {
+				doc.choseDay[0].checked = false;
+				doc.choseDay[1].checked = false;
+				doc.choseDay[2].checked = false;
+				doc.choseDay[3].checked = false;
+				doc.choseDay[4].checked = false;
+				doc.choseDay[5].checked = false;
+				doc.choseDay[0].disabled = false;
+				doc.choseDay[1].disabled = false;
+				doc.choseDay[2].disabled = false;
+				doc.choseDay[3].disabled = false;
+				doc.choseDay[4].disabled = false;
+				doc.choseDay[5].disabled = false;
+		    doc.SEND_BUY_AMT.value = "";
+		    document.all.ACCTNO.style.visibility="hidden";	
+		    document.all.POSTNO.style.visibility="hidden";
+	 			document.all.CARDNO.style.visibility="visible";	 
+		    setStatExpireDate(1);		
+		}
+}
+
+function AMTonClick(){
+	var AMTval = document.IF0301002.SEND_BUY_AMT.value
+	
+	if (AMTval.trim() == "請輸入申購金額"){
+		document.IF0301002.SEND_BUY_AMT.value = "";
+	}
+	
+}
+
+function setStatExpireDate(stat){
+	 	if (stat==0){
+	 		document.IF0301002.gMonth.disabled = true;
+	 		document.IF0301002.gYear.disabled = true;
+	 	}else{
+	 		document.IF0301002.gMonth.disabled = false;
+	 		document.IF0301002.gYear.disabled = false;	 	
+	 	}
+}
+
+function clearSelect(list){
+		var index=list.options.length -1;
+		for(; index >= 0 ; index--){
+			list.options.remove(index);			
+		}		
+}
+
+function addOption(list, text, value){
+		var index=list.options.length;
+		for (i = 0 ; i<text.length ; i++){
+			if (text.indexOf('\n')>=0){
+				text = text.substr(text.indexOf('\n')+1,text.length); 
+			}else{
+				break;
+			}
+		}
+		list.options[index]=new Option(text, value);
+}	
+
+function chkDuplicateAcct(AcctNo){
+	
+	for(var j = 0; j < FAcctAry0.length; j++){
+		if (FAcctAry0[j] == AcctNo ) return true;	
+	}
+	return false;	
+}
+
+function chkAcctType(AcctNo,AcctCury,AcctBlance){	
+	var sCuryCode = AcctNo.substring(3,3+2)
+
+	if(sCuryCode == "77" ||  sCuryCode == "88"){		       // 外幣帳號顯示，不管帳號幣別及餘額
+		if (!chkDuplicateAcct(AcctNo)){
+			FAcctAry0[iFAcct] = AcctNo;
+			FAcctAry1[iFAcct] = AcctNo + "@" + AcctCury + "@" + AcctBlance;		
+			iFAcct++;
+			document.IF0301002.AppType[1].disabled = false;
+		}
+	}else{																     // 台幣帳號
+		LAcctAry0[iLAcct] =	AcctNo;
+		LAcctAry1[iLAcct] =	AcctNo + "@" + "NTD" + "@" + AcctBlance;
+		iLAcct++ ;
+	} 
+}
+
+function addCurryType(sType){
+	var sCurrencyType = document.getElementById("CurrencyType")
+	var doc = document.IF0301002
+	if(sType == "1"){		// 台幣
+	 chgAcctType("1");	
+	 chgAcctList2("1");	
+	 chgAcctList("1");	
+	 sCurrencyType.innerHTML = "<B>NTD</B>";
+	 doc.REVE_CURRENCY_TYPE.value = "NTD";
+	 doc.REVE_BUSI_TYPE.value = "N";	 
+	}else{
+	 chgAcctType("2");	
+	 chgAcctList("2");
+	 chgAcctList2("2");		
+	 sCurrencyType.innerHTML = "<B>" + fundCury + "</B>";
+	 doc.REVE_CURRENCY_TYPE.value = fundCury;
+	 doc.REVE_BUSI_TYPE.value = "Y";
+	} 
+}
+
+function chgAcctType(sType){
+	var docList = document.IF0301002.choseAct
+	clearSelect(docList);
+	if(sType == "1"){ 		//台幣	
+		addOption(docList,"聯邦銀行帳號","1");
+		addOption(docList,"聯邦銀行信用卡","3");
+		//addOption(docList,"郵局帳號(28日投資)","2");		
+	}else if(sType == "2"){
+		addOption(docList,"聯邦銀行帳號","1");	
+	}
+	docList.selectedindex = 0;
+}
+
+function chgAcctList(sType){
+	var docList = document.IF0301002.cardNum2
+	var i =0
+	clearSelect(docList);
+	if(sType == "1" && iLAcct > 0){ 		//台幣
+		for (;i<iLAcct;i++){
+		  addOption(docList,LAcctAry0[i],LAcctAry1[i]);
+		}	
+	}else if(sType == "2" && iFAcct > 0){
+		for (;i<iFAcct;i++){
+			addOption(docList,FAcctAry0[i],FAcctAry1[i]);
+		}	
+	}
+}
+
+function chgAcctList2(sType){
+	var docList = document.IF0301002.cardNum3
+	var i =0
+	clearSelect(docList);
+	if(sType == "1" && iLAcct > 0){ 		//台幣
+		for (;i<iLAcct;i++){
+		  addOption(docList,LAcctAry0[i],LAcctAry1[i]);
+		}	
+	}else if(sType == "2" && iFAcct > 0){
+		for (;i<iFAcct;i++){
+			addOption(docList,FAcctAry0[i],FAcctAry1[i]);
+		}	
+	}
+}
+
+function clearSCHD(){	
+	document.IF0301002.SEND_SCHD_DATE.value = "00";
+	document.IF0301002.SEND_SCHD_DATE2.value = "00";
+	document.IF0301002.SEND_SCHD_DATE3.value = "00";
+	document.IF0301002.SEND_SCHD_DATE4.value = "00";
+	document.IF0301002.SEND_SCHD_DATE5.value = "00";
+	document.IF0301002.SEND_SCHD_DATE6.value = "00";
+}
+
+function setSCHD(sDate){
+	var doc = document.IF0301002
+	if (doc.SEND_SCHD_DATE.value == "00"){
+		doc.SEND_SCHD_DATE.value = sDate;
+	}else if(doc.SEND_SCHD_DATE2.value == "00"){
+		doc.SEND_SCHD_DATE2.value = sDate;
+	}else if(doc.SEND_SCHD_DATE3.value == "00"){
+		doc.SEND_SCHD_DATE3.value = sDate;
+	}else if(doc.SEND_SCHD_DATE4.value == "00"){
+		doc.SEND_SCHD_DATE4.value = sDate;
+	}else if(doc.SEND_SCHD_DATE5.value == "00"){
+		doc.SEND_SCHD_DATE5.value = sDate;
+	}else if(doc.SEND_SCHD_DATE6.value == "00"){
+		doc.SEND_SCHD_DATE6.value = sDate;
+	}
+	
+}
+
+function chkCurr(curr){
+	var doc = document.IF0301002
+	if(curr=='NTD'){
+		doc.AppType[1].disabled = true; 
+	}
+}
+function chkdiv(acc){
+	if(acc=='Y'){
+	 	document.IF0301002.cardNum2.disabled = false;
+	 	}
+	else
+	{
+		document.IF0301002.cardNum3.disabled = true;
+		document.all.cardNum4.style.visibility="hidden";
+		document.all.cardNum5.style.visibility="hidden";
+		}
+}
+
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<style type="text/css">
+<!--
+td	{font-size: 9pt; color: #000000;line-height:12pt;vertical-align: top}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF" onLoad="document.IF0301002.reset();" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0301002">
+<font color="#006666"><b>基金申購&gt;</b></font><br>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center"><b>請輸入定期定額投資金額及扣款方式</b></div>
+    </td>
+  </tr>
+</table>
+  <table width="770" border="0">
+    <tr> 
+    <td colspan="3"> 
+      <div align="center"> <b></b>
+        <table width="75%" border="0" align="center">
+          <tr>
+            <td>一、申購方式：</td>
+            <td><input type="radio" name="AppType" value="1"  checked  onClick="addCurryType('1');ChgAcct();">
+              台幣信託
+              <input type="radio" name="AppType" value="2" onClick="addCurryType('2');ChgAcct();">
+              外幣信託 
+               </td>
+          </tr>
+          <tr>
+            <td width="23%">二、選擇扣款方式：</td>
+		 
+            <td width="77%"><select name="choseAct" onChange="ChgAcct();" style="width:200px">
+            </select>
+			</td>
+		  </tr>
+		  <tr>
+			<td>三、扣款日期：</td>
+			<td>
+			  <input name="choseDay" type="checkbox" value="02">
+              2日
+              <input name="choseDay" type="checkbox" value="08">
+              8日
+			  <input name="choseDay" type="checkbox" value="12">
+              12日
+              <input name="choseDay" type="checkbox" value="18">
+              18日
+			   <input name="choseDay" type="checkbox" value="22">
+              22日
+              <input name="choseDay" type="checkbox" value="28">
+              28日
+			  </td>
+          </tr>
+          <tr>
+            <td>四、每月投資金額：</td>
+            <td><span id="CurrencyType"></span>&nbsp;
+              <input type="text" name="SEND_BUY_AMT" value="請輸入申購金額" onClick="AMTonClick()">
+            </td>
+          </tr>
+		   <tr>
+            <td>五、轉介人員編(非必填)：</td>
+            <td>
+              <input type="text" name="SEND_RECOMMAND" value="" maxlength="7" size="7"><span style="color: red;">*請輸入7位員編，不足請於第一碼補0，如0123456。</span>
+            </td>
+          </tr>
+          <tr>
+            <td>六、扣款帳號(卡號)：</td>
+            <td>
+            	<div id="ACCTNO"  style="display:block">
+            		銀行帳號&nbsp;<select name="cardNum2"></select>
+            	</div>
+            	<div id="CARDNO"  style="visibility:hidden">
+              	卡號&nbsp;<input type="text" name="cardNum" value="" maxlength="16" style="font-size:11pt">
+              	<br>
+              	信用卡有效期限：
+              	<select name="gMonth" >
+                	<option value="01" selected>01</option>
+                	<option value="02">02</option>
+                	<option value="03">03</option>
+                	<option value="04">04</option>
+                	<option value="05">05</option>
+                	<option value="06">06</option>
+                	<option value="07">07</option>
+                	<option value="08">08</option>
+                	<option value="09">09</option>
+                	<option value="10">10</option>
+                	<option value="11">11</option>
+                	<option value="12">12</option>
+              	</select>
+月
+<select name="gYear" >
+</select>年 止
+				<div id="POSTNO"  style="visibility:hidden">
+						郵局帳號&nbsp;<input type="text" name="cardNum1" value="" maxlength="16">
+				</div>
+</div>
+            	
+              </td>
+          </tr>
+                  <tr>
+                    <td td width="35%">
+                    <div id="cardNum4">
+                    七、請輸入配息入帳帳號：</td>
+                    <td td width="65%">
+                    </div>
+                    <div id="cardNum5">
+                    銀行帳號&nbsp;<select name="cardNum3" >
+                      </select>
+                    </div>
+                    </td>
+                  </tr>
+        <br>
+        <table width="75%" border="0" align="center">
+          <tr>
+            <td>注意事項：
+              <table width="100%" border="0" cellspacing="0">
+                  <tr>
+                    <td width="4%" valign="top">1. </td>
+                    <td width="96%">投資日(遇例假日順延)：
+                      <table width="80%" border="0">
+                          <tr>
+                            <td colspan="2"><img src="graph/fund/graph/in-point.gif" border="0"><b>聯邦銀行帳戶投資：</b>每月2日、8日、12日、18日、22日及28日。</td>
+                          </tr>
+                          <tr>
+                            <td colspan="2"><img src="graph/fund/graph/in-point.gif" border="0"><b>聯邦銀行信用卡投資：</b>每月2日、8日、12日、18日、22日及28日。</td>
+                          </tr>
+                          <!--
+                          <tr>
+                            <td colspan="2"><img src="graph/fund/graph/in-point.gif" border="0"><b>郵局帳號投資：</b>每月28日。</td>
+                          </tr>
+                          -->
+                      </table></td>
+                  </tr>
+                  <tr>
+                    <td>2.</td>
+                    <td>每月投資金額最低限制： </td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>台幣信託：每筆NT$3,000。</td>
+                  </tr>
+                  <tr>
+                    <td>&nbsp;</td>
+                    <td>外幣信託：每筆US$100或等值外幣。</td>
+                  </tr>
+                  <tr>
+                  	<td>3.</td>
+                  	<td>外幣信託限以委託人本人外匯存款帳戶扣款。</td>
+                  </tr>
+                 
+              </table></td>
+          </tr>
+        </table>
+        <input type="button" name="Submit" value="確定" onClick="chkSubmit()">
+        <input type="button" name="Submit2" value="取消" onClick="chkSubmit2()">
+      </div>
+    </td>
+  </tr>
+</table>
+
+<br>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="">
+  <input type="hidden" name="SEND_SCHD_DATE" value="00">
+  <input type="hidden" name="SEND_SCHD_DATE2" value="00">
+  <input type="hidden" name="SEND_SCHD_DATE3" value="00">
+  <input type="hidden" name="SEND_SCHD_DATE4" value="00">
+  <input type="hidden" name="SEND_SCHD_DATE5" value="00">
+  <input type="hidden" name="SEND_SCHD_DATE6" value="00">
+  <input type="hidden" name="SEND_SCHD_ALL" value="">
+  <input type="hidden" name="SEND_CARD_NO" value="">
+  <input type="hidden" name="SEND_ACCT_NO" value="">
+  <input type="hidden" name="SEND_BANK_CODE" value="">
+  <input type="hidden" name="SEND_EXP_DATE" value="">
+  <input type="hidden" name="SEND_TXN_DATE" value="">
+  <input type="hidden" name="SEND_FUND_ID" value="[[%%SEND-FUND-ID%%]]">
+  <input type="hidden" name="HOW_TO_PAY" value="">
+  <input type="hidden" name="REVE_ACCT_TYPE" value="">
+  <input type="hidden" name="REVE_CURRENCY_TYPE" value="[[%%REVE-CURRENCY-TYPE%%]]">
+  <input type="hidden" name="REVE_CURRENCY_CODE" value="[[%%REVE-CURRENCY-CODE%%]]">	
+  <input type="hidden" name="REVE_BUSI_TYPE" value="">
+  <input type="hidden" name="SEND_CHOSEACT_TYPE" value="">
+  <input type="hidden" name="SEND_INTACCT_NO" value="">
+  <input type="hidden" name="SEND-TWD-MINSMLBUYAMT" value="[[%%SEND-TWD-MINSMLBUYAMT%%]]">
+</table>
+</form>
+<script>	
+	//document.IF0301002.cardNum.disabled = true;
+	//document.IF0301002.cardNum2.disabled = false;
+	setStatExpireDate(0);
+	//if (!document.IF0301002.choseAct.options[0].selected){
+	//	window.location.reload();	 	
+	//}
+	addYearOption(document.IF0301002.gYear,"[[%%SYSDATE%%]]",20);
+	<!--[[%%LOOP_SEC SEND-ACCT-NO%%]]-->
+		chkAcctType("[[%%SEND-ACCT-NO%%]]","[[%%SEND-CURRENCY-ENAME%%]]","[[%%SEND-AVAL-BALANCE%%]]");
+	<!--[[%%ELOOP_SEC%%]]-->	
+	 addCurryType('1');
+	 //ChgAcct();
+	 chkCurr("[[%%REVE-CURRENCY-TYPE%%]]");
+	 chkdiv("[[%%SEND-EX-DIVIDEND%%]]");
+</script>               
+</body>
+</html>

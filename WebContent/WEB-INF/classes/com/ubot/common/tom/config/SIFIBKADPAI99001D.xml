@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="Big5"?>
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="IBKADPAI99001D01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='IBKADPAI99001D02' >
+       		<name>REVE-ACTOR</name>
+        	<length>0</length>
+        	<type>STRING</type>
+        	<description></description>
+     	</field>
+	<field id="IBKADPAI99001D03">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>	
+	<field id="IBKADPAI99001D04">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="IBKADPAI99001D05">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="IBKADPAI99001D06">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="IBKADPAI99001D07">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>	
+	<field id="IBKADPAI99001D08">
+		<name>REVE-CID</name>
+		<length>3</length>
+		<type>String</type>
+		<description>協力廠商代碼</description>
+	</field>
+	<field id="IBKADPAI99001D09">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>申請帳戶</description>
+	</field>	
+</catalog>

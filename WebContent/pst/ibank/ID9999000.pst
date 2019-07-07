@@ -1,0 +1,153 @@
+<html>
+<head>
+<title>聯邦銀行個人金融網</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI99041	        2010.05.10	   David
+***********************************************************************/
+</script>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/iBank.js"></SCRIPT>
+<style type="text/css">
+<!--
+    body,p,td,form,select{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:12pt}
+    .t1{  font-family: "新細明體"; font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-family: "新細明體"; font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+-->
+</style>
+<script language="JavaScript">
+<!--
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" link="#0000FF" vlink="#0000FF" alink="#000000" background="graph/bg.gif" onLoad="MM_preloadImages('graph/icon02a.gif')">
+<table width="169" border="0" cellspacing="0" cellpadding="0" height="400">
+  <tr> 
+    <td colspan="2" height="394" valign="top"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image9','','graph/icon02a.gif',1)"> 
+      </a> 
+      <table width="480" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td><img src="graph/title001.gif" width="480" height="29"></td>
+        </tr>
+        <tr> 
+          <td><a href="http://172.16.2.134:8888/iCa/omni/mainOpPage.jsp?sessid=[[%%SESSIONID%%]]&aptype=CERT">憑証</a></td>
+        </tr>
+        <tr> 
+          <td background="graph/title003.gif"> 
+            <table width="470" border="0" cellpadding="5" align="center">
+              <tr> 
+                <td width="8">&nbsp;</td>
+                <td width="456">聯邦防詐騙專欄&gt;近來發現不法集團或歹徒冒用與銀行合作之名義A</td>
+              </tr>
+              <tr> 
+                <td width="8">&nbsp;</td>
+                <td width="456">聯邦銀行所推出「企業家小額貸款」是企業或行號負責人資金調度最旺的好幫手 </td>
+              </tr>
+              <tr> 
+                <td width="8">&nbsp;</td>
+                <td width="456">聯邦銀行推出〝均利型利率指數房貸〞2.5% 起 </td>
+              </tr>
+              <tr> 
+                <td width="8">&nbsp;</td>
+                <td width="456">資訊新時代，個人資料保護須知 </td>
+              </tr>
+              <tr> 
+                <td width="8">&nbsp;</td>
+                <td width="456">聯邦銀行與台灣金融資產服務（股）公司合作之法拍屋貸款 </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+          <td height="2"><img src="graph/title002.gif" width="480" height="2"></td>
+        </tr>
+      </table>
+      <br>
+      <table width="480" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td><img src="graph/title004.gif" width="480" height="45"></td>
+        </tr>
+        <tr> 
+          <td background="graph/title006.gif"> 
+            <table width="470" border="0" cellpadding="5" align="center">
+              <tr> 
+                <td width="8">&nbsp;</td>
+                <td width="456">聯邦防詐騙專欄&gt;近來發現不法集團或歹徒冒用與銀行合作之名義</td>
+              </tr>
+              <tr> 
+                <td width="8">&nbsp;</td>
+                <td width="456">聯邦銀行所推出「企業家小額貸款」是企業或行號負責人資金調度最旺的好幫手 </td>
+              </tr>
+              <tr> 
+                <td width="8">&nbsp;</td>
+                <td width="456">聯邦銀行推出〝均利型利率指數房貸〞2.5% 起 </td>
+              </tr>
+              <tr> 
+                <td width="8">&nbsp;</td>
+                <td width="456">資訊新時代，個人資料保護須知 </td>
+              </tr>
+              <tr> 
+                <td width="8">&nbsp;</td>
+                <td width="456">聯邦銀行與台灣金融資產服務（股）公司合作之法拍屋貸款 </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+          <td height="8"><img src="graph/title005.gif" width="480" height="3"></td>
+        </tr>
+      </table>
+      <table width="480" border="0">
+        <tr> 
+          <td> 
+            <div align="center">客戶服務專線：(03)25451788‧0800-089888</div>
+          </td>
+        </tr>
+        <tr bgcolor="#666633"> 
+          <td height="1"> </td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center">信用卡服務專線：台北(02)2545-5168‧0800-066678 高雄(07)226-9393‧0800-008768</div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,304 @@
+<html>
+<head>
+<title>信用卡查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------------
+*EAI98024           2009.4.07      YiSyun 
+*EAI98026           2009.4.10      YiSyun
+*EAI99026           2010.04.07     David
+*EAI99041           2010.05.11     YiSyun
+*EAI99067           2010.11.17     YiSyun
+*EAI100020          2010.03.28     YiSyun
+***********************************************************************/
+</script>
+<!-- script language="JavaScript" SRC="script/PreviousPageBlock.js"></script-->
+<script language="JavaScript" SRC="script/iBank.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/datefmt.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript">
+<!--
+	var count = 0 ;
+	function chgOriAmt(oriamt){
+		if (oriamt == "0.00")
+		{
+			return "";	
+		}else{
+			return oriamt;
+		}
+	}
+	function addTxnAmt(txnamt) {
+		count += toFloat(txnamt);
+	}
+	function getSum(){        
+		return moneyAddDot(count.toString());;	
+	}
+	function getStmtDate(){
+	    var stmtDate = "[[%%SEND-CARD-STMT-DATE%%]]";
+	    if (stmtDate.trim()==""|| stmtDate == "00000000"){
+		    //stmtDate = "[[%%SEND-CARD-DUE-DATE%%]]";
+		    //if (stmtDate.trim() == "" || stmtDate == "00000000") return "";
+		    return "";
+		    //var year = stmtDate.substr(0,4)-1911;
+		    //var mon = stmtDate.substr(4,2);
+		    //var date= stmtDate.substr(6,2);
+		    //return year+"/"+mon+"/"+date;
+		}else{
+		    return getRCDateStr(stmtDate,0);   
+		}
+	}
+	function getRCDateStr1(duedate){     
+		if (duedate == "" || duedate == "00000000") return "";
+		return getRCDateStr(duedate,3)
+	}
+	
+	function chkSubmit(){
+		document.IP0602001.pageid.value = "IP0600999";
+		document.IP0602001.submit();
+		
+	}
+	
+-->
+</SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　信用卡&gt;<font color="#003399"><font color="#0066FF">信用卡額度及帳單查詢</font></font></b><br>
+<font class="t3">　聯邦銀行個人網路銀行交易結果</font><br>
+<table width="760" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td width="760" height="2"> 
+      <div align="right">　<font color="#0000FF">　查詢時間：
+        <script>
+        	document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+        </script>
+        </font></div>
+    </td>
+  </tr>
+</table>
+<font color="#0000CC"> </font> 
+<form name="IP0602001" method="post" action="LoadAP">
+<table width="763" border="0">
+  <tr> 
+    <td width="757"> 
+      <div align="center"><font color="#0000CC"> </font>
+        <table width="100%" border="0">
+          <tr> 
+            <td colspan="2">
+                &nbsp;&nbsp;　帳單日期：
+                <SCRIPT language="JavaScript">
+                    document.write(getStmtDate());
+                </SCRIPT><br>
+                　&nbsp;&nbsp;繳款截止日：
+                <SCRIPT language="JavaScript">
+                    document.write(getRCDateStr('[[%%SEND-CARD-DUE-DATE%%]]',0));
+                </SCRIPT>
+                <br>
+                　&nbsp;&nbsp;本期應繳總金額：
+                <SCRIPT language="JavaScript">
+                        var samt1 = moneyAddDot2("[[%%SEND-CARD-DUE-AMT%%]]");
+                        var samt = trimDecimal(samt1);                        
+                        document.write(samt);               	
+            	</SCRIPT><br>
+                　&nbsp;&nbsp;最低應繳金額：
+                <SCRIPT language="JavaScript">
+                        var damt1 = moneyAddDot("[[%%SEND-CARD-MIN-AMT%%]]");
+                        var damt = trimDecimal(damt1);                        
+                        document.write(damt);                	
+            	</SCRIPT></td>
+          </tr>
+        </table>
+        <table width="681" border="1" bordercolor="#999999" id="mytable">
+          <tr bgcolor="#C4CBB8"> 
+            <td width="60" height="2"> 
+              <div align="center">入帳日 </div>
+            </td>
+            <td width="60" height="2"> 
+              <div align="center">消費日</div>
+            </td>
+            <td width="185" height="2"> 
+              <div align="center">消費明細 </div>
+            </td>
+            <td width="60" height="2"> 
+              <div align="center">清算日 </div>
+            </td>
+            <td width="70" height="2"> 
+              <div align="center">幣別 </div>
+            </td>
+            <td width="100" height="2"> 
+              <div align="center">外幣金額</div>
+            </td>
+            <td width="100" height="2"> 
+              <div align="center">台幣金額</div>
+            </td>
+          </tr>
+          <tr> 
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>上期金額</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td  align="right">
+            <script>
+                     var mt1 = moneyAddDot("[[%%SEND-CARD-PRE-BAL%%]]");
+                     var mt = trimDecimal(mt1);                        
+                     document.write(mt);
+            
+              //document.write(trimDecimal("[[%%SEND-CARD-PRE-BAL%%]]"));
+            </script>&nbsp;
+            </td>
+          </tr>
+          <tr> 
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>上期付款金額</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td align="right">
+            <script>
+              document.write(moneyFormat2("[[%%SEND-CARD-LSTPAY-AMT%%]]"));
+            </script>&nbsp;
+            </td>
+          </tr>
+<!--[[%%LOOP_SEC SEND-POST-DATE%%]]-->
+          <tr> 
+            <td><SCRIPT language="JavaScript">
+                    document.write(getRCDateStr('[[%%SEND-POST-DATE%%]]',0));
+                </SCRIPT>&nbsp;</td>
+            <td><SCRIPT language="JavaScript">
+                    document.write(getRCDateStr('[[%%SEND-TXN-DATE%%]]',0));
+                </SCRIPT>&nbsp;</td>
+            <td>[[%%SEND-TX-DESC%%]]</td>
+            <td>&nbsp;</td>
+            <td>[[%%SEND-CURRENCY-CODE%%]]&nbsp;</td>
+            <td align="right">
+            <SCRIPT language="JavaScript">               
+                document.write(chgOriAmt(moneyAddDot2('[[%%SEND-ORI-AMT%%]]')));
+            </SCRIPT>&nbsp;</td>
+            <td align="right">
+            <SCRIPT language="JavaScript">
+                        //var amt1 = moneyAddDot2("[[%%SEND-TX-AMT%%]]");
+                        //var amt = trimDecimal(amt1);                        
+                        //document.write(amt);      
+                document.write(moneyAddDot2("[[%%SEND-TX-AMT%%]]"));
+            </SCRIPT>&nbsp;</td>
+            <SCRIPT language="JavaScript">
+                addTxnAmt("[[%%SEND-TX-AMT%%]]");
+            </SCRIPT>
+          </tr>
+<!--[[%%ELOOP_SEC%%]]-->
+
+          <tr> 
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>總計</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td> 
+              <div align="right">
+            <!--SCRIPT language="JavaScript">
+                   //var tal = trimDecimal(getSum()); 
+                   //document.write(tal);
+            </SCRIPT-->&nbsp;
+            <SCRIPT language="JavaScript">
+                        var samt1 = moneyAddDot2("[[%%SEND-CARD-DUE-AMT%%]]");
+                        var samt = trimDecimal(samt1);                        
+                        document.write(samt);                	
+            </SCRIPT>&nbsp;</div>
+            </td>
+          </tr>
+        </table>     
+        <table width="682" border="0" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td width="50%"> 
+              <div align="right"><a href="javascript:window.print()"><img src="graph/print.gif" width="52" height="24" border="0"></a>　 
+              </div>
+            </td>
+            <td width="50%">&nbsp;<img src="graph/top.gif" width="64" height="16" onclick="javascript:chkSubmit();"></td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="">
+</form>
+
+<script>
+var clinst1 = moneyAddDot2("[[%%SEND-CARD-FIN-CHARGE%%]]");
+var clinst = trimDecimal(clinst1);
+
+var debit1 = moneyAddDot2("[[%%SEND-CARD-LATE-CHARGE%%]]");
+var debit  = trimDecimal(debit1);
+
+addTable();
+
+function addTable(){
+var t = document.getElementById("mytable");
+if (clinst!= 0 && debit!= 0){
+
+  var tr2 = t.insertRow(t.rows.length-1);
+	td  = tr2.insertCell(0);
+	td2 = tr2.insertCell(1);
+	td3 = tr2.insertCell(2);
+	td4 = tr2.insertCell(3);
+	td5 = tr2.insertCell(4);
+	td6 = tr2.insertCell(5);
+	td7 = tr2.insertCell(6);
+	
+	td.innerHTML="&nbsp;";
+	td2.innerHTML="&nbsp;";
+	td3.innerHTML="違約金";
+	td4.innerHTML="&nbsp;";	
+	td5.innerHTML="&nbsp;";
+	td6.innerHTML="&nbsp;";
+	td7.innerHTML="<div align=right>"+debit+"&nbsp;</div>"; 
+   
+   
+  var tr = t.insertRow(t.rows.length-2);
+	td = tr.insertCell(0);
+	td2 = tr.insertCell(1);
+	td3 = tr.insertCell(2);
+	td4 = tr.insertCell(3);
+	td5 = tr.insertCell(4);
+	td6 = tr.insertCell(5);
+	td7 = tr.insertCell(6);
+	
+	td.innerHTML="&nbsp;";
+	td2.innerHTML="&nbsp;";
+	td3.innerHTML="循環信用利息";
+	td4.innerHTML="&nbsp;";	
+	td5.innerHTML="&nbsp;";
+	td6.innerHTML="&nbsp;";
+	td7.innerHTML="<div align=right>"+clinst+"&nbsp;</div>"; 
+ }	
+if (clinst!= 0 && debit == 0){
+ 
+ var tr = t.insertRow(t.rows.length-1);
+	td = tr.insertCell(0);
+	td2 = tr.insertCell(1);
+	td3 = tr.insertCell(2);
+	td4 = tr.insertCell(3);
+	td5 = tr.insertCell(4);
+	td6 = tr.insertCell(5);
+	td7 = tr.insertCell(6);
+	
+	td.innerHTML="&nbsp;";
+	td2.innerHTML="&nbsp;";
+	td3.innerHTML="循環信用利息";
+	td4.innerHTML="&nbsp;";	
+	td5.innerHTML="&nbsp;";
+	td6.innerHTML="&nbsp;";
+	td7.innerHTML="<div align=right>"+clinst+"&nbsp;</div>"; 
+
+ }		
+}
+</script>
+
+</body>
+</html>

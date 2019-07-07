@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- IVR SDGIVTRW Input Schema, Last updated date 3-11-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="SDGIVTRW01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='SDGIVTRW02' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="SDGIVTRW03">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="SDGIVTRW04">
+		<name>REVE-STATUS</name>
+		<length>10</length>
+		<type>String</type>
+		<description>預約執行狀態</description>
+	</field>
+	<field id="SDGIVTRW05">
+		<name>REVE-ACCT-NO</name>
+		<length>10</length>
+		<type>String</type>
+		<description>帳號</description>
+	</field>
+	<field id="SDGIVTRW06">
+		<name>REVE-TID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>交易類別</description>
+	</field>
+	<field id="SDGIVTRW06">
+		<name>REVE-FIELDS</name>
+		<length>10</length>
+		<type>String</type>
+		<description>欄位名稱:SID;STATUS;ACCTNO_FROM;TID</description>
+	</field>
+	<field id="SDGIVTRW06">
+		<name>REVE-VALUES</name>
+		<length>10</length>
+		<type>String</type>
+		<description>值:SEND-ID-NO;REVE-STATUS;REVE-ACCT-NO;REVE-TID</description>
+	</field>
+	<field id="SDGIVTRW06">
+		<name>REVE-CONDI-BMP</name>
+		<length>10</length>
+		<type>String</type>
+		<description>81819090</description>
+	</field>
+	<field id="SDGIVTRW06">
+		<name>REVE-OP-BMP</name>
+		<length>10</length>
+		<type>String</type>
+		<description>0222</description>
+	</field>
+	<field id="SDGIVTRW50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="SDGIVTRW51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="SDGIVTRW52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="SDGIVTRW53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>設為首頁</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<script language="JavaScript">
+	function chksubmit(nextPageid){
+		document.submitform.pageid.value = nextPageid;
+		document.submitform.submit();
+	}
+</script>
+
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<link rel="stylesheet" type="text/css" media="all" href="theme/portal.css" />
+
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+<p><b>帳務&gt;<font color="#0066FF">線上申請</font><font color="#003399"><font color="#0066FF"> 
+  </font></font></b></p>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5"> 
+      <div align="center"></div>
+      <img src="graph/point.gif" width="12" height="12" align="absmiddle"><font color="#006600">交易明細查詢升級</font> 
+      <table width="60%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td>我同意將線上交易明細查詢時間升級為三個月（原為一個月）？ <br>
+            <input type="radio" name="radiobutton" value="radiobutton" checked>
+            是<br>
+            <input type="radio" name="radiobutton" value="radiobutton">
+            否<br>
+            <input type="submit" name="Submit5" value="確定">
+            <input type="submit" name="Submit6" value="取消">
+          </td>
+        </tr>
+      </table>
+      說明：<br>
+      自申請日起本行將您的交易明細查詢區間升級為三個月，但於申請日之當月開始保留資料（即若於申請日一個月後查詢交易明細，查詢區間起日為申請日之月初），如您於92/11/5申請本服務，92/12/3可查詢92/11/5-92/12/3之交易明細，若於93/1/12查詢交易明細之期間為92/11/1至93/1/12日。 
+      <div align="center"> </div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="5" valign="bottom" height="1" bgcolor="#663300"></td>
+  </tr>
+</table>
+</body>
+</html>

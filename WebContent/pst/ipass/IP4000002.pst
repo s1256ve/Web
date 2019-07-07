@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+<title>iPASS PAY約定連結聯邦存款帳戶付款</title>
+<script>
+function chkSubmit(){
+	document.IP1002101.pageid.value = "IC0000010";
+	document.IP1002101.aptype.value = "IBANK";
+	document.IP1002101.submit();
+}
+</script>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 14pt;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #f2f2f2;
+}
+
+
+input, textarea {
+	border: 1px solid #CFCFCF;
+}
+select {
+	border: 1px solid #CFCFCF;
+	height: 30px;
+	padding: 5px;
+}
+.input-xlarge {
+    width: 90%;
+	height: 20px;
+	padding: 5px;
+}
+.style5 {
+	font-size: 14pt;
+	color: #FF0000;
+}
+
+.t13 {
+	color: #9292a0;
+	font-size: 13pt;
+	line-height: 18pt;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.t13a {
+	color: #333333;
+	font-size: 13pt;
+	line-height: 15pt;
+}
+.t15 {
+	color: #9292a0;
+	font-size: 15pt;
+	line-height: 26pt;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.t15a {
+	color: #000000;
+	font-size: 15pt;
+	line-height: 26pt;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+a:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+a:hover {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+a:active {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+#div3 {
+	position: absolute;
+	bottom: 0px;
+}
+
+-->
+</style>
+</head>
+
+<body>
+<form method="POST" action="LoadAP2" name="IP1002101">
+<table width="100%" border="0" cellpadding="5" cellspacing="0" class="t15" >
+  <tr>
+    <td><img src="img/logo.png" width="40%" hspace="15" /></td>
+  </tr>
+  <tr>
+    <td class="t13"><div align="center">基本資料維護</div></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellpadding="5" cellspacing="0" >
+  <tr>
+    <td><table width="90%" border="0" align="center" cellpadding="10" cellspacing="0">
+      <tr>
+        <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td><table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="t15">姓名</td>
+                </tr>
+                <tr>
+                  <td class="t15a" >[[%%SEND-NAME%%]]</td>
+                </tr>
+                <tr>
+                  <td><img src="img/spacer.gif" alt="" width="100" height="10" /></td>
+                </tr>
+                <tr>
+                  <td class="t15"><font color="#FF0000">*</font>通訊地址</td>
+                </tr>
+                <tr>
+                  <td class="t15a">[[%%SEND-CONTACT-ZIP%%]][[%%SEND-CONTACT-ADDR1%%]][[%%SEND-CONTACT-ADDR2%%]][[%%SEND-CONTACT-ADDR3%%]]</td>
+                </tr>
+                <tr>
+                  <td><img src="img/spacer.gif" alt="" width="100" height="10" /></td>
+                </tr>
+                <tr>
+                  <td class="t15"><font color="#FF0000">*</font>日間電話</td>
+                </tr>
+                <tr>
+                  <td class="t15a">[[%%SEND-DAILY-PHONE%%]]<span class="t15">分機</span> [[%%SEND-DAILY-PHONE-EXT%%]]</td>
+                </tr>
+                <tr>
+                  <td><img src="img/spacer.gif" alt="" width="100" height="10" /></td>
+                </tr>
+                <tr>
+                  <td class="t15"><font color="#FF0000">*</font>夜間電話</td>
+                </tr>
+                <tr>
+                  <td class="t15a">
+                  	[[%%SEND-NIGHT-PHONE%%]]
+                  	<script>if('[[%%SEND-NIGHT-PHONE%%]]'!="")document.write("<span class='t15'>分機</span>");</script>[[%%SEND-NIGHT-PHONE-EXT%%]]
+          					<script>if('[[%%SEND-NIGHT-PHONE%%]]'=="")document.write("未設定");</script>
+									</td>
+                </tr>
+                <tr>
+                  <td><img src="img/spacer.gif" alt="" width="100" height="10" /></td>
+                </tr>
+                <tr>
+                  <td class="t15"><font color="#FF0000">*</font>行動電話</td>
+                </tr>
+                <tr>
+                  <td class="t15a">
+                  [[%%SEND-MPHONE%%]]<script>if('[[%%SEND-MPHONE%%]]'=="")document.write("未設定");</script>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="img/spacer.gif" alt="" width="100" height="10" /></td>
+                </tr>
+                <tr>
+                  <td class="t15"><font color="#FF0000">*</font>email</td>
+                </tr>
+                <tr>
+                  <td class="t15a">
+                  [[%%SEND-EMAIL-ADDR%%]]<script>if('[[%%SEND-EMAIL-ADDR%%]]'=="")document.write("未設定");</script>
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="img/spacer.gif" alt="" width="100" height="10" /></td>
+                </tr>
+              </table>
+               </td>
+            </tr>
+            <tr>
+              <td class="t13a"><div align="center"><a href="javascript:void(0);" onclick="chkSubmit();"><img src="img/returnipass.gif" width="70%" hspace="10" vspace="5" border="0" /></a></div></td>
+            </tr>
+            <tr>
+              <td class="t13a"><br />
+                <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td class="t13a">註：<br />
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td valign="top" class="t13a">1.</td>
+                          <td valign="top" class="t13a">如須變更身份證字號、姓名、戶籍地址等欄位，請您攜帶身份證及印鑑至原開戶行辦理。</td>
+                        </tr>
+                        <tr>
+                          <td valign="top" class="t13a">2.</td>
+                          <td valign="top" class="t13a">若您於本行亦有開立信託帳戶，執行基本資料變更後，將於次一營業日一併更新信託帳戶之基本資料。</td>
+                        </tr>
+                      </table>                      <br /></td>
+                  </tr>
+                </table></td>
+          </tr>
+          </table>          </td>
+      </tr>
+    </table>
+    <br /></td>
+  </tr>
+  <tr>
+    <td bgcolor="#7f7f7f"><table width="100%" border="0" cellspacing="0" cellpadding="10">
+      <tr>
+        <td class="t13a"><font color="#FFFFFF">本行保留本行網站內容之一切法律權利，非經本行授權使用或同意，本行網站之資料均不得以任何形式，或利用任何電子、機械方式進行重製、轉製或製作衍生物。@聯邦商業銀行</font></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<input type="hidden" name="REVE_ECARD_SN" value="[[%%REVE_ECARD_SN%%]]">
+<input type="hidden" name="REVE_TXSEQ" value="[[%%REVE_TXSEQ%%]]">
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="aptype" value="">
+</form>
+</body>
+</html>

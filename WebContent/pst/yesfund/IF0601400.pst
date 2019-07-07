@@ -1,0 +1,137 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>基金申購</title>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js?0"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript">
+	function rtnBankName(sBankCode,sExpDate){
+		if (sBankCode.trim() == "701"){
+			return "郵局帳號扣款";
+		}else if(sExpDate == "0000"){
+			return "聯邦銀行帳號扣款" ;		
+		}else{
+			return "聯邦信用卡扣款" ;		
+		}
+	}
+	function chkSubmit(sFUND_ID,sFUND_CNAME,sCERT_NO,sAMT,sBANK_CODE,sACCT_NO,sSCHD_DATE,sSCHD_DATE2,sSCHD_DATE3,sSCHD_DATE4,sSCHD_DATE5,sSCHD_DATE6,sCury,sTOTAL_AMT,sEXP_DATE){
+		/**
+		 if(sCury !="NTD"){
+				alert("有關外幣信託之申購、贖回、轉換或交易條件變更等交易功能\n可利用電話銀行：(02)2545-1788 執行交易(手續費6折)，相關交易之速撥碼如下，或請臨櫃辦理：\n申購請撥  621\t變更扣款日期請撥  631\t    恢復扣款請撥  634\n購回請撥  622\t變更每月扣款金額請撥  632    變更扣款請撥  635\n轉換請撥  623\t暫停扣款請撥633\t                    恢復扣款請撥  636");
+				return;
+				}
+		**/
+		var doc = document.IF0601400
+		doc.REVE_FUND_ID.value = sFUND_ID;	
+		doc.REVE_FUND_CNAME.value = sFUND_CNAME;
+		doc.REVE_CERT_NO.value = sCERT_NO;
+		doc.REVE_AMT.value = sAMT;
+		doc.REVE_BANK_NAME.value = rtnBankName(sBANK_CODE,sEXP_DATE);
+		doc.REVE_ACCT_NO.value = sACCT_NO;
+		doc.REVE_SCHD_DATE.value = sSCHD_DATE;	
+		doc.REVE_SCHD_DATE2.value = sSCHD_DATE2;
+		doc.REVE_SCHD_DATE3.value = sSCHD_DATE3;	
+		doc.REVE_SCHD_DATE4.value = sSCHD_DATE4;	
+		doc.REVE_SCHD_DATE5.value = sSCHD_DATE5;
+		doc.REVE_SCHD_DATE6.value = sSCHD_DATE6;		
+		doc.REVE_EXPIRE_DATE.value = sEXP_DATE;			
+		doc.REVE_TOTAL_AMT.value = sTOTAL_AMT;
+		doc.FROM_CURRENCY_NAME.value = sCury;
+		doc.FROM_CURRENCY_CODE.value = CuryMapping("NAME",sCury,"CODE");
+		if (sCury == "NTD"){
+			doc.REVE_TITLE_CODE.value = "10,20,50,51";
+		}else{
+			doc.REVE_TITLE_CODE.value = "77";
+		} 		
+		doc.pageid.value="IF0601401";
+  	doc.submit();
+	}	
+</script> 
+</head>
+<link rel="stylesheet" type="text/css" media="all" href="theme/YesFund.css" title="win2k-cold-1" />
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0601400">
+<font color="#006666"><b>交易資料變更&gt;</b></font><div align="right">
+<font color="#0000CC"face="Arial, Helvetica, sans-serif">資料時間： <script language="javascript">
+		document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));                  
+			      		   				//document.write(getNowTime());
+			      		   				</script></font> </div><br>
+  <table width="770" border="0">
+    <tr> 
+    <td colspan="3"> 
+      <div align="center"> 請選擇變更之信用卡卡號或扣款帳號 
+          <table width="765" border="1" bordercolor="#999999" cellpadding="0" cellspacing="0">
+            <tr bgcolor="#C5DECF"> 
+            <td width="48"> 
+              <div align="center">基金代號</div>
+            </td>
+            <td width="57"> 
+              <div align="center">憑證號碼</div>
+            </td>
+    		 <td width="105"> 
+              <div align="center">基金名稱</div>
+            </td>
+           <!-- <td width="72"> 
+              <div align="center">累積信託金額</div>
+            </td>-->
+            <td width="120"> 
+              <div align="center">扣款方式</div>
+            </td>
+            <td width="96"> 
+              <div align="center">扣款帳號（卡號）</div>
+            </td>
+            <td width="84"> 
+              <div align="center">每次投資金額</div>
+            </td>
+            <td width="64"> 
+              <div align="center">每月投資日</div>
+            </td>
+          </tr>          
+           <script>                  	
+          	<!-- [[%%LOOP_SEC SEND-ID%%]] --> 
+          		document.write(rtnFundInfo('[[%%SEND-FUND-ID1%%]]','[[%%SEND-FUND-CNAME1%%]]','[[%%SEND-FUND-ID2%%]]','[[%%SEND-FUND-CNAME2%%]]','[[%%SEND-FUND-ID3%%]]','[[%%SEND-FUND-CNAME3%%]]','[[%%SEND-CERT-NO%%]]','[[%%SEND-AMT1%%]]','[[%%SEND-AMT2%%]]','[[%%SEND-AMT3%%]]','[[%%SEND-BANK-CODE%%]]','[[%%SEND-ACCT-NO%%]]','[[%%SEND-SCHD-DATE%%]]','[[%%SEND-SCHD-DATE2%%]]','[[%%SEND-SCHD-DATE3%%]]','[[%%SEND-SCHD-DATE4%%]]','[[%%SEND-SCHD-DATE5%%]]','[[%%SEND-SCHD-DATE6%%]]','[[%%SEND-CURRENCY%%]]','[[%%SEND-TOTAL-AMT%%]]','[[%%SEND-EXPIRE-DATE%%]]'));
+          	<!-- [[%%ELOOP_SEC%%]]  --> 
+          </script>	
+         
+         
+         
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+<br>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+</table>
+ <input type="hidden" name="pageid" value="IF0601401">
+<input type="hidden" name="REVE_SYS_DATE" value="[[%%SEND-DATE%%]]">
+<input type="hidden" name="REVE_SYS_TIME" value="[[%%SEND-TIME%%]]">
+<input type="hidden" name="REVE_EXPIRE_DATE" value="">
+<input type="hidden" name="REVE_FUND_ID" value="">
+<input type="hidden" name="REVE_FUND_CNAME" value="">
+<input type="hidden" name="REVE_CERT_NO" value="">
+<input type="hidden" name="REVE_AMT" value="">
+<input type="hidden" name="REVE_BANK_NAME" value="">
+<input type="hidden" name="REVE_ACCT_NO" value="">
+<input type="hidden" name="REVE_SCHD_DATE" value="">
+<input type="hidden" name="REVE_SCHD_DATE2" value="">
+<input type="hidden" name="REVE_SCHD_DATE3" value="">
+<input type="hidden" name="REVE_SCHD_DATE4" value="">
+<input type="hidden" name="REVE_SCHD_DATE5" value="">
+<input type="hidden" name="REVE_SCHD_DATE6" value="">
+<input type="hidden" name="REVE_TOTAL_AMT" value="">
+<input type="hidden" name="FROM_CURRENCY_NAME" value="">
+<input type="hidden" name="FROM_CURRENCY_CODE" value="">
+<input type="hidden" name="REVE_TITLE_CODE" value="">
+</form>
+</body>
+</html>

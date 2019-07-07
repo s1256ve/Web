@@ -1,0 +1,287 @@
+<html>
+<head>
+<title>聯邦銀行個人金融網</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI99041	        2010.05.10	   David
+* EAI99052          2010.8.25      David 
+* EAI100078         2011.11.23     SIMON LIN		終止UMA網路服務
+***********************************************************************/
+</script>
+<script language="JavaScript">
+<!--
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+//-->
+</script>
+<link rel="stylesheet" href="theme/css.css">
+<style type="text/css">
+<!--
+body,p,td,form,select{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:12pt;}
+    .t1{  font-family: "新細明體"; font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-family: "新細明體"; font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+body {
+	background-color: #dff0d3;
+	margin-top: 3px;
+}
+-->
+</style></head>
+
+<body leftmargin="0" link="#0000FF" vlink="#0000FF" alink="#000000" onLoad="MM_preloadImages('graph/icon001a.gif','graph/icon004a.gif','graph/icon002.gif','graph/icon008a.gif','graph/icon003a.gif','graph/icon001.gif','graph/icon004.gif','graph/icon005.gif','graph/icon006.gif','graph/icon007.gif','graph/icon008.gif')">
+<table border="0" cellspacing="0" cellpadding="0" width="128">
+  <tr valign="top"> 
+    <td height="225">      <div align="center"> </div>
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td height="5"><table width="100%"  border="1" cellpadding="1" cellspacing="0" bordercolor="9CC090">
+            <tr>
+              <td height="55" bordercolor="#dff0d3"><img src="graph/user.gif" width="135" height="22">
+                <table width="135" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+                    <tr>
+                      <td width="150" height="100">
+                        <div align="center" class="t1">很抱歉!!<br>
+                      個人網路銀行暫停服務</div>                      </td>
+                    </tr>
+                    <tr>
+                      <td><img src="graph/blank.gif" width="1" height="5"></td>
+                    </tr>
+                    <tr>
+                      <td height="2">
+                        <div align="center"><a href="https://ibank.ubot.com.tw/ibank/" target="_blank"><img src="graph/login03.gif" width="124" height="18" border="0"></a></div></td>
+                    </tr>
+                    <tr>
+                      <td height="26">
+                        <div align="center">請使用<a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=1e1550cb-5e5d-48f5-b02b-20b602228de6&amp;displaylang=zh-tw" target="_blank">IE5.5 (含)以上</a>版本</div></td>
+                    </tr>
+              </table></td></tr>
+          </table>
+          <div align="left"><a href="https://atm.ubot.com.tw/" target="_blank"><img src="graph/atm_banner.gif" width="140" height="45" hspace="2" vspace="2" border="0"></a></div></td>
+        </tr>
+        <tr>
+          <td height="5"></td>
+        </tr>
+      </table>
+      <table border="0" cellspacing="0" cellpadding="0" width="141">
+        <tr> 
+          <td><img name="Image1" border="0" src="graph/button-01.gif" width="140" height="22"></td>
+        </tr>
+        <tr> 
+          <td> 
+            <table width="141" border="0" cellspacing="1" cellpadding="0">
+              <tr bgcolor="#B0B6A7"> 
+                <td height="140"> 
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                      <td> <a href="https://card.ubot.com.tw" target="_blank" 
+onClick="MM_swapImage('Image01','','graph/icon001a.gif',1)
+              ;MM_swapImage('Image02','','graph/icon002.gif',1)
+              ;MM_swapImage('Image03','','graph/icon003.gif',1)
+              ;MM_swapImage('Image04','','graph/icon004.gif',1)
+              ;MM_swapImage('Image05','','graph/icon005.gif',1)
+              ;MM_swapImage('Image06','','graph/icon006.gif',1)
+              ;MM_swapImage('Image07','','graph/icon007.gif',1)
+              ;MM_swapImage('Image08','','graph/icon008.gif',1)"><img name="Image01" border="0" src="graph/icon001.gif" width="140" height="21"></a></td>
+                    </tr>
+                    <tr> 
+                      <td> <a href="https://www.ubot.com.tw/UBOT2005/Cash/Cash.asp" target="main" 
+onClick="MM_swapImage('Image02','','graph/icon002a.gif',1)
+              ;MM_swapImage('Image01','','graph/icon001.gif',1)
+              ;MM_swapImage('Image03','','graph/icon003.gif',1)
+              ;MM_swapImage('Image04','','graph/icon004.gif',1)
+              ;MM_swapImage('Image05','','graph/icon005.gif',1)
+              ;MM_swapImage('Image06','','graph/icon006.gif',1)
+              ;MM_swapImage('Image07','','graph/icon007.gif',1)
+              ;MM_swapImage('Image08','','graph/icon008.gif',1)"><img name="Image02" border="0" src="graph/icon002.gif" width="140" height="21"></a></td>
+                    </tr>
+                    
+                    <tr> 
+                      <td> <a href="[[%%HOSTNAME%%]]/LoadAPWeb/LoadAP?aptype=NOAP&pageid=IC000000F" target="_parent" 
+onClick="MM_swapImage('Image04','','graph/icon004a.gif',1)
+              ;MM_swapImage('Image02','','graph/icon002.gif',1)
+              ;MM_swapImage('Image03','','graph/icon003.gif',1)
+              ;MM_swapImage('Image01','','graph/icon001.gif',1)
+              ;MM_swapImage('Image05','','graph/icon005.gif',1)
+              ;MM_swapImage('Image06','','graph/icon006.gif',1)
+              ;MM_swapImage('Image07','','graph/icon007.gif',1)
+              ;MM_swapImage('Image08','','graph/icon008.gif',1)"><img name="Image04" border="0" src="graph/icon004.gif" width="140" height="21"></a></td>
+                    </tr>
+                    <tr> 
+                      <td> <a href="https://stock.ubot.com.tw/" target="_blank" 
+onClick="MM_swapImage('Image05','','graph/icon005a.gif',1)
+              ;MM_swapImage('Image02','','graph/icon002.gif',1)
+              ;MM_swapImage('Image03','','graph/icon003.gif',1)
+              ;MM_swapImage('Image04','','graph/icon004.gif',1)
+              ;MM_swapImage('Image01','','graph/icon001.gif',1)
+              ;MM_swapImage('Image06','','graph/icon006.gif',1)
+              ;MM_swapImage('Image07','','graph/icon007.gif',1)
+              ;MM_swapImage('Image08','','graph/icon008.gif',1)"><img name="Image05" border="0" src="graph/icon005.gif" width="140" height="21"></a></td>
+                    </tr>
+                    <tr> 
+                      <td> <a href="https://www.ubot.com.tw/UBOT2005/Product/Product.asp" target="main" 
+onClick="MM_swapImage('Image06','','graph/icon006a.gif',1)
+              ;MM_swapImage('Image02','','graph/icon002.gif',1)
+              ;MM_swapImage('Image03','','graph/icon003.gif',1)
+              ;MM_swapImage('Image04','','graph/icon004.gif',1)
+              ;MM_swapImage('Image05','','graph/icon005.gif',1)
+              ;MM_swapImage('Image01','','graph/icon001.gif',1)
+              ;MM_swapImage('Image07','','graph/icon007.gif',1)
+              ;MM_swapImage('Image08','','graph/icon008.gif',1)"><img name="Image06" border="0" src="graph/icon006.gif" width="140" height="21"></a></td>
+                    </tr>
+                    <tr> 
+                      <td> <a href="https://www.ubot.com.tw/UBOT2005/Money/Money.asp" 
+onClick="MM_swapImage('Image08','','graph/icon008a.gif',1)
+              ;MM_swapImage('Image02','','graph/icon002.gif',1)
+              ;MM_swapImage('Image03','','graph/icon003.gif',1)
+              ;MM_swapImage('Image04','','graph/icon004.gif',1)
+              ;MM_swapImage('Image05','','graph/icon005.gif',1)
+              ;MM_swapImage('Image06','','graph/icon006.gif',1)
+              ;MM_swapImage('Image07','','graph/icon007.gif',1)
+              ;MM_swapImage('Image01','','graph/icon001.gif',1)" target="main"><img name="Image08" border="0" src="graph/icon008.gif" width="140" height="21"></a></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <table width="100%"  border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td height="5"></td>
+        </tr>
+        <tr>
+          <td>            <img src="graph/button-02.gif" width="140" height="22">            <table width="100%"  border="1" cellpadding="0" cellspacing="0" bordercolor="9CC090">
+              <tr>
+                <td bordercolor="#dff0d3"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+<!--
+                  <tr align="left" valign="top">
+                   
+                    <td colspan="2"><img src="graph/blank.gif" width="1" height="6"></td>
+                  </tr>
+                  <tr align="left" valign="top">
+                    <td width="10%"> <img src="graph/doc-03.gif" width="12" height="12"></td>
+                    <td width="90%"><a href="http://www.ufc.com.tw" target="_blank">聯邦期貨</a></td>
+                  </tr>
+                  -->
+                  <tr align="left" valign="top">
+                    <td colspan="2"><img src="graph/blank.gif" width="1" height="6"></td>
+                  </tr>
+                  <tr align="left" valign="top">
+                    <td> <img src="graph/doc-03.gif" width="12" height="12"></td>
+                    <td><a href="http://www.usitc.com.tw" target="_blank">聯邦投信</a></td>
+                  </tr>
+                  <tr>
+                  <!--
+                    <td colspan="2" height="2"><img src="graph/blank.gif" width="1" height="6"></td>
+                  </tr>
+                  <tr>
+                    <td width="10%"><img src="graph/doc-03.gif" width="12" height="12"></td>
+                    <td width="90%"><a href="http://www.usicc.com.tw" target="_blank">聯邦投顧</a></td>
+                  </tr>
+                  -->
+                  <tr>
+                    <td colspan="2" height="2"><img src="graph/blank.gif" width="1" height="6"></td>
+                  </tr>
+                  <tr>
+                    <td width="10%"><img src="graph/doc-03.gif" width="12" height="12"></td>
+                    <td width="90%"> <a href="http://www.ubf.com.tw" target="_blank">聯邦票券</a></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" height="2"><img src="graph/blank.gif" width="1" height="6"></td>
+                  </tr>
+                  <tr>
+                    <td width="10%"><img src="graph/doc-03.gif" width="12" height="12"></td>
+                    <td width="90%"> <a href="http://www.ubi.com.tw/" target="_blank">聯邦保代</a></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><img src="graph/blank.gif" width="1" height="6"></td>
+                  </tr>
+                  <tr>
+                    <td width="10%"><img src="graph/doc-03.gif" width="12" height="12"></td>
+                    <td width="90%"><a href="http://www.libertytimes.com.tw" target="_blank">自由時報</a></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" height="2"><img src="graph/blank.gif" width="1" height="6"></td>
+                  </tr>
+                  <tr>
+                    <td width="10%"><img src="graph/doc-03.gif" width="12" height="12"></td>
+                    <td width="90%"><a href="http://www.taipeitimes.com/News" target="_blank">TAIPEI TIMES</a></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" height="1"><img src="graph/blank.gif" width="1" height="6"></td>
+                  </tr>
+                  <tr>
+                    <td width="10%"><img src="graph/doc-03.gif" width="12" height="12"></td>
+                    <td width="90%"><a href="http://www.yesgogogo.com/" target="_blank">Yesgogogo</a></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" height="1"><img src="graph/blank.gif" width="1" height="6"></td>
+                  </tr>
+                  <tr>
+                    <td width="10%"><img src="graph/doc-03.gif" width="12" height="12"></td>
+                    <td width="90%"><a href="https://openstudio.ubot.com.tw" target="_blank">Open Studio</a></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" height="2"><img src="graph/blank.gif" width="1" height="6"></td>
+                  </tr>
+                  <tr>
+                    <td width="10%"><img src="graph/doc-03.gif" width="12" height="12"></td>
+                    <td width="90%"><a href="http://mops.tse.com.tw" target="_blank">公開資訊觀測站</a></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" height="2"><img src="graph/blank.gif" width="1" height="6"></td>
+                  </tr>
+                  <tr>
+                    <td width="10%"><img src="graph/doc-03.gif" width="12" height="12"></td>
+                    <td width="90%"><a href="http://www.smeg.org.tw" target="_blank">信保基金</a></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" height="2"><img src="graph/blank.gif" width="1" height="6"></td>
+                  </tr>
+                  <tr>
+                    <td width="10%" valign="top"><img src="graph/doc-03.gif" width="12" height="12"></td>
+                    <td width="90%"><a href="http://www.fisc.com.tw/atmtransfer" target="_blank">ATM非約定帳戶「繳費查詢網」</a></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" height="2"><img src="graph/blank.gif" width="1" height="6"></td>
+                  </tr>
+                </table></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr valign="top">
+    <td height="29">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

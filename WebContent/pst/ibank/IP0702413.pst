@@ -1,0 +1,101 @@
+<SCRIPT language="JavaScript" src="script/screenPwd.js"></SCRIPT>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo           Date Modified  Modified by   
+* -------------      ----------     ----------
+* EAI97076           2010.01.12     David 
+***********************************************************************/
+</script>
+<script language="JavaScript">
+
+function chkSubmit(){
+
+	onSend('IP0702411');
+   	document.IP0702411.submit();	
+}
+
+
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" onLoad="MM_preloadImages('graph/secret/0a.gif','graph/secret/AA.gif','graph/secret/4a.gif','graph/secret/BA.gif','graph/secret/8a.gif','graph/secret/CA.gif','graph/secret/DA.gif','graph/secret/EA.gif','graph/secret/FA.gif','graph/secret/GA.gif','graph/secret/1a.gif','graph/secret/HA.gif','graph/secret/5a.gif','graph/secret/IA.gif','graph/secret/9a.gif','graph/secret/JA.gif','graph/secret/KA.gif','graph/secret/LA.gif','graph/secret/MA.gif','graph/secret/NA.gif','graph/secret/2a.gif','graph/secret/OA.gif','graph/secret/6a.gif','graph/secret/PA.gif','graph/secret/QA.gif','graph/secret/RA.gif','graph/secret/SA.gif','graph/secret/TA.gif','graph/secret/UA.gif','graph/secret/3a.gif','graph/secret/VA.gif','graph/secret/7a.gif','graph/secret/WA.gif','graph/secret/XA.gif','graph/secret/YA.gif','graph/secret/ZA.gif')" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+
+<form method="post" action="LoadAP" name="IP0702411" onSubmit='JavaScript:return chkSubmit();'>
+<div id="Layer1" style="position:absolute; left:440px; top:549px; width:72px; height:10px; z-index:1"><a href="page7-2-1ok3.htm">??</a></div>
+<b> ????&gt;<font color="#003399"><font color="#0066FF">????<br>
+</font></font></b><br>
+<b><font color="#003399"><font color="#0066FF"> </font></font></b> 
+ <table width="630" border="0">
+          <tr> 
+            <td>??????????????????0936xxx125,?5?????????????,?????????<br>
+              	?????????????????: 
+              <input type="text" name="REVE_PWD"><br><br>
+              <table border="1" bordercolor="#999999" align="center">
+                <tr> 
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image1','','graph/secret/0a.gif',1)"><img name="Image1" border="0" src="graph/secret/0.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image17','','graph/secret/AA.gif',1)"><img name="Image17" border="0" src="graph/secret/A.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image5','','graph/secret/4a.gif',1)"><img name="Image5" border="0" src="graph/secret/4.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image18','','graph/secret/BA.gif',1)"><img name="Image18" border="0" src="graph/secret/B.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image9','','graph/secret/8a.gif',1)"><img name="Image9" border="0" src="graph/secret/8.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image19','','graph/secret/CA.gif',1)"><img name="Image19" border="0" src="graph/secret/C.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image20','','graph/secret/DA.gif',1)"><img name="Image20" border="0" src="graph/secret/D.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image211','','graph/secret/EA.gif',1)"><img name="Image211" border="0" src="graph/secret/E.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image221','','graph/secret/FA.gif',1)"><img name="Image221" border="0" src="graph/secret/F.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image231','','graph/secret/GA.gif',1)"><img name="Image231" border="0" src="graph/secret/G.gif" width="33" height="33"></a></td>
+                </tr>
+                <tr> 
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2','','graph/secret/1a.gif',1)"><img name="Image2" border="0" src="graph/secret/1.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image241','','graph/secret/HA.gif',1)"><img name="Image241" border="0" src="graph/secret/H.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image6','','graph/secret/5a.gif',1)"><img name="Image6" border="0" src="graph/secret/5.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image251','','graph/secret/IA.gif',1)"><img name="Image251" border="0" src="graph/secret/I.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image10','','graph/secret/9a.gif',1)"><img name="Image10" border="0" src="graph/secret/9.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image281','','graph/secret/JA.gif',1)"><img name="Image281" border="0" src="graph/secret/J.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image271','','graph/secret/KA.gif',1)"><img name="Image271" border="0" src="graph/secret/K.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image431','','graph/secret/LA.gif',1)"><img name="Image431" border="0" src="graph/secret/L.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image291','','graph/secret/MA.gif',1)"><img name="Image291" border="0" src="graph/secret/M.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image441','','graph/secret/NA.gif',1)"><img name="Image441" border="0" src="graph/secret/N.gif" width="33" height="33"></a></td>
+                </tr>
+                <tr> 
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image3','','graph/secret/2a.gif',1)"><img name="Image3" border="0" src="graph/secret/2.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image311','','graph/secret/OA.gif',1)"><img name="Image311" border="0" src="graph/secret/O.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image7','','graph/secret/6a.gif',1)"><img name="Image7" border="0" src="graph/secret/6.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image321','','graph/secret/PA.gif',1)"><img name="Image321" border="0" src="graph/secret/P.gif" width="33" height="33"></a></td>
+                  <td><img src="graph/secret/10.gif" width="33" height="33"></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image331','','graph/secret/QA.gif',1)"><img name="Image331" border="0" src="graph/secret/Q.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image341','','graph/secret/RA.gif',1)"><img name="Image341" border="0" src="graph/secret/R.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image351','','graph/secret/SA.gif',1)"><img name="Image351" border="0" src="graph/secret/S.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image361','','graph/secret/TA.gif',1)"><img name="Image361" border="0" src="graph/secret/T.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image371','','graph/secret/UA.gif',1)"><img name="Image371" border="0" src="graph/secret/U.gif" width="33" height="33"></a></td>
+                </tr>
+                <tr> 
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image4','','graph/secret/3a.gif',1)"><img name="Image4" border="0" src="graph/secret/3.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image381','','graph/secret/VA.gif',1)"><img name="Image381" border="0" src="graph/secret/V.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image8','','graph/secret/7a.gif',1)"><img name="Image8" border="0" src="graph/secret/7.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image391','','graph/secret/WA.gif',1)"><img name="Image391" border="0" src="graph/secret/W.gif" width="33" height="33"></a></td>
+                  <td><img src="graph/secret/10.gif" width="33" height="33"></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image401','','graph/secret/XA.gif',1)"><img name="Image401" border="0" src="graph/secret/X.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image411','','graph/secret/YA.gif',1)"><img name="Image411" border="0" src="graph/secret/Y.gif" width="33" height="33"></a></td>
+                  <td><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image421','','graph/secret/ZA.gif',1)"><img name="Image421" border="0" src="graph/secret/Z.gif" width="33" height="33"></a></td>
+                  <td><img src="graph/secret/10.gif" width="33" height="33"></td>
+                  <td><img src="graph/secret/10.gif" width="33" height="33"></td>
+                </tr>
+              </table><br>
+              <div align="center"> 
+                <input type="submit" name="Submit32" value="??">
+                <input type="submit" name="Submit4" value="??">
+                <input type="submit" name="Submit5" value="??">
+              </div>
+            </td>
+          </tr>
+        </table>
+  <input type="hidden" name="pageid" value="IP0702413">
+  <input type="hidden" name="APTYPE" value="IBANK">
+</form>
+</body>
+</html>

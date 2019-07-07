@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="Big5"?>
+
+<root>	
+
+	<aptype TypeName="IBANK"	>10</aptype>
+
+	<aptype TypeName="YESFUND"	>30</aptype>	 
+
+	<aptype TypeName="CERT"		>5</aptype>
+
+	<aptype TypeName="CERTMAG"	>5</aptype>
+
+	<aptype TypeName="UMA"		>5</aptype>
+
+	<aptype TypeName="UMAMAG"	>5</aptype>
+
+	<aptype TypeName="UMAPDA"	>5</aptype>
+
+	<aptype TypeName="MBANK"	>10</aptype>
+</root>

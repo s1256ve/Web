@@ -1,0 +1,281 @@
+<html>
+<head>
+<title>首次登入</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<script language="Javascript">
+String.prototype.trim = function () {return this.replace(/^\s+|\s+$/g, "");}
+var HalfshapeString = 
+        "0123456789" +
+        "abcdefghijklmnopqrstuvwxyz" +
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+function HalfshapeToFullshape(strSource) {
+        var newString = "";
+        var searchIndex = -1;
+        for(var i = 0; i < strSource.length; i++) {
+                searchIndex = HalfshapeString.indexOf(strSource.charAt(i));
+                if(searchIndex != -1) {
+                        newString += String.fromCharCode(strSource.charAt(i).charCodeAt() + 65248);
+                }
+                else {
+                        newString += strSource.charAt(i);
+                }
+        }
+        return newString;
+}
+
+function chkSubmit(Pageid){	
+	document.IP0802400.pageid.value = Pageid;
+	document.IP0802400.REVE_POST_ADDR.value = HalfshapeToFullshape(document.IP0802400.REVE_POST_ADDR.value);	
+	document.IP0802400.REVE_LIVE_ADDR.value = HalfshapeToFullshape(document.IP0802400.REVE_LIVE_ADDR.value);
+	if(document.IP0802400.LiveAddr.checked){
+		document.IP0802400.REVE_LIVE_ADDR.value = document.IP0802400.REVE_POST_ADDR.value;
+		document.IP0802400.REVE_LIVE_AREA.value = document.IP0802400.REVE_POST_AREA.value;
+	} 	
+	document.IP0802400.REVE_BIRTH.value = document.IP0802400.REVE_BIRTH_YEAR.value + document.IP0802400.REVE_BIRTH_MONTH.value + document.IP0802400.REVE_BIRTH_DAY.value;
+	document.IP0802400.REVE_DAILY_PHONE1.value =  document.IP0802400.REVE_TEL1_AREA.value + document.IP0802400.REVE_TEL1_NO.value ;
+	document.IP0802400.REVE_DAILY_PHONE2.value =  document.IP0802400.REVE_TEL2_AREA.value + document.IP0802400.REVE_TEL2_NO.value ;
+	if (chkInfo()){
+		document.IP0802400.submit();
+	}
+}
+
+function chkInfo(){
+	var str1 = document.IP0802400.REVE_NICK_NAME.value;
+	var str2 = document.IP0802400.REVE_CNAME.value ;
+	var str3 = document.IP0802400.REVE_BIRTH_YEAR.value ; 
+	var str4 = document.IP0802400.REVE_POST_AREA.value;
+	var str5 = document.IP0802400.REVE_POST_ADDR.value;
+  	var str6 = document.IP0802400.REVE_LIVE_AREA.value ;
+  	var str7 = document.IP0802400.REVE_LIVE_ADDR.value;
+  	var str8 = document.IP0802400.REVE_TEL1_AREA.value 
+  	var str9 = document.IP0802400.REVE_TEL1_NO.value;    
+  	var str10 = document.IP0802400.REVE_TEL2_AREA.value 
+  	var str11 = document.IP0802400.REVE_TEL2_NO.value;  
+  	var str12 = document.IP0802400.REVE_EMAIL_ADDR.value ;
+  	
+	if (str1.trim() == ""){
+		alert("請輸入網路銀行使用者代號");
+		return false;
+	}else if(str2.trim() == ""){
+		alert("請輸入姓名");
+		return false;
+	}else if(str3.trim() == ""){
+		alert("請輸入出生年月日");
+		return false;	
+	}else if(str4.trim() == ""){
+		alert("請輸入通訊地址的郵遞區號");
+		return false;
+	}else if(str5.trim() == ""){
+		alert("請輸入通訊地址");
+		return false;			
+	}else if(str6.trim() == "" && !document.IP0802400.LiveAddr.checked){
+		alert("請輸入戶籍地址的郵遞區號");
+		return false;
+	}else if(str7.trim() == "" && !document.IP0802400.LiveAddr.checked){
+		alert("請輸入戶籍地址");
+		return false;		
+	}else if(str8.trim() == ""){
+		alert("請輸入辦公室電話的區碼");
+		return false;
+	}else if(str9.trim() == ""){
+		alert("請輸入辦公室電話");
+		return false;			
+	}else if(str10.trim() == ""){
+		alert("請輸入住家電話的區碼");
+		return false;
+	}else if(str11.trim() == ""){
+		alert("請輸入住家電話");
+		return false;		
+	}else if(str12.trim() == ""){
+		alert("請輸入email");
+		return false;		
+	}else if(validEmail(str12.trim()) != ""){
+		alert(validEmail(str12.trim()));	
+		return false;
+	}else{
+		return true;
+	}	
+}
+
+function chkSubmit2(Pageid){
+	document.IP0802400.pageid.value = Pageid;
+	document.IP0802400.submit();
+}
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg01.gif" leftmargin="0" topmargin="0" onfocus="onTop();">
+<form name="IP0802400" method="POST" action="LoadAP">
+<p><b>首次登入<font color="#003399"><font color="#0066FF"><br>
+  </font></font></b></p>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5"> 
+      <table width="83%" border="1" align="center" bordercolor="#999999">
+        <tr> 
+          <td colspan="2"> 
+            <div align="center">基金天地基本資料填寫</div>
+          </td>
+        </tr>
+        <tr> 
+          <td width="39%" bgcolor="#C4CBB8">身份證字號<br>
+          </td>
+          <td width="61%"> 
+            [[%%REVE-ID-NO%%]]
+          </td>
+        </tr>
+        <tr> 
+          <td width="39%" bgcolor="#C4CBB8">姓名<br>
+          </td>
+          <td width="61%"> 
+            <input type="text" name="REVE_CNAME" value="">
+          </td>
+        </tr>
+        <tr> 
+          <td width="39%" bgcolor="#C4CBB8">註冊日期<br>
+          </td>
+          <td width="61%"> 
+          <script>
+            	document.write(getRCDateStr("[[%%SYSDATE%%]]",0));
+          </script>  
+          </td>
+        </tr>
+        <tr> 
+          <td width="39%" bgcolor="#C4CBB8">出生年月日<br>
+          </td>
+          <td width="61%"> (民國)
+            <input type="text" name="REVE_BIRTH_YEAR" size="2" value="" maxlength="3">年/
+            <select name="REVE_BIRTH_MONTH">
+	            <option selected value="01">01</option>
+	            <option value="02">02</option>
+	            <option value="03">03</option>
+	            <option value="04">04</option>
+	            <option value="05">05</option>
+	            <option value="06">06</option>
+	            <option value="07">07</option>
+	            <option value="08">08</option>
+	            <option value="09">09</option>
+	            <option value="10">10</option>
+	            <option value="11">11</option>
+	            <option value="12">12</option>	       
+            </select>
+            月/
+            <select name="REVE_BIRTH_DAY">
+	            <option selected value="01">01</option>
+	            <option value="02">02</option>
+	            <option value="03">03</option>
+	            <option value="04">04</option>
+	            <option value="05">05</option>
+	            <option value="06">06</option>
+	            <option value="07">07</option>
+	            <option value="08">08</option>
+	            <option value="09">09</option>
+	            <option value="10">10</option>
+       		  <option value="11">11</option>
+	            <option value="12">12</option>
+	            <option value="13">13</option>
+	            <option value="14">14</option>
+	            <option value="15">15</option>
+	            <option value="16">16</option>
+	            <option value="17">17</option>
+	            <option value="18">18</option>
+	            <option value="19">19</option>
+	            <option value="20">20</option>
+	            <option value="21">21</option>
+	            <option value="22">22</option>
+	            <option value="23">23</option>
+	            <option value="24">24</option>
+	            <option value="25">25</option>
+	            <option value="26">26</option>
+	            <option value="27">27</option>
+	            <option value="28">28</option>
+	            <option value="29">29</option>
+	            <option value="30">30</option>       
+	            <option value="31">31</option>
+            </select>
+            日
+          </td>
+        </tr>
+        <tr> 
+          <td width="39%" bgcolor="#C4CBB8">通訊地址<br>
+            </td>
+          <td width="61%"> 
+            <input type="text" name="REVE_POST_AREA" value="" size="7" maxlength="3">
+            <input type="text" name="REVE_POST_ADDR" value="" size="35">
+          </td>
+        </tr>
+        <tr> 
+          <td width="39%" height="10" bgcolor="#C4CBB8">戶籍地址<br>
+            <br>
+          </td>
+          <td width="61%" height="10"> 
+            <input type="Checkbox" name="LiveAddr">
+            同上<br>
+            <input type="text" name="REVE_LIVE_AREA" value="" size="7" maxlength="3">
+            <input type="text" name="REVE_LIVE_ADDR" value="" size="35">
+          </td>
+        </tr>
+        <tr> 
+          <td width="39%" bgcolor="#C4CBB8">電話(O)<br>
+          </td>
+          <td width="61%"> 
+            <input type="text" name="REVE_TEL1_AREA" value="" size="5" maxlength="3">
+            <input type="text" name="REVE_TEL1_NO" value="">
+          </td>
+        </tr>
+        <tr> 
+          <td width="39%" bgcolor="#C4CBB8">電話(H)<br>
+          </td>
+          <td width="61%"> 
+            <input type="text" name="REVE_TEL2_AREA" value="" size="5" maxlength="3">
+            <input type="text" name="REVE_TEL2_NO" value="">
+          </td>
+        </tr>
+        <tr> 
+          <td width="39%" bgcolor="#C4CBB8">手機<br>
+          </td>
+          <td width="61%"> 
+            <input type="text" onpaste="return false;" name="REVE_MOBIL_NO" value="" style="ime-mode:disabled">
+          </td>
+        </tr>
+        <tr> 
+          <td width="39%" bgcolor="#C4CBB8">E-mail<br>
+          </td>
+          <td width="61%"> 
+            <input type="text" onpaste="return false;" name="REVE_EMAIL_ADDR" value="" style="ime-mode:disabled">
+          </td>
+        </tr>
+        <tr> 
+          <td width="39%" bgcolor="#C4CBB8">自行設定網路銀行使用者代號<br>
+          </td>
+          <td width="61%"> 
+            <input type="text" name="REVE_NICK_NAME" value="" maxlength="12">
+            （6-12碼，英數字皆可） </td>
+        </tr>
+      </table><br>
+      <div align="center"> 
+        <input type="button" name="Submit1" value="確定" onclick="chkSubmit('IP0802401');">&nbsp;
+        <input type="button" name="Submit2" value="取消" onclick="chkSubmit2('IP0810000');">&nbsp;
+        <input type="reset" name="Submit3" value="重填">
+      </div>     
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="REVE_BIRTH" value="">
+<input type="hidden" name="REVE_DAILY_PHONE1" value="">
+<input type="hidden" name="REVE_DAILY_PHONE2" value="">
+<input type="hidden" name="REVE_REG_DATE" value="">
+</form>
+<script>
+	document.IP0802400.REVE_REG_DATE.value = "[[%%SYSDATE%%]]" ;
+</script>
+</body>
+</html>

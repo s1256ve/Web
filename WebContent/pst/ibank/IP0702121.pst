@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　帳戶交易&gt;<font color="#0066FF">預約台幣轉帳</font></b><br>
+<form method="post" action="LoadAP" name="IP0702121">
+<input type="hidden" name="SEND_MOBILE" value="[[%%MOBILE%%]]">
+<input type="hidden" name="SEND_EMAIL_ADDR" value="[[%%EMAIL_ADDR%%]]">
+<input type="hidden" name="TO_BANK_NAME" value="[[%%TO_BANK_NAME%%]]">
+<input type="hidden" name="SEND-SCHD-SNO" value="[[%%SEND-SCHD-SNO%%]]">
+<input type="hidden" name="SEND-ACCT-NO" value="[[%%SEND-ACCT-NO%%]]">
+<input type="hidden" name="SEND-TO-ACCTNO" value="[[%%SEND-TO-ACCTNO%%]]">
+<input type="hidden" name="SEND-TXN-AMT" value="[[%%SEND-TXN-AMT%%]]">
+<input type="hidden" name="SEND_MEMO" value="[[%%SEND_MEMO%%]]">
+<input type="hidden" name="SEND-BANK-CODE" value="[[%%TO_BANK_CODE%%]]">
+<input type="hidden" name="pageid" value="IP0702122">
+<input type="hidden" name="TO_BANK_CODE" value="[[%%TO_BANK_CODE%%]]">
+<input type="hidden" name="SEND-SCHD-DATE" value="[[%%SEND-SCHD-DATE%%]]">
+<script>
+document.IP0702121.submit();
+</script>
+</form>
+</body>
+</html>

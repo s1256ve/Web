@@ -1,0 +1,168 @@
+<html>
+<head>
+<title>台幣存款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<script language="JavaScript" SRC="script/acctfmt.js"></script>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+
+<script language="JavaScript">
+<!--
+
+function ChgType1(str1) {
+
+        var str=str1;
+        if (str1=="機動"){
+            return "利率機動";
+        }
+        else{
+            return "固定"+"[[%%SEND-INTEREST%%]]"+"%";
+        }
+        
+    }
+
+function ChgType2(str1) {
+
+        var str=str1;
+        if (str1=="1"){
+            return "到期領息";
+        }
+        if (str1=="2"){
+            return "每月領息";
+        }
+        else {
+        	return "";
+        }
+        
+    }
+
+function ChgType3(str1) {
+
+        var str=str1;
+        if (str1=="0"){
+            return "無設質";
+        }
+        if (str1=="1"){
+            return "含息設質";
+        }
+        if (str1=="2"){
+            return "不含息設質";
+        }
+        else{
+        	return "";
+        }
+    }
+
+function ChgType4(str1,str2) {
+
+        var str=str1;
+        var str2=str2;
+        if (str1=="0"){
+            return "不續存";
+        }
+        else{
+            if(str2=="0"){
+            	return "本金續存";
+            }
+            else if(str2=="1"){
+            	return "本利續存";
+            }
+        }
+    }
+    
+
+
+-->
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　台幣存款帳戶查詢&gt;</b><font color="#0066FF"><b>定存明細</b></font><br>
+<br>
+<form method="POST" action="LoadAP" name="IP0209006">
+<font color="#0000CC">　</font><font color="#0000CC">交易成功，修改後存單資料如下： </font><br>
+<table width="763" border="1" bordercolor="#999999">
+  <tr> 
+    <td width="69" bgcolor="#C4CBB8"> 
+      <div align="center">存單字號</div>
+    </td>
+    <td width="60" bgcolor="#C4CBB8"> 
+      <div align="center">定存種類</div>
+    </td>
+    <td width="60" bgcolor="#C4CBB8"> 
+      <div align="center">起息日</div>
+    </td>
+    <td width="60" bgcolor="#C4CBB8"> 
+      <div align="center">到期日</div>
+    </td>
+    <td width="94" bgcolor="#C4CBB8"> 
+      <div align="center">本金/存入金額</div>
+    </td>
+    <td width="74" bgcolor="#C4CBB8"> 
+      <div align="center">計息方式</div>
+    </td>
+    <td width="66" bgcolor="#C4CBB8"> 
+      <div align="center">領息方式</div>
+    </td>
+    <td width="66" bgcolor="#C4CBB8"> 
+      <div align="center">是否質借</div>
+    </td>
+    <td width="54" bgcolor="#C4CBB8"> 
+      <div align="center">續存狀態</div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="69"> 
+      <div align="center">[[%%SEND-V-NO%%]]</div>
+    </td>
+    <td width="60"> 
+      <div align="center">[[%%SEND-TITLE%%]]</div>
+    </td>
+    <td width="60"> 
+      <div align="center">[[%%SEND-B-DATE%%]]</div>
+    </td>
+    <td width="60"> 
+      <div align="center">[[%%SEND-E-DATE%%]]</div>
+    </td>
+    <td width="94"> 
+      <div align="center">[[%%SEND-BALANCE%%]]</div>
+    </td>
+    <td width="74" bgcolor="#FFFFDD"> 
+      <div align="center">&nbsp;
+      	<SCRIPT language="JavaScript">     
+      	document.write(ChgType1('[[%%SEND-INTEREST%%]]'));
+      	</SCRIPT>
+      </div>
+    </td>
+    <td width="66"> 
+      <div align="center">&nbsp;
+      	<SCRIPT language="JavaScript">     
+      	document.write(ChgType2('[[%%SEND-INT-PAY%%]]'));
+      	</SCRIPT>
+      </div>
+    </td>
+    <td width="66"> 
+      <div align="center">&nbsp;
+      	<SCRIPT language="JavaScript">     
+      	document.write(ChgType3('[[%%SEND-COLL-STATUS%%]]'));
+      	</SCRIPT>
+      </div>
+    </td>
+    <td width="54"> 
+      <div align="center">&nbsp;
+      	本利續存
+      </div>
+    </td>
+  </tr>
+  <input type="hidden" name="SEND-BR-NAME" value="[[%%SEND-BR-NAME%%]]">
+  <input type="hidden" name="SEND-ACCT-DESC" value="[[%%SEND-ACCT-DESC%%]]">
+  <input type="hidden" name="SEND-ACCT-NO" value="[[%%SEND-ACCT-NO%%]]">
+  <input type="hidden" name="SEND-BALANCE" value="[[%%SEND-BALANCE%%]]">
+  <input type="hidden" name="SEND-TITLE" value="[[%%SEND-TITLE%%]]">
+  <input type="hidden" name="SEND-V-NO" value="[[%%SEND-V-NO%%]]">
+  <input type="hidden" name="SEND_MARK" value="">
+</table>
+</form>
+</body>
+</html>

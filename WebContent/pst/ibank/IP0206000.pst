@@ -1,0 +1,164 @@
+<html>
+<head>
+<title>台幣存款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript" src="script/calendar.js"></script>
+<script language="JavaScript" src="script/calendar-zh.js"></script>
+<script language="JavaScript" src="script/calendar-setup.js"></script>
+<script language="JavaScript" src="script/calendarface.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<script language="JavaScript">
+<!--
+var sysdate = "[[%%SYSDATE%%]]";
+var nowdate = new Date(sysdate.substr(0,4), sysdate.substr(4,2)-1, sysdate.substr(6,2));
+var nowday = nowdate.getDate();
+var nowmonth = nowdate.getMonth();
+var nowyear = nowdate.getFullYear();
+var nowdatestr = getRCDateStr("[[%%SYSDATE%%]]",0);
+var seldate = nowdatestr + "," + nowdatestr;
+
+function cotDate(inyear,inmonth,inday)
+{
+  var ctyear = nowdate.getFullYear() + eval(inyear);
+  var ctmonth = (nowdate.getMonth()+1)+ eval(inmonth);
+  var ctday  = nowdate.getDate() + eval(inday);
+  var redate = new Date(ctyear,ctmonth,ctday);
+  var redatestr = getRCDateStr(redate.getFullYear()+"/"+redate.getMonth()+"/"+redate.getDate(),0);
+  return redatestr;
+}
+
+
+function chgdate(invalue)
+{
+  var chdate;
+  if(invalue == 0)
+  {
+   chdate = seldate;  
+  }
+  
+  
+  if(invalue == 1)
+  {
+    var weekpf = cotDate(0,0,-7);
+    var seldate1 = weekpf+","+nowdatestr;
+    chdate = seldate1;  
+  }
+  
+  
+  if(invalue == 2)
+  {
+    var seldate2 = getRCDateStr(nowyear+"/"+(nowmonth+1)+"/"+1,0)+","+nowdatestr;
+    chdate = seldate2;
+  }
+  
+  
+  if(invalue == 3)
+  {
+    var lastmonth = cotDate(0,0,-30);
+    var seldate3 = lastmonth+","+nowdatestr;
+    chdate = seldate3;  
+  }
+  if (invalue==-1)
+  {
+     chdate = seldate;
+   }
+  
+  lockCalSelObj('IP0206000',invalue,chdate);
+ 
+}
+
+ 
+function chgacct(y)
+{
+  var x = y.split("@");
+  document.IP0206000.SEND_BR_NAME.value = x[0];
+  document.IP0206000.SEND_ACCT_DESC.value = x[1];
+  document.IP0206000.SEND_ACCT_NO.value = x[2];
+}
+
+
+function chksub()
+{
+ if(document.IP0206000.SEND_ACCT_NO.value == "")
+ {
+   alert("請選擇帳號!");
+   return;
+ }
+  onSend('IP0206000');
+  
+  if(chkDateRule(document.IP0206000.DateBegin.value,document.IP0206000.DateEnd.value,
+     "[[%%SYSDATE%%]]",0,-6,0,0,1,0)
+     ==false)
+     {
+      alert("您所選擇的區間超過查詢範圍。\n詳見\"說明\"");
+      return;
+     }
+    
+   document.IP0206000.SEND_DATE_BEGIN.value = document.IP0206000.DateBegin.value;
+   document.IP0206000.SEND_DATE_END.value = document.IP0206000.DateEnd.value;
+   document.IP0206000.submit();
+}
+
+//-->
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form action="LoadAP" method="post" name="IP0206000">
+<b>支票存款帳戶&gt;<font color="#003399"><font color="#0066FF">已兌現票據</font></font></b><br>
+<br>
+<table width="763" border="0">
+  <tr>
+    <td colspan="5">　查詢帳號<font color="#663300" face="Arial, Helvetica, sans-serif">　
+          <select name="select" onChange="Javascript:chgacct(this.value)">
+            <option selected value="@@">==請選擇帳號==</option>
+            <!--[[%%LOOP_SEC SEND-ACCT-NO%%]]-->
+            <option value="[[%%SEND-BR-NAME%%]]@[[%%SEND-ACCT-DESC%%]]@[[%%SEND-ACCT-NO%%]]"> [[%%SEND-BR-NAME%%]] [[%%SEND-ACCT-DESC%%]]
+            <script language="javascript">
+                  document.write(getAcctStr("[[%%SEND-ACCT-NO%%]]"));
+           </script>
+            </option>
+            <!--[[%%ELOOP_SEC%%]]-->
+          </select>
+    </font>　<img src="graph/personal/go.gif"  onClick="chksub();" width="19" height="19" align="absmiddle" border="0"></td>
+  <tr>
+    <td colspan="5" valign="bottom">　查詢日期　
+        <select name="SEND_DateType" onChange="JavaScript:chgdate(this.value);">
+          <option selected value=0>當日</option>
+          <option value=1>最近一週</option>
+          <option value=2>本月份</option>
+          <option value=3>前一月份</option>
+          <option value=-1>自選日期</option>
+        </select>
+        <script language="JavaScript">            	
+            	document.write("　起日　");
+		crtDateInputObj("DateBegin");
+		document.write("　迄日　");
+		crtDateInputObj("DateEnd");
+		lockCalSelObj('IP0206000',0,seldate);
+		</script>
+    </td>
+	<td width="117"></td>
+  </tr>
+  <tr bgcolor="#663300">
+    <td colspan="5" valign="bottom" height="1"></td>
+  </tr>
+</table>
+<table width="763" border="0">
+  <tr>
+    <td width="757">　說明：查詢區間為最近六個月，每次查詢限一個月。
+      <input type="hidden" name="pageid" value="IP0206001">
+  <input type="hidden" name="SEND_BR_NAME" value="">
+  <input type="hidden" name="SEND_ACCT_DESC" value="">
+  <input type="hidden" name="SEND_ACCT_NO" value="">
+  <input type="hidden" name="SEND_DATE_BEGIN" value="">
+  <input type="hidden" name="SEND_DATE_END" value="">
+  </tr>
+</table>
+</form>
+</body>
+</html>

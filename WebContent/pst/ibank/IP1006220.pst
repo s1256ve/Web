@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>線上申請</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+<p><b>　服務台&gt;<font color="#0066FF">申請/變更/取消非約定帳戶</font><font color="#003399"><font color="#0066FF"> 
+  </font></font></b></p>
+<table width="630" border="0">
+  <tr> 
+  　<td></td>
+    <td colspan="5"> 
+      <div align="center"></div>
+      <img src="graph/point.gif" width="12" height="12" align="absmiddle"><font color="#006600" face="Arial, Helvetica, sans-serif">變更非約定帳戶交易服務</font><font color="#663300" face="Arial, Helvetica, sans-serif"><br>
+      <br>
+      </font><font face="Arial, Helvetica, sans-serif">您已停止「非約定帳戶交易服務」，是否重新申請本服務？<br>
+      </font><br>
+      <table width="630" border="0">
+        <tr> 
+          <td> <font face="Arial, Helvetica, sans-serif"> </font> 
+            <table width="100%" border="0">
+              <tr>
+                <td width="3%"> 
+                  <input type="radio" name="radiobutton" value="radiobutton">
+                </td>
+                <td width="97%"> <font face="Arial, Helvetica, sans-serif">是，手機門號設定為： 
+                  <input type="text" name="textfield4" value="0912345678 ">
+                  </font></td>
+              </tr>
+              <tr>
+                <td width="3%">&nbsp;</td>
+                <td width="97%"><font face="Arial, Helvetica, sans-serif">自訂交易限額為：每日交易限額為新台幣 
+                  <input type="text" name="textfield23" size="5" value="30">
+                  萬元，每月交易限額為新台幣 
+                  <input type="text" name="textfield222" size="5" value="50">
+                  萬元。</font></td>
+              </tr>
+              <tr>
+                <td width="3%">&nbsp;</td>
+                <td width="97%"><font face="Arial, Helvetica, sans-serif">往來聯邦銀行帳號為： 
+                  <input type="text" name="textfield32" value="002508554124">
+                  </font></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"> 
+              <input type="submit" name="Submit2" value="確定">
+              <input type="submit" name="Submit22" value="取消">
+            </div>
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="5" valign="bottom" height="1" bgcolor="#663300"></td>
+  </tr>
+</table>
+<div id="Layer1" style="position:absolute; left:373px; top:166px; width:82px; height:18px; z-index:1"> 
+  <a href="page10-6-31a.htm">確定case-2</a> </div>
+</body>
+</html>

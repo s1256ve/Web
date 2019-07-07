@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="Big5"?>
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="F101i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id="F101i02">
+		<name>REVE-ACTOR</name>
+		<length>10</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i03">
+		<name>REVE-SESSION-ID</name>
+		<length>8</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i03">
+		<name>REVE-ID-NO</name>
+		<length>8</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i03">
+		<name>REVE-CNAME</name>
+		<length>8</length>
+		<type>String</type>
+		<description></description>
+	</field>
+
+	<field id="F101i04">
+		<name>REVE-QITEMSUM</name>
+		<length>1</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i05">
+		<name>REVE-ITEM1</name>
+		<length>4</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i06">
+		<name>REVE-ITEM2</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i07">
+		<name>REVE-ITEM2_TEXT</name>
+		<length>14</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i08">
+		<name>REVE-ITEM3</name>
+		<length>8</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i09">
+		<name>REVE-ITEM4</name>
+		<length>13</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i10">
+		<name>REVE-ITEM4_TEXT</name>
+		<length>4</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i11">
+		<name>REVE-ITEM5</name>
+		<length>1</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i12">
+		<name>REVE-ITEM6</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i13">
+		<name>REVE-QITEM1</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i14">
+		<name>REVE-QITEM2</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i15">
+		<name>REVE-QITEM3</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i16">
+		<name>REVE-QITEM4</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i17">
+		<name>REVE-QITEM5</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i18">
+		<name>REVE-QITEM6</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i19">
+		<name>REVE-QITEM6_TEXT</name>
+		<length>15</length>
+		<type>String</type>
+		<description>資金來源客戶手建</description>
+	</field>
+	<field id="F101i20">
+		<name>REVE-QITEM7</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i21">
+		<name>REVE-QITEM8</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="F101i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="F101i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="F101i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="F10i54">
+		<name>REVE-COME-FROM</name>
+		<length>16</length>
+		<type>String</type>
+		<description>來源位置</description>
+	</field>
+		<field id="F101i55">
+		<name>REVE-QITEM9</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+		<field id="F101i56">
+		<name>REVE-QITEM10</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+		<field id="F101i57">
+		<name>REVE-QITEM11</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+		<field id="F101i58">
+		<name>REVE-QITEM12</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+		<field id="F101i59">
+		<name>REVE-QITEM13</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+		<field id="F101i60">
+		<name>REVE-QITEM14</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+		<field id="F101i61">
+		<name>REVE-QITEM15</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+		<field id="F101i62">
+		<name>REVE-QITEM16</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+		<field id="F101i63">
+		<name>REVE-QITEM17</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+		<field id="F101i64">
+		<name>REVE-QITEM18</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+		<field id="F101i65">
+		<name>REVE-QITEM19</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+		<field id="F101i66">
+		<name>REVE-QITEM20</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+		<field id="F101i67">
+		<name>REVE-QITEM21</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+		<field id="F101i68">
+		<name>REVE-QITEM22</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+		<field id="F101i69">
+		<name>REVE-QITEM23</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+		<field id="F101i70">
+		<name>REVE-QITEM24</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+		<field id="F101i71">
+		<name>REVE-QITEM25</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+			<field id="F101i72">
+		<name>REVE-QITEM26</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+			<field id="F101i73">
+		<name>REVE-QITEM27</name>
+		<length>15</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F101i77">
+		<name>REVE-CHECK1</name>
+		<length>1</length>
+		<type>String</type>
+		<description>客戶確認事項1</description>
+	</field>
+		<field id="F101i78">
+		<name>REVE-CHECK2</name>
+		<length>1</length>
+		<type>String</type>
+		<description>客戶確認事項2</description>
+	</field>
+		<field id="F101i79">
+		<name>REVE-CHECK3</name>
+		<length>1</length>
+		<type>String</type>
+		<description>客戶確認事項3</description>
+	</field>
+	<field id="F101i80">
+		<name>REVE-CHECK4</name>
+		<length>1</length>
+		<type>String</type>
+		<description>客戶確認事項4</description>
+	</field>
+	<field id="F101i81">
+		<name>REVE-SELF-RANK</name>
+		<length>1</length>
+		<type>String</type>
+		<description>風險等級</description>
+	</field>
+	<field id="F101i82">
+		<name>REVE-SOURCE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>來源</description>
+	</field>
+</catalog>

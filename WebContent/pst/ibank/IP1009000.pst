@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>約定扣繳停車費</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+</head>
+<style type="text/css">
+<!--
+.style1 {color: #0066FF}
+td {vertical-align: top}
+-->
+</style>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+<p><strong><b>申請專區&gt;</b><span class="style1">約定代繳停車費</span></strong></p>
+<table width="750" border="0">
+  <tr>
+    <td colspan="5"><div align="center">
+      <table width="550" border="1" align="center" bordercolor="#999999" cellpadding="5">
+        <tr>
+          <td height="14">說明： 
+            <table width="100%" border="0" align="center">
+              <tr>
+                <td>1.</td>
+                <td>此服務係提供客戶便利的停車費代繳服務，客戶可於本行登錄申請車種、車號、地區及約定一個自動代繳帳戶，爾後只要有停車費產生，將由客戶約定之帳戶自動扣繳。 </td>
+              </tr>
+              <tr>
+                <td>2.</td>
+                <td>本行目前可代繳停車費帳單之地區包括：臺北市、新北市、桃園市、臺中市、臺南市、高雄市、新竹市。 </td>
+              </tr>
+            </table></td>
+        </tr>
+      </table>
+      </div>
+        <div align="center"> </div></td>
+  </tr>
+  <tr>
+    <td colspan="5">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+</body>
+</html>

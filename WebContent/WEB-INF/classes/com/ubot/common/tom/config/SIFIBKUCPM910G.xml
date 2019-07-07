@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- UCPM 910G -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPM">
+	<field id="910Gi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="910Gi02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="910Gi03">
+		<name>REVE-ID-NO</name>
+		<length>11</length>
+		<type>String</type>
+		<description></description>
+	</field>	
+	<field id="910Gi04">
+		<name>REVE-PAY-TYPE</name>
+		<length>2</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="910Gi05">
+		<name>REVE-PWD</name>
+		<length>12</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id='910Gi06' attr='I' default=''>
+    <name>REVE-ACTOR</name>
+    <length>0</length>
+    <type>STRING</type>
+    <description></description>
+   </field>
+	<field id="910Gi07">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="910Gi08">
+		<name>REVE-KB-IDX</name>
+		<length>12</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="910Gi09">
+		<name>REVE-FROM-INFO</name>
+		<length>1</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="910Gi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="910Gi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="910Gi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="910Gi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

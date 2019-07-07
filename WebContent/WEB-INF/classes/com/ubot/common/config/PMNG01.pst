@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<meta name="GENERATOR" content="IBM WebSphere Studio">
+<title>服務</title>
+<script>
+/*****************************************************************************************************************************
+* Remark Area
+* Create name	: Carl
+* Change List:
+* Date Modified     Modified by     Comments
+* -------------     -----------     ----------------------------------------------------------------------------------------
+* 2009.01.08        Carl            修改系統狀況文字敘述部份，以供簡訊監控機制判別使用。
+* 2009.01.10        Carl            修改畫面展現標記部份，更明確判斷目前狀態。
+* 2009.01.12        Carl            修改畫面註記部分，加強字眼描述部分。
+*****************************************************************************************************************************/
+</script>
+<script language ="javascript" ><!--
+function goservice(sn, act) {
+	document.ServiceForm.ServiceName.value = sn;
+	for(i=0; i<3; i++) {
+		if(document.ServiceForm[sn][i].checked) {
+			document.ServiceForm.Action.value = i;
+		}
+	}
+
+	document.ServiceForm.submit() ;
+}
+--></script>
+<script>
+function chkStatus(srvName, isStop){
+	if(isStop=="checked"){
+		if(document.ServiceForm.setStatusWord.value==0){
+			document.ServiceForm.setStatusWord.value = 1;
+		}
+		return "<font color=red>"+srvName+"(STOP)停止</font>";
+	}
+	else{
+		return srvName+"(STOP)停止";
+	}
+}
+
+function setWord(){
+	if(document.ServiceForm.setStatusWord.value==1){
+		return "<font color=red size='6'>系統狀態：ServiceNotAllStart</font>";
+	}
+	else{
+		return "<font size='6'>系統狀態：ServiceAllStart</font>";
+	}
+}
+
+</script>
+</head>
+
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+	<tr>
+		<td width="20%" align="left">服務群組： <a href="StartAllService">啟動</a><a>
+		</a><a href="StopAllService">停止</a><a> </a></td>
+	</tr>
+</table>
+<hr>
+<form name="ServiceForm" method="POST" action="ServiceMng">
+	<input type="hidden" name="PAGEID" value="S0001">
+	<input type="hidden" name="ServiceName" value="">
+	<input type="hidden" name="Action" value="1">
+	<input type="hidden" name="setStatusWord" value="0">
+	<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1">
+		<tr>
+			<td width="20%" align="center"><b>服務<br>
+			(SERVICE NAME)</b></td>
+			<td width="40%" align="center"><b>服務說明<br>
+			(SERVICE DESCRIPTION)</b></td>
+			<td width="30%" align="center"><b>狀態(SERVICE STATUS)</b></td>
+			<td width="10%" align="center"><b>提交(SUBMIT)</b></td>
+		</tr>
+		<!--
+		2009.01.08 Carl
+		修改系統狀況文字敘述部份，以供簡訊監控機制判別使用。
+		-->
+		[[%%LOOP_SEC NAME%%]]
+		<tr>
+			<td>[[%%NAME%%]]</td>
+			<td>[[%%DESCRIPT%%]]</td>
+			<td>
+			<input type="radio" name="[[%%NAME%%]]" [[%%stop%%]] value="0">
+			<script>
+			document.write(chkStatus("[[%%NAME%%]]","[[%%stop%%]]"));
+			</script>
+			<br>
+			<input type="radio" value="1" [[%%start%%]] name="[[%%NAME%%]]">[[%%NAME%%]](STARTUP)啟動<br>
+			-------------------------------------------------------<br>
+			<input type="radio" value="2" [[%%reload%%]] name="[[%%NAME%%]]">重新載入設定檔(RELOAD 
+			CONFIG)[[%%RELOADSTATUS%%]] 
+			</td>
+			<td align="center"><input type="button" value="GO" name="B1" onclick = "goservice('[[%%NAME%%]]', document.ServiceForm.[[%%NAME%%]])"> </td>
+		</tr>
+		[[%%ELOOP_SEC%%]]
+		<script>
+			document.write(setWord());
+		</script>
+	</table>
+</form>
+
+</body>
+
+</html>

@@ -1,0 +1,597 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>帳戶交易</title>
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI98004           2009.02.17     YiSyun  
+*EAI98045           2009.06.30     Carl
+*EAI100036          2011.07.01     Joe   
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0;
+}
+//-->
+
+</script>
+<script language="javascript">
+<!--
+
+function chkCurrency(tmp){
+	var currArray = document.IP0703200.CURRENCY;
+	var y = currArray.length;
+	for(x=0;x<y;x++){
+		if(currArray[x].value == tmp){	
+			document.IP0703200.SEND_BUY_RATE.value = document.IP0703200.BUY_RATE[x].value;
+			if(document.IP0703200.SEND_BUY_RATE.value==""){
+				return false;
+			}
+			var newSellRate = "新台幣/" + document.IP0703200.CURRENCY_CNAME[x].value + "賣匯交易匯率" + document.IP0703200.SELL_RATE[x].value;
+			var newBuyRate = "新台幣/" + document.IP0703200.CURRENCY_CNAME[x].value + "買匯交易匯率" + document.IP0703200.BUY_RATE[x].value;
+			document.getElementById("I2").innerHTML = newBuyRate;
+			document.getElementById("O4").innerHTML = newBuyRate;
+			document.IP0703200.SEND_SELL_RATE.value = document.IP0703200.SELL_RATE[x].value;
+			document.IP0703200.selNum.value = x;
+			return true;
+		}
+	}
+}
+
+function chkCurrency2(tmp){
+	var currArray = document.IP0703200.CURRENCY;
+	var y = currArray.length;
+	for(x=0;x<y;x++){
+		if(currArray[x].value == tmp){
+			document.IP0703200.SEND_SELL_RATE2.value = document.IP0703200.SELL_RATE[x].value;
+			if(document.IP0703200.SEND_SELL_RATE2.value==""){
+				return false;
+			}
+			var newSellRate = "新台幣/" + document.IP0703200.CURRENCY_CNAME[x].value + "賣匯交易匯率" + document.IP0703200.SELL_RATE[x].value;
+			var newBuyRate = "新台幣/" + document.IP0703200.CURRENCY_CNAME[x].value + "買匯交易匯率" + document.IP0703200.BUY_RATE[x].value;
+			document.getElementById("I4").innerHTML = newSellRate;
+			document.getElementById("O2").innerHTML = newSellRate;
+			document.IP0703200.SEND_BUY_RATE2.value = document.IP0703200.BUY_RATE[x].value;
+			document.IP0703200.selNum2.value = x;
+			return true;
+		}
+	}
+}
+
+function chgAcct(acctStr) {
+	var acctArray = acctStr.split("@");
+	if(acctArray[0]==""){
+		document.IP0703200.selNum.value = "無輸入值";
+		return;
+	}
+
+	document.IP0703200.SEND_FROM_BR_NAME.value = acctArray[0];
+	document.IP0703200.SEND_FROM_ACCT_NO.value = acctArray[1];
+	document.IP0703200.SEND_FROM_ACCT_C_CURRENCY.value = acctArray[2];
+	document.IP0703200.SEND_FROM_AVAL_BALANCE.value = acctArray[3];
+	document.IP0703200.SEND_FROM_ACCT_E_CURRENCY.value = acctArray[4];
+	/**
+	if((acctArray[4]=="07")||(acctArray[4]=="12")||(acctArray[4]=="18")){
+		alert("目前開放外幣交易種類為美元、日元、歐元、港幣、英鎊、瑞士法郎等七種幣別，請重新選擇幣別!");
+		return;
+	}
+	*/
+	if(chkCurrency(acctArray[4])==false){
+		alert("您目前所選擇的"+acctArray[2]+"目前無匯率資料，請選擇其他幣種進行交易");
+		document.IP0703200.fromAcct.options[0].selected = true;
+		document.getElementById("I2").innerHTML = "";
+		document.getElementById("I1").innerHTML = "";
+		document.getElementById("O4").innerHTML = "";
+		document.getElementById("O2").innerHTML = "";
+		return;
+	}
+	document.getElementById("I1").innerHTML = document.IP0703200.SEND_FROM_ACCT_C_CURRENCY.value;
+	document.getElementById("O3").innerHTML = document.IP0703200.SEND_FROM_ACCT_C_CURRENCY.value;
+}
+
+function chgAcct2(acctStr) {
+	var acctArray = acctStr.split("@");
+	if(acctArray[0]==""){
+		return;
+	}
+	document.IP0703200.SEND_TO_BR_NAME.value = acctArray[0];
+	document.IP0703200.SEND_TO_ACCT_NO.value = acctArray[1];
+	
+}
+
+function chkSubmit(){
+	if(document.IP0703200.r1[0].checked){
+		if(chkRule('1')==false) return;
+		tryAcct();
+	}else{
+		if(chkRule('2')==false) return;
+		tryAcct2();
+	}	
+	if(document.IP0703200.FROM_AMT.value<=999){
+		alert("轉換金額須大於等於新台幣1000元!");
+		return;
+	}
+	if(document.IP0703200.SEND_FROM_ACCT_E_CURRENCY.value=="08"){
+		if(document.IP0703200.chkMoney.value>20000){
+			alert("目前人民幣單次幣別轉換金額不可大於20,000人民幣！");
+			return;
+		}
+	}
+	document.IP0703200.SEND_TXN_AMT.value = document.IP0703200.SEND_FROM_AMT.value;
+	document.IP0703200.SEND_TXN_MEMO.value = HalfshapeToFullshape(document.IP0703200.SEND_TXN_MEMO.value);
+	//alert(document.IP0703200.SEND_TXN_AMT.value);
+	document.IP0703200.submit();
+}
+
+function tryAcct(){
+	var money = document.IP0703200.chkMoney.value;
+	var num = document.IP0703200.selNum.value;
+	if(chkRule('1')==false) return;
+	var rate = document.IP0703200.BUY_RATE[num].value;
+	var rate2 = document.IP0703200.SEND_SELL_RATE2.value;
+	var ans = Math.round(eval(money)*eval(rate));
+	document.IP0703200.FROM_AMT.value = ans;
+	document.IP0703200.SEND_FROM_AMT.value = money;
+	var ans2 = eval(ans/rate2);
+	if(document.IP0703200.SEND_TO_ACCT_E_CURRENCY.value == "03"){
+		document.IP0703200.SEND_TO_AMT.value = Math.round(ans2);
+		document.getElementById("I3").innerHTML = document.IP0703200.SEND_TO_ACCT_C_CURRENCY.value + " " + moneyAddDot2(document.IP0703200.SEND_TO_AMT.value) + " 元";
+	}
+	else{
+		document.IP0703200.SEND_TO_AMT.value = Math.round(ans2*100)/100;
+		document.getElementById("I3").innerHTML = document.IP0703200.SEND_TO_ACCT_C_CURRENCY.value + " " + moneyAddDot2(document.IP0703200.SEND_TO_AMT.value) + " 元";
+	}
+}
+
+function tryAcct2(){
+	var money = document.IP0703200.chkMoney2.value;
+	var num = document.IP0703200.selNum.value;
+	if(chkRule('2')==false) return;
+	var rate = document.IP0703200.BUY_RATE[num].value;
+	var rate2 = document.IP0703200.SEND_SELL_RATE2.value;
+	var ans = Math.round(eval(money)*eval(rate2));
+	document.IP0703200.FROM_AMT.value = ans;
+	document.IP0703200.SEND_TO_AMT.value = money;
+	var ans2 = eval(ans/rate);
+	if(document.IP0703200.SEND_FROM_ACCT_E_CURRENCY.value == "03"){		
+		//document.IP0703200.SEND_TO_AMT.value = Math.round(ans2);
+		document.IP0703200.SEND_FROM_AMT.value = Math.round(ans2);
+		document.getElementById("O3").innerHTML = document.IP0703200.SEND_FROM_ACCT_C_CURRENCY.value + " " + moneyAddDot2(document.IP0703200.SEND_FROM_AMT.value) + " 元";
+	}
+	else{
+		document.IP0703200.SEND_FROM_AMT.value = Math.round(ans2*100)/100;
+		document.getElementById("O3").innerHTML = document.IP0703200.SEND_FROM_ACCT_C_CURRENCY.value + " " + moneyAddDot2(document.IP0703200.SEND_FROM_AMT.value) + " 元";
+	}
+}
+
+function chkRule(tp){
+	
+	if(document.IP0703200.fromAcct.value==0){
+		alert("請選擇轉出帳號!");
+		return false;
+	}
+	if(document.IP0703200.SEND_FROM_ACCT_NO.value == ""){
+		alert("請選擇轉出帳號!");
+		return false;
+	}
+	if(document.IP0703200.toAcct.value==0){
+		alert("請選擇轉入帳號!");
+		return false;
+	}
+	if(document.IP0703200.SEND_TO_ACCT_NO.value == ""){
+		alert("請選擇轉入帳號!");
+		return false;
+	}
+	if(document.IP0703200.D1.value==0){
+		alert("請選擇轉入幣別!");
+		return false;
+	}
+	if(document.IP0703200.SEND_FROM_ACCT_NO.value != document.IP0703200.SEND_TO_ACCT_NO.value){
+		alert("幣別轉換僅能在同一帳戶執行!");
+		return false;
+	}
+	if(tp=='1'){
+		var fromBalance = document.IP0703200.SEND_FROM_AVAL_BALANCE.value;
+		if(document.IP0703200.chkMoney.value==""){
+			alert("請輸入轉帳金額!");
+			return false;
+		}
+		if(isNaN(document.IP0703200.chkMoney.value)){
+			alert("您輸入的金額格式錯誤!");
+			return false;
+		}
+		if (document.IP0703200.chkMoney.value.indexOf("-")!=-1){
+	        			alert("轉帳金額須為正整數!");
+	        			return false;
+		}
+		if (document.IP0703200.chkMoney.value.indexOf("+")!=-1){
+				alert("幣別轉換不支援正號輸入，請檢查重新輸入!");
+				return false;
+		}
+		if (eval(document.IP0703200.chkMoney.value)==0){
+				alert("輸入金額不得為零!");
+				return false;
+		}
+		if(eval(document.IP0703200.chkMoney.value) > eval(fromBalance)){
+			alert("轉出帳號可用餘額不足!");
+			return false;
+		}
+		if(document.IP0703200.SEND_TO_ACCT_E_CURRENCY.value == document.IP0703200.SEND_FROM_ACCT_E_CURRENCY.value){
+			alert("您所選擇的轉出轉入換幣別相同，請重新選擇!");
+			return false;
+		}
+		if(document.IP0703200.SEND_FROM_ACCT_E_CURRENCY.value == "03"){
+			if(document.IP0703200.chkMoney.value.indexOf(".",0)!=-1){
+				alert("日幣金額限輸入整數,請重新輸入金額!");
+				return false;
+			}
+		}
+		else{
+			if(document.IP0703200.chkMoney.value.indexOf(".",0)!=-1){
+				var moneyArray = document.IP0703200.chkMoney.value.split(".");
+				if(moneyArray[1].length > 2){
+					alert("本幣別金額僅可輸入至小數點後兩位!");
+					return false;
+				}
+				if(moneyArray[1].length == ""){
+					alert("您的輸入金額錯誤,請重新輸入!");
+					return false;
+				}
+			}
+		}
+	}else if(tp=='2'){
+		var toBalance = document.IP0703200.SEND_TO_AVAL_BALANCE.value;
+		if(document.IP0703200.chkMoney2.value==""){
+			alert("請輸入轉帳金額!");
+			return false;
+		}
+		if(isNaN(document.IP0703200.chkMoney2.value)){
+			alert("您輸入的金額格式錯誤!");
+			return false;
+		}
+		if (document.IP0703200.chkMoney2.value.indexOf("-")!=-1){
+	        			alert("轉帳金額須為正整數!");
+	        			return false;
+		}
+		if (document.IP0703200.chkMoney2.value.indexOf("+")!=-1){
+				alert("幣別轉換不支援正號輸入，請檢查重新輸入!");
+				return false;
+		}
+		if (eval(document.IP0703200.chkMoney2.value)==0){
+				alert("輸入金額不得為零!");
+				return false;
+		}
+		if(eval(document.IP0703200.chkMoney2.value) > eval(toBalance)){
+			alert("轉出帳號可用餘額不足!");
+			return false;
+		}
+		if(document.IP0703200.SEND_TO_ACCT_E_CURRENCY.value == document.IP0703200.SEND_FROM_ACCT_E_CURRENCY.value){
+			alert("您所選擇的轉出轉入換幣別相同，請重新選擇!");
+			return false;
+		}
+		if(document.IP0703200.SEND_TO_ACCT_E_CURRENCY.value == "03"){
+			if(document.IP0703200.chkMoney2.value.indexOf(".",0)!=-1){
+				alert("日幣金額限輸入整數,請重新輸入金額!");
+				return false;
+			}
+		}
+		else{
+			if(document.IP0703200.chkMoney2.value.indexOf(".",0)!=-1){
+				var moneyArray = document.IP0703200.chkMoney2.value.split(".");
+				if(moneyArray[1].length > 2){
+					alert("本幣別金額僅可輸入至小數點後兩位!");
+					return false;
+				}
+				if(moneyArray[1].length == ""){
+					alert("您的輸入金額錯誤,請重新輸入!");
+					return false;
+				}
+			}
+		}
+	}
+}
+
+function chgsel(fun){
+	if(fun=='0'){
+		document.IP0703200.chkMoney.disabled = false;
+		document.IP0703200.chkMoney2.disabled = true;
+		document.IP0703200.Submit36.disabled = false;
+		document.IP0703200.Submit37.disabled = true;
+	}else if(fun=='1'){
+		document.IP0703200.chkMoney.disabled = true;
+		document.IP0703200.chkMoney2.disabled = false;
+		document.IP0703200.Submit36.disabled = true;
+		document.IP0703200.Submit37.disabled = false;
+	}
+}
+
+function chkOption(str1,str2,str3){
+	var br = str1;
+	var acct = str2;
+	var check = document.IP0703200.CHECK_ACCT.value;
+	if(acct != check){
+		var acct2 = getAcctStr(acct);
+		document.IP0703200.CHECK_ACCT.value = acct;
+		return "<option value='" + br + "@" + acct + "'>" + br + " " + acct2 + "</option>";
+	}
+}
+
+function chgCurr(curr){
+	var currArray = curr.split("@");
+	document.IP0703200.SEND_TO_ACCT_C_CURRENCY.value = currArray[1];
+	document.IP0703200.SEND_TO_ACCT_E_CURRENCY.value = currArray[0];	
+	if(chkCurrency2(currArray[0])==false){
+		alert("您目前所選擇的"+currArray[1]+"目前無匯率資料，請選擇其他幣種進行交易");
+		document.IP0703200.D1.options[0].selected = true;
+		document.getElementById("I4").innerHTML = "";
+		document.getElementById("I3").innerHTML = "";
+		document.getElementById("O2").innerHTML = "";
+		document.getElementById("O1").innerHTML = "";
+		return;
+	}
+	document.getElementById("I3").innerHTML = currArray[1];
+	document.getElementById("O1").innerHTML = currArray[1];
+}
+
+function chkReset(){
+	document.getElementById("I1").innerHTML = "";
+	document.getElementById("I2").innerHTML = "";
+	document.getElementById("I3").innerHTML = "";
+	document.getElementById("I4").innerHTML = "";
+	document.getElementById("O1").innerHTML = "";
+	document.getElementById("O2").innerHTML = "";
+	document.getElementById("O3").innerHTML = "";
+	document.getElementById("O4").innerHTML = "";
+} 
+//-->
+</script>
+<style type="text/css">
+<!--
+
+.t4	{
+	font-size: 9pt;
+	color: #000000;
+	line-height:12pt;
+	vertical-align:top;
+	text-align: right;
+}
+-->
+</style>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+</head>
+<body bgcolor="#FFFFFF"  background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　帳戶交易&gt;<font color="#0066ff">外幣轉換
+	<div align="right">	
+	<script>
+		document.write("資料時間:"+getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+		</script>
+	</div>
+	<br></font></b><br>
+<form action="LoadAP" method="post" name="IP0703200">
+　<img border="0" name="imageField" src="graph/point.gif" width="12" height="12">
+外幣轉外幣  
+<table width="760" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td width="288" bgcolor="#FFE1D7" height="30"> 
+      <div align="center">外幣</div>
+    </td>
+    <td rowspan="4" width="184"> 
+      <div align="center"><img src="graph/point01.gif" width="117" height="51"> 
+      </div>
+    </td>
+    <td width="288" bgcolor="#F1FFC3"> 
+      <div align="center">外幣</div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="288" align="left" bgcolor="#FFE1D7" height="30">　<img src="graph/arrow.gif" width="10" height="9">轉出帳號：    
+     	
+  
+      <select name="fromAcct" onChange="chgAcct(this.value);">
+        <option value=0 selected>==請選擇帳號　可用餘額==</option>
+        
+        <!--[[%%LOOP_SEC SEND-FROM-ACCT-NO%%]]-->
+        	<option value="[[%%SEND-FROM-BR-NAME%%]]@[[%%SEND-FROM-ACCT-NO%%]]@[[%%SEND-FROM-CURRENCY-CNAME%%]]@[[%%SEND-FROM-AVAL-BALANCE%%]]@[[%%SEND-FROM-CURRENCY%%]]">
+            	[[%%SEND-FROM-BR-NAME%%]] 
+            	<SCRIPT language="JavaScript">
+                	document.write(getAcctStr('[[%%SEND-FROM-ACCT-NO%%]]'));
+                </SCRIPT> 
+            	[[%%SEND-FROM-CURRENCY-CNAME%%]]&nbsp;&nbsp;
+            	<SCRIPT language="JavaScript">
+                	document.write(moneyAddDot('[[%%SEND-FROM-AVAL-BALANCE%%]]'));
+            	</SCRIPT>
+            	元
+        	</option>
+        <!--[[%%ELOOP_SEC%%]]-->
+
+      </select>  
+    </td>
+    <td width="288" align="left" bgcolor="#F1FFC3">　<img src="graph/arrow.gif" width="10" height="9">轉入帳號：    
+      	
+      <input type="hidden" name="CHECK_ACCT" value="">
+      <select name="toAcct" onChange="chgAcct2(this.value);">  
+        <option value="0" selected>==請選擇帳號==</option>
+        
+        <!--[[%%LOOP_SEC SEND-TO-ACCT-NO%%]]-->
+        
+        	<script>  
+        	document.write(chkOption("[[%%SEND-TO-BR-NAME%%]]","[[%%SEND-TO-ACCT-NO%%]]","[[%%SEND-TO-CURRENCY-CNAME%%]]"));
+        	</script>
+       	
+        <!--[[%%ELOOP_SEC%%]]-->  
+        
+      </select>  
+    </td>
+  </tr>
+  <tr>
+    <td width="288" bgcolor="#FFE1D7" height="30">　 
+    </td> 
+    <td width="288" bgcolor="#F1FFC3">　<img src="graph/arrow.gif" width="10">轉入幣別：       
+      <select name="D1" onChange="chgCurr(this.value);">
+        <option value=0 selected>=幣別=</option>
+        <!--[[%%LOOP_SEC SEND-CURRENCY%%]]-->
+        <option value="[[%%SEND-CURRENCY%%]]@[[%%SEND-CURRENCY-CNAME%%]]">[[%%SEND-CURRENCY-CNAME%%]]</option>
+        <!--[[%%ELOOP_SEC%%]]-->
+      </select>  
+    </td>
+  </tr>
+
+  <tr> 
+    <td bgcolor="#FFE1D7" rowspan="3" height="30" width="288">&nbsp; </td>
+    <td rowspan="2" bgcolor="#F1FFC3">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td bgcolor="#EAEAEA" width="184"> 
+      <div align="center"><br>
+        <br>
+      </div>
+    </td>
+  </tr>
+  <tr bgcolor="#CCCCCC"> 
+    <td colspan="3" height="2"> </td>
+  </tr>
+  <tr> 
+    <td colspan="3"> 
+      <div align="left"> 
+        <table width="758" border="0" cellspacing="0" cellpadding="2">
+          <tr bgcolor="#FFFFFF"> 
+            <td height="30" colspan="3">　<img src="graph/arrow.gif" width="10" height="9">轉帳金額</td>
+            <td height="15" width="142">&nbsp;</td>
+            <td height="15" colspan="2">&nbsp;</td>
+          </tr>
+          <tr bgcolor="#FFFFCC"> 
+            <td height="15" width="107" rowspan="3">
+            	<input type=radio name=r1 value=0 checked  onclick="chgsel(this.value);">
+            	　轉出金額：
+            </td>
+            <td height="15" width="60" rowspan="3" id="I1"></td>
+            <td height="15" width="100" rowspan="3"><input type="text" name="chkMoney" value="" size="10">元 </td>
+            <td height="8" width="250"> 
+              <div align="center"> 
+                <input type="button" name="Submit36" value="試算轉入金額 " onClick="tryAcct()">
+                <br>
+              </div>
+            </td>
+            <td height="15" width="79" rowspan="3">　轉入金額：</td>
+            <td height="15" width="180" rowspan="3" id="I3"> </td> 
+          </tr>
+	  			<tr bgcolor="#FFFFCC"> 
+            <td height="4" width="250" id="I2" align="center"> 
+                
+            </td>
+          </tr>
+          <tr bgcolor="#FFFFCC"> 
+            <td height="3" width="250" id="I4" align="center"> 
+                
+            </td>
+          </tr>
+          <tr bgcolor="#DDDDFF"> 
+            <td height="15" width="107" rowspan="3">
+            	<input type=radio name=r1 value=1 onclick="chgsel(this.value);">
+            	　轉入金額：
+            </td>  
+            <td height="15" width="60" rowspan="3" id="O1"></td>
+            <td height="15" width="100" rowspan="3"><input type="text" name="chkMoney2" value="" size="10">元 </td>
+            <td height="8" width="250"> 
+              <div align="center"> 
+                <input type="button" name="Submit37" value="試算轉出金額 " onClick="tryAcct2()">
+                <br>
+              </div>
+            </td>
+            <td height="15" width="79" rowspan="3">　轉出金額：</td>
+            <td height="15" width="180" rowspan="3" id="O3"> </td> 
+          </tr>
+	  			<tr bgcolor="#DDDDFF"> 
+            <td height="4" width="250" id="O2" align="center"> 
+                
+            </td>
+          </tr>
+          <tr bgcolor="#DDDDFF"> 
+            <td height="3" width="250" id="O4" align="center"> 
+                
+            </td>
+          </tr>
+
+        </table>
+        <table width="757" border="0">
+          <tr> 
+            <td width="751">　<img src="graph/arrow.gif" width="10" height="9">交易附註&nbsp;   
+              <input type="text" name="SEND_TXN_MEMO" size="80" MAXLENGTH="50">　 
+              <br>
+            <font color="#FF0000">(如您輸入交易附註，則於交易成功後可至『帳戶查詢』&gt;『外匯存款帳戶』&gt;『交易明細』點選查詢類別為『網銀轉出交易』查詢您所記錄之交易附註。) 
+            </font>
+            </td>
+          </tr>
+        </table>
+	 說明：<br>
+      <table width="100%" border="0">
+	   <tr>
+	     <td valign="top" class="t4">1.</td>
+	     <td>本交易以客戶本人帳戶為限，<font color="red">最低單筆轉帳金額須為新台幣 1,000 元(含)以上</font>。</td>
+		   </tr>
+		   <tr>
+		     <td valign="top" class="t4">2.</td>
+		     <td>個人網路銀行及電話銀行之交易限額合併累積控管，每人每日結購外幣累積金額應低於等值新台幣 50 萬元，<font color="red">另轉換人民幣單筆及每人每日累積限額全行各交易通路合併計算應低於人民幣 2 萬元</font>。</td>
+		   </tr>
+		   <tr>
+		     <td valign="top" class="t4">3.</td>
+		     <td>本服務交易時間為<font color="red">營業日每天早上 9 點至下午 3 點 30 分(均以本行主機時間為準，非營業日本服務暫停提供服務)</font>，如遇匯率波動過大或其他特殊因素，本行將視實際狀況關閉或開放本服務，並於本服務網站公告。</td>
+		   </tr>
+	 </table>
+      <div align="center"> 
+        <input type="button" name="Submit" value="確 定" onClick="chkSubmit();">
+        <input type="reset" name="Submit2222" value="重 填" onClick="chkReset();">
+      </div>
+    </td>
+  </tr>
+  	<input type="hidden" name="pageid" value="IP0703201">
+  	<input type="hidden" name="SEND_FROM_BR_NAME">
+  	<input type="hidden" name="SEND_FROM_ACCT_NO">
+  	<input type="hidden" name="SEND_FROM_ACCT_C_CURRENCY">
+  	<input type="hidden" name="SEND_FROM_AVAL_BALANCE">
+  	<input type="hidden" name="SEND_FROM_ACCT_E_CURRENCY">
+  	<input type="hidden" name="SEND_TO_BR_NAME">
+  	<input type="hidden" name="SEND_TO_ACCT_NO">
+  	<input type="hidden" name="SEND_TO_ACCT_C_CURRENCY">
+  	<input type="hidden" name="SEND_TO_AVAL_BALANCE">
+  	<input type="hidden" name="SEND_TO_ACCT_E_CURRENCY">
+  	<input type="hidden" name="SEND_CURRENCY_ENAME">
+  	<input type="hidden" name="SEND_CURRENCY_CNAME">
+  	<input type="hidden" name="SEND_BUY_RATE">
+  	<input type="hidden" name="SEND_SELL_RATE">
+  	<input type="hidden" name="ANS">
+  	<input type="hidden" name="SEND_TXN_AMT">
+  	<input type="hidden" name="SEND_TO_AMT">
+  	<input type="hidden" name="selNum" value="數值選擇">
+  	<input type="hidden" name="SEND_BUY_RATE2">
+  	<input type="hidden" name="SEND_SELL_RATE2">
+  	<input type="hidden" name="selNum2" value="數值選擇">
+  	<input type="hidden" name="FROM_AMT">
+  	<input type="hidden" name="SEND_FROM_AMT">
+  	<input type="hidden" name="SEND_ID_NO" value="[[%%SEND-ID-NO%%]]">
+<!--[[%%LOOP_SEC SEND-CURRENCY%%]]-->
+	<input type="hidden" name="CURRENCY" value="[[%%SEND-CURRENCY%%]]">
+  	<input type="hidden" name="CURRENCY_ENAME" value="[[%%SEND-CURRENCY-ENAME%%]]"> 
+  	<input type="hidden" name="CURRENCY_CNAME" value="[[%%SEND-CURRENCY-CNAME%%]]"> 
+  	<input type="hidden" name="BUY_RATE" value="[[%%SEND-BUY-RATE%%]]"> 
+  	<input type="hidden" name="SELL_RATE" value="[[%%SEND-SELL-RATE%%]]"> 
+<!--[[%%ELOOP_SEC%%]]-->
+
+</table>
+<script>
+chgsel('0');
+</script>
+</form>
+<p><p><p><p><p><p><p><p><p><p><p><p>
+</body>
+</html>

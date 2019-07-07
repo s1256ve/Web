@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- UCPM9107, 代收停車費登錄 Last updated date 2-9-2006 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPM">
+	<field id="1">
+		<name>REVE-CODE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>功能代碼</description>
+	</field>
+	<field id='2' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="3">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="4" attr="I" default="">
+		<name>REVE-FROM-ACCTNO</name>
+		<length>12</length>
+		<type>STRING</type>
+		<description>帳號</description>
+	</field>
+	<field id="5" attr="I" default="">
+		<name>REVE-AREA-CODE</name>
+		<length>2</length>
+		<type>STRING</type>
+		<description>縣市別</description>
+	</field>
+	<field id="6" attr="I" default="">
+		<name>REVE-VEH-TYPE</name>
+		<length>1</length>
+		<type>STRING</type>
+		<description>車種</description>
+	</field>
+	<field id="7" attr="I" default="">
+		<name>REVE-VEH-NO</name>
+		<length>10</length>
+		<type>STRING</type>
+		<description>車號</description>
+	</field>
+	<field id="8" attr="I" default="">
+		<name>REVE-NOTIFY</name>
+		<length>1</length>
+		<type>STRING</type>
+		<description>通知方式</description>
+	</field>
+	<field id="9" default="">
+		<name>REVE-KB-IDX</name>
+		<length>1</length>
+		<type>STRING</type>
+		<description>密碼索引</description>
+	</field>
+	<field id="9" default="">
+		<name>REVE-PWD</name>
+		<length>1</length>
+		<type>STRING</type>
+		<description>密碼</description>
+	</field>
+	<field id="9" default="">
+		<name>REVE-FUNC-CODE</name>
+		<length>1</length>
+		<type>STRING</type>
+		<description>1:查詢 , 2:登錄 , 3:取消</description>
+	</field>
+	<field id="50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

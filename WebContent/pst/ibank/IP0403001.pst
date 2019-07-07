@@ -1,0 +1,251 @@
+<html>
+<head>
+<title>外匯帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI99041           2010.05.11     YiSyun
+*EAI100036          2011.07.01     Joe 
+*EAI100056          2011.08.15     David
+***********************************************************************/
+</script>
+
+
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+		function ChkSubmit(VCHR_NO,PERIOD,INT_DATE,EXP_DATE,CURRENCY,AMT,INT_RATE,PLEDGE,CONTINUE,MARK){          
+      var opt_menu1_final = "opt_menu1Id" + VCHR_NO;
+      var temp = document.getElementById(opt_menu1_final).value;
+      
+    	var f=document.IP0403001;
+      f.REVE_VCHR_NO.value = VCHR_NO;
+      f.SEND_VCHR_NO.value = VCHR_NO;
+      f.SEND_PERIOD.value = PERIOD;
+      f.SEND_INT_DATE.value = INT_DATE;
+      f.SEND_EXP_DATE.value = EXP_DATE;
+      f.SEND_CURRENCY.value = CURRENCY;
+      f.SEND_AMT.value = AMT;
+      f.SEND_INT_RATE.value = INT_RATE;
+      f.SEND_PLEDGE.value = PLEDGE;
+      f.SEND_CONTINUE.value = CONTINUE;
+      
+    	if(temp == 1){
+        f.pageid.value = "IP0405002";
+        if(MARK == 0){
+        	alert("本存單非綜存定存,目前尚未開放執行續存設定!");
+        	return;
+        }
+        f.submit(); 
+    	}
+    	else if(temp == 2){
+        f.pageid.value = "IP0410010";
+        f.submit(); 
+    	}
+    	else if(temp == 3){
+        if(MARK == 0){
+        	alert("本存單非綜存定存,如欲解約請洽臨櫃辦理!");
+        	return;
+        }
+        f.pageid.value = "IP0405100";
+        f.submit(); 
+    	}
+    }
+    
+    function BackSubmit(){
+
+        document.IP0403001.submit();
+    }
+    
+    function chkIntPay(tmp){
+    	var intpay = tmp;
+    	if(intpay==1){
+    		return "按月付息";
+    	}
+    	else{
+    		return "到期領息";
+    	}
+    }
+    
+    function chkIntType(tmp){
+    	var intpay = tmp;
+    	if(intpay==1){
+    		return "存本取息";
+    	}
+    	else{
+    		return "定期存款";
+    	}
+    }
+//-->
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　外匯帳戶查詢&gt;<font color="#0066FF">外匯定存定存明細(續存設定、解約試算、 中途解約)</font></b><br>
+<font class="t3">　聯邦銀行個人網路銀行交易結果</font><br>
+<form name="IP0403001" method="POST" action="LoadAP">
+<table width="763" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td width="763" height="2"> 
+      <div align="right"><font color="#0000CC">查詢時間： 
+      <script>
+        	document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+        </script>
+      </font></div>
+    </td>
+  </tr>
+</table>
+<font color="#0000CC"> </font> 
+<table width="763" border="0">
+  <tr> 
+    <td width="757"> <font color="#0000CC">　</font><font color="#0000CC"><img src="graph/point.gif" width="12" height="12" align="absmiddle"> 
+      以下是您 [[%%BR-NAME%%]] [[%%ACCT-DESC%%]] 
+          <script language="JavaScript">
+        document.write(getAcctStr("[[%%REVE-ACCT-NO%%]]"));
+      </script> 外匯定存明細：</font> 
+      <table width="751" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td width="751" align="right"> 
+            金額單位：元
+          </td>
+        </tr>
+      </table>
+      <font color="#0000CC"> 
+      </font> 
+      <table width="760" border="1" bordercolor="#999999" cellpadding="2">
+        <tr width="58" align="center" valign="middle"  bgcolor="#C4CBB8"> 
+          <td > 
+            存單字號
+          </td>
+          <td> 
+            定存種類
+          </td>
+          <td>
+          	&nbsp;起息日/<br>到期日
+          </td>
+          <td width="125"> 
+            定存本金/<br>存入金額
+          </td>
+          <td> 
+            計息方式
+          </td>
+          <td> 
+            領息方式
+          </td>
+          <td> 
+            是否設質
+          </td>
+          <td> 
+            續存狀態
+          </td>
+          <td> 
+            操作功能
+          </td>
+        </tr>
+<!--[[%%LOOP_SEC SEND-VCHR-NO%%]]-->
+        <tr width="58" align="center" valign="middle"> 
+          <td> 
+            [[%%SEND-VCHR-NO%%]]
+          </td>
+          <td> 
+            <script language="JavaScript">
+            	document.write(chkIntType('[[%%SEND-INT-PAY%%]]'));
+            </script>
+		    　</td>
+          <td> 
+            <script language="javascript">
+                 		document.write(getRCDateStr("[[%%SEND-INT-DATE%%]]", 0));
+                 		document.write("<br>");
+                 		document.write(getRCDateStr("[[%%SEND-EXP-DATE%%]]", 0));
+    				</script>
+          </td>
+          <td width="125"> 
+            [[%%SEND-CURRENCY%%]]<br>
+              <script language="JavaScript">
+                			document.write(moneyFormat("[[%%SEND-AMT%%]]"));
+				  		</script>
+          </td>
+          <td> 
+            固定利率<br>
+              <script language="JavaScript">
+                    document.write("[[%%SEND-INT-RATE%%]]");
+              </script>％ 
+          </td>
+          <td> 
+            <script language="JavaScript">
+            	document.write(chkIntPay('[[%%SEND-INT-PAY%%]]'));
+            </script>
+          </td>
+          <td>             
+            	<script>
+            		var pledgeType = "[[%%SEND-PLEDGE%%]]";
+            		if 	(pledgeType == "0") { document.write("未質借");}
+            		else if (pledgeType == "1") { document.write("含息質借");}
+            		else if (pledgeType == "2") { document.write("不含息質借");}
+            		else	{document.write("&nbsp;");}
+            	</script>&nbsp;
+          </td>
+          <td>             
+            	<script>
+            		var ctnType = "[[%%SEND-CONTINUE%%]]";
+            		if 	(ctnType == "0") { document.write("不續存");}
+            		else if (ctnType == "1") { document.write("本利續存");}
+            		else if (ctnType == "7") { document.write("本金續存<br>利息入活存");}
+            		else	{document.write("&nbsp;");}
+            	</script>&nbsp;
+          </td>
+          <td> 
+          	<select name="opt_menu1[[%%SEND-VCHR-NO%%]]" id="opt_menu1Id[[%%SEND-VCHR-NO%%]]">
+          		<option value="0" selected>--請選擇--</option>
+          		<option value="1">續存設定</option>
+          		<option value="2">解約試算</option>
+          		<option value="3">解約</option>
+          	</select>
+            <img src="graph/go.gif" width="19" height="19" align="absmiddle" border="0" onclick="ChkSubmit('[[%%SEND-VCHR-NO%%]]','[[%%SEND-PERIOD%%]]','[[%%SEND-INT-DATE%%]]','[[%%SEND-EXP-DATE%%]]','[[%%SEND-CURRENCY%%]]','[[%%SEND-AMT%%]]','[[%%SEND-INT-RATE%%]]','[[%%SEND-PLEDGE%%]]','[[%%SEND-CONTINUE%%]]','[[%%SEND-COMP-MARK%%]]');">
+          </td>
+        </tr>
+<!--[[%%ELOOP_SEC%%]]-->
+      </table>
+      <table width="100%" border="0">
+        <tr>
+          <td>註：本頁資料不得做為"存款餘額證明"或往來憑證之用。</td>
+        </tr>
+      </table>    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <table width="752" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td width="50%"> 
+            <div align="right"><a href="javascript:window.print()"><img src="graph/print.gif" width="52" height="24" border="0"></a>　 
+            </div>
+          </td>
+          <td width="50%"><img src="graph/top.gif" width="64" height="16"  onClick="BackSubmit();"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="IP0403000">
+<input type="hidden" name="REVE_VCHR_NO">
+<input type="hidden" name="SEND_PERIOD">
+<input type="hidden" name="REVE_ACCT_NO" value="[[%%REVE-ACCT-NO%%]]">
+<input type="hidden" name="selBrName" value="[[%%BR-NAME%%]]">
+<input type="hidden" name="selAcctDesc" value="[[%%ACCT-DESC%%]]">
+<input type="hidden" name="SEND_INT_DATE">
+<input type="hidden" name="SEND_EXP_DATE">
+<input type="hidden" name="SEND_CURRENCY">
+<input type="hidden" name="SEND_AMT">
+<input type="hidden" name="SEND_INT_RATE">
+<input type="hidden" name="SEND_PLEDGE">
+<input type="hidden" name="SEND_CONTINUE">
+<input type="hidden" name="SEND_VCHR_NO" value="[[%%SEND-VCHR-NO%%]]">
+</form>
+</body>
+</html>

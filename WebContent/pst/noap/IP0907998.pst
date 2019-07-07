@@ -1,0 +1,252 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5" />
+<title>聯邦銀行</title>
+<link href="img/ubot.css" rel="stylesheet" type="text/css" />
+<SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script>
+function chkSubmit(){
+	//document.IP0907998.Submit01.disabled = true;
+	if(document.IP0907998.REVE_PWD.value==""){
+		alert("請輸入動態密碼");
+		//document.IP0907998.Submit01.disabled = false;
+		return;		
+	}
+	if(document.IP0907998.REVE_PWD2.value==""){
+		alert("請輸入新語音密碼");
+		//document.IP0907998.Submit01.disabled = false;
+		return;		
+	}
+	if(document.IP0907998.REVE_PWD3.value==""){
+		alert("請再次輸入語音密碼");
+		//document.IP0907998.Submit01.disabled = false;
+		return;		
+	}
+	if(document.IP0907998.REVE_PWD2.value!=document.IP0907998.REVE_PWD3.value){
+		alert("語音密碼兩次輸入不相符");
+		//document.IP0907998.Submit01.disabled = false;
+		return;
+	}
+	document.IP0907998.pageid.value="IP0907999";
+	document.IP0907998.aptype.value = "noap";
+	document.IP0907998.submit();	
+}
+
+function chkSubmit2(){
+	document.IP0907998.action="inputImage.jsp";
+	document.IP0907998.submit();	
+}
+
+function alertMsg(){
+	var m = "[[%%SENDMOBILE%%]]";
+	m = m.substring(0,4)+"XXX"+m.substring(7,10);
+	if (m == ""){
+		alert("您未在聯邦銀行存留手機資料，無法進行申請作業。");
+		document.IP0907998.pageid.value = "OBapply.jsp";
+		document.IP0907998.submit();
+	}
+	else{
+		alert("您好，系統已發送簡訊驗證碼至您的手機" + m + "，\n請確認並輸入手機驗證碼，如有問題請洽客服人員(02)25451788。");
+	}
+}
+
+var kbWin = null;
+function getKeyBoard(){
+	var Mytype="width=230,height=280,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+	var PWD = "window.opener.document.IP0907998.PWD.value";  //show在畫面上的密碼個數
+	var KBPWD = "window.opener.document.IP0907998.REVE_PWD.value";  //User真正key的密碼
+	var DESC = "語音";
+	//var DESC = "動態簡訊";
+	kbWin = window.open("LoadAP?pageid=IP2001003&aptype=IBANK&PWD="+PWD+"&KBPWD="+KBPWD+"&DESC="+DESC+"&REVE_DESC=&REVE_KB_KEYCODE="+document.IP0907998.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP0907998.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+function onTop() {
+  	if (kbWin==null) return;
+  	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+</script>
+</head>
+<body onLoad="alertMsg();" onfocus="onTop();" leftmargin="0" topmargin="0">
+<form name="IP0907998" method="POST" action="LoadAP">
+<table width="100%" height="500" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><!--#Include file="top.aspx"--></td>
+  </tr>
+  <tr>
+    <td><img src="img/spacer.gif" alt="" width="100" height="9"></td>
+  </tr>
+  <tr>
+    <td><table width="990" height="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="800" height="100%" valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td background="img/card_bg.gif"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="18%"><img src="img/page01_title.gif" alt="申請電子銀行服務" width="222" height="38"></td>
+              </tr>
+            </table>              </td>
+          </tr>
+		            <tr>
+		              <td><img src="img/line_990.gif" width="990" height="4"></td>
+              </tr>
+		            <tr>
+                      <td><img src="img/spacer.gif" alt="" width="100" height="13"></td>
+		            </tr>
+        </table>
+          <table width="990" height="33" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td height="33"><table id="___01" width="990" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td><img src="img/page01_bg01_990.gif" width="990" height="1" alt=""></td>
+                </tr>
+                <tr>
+                  <td><img src="img/page01_bg02_990.gif" width="990" height="10" alt=""></td>
+                </tr>
+                <tr>
+                  <td background="img/page01_bg02_990.gif"><table width="960" height="36" border="0" align="center" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td background="img/page01_bg.gif" class="t16_w"><strong><img src="img/spacer.gif" width="25" height="25" align="absmiddle">電話語音密碼設定
+</strong></td>
+                      </tr>
+                  </table></td>
+                </tr>
+                <tr>
+                  <td><img src="img/page01_bg02_990.gif" width="990" height="10" alt=""></td>
+                </tr>
+                <tr>
+                  <td><img src="img/page01_bg03_990.gif" width="990" height="8" alt=""></td>
+                </tr>
+                <tr>
+                  <td><img src="img/page01_bg04_990.gif" width="990" height="2" alt=""></td>
+                </tr>
+                <tr>
+                  <td><img src="img/page01_bg05_990.gif" width="990" height="9" alt=""></td>
+                </tr>
+                <tr>
+                  <td background="img/page01_bg06_990.gif"><br>
+                    <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td><table width="750" border="0" align="center" cellpadding="0" cellspacing="0" id="___01">
+                          <tr>
+                            <td height="39" background="img/td2_01.gif"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                  <td width="35"><img src="img/spacer.gif" alt="" width="50" height="30"></td>
+                                  <td class="t18b">電子銀行語音密碼設定</td>
+                                </tr>
+                            </table></td>
+                          </tr>
+                          <tr>
+                            <td><img src="img/td2_02.gif" width="750" height="10" alt=""></td>
+                          </tr>
+                          <tr>
+                            <td height="40" background="img/td2_03.gif"><table width="740" border="0" cellspacing="0" cellpadding="5">
+                                <tr>
+                                  <td width="430"><div align="center" class="t18">請設定四位數 語音密碼
+</div></td>
+                                  <td><span class="s" style="text-align: left">
+                                    <input type="password" name="PWD2" size="8" onclick="getKeyBoard2('IP0907998','PWD2',' REVE_PWD2','[[%%SEND-KB-KEYCODE%%]]','[[%%SEND-KB-KEYLETTER%%]]');onTop();" style="width:150px;font-size:18pt;font-family:Arial, Helvetica,sans-serif;height: 25pt;color: #04357D;" readonly />
+                                    <input type="hidden" name="REVE_PWD2" value=""/>
+                                  </span></td>
+                                </tr>
+                            </table></td>
+                          </tr>
+                          <tr>
+                            <td><img src="img/td_04.gif" width="750" height="3" alt=""></td>
+                          </tr>
+                          <tr>
+                            <td height="40" background="img/td2_03.gif"><table width="740" border="0" cellspacing="0" cellpadding="5">
+                              <tr>
+                                <td width="430"><div align="center" class="t18">請再次確認 語音密碼 </div></td>
+                                <td><span class="s" style="text-align: left">
+                                  <input type="password" name="PWD3" size="8" onclick="getKeyBoard2('IP0907998','PWD3',' REVE_PWD3','[[%%SEND-KB-KEYCODE%%]]','[[%%SEND-KB-KEYLETTER%%]]');onTop();" style="width:150px;font-size:18pt;font-family:Arial, Helvetica,sans-serif;height: 25pt;color: #04357D;" readonly />
+                                    <input type="hidden" name="REVE_PWD3" value=""/>
+                                </span></td>
+                              </tr>
+                            </table></td>
+                          </tr>
+                          <tr>
+                            <td><img src="img/td_04.gif" width="750" height="3" alt=""></td>
+                          </tr>
+                          <tr>
+                            <td background="img/td2_03.gif"><table width="740" border="0" cellspacing="0" cellpadding="5">
+                              <tr>
+                                <td width="430"><div align="center" class="t18">請輸入手機簡訊驗證碼 </div></td>
+                                <td><span class="s" style="text-align: left">
+                                  <input type="password" name="PWD" size="8" onclick="getKeyBoard();onTop();" style="width:150px;font-size:18pt;font-family:Arial, Helvetica,sans-serif;height: 25pt;color: #04357D;" readonly />
+                                  <input type="hidden" name="REVE_PWD" value=""/>
+                                </span></td>
+                              </tr>
+                            </table></td>
+                          </tr>
+                          <tr>
+                            <td><img src="img/td_06.gif" width="750" height="11" alt=""></td>
+                          </tr>
+                        </table></td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td align="center">
+                      		<div>
+                      			<img src="img/OK_off.gif" alt="確定" name="Image44" width="129" height="65" border="0" onClick="chkSubmit();">
+                      		</div>
+                      	</td>
+                      </tr>
+                      <tr>
+                        <td><table width="810" border="0" align="center" cellpadding="2" cellspacing="0">
+                          <tr>
+                            <td height="35" colspan="2" class="t18"><div class="t18"><strong><font color="#FF0000">注意事項：</font></strong></div></td>
+                            </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td height="10"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                  <td height="25" valign="top" class="t15Gray">1.</td>
+                                  <td valign="top" class="t15Gray">當您完成『電話語音密碼』設定/變更/重設時，您已成功註冊並啟用電子銀行「電話銀行」服務功能，您可利用0800-089-888或(02)2545-1788進行電話銀行各項服務，請您務必妥善保管「電話語音密碼」以保障您的交易安全。
+</td>
+                                </tr>
+                                <tr>
+                                  <td valign="top" class="t15Gray"><font color="#FF0000">2.</font></td>
+                                  <td valign="top" class="t15Gray"><font color="#FF0000">提醒您，如果您曾於電話銀行辦理預約轉帳交易，當您變更/重設「電話語音密碼」時，預約交易將可能因語音密碼變更而預約轉帳失敗，請您註銷原預約交易，重新申請預約。</font>
+</td>
+                                </tr>
+                            </table></td>
+                          </tr>
+                        </table></td>
+                      </tr>
+                    </table>
+                    <br></td>
+                </tr>
+                <tr>
+                  <td><img src="img/page01_bg07_990.gif" width="990" height="13" alt=""></td>
+                </tr>
+                <tr>
+                  <td><img src="img/page01_bg09_990.gif" width="990" height="10" alt=""></td>
+                </tr>
+                <tr>
+                  <td><img src="img/page01_bg11_990.gif" width="990" height="33" alt=""></td>
+                </tr>
+              </table>
+                </td>
+            </tr>
+          </table>          </td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><!--#Include file="buttom.aspx"--></td>
+  </tr>
+</table>
+<input type="hidden" name="aptype"/>
+<input type="hidden" name="pageid"/>
+<input type="hidden" name="FROMTAG" value="[[%%FROMTAG%%]]"/>
+<input type="hidden" name="USERTYPE" value="[[%%USERTYPE%%]]"/>
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]"/>
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]"/>
+</form>
+</body>
+</html>

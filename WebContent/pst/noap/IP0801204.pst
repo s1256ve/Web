@@ -1,0 +1,16 @@
+<html>
+<head>
+<title>¨ϥΪ̵n¤J§@·~</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<body bgcolor="#FFFFFF" background="graph/bg01.gif" onLoad="" leftmargin="0" topmargin="0">
+<form name="IP0801204" method="POST" action="LoadAP">
+ <input type="hidden" name="pageid" value="IP0801205">
+ 
+</form>
+<script>	
+	document.IP0801204.submit();	
+</script>
+</body>
+</html>

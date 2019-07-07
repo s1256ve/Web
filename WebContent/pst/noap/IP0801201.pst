@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>首次登入</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="Javascript">
+function DispExpNo(AccNo, RegNo){
+	var rtnStr = ""
+	if (RegNo == "Y"){
+		rtnStr = "<tr> <td height=17 width=300><div align=center>"+AccNo+"</div></td></tr>";	
+	}
+	return rtnStr;
+
+}
+function DispExpNo1(AccNo){
+	var rtnStr = ""
+	rtnStr = "<tr> <td height=17 width=300><div align=center>"+AccNo+"</div></td></tr>";	
+	return rtnStr;
+
+}
+function DispImpNo(BankCode, BankName, AccNo, RegNo){
+	var rtnStr = ""
+	if (RegNo == "2" || RegNo == "3"){
+		rtnStr = "<tr><td height=17 width=184><div align=left>&nbsp;"+BankCode+"&nbsp;&nbsp;"+BankName+"</div></td><td height=17 width=300><div align=center>"+AccNo+"</div></td></tr> ";	
+	}
+	return rtnStr;
+
+}
+function chkSubmit(Pageid){
+	document.IP0801201.pageid.value = Pageid;
+	document.IP0801201.submit();
+}
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg01.gif" leftmargin="0" topmargin="0">
+<form name="IP0801201" method="POST" action="LoadAP">
+<p><b>首次登入<font color="#003399"><font color="#0066FF"> </font></font></b></p>
+<table width="628" border="0">
+  <tr> 
+    <td colspan="5" height="254"><font color="#663300" face="Arial, Helvetica, sans-serif"> 
+      </font><font color="#FF0000"> 本人同意將下列原「電話銀行家」之『約定轉出帳號』及『約定轉入帳號』由電話銀行通路擴大適用至電話銀行及網路銀行通路（如您欲新增約定轉出帳號或約定轉入帳號，請您本人攜帶身分證件及帳戶原留印鑑至本行各營業單位辦理；如您原僅於「網路銀行家」設定轉出帳號（未於「電話銀行家」設定）亦須比照前述說明辦理）：</font><br>
+      <table width="625" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td height="2"> 
+            <div align="right"><font color="#0000CC">查詢時間：<script language="JavaScript">document.write(getRCDateStr("[[%%SYSDATE%%]]",0));</script>&nbsp;
+    	     	<script language="JavaScript">document.write(getRCTimeStr('[[%%SYSTIME%%]]','0'));</script></font></div>
+          </td>
+        </tr>
+      </table>
+      <div align="center"> 
+        <table width="100%" border="00">
+          <tr> 
+            <td><img src="graph/point.gif" width="12" height="12" align="absbottom">已約定轉出帳號 
+			<div align="center">
+              <table width="310" border="1" bordercolor="#999999">
+                <tr bgcolor="#C4CBB8"> 
+                  <td width="300"><div align="center">本行約定轉出帳號</div></td> 
+                </tr>
+               <!--[[%%LOOP_SEC SEND-ACCT-NO%%]]-->
+                  <script>
+                  document.write(DispExpNo('[[%%SEND-ACCT-NO%%]]','[[%%SEND-VOICE%%]]'));                  
+                  </script>
+                <!--[[%%ELOOP_SEC%%]]--> 
+                <!--[[%%LOOP_SEC SEND-FROM-ACCT-NO%%]]--> 
+                  <script>
+                  document.write(DispExpNo1('[[%%SEND-FROM-ACCT-NO%%]]'));                  
+                  </script>
+                <!--[[%%ELOOP_SEC%%]]-->              
+              </table>
+			  </div>
+            </td>
+          </tr>
+        </table>
+        <table width="100%" border="00">
+          <tr> 
+            <td><img src="graph/point.gif" width="12" height="12" align="absbottom">已約定轉入帳號 
+			<div align="center">
+              <table width="500" border="1" bordercolor="#999999">
+                <tr bgcolor="#C4CBB8"> 
+                  <td width="160"><div align="center">轉入銀行名稱及代號</div></td>
+                  <td width="300"><div align="center">約定轉入帳號</div></td>                  
+                </tr>
+                <!--[[%%LOOP_SEC SEND-REG-BCODE%%]]-->
+                 <script>
+                  document.write(DispImpNo('[[%%SEND-REG-BCODE%%]]','[[%%SEND-BANK-NAME%%]]','[[%%SEND-REG-ACCTNO%%]]','[[%%SEND-REG-TYPE%%]]'));                  
+                  </script>               
+                <!--[[%%ELOOP_SEC%%]]-->        
+              </table>
+			  </div>
+              <div align="center"><br>
+                <input type="button" name="Submit1" value="同意" onclick="chkSubmit('IP0801202')">
+                <input type="button" name="Submit2" value="不同意" onclick="chkSubmit('IP0810000')">
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+ <input type="hidden" name="pageid" value="">
+ <input type="hidden" name="REVE_EMAIL" value="[[%%REVE-EMAIL%%]]">
+</form>
+</body>
+</html>

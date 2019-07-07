@@ -1,0 +1,116 @@
+<html>
+<head>
+<title>帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript">
+<!--
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+function MM_showHideLayers() { //v3.0
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+  for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
+    if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v='hide')?'hidden':v; }
+    obj.visibility=v; }
+}
+
+
+
+
+//-->
+</script>
+</head>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+<body bgcolor="#FFFFFF" onLoad="MM_showHideLayers('Layer1','','show','Layer2','','hide','Layer3','','hide')" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<table width="775" border="0">
+<tr>
+<td>
+	<table width="770" border="0" cellspacing="0" cellpadding="0">
+	  <tr bgcolor="#D7EBFF"> 
+	    <td><b>│</b>
+	    <a href="LoadAP?aptype=IBANK&pageid=IP0101000" target="main" onClick="MM_showHideLayers('Layer1','','hide','Layer2','','hide','Layer3','','hide')">總歸戶</a><b>│</b>
+	    <a href="#" onClick="MM_showHideLayers('Layer1','','show','Layer2','','hide','Layer3','','hide')">台幣存款帳戶</a><b>│</b>
+	    <a href="#" onClick="MM_showHideLayers('Layer1','','hide','Layer2','','show','Layer3','','hide')">外幣存款帳戶</a><b>│</b>
+	    <a href="#" onClick="MM_showHideLayers('Layer1','','hide','Layer2','','hide','Layer3','','show')">台幣貸款帳戶</a><b>│</b>
+	    </td>
+	  </tr>
+	</table>
+	<p>&nbsp;</p>
+	<div id="Layer1" style="position:absolute; left:0px; top:18px; width:636px; height:8px; z-index:1; visibility:hidden"> 
+	  <table width="770" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0201000" target="main">交易明細</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0202000" target="main">當日匯入匯款</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0204000" target="main">當日餘額</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0205000" target="main">支存待補金額</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0206000" target="main">已兌現票據</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0207000" target="main">領用票據</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0208000" target="main">定期存款</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0210000" target="main">定存中途解約試算</a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+	<div id="Layer2" style="position:absolute; left:0px; top:18px; width:620px; height:19px; z-index:2; visibility:hidden"> 
+	  <table width="775" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td width="189"> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0401000" target="main">外幣交易明細</a></div>
+	      </td>
+	      <td width="214"> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0402000"" target="main">外幣存款餘額</a></div>
+	      </td>
+	      <td colspan="2" width="221"> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0403000"" target="main">外幣定期存款</a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+	<div id="Layer3" style="position:absolute; left:0px; top:18px; width:440px; height:1px; z-index:3; visibility:hidden"> 
+	  <table width="775" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td width="303"> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0301000" target="main">貸款帳戶</a></div>
+	      </td>
+	      <td width="325"> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0302000" target="main">貸款應繳本息</a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+</td>
+</tr>
+</table>
+
+<!--iframe name="left" style="position: absolute; top:4 ; left:0 ; z-index:0" width="142" height="600" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?aptype=IBANK&pageid=IC0100001"/-->
+<iframe name="main" style="position: absolute; top:42 ; left:0 ; z-index:0" width="775" height="1500" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?aptype=IBANK&pageid=ID9999000"/>
+</body>
+</html>

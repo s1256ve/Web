@@ -1,0 +1,697 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>基金轉換</title>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI98039           2009.06.09     Carl 
+*EAI98051           2009.08.04     Alma 
+***********************************************************************/
+</script>
+<script type="text/JavaScript">
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+<script language="javaScript">
+var LAcctAry0 = new Array()
+var LAcctAry1 = new Array()
+var FAcctAry0 = new Array()
+var FAcctAry1 = new Array()
+var iLAcct = 0
+var iFAcct = 0
+var ukyc = 0[[%%SEND-KYC-VALUE%%]];
+var fkyc = 0[[%%SEND-FUND-RANK%%]];
+function AMT(a1,a2){
+	var iAMT= parseInt(a1) + parseInt(a2);
+	return iAMT.toString();
+}
+function chksubmit(){
+    var doc = document.IF0501204
+		var nextPageid = "";
+		var rPayType = document.IF0501204.rPayType;
+		for (i=0;i<rPayType.length;i++){
+			if (rPayType[i].checked){
+				nextPageid = rPayType[i].value;
+				}
+		}
+	var Acct2 = doc.cardNum2.value;
+	//var Acct2 ="";
+  var AcctAry = Acct2.split("@");		
+	doc.SEND_INTACCT_NO.value= AcctAry[0];
+	
+	  var acc = "[[%%SEND-EX-DIVIDEND%%]]";
+	  if(acc!='Y'){
+	 	 doc.SEND_INTACCT_NO.value= "";
+	 	}	
+		if (nextPageid!=""){		
+		  var sCVT = trimSpStr1("[[%%SEND-CVT-FEE%%]]")
+		  var sEXTRA = trimSpStr1("[[%%SEND-EXTRA-FEE%%]]")	  
+		 
+			document.IF0501204.REVE_TO_CVT_FEE.value = sCVT;
+			document.IF0501204.REVE_TO_EXTRA_FEE.value = sEXTRA;
+			document.IF0501204.REVE_TO_TXN_FEE.value = AMT(sCVT,sEXTRA);
+			document.IF0501204.pageid.value = nextPageid;
+			disableButton2(document.IF0501204.bNext ,document.IF0501204.bCancel);
+			document.IF0501204.submit();
+		}
+		else if("[[%%SEND-CVT-FEE%%]]" == "0" && "[[%%SEND-EXTRA-FEE%%]]" == "0"){
+		 var sCVT = trimSpStr1("[[%%SEND-CVT-FEE%%]]")
+		 var sEXTRA = trimSpStr1("[[%%SEND-EXTRA-FEE%%]]")
+		  disableButton(document.IF0501204.bNext);
+			document.IF0501204.REVE_TO_CVT_FEE.value = sCVT;
+			document.IF0501204.REVE_TO_EXTRA_FEE.value = sEXTRA;
+			document.IF0501204.REVE_TO_TXN_FEE.value = AMT(sCVT,sEXTRA);
+			document.IF0501204.pageid.value = "IF0501320";
+			document.IF0501204.submit();
+		}
+		else{
+			alert("請選擇付款方式");	
+		}
+}
+
+function chksubmit1(){
+		document.IF0501204.pageid.value = "IF0501000";
+		disableButton2(document.IF0501204.bNext ,document.IF0501204.bCancel);
+		document.IF0501204.submit();
+}
+
+
+
+
+
+
+
+
+
+ function clearSelect(list){
+		var index=list.options.length -1;
+		for(; index >= 0 ; index--){
+			list.options.remove(index);			
+		}		
+}
+
+function addOption(list, text, value){
+		var index=list.options.length;
+		for (i = 0 ; i<text.length ; i++){
+			if (text.indexOf('\n')>=0){
+				text = text.substr(text.indexOf('\n')+1,text.length); 
+			}else{
+				break;
+			}
+		}
+		list.options[index]=new Option(text, value);
+}	
+
+function chkDuplicateAcct(AcctNo){
+	
+	for(var j = 0; j < FAcctAry0.length; j++){
+		if (FAcctAry0[j] == AcctNo ) return true;	
+	}
+	return false;	
+}
+
+function chkAcctType(AcctNo,AcctCury,AcctBlance){	
+	var sCuryCode = AcctNo.substring(3,3+2)
+	if (!chkDuplicateAcct(AcctNo)){
+		if(sCuryCode != "77")
+		{
+			if(document.IF0501204.REVE_CERT_NO.value.substring(0,1) != "F" && document.IF0501204.REVE_CERT_NO.value.substring(0,1) != "S" && IF0501204.REVE_CERT_NO.value.substring(0,1) != "P" && document.IF0501204.REVE_CERT_NO.value.substring(0,1) != "W")
+			{
+			FAcctAry0[iFAcct] = AcctNo;								// 台幣帳號
+			FAcctAry1[iFAcct] = AcctNo + "@" + AcctCury + "@" + AcctBlance;		
+			iFAcct++;
+			}
+		}
+		else	if(sCuryCode == "77" && ("F" == document.IF0501204.REVE_CERT_NO.value.substring(0,1) || "S" == document.IF0501204.REVE_CERT_NO.value.substring(0,1) || "P" == document.IF0501204.REVE_CERT_NO.value.substring(0,1) || "W" == document.IF0501204.REVE_CERT_NO.value.substring(0,1)))
+		{
+		FAcctAry0[iFAcct] = AcctNo;								//外幣帳號
+		FAcctAry1[iFAcct] = AcctNo + "@" + AcctCury + "@" + AcctBlance;		
+		iFAcct++;
+		}
+		}
+		/*
+	if(sCuryCode == "77" ||  sCuryCode == "88"){		       // 外幣帳號顯示，不管帳號幣別及餘額
+		if (!chkDuplicateAcct(AcctNo)){
+			FAcctAry0[iFAcct] = AcctNo;
+			FAcctAry1[iFAcct] = AcctNo + "@" + AcctCury + "@" + AcctBlance;		
+			iFAcct++;
+			document.IF0501204.AppType[1].disabled = false;
+		}
+	}else{																     // 台幣帳號
+		LAcctAry0[iLAcct] =	AcctNo;
+		LAcctAry1[iLAcct] =	AcctNo + "@" + "NTD" + "@" + AcctBlance;
+		iLAcct++ ;
+	} 
+	*/
+}
+
+function addCurryType(sType){
+	var sCurrencyType = document.getElementById("CurrencyType")
+	var doc = document.IF0501204
+	if(sType == "1"){		// 台幣
+		
+	 chgAcctList("1");		
+	
+	 sCurrencyType.innerHTML = "<B>NTD</B>";
+	 doc.REVE_CURRENCY_TYPE.value = "NTD";
+	 doc.REVE_BUSI_TYPE.value = "N";	 
+	}else{
+
+	 chgAcctList("2");	
+	 sCurrencyType.innerHTML = "<B>" + fundCury + "</B>";
+	 doc.REVE_CURRENCY_TYPE.value = fundCury;
+	 doc.REVE_BUSI_TYPE.value = "Y";
+	} 
+}
+
+
+
+function chgAcctList(sType){
+	var docList = document.IF0501204.cardNum2
+	var i =0
+	clearSelect(docList);
+	if(sType == "1" && iLAcct > 0){ 		//台幣
+		for (;i<iLAcct;i++){
+		  addOption(docList,LAcctAry0[i],LAcctAry1[i]);
+		}	
+	}else if(sType == "2" && iFAcct > 0){
+		for (;i<iFAcct;i++){
+			addOption(docList,FAcctAry0[i],FAcctAry1[i]);
+		}	
+	}
+}
+
+function chkdiv(acc){
+	if(acc=='Y'){
+	 	document.IF0501204.cardNum2.disabled = false;
+	 	}
+	else
+	{
+		document.IF0501204.cardNum2.disabled = true;
+		document.all.ACCTNO.style.visibility="hidden";
+		document.all.ACCTNO2.style.visibility="hidden";
+		}
+}
+
+function chkdiv2(){
+if("[[%%SEND-CVT-FEE%%]]" == "0"  && "[[%%SEND-EXTRA-FEE%%]]" == "0"){
+		document.all.SELFPAY1.style.visibility="hidden";
+		document.all.SELFPAY2.style.visibility="hidden";
+		document.all.SELFPAY3.style.visibility="hidden";
+		document.all.SELFPAY4.style.visibility="hidden";
+	 	}
+	else if("[[%%SEND-CVT-FEE%%]]" == "0.0"){
+		alert("手續費金額有誤");
+	 	}
+	else
+	{
+			document.all.SELFPAY.style.visibility="hidden";
+		}
+}
+
+</script>
+<style type="text/css">
+<!--
+.confirm_t11 {
+	font-size: 12px;
+	line-height: 18px;
+	color: #666666;
+}
+.confirm_t11r {
+	font-size: 12px;
+	line-height: 18px;
+	color: #FF0000;
+	font-weight: bold;
+}
+.style5 {font-size: 9pt}
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{ font-family: "Arial"; font-size: 8pt}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+</head>
+<link rel="stylesheet" type="text/css" media="all" href="theme/YesFund.css" title="win2k-cold-1" />
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0501204">
+<font color="#006666"><b>基金轉換&gt;</b></font><div align="right">
+<font color="#0000CC"face="Arial, Helvetica, sans-serif">資料時間： <script language="javascript">
+		document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));                  
+			      		   				//document.write(getNowTime());
+			      		   				</script></font></div><br>
+  <table width="770" border="0">
+    <tr>
+    <td>
+        <div align="center"><b>請選擇手續費付款方式</b></div>
+    </td>
+  </tr>
+</table>
+  <table width="770" border="0">
+    <tr> 
+    <td colspan="3"> 
+      <div align="center"> <b></b> 
+          <table width="620" border="0">
+            <tr> 
+            <td> 一、一般手續費NT$： <script>
+              	document.write(moneyAddDot("[[%%SEND-CVT-FEE%%]]"));
+              </script>  </td>
+          </tr>
+          <tr> 
+            <td>　　基金公司外加手續費NT$：<script>
+              	document.write(moneyAddDot("[[%%SEND-EXTRA-FEE%%]]"));
+              </script>  <br>
+                <br>
+                <span class="style5">註：富蘭克林等其他系列基金之轉換交易，須額外繳付信託金額千分之三至千分之五之轉換手續費(最高收取NT$5,000為限)。</span>
+              　　<!--<font color="#FF0000">（富蘭克林系列基金須外加0.5%）</font>--> </td>
+          </tr>
+          <tr>
+            <td>　　支付總額NT$： <script>
+              	document.write(moneyAddDot(AMT("[[%%SEND-CVT-FEE%%]]","[[%%SEND-EXTRA-FEE%%]]")));
+              </script></td>
+          </tr>
+          <tr> 
+            <td><table width="100%" border="0">
+                <tr> 
+                  <td width="20%" rowspan="2" valign="top">二、選擇付款方式： </td>
+                  <td width="12%" rowspan="2" valign="top"><div id="SELFPAY">無轉換費用</div> </td>
+                  <td width="5%"> 
+                   <div id="SELFPAY1">
+                    <input type="radio" name="rPayType" value="IF0501310">
+                   </div> 
+                  </td>
+                  <td width="63%">
+                   <div id="SELFPAY2">
+                   委託人自行繳款</td>
+                   </div>
+                </tr>
+                <tr> 
+                  <td width="5%"> 
+                   <div id="SELFPAY3">
+                    <input type="radio" name="rPayType" value="IF0501320">
+                   </div>
+                  </td>
+                  <td width="63%"><div id="SELFPAY4">線上立即繳款</td>
+                  </div>
+                </tr>
+              </table>
+              <table width="100%" border="0">
+              <tr>
+                    <td td width="35%">
+                    <div id="ACCTNO">
+                    三、請輸入配息入帳帳號：</td>
+                    <td td width="65%">
+                    </div>
+                    <div id="ACCTNO2">  銀行帳號&nbsp;<select name="cardNum2">                                                                  
+                      </select>
+                      </div>
+                    </td>
+                  </tr>
+            </table>
+            </td>
+          </tr>
+       </table>
+                 <table width="600" border="0">
+          <tr>
+            <td><strong>本銀行銷售[[%%SEND-FUND-COM-NAME%%]] 
+            <script>
+            if(10000>[[%%SEND-FROM-FUNDID%%]] && [[%%SEND-FROM-FUNDID%%]]>5000)
+            	document.write("經理之");
+            else
+            	document.write("代理之");
+            </script>
+            「[[%%SEND-FUND-NAME%%]]」所收取之通路報酬如下： 
+            <br> <font color = red>
+            <script>
+           	if("[[%%SEND-HIGH1%%]]" != "[[%%SEND-EX1%%]]")
+            document.write("[[%%SEND-HIGH1%%]][[%%SEND-HIGH2%%]][[%%SEND-EX1%%]][[%%SEND-EX2%%]]");
+            else
+            document.write("[[%%SEND-HIGH1%%]][[%%SEND-HIGH2%%]]");
+            </script>
+             <br>
+             <script>    
+            if("[[%%SEND-EX-TAG%%]]" == "Y")
+                 {
+                   document.write("基金的配息可能由基金的收益或本金中支付。任何涉及由本金支出的部份，可能導致原始投資金額減損。");
+								 }
+            </script></font>
+            </strong>
+                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#333333">
+                   <tr>
+                     <td bgcolor="#FFFFFF"><table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#333333">
+                       <tr>
+                         <td colspan="2" bgcolor="#FFFFCC"><strong>ㄧ、投資人支付</strong></td>
+                        </tr>
+                       <tr>
+                         <td width="22%" bgcolor="#FFFFEE"><div align="center"><strong>項　　目</strong></div></td>
+                         <td width="78%" bgcolor="#FFFFEE"><div align="center"><strong>說　　　　　明</strong></div></td>
+                       </tr>
+
+                       <tr>
+                         <td bgcolor="#FFFFEE">申購手續費分成(%)<br>
+                          (依　台端申購金額)</td>
+                         <td bgcolor="#FFFFEE"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                           <tr>
+                             <td valign="top">1.</td>
+                             <td valign="top">
+                             <script>
+                             if([[%%SEND-AFTER-FUND-ID%%]] == 1)
+                             {
+                             document.write("台端支付的基金申購手續費為<u>[[%%SEND-BFEE-RATE%%]]</u>%，其中本銀行收取不多於<u>[[%%SEND-BFEE-BANK-RATE%%]]</u>%。")
+															}
+															else
+															document.write("本基金手續費遞延至贖回時收取，申購時無需支付，本銀行將自基金公司收取不多於<u>[[%%SEND-BFEE-BANK-RATE%%]]</u>%。")
+                             </script>
+                             </td>
+                           </tr>
+                         </table>                         </td>
+                       </tr>
+                     </table>
+                       <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#333333">
+                         <tr>
+                           <td colspan="2" bgcolor="#FFFFCC"><strong>二、基金公司（或總代理人/境外基金機構）支付</strong></td>
+                         </tr>
+                         <tr>
+                           <td width="22%" bgcolor="#FFFFEE"><div align="center"><strong>項　　目</strong></div></td>
+                           <td width="78%" bgcolor="#FFFFEE"><div align="center"><strong>說　　　　　明</strong></div></td>
+                         </tr>
+                         <tr>
+                           <td bgcolor="#FFFFEE">經理費分成(%)<br>
+                             (依　台端持有金額)<br></td>
+                           <td bgcolor="#FFFFEE">本基金經理費收入為年率<u>[[%%SEND-MANAGER-RATE%%]]</u>%，台端持有本基金期間，本銀行收取不多於年率<u> [[%%SEND-MANAGER-BANK-RATE%%]] </u>%
+                           <script>
+                           	if([[%%REVE-TO-FUNDID%%]]>0700 && [[%%REVE-TO-FUNDID%%]] < 0800)
+                           		document.write("，此經理費收入為12b-1 Fee");
+                           </script>
+                           。</td>
+                         </tr>
+                         <tr>
+                           <td bgcolor="#FFFFEE"><p>銷售獎勵金(%)<br>
+                             (依銷售金額/定期定額開戶數)</p></td>
+                           <td bgcolor="#FFFFEE"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                            <script>
+                            	if([[%%SEND-REWARD-RATE1%%]] != 0)
+                             		{
+              										document.write("1.本銀行[[%%SEND-REWARD-YEAR1%%]]年[[%%SEND-REWARD-PERIOD1%%]]精選基金活動期間，[[%%SEND-FUND-COM-NAME%%]]依本銀行銷售金額支付獎勵金不多於[[%%SEND-REWARD-RATE1%%]]%。")
+              									}
+															if([[%%SEND-REWARD-RATE2%%]] != 0)
+                             		{
+              										document.write("2.本基金募集期間，[[%%SEND-FUND-COM-NAME%%]]依本銀行銷售金額支付獎勵金不多於[[%%SEND-REWARD-RATE2%%]]%。")
+              									}
+              								if([[%%SEND-REWARD-AMOUNT%%]] != 0)
+                             		{
+              										document.write("3.本銀行[[%%SEND-REWARD-YEAR3%%]]年[[%%SEND-REWARD-PERIOD3%%]]精選基金活動期間，[[%%SEND-FUND-COM-NAME%%]]依本銀行定期定額之銷售金額，新開戶一筆且達基金公司約定之成功扣款次數支付獎勵金不多於新台幣[[%%SEND-REWARD-AMOUNT%%]]元。 ")
+              									}
+              								if("[[%%SEND-REWARD-RATE1%%]]" == 0 && [[%%SEND-REWARD-RATE2%%]]==0 && [[%%SEND-REWARD-AMOUNT%%]] == 0)
+              									{
+              										document.write("「未收取」。")
+              									}
+                            </script>
+                           </table></td>
+                         </tr>
+                         <tr>
+                           <td bgcolor="#FFFFEE">贊助或提供產品說明會及員工教育訓練</td>
+                           <td bgcolor="#FFFFEE">
+                           <p>
+                           <script>
+                           if([[%%SEND-SPONSOR-AMOUNT%%]] >= 2000000)
+                           {
+                           	document.write("本銀行[[%%SEND-SPONSOR-YEAR%%]]年度銷售[[%%SEND-FUND-COM-NAME%%]]基金，預計可收取新台幣[[%%SEND-SPONSOR-AMOUNT%%]]元之產品說明會及員工教育訓練贊助金。<br>")
+                         		}
+                         	else if([[%%SEND-SPONSOR-AMOUNT%%]] > 0 &&  [[%%SEND-SPONSOR-AMOUNT%%]] < 2000000)
+                         	{
+                         		document.write("未達2百萬元揭露門檻。") 
+                         	}
+                         	else
+                         	{
+                         		document.write("「未收取」。")
+                         	}
+                         	</script>
+                         </p></td>
+                         </tr>
+                       </table>
+                       <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#333333">
+                         <tr>                       
+                           <td bgcolor="#FFFFCC"><strong>三、其他報酬：</strong>
+                          <script>
+                          if([[%%SEND-OTHERS-AMOUNT%%]] > 1000000)
+                          {
+                         		document.write("本銀行[[%%SEND-OTHERS-YEAR%%]]年度銷售[[%%SEND-FUND-COM-NAME%%]]基金。<br>")
+                         		document.write("　　　　　　　　[[%%SEND-OTHERS-YEAR%%]]年度行銷贊助：本銀行全年自[[%%SEND-FUND-COM-NAME%%]]獲得贊助新台幣")  
+                         		document.write(moneyAddDot("[[%%SEND-OTHERS-AMOUNT%%]]"));
+                         		document.write("元。");
+                          }
+                          else if([[%%SEND-OTHERS-AMOUNT%%]] > 0)
+                          {
+                         		document.write("未達1百萬元揭露門檻。") 
+                         	}
+                         	else
+                         	{
+                         		document.write("「未收取」。")
+                         	}
+                         </script>
+                         </td>
+                         </tr>
+                       </table></td>
+                   </tr>
+              </table></td></tr>
+        </table>
+        <table width="600" border="0">
+          <tr>
+            <td colspan="2"><p>
+            
+            計算說明：「<strong>[[%%SEND-FUND-NAME%%]]</strong>」之申購手續費[[%%SEND-BFEE-RATE%%]]%及經理費[[%%SEND-MANAGER-RATE%%]]%，本銀行銷售之申購手續費分成不多於<u>[[%%SEND-BFEE-BANK-RATE%%]]</u>%、經理費分成不多於[[%%SEND-MANAGER-BANK-RATE%%]]%及[[%%SEND-FUND-COM-NAME%%]]提供之銷售獎勵金不多於[[%%SEND-REWARD-TRATE%%]]%<u>， 
+            <script>
+             if([[%%SEND-SPONSOR-AMOUNT%%]] >= 5000000)
+                           {
+                           	document.write("另本銀行</u><u>[[%%SEND-SPONSOR-YEAR%%]]</u><u>年度銷售</u><u>[[%%SEND-FUND-COM-NAME%%]]</u><u>基金，該投信預計贊助產品說明會及員工教育訓練之金額合計為</u><u>[[%%SEND-SPONSOR-AMOUNT%%]]</u><u>元</u>。")
+                         		}
+            document.write("故　台端每投資");
+						document.write(moneyAddDot("[[%%SEND-SPREADSHEET-BASE%%]]"));
+            </script>
+            元於「<strong>[[%%SEND-FUND-NAME%%]]</strong>」，本銀行每年收取之通路報酬如下：</p></td>
+            </tr>
+          <tr>
+            <td valign="top"><div align="right">1.</div></td>
+            <td valign="top">
+             <script>
+                             if([[%%SEND-AFTER-FUND-ID%%]] == 1)
+                             {
+                             	document.write("<p>由　台端所支付<strong>之</strong>");
+                             	document.write(moneyAddDot("[[%%SEND-SPREADSHEET-FEE-BEFORE%%]]"));
+                             	document.write("元申購手續費中收取不多於");
+                             	document.write(moneyAddDot("[[%%SEND-SPREADSHEET-FEE-BANK%%]]"));
+                             	document.write("元  (");
+														 	document.write(moneyAddDot("[[%%SEND-SPREADSHEET-BASE%%]]"));
+														 	document.write("* [[%%SEND-BFEE-BANK-RATE%%]]%=");
+														 	document.write(moneyAddDot("[[%%SEND-SPREADSHEET-FEE-BANK%%]]"));
+														 	document.write("元) <br>");
+														 }
+														else
+															document.write("本基金手續費遞延至贖回時收取，申購時無需支付，本公司將自基金公司收取[[%%SEND-SPREADSHEET-FEE-BANK%%]]元 ([[%%SEND-SPREADSHEET-BASE%%]] * [[%%SEND-BFEE-BANK-RATE%%]]  % = [[%%SEND-SPREADSHEET-FEE-BANK%%]])</p>              </td>")
+                             </script>
+          </tr>
+          
+          <tr>          
+            <td valign="top"><div align="right">2.</div></td>
+            <td valign="top">[[%%SEND-FUND-COM-NAME%%]]支付：</td>
+          </tr>
+          <tr>
+            <td valign="top"><div align="right"></div></td>
+            <td valign="top">(1)台端持有本基金期間之經理費分成：不多於
+             <script>
+            document.write(moneyAddDot("[[%%SEND-SPREADSHEET-MANAGER%%]]"));
+            </script>
+            元 (
+            <script>
+            document.write(moneyAddDot("[[%%SEND-SPREADSHEET-BASE%%]]"));
+            </script>
+            * [[%%SEND-MANAGER-BANK-RATE%%]]%＝ 
+             <script>
+            document.write(moneyAddDot("[[%%SEND-SPREADSHEET-MANAGER%%]]"));
+            </script>
+            元)<br>
+              (2)銷售獎勵金：不多於
+               <script>
+               document.write(moneyAddDot("[[%%SEND-SPREADSHEET-REWARD%%]]"));
+              </script>
+              元 (
+              <script>
+               document.write(moneyAddDot("[[%%SEND-SPREADSHEET-BASE%%]]"));
+              </script>
+               * [[%%SEND-REWARD-TRATE%%]]%=
+               <script>
+               document.write(moneyAddDot("[[%%SEND-SPREADSHEET-REWARD%%]]"));
+              </script>
+               元)
+                <br>
+               <script>
+             if([[%%SEND-SPONSOR-AMOUNT%%]] >= 5000000)
+                           {
+                           	document.write("(3)年度產品說明會及員工教育訓練贊助金：<u>[[%%SEND-SPONSOR-YEAR%%]]</u>。")
+                         		}
+              </script>
+          </tr>   
+          <tr>
+            <td valign="top"><div align="right">
+            <script>
+            if([[%%SEND-OTHERS-AMOUNT%%]] > 0)
+                          {
+                         		document.write("3.")
+                         	}
+            </script>
+            </div></td>
+            <td valign="top">
+             <script>
+            if([[%%SEND-OTHERS-AMOUNT%%]] > 0)
+                          {
+                         		document.write("其他報酬：")
+                         	}
+            </script>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top"><div align="right"></div></td>
+            <td valign="top">
+             <script>
+                          if([[%%SEND-OTHERS-AMOUNT%%]] > 0)
+                          {
+                          	document.write("行銷贊助：")
+                         		document.write("本銀行全年自[[%%SEND-FUND-COM-NAME%%]](獲得贊助");
+                         		document.write(moneyAddDot("[[%%SEND-OTHERS-AMOUNT%%]]"));
+                         		document.write("元)。")
+                         	}
+             </script>          	
+           </td>
+          </tr>
+        </table>
+        <br>
+        <table width="600" border="0" cellpadding="5" bgcolor="#CCCCCC">
+          <tr>
+            <td><strong>本銀行辦理基金銷售業務，係自各證券投資信託事業、總代理人及境外基金機構收取通路報酬（各項報酬、費用及其他利益），以支應客戶服務及行銷成本，並賺取銷售佣金。惟因各基金性質不同且各基金公司之行銷策略不同，致本銀行銷售不同基金時，自各基金公司收取通路報酬之項目及金額因而有所不同。本銀行及業務人員所銷售之基金，容或與  台端個人投資組合之利益不相一致，請　台端依個人投資目標及基金風險屬性，慎選投資標的。 </strong></td>
+          </tr>
+        </table>
+        <table width="600" border="0" cellpadding="5">
+          <tr>
+            <td>未來若相關通路報酬變動將於本行網頁上公告，將不另行通知　台端。</td>
+          </tr>
+        </table>
+          <div align="left"> 
+            <table width="620" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr> 
+                <td><b>注意事項：</b><br>
+                  1.若您的付款方式為"委託人自行繳款"，您的繳款可選擇使用<br>
+                  (1)自動櫃員機金融卡轉帳<b>(請依應支付總額進行繳款，其不受自94年6月1日起三萬元轉帳限額之限制。)</b><br>
+                  (2)聯邦銀行臨櫃存入<br>
+                  (3)跨行匯款<br>
+                  2.您必須完成繳款手續後，本筆轉換交易才視為完成並生效。<br>
+                3.銀行<b><font color="#FF0000">營業日下午3:00前完成繳款</font></b>，並經本行確認款項已入帳無誤，始於當日下單轉換，逾時則於次一營業日下單轉換。</td>
+              </tr>
+            </table>
+          </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3"> 
+     <!-- <div align="center">
+        <input type="button" name="Submit" value="下一步" onClick='JavaScript:chksubmit();'>
+      </div>-->
+      <table width="630" border="0">
+  <tr> 
+    <td colspan="3"> 
+    </td>
+  </tr>
+</table>
+    </td>
+  </tr>
+</table>
+   <br>
+<div align="center">
+        <table width="457" border="1" cellpadding="0" bordercolor="#999999">
+          <tr bgcolor="#E7F1EE">
+            <td width="68%" height="25" bgcolor="#ffeba4"><div align="center"><img src="graph/fund/graph/confirm_icon.gif" width="25" height="26" align="absmiddle"><strong>短線交易確認通知</strong></div></td>
+          </tr>
+          <tr bgcolor="#E7F1EE">
+            <td width="68%" height="25" bgcolor="#fcffd9"><table width="97%" border="0" align="center" cellpadding="3" cellspacing="0">
+                <tr>
+                  <td class="confirm_t11">親愛的客戶您好<br />
+                    依該發行公司規定，於<script>document.write(getRCDateStr("[[%%SEND-END-DATE%%]]","0"));</script>前之轉換交易視為短線交易(<a href="#" onclick="MM_openBrWindow('http://www.yesfund.com.tw/savefile/ma23.htm','ma23','scrollbars=yes,width=720,height=500')">說明</a>)，需額外收取短線交易手續費預估<span class="confirm_t11r">[[%%REVE-SENDCURRENCY%%]] <script>document.write(moneyAddDot("[[%%SEND-SHORT-FEE%%]]"));</script>元(單位數*參考淨值*短線費率=試算短線費用)</span>，如您同意繼續交易，請點選同意鍵，執行轉換交易；如不同意，請點選不同意鍵，則交易取消。<font color="#ff80ff">短線費用係以贖回或轉出基金的計價幣別計收。</font></td>
+                </tr>
+            </table></td>
+          </tr>
+        </table>
+        <table width="457" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="30"><div align="center">
+                <input type="button" name="bNext" value="同意" onClick="chksubmit();">
+              　
+              <input type="button" name="bCancel" value="不同意" onClick="chksubmit1();">
+            </div></td>
+          </tr>
+        </table>
+     </div>   
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <!--<div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>-->
+    </td>
+  </tr>
+</table>
+ <input type="hidden" name="pageid" value="">
+ <input type="hidden" name="REVE_CERT_NO" value="[[%%REVE-CERT-NO%%]]">
+  <input type="hidden" name="REVE_CVT_TYPE" value="[[%%REVE-CVT-TYPE%%]]">
+<input type="hidden" name="REVE_CHANGE_TYPE" value="[[%%REVE-CHANGE-TYPE%%]]">
+<input type="hidden" name="REVE_FROM_FUNDID" value="[[%%REVE-FROM-FUNDID%%]]">
+ <input type="hidden" name="REVE_FROM_FUNDNAME" value="[[%%REVE-FROM-FUNDNAME%%]]">
+ <input type="hidden" name="REVE_FROM_AMT" value="[[%%REVE-FROM-AMT%%]]">
+ <input type="hidden" name="REVE_FROM_UNITS" value="[[%%REVE-FROM-UNITS%%]]">
+  <input type="hidden" name="REVE_TO_FUNDID" value="[[%%REVE-TO-FUNDID%%]]">
+  <input type="hidden" name="REVE_TO_FUNDNAME" value="[[%%REVE-TO-FUNDNAME%%]]">
+<input type="hidden" name="REVE_TO_AMT1" value="[[%%REVE-TO-AMT%%]]">  <!--//要轉出原幣金額-->
+<input type="hidden" name="REVE_TO_AMT2" value="[[%%SEND-TO-AMT%%]]">  <!--//要轉入新幣別金額-->
+<input type="hidden" name="REVE_TO_UNITS" value="[[%%REVE-TO-UNITS%%]]">
+<input type="hidden" name="REVE_TO_CVT_FEE" value="[[%%SEND-CVT-FEE%%]]">
+<input type="hidden" name="REVE_TO_EXTRA_FEE" value="[[%%SEND-EXTRA-FEE%%]]">
+<input type="hidden" name="REVE_TO_TXN_FEE" value="">
+<input type="hidden" name="REVE_TO_FUND_AMT_DATE" value="[[%%REVE-TO-FUND-AMT-DATE%%]]">
+<input type="hidden" name="REVE_TO_CURRENCY" value="[[%%REVE-TO-CURRENCY%%]]">
+<input type="hidden" name="REVE_TO_CURRENCY_CODE" value="[[%%REVE-TO-CURRENCY-CODE%%]]">
+<input type="hidden" name="REVE_TO_FUND_AMT_REF" value="[[%%REVE-TO-FUND-AMT-REF%%]]">
+<input type="hidden" name="SEND_INTACCT_NO" value="">
+<input type="hidden" name="REVE_TO_OCVT_FEE" value="[[%%SEND-OCVT-FEE%%]]">
+<input type="hidden" name="REVE_TO_OEXTRA_FEE" value="[[%%SEND-OEXTRA-FEE%%]]">
+</form>
+<script>
+     var sQryAcct = "[[%%SEND-EXIST%%]]"
+	if (sQryAcct == "0"){
+		document.IF0501204.rPayType[0].click();
+		document.IF0501204.rPayType[1].disabled = true ;	
+	}
+	chkdiv("[[%%SEND-EX-DIVIDEND%%]]");
+	chkdiv2();
+	<!--[[%%LOOP_SEC SEND-ACCT-NO%%]]-->
+		//chkAcctType("[[%%SEND-FROM-ACCT-NO%%]]",0,0);
+		//chkAcctType("[[%%SEND-ACCT-NO%%]]",0,0);
+		chkAcctType("[[%%SEND-ACCT-NO%%]]","[[%%SEND-CURRENCY-ENAME%%]]","[[%%SEND-AVAL-BALANCE%%]]");
+	<!--[[%%ELOOP_SEC%%]]-->		 
+	 chgAcctList("2");
+	
+	if(ukyc+1 < fkyc) {
+	alert("超出風險等級："+ "您的風險等級→"+ukyc +"  此商品風險等級→"+fkyc);
+  chksubmit1("IF0501000");
+  }
+</script>
+</body>
+</html>

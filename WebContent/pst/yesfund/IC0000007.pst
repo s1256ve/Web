@@ -1,0 +1,163 @@
+<html>
+<head>
+<title>歡迎光臨-聯邦銀行個人金融網</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI99041	        2010.05.10	   David
+*EAI100078         	2011.11.23     	SIMON LIN		終止UMA網路服務
+***********************************************************************/
+</script>
+<style type="text/css">
+<!--
+    body,p,td,form,select{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:12pt}
+    .t1{  font-family: "新細明體"; font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-family: "新細明體"; font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+-->
+</style>
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function trnsTime(){
+	var timeStr = '[[%%SEND-LAST-LOGIN-TIME%%]]';
+	var date = timeStr.substr(0,8);
+	var hh = timeStr.substr(8,2);
+	var mm = timeStr.substr(10,2);
+	return getRCDateStr(date,0) + " " + hh + ":" + mm ;
+}
+//-->
+</script>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/datefmt.js"></SCRIPT>
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" link="#0000FF" vlink="#0000FF" alink="#000000" background="graph/bg.gif">
+<p></p>
+<table width="630" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td width="400"><font color="#0000FF">[[%%SEND-CNAME%%]] 您好， 您上次登入時間  
+    <script language="JavaScript">
+    	document.write(trnsTime());
+    </script> 
+    </font> 
+    </td>
+    <td colspan="2" align="right">
+     <table border="1" align="right" cellpadding="0" cellspacing="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC">
+        <tr bgcolor="#D7EBFF"> 
+        <!--  <td colspan="2" bgcolor="#D7EBFF" class="t3"> 
+          <div align="center">新手上路Demo</div>          </td> -->
+          <td width="51" bgcolor="#D7EBFF" class="t3"> 
+          <div align="center"><a href="/LoadAPWeb/pst/faq/page13.htm" target="submain">答客問</a></div>          </td>
+          <td width="56" bgcolor="#D7EBFF" class="t3"> 
+          <div align="center"><A href="/LoadAPWeb/pst/faq/page14_a.htm" target="submain">安全宣告</a></div>          </td>
+          <td width="79" colspan="2" bgcolor="#D7EBFF" class="t3"> 
+          <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0110000&FUNC_PAGE=IP0907100" target="IC0000000">匯利率查詢</a></div>          </td>
+        </tr>
+    </table> 
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="3"><font color="#663300"> </font> 
+      <table width="630" border="0" cellspacing="0" align="right">
+        <tr> 
+          <td width="62">&nbsp;</td>
+          <td width="70"> 
+            <div align="center"> 
+              <table width="70" border="0" cellpadding="0" cellspacing="0">
+                <tr> 
+                  <td width="9%"><img src="graph/lef01.gif" width="9" height="20"></td>
+                  <td background="graph/lef02.gif" width="81%"> 
+                    <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0002000" target="main">帳戶查詢</a></div>
+                  </td>
+                  <td width="10%"><img src="graph/lef03.gif" width="9" height="20"></td>
+                </tr>
+              </table>
+            </div>
+          </td>
+          <td width="86"> 
+            <div align="center"> 
+              <table width="83" border="0" cellpadding="0" cellspacing="0">
+                <tr> 
+                  <td width="10%"><img src="graph/lef01.gif" width="9" height="20"></td>
+                  <td background="graph/lef02.gif" width="77%"> 
+                    <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0003000" target="main">轉帳/繳款</a></div>
+                  </td>
+                  <td width="13%"><img src="graph/lef03.gif" width="9" height="20"></td>
+                </tr>
+              </table>
+            </div>
+          </td>
+          <td colspan="2"> 
+            <div align="center"> 
+              <table width="70" border="0" cellpadding="0" cellspacing="0">
+                <tr> 
+                  <td width="9%"><img src="graph/lef01.gif" width="9" height="20"></td>
+                  <td background="graph/lef02.gif" width="81%"> 
+                    <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0004000" target="main">國民現金</a></div>
+                  </td>
+                  <td width="10%"><img src="graph/lef03.gif" width="9" height="20"></td>
+                </tr>
+              </table>
+            </div>
+          </td>
+          <td width="65"> 
+            <div align="center"> 
+              <table width="65" border="0" cellpadding="0" cellspacing="0">
+                <tr> 
+                  <td width="9%"><img src="graph/lef01.gif" width="9" height="20"></td>
+                  <td background="graph/lef02.gif" width="81%"> 
+                    <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0005000" target="main">信 
+                      用 卡</a></div>
+                  </td>
+                  <td width="10%"><img src="graph/lef03.gif" width="9" height="20"></td>
+                </tr>
+              </table>
+            </div>
+          </td>
+          <td width="74"> 
+            <div align="center"> 
+              <table width="70" border="0" cellpadding="0" cellspacing="0">
+                <tr> 
+                  <td width="9%"><img src="graph/lef01.gif" width="9" height="20"></td>
+                  <td background="graph/lef02.gif" width="81%"> 
+                    <div align="center"><a href="LoadAP?aptype=YESFUND&pageid=IC0006000" target="main">基　金</a></div>
+                  </td>
+                  <td width="10%"><img src="graph/lef03.gif" width="9" height="20"></td>
+                </tr>
+              </table>
+            </div>
+          </td>
+          <td colspan="3"> 
+            <div align="center"> 
+              <table width="59" border="0" cellpadding="0" cellspacing="0">
+                
+              </table>
+            </div>
+          </td>
+          <td width="129" valign="top"> 
+            <table width="75%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td height="2"><a href="LoadAP?aptype=IBANK&pageid=IC0009000" target="main"><img src="graph/personal/icon01.gif" width="50" height="17" border="0"></a></td>
+                <td height="2"><a href="LoadAP?aptype=IBANK&pageid=IC0010000" target="main"><img src="graph/personal/icon02.gif" width="65" height="17" border="0"></a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

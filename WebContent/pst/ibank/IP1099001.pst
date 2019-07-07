@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>忘記密碼</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David
+* Change List:
+*SerialNo           Date Modified  Modified by   
+*-------------      ----------     ----------
+*EAI98056						2009.10.13		 David  
+***********************************************************************/
+</script>
+<script language="JavaScript">
+function chkSubmit(){
+	if (document.IP1099001.chkSel.value == 1){
+		document.IP1099001.pageid.value = "IP1099001";
+		document.IP1099001.submit();
+	}
+	else if(document.IP1099001.chkSel.value == 2){
+		document.IP1099001.pageid.value = "IP1099003";
+		document.IP1099001.submit();
+	}
+	else{}
+}
+
+function chkSubmit2(){
+	if(!document.IP1099001.REVE_NICK_NAME.value){
+		alert("請輸入新使用者代號!");
+		return;
+	}
+	if(!document.IP1099001.REVE_PWD.value){
+		alert("請輸入網路密碼!!");
+		return;
+	}
+	
+	var tmp1 = document.IP1099001.REVE_NICK_NAME.value;
+	var tmp2 = tmp1.trim().length;
+	
+	if (tmp1.trim() == ""){
+    	alert("請輸入新使用者代號");
+    	return false;    	
+  }
+ else if(!checkIdFormat(tmp1)){
+					window.close();
+					return;
+	       }
+	else if(tmp2 < 6 || tmp2 > 12){
+    alert("請輸入6~12位數使用者代號!");
+    return false;
+	}    
+	document.IP1099001.pageid.value = "IP1099002";
+	document.IP1099001.submit();
+}
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+
+function showRule(){
+    window.open("LoadAP?pageid=IP1003006&aptype=NOAP","newWindow1",'width=630,height=420');
+}
+//-->
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0" onfocus="onTop();">
+<form method="post" action="LoadAP" name="IP1099001">
+<img src="graph/point.gif" width="12" height="12">
+<b>個人設定&gt;<font color="#0066FF">網路密碼/使用者代號變更</font></b><br>
+<table width="630" border="0">
+  <tr> 
+    <td valign="bottom">&nbsp;變更項目
+      <select name="chkSel">
+        <option selected>=請選擇變更項目=</option>
+        <option value=1>變更使用者代號</option>
+        <option value=2>變更網路密碼</option>
+      </select>
+    </td>
+    <td width="435" colspan="-1" valign="bottom"><img src="graph/go.gif" height="19" onClick="javascript:chkSubmit();"></td>
+  </tr>
+  <tr>
+    <td colspan="2" valign="bottom"><table width="100%"  border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td>
+          <div align="right">
+            <input type="button" name="view" value="使用者代號與網路密碼設定注意事項" onclick="javascript:showRule();">
+        </div></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="4" height="1"></td>
+  </tr>
+</table>
+<table width="630" border="0" cellspacing="0" cellpadding="0">
+  <tr valign="top"> 
+    <td height="95"> 　 <img src="graph/point.gif" width="12" height="12" align="absmiddle"><font color="#FF0000">變更使用者代號 
+      </font> 
+      <table width="300" border="1" bordercolor="#999999" align="center">
+        <tr> 
+          <td width="114" height="0"> 使用者代號</td>
+          <td width="170" height="0">[[%%SEND-NICK-NAME%%]]</td>
+        </tr>
+        <tr> 
+          <td width="114" height="0"> 新的使用者代號<br>
+            (6-12碼，英數皆可) </td>
+          <td width="170" height="0"> 
+            <input type="text" name="REVE_NICK_NAME" value="" onpaste="return false;" style="ime-mode:disabled">
+          </td>
+        </tr>
+        <tr> 
+          <td width="47%">網路密碼</td>
+          <td height="25" width="53%"> 
+            <input type="password" name="PWD" size="8" onClick="javascript:getKeyBoard('IP1099001','PWD','REVE_PWD','[[%%SEND-KB-KEYCODE%%]]','[[%%SEND-KB-KEYLETTER%%]]');onTop();" readonly>
+          </td>
+        </tr>
+      </table>
+      <div align="center">
+        <input type="button" name="Submit" value="確定" onClick="javascript:chkSubmit2()">
+        <input type="reset" name="Reset" value="重填">
+      </div>
+      </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="REVE_PWD" value="">
+</form>
+</body>
+</html>

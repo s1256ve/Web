@@ -1,0 +1,434 @@
+<html>
+<head>
+<title>外匯帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js">
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI100036          2011.07.01     Joe  
+***********************************************************************/
+</script>
+</head>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+    oncontextmenu="window.event.returnValue=false"
+    var Q_1_INT = "[[%%SEND-Q-1-INT%%]]";
+    var Q_3_INT = "[[%%SEND-Q-3-INT%%]]";
+    var Q_6_INT = "[[%%SEND-Q-6-INT%%]]";
+    var Q_9_INT = "[[%%SEND-Q-9-INT%%]]";
+    var Q_12_INT = "[[%%SEND-Q-12-INT%%]]";
+    var Q_INT = "";
+    
+    function ChkSubmit(){
+        var f=document.IP0404001;
+        if (f.REVE_ACCTINFO.value=="0"){
+            return;
+        }
+        chgAcct2();
+        if(f.CONTINUE[0].checked){
+        	f.REVE_CONTINUE.value = "1";
+        }
+        if(f.CONTINUE[1].checked){
+        	f.REVE_CONTINUE.value = "2";
+        }
+        if(f.CONTINUE[2].checked){
+        	f.REVE_CONTINUE.value = "0";
+        }
+        if (f.REVE_ACCTINFO.value=="0"){
+            alert("請選擇帳號!");
+            return;
+        }
+        if (f.REVE_FROM_AMT.value==""){
+            alert("請填寫金額!");
+            return;
+        }
+        if(chkCurr()==true){
+        	toAcct(document.IP0404001.REVE_ACCT_NO.value);
+        	document.IP0404001.submit();
+        }
+        else return;
+    }
+
+    function chkCurr(){
+    	var toCurrency = document.IP0404001.SEND_TO_CURRENCY.value;
+    	var currency = document.IP0404001.PRE_CURRENCY.value;
+    	var amt = document.IP0404001.REVE_FROM_AMT.value;
+    	var toAmt = document.IP0404001.SEND_TO_AMT.value;
+    	if(isNaN(document.IP0404001.REVE_FROM_AMT.value)){
+    		alert("您輸入的金額格式有誤!");
+    		return false;
+    	}
+    	if(eval(amt) > eval(document.IP0404001.SEND_AVAL_BALANCE.value)){
+    		alert("您輸入的金額大於可用餘額，請重新輸入!");
+    		return false;
+    	}
+    	if(currency=="01"){
+    		if(eval(amt) < 1000){
+	    		alert("您所輸入的金額未達一千美元或等值外幣，請重新輸入!");
+	    		document.IP0404001.ERR.value = "1";
+	    		return false;
+    		}
+    	}else if(currency=="08"){
+    		if(eval(amt) < eval(6000)){
+	    		alert("您所輸入的金額未達六千人民幣，請重新輸入!");
+	    		document.IP0404001.ERR.value = "1";
+	    		return false;
+    		}
+    	}else{
+	    	if(eval(amt) < eval(toAmt)){
+	    		alert("您所輸入的金額未達一千美元或等值外幣，請重新輸入!");
+	    		document.IP0404001.ERR.value = "1";
+	    		return false;
+	    	}
+    	}
+    	if(currency=="03" && amt.indexOf(".",0)!=-1){
+    		alert("日幣轉存僅到整數位!");
+    		return false;
+    	}
+    	else{
+    	    /*
+    		if(currency=="07"||currency=="12"||currency=="18"){
+    			alert("該幣別目前不支援電子交易，請重新選擇幣別!");
+			    return false;
+		    }
+		    */
+    		amtArray = amt.split(".");
+    		if(amtArray[1]!=null){
+    			if(amtArray[1].length > 2){
+    			alert("此幣別種類金額僅允許輸入小數兩位!");
+    			return false;
+    		}
+		}
+	}
+    	document.IP0404001.pageid.value="IP0404002";
+    	return true;
+    }
+
+    function chgAcct2(){
+    	var f = document.IP0404001;
+        	var acctArray = IP0404001.REVE_ACCTINFO.value.split("@");
+        	var i = 0;
+        	f.REVE_ACCT_NO.value = acctArray[0];
+        	f.SEND_BR_NAME.value = acctArray[1];
+        	f.SEND_ACCT_DESC.value = acctArray[2];
+        	f.PRE_CURRENCY.value = acctArray[3];
+	currency = f.PRE_CURRENCY.value;
+        	f.PRE_CURRENCY_CNAME.value = acctArray[4];
+        	f.SEND_AVAL_BALANCE.value = acctArray[5];
+    }
+    
+    function chgAcct() {
+        	var f = document.IP0404001;
+        	chgAcct2();
+        	if(f.REVE_ACCT_NO.value=="0"){
+        		return;
+        	}
+        	f.pageid.value="IP0404001";
+        	f.SEND_TXN_MEMO.disabled=true;
+        	f.CONTINUE[0].disabled=true;
+        	f.CONTINUE[1].disabled=true;
+        	f.CONTINUE[2].disabled=true;
+        	f.REVE_FROM_AMT.disabled=true;
+        	document.all.msg.style.visibility="visible";
+        	document.onmousedown=noClick;
+        	f.submit();
+    }
+    
+    function selAcct(){
+        var f = document.IP0404001;
+        var len = f.REVE_ACCTINFO.length;
+        var isSel = "";
+    	for (i = 0 ; i < len ; i++){
+    	    var temparray = f.REVE_ACCTINFO.options[i].value.split("@");
+    	    if ((temparray[0]=="[[%%PRE-ACCT-NO%%]]")&&(temparray[3]=="[[%%PRE-CURRENCY%%]]")){
+    	    	f.REVE_ACCTINFO.options[i].selected=true;
+    	    	chgAcct2();
+    	    }
+    	}
+    	if (f.REVE_PERIOD.selectedIndex=="0"){
+	        TD1.innerHTML = "固定利率，" + eval(Q_1_INT) + "%";
+	}	
+    }
+    
+    function selQINT(){
+	    var f=document.IP0404001;
+        var Qint=f.REVE_PERIOD.options[f.REVE_PERIOD.selectedIndex].value;
+        var savingCode;
+        //alert(f.REVE_SAVING_CODE[0].checked);
+        if(f.SAVING_CODE[0].checked){
+        	savingCode = '0';
+        }else{
+        	savingCode = '1';
+        }
+         
+        if (Qint=="01"){
+    	    TD1.innerHTML = "固定利率，" + eval(Q_1_INT) + "%";
+    	    f.SEND_RATE.value=Q_1_INT + "%";
+    	    if(savingCode=='0'){
+    	    	TD2.innerHTML = "存本取息";
+    	    	f.REVE_SAVING_CODE.value = '2';
+    	    }
+    	    else{
+    	    	TD2.innerHTML = "定期存款";
+    	    	f.REVE_SAVING_CODE.value = '1';
+    	    }
+    	}
+    	if (Qint=="03"){
+    	    TD1.innerHTML = "固定利率，" + eval(Q_3_INT) + "%";
+    	    f.SEND_RATE.value=Q_3_INT + "%";
+    	    if(savingCode=='0'){
+    	    	TD2.innerHTML = "存本取息";
+    	    	f.REVE_SAVING_CODE.value = '2';
+    	    }
+    	    else{
+    	    	TD2.innerHTML = "定期存款";
+    	    	f.REVE_SAVING_CODE.value = '1';
+    	    }
+    	}
+    	if (Qint=="06"){
+    	    TD1.innerHTML = "固定利率，" + eval(Q_6_INT) + "%";
+    	    f.SEND_RATE.value=Q_6_INT + "%";
+    	    if(savingCode=='0'){
+    	    	TD2.innerHTML = "存本取息";
+    	    	f.REVE_SAVING_CODE.value = '2';
+    	    }
+    	    else{
+    	    	TD2.innerHTML = "定期存款";
+    	    	f.REVE_SAVING_CODE.value = '1';
+    	    }
+    	}
+    	if (Qint=="09"){
+    	    TD1.innerHTML = "固定利率，" + eval(Q_9_INT) + "%";
+    	    f.SEND_RATE.value=Q_9_INT + "%";
+    	    if(savingCode=='0'){
+    	    	TD2.innerHTML = "存本取息";
+    	    	f.REVE_SAVING_CODE.value = '2';
+    	    }
+    	    else{
+    	    	TD2.innerHTML = "定期存款";
+    	    	f.REVE_SAVING_CODE.value = '1';
+    	    }
+    	}
+    	if (Qint=="12"){
+    	    TD1.innerHTML = "固定利率，" + eval(Q_12_INT) + "%";
+    	    f.SEND_RATE.value=Q_12_INT + "%";
+    	    if(savingCode=='0'){
+    	    	TD2.innerHTML = "存本取息";
+    	    	f.REVE_SAVING_CODE.value = '2';
+    	    }
+    	    else{
+    	    	TD2.innerHTML = "整存整付";
+    	    	f.REVE_SAVING_CODE.value = '3';
+    	    }
+    	}  
+    }
+
+    function toFilterAcct(tmp,tmp2,tmp3,tmp4,tmp5,tmp6){
+	var acct = tmp;
+	var br = tmp2;
+	var desc = tmp3;
+	var currency = tmp4;
+	var c_currency = tmp5;
+	var balance = tmp6;
+	if(acct.substr(3,3) == "775"){
+		return "<option value='" + acct + "@" + br + "@" + desc + "@" + currency + "@" + c_currency + "@" +balance + "'>" + br + " " + desc + " " + getAcctStr(acct) + " " + c_currency + " " + moneyAddDot(balance) + "元</option>";
+    	}
+    }
+
+    function toAcct(reveacct){
+    	var acct = reveacct.substr(0,3);
+    	var allAcct = document.IP0404001.allAcct;
+    	for(i=0;i<allAcct.length;i++){
+    		if(document.IP0404001.allAcct[i].value.substr(0,5) == acct + "88"){
+    			document.IP0404001.SEND_TO_ACCT.value = document.IP0404001.allAcct[i].value;
+    			return;
+    		}
+    	}
+    }
+    function noClick() {
+	if ((event.button==1)||(event.button==2)) {
+		alert('交易執行中，請稍候 ....');
+	}
+    }
+    
+  function chgInt(tp){
+  	var tp1 = tp;
+  	var Qint=document.IP0404001.REVE_PERIOD.options[document.IP0404001.REVE_PERIOD.selectedIndex].value;
+  	if(tp1=='0'){
+  		TD2.innerHTML = "存本取息";
+  		document.IP0404001.REVE_SAVING_CODE.value = '2';
+  		document.IP0404001.CONTINUE[0].disabled = true;
+  		if(document.IP0404001.CONTINUE[0].checked){
+  			document.IP0404001.CONTINUE[1].checked = true;
+  		}
+  	}
+  	else{
+  		if(Qint=="12"){
+  			TD2.innerHTML = "整存整付";
+  			document.IP0404001.REVE_SAVING_CODE.value = '3';
+  		}
+  		else{
+  			TD2.innerHTML = "定期存款";
+  			document.IP0404001.REVE_SAVING_CODE.value = '1';
+  		}
+  		document.IP0404001.CONTINUE[0].disabled = false;
+  	}
+  }  
+    
+//-->
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="selAcct();" background="graph/bg01.gif" leftmargin="0" topmargin="0">
+<b>　外匯帳戶查詢&gt;<font color="#003399"><font color="#0066FF">外匯綜存活存轉定存</font></b><br>
+<br>
+<tr>
+      <td><div id="msg" style="visibility:hidden; color:#FF0000">　資料搜尋中，請稍後</div></td>
+</tr>
+<form name="IP0404001" method="POST" action="LoadAP">
+</font></font></b> 
+<table width="550" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td> 
+      <div align="center">
+        <table width="550" border="1" bordercolor="#999999">
+          <tr> 
+            <td colspan="5" bgcolor="#C4CBB8">　轉出帳號<font color="#663300" face="Arial, Helvetica, sans-serif"> 
+              </font> </td>
+            <td width="418"><font color="#663300" face="Arial, Helvetica, sans-serif"> 
+              <select name="REVE_ACCTINFO" onChange="JavaScript:chgAcct();">
+                <option value="0" >==請選擇帳號　幣別　可用餘額==</option>
+
+                <!--[[%%LOOP_SEC SEND-ACCT-NO%%]]-->
+                <script>
+                  	document.write(toFilterAcct('[[%%SEND-ACCT-NO%%]]','[[%%SEND-BR-NAME%%]]','[[%%SEND-ACCT-DESC%%]]','[[%%SEND-CURRENCY%%]]','[[%%SEND-CURRENCY-CNAME%%]]','[[%%SEND-AVAL-BALANCE%%]]'));
+		</script>
+                <!--[[%%ELOOP_SEC%%]]-->
+
+              </select>
+              </font></td>
+          </tr>
+          <tr> 
+            <td colspan="5" height="25" bgcolor="#C4CBB8">　轉存金額<font face="Arial, Helvetica, sans-serif"> 
+              </font></td>
+            <td width="418" height="25"> <font face="Arial, Helvetica, sans-serif"> 
+              [[%%PRE-CURRENCY-CNAME%%]]
+              </font> <font face="Arial, Helvetica, sans-serif"> 
+              <input type="text" size="5" name="REVE_FROM_AMT" value="">
+              元（<font color="#FF0000">最低轉存金額為等值美元一千美元，另人民幣最低為六千元</font>）</font></td>
+          </tr>
+          <tr> 
+            <td colspan="5" height="25" bgcolor="#C4CBB8">　轉存期間<font face="Arial, Helvetica, sans-serif"> 
+              </font></td>
+            <td width="418" height="25"> 
+              <select name="REVE_PERIOD"  onChange="JavaScript:selQINT();">
+                <option value="01" selected>1</option>
+                <option value="03">3</option>
+                <option value="06">6</option>
+                <option value="09">9</option>
+                <option value="12">12</option>
+              </select>
+              月 </td>
+          </tr>
+          <tr> 
+            <td colspan="5" height="25" bgcolor="#C4CBB8"> 　計息方式</td>
+            <td width="418" height="25" id="TD1">
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="5" height="25" bgcolor="#C4CBB8">　領息方式</td>
+            <td width="418" height="25">
+            <input type="radio" name="SAVING_CODE" value="0" onclick="chgInt('0')">
+            每月領息(每月計息，利息每月自動存入轉出帳號)
+            <br>
+            <input type="radio" name="SAVING_CODE" value="1" checked onclick="chgInt('1')">
+            到期領息(每月計息，利息到期整筆存入轉出帳號)
+            </td>
+          </tr>
+          <tr> 
+            <td colspan="5" height="25" bgcolor="#C4CBB8">　轉存定存種類</td>
+            <td width="418" height="25" id="TD2">存本取息</td>
+          </tr>
+          <tr> 
+            <td colspan="5" height="25" bgcolor="#C4CBB8"> 　是否到期續存</td>
+            <td width="418" height="25"> 
+              <table width="100%" border="0">
+                <tr> 
+                  <td> 
+                    <input type="radio" name="CONTINUE" value="1" checked>
+                    是 , 本利續存
+                  </td>
+                </tr>
+                <tr> 
+                  <td>
+                    <input type="radio" name="CONTINUE" value="2">
+                    是 , 本金續存(利息自動存入轉出帳號)
+                  </td>
+                </tr>
+                <tr> 
+                  <td> 
+                    <input type="radio" name="CONTINUE" value="0">
+                    否 </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" height="25" bgcolor="#C4CBB8">　交易附註</td>
+            <td width="418" height="25">
+              <input type="text" name="SEND_TXN_MEMO" maxlength="50" size="50">
+            </td>
+          </tr>
+        </table>
+        <table width="630" border="0">
+           <tr>
+            <td width="615">　　　說明：1.本服務交易時間約為每日早上6點至晚上11點，營業日下午4點後執行之交易，<font color="#FF0000">會先將欲轉定存之款項</font></td>
+          </tr>
+          <tr>
+            <td>　　　　　　　<font color="#FF0000">圈存，並於次一營業日上午執行解圈扣帳後，依當日本行牌告利率開立存單起算定存利息</font>，請於次一</td>
+          </tr>
+          <tr>
+            <td>　　　　　　　營業日查詢交易結果，查詢路徑為『帳務查詢>外匯存款帳戶>外匯定存明細』。</td>
+          </tr>
+          <tr>
+            <td>　　　　　　2.本行另有指定到期日定期存款，請逕洽櫃台辦理。</td>
+          </tr>
+        </table>
+        <br>
+        <input type="button" name="Submit3" value="確定" onclick="JavaScript:ChkSubmit();">
+        <input type="reset" name="Submit22" value="重填">
+      </div>
+    </td>
+  </tr>
+</table>
+<!--[[%%LOOP_SEC SEND-ACCT-NO%%]]-->
+<input type="hidden" name="allAcct" value="[[%%SEND-ACCT-NO%%]]">
+<!--[[%%[[%%ELOOP_SEC%%]]%%]]-->
+<!--[[%%LOOP_SEC SEND-TO-CURRENCY%%]]-->
+<input type="hidden" name="SEND_TO_AMT" value="[[%%SEND-TO-AMT%%]]">
+<input type="hidden" name="SEND_TO_CURRENCY" value="[[%%SEND-TO-CURRENCY%%]]">
+<!--[[%%ELOOP_SEC%%]]-->
+
+<input type="hidden" name="REVE_ACCT_NO">
+<input type="hidden" name="pageid">
+<input type="hidden" name="SEND_BR_NAME">
+<input type="hidden" name="SEND_ACCT_DESC">
+<input type="hidden" name="PRE_CURRENCY">
+<input type="hidden" name="PRE_CURRENCY_CNAME">
+<input type="hidden" name="REVE_CONTINUE" value="1">
+<input type="hidden" name="ERR" value="0">
+<input type="hidden" name="SEND_TO_ACCT">
+<Input type="hidden" name="SEND_RATE">
+<input type="hidden" name="SEND_AVAL_BALANCE">
+<input type="hidden" name="REVE_SAVING_CODE" value='2'>
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+<script>
+chgInt('1');
+</script>
+</form>
+</body>
+</html>

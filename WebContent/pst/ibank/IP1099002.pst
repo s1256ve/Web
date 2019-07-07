@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>忘記密碼</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+<p>　<b>使用者代號/登入密碼變更 </b> </p>
+<table width="630" border="0" cellspacing="0" cellpadding="0">
+  <tr valign="top"> 
+    <td> 　 <img src="graph/point.gif" width="12" height="12" align="absmiddle"><font color="#FF0000">變更登入密碼</font> 
+      <table width="250" border="1" align="center" bordercolor="#999999" cellpadding="5">
+        <tr>
+          <td height="14">您已成功變更使用者代號，下次登入時請使用新的使用者代號。<br>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

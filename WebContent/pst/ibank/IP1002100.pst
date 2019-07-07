@@ -1,0 +1,200 @@
+<html>
+<head>
+<title>個人資料查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<script language="javascript">
+var kbWin;
+function getKeyBoard()
+{
+ var Mytype="width=230,height=280,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IP1002100.PWD.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IP1002100.REVE_PWD.value";  //User真正key的密碼
+ var DESC = "語音";
+ //var DESC = "動態簡訊";
+ kbWin = window.open("LoadAP?pageid=IP2001003&PWD="+PWD+"&KBPWD="+KBPWD+"&DESC="+DESC+"&REVE_DESC=&REVE_KB_KEYCODE="+document.IP1002100.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP1002100.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+function chkSubmit(){
+	//chkWord();
+	var pwd = document.IP1002100.REVE_PWD.value;
+	if(pwd==""){
+		alert("請輸入簡訊密碼！");
+		return;
+	}
+	document.IP1002100.Submit.disabled = true;
+	document.IP1002100.Submit2.disabled = true;
+	document.IP1002100.submit();
+}
+
+function chkSubmit2(){
+	document.IP1002100.pageid.value = "IP1002001";
+	document.IP1002100.Submit.disabled = true;
+	document.IP1002100.Submit2.disabled = true;
+	document.IP1002100.submit();
+}
+
+function chkWord(){
+	var w = '[[%%SEND-CONTACT-ADDR1%%]]';
+	var len = w.length;
+	if(w.substr(0,1)=="臺"){
+		document.IP1002100.SEND_CONTACT_ADDR1.value = '台' + w.substr(1,len-1);
+	}
+	else{
+		document.IP1002100.SEND_CONTACT_ADDR1.value = w;
+	}
+}
+
+
+function showCName(){
+   var cname='[[%%SEND-NAME%%]]';
+   if(cname.length < 4){
+   		cname = cname.substring(0,1)+replaceWord(cname.length-1);
+   }
+   else{
+   		cname = cname.substring(0,2)+replaceWord(cname.length-2);
+   }   
+   if(cname.length > 8){      
+      return cname.substring(0,8)+"(略)";
+   }else{
+      return cname;
+   }
+}
+
+function alertMsg(){    	
+	var m = "[[%%SEND-MPHONE%%]]";
+	alert("系統將產生一組簡訊驗証碼至您的手機門號" + m + "，\n若2分鐘內未輸入驗証碼，本交易將自動取消。");
+}
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="alertMsg();" background="graph/bg.gif" leftmargin="0" topmargin="0">
+ 　
+<img src="graph/point.gif" width="12" height="12">
+<b>個人設定&gt;<font color="#0066FF">基本資料查詢/變更</font><font color="#003399"><font color="#0066FF"></font></font></b><br>
+
+<form method="POST" action="LoadAP" name="IP1002100">
+<table width="500" border="0" cellpadding="0" cellspacing="0" align="center">
+      </table>
+     
+<table width="650" border="0">
+  <tr> 
+    <td colspan="4"> 
+      <table width="500" border="1" align="center" cellpadding="3" bordercolor="#999999">
+        <tr bgcolor="#C4CBB8"> 
+          <td colspan="2"> 
+            <div align="center">個人基本資料</div>
+          </td>
+        </tr>
+        <tr> 
+          <td width="122">姓名</td>
+          <td width="354">
+          <script>
+          	document.write(showCName());
+          </script>
+          &nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122">戶籍地址</td>
+          <td width="354">[[%%SEND-NATIVE-ADDR1%%]][[%%SEND-NATIVE-ADDR2%%]]
+          <script>
+	          var nativeAdd = '[[%%SEND-NATIVE-ADDR3%%]][[%%SEND-NATIVE-ADDR4%%]]';
+	          document.write(replaceWord(nativeAdd.length));
+          </script>
+          &nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122">通訊地址</td>
+          <td width="354">[[%%SEND-CONTACT-ZIP%%]]&nbsp;[[%%SEND-CONTACT-ADDR1%%]][[%%SEND-CONTACT-ADDR2%%]]
+          <script>
+	          var add3 = '[[%%SEND-CONTACT-ADDR3%%]]';
+	          document.write(replaceWord(add3.length));
+          </script>
+          &nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122">日間電話</td>
+          <td width="354"> 
+          <script>
+	          var dp = '[[%%SEND-DAILY-PHONE%%]]';
+	          document.write(replaceWord2(dp,1));
+          </script>
+          &nbsp;分機[[%%SEND-DAILY-PHONE-EXT%%]]&nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122">夜間電話</td>
+          <td width="354">
+          <script>
+          	var np = '[[%%SEND-NIGHT-PHONE%%]]';
+          	document.write(replaceWord2(np,1));
+          </script>
+          &nbsp;分機[[%%SEND-NIGHT-PHONE-EXT%%]]&nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122">行動電話</td>
+          <td width="354">
+          <script>
+          	var mp = '[[%%SEND-MPHONE%%]]';
+          	document.write(replaceWord2(mp,2));
+          </script>
+          &nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122">E-mail</td>
+          <td width="354">
+          <script>
+          	document.write(replaceEmail('[[%%SEND-EMAIL-ADDR%%]]'));
+          </script>
+          &nbsp;</td>
+        </tr>
+        <tr>
+          <td width="122">簡訊通知交易授權碼：</td>
+          <td width="354">		
+            <input type="password" name="PWD" size="8" onclick="getKeyBoard();" readonly>
+          </td>
+        </tr>
+      </table>
+      <table width="500" border="0" align="center" cellpadding="3" bordercolor="#999999">
+      	<tr> 
+          <td> 
+            <div align="center"> 
+             <input type="button" name="Submit" value="確定" onclick="chkSubmit();">
+              <input type="button" name="Submit2" value="取消" onclick="chkSubmit2();">
+            </div>
+          </td>
+        </tr>
+      </table>
+      <div align="center"> 
+        <table width="500" border="0">
+          <tr> 
+            <td>註：</br>
+					如欲變更除E-mail以外之個人基本通訊資料，請致電本行24小時客服專線02-25451788，進線後請按19轉接專人，或臨櫃各分行辦理；如須變更姓名、戶籍地址等欄位，請攜帶身分證及印鑑至原開戶行辦理。
+			</td>
+          </tr>
+        </table>
+        
+      </div>
+    </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="4" valign="bottom" height="1"></td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="IP1002101">
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+<input type="hidden" name="REVE_PWD" value="">
+<input type="hidden" name="SEND-CONTACT-ADDR1" value="[[%%SEND-CONTACT-ADDR1%%]]">
+<input type="hidden" name="SEND-EMAIL-ADDR" value="[[%%SEND-EMAIL-ADDR%%]]">
+</form>
+</body>
+</html>

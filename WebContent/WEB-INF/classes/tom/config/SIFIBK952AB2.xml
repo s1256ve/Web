@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="BIG5"?>
+<?xml-stylesheet type="text/xsl" href="UCPMi.xsl"?>
+<!-- UCPM 952AB Last updated date 24-7-2015 -->
+<catalog>
+	<field id="952ABi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='952ABi03' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="952ABi02">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="952ABi03">
+		<name>REVE-ID-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+	<field id="952ABi02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>銀行帳號</description>
+	</field>
+	<field id="952ABi02">
+		<name>REVE-BIRTHDAY</name>
+		<length>12</length>
+		<type>String</type>
+		<description>出生年月日</description>
+	</field>
+	<field id="952ABi02">
+		<name>REVE-MOBILE</name>
+		<length>12</length>
+		<type>String</type>
+		<description>已留存之手機號碼</description>
+	</field>
+	<field id="952ABi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="952ABi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="952ABi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="952ABi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

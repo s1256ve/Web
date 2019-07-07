@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- NCR VL1 非語音客戶掛失 input schema, last updated date 1-09-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/NCR">
+	<field id="VL1i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='VL1i03' attr='I' default=''>
+	        <name>REVE-ACTOR</name>
+	        <length>0</length>
+	        <type>STRING</type>
+	        <description></description>
+        </field>
+	<field id="VL1i02">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="VL1i56">
+		<name>REVE-PWD</name>
+		<length>10</length>
+		<type>String</type>
+		<description>使用者密碼</description>
+	</field>
+	<field id="VL1i02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>帳號</description>
+	</field>
+	<field id="VL1i03">
+		<name>REVE-FUNC-CODE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>功能別1: 印鑑掛失,2: 存摺掛失,4: 卡片掛失,5: 取消掛失,6: 掛失凍結</description>
+	</field>
+	<field id="VL1i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="VL1i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="VL1i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="VL1i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="fieldi54">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+</field>
+
+</catalog>

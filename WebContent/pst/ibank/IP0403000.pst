@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>外匯定存查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js">
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI100036          2011.07.01     Joe  
+*EAI100056          2011.08.15     David  
+***********************************************************************/
+</script>
+</head>
+<script language="JavaScript" SRC="script/acctfmt.js"></script>
+<script language="JavaScript">
+<!--
+
+    function ChkSubmit(){
+     
+        var f=document.IP0403000;
+        if (f.selAccount.value=="0"){
+            alert("請選擇帳號!");
+            return ;
+        }
+
+        f.pageid.value="IP0403001";  
+        //alert(document.IP0403000.REVE_ACCT_NO.value);      
+		f.submit();         
+        
+    }
+    
+    function chgAcct(acctStr) {     
+        	var acctArray = acctStr.split("@");
+        	var i = 0;
+        	//alert(acctArray[0]);
+        	document.IP0403000.selBrName.value = acctArray[0];
+        	document.IP0403000.selAcctDesc.value = acctArray[1];
+        	document.IP0403000.REVE_ACCT_NO.value = acctArray[2];
+    }
+
+//-->
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　外匯帳戶查詢&gt;<font color="#003399"><font color="#0066FF">外匯定存定存明細(續存設定、解約試算、 中途解約)</font></b><br>
+<br>
+<form name="IP0403000" method="post" action="LoadAP">
+<table width="731" border="0">
+  <tr> 
+    <td width="725" colspan="5">　定存帳號<font color="#663300" face="Arial, Helvetica, sans-serif">　 
+      <select name="selAccount" onChange="JavaScript:chgAcct(this.value);">
+        <option value="0" selected>==請選擇帳號==</option>
+
+        [[%%LOOP_SEC SEND-ACCT-NO%%]]
+        <option value="[[%%SEND-BR-NAME%%]]@[[%%SEND-ACCT-DESC%%]]@[[%%SEND-ACCT-NO%%]]">
+		[[%%SEND-BR-NAME%%]] [[%%SEND-ACCT-DESC%%]]
+		<SCRIPT language="JavaScript">
+			document.write(getAcctStr("[[%%SEND-ACCT-NO%%]]"));
+		</SCRIPT>	
+	</option-->
+	[[%%ELOOP_SEC%%]]
+      </select>
+    	<SCRIPT>
+            var i;
+            var index;
+            index=document.IP0403000.selAccount.length;
+            for(i=1;i<index;i++)
+            {
+                if(document.IP0403000.selAccount[i-1].value==document.IP0403000.selAccount[i].value)
+                {
+                    document.IP0403000.selAccount.remove(i-1);   
+                    index--;
+                    i--;
+                }
+            }                  
+      	</SCRIPT>
+
+      </select>
+      <img src="graph/go.gif" width="19" height="19" align="absmiddle" border="0" onclick="ChkSubmit()"></font> 
+      　<font color="#663300" face="Arial, Helvetica, sans-serif"> </font></td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="5" valign="bottom" height="1"></td>
+  </tr>
+</table>
+<table width="626" border="0">
+	<tr>
+		<td width="605">       </td>
+	</tr>
+</table>
+<input type="hidden" name="pageid">
+<input type="hidden" name="selBrName">
+<input type="hidden" name="selAcctDesc">
+<input type="hidden" name="REVE_ACCT_NO">
+</form>
+</body>
+</html>

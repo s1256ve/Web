@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: Sandie Hsieh 
+* Change List:
+* SerialNo           Date Modified  Modified by   
+* -------------      ----------     ----------
+*
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script>
+function chkSubmit(){
+	var count = "[[%%SEND-CONTINUE%%]]";
+	/**
+	if (count == 1){
+		document.IP0713002.SEND_CONTINUE_NAME.value = "是，本金續存，利息不續存";
+	}
+	else {
+		document.IP0713002.SEND_CONTINUE_NAME.value = "否";
+	}
+	**/
+	document.IP0713002.SEND_CONTINUE_NAME.value = "否";
+	
+	if ('[[%%SEND-DELAY%%]]'=='N') {
+		document.IP0713002.pageid.value = "IP0713003";
+	}
+	else{
+		document.IP0713002.SEND_DEDUCT_DATE.value = getRCDateStr(getRCDateStr2("[[%%SEND-DEDUCT-DATE%%]]",-1),0);
+		document.IP0713002.pageid.value = "IP0713003A";
+	}
+	document.IP0713002.submit();
+}
+
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<form method="post" sction="LoadAP" name="IP0713002">
+<input type="hidden" name="pageid" value="IP0713003">
+<input type="hidden" name="SEND-BR-NAME" value="[[%%SEND-BR-NAME%%]]">
+<input type="hidden" name="SEND-INT-NAME" value="[[%%SEND-INT-NAME%%]]">
+<input type="hidden" name="SEND_ACCT_NO" value="[[%%SEND_ACCT_NO%%]]">
+<input type="hidden" name="SEND-PERIOD" value="[[%%SEND-PERIOD%%]]">
+<input type="hidden" name="SEND-INT-CODE" value="[[%%SEND-INT-CODE%%]]">
+<input type="hidden" name="SEND-INT-PAY" value="[[%%SEND-INT-PAY%%]]">
+<input type="hidden" name="SEND-TITLE" value="[[%%SEND-TITLE%%]]">
+<input type="hidden" name="SEND-SC-CODE" value="[[%%SEND-SC-CODE%%]]">
+<input type="hidden" name="SEND-SAVING-CODE" value="[[%%SEND-SAVING-CODE%%]]">
+<input type="hidden" name="SEND-TXN-AMT" value="[[%%SEND-TXN-AMT%%]]">
+<input type="hidden" name="SEND-MEMO" value="[[%%SEND-MEMO%%]]">
+<input type="hidden" name="SEND-CONTINUE" value="[[%%SEND-CONTINUE%%]]">
+<input type="hidden" name="SEND_CONTINUE_NAME" value="">
+<input type="hidden" name="SEND-PAY-NAME" value="[[%%SEND-PAY-NAME%%]]">
+<input type="hidden" name="SEND-INT-NAME" value="[[%%SEND-INT-NAME%%]]">
+<input type="hidden" name="SEND-AVAL-BALANCE" value="[[%%SEND-AVAL-BALANCE%%]]">
+<input type="hidden" name="SEND-ACCT-NO" value="[[%%SEND-ACCT-NO%%]]">
+<input type="hidden" name="SEND-RATE" value="[[%%SEND-RATE%%]]">
+<input type="hidden" name="SEND-TO-ACCTNO" value="[[%%SEND-TO-ACCTNO%%]]">
+<input type="hidden" name="SEND_V_NO" value="[[%%SEND-V-NO%%]]">
+<input type="hidden" name="SEND-DELAY" value="[[%%SEND-DELAY%%]]">
+<input type="hidden" name="SEND_DEDUCT_DATE" value="[[%%SEND-DEDUCT-DATE%%]]">
+<script>
+chkSubmit();
+</script>
+</form>
+</body>
+</html>

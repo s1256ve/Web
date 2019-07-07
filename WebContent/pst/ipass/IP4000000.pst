@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5" />
+<meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+<title>iPASS PAY約定連結聯邦存款帳戶付款</title>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<script language="javascript">
+
+function chkSubmit(){
+	//chkWord();
+	document.IP1002001.submit();
+}
+
+function chkSubmit2(){
+	document.IP1002001.pageid.value = "IC0000010";
+  document.IP1002001.submit();
+}
+
+function chkWord(){
+	var w = '[[%%SEND-CONTACT-ADDR1%%]]';
+	var len = w.length;
+	if(w.substr(0,1)=="臺"){
+		document.IP1002001.SEND_CONTACT_ADDR1.value = '台' + w.substr(1,len-1);
+	}
+	else{
+		document.IP1002001.SEND_CONTACT_ADDR1.value = w;
+	}
+}
+
+
+function showCName(){
+   var cname='[[%%SEND-NAME%%]]';
+   if(cname.length < 4){
+   		cname = cname.substring(0,1)+replaceWord(cname.length-1);
+   }
+   else{
+   		cname = cname.substring(0,2)+replaceWord(cname.length-2);
+   }   
+   if(cname.length > 8){      
+      return cname.substring(0,8)+"(略)";
+   }else{
+      return cname;
+   }
+}
+</script>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 14pt;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #f2f2f2;
+}
+
+
+input, textarea {
+	border: 1px solid #CFCFCF;
+}
+select {
+	border: 1px solid #CFCFCF;
+	height: 30px;
+	padding: 5px;
+}
+.input-xlarge {
+    width: 90%;
+	height: 20px;
+	padding: 5px;
+}
+.style5 {
+	font-size: 14pt;
+	color: #FF0000;
+}
+
+.t13 {
+	color: #9292a0;
+	font-size: 13pt;
+	line-height: 18pt;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.t13a {
+	color: #333333;
+	font-size: 13pt;
+	line-height: 15pt;
+}
+.t15 {
+	color: #9292a0;
+	font-size: 15pt;
+	line-height: 26pt;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.t15a {
+	color: #000000;
+	font-size: 15pt;
+	line-height: 26pt;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+a:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+a:hover {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+a:active {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+#div3 {
+	position: absolute;
+	bottom: 0px;
+}
+
+-->
+</style>
+</head>
+
+<body>
+<form method="POST" action="LoadAP2" name="IP1002001">
+<table width="100%" border="0" cellpadding="5" cellspacing="0" class="t15" >
+  <tr>
+    <td><img src="img/logo.png" width="40%" hspace="15" /></td>
+  </tr>
+  <tr>
+    <td class="t13"><div align="center">基本資料維護</div></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellpadding="5" cellspacing="0" >
+  <tr>
+    <td><table width="90%" border="0" align="center" cellpadding="10" cellspacing="0">
+      <tr>
+        <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td><table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td class="t15">姓名</td>
+                </tr>
+                <tr>
+                  <td class="t15a" >
+                  <script>
+				          	document.write(showCName());
+				          </script>
+				          &nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="img/spacer.gif" alt="" width="100" height="10" /></td>
+                </tr>
+                <tr>
+                  <td class="t15">戶籍地址</td>
+                </tr>
+                <tr>
+                  <td class="t15a">
+                  [[%%SEND-NATIVE-ADDR1%%]][[%%SEND-NATIVE-ADDR2%%]]
+                  <script>
+					          var nativeAdd = '[[%%SEND-NATIVE-ADDR3%%]][[%%SEND-NATIVE-ADDR4%%]]';
+					          document.write(replaceWord(nativeAdd.length));
+				          </script>
+				          &nbsp;	
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="img/spacer.gif" alt="" width="100" height="10" /></td>
+                </tr>
+                <tr>
+                  <td class="t15"><font color="#FF0000">*</font>通訊地址</td>
+                </tr>
+                <tr>
+                  <td class="t15a">
+                  [[%%SEND-CONTACT-ZIP%%]]&nbsp;[[%%SEND-CONTACT-ADDR1%%]][[%%SEND-CONTACT-ADDR2%%]]
+                  <script>
+					          var add3 = '[[%%SEND-CONTACT-ADDR3%%]]';
+					          document.write(replaceWord(add3.length));
+				          </script>
+				          &nbsp;	
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="img/spacer.gif" alt="" width="100" height="10" /></td>
+                </tr>
+                <tr>
+                  <td class="t15"><font color="#FF0000">*</font>日間電話</td>
+                </tr>
+                <tr>
+                  <td class="t15a">
+                  <script>
+					          var dp = '[[%%SEND-DAILY-PHONE%%]]';
+					          document.write(replaceWord2(dp,1));
+				          </script>
+				          &nbsp;
+                  <span class="t15">分機</span>[[%%SEND-DAILY-PHONE-EXT%%]]&nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="img/spacer.gif" alt="" width="100" height="10" /></td>
+                </tr>
+                <tr>
+                  <td class="t15"><font color="#FF0000">*</font>夜間電話</td>
+                </tr>
+                <tr>
+                  <td class="t15a">
+                  <script>
+				          	var np = '[[%%SEND-NIGHT-PHONE%%]]';
+				          	document.write(replaceWord2(np,1));
+				          </script>
+				          &nbsp;
+                  <span class="t15">分機</span>[[%%SEND-NIGHT-PHONE-EXT%%]]&nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="img/spacer.gif" alt="" width="100" height="10" /></td>
+                </tr>
+                <tr>
+                  <td class="t15"><font color="#FF0000">*</font>行動電話</td>
+                </tr>
+                <tr>
+                  <td class="t15a">
+                  <script>
+				          	var mp = '[[%%SEND-MPHONE%%]]';
+				          	document.write(replaceWord2(mp,2));
+				          </script>
+				          &nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="img/spacer.gif" alt="" width="100" height="10" /></td>
+                </tr>
+                <tr>
+                  <td class="t15"><font color="#FF0000">*</font>email</td>
+                </tr>
+                <tr>
+                  <td class="t15a">
+                  <script>
+				          	document.write(replaceEmail('[[%%SEND-EMAIL-ADDR%%]]'));
+				          </script>
+				          &nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td><img src="img/spacer.gif" alt="" width="100" height="10" /></td>
+                </tr>
+              </table>
+               </td>
+            </tr>
+            <tr>
+              <td class="t13a"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="50%"><div align="right"><a href="javascript:void(0);" onClick="chkSubmit();"><img src="img/changeinfo.gif" width="80%" hspace="10" vspace="5" border="0" /></a></div></td>
+                  <td><div align="left"><a href="javascript:void(0);" onClick="chkSubmit2();"><img src="img/return.gif" width="80%" hspace="10" vspace="5" border="0" /></a></div></td>
+                </tr>
+              </table></td>
+            </tr>
+            <tr>
+              <td class="t13a"><br />
+                <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td class="t13a">註：<br />
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td valign="top" class="t13a">1.</td>
+                          <td valign="top" class="t13a">如須變更身份證字號、姓名、戶籍地址等欄位，請您攜帶身份證及印鑑至原開戶行辦理。</td>
+                        </tr>
+                        <tr>
+                          <td valign="top" class="t13a">2.</td>
+                          <td valign="top" class="t13a">若您於本行亦有開立信託帳戶，執行基本資料變更後，將於次一營業日一併更新信託帳戶之基本資料。</td>
+                        </tr>
+                      </table>                      <br /></td>
+                  </tr>
+                </table></td>
+          </tr>
+          </table>          </td>
+      </tr>
+    </table>
+    <br /></td>
+  </tr>
+  <tr>
+    <td bgcolor="#7f7f7f"><table width="100%" border="0" cellspacing="0" cellpadding="10">
+      <tr>
+        <td class="t13a"><font color="#FFFFFF">本行保留本行網站內容之一切法律權利，非經本行授權使用或同意，本行網站之資料均不得以任何形式，或利用任何電子、機械方式進行重製、轉至獲製作衍生物。c聯邦商業銀行</font></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<input type="hidden" name="SEND-ID-NO" value="[[%%SEND-ID-NO%%]]">
+<input type="hidden" name="SEND-NAME" value="[[%%SEND-NAME%%]]">
+<input type="hidden" name="SEND-BIRTH-DATE" value="[[%%SEND-BIRTH-DATE%%]]">
+<input type="hidden" name="SEND-NATIVE-ADDR1" value="[[%%SEND-NATIVE-ADDR1%%]]">
+<input type="hidden" name="SEND-NATIVE-ADDR2" value="[[%%SEND-NATIVE-ADDR2%%]]">
+<input type="hidden" name="SEND-NATIVE-ADDR3" value="[[%%SEND-NATIVE-ADDR3%%]]">
+<input type="hidden" name="SEND-NATIVE-ADDR4" value="[[%%SEND-NATIVE-ADDR4%%]]">
+<input type="hidden" name="SEND-CONTACT-ZIP" value="[[%%SEND-CONTACT-ZIP%%]]">
+<input type="hidden" name="SEND_CONTACT_ADDR1" value="[[%%SEND-CONTACT-ADDR1%%]]">
+<input type="hidden" name="SEND-CONTACT-ADDR2" value="[[%%SEND-CONTACT-ADDR2%%]]">
+<input type="hidden" name="SEND-CONTACT-ADDR3" value="[[%%SEND-CONTACT-ADDR3%%]]">
+<input type="hidden" name="SEND-DAILY-PHONE" value="[[%%SEND-DAILY-PHONE%%]]">
+<input type="hidden" name="SEND-DAILY-PHONE-EXT" value="[[%%SEND-DAILY-PHONE-EXT%%]]">
+<input type="hidden" name="SEND-NIGHT-PHONE" value="[[%%SEND-NIGHT-PHONE%%]]">
+<input type="hidden" name="SEND-NIGHT-PHONE-EXT" value="[[%%SEND-NIGHT-PHONE-EXT%%]]">
+<input type="hidden" name="SEND-MPHONE" value="[[%%SEND-MPHONE%%]]">
+<input type="hidden" name="SEND-EMAIL-ADDR" value="[[%%SEND-EMAIL-ADDR%%]]">
+<input type="hidden" name="SEND-E-BILL" value=[[%%SEND-E-BILL%%]]>
+<input type="hidden" name="REVE_ECARD_SN" value="[[%%REVE_ECARD_SN%%]]">
+<input type="hidden" name="REVE_TXSEQ" value="[[%%REVE_TXSEQ%%]]">
+<input type="hidden" name="pageid" value="IP4000001">
+</form>
+</body>
+</html>

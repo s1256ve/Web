@@ -1,0 +1,128 @@
+<html xmlns="undefined">
+<head>
+<title>約定扣繳停車費</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<style type="text/css">
+<!--
+.style1 {color: #0066FF}
+.style2 {color: #0000FF}
+-->
+</style>
+<SCRIPT language="JavaScript">
+
+var i = 0 ;
+function getIndex(){
+    i++;
+    return i;    
+}
+    
+function chkCarNo(){   
+    var f = document.IP1009300;
+    var j = 1;
+    f.cancelcar.value = '';
+    if (typeof(f.chkindex.checked) == 'undefined'){    //表checkbox不只一個
+        for (i = 0 ; i<f.chkindex.length ; i++){
+            if (f.chkindex[i].checked&&j==1){
+                f.cancelcar.value = f.cancelcar.value + f.chkindex[i].value ;
+                j++;
+            }else if (f.chkindex[i].checked&&j!=1){
+                f.cancelcar.value = f.cancelcar.value + "," + f.chkindex[i].value ;
+                j++;
+            }
+        }
+        if (j==1){
+            alert('請勾選所要取消之車號項目!');
+            return;    
+        }   
+    }else{
+        if (f.chkindex.checked){
+            f.cancelcar.value = f.chkindex.value;   
+        }else{
+            alert('請勾選所要取消之車號項目!');
+            return;
+        }      
+    }
+}
+
+function chkStatus(vehno,vehtype,acctno,acode,statuscode,applydate){
+    var str = "";
+    if (statuscode=='0'||(statuscode=='1'&&applydate=='[[%%SYSDATE%%]]')){
+        str = "<tr><td width=\"7%\"><div align=\"center\"><input type=\"checkbox\" name=\"chkindex\" value=\""+vehno+"@"+vehtype+"@"+acctno+"@"+acode+"\"></div></td>"; 
+        str = str + "<td width=\"7%\"><div align=\"center\">"+getIndex()+"</div></td>"; 
+        str = str + "<td width=\"22%\"><div align=\"center\">"+vehno+"</div></td>";  
+        str = str + "<td width=\"10%\"><div align=\"center\">"+vehtype+"</div></td>";
+        str = str + "<td width=\"27%\"><div align=\"center\">"+getAcctStr(acctno);+"</div></td>";  
+        str = str + "<td width=\"14%\"><div align=\"center\">"+acode+"</div></td></tr>";
+    }
+    //alert('str='+str);
+    return str;
+}
+
+function chkSubmit(){
+    var f = document.IP1009300;
+    chkCarNo();
+    if (f.cancelcar.value=='') return;
+    //alert('f.cancelcar.value='+f.cancelcar.value);
+    f.pageid.value = 'IP1009301';
+    f.submit();
+}
+
+function back(){
+    document.IP1009300.pageid.value = 'IP1009000';
+    document.IP1009300.submit();    
+}
+</SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<p><strong>約定代繳停車費&gt;<span class="style1">取消已約定代繳停車費功能</span></strong></p>
+<form name="IP1009300" method="POST" action="LoadAP">
+<table width="750" border="0">
+  <tr>
+    <td colspan="5"><table width="650" border="0" align="center">
+        <tr>
+          <td><p align="center"><strong>停車費代繳約定取消 </strong></p>
+            以下為您於本行申請約定代繳停車費之車輛明細：
+            <table width="100%" border="1" bordercolor="#999999">
+              <tr>
+                <td width="7%" bgcolor="#C4CBB8">&nbsp;</td>
+                <td width="7%" bgcolor="#C4CBB8"><div align="center">序號</div></td>
+                <td width="22%" bgcolor="#C4CBB8"><div align="center">車號 </div></td>
+                <td width="10%" bgcolor="#C4CBB8"><div align="center">車種 </div></td>
+                <td width="27%" bgcolor="#C4CBB8"><div align="center">約定扣款帳號 </div></td>
+                <td width="14%" bgcolor="#C4CBB8"><div align="center">地區 </div></td>
+              </tr>
+              <!--[[%%LOOP_SEC SEND-ACCT-NO%%]]
+                <script>document.write(chkStatus('[[%%SEND-VEH-NO%%]]','[[%%SEND-VEH-TYPE%%]]','[[%%SEND-ACCT-NO%%]]','[[%%SEND-AREA-CODE%%]]','[[%%SEND-STATUS-CODE%%]]','[[%%SEND-APPLY-DATE%%]]'));</script>
+              <!--[[%%ELOOP_SEC%%]]-->
+     
+            </table>
+            <table width="100%" border="0">
+              <tr>
+                <td>說明：本頁所示資料為您於本行申請代繳停車費已核可及當日申請之車輛，請勾選欲取消停車代繳功能之項目後再按<br>
+                  　　
+                「確定」鈕。</td>
+              </tr>
+          </table></td>
+        </tr>
+      </table>
+      <br>
+      <br>
+      <div align="center">
+        <input type="button" name="button1" value="確定" onclick="javascript:chkSubmit();">
+        <input type="button" name="button2" value="取消" onclick="javascript:back();">
+      </div>
+      </div>
+      </div>
+      <div align="center"> </div></td>
+  </tr>
+  <tr>
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="aptype" value="IBANK">
+<input type="hidden" name="cancelcar" value="">
+</form>
+</body>
+</html>

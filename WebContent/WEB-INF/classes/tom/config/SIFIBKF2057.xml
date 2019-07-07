@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="Big5"?>
+<!-- IVR FUND F205 Last updated date 23-4-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="F2057i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='F2057i02' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="F2057i03">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>	
+	<field id="F2057i04">
+		<name>REVE-TYPE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>查詢功能碼</description>
+	</field>
+	<field id="F2057i07">
+		<name>SEND-COMPANY-ID</name>
+		<length>8</length>
+		<type>String</type>
+		<description>公司代碼</description>
+	</field>
+	<field id="F2057i08">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="F2057i09">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="F2057i10">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="F2057i11">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+    <field id="F2057i12">
+		<name>REVE-START-DATE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>日期起日</description>
+	</field>
+	<field id="F2057i13">
+		<name>REVE-END-DATE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>日期迄日</description>
+	</field>
+	<field id="F2057i14">
+		<name>REVE-CUSTOMER-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>客戶ID</description>
+	</field>
+	<field id="F2057i18">
+		<name>REVE-COME-FROM</name>
+		<length>16</length>
+		<type>String</type>
+		<description>來源位置</description>
+	</field>
+	<field id="F2057i19">
+		<name>REVE-ID-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+</catalog>

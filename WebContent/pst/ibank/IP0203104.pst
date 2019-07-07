@@ -1,0 +1,29 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+<table width="400" border="0">
+  <tr>
+    <td> <br>
+      <br>
+      <table width="300" border="1" align="center" bordercolor="#999999">
+        <tr bgcolor="#C4CBB8"> 
+          <td height="2" width=30%>代號</td>
+          <td height="2">說明</td>
+        </tr>
+        <tr> 
+          <td>&nbsp;[[%%REVE-TXN-CODE%%]]</td>
+          <td>&nbsp;系統發生問題，請洽客服人員</td>
+        </tr>
+      </table>
+      <br>
+      <br>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

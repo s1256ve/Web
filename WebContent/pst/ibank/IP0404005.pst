@@ -1,0 +1,215 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI99041           2010.05.11     YiSyun
+*EAI100041          2011.07.12     David
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="javascript">
+
+function chkContinue(tmp){
+	var cont = tmp;
+	if(cont == "0"){
+		return "否";
+	}
+	if(cont == "1"){
+		return "是 , 本利續存";
+	}
+	if(cont == "2"){
+		return "是 , 本金續存(利息自動存入轉出帳號)";
+	}
+}
+
+function chkInt(tp,mon){
+	if(tp=='2'){
+		TD1.innerHTML = "存本取息";
+		TD2.innerHTML = '每月領息(每月計息，利息每月自動存入轉出帳號)';
+	}
+	else{
+		if(mon=='12'){
+			TD1.innerHTML = "整存整付";
+		}
+		else{
+			TD1.innerHTML = "定期存款";
+		}
+		TD2.innerHTML = '到期領息(每月計息，利息到期整筆存入轉出帳號)'
+	}
+}
+
+function noClick() {
+	if (event.button==2) {
+		return false;
+	}
+}
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="noClick();" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+<b>帳戶交易&gt;<font color="#003399"><font color="#0066FF">綜存活存轉定存業務<br>
+<font class="t3">聯邦銀行個人網路銀行交易結果</font><br>
+<form method="post" action="LoadAP" name="IP0404005">
+</font></font></b> 
+<table width="630" border="0">
+  <tr> 
+    <td> 
+      <div align="center"> 
+        <table width="329" border="0" cellpadding="０">
+          <tr> 
+            <td height="10" width="67"><font color="#0000CC">交易訊息：</font></td>
+            <td height="10" width="256"><font color="#0000CC">交易成功</font></td>
+          </tr>
+          <tr> 
+            <td width="67">
+              <p><font color="#0000CC">交易時間</font> <font color="#0000CC">：</font></p>
+              </td>
+            <td width="256"><font color="#0000CC">
+            <script>
+        	document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+           </script>
+            </font></td>
+          </tr>
+        </table>
+        <font color="#0000CC"> </font></div>
+      <table width="400" border="1" align="center" bordercolor="#999999">
+        <tr> 
+          <td width="32%" bgcolor="#C4CBB8">轉帳類別</td>
+          <td width="68%" height="25">綜存活存轉定存</td>
+        </tr>
+        <tr> 
+          <td width="32%" bgcolor="#C4CBB8">轉出帳號</td>
+          <td width="68%" height="25">[[%%SEND_BR_NAME%%]] 
+          <SCRIPT language="JavaScript">
+                	document.write(getAcctStr('[[%%REVE_ACCT_NO%%]]'));
+          </SCRIPT>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">轉入銀行</td>
+          <td height="25" width="68%">聯邦銀行</td>
+        </tr>
+        <tr> 
+          <td width="32%" bgcolor="#C4CBB8">轉入帳號</td>
+          <td width="68%" height="25">[[%%SEND_BR_NAME%%]]
+          <SCRIPT language="JavaScript">
+                	document.write(getAcctStr('[[%%SEND_TO_ACCT%%]]'));
+          </SCRIPT> 
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">幣別/金額</td>
+          <td height="25" width="68%"> [[%%PRE_CURRENCY_CNAME%%]]
+          <SCRIPT language="JavaScript">
+                	document.write(moneyAddDot('[[%%REVE_FROM_AMT%%]]'));
+          </SCRIPT>
+          元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">轉存期間</td>
+          <td height="25" width="68%" bgcolor="#FFFFDD">[[%%REVE_PERIOD%%]]個月</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">計息方式</td>
+          <td height="25" width="68%" bgcolor="#FFFFDD">固定利率[[%%SEND_RATE%%]]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">領息方式</td>
+          <td height="25" width="68%" bgcolor="#FFFFDD" id="TD2">
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%"> 轉存定存種類</td>
+          <td height="25" width="68%" bgcolor="#FFFFDD"  id='TD1'></td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">是否續存</td>
+          <td height="25" width="68%" bgcolor="#FFFFDD">
+          <script>
+          	document.write(chkContinue([[%%REVE_CONTINUE%%]]));
+          </script>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">手 續 費</td>
+          <td height="25" width="68%">0元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">轉出帳號餘額</td>
+          <td height="25" width="68%">[[%%PRE_CURRENCY_CNAME%%]]
+          <SCRIPT language="JavaScript">
+                	document.write(moneyAddDot2('[[%%SEND-FROM-AVAL-BALANCE%%]]'));
+          </SCRIPT>
+          元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">交易附註</td>
+          <td height="25" width="68%">[[%%SEND-TXN-MEMO%%]]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">預訂存單起息日</td>
+          <td height="25" width="68%">
+          <SCRIPT language="JavaScript">
+                	document.write(getRCDateStr("[[%%SYSDATE%%]]",0));
+          </SCRIPT>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="630" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td align="center"> 
+      <a href="javascript:window.print()"><img src="graph/print.gif" width="52" height="24" border="0"></a>　 
+      
+    </td>
+  </tr>
+</table>
+		<table width="700">
+				<tr> 
+          <td bgcolor="#FFFFFF" width="5%"></td>
+          <td height="25" width="95%" bgcolor="#FFFFFF">親愛的客戶您好</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF" width="5%"></td>
+          <td height="25" width="95%" bgcolor="#FFFFFF">此筆交易已超過本服務營業日之服務時間，故轉為次一營業日存單交易，已由系統先將轉存金額扣款，並將於次一營業日上午開立外幣定存單後開始計算定存利息。
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFFF" width="5%"></td>
+          <td height="25" width="95%" bgcolor="#FFFFFF">如貴客戶於次一營業日本交易扣款轉存成功後，欲修改開立完成之綜存定存單續存條件，可依以下操作路徑：『帳務查詢>外幣存款帳戶>外幣定存明細>選擇特定存單』進行定存明細查詢及續存條件之變更，歡迎您多加利用，謝謝。</td>
+        </tr>
+		</table>
+<script>
+	chkInt('[[%%REVE_SAVING_CODE%%]]','[[%%REVE_PERIOD%%]]');	
+</script>
+<Input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+<Input type="hidden" name="pageid" value="IP0404003">
+<Input type="hidden" name="REVE_ACCT_NO" value="[[%%REVE_ACCT_NO%%]]"> 
+<Input type="hidden" name="SEND_TO_ACCT" value="[[%%SEND_TO_ACCT%%]]"> 
+<Input type="hidden" name="SEND_BR_NAME" value="[[%%SEND_BR_NAME%%]]"> 
+<Input type="hidden" name="PRE_CURRENCY_CNAME" value="[[%%PRE_CURRENCY_CNAME%%]]"> 
+<Input type="hidden" name="REVE_FROM_AMT" value="[[%%REVE_FROM_AMT%%]]"> 
+<Input type="hidden" name="REVE_PERIOD" value="[[%%REVE_PERIOD%%]]"> 
+<Input type="hidden" name="REVE_CONTINUE" value="[[%%REVE_CONTINUE%%]]"> 
+<Input type="hidden" name="SEND-TXN-MEMO" value="[[%%SEND-TXN-MEMO%%]]"> 
+<Input type="hidden" name="SEND_RATE" value="[[%%SEND_RATE%%]]">
+<Input type="hidden" name="PRE_CURRENCY" value="[[%%PRE_CURRENCY%%]]">
+<input type="hidden" name="REVE_SAVING_CODE" value='[[%%REVE_SAVING_CODE%%]]'>
+<input type="hidden" name="SEND_NONBUSINESS_DAY" value="[[%%SEND_NONBUSINESS_DAY%%]]">
+<input type="hidden" name="SEND_FROM_AVAL_BALANCE%" value="[[%%SEND_FROM_AVAL_BALANCE%%%]]">
+<Input type="hidden" name="SEND_PAY_NAME" value="[[%%SEND_PAY_NAME%%]]"> 
+<Input type="hidden" name="SEND_INT_NAME" value="[[%%SEND_INT_NAME%%]]">
+<Input type="hidden" name="REVE_TITLE" value="[[%%REVE_TITLE%%]]">
+<Input type="hidden" name="SEND_CONTINUE_NAME" value="[[%%SEND_CONTINUE_NAME%%]]">
+</from>
+</body>
+</html>

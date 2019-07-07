@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>忘記密碼</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+
+<form method="post" action="LoadAP" name="IP1099004">
+<p><b>　使用者代號/登入密碼變更 </b> </p>
+<table width="630" border="0">
+  <tr bgcolor="#663300"> 
+    <td colspan="4" height="1"></td>
+  </tr>
+</table>
+<table width="630" border="0" cellspacing="0" cellpadding="0">
+  <tr valign="top"> 
+    <td> <img src="graph/point.gif" width="12" height="12" align="absmiddle"><font color="#FF0000">變更使用者代號 
+      </font> <br>
+      <table width="250" border="1" align="center" bordercolor="#999999" cellpadding="5">
+        <tr>
+          <td height="14">您已成功變更網路密碼，下次登入時請使用新的網路密碼。<br>
+          </td>
+        </tr>
+      </table>
+      <div align="center"> </div>
+    </td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

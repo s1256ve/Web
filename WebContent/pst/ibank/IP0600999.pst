@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------------
+*EAI99026           2010.04.07     David
+*EAI99039           2010.04.29     David            修正信用卡明細查詢的月份顯示中，因二月只有28或29天所造成月份顯示判斷錯誤問題。
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript" src="script/calendar.js"></script>
+<script language="JavaScript" src="script/calendar-zh.js"></script>
+<script language="JavaScript" src="script/calendar-setup.js"></script>
+<script language="JavaScript" src="script/calendarface.js"></script>
+
+<SCRIPT language="JavaScript">
+
+ 	var sysdate = "[[%%SYSDATE%%]]";
+  var nowDate = new Date(sysdate.substr(0,4), sysdate.substr(4,2)-1, 01);
+    
+	var Year = nowDate.getFullYear()-1911;
+	var Month = (nowDate.getMonth()+1)+"";
+	if (Month.length<2) Month = "0"+Month;
+	//推算前三個月的年月
+	nowDate.setMonth(nowDate.getMonth()-1);
+	var preMonth = (nowDate.getMonth()+1)+"";
+	if (preMonth.length<2) preMonth = "0"+preMonth;
+    var preYear = nowDate.getFullYear()-1911;
+   
+    nowDate.setMonth(nowDate.getMonth()-1);
+    var preMonth2 = (nowDate.getMonth()+1)+"";
+	if (preMonth2.length<2) preMonth2 = "0"+preMonth2;
+    var preYear2 = nowDate.getFullYear()-1911;
+    
+    nowDate.setMonth(nowDate.getMonth()-1);
+    var preMonth3 = (nowDate.getMonth()+1)+"";
+	if (preMonth3.length<2) preMonth3 = "0"+preMonth3;
+    var preYear3 = nowDate.getFullYear()-1911;
+    
+	function chkSubmit(predate){
+		var f = document.IP0600999;
+		f.button1.disabled = true;
+		f.button2.disabled = true;
+		f.button3.disabled = true;
+		f.button4.disabled = true;
+		f.REVE_STMT_DATE.value = predate;
+		f.pageid.value = "IP0602001";
+		f.submit();
+		
+	}
+
+function sub(pageid)
+{
+  document.IP0709100.pageid.value = pageid;
+  document.IP0709100.submit();  
+}
+</SCRIPT>
+</head>
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form name="IP0600999" method="POST" action="LoadAP"  onSubmit="JavaScript:return true;" >
+<p><b>　信用卡查詢&gt;<font color="#0066FF">信用卡帳單明細查詢</font><font color="#003399"><font color="#0066FF"><br>
+  </font></font></b><b><font color="#003399"><font color="#0066FF"><br>
+  </font></font></b> 
+  
+  
+  
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5">
+      <div align="center">　<font face="Arial, Helvetica, sans-serif"> 
+        
+        
+        
+        
+        <input type="button" onClick="javaScript:chkSubmit((Year+1911)+Month);" 				name="button1" 	value="最近一期">
+        <input type="button" onClick="javaScript:chkSubmit((preYear+1911)+preMonth);"   name="button2" 	value="">
+        <input type="button" onClick="javaScript:chkSubmit((preYear2+1911)+preMonth2);" name="button3"	value="">
+        <input type="button" onClick="javaScript:chkSubmit((preYear3+1911)+preMonth3);" name="button4" 	value="">
+        
+        <script>
+        		document.IP0600999.button2.value = preYear+"/"+preMonth;
+        		document.IP0600999.button3.value = preYear2+"/"+preMonth2;
+        		document.IP0600999.button4.value = preYear3+"/"+preMonth3;
+        </script>
+        
+        
+        </font> </div>
+    </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="5" valign="bottom" height="1"></td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="REVE_STMT_DATE" value="">
+</form>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--/******************************************************************************/
+/* 
+ * Remark Area                                                                
+ *
+ * Create name	: Deanke         Create Date : 		      
+ * Function	: 	系統設定	     
+ * Notice       : 
+ * I/O   	:
+ *
+ * Change List:                                                               
+ * Date Modified     Modified by     Comments
+ * =============    =============   ================================================
+ * 20040406          Alma           設定potlog連接資料庫及新增log參數      
+*/
+/******************************************************************************/-->
+<root>
+	<EAI protocol="http" host="EAIPAPV" port="80" service="EAIService/EaiService" istom="1" debug="0" debugtom ="0" timeout="150" />
+	<APSVC protocol="http" host="EAIPAPV" port="9080" service="APService/APService" istom="1" debug="0" debugtom ="0" timeout="150" />
+	<SMTPSVC protocol="http" host="EAIPAPV" port="80" service="AlertService/AlertService" istom="2" debug="0" debugtom ="0" timeout="150" />
+		
+	<encode>BIG5</encode>
+	<debug>0</debug>
+	<system_db>conn_pottxn</system_db>
+	
+	<svcinfo>
+		<POTLOG argv="conn_potlog, INSLOADBEGLOG, QRYLOADLOGMAXID,INSLOADENDLOG"></POTLOG>
+	</svcinfo>
+</root>

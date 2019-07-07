@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SQL>
+
+<!-- ==============================================================================
+	<conn type="datasource"   	dbdriver="" 
+		  dsn="jdbc/ubsso" 
+		  user="db2iop1" pass="db2iop1" />
+		  
+	<conn_driver type="driver" 
+		  dbdriver="COM.ibm.db2.jdbc.app.DB2Driver" 
+		  dsn="jdbc:db2:ubsso" 
+		  user="db2iop1" pass="db2iop1" />
+	============================================================================== -->
+
+	<conn_sso type="datasource" dbdriver="" 
+			  dsn="jdbc/aptxn" 
+              user="db2ibank" pass="db2ibank" />
+              
+	<conn_test type="driver" 
+			   dbdriver="COM.ibm.db2.jdbc.app.DB2Driver" 
+			   dsn="jdbc:db2:aptxn" 
+               user="db2ibank" pass="db2ibank" />
+	
+<!-- ==============================================================================
+	For LOG
+	============================================================================== -->
+	<conn_log 	type="datasource" dbdriver="" 
+				dsn="jdbc/aptxn" 
+              	user="db2ibank" pass="db2ibank" />
+              	
+	<ssogetlogmaxid relation=""><![CDATA[
+		 SELECT MAX(LOGID) AS LID FROM DB2IBANK.SSOBEGIN 
+		 WHERE LOGID LIKE '[[%%LOGDATE%%]]%'	]]></ssogetlogmaxid>
+					 			 
+	<lg900>	<![CDATA[
+			SELECT SSOBEGIN.LOGID 	 AS BLOGID		, SSOEND.LOGID	     AS ELOGID	 	, 
+				   SSOBEGIN.SID		 AS SID			, SSOBEGIN.TXNID	 AS TXNID	 	, SSOBEGIN.STARTTIME  AS STARTTIME  , 
+				   SSOEND.ENDTIME 	 AS ENDTIME 	, SSOBEGIN.COMEFROM  AS COMEFROM 	, SSOEND.RTNMSGCODE   AS RTNMSGCODE , 
+				   SSOEND.SYSMSGCODE  AS SYSMSGCODE 
+			FROM  
+				( SELECT * FROM DB2IBANK.SSOBEGIN WHERE TXNID	  LIKE '[[%%TXNID%%]]%'	AND 
+														STARTTIME  LIKE  '[[%%STARTTIME%%]]%' AND SID LIKE '[[%%SID%%]]%') AS SSOBEGIN
+			LEFT JOIN 			
+				( SELECT SSOEND.LOGID		, SSOEND.ENDTIME	, SSOEND.RTNMSGCODE	, 
+				  		 SSOEND.SYSMSGCODE
+				  FROM SSOEND WHERE ( RTNMSGCODE LIKE '[[%%RTNMSGCODE%%]]%'  OR SYSMSGCODE LIKE '[[%%SYSMSGCODE%%]]%') ) AS SSOEND
+			      ON SSOBEGIN.LOGID   = SSOEND.LOGID
+				
+			      ORDER BY BLOGID DESC	FETCH FIRST 200 ROWS ONLY ]]></lg900>
+	
+	<lg901><![CDATA[ SELECT COUNT(*) AS BEGIN_COUNT FROM DB2IBANK.SSOBEGIN ]]></lg901>
+	<lg902><![CDATA[ SELECT COUNT(*) AS END_COUNT FROM DB2IBANK.SSOEND     ]]></lg902>
+
+<!-- ==============================================================================
+	For TABLE IP_POWER
+	============================================================================== -->
+	
+	<ip>	<![CDATA[	SELECT * FROM DB2IBANK.IP_POWER  
+						WHERE APNAME = '[[%%APNAME%%]]' AND  POWER =  '[[%%POWER%%]]'	]]></ip>	
+
+	<ip900>	<![CDATA[	SELECT * FROM DB2IBANK.IP_POWER  WHERE POWER =  '[[%%POWER%%]]'	]]></ip900>	
+
+<!-- ==============================================================================
+	For TABLE MWUMVIN
+	mw0xx : delete 
+	mw1xx : insert 
+	mw2xx : update 
+	mw9xx : select 
+	============================================================================== -->	
+	
+	<mw001>	<![CDATA[ DELETE FROM DB2IBANK.MWUMVIN  WHERE  SESSID = '[[%%SESSID%%]]'	]]></mw001>
+	<mw002>	<![CDATA[ DELETE FROM DB2IBANK.MWUMVIN  WHERE  SID    = '[[%%SID%%]]' 		]]></mw002>
+
+	<mw901>	<![CDATA[ 
+			SELECT ACCTNO    AS SEND_ACCT_NO  		, BID AS SEND_BID             	  ,	BRNAME AS SEND_BR_NAME , 
+				   BALTYPE   AS SEND_BAL_TYPE 		, ACCTDESC AS SEND_ACCT_DESC  	  , AVALBALANCE AS SEND_AVAL_BALANCE , 
+			       TIME      AS SEND_TIME     		, CURRENCY AS SEND_CURRENCY   	  , ACCTBALANCE AS SEND_ACCT_BALANCE ,
+				   CURENAME  AS SEND_CURRENCY_ENAME , CURCNAME AS SEND_CURRENCY_CNAME , REGFROM AS SEND_IS_REGFROM
+			FROM DB2IBANK.MWUMVIN
+			WHERE  SESSID = '[[%%SESSID%%]]' ]]>
+	</mw901>
+	
+	<mw902>	<![CDATA[ 
+			SELECT ACCTNO    AS SEND_ACCT_NO  		, BID AS SEND_BID             	  ,	BRNAME AS SEND_BR_NAME , 
+				   BALTYPE   AS SEND_BAL_TYPE 		, ACCTDESC AS SEND_ACCT_DESC  	  , AVALBALANCE AS SEND_AVAL_BALANCE , 
+			       TIME      AS SEND_TIME     		, CURRENCY AS SEND_CURRENCY   	  , ACCTBALANCE AS SEND_ACCT_BALANCE ,
+				   CURENAME  AS SEND_CURRENCY_ENAME , CURCNAME AS SEND_CURRENCY_CNAME , REGFROM AS SEND_IS_REGFROM
+			FROM DB2IBANK.MWUMVIN
+			WHERE  SID = '[[%%SID%%]]' ]]>
+	</mw902>
+
+<!-- ==============================================================================
+	For Server Side UserProfile Class
+	map0xx : delete user's ap
+	map1xx : insert user's ap
+	map2xx : update user's ap
+	map9xx : select user's ap
+	============================================================================== -->	
+	<mp000 relation="">	<![CDATA[ 
+					DELETE FROM DB2IBANK.APMAP WHERE SID='[[%%SID%%]]' AND (APNAME='IBANK' OR APNAME='MBANK') ]]></mp000>
+		
+	<mp100 relation="">	<![CDATA[ 
+					INSERT INTO  DB2IBANK.APMAP 
+					(       SID       ,       APNAME      ,      STATUS     )
+					VALUES(  '[[%%SID%%]]'  ,  '[[%%APNAME%%]]'  ,      'NORMAL'  	)		]]></mp100>
+
+	<mp901  relation=""><![CDATA[ 
+					SELECT 	SID		 AS SEND_ID_NO, 	
+					     	APNAME	 AS SEND_AP_NAME,
+							STATUS	 AS SEND_AP_STATUS		,
+					FROM DB2IBANK.APMAP AS APMAP  
+					WHERE APNAME = '[[%%APNAME%%]]'	AND SID = '[[%%SID%%]]' ]]></mp901>
+
+	<mp201 relation=""><![CDATA[ 
+					UPDATE	DB2IBANK.APMAP	SET STATUS = '[[%%STATUS%%]]'  
+					WHERE  APNAME = '[[%%APNAME%%]]'AND SID = '[[%%SID%%]]' ]]></mp201>
+	
+
+<!-- ==============================================================================
+	For Server Side UserProfile Class
+	ses0xx : delete session
+	ses1xx : insert session
+	ses2xx : update session
+	ses9xx : select session
+	============================================================================== -->	
+	
+	<ss100 relation=""><![CDATA[ 
+							INSERT INTO  DB2IBANK.SESSION 
+									(      SID       ,      SESSID      ,    USERID ,  VALIDFROM      ,  DURATION  ,      COMEFROM , TOKEN   )
+	    					VALUES	( '[[%%SID%%]]'  , '[[%%SESSID%%]]' , '[[%%USERID%%]]', '[[%%VALIDFROM%%]]' ,   5     , '[[%%COMEFROM%%]]' ,'')	 ]]></ss100>
+
+	<ss000 relation=""><![CDATA[ 	DELETE FROM DB2IBANK.SESSION										 ]]></ss000>
+	<ss001 relation=""><![CDATA[ 	DELETE FROM DB2IBANK.SESSION    WHERE  SESSID = '[[%%SESSID%%]]'	 ]]></ss001>
+	<ss002 relation=""><![CDATA[ 	DELETE FROM DB2IBANK.SESSION    WHERE  SID    = '[[%%SID%%]]' 		 ]]></ss002>
+
+	<ss201 relation=""><![CDATA[ 	UPDATE  DB2IBANK.SESSION SET DURATION  = [[%%DURATION%%]]     WHERE  SESSION.SESSID = '[[%%SESSID%%]]'	 ]]></ss201>
+	<ss202 relation=""><![CDATA[ 	UPDATE  DB2IBANK.SESSION SET DURATION  = [[%%DURATION%%]]     WHERE  SESSION.SID   =  '[[%%SID%%]]'		 ]]></ss202>
+	<ss203 relation=""><![CDATA[ 	UPDATE  DB2IBANK.SESSION SET VALIDFROM = '[[%%VALIDFROM%%]]',DURATION  = [[%%DURATION%%]]  WHERE  SESSION.SESSID = '[[%%SESSID%%]]'	 ]]></ss203>
+
+
+	<ss900 relation=""><![CDATA[ 	SELECT * FROM DB2IBANK.SESSION	ORDER BY VALIDFROM					 ]]></ss900>
+	<ss901 relation=""><![CDATA[ 	SELECT * FROM DB2IBANK.SESSION	WHERE  SESSID = '[[%%SESSID%%]]'	 ]]></ss901>
+	<ss902 relation=""><![CDATA[ 	SELECT * FROM DB2IBANK.SESSION	WHERE  SID    = '[[%%SID%%]]' 		 ]]></ss902>
+
+	<ss903  relation=""><![CDATA[ 	SELECT COUNT ( * ) FROM DB2IBANK.SESSION WHERE SESSID = '[[%%SESSID%%]]'	 ]]></ss903>
+		
+	<ss904  relation=""><![CDATA[ 	SELECT COUNT ( * ) FROM DB2IBANK.SESSION WHERE SID    = '[[%%SID%%]]'		 ]]></ss904>
+
+
+<!-- ==============================================================================
+	For Server Side UserProfile Class
+	up0xx : delete UserProfile
+	up1xx : insert UserProfile
+	up2xx : update UserProfile
+	============================================================================== -->	
+	<up000 relation=""><![CDATA[
+						DELETE FROM DB2IBANK.UPROFILE WHERE SID = '[[%%SID%%]]'	]]></up000>
+	
+	<up100 relation=""><![CDATA[
+						INSERT INTO  DB2IBANK.UPROFILE
+							(  SID , PWD , NICKNAME ,  CNAME ,  ENAME , CRTDATE ,  MDFDATE ,
+							   DURATION ,  CHKHISTORY , LASTCHANGE , RETRIED , RETRIED_PWD , STATUS , STARTPAGE ,
+						       DT_BIRTH ,  EMAIL ,  MARRIAGE , VOCATION_TYPE , LIVE_ADDR , RESI_ADDR   ) 
+		    			VALUES
+						   (  '[[%%SID%%]]'      ,  '[[%%PWD%%]]'            ,  '[[%%NICKNAME%%]]'   ,  '[[%%CNAME%%]]'    ,  '[[%%ENAME%%]]'        ,   		               
+						      '[[%%CRTDATE%%]]'  ,  '[[%%MDFDATE%%]]'        ,         0             ,	 1                ,  '[[%%LASTCHANGE%%]]'   ,	 0,
+				 	       	         0           ,  'NORMAL'        		 ,  '[[%%STARTPAGE%%]]'  ,  '[[%%DT_BIRTH%%]]' ,  '[[%%EMAIL%%]]'        , 
+				 	       	  '[[%%MARRIAGE%%]]' ,  '[[%%VOCATION_TYPE%%]]'  ,  '[[%%LIVE_ADDR%%]]' ,  '[[%%RESI_ADDR%%]]'	   )	]]></up100>
+
+
+
+	<up201 relation=""> <![CDATA[ UPDATE DB2IBANK.UPROFILE SET STATUS  = '[[%%STATUS%%]]' ,
+													 RETRIED = 0 	,  RETRIED_PWD = 0						WHERE SID = '[[%%SID%%]]'		]]> </up201>
+	<up202 relation=""> <![CDATA[ UPDATE DB2IBANK.UPROFILE SET STATUS  = '[[%%STATUS%%]]' , 
+													 RETRIED = ( RETRIED + [[%%INC%%]] )	WHERE SID = '[[%%SID%%]]'		]]> </up202>
+	
+	<up203 relation=""> <![CDATA[ UPDATE DB2IBANK.UPROFILE SET STATUS  = '[[%%STATUS%%]]'	WHERE SID = '[[%%SID%%]]'	]]> </up203>
+	
+
+
+	<up204 relation=""><![CDATA[ UPDATE DB2IBANK.UPROFILE 
+								 SET LASTLOGINTIME = '[[%%LASTLOGINTIME%%]]' , 
+								 	 LASTCOMEFROM  = '[[%%LASTCOMEFROM%%]]'  , RETRIED = 0 , RETRIED_PWD = 0 
+								 WHERE UPROFILE.SID = '[[%%SID%%]]'	]]></up204>
+
+	<up205 relation=""><![CDATA[	UPDATE DB2IBANK.UPROFILE SET NICKNAME = '[[%%NICKNAME%%]]'	WHERE UPROFILE.SID = '[[%%SID%%]]'	]]></up205>	
+	
+	<up206 relation=""><![CDATA[	UPDATE DB2IBANK.UPROFILE 
+									SET PWD	         = '[[%%PWD%%]]' , PASSHISTORY1 = PWD , 
+									    PASSHISTORY2 = PASSHISTORY1  , PASSHISTORY3 = PASSHISTORY2 ,
+										LASTCHANGE   = MDFDATE  	 , MDFDATE      = '[[%%MDFDATE%%]]',
+										STATUS = 'NORMAL' 
+									WHERE UPROFILE.SID = '[[%%SID%%]]' 	 ]]></up206>
+
+	<up207 relation=""> <![CDATA[ UPDATE DB2IBANK.UPROFILE SET STATUS  = '[[%%STATUS%%]]' , 
+													 RETRIED_PWD = ( RETRIED_PWD + [[%%INC%%]] )	WHERE SID = '[[%%SID%%]]'		]]> </up207>
+
+<!-- ==============================================================================
+	For Server Side UserProfile Class
+	up900 : can first login or not?
+	up90x : select UserProfile bySID
+	up91x : select UserProfile bySESSID)
+	============================================================================== -->	
+		
+	<!-- findBySID mode=MODE_SIMPLE -->
+	<up901 reletion=""><![CDATA[
+		SELECT  UP.SID  		 AS SEND_ID_NO 			 , UP.NICKNAME      AS SEND_NICK_NAME 		, UP.PWD 			AS SEND_PWD , 
+			    UP.CNAME 		 AS SEND_CNAME 			 , UP.ENAME  	    AS SEND_ENAME     		, UP.DT_BIRTH		AS SEND_BIRTH_DATE ,
+			    UP.RESI_ADDR	 AS SEND_RESI_ADDR		 , UP.LIVE_ADDR	 	AS SEND_LIVE_ADDR 		, UP.EMAIL			AS SEND_EMAIL_ADDR ,
+				UP.MARRIAGE 	 AS SEND_MARRIAGE		 , UP.VOCATION_TYPE AS SEND_VOCATION_TYPE	, UP.LASTLOGINTIME  AS SEND_LAST_LOGIN_TIME , 
+				UP.LASTCOMEFROM  AS SEND_LAST_COME_FROM  , UP.STARTPAGE	 	AS SEND_START_PAGE		, UP.STATUS			AS SEND_USER_STATUS ,
+				UP.DURATION	 	 AS SEND_USER_DURATION	 , UP.LASTCHANGE 	AS SEND_LASTCHANGE		, UP.RETRIED		AS SEND_RETRIED ,	UP.RETRIED_PWD		AS SEND_RETRIED_PWD ,			
+			    UP.CRTDATE   	 AS SEND_CRTDATE		 , UP.MDFDATE 		AS SEND_MDFDATE			, UP.PASSHISTORY1   AS SEND_PWD_OLD1, 
+			    UP.PASSHISTORY2  AS SEND_PWD_OLD2     	 , UP.PASSHISTORY3  AS SEND_PWD_OLD3  
+		FROM DB2IBANK.UPROFILE AS UP
+		WHERE UP.SID = '[[%%SID%%]]' ]]></up901>
+
+
+	<!-- findBySID mode=MODE_JOINAPMAP -->
+	<up902 reletion=""><![CDATA[
+		SELECT  UP.SID  		 AS SEND_ID_NO 			 , UP.NICKNAME      AS SEND_NICK_NAME 		, UP.PWD 			AS SEND_PWD , 
+			    UP.CNAME 		 AS SEND_CNAME 			 , UP.ENAME  	    AS SEND_ENAME     		, UP.DT_BIRTH		AS SEND_BIRTH_DATE ,
+			    UP.RESI_ADDR	 AS SEND_RESI_ADDR		 , UP.LIVE_ADDR	 	AS SEND_LIVE_ADDR 		, UP.EMAIL			AS SEND_EMAIL_ADDR ,
+				UP.MARRIAGE 	 AS SEND_MARRIAGE		 , UP.VOCATION_TYPE AS SEND_VOCATION_TYPE	, UP.LASTLOGINTIME  AS SEND_LAST_LOGIN_TIME , 
+				UP.LASTCOMEFROM  AS SEND_LAST_COME_FROM  , UP.STARTPAGE	 	AS SEND_START_PAGE		, UP.STATUS			AS SEND_USER_STATUS ,
+				UP.DURATION	 	 AS SEND_USER_DURATION	 , UP.LASTCHANGE 	AS SEND_LASTCHANGE		, UP.RETRIED		AS SEND_RETRIED ,		UP.RETRIED_PWD		AS SEND_RETRIED_PWD ,					
+			    UP.CRTDATE   	 AS SEND_CRTDATE		 , UP.MDFDATE 		AS SEND_MDFDATE			, UP.PASSHISTORY1   AS SEND_PWD_OLD1, 
+			    UP.PASSHISTORY2  AS SEND_PWD_OLD2     	 , UP.PASSHISTORY3  AS SEND_PWD_OLD3  		,
+			    
+			    APMAP.APNAME	 AS SEND_AP_NAME		 , APMAP.STATUS		AS SEND_AP_STATUS		,
+			    APINFO.PRIORITY	 AS SEND_AP_RIORITY		 , APINFO.CHECK_SID AS SEND_AP_CHECK_SID	, APINFO.CHECK_NICKNAME AS SEND_AP_CHECK_NICKNAME ,
+			    APINFO.CHECK_PWD AS SEND_AP_CHECK_PWD	 , APINFO.MANAGER	AS SEND_AP_MANAGER		, APINFO.AP2AP			AS SEND_AP_AP2AP
+		FROM 
+			( SELECT * FROM DB2IBANK.UPROFILE WHERE SID =  '[[%%SID%%]]'  ) AS UP
+		LEFT OUTER JOIN 
+			( SELECT * FROM DB2IBANK.APMAP 	  WHERE SID  = '[[%%SID%%]]'  ) AS APMAP	ON UP.SID = APMAP.SID
+		LEFT OUTER JOIN 
+			DB2IBANK.APINFO AS APINFO 	ON APMAP.APNAME = APINFO.APNAME
+		ORDER BY APINFO.PRIORITY ]]>
+	</up902>
+	
+		<!-- findBySID mode=MODE_JOINAPMAP_NORMAL -->
+	<up905 reletion=""><![CDATA[
+		SELECT  UP.SID  		 AS SEND_ID_NO 			 , UP.NICKNAME      AS SEND_NICK_NAME 		, UP.PWD 			AS SEND_PWD , 
+			    UP.CNAME 		 AS SEND_CNAME 			 , UP.ENAME  	    AS SEND_ENAME     		, UP.DT_BIRTH		AS SEND_BIRTH_DATE ,
+			    UP.RESI_ADDR	 AS SEND_RESI_ADDR		 , UP.LIVE_ADDR	 	AS SEND_LIVE_ADDR 		, UP.EMAIL			AS SEND_EMAIL_ADDR ,
+				UP.MARRIAGE 	 AS SEND_MARRIAGE		 , UP.VOCATION_TYPE AS SEND_VOCATION_TYPE	, UP.LASTLOGINTIME  AS SEND_LAST_LOGIN_TIME , 
+				UP.LASTCOMEFROM  AS SEND_LAST_COME_FROM  , UP.STARTPAGE	 	AS SEND_START_PAGE		, UP.STATUS			AS SEND_USER_STATUS ,
+				UP.DURATION	 	 AS SEND_USER_DURATION	 , UP.LASTCHANGE 	AS SEND_LASTCHANGE		, UP.RETRIED		AS SEND_RETRIED ,		UP.RETRIED_PWD		AS SEND_RETRIED_PWD ,					
+			    UP.CRTDATE   	 AS SEND_CRTDATE		 , UP.MDFDATE 		AS SEND_MDFDATE			, UP.PASSHISTORY1   AS SEND_PWD_OLD1, 
+			    UP.PASSHISTORY2  AS SEND_PWD_OLD2     	 , UP.PASSHISTORY3  AS SEND_PWD_OLD3  		,
+			    
+			    APMAP.APNAME	 AS SEND_AP_NAME		 , APMAP.STATUS		AS SEND_AP_STATUS		,
+			    APINFO.PRIORITY	 AS SEND_AP_RIORITY		 , APINFO.CHECK_SID AS SEND_AP_CHECK_SID	, APINFO.CHECK_NICKNAME AS SEND_AP_CHECK_NICKNAME ,
+			    APINFO.CHECK_PWD AS SEND_AP_CHECK_PWD	 , APINFO.MANAGER	AS SEND_AP_MANAGER		, APINFO.AP2AP			AS SEND_AP_AP2AP
+		FROM 
+			( SELECT * FROM DB2IBANK.UPROFILE WHERE SID =  '[[%%SID%%]]'  AND STATUS = 'NORMAL') AS UP
+		LEFT OUTER JOIN 
+			( SELECT * FROM DB2IBANK.APMAP 	  WHERE SID  = '[[%%SID%%]]'  ) AS APMAP	ON UP.SID = APMAP.SID
+		LEFT OUTER JOIN 
+			DB2IBANK.APINFO AS APINFO 	ON APMAP.APNAME = APINFO.APNAME
+		ORDER BY APINFO.PRIORITY ]]>
+	</up905>
+				
+	<!-- findBySID mode=MODE_JOINSESSION -->
+	
+	<up903 reletion=""><![CDATA[
+		SELECT  UP.SID  		 AS SEND_ID_NO 			 , UP.NICKNAME      AS SEND_NICK_NAME 		, UP.PWD 			AS SEND_PWD , 
+			    UP.CNAME 		 AS SEND_CNAME 			 , UP.ENAME  	    AS SEND_ENAME     		, UP.DT_BIRTH		AS SEND_BIRTH_DATE ,
+			    UP.RESI_ADDR	 AS SEND_RESI_ADDR		 , UP.LIVE_ADDR	 	AS SEND_LIVE_ADDR 		, UP.EMAIL			AS SEND_EMAIL_ADDR ,
+				UP.MARRIAGE 	 AS SEND_MARRIAGE		 , UP.VOCATION_TYPE AS SEND_VOCATION_TYPE	, UP.LASTLOGINTIME  AS SEND_LAST_LOGIN_TIME , 
+				UP.LASTCOMEFROM  AS SEND_LAST_COME_FROM  , UP.STARTPAGE	 	AS SEND_START_PAGE		, UP.STATUS			AS SEND_USER_STATUS ,
+				UP.DURATION	 	 AS SEND_USER_DURATION	 , UP.LASTCHANGE 	AS SEND_LASTCHANGE		, UP.RETRIED		AS SEND_RETRIED ,	UP.RETRIED_PWD		AS SEND_RETRIED_PWD ,						
+			    UP.CRTDATE   	 AS SEND_CRTDATE		 , UP.MDFDATE 		AS SEND_MDFDATE			, UP.PASSHISTORY1   AS SEND_PWD_OLD1, 
+			    UP.PASSHISTORY2  AS SEND_PWD_OLD2     	 , UP.PASSHISTORY3  AS SEND_PWD_OLD3  		,
+				
+				SESSION.SESSID	  AS SEND_SESSION_ID		 , 
+				SESSION.VALIDFROM AS SEND_SESSION_VALID_FROM ,
+				SESSION.DURATION  AS SEND_SESSION_DURATION	,
+				SESSION.COMEFROM  AS SEND_SESSION_COME_FROM
+		FROM 
+			( SELECT * FROM DB2IBANK.UPROFILE WHERE SID = '[[%%SID%%]]' ) AS  UP
+		LEFT OUTER JOIN 
+			( SELECT * FROM DB2IBANK.SESSION  WHERE SID = '[[%%SID%%]]' ) AS SESSION ON UP.SID = SESSION.SID ]]>
+	</up903>
+
+	<!-- findBySID mode=MODE_FULL -->
+	<up904 reletion=""><![CDATA[
+		SELECT  UP.SID  		 AS SEND_ID_NO 			 , UP.NICKNAME      AS SEND_NICK_NAME 		, UP.PWD 			AS SEND_PWD 		, 
+			    UP.CNAME 		 AS SEND_CNAME 			 , UP.ENAME  	    AS SEND_ENAME     		, UP.DT_BIRTH		AS SEND_BIRTH_DATE  ,
+			    UP.RESI_ADDR	 AS SEND_RESI_ADDR		 , UP.LIVE_ADDR	 	AS SEND_LIVE_ADDR 		, UP.EMAIL			AS SEND_EMAIL_ADDR  ,
+				UP.MARRIAGE 	 AS SEND_MARRIAGE		 , UP.VOCATION_TYPE AS SEND_VOCATION_TYPE	, UP.LASTLOGINTIME  AS SEND_LAST_LOGIN_TIME  , 
+				UP.LASTCOMEFROM  AS SEND_LAST_COME_FROM  , UP.STARTPAGE	 	AS SEND_START_PAGE		, UP.STATUS			AS SEND_USER_STATUS ,
+				UP.DURATION	 	 AS SEND_USER_DURATION	 , UP.LASTCHANGE 	AS SEND_LASTCHANGE		, UP.RETRIED		AS SEND_RETRIED 	,		UP.RETRIED_PWD		AS SEND_RETRIED_PWD ,					
+			    UP.CRTDATE   	 AS SEND_CRTDATE		 , UP.MDFDATE 		AS SEND_MDFDATE			, UP.PASSHISTORY1   AS SEND_PWD_OLD1	, 
+			    UP.PASSHISTORY2  AS SEND_PWD_OLD2     	 , UP.PASSHISTORY3  AS SEND_PWD_OLD3  		,
+
+			    APMAP.APNAME	 AS SEND_AP_NAME		 , APMAP.STATUS		AS SEND_AP_STATUS		,
+			    APINFO.PRIORITY	 AS SEND_AP_RIORITY		 , APINFO.CHECK_SID AS SEND_AP_CHECK_SID	, APINFO.CHECK_NICKNAME AS SEND_AP_CHECK_NICKNAME ,
+			    APINFO.CHECK_PWD AS SEND_AP_CHECK_PWD	 , APINFO.MANAGER	AS SEND_AP_MANAGER		, APINFO.AP2AP			AS SEND_AP_AP2AP	   ,
+
+				SESSION.SESSID	  AS SEND_SESSION_ID		 , 
+				SESSION.VALIDFROM AS SEND_SESSION_VALID_FROM ,
+				SESSION.DURATION  AS SEND_SESSION_DURATION	,
+				SESSION.COMEFROM  AS SEND_SESSION_COME_FROM
+		FROM 
+			( SELECT * FROM DB2IBANK.UPROFILE WHERE SID =  '[[%%SID%%]]' )  	AS UP
+		LEFT OUTER JOIN 
+			( SELECT * FROM DB2IBANK.SESSION  WHERE SID =  '[[%%SID%%]]'  ) 	AS SESSION ON UP.SID = SESSION.SID
+		LEFT OUTER JOIN 
+			( SELECT * FROM DB2IBANK.APMAP	  WHERE SID =  '[[%%SID%%]]'  )		AS APMAP   ON APMAP.SID = UP.SID
+		LEFT OUTER JOIN
+			DB2IBANK.APINFO  AS APINFO ON APMAP.APNAME = APINFO.APNAME 
+		ORDER BY APINFO.PRIORITY		 ]]></up904>
+			
+	<!-- findBySESSID mode=MODE_JOINSESSION, MODE_SIMPLE -->
+
+	<up911 reletion=""><![CDATA[
+		SELECT  UP.SID  		 AS SEND_ID_NO 			 , UP.NICKNAME      AS SEND_NICK_NAME 		, UP.PWD 			AS SEND_PWD 		, 
+			    UP.CNAME 		 AS SEND_CNAME 			 , UP.ENAME  	    AS SEND_ENAME     		, UP.DT_BIRTH		AS SEND_BIRTH_DATE  ,
+			    UP.RESI_ADDR	 AS SEND_RESI_ADDR		 , UP.LIVE_ADDR	 	AS SEND_LIVE_ADDR 		, UP.EMAIL			AS SEND_EMAIL_ADDR  ,
+				UP.MARRIAGE 	 AS SEND_MARRIAGE		 , UP.VOCATION_TYPE AS SEND_VOCATION_TYPE	, UP.LASTLOGINTIME  AS SEND_LAST_LOGIN_TIME  , 
+				UP.LASTCOMEFROM  AS SEND_LAST_COME_FROM  , UP.STARTPAGE	 	AS SEND_START_PAGE		, UP.STATUS			AS SEND_USER_STATUS ,
+				UP.DURATION	 	 AS SEND_USER_DURATION	 , UP.LASTCHANGE 	AS SEND_LASTCHANGE		, UP.RETRIED		AS SEND_RETRIED 	,			UP.RETRIED_PWD		AS SEND_RETRIED_PWD ,				
+			    UP.CRTDATE   	 AS SEND_CRTDATE		 , UP.MDFDATE 		AS SEND_MDFDATE			, UP.PASSHISTORY1   AS SEND_PWD_OLD1	, 
+			    UP.PASSHISTORY2  AS SEND_PWD_OLD2     	 , UP.PASSHISTORY3  AS SEND_PWD_OLD3  		,
+
+				SESSION.SESSID	  AS SEND_SESSION_ID		 , 
+				SESSION.VALIDFROM AS SEND_SESSION_VALID_FROM ,
+				SESSION.DURATION  AS SEND_SESSION_DURATION	 ,
+				SESSION.COMEFROM  AS SEND_SESSION_COME_FROM
+		FROM 
+			( SELECT * FROM DB2IBANK.SESSION WHERE SESSID = '[[%%SESSID%%]]' ) AS SESSION
+		JOIN 
+			DB2IBANK.UPROFILE AS UP ON UP.SID = SESSION.SID  ]]>
+	</up911>
+
+	<!-- findBySESSID mode=MODE_FULL -->
+	<up914 reletion=""><![CDATA[
+		SELECT  UP.SID  		 AS SEND_ID_NO 			 , UP.NICKNAME      AS SEND_NICK_NAME 		, UP.PWD 			AS SEND_PWD , 
+			    UP.CNAME 		 AS SEND_CNAME 			 , UP.ENAME  	    AS SEND_ENAME     		, UP.DT_BIRTH		AS SEND_BIRTH_DATE ,
+			    UP.RESI_ADDR	 AS SEND_RESI_ADDR		 , UP.LIVE_ADDR	 	AS SEND_LIVE_ADDR 		, UP.EMAIL			AS SEND_EMAIL_ADDR ,
+				UP.MARRIAGE 	 AS SEND_MARRIAGE		 , UP.VOCATION_TYPE AS SEND_VOCATION_TYPE	, UP.LASTLOGINTIME  AS SEND_LAST_LOGIN_TIME , 
+				UP.LASTCOMEFROM  AS SEND_LAST_COME_FROM  , UP.STARTPAGE	 	AS SEND_START_PAGE		, UP.STATUS			AS SEND_USER_STATUS ,
+				UP.DURATION	 	 AS SEND_USER_DURATION	 , UP.LASTCHANGE 	AS SEND_LASTCHANGE		, UP.RETRIED		AS SEND_RETRIED ,				UP.RETRIED_PWD		AS SEND_RETRIED_PWD ,			
+			    UP.CRTDATE   	 AS SEND_CRTDATE		 , UP.MDFDATE 		AS SEND_MDFDATE			, UP.PASSHISTORY1   AS SEND_PWD_OLD1, 
+			    UP.PASSHISTORY2  AS SEND_PWD_OLD2     	 , UP.PASSHISTORY3  AS SEND_PWD_OLD3  		,
+
+			    APMAP.APNAME	 AS SEND_AP_NAME		 , APMAP.STATUS		AS SEND_AP_STATUS		,
+			    APINFO.PRIORITY	 AS SEND_AP_RIORITY		 , APINFO.CHECK_SID AS SEND_AP_CHECK_SID	, APINFO.CHECK_NICKNAME AS SEND_AP_CHECK_NICKNAME ,
+			    APINFO.CHECK_PWD AS SEND_AP_CHECK_PWD	 , APINFO.MANAGER	AS SEND_AP_MANAGER		, APINFO.AP2AP			AS SEND_AP_AP2AP	   ,
+
+				SESSION.SESSID	  AS SEND_SESSION_ID		 , 
+				SESSION.VALIDFROM AS SEND_SESSION_VALID_FROM ,
+				SESSION.DURATION  AS SEND_SESSION_DURATION	 ,
+				SESSION.COMEFROM  AS SEND_SESSION_COME_FROM
+		FROM 
+			( SELECT * FROM DB2IBANK.SESSION WHERE SESSID = '[[%%SESSID%%]]' ) AS SESSION
+		JOIN 
+			DB2IBANK.UPROFILE AS UP 	ON UP.SID 		 = SESSION.SID
+		LEFT JOIN 
+			DB2IBANK.APMAP	  AS APMAP 	ON APMAP.SID 	 = UP.SID
+		LEFT JOIN
+			DB2IBANK.APINFO	  AS APINFO ON APINFO.APNAME = APMAP.APNAME
+		ORDER BY APINFO.PRIORITY  ]]>
+	</up914>
+
+</SQL>

@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>使用者登入作業</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+<p><b>首次登入<font color="#003399"><font color="#0066FF"></font></font><font color="#003399"><font color="#0066FF"><br>
+  </font></font></b></p>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5"> 
+      <table width="100%" border="0">
+        <tr> 
+          <td height="60"> 
+            <table width="90%" border="0">
+              <tr> 
+                <td> 
+                  <input type="radio" name="radiobutton" value="radiobutton">
+                  已開立本行信託帳戶<br>
+                  <br>
+                  <input type="radio" name="radiobutton" value="radiobutton">
+                  未開立本行信託帳戶</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <div align="center">
+        <input type="submit" name="Submit" value="確定">
+        <input type="submit" name="Submit2" value="取消">
+      </div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+<div id="Layer1" style="position:absolute; left:370px; top:38px; width:187px; height:36px; z-index:1"> 
+  <p><font color="#666666"> ⊙已開立本行信託帳戶（<a href="page8-2-2.htm">Case 2</a>）<br>
+    否<br>
+    ○未開立本行信託帳戶（<a href="page8-2-3.htm">Case 3</a>）</font></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>首次登入</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg01.gif" leftmargin="0" topmargin="0">
+<form name="IP0803000" method="POST" action="LoadAP">
+<p><b>首次登入<font color="#003399"><font color="#0066FF"><br>
+  </font></font></b></p>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5"> 
+      <div align="center">
+        <table width="250" border="1" align="center" bordercolor="#999999" cellpadding="5">
+          <tr> 
+            <td height="14">您已申請本行電子銀行服務，請您至左上方登入使用本服務。 </td>
+          </tr>
+        </table>
+        <input type="submit" name="Submit1" value="確定">
+      </div>
+      <div align="center"> </div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="IC0000003">
+</form>
+</body>
+</html>

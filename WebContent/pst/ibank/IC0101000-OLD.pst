@@ -1,0 +1,206 @@
+<html>
+<head>
+<title>帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------------
+*EAI98011           2009.3.10      YiSyun 
+*EAI99011           2009.2.08      David 
+*EAI99028           2010.3.28      Alma 
+*EAI99029           2010.3.31      YiSyun
+*EAI99030           2010.4.01      Alma
+*EAI99052           2010.8.25      David 
+*EAI99063           2010.10.18     David 
+*EAI100022          2010.12.07     Carl 
+*EAI100036          2011.07.01     Joe 
+*EAI100056          2010.08.15     David 
+***********************************************************************/
+</script>
+<script language="JavaScript">
+<!--
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+function MM_showHideLayers() { //v3.0
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+  for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
+    if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v='hide')?'hidden':v; }
+    obj.visibility=v; }
+}
+
+function alertmsg(){
+    alert('親愛的客戶您好！\n提醒您可利用總歸戶右上角\"更新總歸戶資料\"按鈕，以取\n得最新帳務資料!（註：總歸戶頁右上方資料時間，為您\n\"本次登入\"或\"前次執行更新總歸戶資料鈕\"之時間）');
+}
+
+
+//-->
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="Layer1.style.visibility = 'visible';Layer2.style.visibility = 'hidden';Layer3.style.visibility = 'hidden';Layer4.style.visibility = 'hidden';" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<table width="775" border="0">
+<tr>
+<td>
+	<table width="770" border="0" cellspacing="0" cellpadding="0">
+	  <tr bgcolor="#D7EBFF"> 
+	    <td><b>│</b>
+	    <a href="LoadAP?aptype=IBANK&pageid=IP0101000" target="main" onClick="Layer1.style.visibility = 'visible';Layer2.style.visibility = 'hidden';Layer3.style.visibility = 'hidden'; Layer4.style.visibility = 'hidden';">總歸戶</a><b>│</b>
+	    <!-- <a href="javaScript:void(0);" onClick="alert('本行進行本項功能維護中，目前暫不提供總歸戶查詢服務。造成不便  敬請見諒!')">總歸戶</a>  <b>│</b> -->
+	    <a href="javaScript:void(0);" onClick="Layer1.style.visibility = 'visible';Layer2.style.visibility = 'hidden';Layer3.style.visibility = 'hidden'; Layer4.style.visibility = 'hidden';">台幣存款帳戶</a><b>│</b>
+	    <a href="javaScript:void(0);" onClick="Layer1.style.visibility = 'hidden';Layer2.style.visibility = 'visible';Layer3.style.visibility = 'hidden'; Layer4.style.visibility = 'hidden';">外匯存款帳戶</a><b>│</b>
+	    <a href="javaScript:void(0);" onClick="Layer1.style.visibility = 'hidden';Layer2.style.visibility = 'hidden';Layer3.style.visibility = 'visible'; Layer4.style.visibility = 'hidden';">支票存款帳戶</a><b>│</b>
+	    <a href="javaScript:void(0);" onClick="Layer1.style.visibility = 'hidden';Layer2.style.visibility = 'hidden';Layer3.style.visibility = 'hidden'; Layer4.style.visibility = 'visible';">台幣貸款帳戶</a><b>│</b>
+	   </td>
+	  </tr>
+	</table>
+	<p>&nbsp;</p>
+	<div id="Layer1" style="position:absolute; left:0px; top:18px; width:636px; height:8px; z-index:1; visibility:hidden"> 
+	  <table width="770" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0201000&[[%%SESSIONID%%]]" target="main">交易明細</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0202000&[[%%SESSIONID%%]]" target="main">當日匯入匯款</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0204000&[[%%SESSIONID%%]]" target="main">當日餘額</a></div>
+	      </td>
+		  <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0200000&[[%%SESSIONID%%]]" target="main">託收票據查詢</a></div>
+	      </td>  
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0208000&[[%%SESSIONID%%]]" target="main">定存明細</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0210000&[[%%SESSIONID%%]]" target="main">定存中途解約試算</a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+	<div id="Layer2" style="position:absolute; left:0px; top:18px; width:620px; height:19px; z-index:2; visibility:hidden"> 
+	  <table width="775" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td width="150"> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0401000&[[%%SESSIONID%%]]" target="main">外匯交易明細</a></div>
+	      </td>
+	      <td width="150"> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0402000&[[%%SESSIONID%%]]" target="main">外匯存款餘額</a></div>
+	      </td>
+	      <td colspan="2" width="500"> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0403000&[[%%SESSIONID%%]]" target="main">外匯定存明細(含續存設定、解約試算、中途解約)</a></div>
+	      </td>
+	      <td width="156" height="9"> 
+         <div align="center"><a href="https://web.ubot.com.tw/ub/2009_123/index.html" target="_blank">買賣外幣很簡單</a></div>
+        </td>   
+	    </tr>
+	  </table>
+	</div>
+	<div id="Layer3" style="position:absolute; left:0px; top:18px; width:440px; height:1px; z-index:3; visibility:hidden"> 
+	 <table width="775" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0205000&[[%%SESSIONID%%]]" target="main">支存待補金額</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0206000&[[%%SESSIONID%%]]" target="main">已兌現票據</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0207000&[[%%SESSIONID%%]]" target="main">領用票據</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0213000&[[%%SESSIONID%%]]" target="main">退票資料</a></div>
+	        <!--div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0107000&[[%%SESSIONID%%]]" target="main">退票資料</a></div-->
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+	<div id="Layer4" style="position:absolute; left:0px; top:18px; width:440px; height:1px; z-index:4; visibility:hidden"> 
+	  <table width="775" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td width="303"> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0301000&[[%%SESSIONID%%]]" target="main">貸款帳戶</a></div>
+	      </td>
+	      <td width="325"> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0302000&[[%%SESSIONID%%]]" target="main">貸款應繳本息</a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+</td>
+</tr>
+</table>
+
+
+<script language="javaScript">
+
+var Timeout_ID = null;
+var iMain 	= null;
+var pSubMain 	= null;	
+var pDown	= null;
+
+function checkLoaded() {
+
+	if (!document.getElementById){
+		clearTimeout(Timeout_ID);
+		Timeout_ID = null;
+		//alert("IE failed:document.getElementById");
+		return;
+	}
+	
+	if ( (document.getElementById("main")) && (document.getElementById("main").style) ) {
+		iMain = document.getElementById("main").style;  			
+  		iMain.left = 0;
+     	}else {    
+     		clearInterval(Timeout_ID);	Timeout_ID = 0;
+     		//alert("Failed to load iFrame: main");      		
+     		return;
+     	}     	
+     	
+	if (parent.document.getElementById && 
+	    parent.document.getElementById("submain") &&    parent.document.getElementById("down")) {
+		pSubMain = parent.document.getElementById("submain").style;
+		pDown    = parent.document.getElementById("down").style;
+	}else{
+		clearInterval(Timeout_ID);	Timeout_ID = null;
+		//alert("Failed to load iFrame: submain & down ....");		
+		return;
+	}
+	
+	if (window.frames["main"].document.readyState == "complete" ) {
+		clearInterval(Timeout_ID);	Timeout_ID = null;		
+
+		var bodyMain = window.frames["main"].document.body;
+
+		//this.document.getElementById("main").style.width = bodyMain.scrollWidth;
+		
+		if (parseFloat(bodyMain.scrollHeight, 10) < 385) 
+			this.document.getElementById("main").style.height = 385; //435;
+		else    this.document.getElementById("main").style.height = bodyMain.scrollHeight;
+     		//pSubMain.height = parseInt(this.document.body.scrollHeight, 10);
+     		pSubMain.height = parseInt(parseInt(iMain.height, 10) + parseInt(iMain.top, 10)) + "px";
+     		//pSubMain.top	= 130;
+		pDown.top	= parseInt(pSubMain.height, 10) + parseInt(pSubMain.top, 10) + 10;
+        
+		if (top.document.getElementById("IC0000000") != null)
+			top.document.getElementById("IC0000000").style.height = parseInt(parseInt(pDown.height, 10) + parseInt(pDown.top, 10)) + "px";
+		//top.document.getElementById("IC0000000").style.width  = parseInt(parseInt(pDown.width, 10) + "px";
+	}
+}
+
+</script>
+
+
+<iframe name="main" id="main" onLoad="javaScript:Timeout_ID=setInterval('checkLoaded();', 500)"
+	style="position: absolute; top:50 ; left:0 ; z-index:0" 
+	width="775" height="1150" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="AUTO" 
+	src="LoadAP?aptype=IBANK&pageid=IP0803001&[[%%SESSIONID%%]]"></iframe>
+</body>
+
+</html>

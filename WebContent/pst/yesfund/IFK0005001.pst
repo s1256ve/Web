@@ -1,0 +1,145 @@
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=big5"> 
+<title>基金轉換</title>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="javaScript">
+var ukyc = 0[[%%SEND-KYC-VALUE%%]];
+var fkyc = 0[[%%SEND-FUND-RANK%%]];
+function chksubmit(nextPageid, next2){		
+	if(next2 == "IFK000005")
+		{
+			window.parent.chooseFound();
+		}
+	else if(next2 == "openKYC")
+	{
+	window.open('LoadAP?aptype=IBANK&pageid=IFK0000021', 'KYC');
+	}	
+		document.IFK0005001.pageid.value = nextPageid;
+		document.IFK0005001.nextpage.value = next2;
+		document.IFK0005001.submit();
+	
+}
+
+function diffDate(DateA,DateB){
+	var diffA = new Date(eval(DateA.substr(0,4)),eval(DateA.substr(4,2)-1),eval(DateA.substr(6,2))).getTime();
+	var diffB = new Date(eval(DateB.substr(0,4)),eval(DateB.substr(4,2)-1),eval(DateB.substr(6,2))).getTime();
+	//二個date相減為毫秒差，再將它除(1000*60*60*24)
+	//return ((diffA - diffB) / (1000*60*60*24));
+	if((diffA - diffB) / (1000*60*60*24)>366)
+	{
+		if(fkyc != "01")
+		{
+		ans = confirm("親愛的客戶您好：依主管機關規定，風險承受度分析結果超逾一年者，應先重新評估風險承受度後再進行投資事宜。重新評估風險屬性 請按「確定」，取消申購/轉換請按「取消」")
+			if(ans)	
+	 			chksubmit('IP0803001','openKYC');
+			else
+				{
+				chksubmit('IP0803001', '');
+				}
+		}
+		else
+			chksubmit('IF0501202', '');
+	}
+	else
+	{
+  	diffRank(ukyc,fkyc);
+  } 
+}
+</script>
+</head> 
+<style type="text/css"> 
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{ font-family: "Arial"; font-size: 8pt}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } #Layer1 {
+	position:absolute;
+	left:477px;
+	top:102px;
+	width:54px;
+	height:22px;
+	z-index:1;
+}
+.style1 {color: #FF0000}
+#Layer2 {position:absolute;
+	left:540px;
+	top:6px;
+	width:96px;
+	height:49px;
+	z-index:2;
+	visibility: visible;
+}
+-->
+</style> 
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0"> 
+<form method="post" action="LoadAP" name="IFK0005001">
+<font color="#006666"><b>基金轉換&gt;</b></font><br> 
+<div id="DIFK0001001" name="DIFK0001001" style="display:none">
+<table width="730" border="0"> 
+  <tr> 
+    <td colspan="3"> <font face="Arial, Helvetica, sans-serif"> </font><font face="Arial, Helvetica, sans-serif"> </font> <font face="Arial, Helvetica, sans-serif"> </font> 
+<table width="600" border="1" align="center" cellpadding="10" cellspacing="15"> 
+        <tr bordercolor="#FFFFFF" bgcolor="#E7F1EE"> 
+          <td bgcolor="#FFFFCC"><p>親愛的客戶您好：<br> 
+            <div style="display:none">提醒您欲申購/轉換的<strong class="t1">[[%%SEND-FUND-CNAME%%]]基金</strong>其風險等級為<strong class="t1">[[%%SEND-FUND-RANK-DESC%%]]</strong>， <br> 
+超逾您的風險承受度<strong class="t1">[[%%SEND-RANK-DESC%%]]</strong>，</div> <br>
+依據金管會發布「信託業營運範圍受益權轉讓限制風險揭露及行銷訂約管理辦<br />
+法」之規定，信託業辦理特定金錢信託業務受理非專業投資人之委託投資時，應<br />
+依信託業內部訂定之程序確認委託人具備相當之投資專業及財務能力，並足以承<br />
+擔所投資標的之風險。故本行辦理特定金錢信託投資基金類型商品將依規定確認<br />
+客戶風險屬性，即日起如投資標的風險等級較客戶風險承受度為高時，建議您重<br />
+新選擇投資標的，以完成本次交易。<br /><br />
+若您對上述說明有任何疑問，請洽詢聯邦銀行各分行，再次謝謝您的支持！<br /><br />
+<strong>&lt.聯邦商業銀行 敬上&gt</strong> <br /><br />
+
+<input type="submit" name="Submit2" value="重新執行轉換基金選擇" onclick="chksubmit('IF0501000', 'IF0101001');"> 
+<input type="submit" name="Submit2"  value="重新評估風險承受度" onclick="chksubmit('IP0803001','openKYC');"> 
+<input type="submit" name="Submit22" value="回到基金首頁" onclick="chksubmit('IP0803001', '');"> 
+</p> 
+            </td> 
+        </tr> 
+      </table> 
+    </td> 
+  </tr> 
+</table> 
+</div>
+<br>
+
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="nextpage" value="">
+<input type="hidden" name="REVE_CERT_NO" value="[[%%REVE-CERT-NO%%]]">
+<input type="hidden" name="REVE_CVT_TYPE" value="[[%%REVE-CVT-TYPE%%]]">
+<input type="hidden" name="REVE_CHANGE_TYPE" value="[[%%REVE-CHANGE-TYPE%%]]">
+<input type="hidden" name="REVE_FROM_FUNDID" value="[[%%REVE-FROM-FUNDID%%]]">
+<input type="hidden" name="REVE_FROM_FUNDNAME" value="[[%%REVE-FROM-FUNDNAME%%]]">
+<input type="hidden" name="REVE_FROM_AMT" value="[[%%REVE-FROM-AMT%%]]">
+<input type="hidden" name="REVE_FROM_UNITS" value="[[%%REVE-FROM-UNITS%%]]">
+<input type="hidden" name="REVE_TO_FUNDID" value="[[%%REVE-TO-FUNDID%%]]">
+<input type="hidden" name="REVE_TO_FUNDNAME" value="[[%%REVE-TO-FUNDNAME%%]]">
+<input type="hidden" name="REVE_TO_AMT" value="[[%%REVE-TO-AMT%%]]">
+<input type="hidden" name="REVE_TO_UNITS" value="[[%%REVE-TO-UNITS%%]]">
+<input type="hidden" name="REVE_TO_FUND_AMT_DATE" value="[[%%REVE-TO-FUND-AMT-DATE%%]]">
+<input type="hidden" name="REVE_TO_FUND_AMT_REF" value="[[%%REVE-TO-FUND-AMT-REF%%]]">
+<input type="hidden" name="REVE_SENDCURRENCY" value="[[%%REVE-SENDCURRENCY%%]]">  
+<input type="hidden" name="REVE_TO_CURRENCY" value="[[%%REVE_TO_CURRENCY%%]]">
+</form>
+<script language="javaScript">
+if("[[%%SEND-KYC-DATE%%]]">0)
+diffDate("[[%%SYSDATE%%]]",getADDateStr(parseInt("[[%%SEND-KYC-DATE%%]]",10).toString(),-1));
+
+function diffRank(ukyc,fkyc){
+	if(ukyc+1 >= fkyc && "[[%%SEND-KYC-DATE%%]]"!="00000000") {
+	  chksubmit('IF0501202');
+	}else {
+		var DIFK0001001 = document.getElementById("DIFK0001001");
+		DIFK0001001.style.display="";
+	}
+}
+    
+</script>
+</body> 
+</html> 

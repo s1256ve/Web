@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='Big5'?>
+<!-- UITC Schema Generater at 2003-09-24 -->
+<catalog>
+	<field id='fieldi001' attr='S' default=''>
+		<name>REVE-CODE</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+	<field id='fieldi002' attr='I' default=''>
+		<name>REVE-SESSION-ID</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+	<field id='fieldi003' attr='I' default=''>
+		<name>REVE-ACTOR</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+	<field id='fieldi004' attr='I' default=''>
+		<name>REVE-NICK-NAME</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+	<!--
+	<field id='fieldi005' attr='I' default=''>
+		<name>REVE-PWD</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+	-->
+	<field id='fieldi005' attr='I' default=''>
+		<name>REVE-NEW-PWD</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+	<field id='fieldi005' attr='I' default=''>
+		<name>REVE-CFM-PWD</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+	<field id='fieldi006' attr='I' default=''>
+		<name>REVE-ID-NO</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+	<field id='fieldi007' attr='I' default=''>
+		<name>REVE-IGNORE-CFM</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+	<field id='fieldi008' attr='I' default=''>
+		<name>REVE-ACCT-NO</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+	<field id="fieldi09">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="fieldi010">
+		<name>REVE-PIN</name>
+		<length>15</length>
+		<type>String</type>
+		<description>動態密碼</description>
+	</field>
+	<field id='fieldi008' attr='I' default=''>
+		<name>REVE-FUNC-CODE</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+	<field id="fieldi010">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id='fieldi006' attr='S' default=''>
+		<name>TXNTYPE</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+	<field id='fieldi007' attr='I' default=''>
+		<name>PBX-SID</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+	<field id='fieldi008' attr='S' default=''>
+		<name>TXN-SNO</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+	<field id='fieldi008' attr='S' default=''>
+		<name>REVE-COME-FROM</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+	<field id="fieldi010">
+		<name>REVE-DY-PWD</name>
+		<length>12</length>
+		<type>String</type>
+		<description>動態密碼比對值</description>
+	</field>
+	<field id="fieldi010">
+		<name>REVE-IGNORE-CASE</name>
+		<length>12</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="fieldi010">
+		<name>REVE-TIME-RANGE</name>
+		<length>12</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="fieldi010">
+		<name>COMP</name>
+		<length>12</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="fieldi010">
+		<name>REVE-FUNC-CODE</name>
+		<length>12</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="VTRTRi21">
+		<name>REVE-CURRENTTICK</name>
+		<length></length>
+		<type>String</type>
+		<description>簡訊發送時間</description>
+	</field>
+</catalog>

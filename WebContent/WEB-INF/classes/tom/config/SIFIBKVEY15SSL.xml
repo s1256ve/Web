@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- 
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+*SerialNo           Date Modified  Modified by   
+*=========          =============  ===========
+*EAI97076           2010.01.12     David 
+*EAI96072           2009.03.02     David 
+***********************************************************************/
+ -->
+<!-- NCR VEY, EAI 繳稅. Last updated date 6-24-2004 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/NCR">
+	<field id="VEYi01">
+		<name>REVE-CODE</name>
+		<length>3</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='VEYi54' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="VEYi55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="VEYi02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>轉出帳號</description>
+	</field>
+	<field id="VEYi03">
+		<name>REVE-TXN-AMT</name>
+		<length>14</length>
+		<type>String</type>
+		<description>轉帳金額</description>
+	</field>
+	<field id="VEYi04">
+		<name>REVE-TXN-TYPE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>交易類別</description>
+	</field>
+	<field id="VEYi05">
+		<name>REVE-TXN-FEE</name>
+		<length>5</length>
+		<type>String</type>
+		<description>轉帳手續費</description>
+	</field>
+	<field id="VEYi06">
+		<name>REVE-TXN-MEMO</name>
+		<length>10</length>
+		<type>String</type>
+		<description>交易摘要</description>
+	</field>
+	<field id="VEYi07">
+		<name>REVE-MEMO</name>
+		<length>14</length>
+		<type>String</type>
+		<description>說明摘要</description>
+	</field>
+	<field id="VEYi08">
+		<name>REVE-OFFICE-CODE</name>
+		<length>3</length>
+		<type>String</type>
+		<description>稽徵機關代號</description>
+	</field>
+	<field id="VPYi09">
+		<name>REVE-NOTICE-NO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>銷帳編號</description>
+	</field>
+	<field id="VPYi10">
+		<name>REVE-DUE-DATE</name>
+		<length>6</length>
+		<type>String</type>
+		<description>繳款期限</description>
+	</field>	
+ 	<field id="VPYi11">
+		<name>REVE-PAY-TYPE</name>
+		<length>5</length>
+		<type>String</type>
+		<description>繳款類別</description>
+	</field>
+	<field id="VEYi11">
+		<name>REVE-DY-PWD</name>
+		<length>5</length>
+		<type>String</type>
+		<description>動態密碼</description>
+	</field>
+	<field id="VEYi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="VEYi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="VEYi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="VEYi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="VEYi56">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description>螢幕密碼索引</description>
+        </field>
+   <field id="VEYi57">
+		<name>REVE-PWD</name>
+		<length>5</length>
+		<type>String</type>
+		<description>密碼</description>
+	</field>
+	<field id="VEYi58">
+		<name>REVE-FROM-CURRENCY</name>
+		<length>5</length>
+		<type>String</type>
+		<description>幣種別</description>
+	</field>
+	<field id="VEYi59">
+		<name>REVE-IGNORE-CASE</name>
+		<length>5</length>
+		<type>String</type>
+		<description>忽略大小寫</description>
+	</field>
+	<field id="VEYi60">
+		<name>REVE-TIME-RANGE</name>
+		<length>5</length>
+		<type>String</type>
+		<description>比對時間長度</description>
+	</field>
+	<field id="VEYi61">
+		<name>SEND_INPUT_ID_NO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+	<field id="VEYi62">
+		<name>SEND_INPUT_ID_NO_MARK</name>
+		<length>16</length>
+		<type>String</type>
+		<description>有遮罩過的身分證字號</description>
+	</field>
+	<field id="VEYi62">
+		<name>SEND-PAY-TYPE</name>
+		<length>16</length>
+		<type>String</type>
+		<description>結算申報自繳稅款類別及代號</description>
+	</field>
+	<field id="VEYi62">
+		<name>SEND-OFFICE-CODE</name>
+		<length>16</length>
+		<type>String</type>
+		<description>納稅人戶籍所在地代號</description>
+	</field>
+	<field id="VTRTRi21">
+		<name>REVE-CURRENTTICK</name>
+		<length></length>
+		<type>String</type>
+		<description>簡訊發送時間</description>
+	</field>
+</catalog>

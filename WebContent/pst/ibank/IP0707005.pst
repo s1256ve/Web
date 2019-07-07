@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<form method="post" action="LoadAP" name="IP0707005">
+<input type="hidden" name="pageid" value="IP0707006">
+<input type="hidden" name="SEND-V-NO" value="[[%%SEND-V-NO%%]]">
+<input type="hidden" name="SEND-TITLE" value="[[%%SEND-TITLE%%]]">
+<input type="hidden" name="SEND-B-DATE" value="[[%%SEND-B-DATE%%]]">
+<input type="hidden" name="SEND-E-DATE" value="[[%%SEND-E-DATE%%]]">
+<input type="hidden" name="SEND-INTEREST" value="[[%%SEND-INTEREST%%]]">
+<input type="hidden" name="SEND-BALANCE" value="[[%%SEND-BALANCE%%]]">
+<input type="hidden" name="SEND-ACCT-NO" value="[[%%SEND-ACCT-NO%%]]">
+<input type="hidden" name="SEND-BR-NAME" value="[[%%SEND-BR-NAME%%]]">
+<input type="hidden" name="SEND-MEMO" value="[[%%SEND-MEMO%%]]">
+<input type="hidden" name="SEND-FROM-BR-NAME" value="[[%%SEND-FROM-BR-NAME%%]]">
+<input type="hidden" name="SEND-FROM-ACCT-NO" value="[[%%SEND-FROM-ACCT-NO%%]]">
+<input type="hidden" name="SEND-TXN-AMT" value="[[%%SEND-TXN-AMT%%]]">
+<input type="hidden" name="SEND-AVAL-BALANCE" value="[[%%SEND-AVAL-BALANCE%%]]">
+<script>
+document.IP0707005.submit();
+</script>
+</form>
+</body>
+</html>

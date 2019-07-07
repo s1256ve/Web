@@ -1,0 +1,216 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript" src="script/calendar.js"></script>
+<script language="JavaScript" src="script/calendar-zh.js"></script>
+<script language="JavaScript" src="script/calendar-setup.js"></script>
+<script language="JavaScript" src="script/calendarface.js"></script>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<script>
+<!--
+function chgAcct(acctStr) {
+	var acctArray = acctStr.split("@");
+	document.IP0702623.SEND_FROM_BR_NAME.value = acctArray[0];
+	document.IP0702623.SEND_FROM_ACCT_DESC.value = acctArray[1];
+	document.IP0702623.SEND_FROM_ACCT_NO.value = acctArray[2];
+	document.IP0702623.SEND_AVAL_BALANCE.value = acctArray[3];
+}
+
+function chkAcct(br,desc,acct,balance){
+	var sendAcct = '[[%%SEND-ACCT-NO%%]]';
+	var sendAcctNum = sendAcct.substr(0,3);
+	var fromAcctNum = acct.substr(0,3);
+	val = br+'@'+desc+'@'+acct+'@'+balance;
+	if(fromAcctNum == sendAcctNum){
+		return "<option value=" + val + ">" + br +" "+ getAcctStr(acct) + "新台幣 " + trimDecimal(moneyAddDot(balance)) +" 元</option>";
+	}
+}
+
+function getInt(str){
+	if(str == 1){
+		return "到期領息";
+	}
+	else {
+		return "每月領息";
+	}
+}
+
+function chkSubmit(){
+	if(document.IP0702623.chkAcct.value == 0){
+		alert("請選擇轉出帳號!");
+		return;
+	}
+	if(document.IP0702623.SEND_FROM_ACCT_NO.value.substr(3,2)=="51"){
+		alert("本交易不得動用到達文西A+理財卡或國民現金貸款額度!");
+	}
+	saveAmt = trim(moneyFormat3('[[%%SEND_SAVE_AMT%%]]'),",");
+	balance = document.IP0702623.SEND_AVAL_BALANCE.value;
+	document.IP0702623.SEND_TXN_AMT.value = saveAmt;
+	onSend('IP0702623');
+	document.IP0702623.SEND_SCHD_DATE.value = document.IP0702623.DateBegin.value;
+	if(document.IP0702623.SEND_SCHD_DATE.value==""){
+		alert("請輸入轉帳日期!");
+		return;
+	}
+        	date = eval(document.IP0702623.SEND_SCHD_DATE.value);
+        	date2 = "[[%%SYSDATE%%]]";
+        	if(date2==""){
+        		date2 = eval(getADDateStr(getNowDate(),-1));
+        	}
+	else{
+		date2 = eval(getADDateStr(date2,-1));
+	}
+	if(chkDateRule(document.IP0702623.DateBegin.value,"",
+		"[[%%SYSDATE%%]]",
+		0,	//A年
+		1,	//A月
+		0,	//A日
+		0,	//B年
+		1,	//B月
+		0	//B日
+		)==false){
+	alert("預約轉帳限預約最近一個月,如93/05/23可預約93/05/24-93/06/23期間執行之交易");
+	return ;
+	}
+	if(date > date2){
+		document.IP0702623.SEND_MEMO.value = HalfshapeToFullshape(document.IP0702623.SEND_MEMO.value);
+		document.IP0702623.submit();
+	}
+	else{
+		alert("預約轉帳限預約最近一個月,如93/05/23可預約93/05/24-93/06/23期間執行之交易");
+		return;
+	}
+
+}
+
+function chkSubmit2(){
+	document.IP0702623.pageid.value = "IP0702620";
+	document.IP0702623.submit();
+}
+-->
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+
+<form method="post" action="LoadAP" name="IP0702623">
+<b>　帳戶交易&gt;<font color="#0066FF">預約活存轉存零存整付</font></b><br><br>
+<table width="620" border="0">
+  <tr> 
+    <td> <br>
+      <table width="620" align="center" border="1" bordercolor="#999999">
+        <tr> 
+          <td width="14%" height="25" bgcolor="#C4CBB8">轉帳日期</td>
+          <td width="86%">
+          	<script>
+                 	var selDate = getRCDateStr("[[%%SYSDATE%%]]",0);
+                 	crtDateInputObj("DateBegin");
+                 	//lockCalSelObj('IP0702623',0,selDate);
+                 	lockCalSelObj('IP0702623',-1,selDate);
+                 </script>
+          </td>
+        </tr>
+        <tr> 
+          <td width="14%" height="25" bgcolor="#C4CBB8">存單字號</td>
+          <td width="86%">[[%%SEND-V-NO%%]]</td>
+        </tr>
+        <tr> 
+          <td width="14%" height="25" bgcolor="#C4CBB8">轉存定存種類</td>
+          <td width="86%">零存整付</td>
+        </tr>
+        <tr> 
+          <td width="14%" height="25" bgcolor="#C4CBB8">每次存入時間</td>
+          <td width="86%">每月[[%%SEND-SAVE-DATE%%]]日(存款期間：
+          <script>
+          	document.write(getRCDateStr('[[%%SEND-B-DATE%%]]',0));
+          </script>-
+          <script>
+          	document.write(getRCDateStr('[[%%SEND-E-DATE%%]]',0));
+          </script>
+          )</td>
+        </tr>
+        <tr> 
+          <td width="14%" height="25" bgcolor="#C4CBB8">利　　率</td>
+          <td width="86%"> 機動利率，本項存款每月存入各筆金額個別依照存入當時存單契約期限之牌告機動利率複利計息</td>
+        </tr>
+        <tr>
+          <td width="14%" height="25" bgcolor="#C4CBB8">領息方式</td>
+          <td width="86%">
+          <script>
+          <!--
+          document.write(getInt([[%%SEND-INT-PAY%%]]));
+          -->
+          </script>
+          </td>
+        </tr>
+        <tr> 
+          <td width="14%" height="25" bgcolor="#C4CBB8">轉存金額</td>
+          <td width="86%" height="25">
+          <script>
+              	document.write(moneyFormat3('[[%%SEND_SAVE_AMT%%]]'));
+          </script>
+          元
+          </td>
+        </tr>
+        <tr>
+          <td width="14%" height="25" bgcolor="#C4CBB8">轉出帳號</td>
+          <td width="86%"> 
+            <select name="chkAcct" onChange="JavaScript:chgAcct(this.value);">
+              <option value="0" selected>==請選擇帳號　可用餘額==</option>
+
+              [[%%LOOP_SEC SEND-FROM-ACCT-NO%%]]
+              <script language="javascript">
+              var acct = '[[%%SEND-FROM-ACCT-NO%%]]';
+              var brName = '[[%%SEND-FROM-BR-NAME%%]]';
+              var acctDesc = '[[%%SEND-FROM-ACCT-DESC%%]]';
+              var balance = '[[%%SEND-FROM-AVAL-BALANCE%%]]';
+              document.write(chkAcct(brName,acctDesc,acct,balance));
+              </script>
+              [[%%ELOOP_SEC%%]]
+
+            </select>
+          </td>
+        </tr>
+        <tr> 
+          <td width="14%" bgcolor="#C4CBB8">交易附註</td>
+          <td width="86%" height="25"> 
+            <input type="text" name="SEND_MEMO" value="" maxlength="50" size="80">
+            <br>
+            <font color="#FF0000">(如您輸入交易附註，則於交易成功後可至『帳戶查詢』&gt;『台幣存款帳戶』&gt;『交易明細』點選查詢類別為『網銀轉出交易』查詢您所記錄之交易附註。) 
+            </font>
+          </td>
+        </tr>
+      </table><br>
+      註：本交易之轉出帳號限與定存帳號為同一營業單位
+      <div align="center"> 
+        <input type="button" name="Submit" value="確定" onClick="chkSubmit();">
+        <input type="reset" name="Submit2" value="重填">
+      </div>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="IP0702624">
+  <input type="hidden" name="SEND-BR-NAME" value="[[%%SEND-BR-NAME%%]]">
+  <input type="hidden" name="SEND-ACCT-DESC" value="[[%%SEND-ACCT-DESC%%]]">
+  <input type="hidden" name="SEND-ACCT-NO" value="[[%%SEND-ACCT-NO%%]]">
+  <input type="hidden" name="SEND-V-NO" value="[[%%SEND-V-NO%%]]">
+  <input type="hidden" name="SEND-TITLE" value="[[%%SEND-TITLE%%]]">
+  <input type="hidden" name="SEND-B-DATE" value="[[%%SEND-B-DATE%%]]">
+  <input type="hidden" name="SEND-E-DATE" value="[[%%SEND-E-DATE%%]]">
+  <input type="hidden" name="SEND-BALANCE" value="[[%%SEND-BALANCE%%]]">
+  <input type="hidden" name="SEND-INTEREST" value="[[%%SEND-INTEREST%%]]">
+  <input type="hidden" name="SEND_FROM_BR_NAME" value="">
+  <input type="hidden" name="SEND_FROM_ACCT_NO" value="">
+  <input type="hidden" name="SEND_FROM_ACCT_DESC" value="">
+  <input type="hidden" name="SEND_AVAL_BALANCE" value="">
+  <input type="hidden" name="SEND_TXN_AMT" value="">
+  <input type="hidden" name="SEND_SCHD_DATE">
+</table>
+</form>
+</body>
+</html>

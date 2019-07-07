@@ -1,0 +1,275 @@
+<html>
+<head>
+<title>台幣存款帳戶查詢</title>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI98004           2009.02.17     YiSyun  
+*EAI100070          2011.09.26     Simon
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript" src="script/calendar.js"></script>
+<script language="JavaScript" src="script/calendar-zh.js"></script>
+<script language="JavaScript" src="script/calendar-setup.js"></script>
+<script language="JavaScript" src="script/calendarface.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+
+<SCRIPT language="JavaScript">
+var sysdate5 = "[[%%SYSDATE%%]]";
+var nowDate5 = new Date(sysdate5.substr(0,4), sysdate5.substr(4,2)-1, sysdate5.substr(6,2));
+var dd = new Array();
+var dd2 = new Array();
+var dd3 = new Array();
+var xx;
+for(i=0;i<3;i++){
+	if(i==0){
+		dd[i] = nowDate5;
+		dd2[i] = nowDate5.getFullYear();
+		dd3[i] = nowDate5.getMonth()+1;
+	}else{
+		xx = dd[i-1];
+		xx.setDate(xx.getDate()- xx.getDate());
+		dd[i] = xx;
+		dd2[i] = xx.getFullYear();
+		dd3[i] = xx.getMonth()+1;
+	}
+}
+var nowYear = dd2[0];2
+var nowMonth = dd3[0];
+var nowDay = eval(sysdate5.substr(6,2));
+var preYear2 = dd2[1];
+var preMonth2 = dd3[1];
+if (preMonth2.length<2) preMonth2 = "0"+preMonth2;
+var preYear3 = dd2[2];
+var preMonth3 = dd3[2];
+if (preMonth3.length<2) preMonth3 = "0"+preMonth3;
+
+
+var nowDateStr = getRCDateStr("[[%%SYSDATE%%]]",0);
+var selDate = nowDateStr + "," + nowDateStr;
+
+function chgAcct(acctStr) {
+	var acctArray = acctStr.split("@");
+	var i = 0;
+	document.IP0201000.selBrName.value = acctArray[0];
+	document.IP0201000.selBalType.value = acctArray[1];
+	document.IP0201000.selAcctNo.value = acctArray[2];
+	document.IP0201000.selAvalBalance.value = acctArray[3];
+}
+
+function countDate(inYear,inMonth,inDay){
+	var tmpYear = nowYear + eval(inYear);
+	var tmpMonth = nowMonth + eval(inMonth);
+	var tmpDay = nowDay + eval(inDay);
+	var reDate = new Date(tmpYear, (tmpMonth-1), tmpDay);
+	var reDateStr = getRCDateStr(reDate.getFullYear() + "/" + (reDate.getMonth()+1) + "/" + reDate.getDate(),0);
+	return reDateStr;
+}
+
+function countDate2(inYear,inMonth,inDay){
+	var tmpYear = nowYear + eval(inYear);
+	var tmpMonth = nowMonth + eval(inMonth);
+	var tmpDay = nowDay + eval(inDay);
+	var reDate = new Date(tmpYear, (tmpMonth-1), tmpDay);
+	var reDateStr = getADDateStr(reDate.getFullYear() + "/" + (reDate.getMonth()+1) + "/" + reDate.getDate(),-1);
+	return reDateStr;
+}
+
+function chgDate(inValue){
+
+
+	if (inValue==0){
+		inDate = selDate;
+		
+	}
+	if (inValue==1){
+		var newWeek = countDate(0,0,-7);
+		selDate1 = newWeek + "," + nowDateStr;
+		inDate = selDate1;
+		
+	}
+	if (inValue==2){
+		var lastMonth = countDate(0,-1,0);
+		var selDate2 = lastMonth + "," + nowDateStr;
+		inDate = selDate2;
+		
+	}
+	
+	if (inValue==3){
+		var selDate3 = getRCDateStr(nowYear + "/" + (nowMonth) + "/" + 1 ,0) + "," + nowDateStr;
+		inDate = selDate3;
+		
+	}
+	
+	if (inValue==4){
+		var lastMonth = (preYear2-1911) + "/" + (preMonth2) + "/"+ getMaxDays(preYear2,preMonth2);
+		var selDate4 = getRCDateStr(preYear2 + "/" + (preMonth2) + "/" + 1 ,0) + "," + lastMonth;
+		inDate = selDate4;
+		
+	}
+	if (inValue==5){
+		var lastMonth = (preYear3-1911) + "/" + (preMonth3) + "/"+ getMaxDays(preYear3,preMonth3);
+		var selDate5 = getRCDateStr(preYear3 + "/" + (preMonth3) + "/" + 1 ,0) + "," + lastMonth;
+		inDate = selDate5;
+		
+	}
+	lockCalSelObj('IP0201000', inValue, inDate)
+}
+
+function chkSubmit(){
+
+    var acct 	  = document.IP0201000.selAcctNo.value;
+    var queryType = document.IP0201000.selQueryType;
+
+	if(acct==""){
+		alert("請選擇帳號！");
+		return;
+	}
+
+	// 帳戶: 30  (若為網銀交易明細查詢，不另行套FORM，同其它科目別之頁面格式，故同樣連至IP0201002)
+	if (acct.substr(3,2)=="30"){
+		if (document.IP0201000.selQueryType[0].checked) { 
+			document.IP0201000.pageid.value="IP0201003";	
+		}else{
+			document.IP0201000.pageid.value="IP0201002"; //網銀交易
+		}	
+	}
+	// 帳戶: 10, 20, 50, 51
+	else {
+		if (document.IP0201000.selQueryType[0].checked) { 
+			document.IP0201000.pageid.value="IP0201001";	
+		}else{
+			document.IP0201000.pageid.value="IP0201002";  //網銀交易
+		}	
+	}
+	onSend('IP0201000');
+	if(chkDateRule(document.IP0201000.DateBegin.value,document.IP0201000.DateEnd.value,
+		countDate2(0, 1, 0),
+		0,	//A年
+		-13,	//A月
+		0,	//A日
+		0,	//B年
+		1,	//B月
+		0	//B日
+		)==false){
+	alert("您所選擇的區間超過查詢範圍。\n詳見\"說明\"");
+	return ;
+	}
+	document.IP0201000.selDateBegin.value=document.IP0201000.DateBegin.value;
+	document.IP0201000.selDateEnd.value=document.IP0201000.DateEnd.value;
+	//confirm(document.IP0201000.pageid.value);
+	document.IP0201000.submit();
+}
+</SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="SCRIPT/acctfmt.js"></SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+
+<script language="JavaScript">
+	window.onload=function(){
+ 		chgDate(0);
+ 	}
+</script>
+
+<form name="IP0201000" method="POST" action="LoadAP">
+<b>　台幣存款帳戶查詢&gt;<font color="#003399"><font color="#0066FF">交易明細</font></font></b><br>
+<br>
+<table width="763" border="0">
+  <tr> 
+    <td width="150">　查詢帳號</td>
+	<td>
+      <select name="REVE_ACCT_NO" onChange="JavaScript:chgAcct(this.value);">
+
+        <option value="" selected>==請選擇帳號==</option>
+        [[%%LOOP_SEC SEND-ACCT-NO%%]]
+        <option value="[[%%SEND-BR-NAME%%]]@[[%%SEND-ACCT-DESC%%]]@[[%%SEND-ACCT-NO%%]]@[[%%SEND-AVAL-BALANCE%%]]">
+        		[[%%SEND-BR-NAME%%]] &nbsp;&nbsp; 
+        		[[%%SEND-ACCT-DESC%%]] &nbsp;&nbsp; 
+        		<script language="javascript"> 
+        			document.write(getAcctStr("[[%%SEND-ACCT-NO%%]]"));
+        		</script>
+        </option>
+        [[%%ELOOP_SEC%%]]
+      </select></td>
+  </tr>
+  <tr> 
+    <td valign="bottom">　查詢日期　
+	</td>
+	<td> 
+      <select name="selDateType" onChange="JavaScript:chgDate(this.value);">
+        	<option selected value="0">當日</option>
+        	<option value="1">最近一週</option>
+        	<option value="2">最近一月</option>
+        	<option value="3">
+					<script language="JavaScript">				 
+						document.write(nowMonth+"月份");
+					</script>
+					</option>
+        	<option value="4">
+					<script language="JavaScript">
+						document.write(preMonth2+"月份");
+					</script>
+					</option>
+					<option value="5">
+					<script language="JavaScript">
+						document.write(preMonth3+"月份");
+					</script>
+					</option>
+        	<option value="-1">自選日期</option>
+      		</select>
+            	<script language="JavaScript">
+	            	<!--
+	            	document.write("起日");
+			crtDateInputObj("DateBegin");
+			document.write("迄日");
+			crtDateInputObj("DateEnd");
+			lockCalSelObj('IP0201000',0,selDate);
+			-->
+		</script>		
+		<img src="graph/go.gif" width="19" height="19" align="absmiddle" border="0" onClick="javascript:chkSubmit();">
+      　</td>
+  </tr>
+  <tr> 
+    <td valign="bottom">　查詢類別</td>
+    <td width="624" valign="bottom"> 
+      <input type="radio" name="selQueryType" value="0" checked>
+      所有交易 
+      <input type="radio" name="selQueryType" value="1">
+      網路銀行轉出交易（選擇本項目可顯示利用個人網路<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;銀行轉帳所留存的交易附註內容）</td>
+    <td width="342" valign="bottom">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="5" valign="bottom" height="2"></td>
+  </tr>
+</table>
+<table width="630" border="0">
+  <tr>
+    <td>說明：<br>
+      1. 交易明細查詢區間為最近一年（惟支存查詢區間為最近半年），每次限查詢一個月。<br>
+      <b><font color="#FF0000">2. 若您於非營業日時間進行轉帳，查詢該筆交易記錄請選擇&quot;自選日期&quot;並以次一營業日之日期查詢。</font></b><br>
+      3.查詢類別若選擇「網路銀行轉出交易」可提供您查詢執行「轉帳/繳款」類交易時所輸入之交易附註資料。 </td>
+  </tr>
+</table>
+<input type="hidden" name="selBrName" value="">
+<input type="hidden" name="selBalType" value="">
+<input type="hidden" name="selAcctNo" value="">
+<input type="hidden" name="selAvalBalance" value="">
+<input type="hidden" name="selDateBegin" value="">
+<input type="hidden" name="selDateEnd" value="">
+<input type="hidden" name="aptype" value="ibank">
+<input type="hidden" name="pageid" value="IP0201001">
+</form>
+
+</body>
+</html>

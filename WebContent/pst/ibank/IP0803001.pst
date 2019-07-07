@@ -1,0 +1,31 @@
+<html>
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------------
+*EAI99038           2010.04.22     David
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script>
+location.reload;
+</script>
+<title>新增網頁1</title>
+</head>
+<frameset framespacing="0" border="0" frameborder="0" cols="760,*">
+<frameset framespacing="0" border="0" frameborder="0" rows="325,*">
+	<frame name="msgcomm" src="https://web.ubot.com.tw/UBOT2005/mid_personal02.asp" scrolling="auto" >
+	<frame name="msgbody" src="LoadAP?pageid=IP0803002&aptype=IBANK" scrolling="auto" >
+	<noframes>
+	<body>
+
+	<p>此網頁使用框架，但是您的瀏覽器不支援框架。</p>
+
+	</body>
+	</noframes>
+</frameset>
+</frameset>
+
+</html>

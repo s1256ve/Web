@@ -1,0 +1,219 @@
+<html>
+<head>
+<title>外匯帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js">
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI100036          2011.07.01     Joe  
+***********************************************************************/
+</script>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+<script language="javascript">
+ var kbWin = null;
+function getKeyBoard()
+{
+ var Mytype="width=450,height=250,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IP0404002.PWD.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IP0404002.REVE_PWD.value";  //User真正key的密碼
+       kbWin = window.open( "LoadAP?pageid=IP2001000&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IP0404002.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP0404002.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+function onTop() {
+  	if (kbWin==null) return;
+  	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+
+function chkContinue(tmp){
+	var cont = tmp;
+	if(cont == "0"){
+		return "否";
+	}
+	if(cont == "1"){
+		return "是 , 本利續存";
+	}
+	if(cont == "2"){
+		return "是 , 本金續存(利息自動存入轉出帳號)";
+	}
+}
+
+function chkInt(tp,mon){
+	if(tp=='2'){
+		TD1.innerHTML = "存本取息";
+		TD2.innerHTML = '每月領息(每月計息，利息每月自動存入轉出帳號)';
+		document.IP0404002.REVE_MP_MARK.value = '1';
+	}
+	else{
+		if(mon=='12'){
+			TD1.innerHTML = "整存整付";
+			document.IP0404002.REVE_MP_MARK.value = '0';
+		}
+		else{
+			TD1.innerHTML = "定期存款";
+			document.IP0404002.REVE_MP_MARK.value = '0';
+		}
+		TD2.innerHTML = '到期領息(每月計息，利息到期整筆存入轉出帳號);'
+	}
+}
+
+function chkSubmit(){
+	document.IP0404002.Submit3.disabled = true;
+	document.IP0404002.Submit2.disabled = true;
+	if(document.IP0404002.REVE_PWD.value == ""){
+		alert("請輸入網路密碼");
+		document.IP0404002.Submit3.disabled = false;
+		return;
+	}
+	document.onmousedown=noClick;
+	document.IP0404002.submit();
+}
+
+function noClick() {
+	if ((event.button==1)||(event.button==2)) {
+		alert('交易執行中，請稍候 ....');
+	}
+}
+
+function chkSubmit2(){
+	document.IP0404002.Submit3.disabled = true;
+	document.IP0404002.Submit2.disabled = true;
+	document.IP0404002.pageid.value = "IP0404000";
+	document.onmousedown=noClick;
+	document.IP0404002.submit();
+}
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" onfocus="onTop();" background="graph/bg01.gif" leftmargin="0" topmargin="0">
+<b>外匯帳戶查詢&gt;<font color="#003399"><font color="#0066FF">外匯綜存活存轉定存</font></font><font color="#003399"><font color="#0066FF"><br>
+</font></font></b><font color="#003399"><font color="#0066FF"><br>
+</font></font><b><font color="#003399"><font color="#0066FF"> </font></font></b> 
+
+<form method="post" action="LoadAP" name="IP0404002">
+<table width="630" border="0">
+  <tr>
+    <td> 
+      <div align="center">
+        <table width="400" border="0" cellpadding="０">
+          <tr> 
+            <td colspan="2">
+              <div align="center"><font color="#0000CC">您的外匯綜存活存轉定存設定為：</font></div>
+            </td>
+          </tr>
+        </table>
+        <font color="#0000CC"> </font></div>
+      <table width="400" border="1" align="center" bordercolor="#999999">
+        <tr> 
+          <td width="32%" bgcolor="#C4CBB8">交易類別</td>
+          <td width="68%" height="25">外匯綜存活存轉定存</td>
+        </tr>
+        <tr> 
+          <td width="32%" bgcolor="#C4CBB8">轉出帳號</td>
+          <td width="68%" height="25">[[%%SEND_BR_NAME%%]]
+          <SCRIPT language="JavaScript">
+                	document.write(getAcctStr('[[%%REVE_ACCT_NO%%]]'));
+          </SCRIPT> 
+          </td>
+        </tr>
+        <tr> 
+          <td width="32%" bgcolor="#C4CBB8"> 轉入銀行</td>
+          <td width="68%" height="25">聯邦銀行</td>
+        </tr>
+        <tr> 
+          <td width="32%" bgcolor="#C4CBB8">轉入帳號</td>
+          <td width="68%" height="25">[[%%SEND_BR_NAME%%]]
+          <SCRIPT language="JavaScript">
+                	document.write(getAcctStr('[[%%SEND_TO_ACCT%%]]'));
+          </SCRIPT> 
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">幣別/金額</td>
+          <td height="25" width="68%">[[%%PRE_CURRENCY_CNAME%%]]
+          <SCRIPT language="JavaScript">
+                	document.write(moneyAddDot('[[%%REVE_FROM_AMT%%]]'));
+          </SCRIPT>
+          元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">轉存期間</td>
+          <td height="25" width="68%" bgcolor="#FFFFDD">[[%%REVE_PERIOD%%]]個月</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">計息方式</td>
+          <td height="25" width="68%" bgcolor="#FFFFDD">固定利率[[%%SEND_RATE%%]]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">領息方式</td>
+          <td height="25" width="68%" bgcolor="#FFFFDD" id="TD2">
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">轉存定存種類</td>
+          <td height="25" width="68%" bgcolor="#FFFFDD" id="TD1"></td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">是否續存</td>
+          <td height="25" width="68%" bgcolor="#FFFFDD">
+          <script>
+          	document.write(chkContinue([[%%REVE_CONTINUE%%]]));
+          </script>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%">手續費</td>
+          <td height="25" width="68%">0元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="32%"> 交易附註</td>
+          <td height="25" width="68%">[[%%SEND-TXN-MEMO%%]]&nbsp;</td>
+        </tr>
+        <tr>
+          <td bgcolor="#C4CBB8" width="32%">網路密碼</td>
+          <td height="25" width="68%">
+            <input type="password" name="PWD" size="8" onclick="getKeyBoard();onTop();" readonly>
+            <input type="hidden" name="REVE_PWD" value="">
+          </td>
+        </tr>
+      </table>
+      
+      <div align="center">
+        <input type="button" name="Submit3" value="確定" onclick="chkSubmit();">
+        <input type="button" name="Submit2" value="取消" onClick="chkSubmit2();">
+      </div>
+    </td>
+  </tr>
+<Input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<Input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+<Input type="hidden" name="pageid" value="IP0404003">
+<Input type="hidden" name="REVE_ACCT_NO" value="[[%%REVE_ACCT_NO%%]]"> 
+<Input type="hidden" name="SEND_TO_ACCT" value="[[%%SEND_TO_ACCT%%]]"> 
+<Input type="hidden" name="SEND_BR_NAME" value="[[%%SEND_BR_NAME%%]]"> 
+<Input type="hidden" name="PRE_CURRENCY_CNAME" value="[[%%PRE_CURRENCY_CNAME%%]]"> 
+<Input type="hidden" name="REVE_FROM_AMT" value="[[%%REVE_FROM_AMT%%]]"> 
+<Input type="hidden" name="REVE_PERIOD" value="[[%%REVE_PERIOD%%]]"> 
+<Input type="hidden" name="REVE_CONTINUE" value="[[%%REVE_CONTINUE%%]]"> 
+<Input type="hidden" name="SEND-TXN-MEMO" value="[[%%SEND-TXN-MEMO%%]]"> 
+<Input type="hidden" name="SEND_RATE" value="[[%%SEND_RATE%%]]">
+<Input type="hidden" name="PRE_CURRENCY" value="[[%%PRE_CURRENCY%%]]">
+<input type="hidden" name="REVE_SAVING_CODE" value='[[%%REVE_SAVING_CODE%%]]'>
+<input type="hidden" name="REVE_MP_MARK" value='0'>
+</table>
+<script>
+	chkInt('[[%%REVE_SAVING_CODE%%]]','[[%%REVE_PERIOD%%]]');
+</script>
+</form>
+</body>
+</html>

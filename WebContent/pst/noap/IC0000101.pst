@@ -1,0 +1,365 @@
+<html>
+<head>
+<title>使用者登入作業</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI98025           2009.04.09     Alan
+*EAI98026           2009.04.14     YiSyun
+*EAI99025           2010.03.26     David
+*EAI99036           2010.04.20     YiSyun
+*EAI99039           2010.04.29     David        將http://www.ubot.com.tw/網域名稱開頭的網址更改為https://www.ubot.com.tw/
+*EAI99059           2010.10.05     David        
+***********************************************************************/
+</script>
+</head>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid A6A9AF; background-color : FCFFFA; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body {
+	font-size: 9pt;
+	color: #000000;
+	line-height:12pt;
+	background-color: F3FFEB;
+} form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/iBank.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+function getErrMsg(){
+	var msgID = '[[%%MSGID%%]]';
+	var errorID = '[[%%RETNCODE%%]]';
+	if ((msgID==''&&errorID=='')||(msgID=='0000'&&errorID=='0000')){
+		return "";
+	}else{
+		if (msgID!=''&&msgID!='0000'){
+			return "[[%%MSGID%%]] : [[%%MSGDESC%%]]";
+		}else{
+			return "[[%%RETNCODE%%]] : [[%%RETNCODEDESC%%]]";
+		}
+	}
+}
+
+var kbWin = null;
+function getKeyBoard()
+{
+ 	x = Math.floor(Math.random()*300);
+ 	y = Math.floor(Math.random()*300);
+ 	var Mytype="width=500,height=250,scrollbars=auto,center=yes,border=thin,help=no,status=no,position=relative,left="+x+"px,top="+y+"px";
+ 	var PWD = "window.opener.document.IC0000101.PWD.value";  //show在畫面上的密碼個數
+ 	var KBPWD = "window.opener.document.IC0000101.REVE_PWD.value";  //User真正key的密碼
+	kbWin = window.open("LoadAP?pageid=IP2001002&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IC0000101.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IC0000101.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+	//alert("LoadAP?pageid=IP2001002&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IC0000101.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IC0000101.REVE_KB_KEYLETTER.value);	
+}
+
+function onTop() {
+  if (kbWin==null) return;
+  if (kbWin != null && (!kbWin.closed)){
+	kbWin.focus();	
+	
+  }
+}
+
+function check_id()
+ {
+   var sid=IC0000101.sid.value;
+   var idx=sid.length;
+ 
+   if(!(idx==8 || idx==10))        //10和8位數,方可進行判斷並加入檢核字母(A/C), 否則直接送出 ,不處理
+     {
+        //IC0000101.submit();    // 不為10和8位數,不予處理,直接送出
+     }else  if(idx == 10)                            //字串為10碼
+           {
+               var chr=sid.charCodeAt(0);
+               if(chr<65 || chr>122 || (chr>90 && chr<97)) //第一碼不為英文字
+                	{
+             
+              			chr1=sid.charCodeAt(8);
+             			chr2=sid.charCodeAt(9);
+              				  //未兩碼其中有一碼不為英文字
+             			 if((chr1<65||chr1>122||(chr1<141&&chr1>90))||(chr2<65||chr2>122||(chr2<141&&chr2>90)))
+              					   return true;    // 10位數,但不為外籍人士編碼,不予處理,直接送出
+            			 else
+               					 {
+                  					IC0000101.sid.value=sid+'C';   //為外國人身份
+                 					 //IC0000101.submit();
+                				}
+                 
+             		 }else   //第一碼為英文字
+                 				{
+                  					 IC0000101.sid.value=sid+'A';   //為自然人身份
+                   					 //IC0000101.submit();
+                  				}
+          	}else{    //字串為8碼
+                  if(!isNaN(sid))
+                      	IC0000101.sid.value=sid+'A';   //為企業戶
+                   		//IC0000101.submit();
+                   } 
+       	    return true;
+} 	
+
+function chkSubmit(){
+	var nickName = document.IC0000101.REVE_NICK_NAME.value	
+
+	if (document.IC0000101.sid.value==""){
+		alert('請輸入身份證字號');
+		document.IC0000101.sid.focus();
+		return false;
+	}else if(nickName.trim() == ""){
+		alert('請輸入使用者代號');
+		document.IC0000101.REVE_NICK_NAME.focus();
+		return false;		
+	}else if(document.IC0000101.PWD.value==""){
+		alert('請輸入網路密碼');
+		return false;
+	}else if(!check_id()){
+    		alert('請輸入身份證字號');
+    		document.IC0000101.sid.value = "";
+    		document.IC0000101.SID2.focus();
+    		return false;
+    }else{
+	    document.IC0000101.pageid.value="IC0000008";
+	    document.IC0000101.REVE_ID_NO.value=document.IC0000101.sid.value.toUpperCase();
+		document.IC0000101.submit();
+    }
+    
+}
+
+
+var Reload_ID = null;
+
+function startTimer(isReset) {
+	if (isReset > 0) clearTimer();
+	Reload_ID=setInterval('location.reload();', 1000*60*10);
+}
+
+function clearTimer() {
+	clearInterval(Reload_ID);
+	Reload_ID=null;
+}
+
+function detectmob() 
+{ 
+ if( navigator.userAgent.match(/Android/i)
+ || navigator.userAgent.match(/webOS/i)
+ || navigator.userAgent.match(/iPhone/i)
+ || navigator.userAgent.match(/iPad/i)
+ || navigator.userAgent.match(/iPod/i)
+ || navigator.userAgent.match(/BlackBerry/i)
+ || navigator.userAgent.match(/Windows Phone/i)
+ )
+ {
+    return true;
+ }
+ else 
+ {
+   return false;
+ }
+}
+
+function set_focus(){
+	if(detectmob())//device on mobile
+	{
+		alert("親愛的客戶 您好：提醒您，目前使用行動裝置登入個人網路銀行，為確保交易順利執行，建議利用聯邦樂活APP執行交易，謝謝。");
+	}
+	else//device on PC
+	{
+		//alert("這是PC");
+	}
+document.IC0000101.SID2.focus();
+}
+
+function set_focus2(){
+document.IC0000101.REVE_NICK_NAME.focus();
+}
+
+function chkNum(obj){
+	var slen = "";
+
+	if(window.getSelection){  // Firefox, Safari, Chrome
+     slen = obj.selectionStart; 
+	}else if (document.selection){ // IE
+	  var r = obj.createTextRange();
+	  var s = document.selection.createRange();
+	  s.setEndPoint("StartToStart",r);
+	  slen = s.text.length;
+	}
+	document.IC0000101.SID2.value = document.IC0000101.SID2.value.substr(0,slen);
+	
+	var idlen = document.IC0000101.SID2.value.length;
+	var lastlen = document.IC0000101.lastlen.value;
+	var oldID = document.IC0000101.SID2.value;
+	if(idlen>lastlen){
+		document.IC0000101.sid.value = document.IC0000101.sid.value + oldID.charAt(idlen-1);
+		if(idlen>4&&idlen<9){
+			document.IC0000101.SID2.value = document.IC0000101.SID2.value.substr(0,idlen-1)+"*";
+		}
+	}else if(idlen==lastlen){
+		document.IC0000101.sid.value = document.IC0000101.sid.value.substr(0,idlen-1) + document.IC0000101.SID2.value.substr(idlen-1,idlen);
+		if(idlen>4&&idlen<9){
+			document.IC0000101.SID2.value = document.IC0000101.SID2.value.substr(0,idlen-1)+"*";
+		}
+	}else if(idlen<lastlen){
+		document.IC0000101.sid.value = document.IC0000101.sid.value.substr(0,idlen);
+		if(idlen>4&&idlen<9){
+			document.IC0000101.SID2.value = document.IC0000101.SID2.value.substr(0,idlen-1)+"*";
+		}
+	}else{
+		document.IC0000101.sid.value = document.IC0000101.sid.value.substr(0,idlen);
+	}
+	document.IC0000101.lastlen.value = idlen;
+}
+
+function chkNum2(){
+	var oldID = document.all.SID2.value;
+	var newID = "";
+	document.all.sid.value = oldID;
+	for(i=0;i<oldID.length;i++){
+		if(i>3&&i<8){
+			newID = newID + '*';
+		}else{
+			newID = newID + oldID.charAt(i);
+		}
+	}
+	document.all.SID2.value = newID;
+}
+
+function clrID2(){
+	document.IC0000101.SID2.value = "";
+	document.IC0000101.sid.value = "";
+	document.IC0000101.lastlen.value = "0";
+}
+
+function showRealID(){
+	var idlen = document.IC0000101.SID2.value.length;
+	var realen = document.IC0000101.sid.value.length;
+	if(realen<10&&idlen>=10){
+		document.IC0000101.sid.value = document.IC0000101.sid.value + document.IC0000101.SID2.value.substr(realen,10-realen);
+	}else if(realen>10){
+		document.IC0000101.sid.value = document.IC0000101.sid.value.substr(0,10);
+	}else if(realen>idlen){
+		document.IC0000101.sid.value = document.IC0000101.sid.value.substr(0,idlen);
+	}
+	//alert(document.IC0000101.sid.value);
+}
+
+function showRealID2(){
+	var idlen = document.IC0000101.SID2.value.length;
+	var realen = document.IC0000101.sid.value.length;
+	if(realen<idlen){
+		document.IC0000101.sid.value = document.IC0000101.sid.value + document.IC0000101.SID2.value.substr(realen,idlen-realen);
+	}else if(realen>idlen){
+		document.IC0000101.sid.value = document.IC0000101.sid.value.substr(0,idlen);
+	}
+}
+startTimer(0);
+
+//-->
+</script>
+<body bgcolor="#FFFFFF" onLoad="set_focus();" background="graph/bg01.gif" leftmargin="0" topmargin="0" >
+
+<span class="t3"><strong>登入個人網路銀行</strong></span>
+<br>
+<br>
+<form method="post" name="IC0000101" action="LoadAP" >
+<table width="468" height="144" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td background="graph/login0610_bg.gif">
+    <table width="380" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr> 
+        <td>
+        	<font color="red">
+        		<!--
+        	<script language="JavaScript">
+        		document.write(getErrMsg());
+        	</script>
+        	-->
+        	</font>        </td>
+      </tr>
+      <tr>
+        <td nowrap><table border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="29" nowrap="nowrap"><img name="Login01" src="graph/login0610_01.gif" width="80" height="11" hspace="2" align="absmiddle" />
+                <input type=text name=SID2 size=25  onFocus=clrID2();  onBlur="chkNum2();" onpaste="return false" autocomplete="off">&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+          </tr>
+          <tr>
+            <td height="29"><img src="graph/login0610_02.gif" width="80" height="11" hspace="2" align="absmiddle" />
+                <input type="text" value="" name="REVE_NICK_NAME" onClick="javaScript:startTimer(1);" size="25" />&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+          </tr>
+          <tr>
+            <td height="29"><img src="graph/login0610_03.gif" width="80" height="11" hspace="2" align="absmiddle" />
+                <input type="password" name="PWD"  
+                onfocus="set_focus2();getKeyBoard();onTop();"  
+                onclick="set_focus2();getKeyBoard();onTop();" readonly="true" size="25" />&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+          </tr>
+        </table></td>
+    	<td valign="bottom">
+	        <table border="0"  cellpadding="0" cellspacing="0">
+	          <tr>
+	            <td width="61%" height="29"><a href="LoadAP?aptype=NOAP&pageid=IP1003000"><img src="graph/login0610_b06.gif" width="72" height="23" border="0"></a></td>
+	          </tr>
+	          <tr>
+	            <td height="29"><a href="LoadAP?aptype=NOAP&pageid=IP0801000&del=Y"><img src="graph/login0610_b05.gif" width="72" height="23" border="0"></a></td>
+	          </tr>
+	           <tr>
+	           	<td height="29"><a href="http://www.ubot.com.tw/ub/ebank_5/page02_1.asp" " target="_blank"><img src="graph/login0610_b04.gif" width="72" height="23" border="0" vspace="3"></a></td>
+	           	<!--
+            <td height="29"><a href="https://www.ubot.com.tw/UBOT2005/Learning/"><img src="graph/login0610_b04.gif" width="72" height="23" border="0" vspace="3"></a></td>
+            -->
+          </tr>
+	        </table></td>
+						<script type="text/javascript" charset="utf-8" >var twca_cn="mybank.ubot.com.tw";var twca_d2hide=true;</script>
+            <script type="text/javascript" src="//ssllogo.twca.com.tw/twcaseal_v3.js"charset="utf-8"></script>         
+      		<td valign="bottom">
+      		<div id="twcaseal" class="MINI"><img src="graph/login0610_05.gif" width="71" height="71" hspace="8" border="0"></div></td>
+      </tr>
+    </table>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="26%">&nbsp;</td>
+        <td width="74%"><a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=1e1550cb-5e5d-48f5-b02b-20b602228de6&amp;displaylang=zh-tw"><img src="graph/login0610_04.gif" width="196" height="20" vspace="10" border="0"></a></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="sid"  size="25" />
+<input type="hidden" name="REVE_ID_NO" value="">
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="REVE_PWD" value="">
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+<input type="hidden" name="lastlen" value="0">
+<br>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="9"></td>
+  </tr>
+</table>
+<table width="576" height="161" border="0" align="center" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td><iframe src="https://www.ubot.com.tw/UBOT2005/notice.asp" height="200" width="600" scrolling="auto"  frameborder="0" bgcolor="#F3FFEB"></iframe></td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+
+
+</form>
+
+</body>
+</html>

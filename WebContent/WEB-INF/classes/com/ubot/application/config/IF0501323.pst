@@ -1,0 +1,136 @@
+<title>基金申購</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<link rel="stylesheet" type="text/css" media="all" href="theme/YesFund.css" title="win2k-cold-1" />
+<body topmargin="0">
+<p>親愛的客戶您好：</p>
+您於[[%%REVE-DSP-TXN-TIME2%%]]執行之基金交易結果如下：基金轉換
+<table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center">交易成功</div>
+    </td>
+  </tr>
+</table>
+<table width="770" border="0">
+  <tr> 
+    <td colspan="3"> 
+      <div align="center"><!--轉換證明書--> 
+        <table width="600" border="1" bordercolor="#999999">
+          <tr> 
+            <td colspan="5" height="25" bgcolor="#63CB97"> 
+              <div align="center">轉=出=基=金</div>
+            </td>
+          </tr>
+          <tr bgcolor="#C5DECF"> 
+            <td width="71"> 
+              <div align="center">基金代號</div>
+            </td>
+            <td width="77"> 
+              <div align="center">憑證號碼</div>
+            </td>
+            <td width="199"> 
+              <div align="center">基金名稱</div>
+            </td>
+            <td colspan="2" width="225"> 
+              <div align="center">轉出信託金額</div>
+            </td>
+          </tr>
+          <tr bgcolor="#E7F1EE"> 
+            <td>[[%%REVE-FROM-FUNDID%%]]</td>
+            <td>[[%%REVE-CERT-NO%%]]</td>
+            <td>[[%%REVE-FROM-FUNDNAME%%]]</td>
+            <td colspan="2" width="225">[[%%REVE-FROM-CURRENCY-NAME%%]]&nbsp; [[%%REVE-FROM-AMT%%]]
+            </td>
+          </tr>
+        </table>
+        <table width="600" border="1" bordercolor="#999999">
+          <tr bgcolor="#66CC99"> 
+            <td colspan="5" height="25"> 
+              <div align="center">轉=入=基=金</div>
+            </td>
+          </tr>
+          <tr bgcolor="#C5DECF"> 
+            <td height="25" width="71"> 
+              <div align="center">基金代號</div>
+            </td>
+            <td width="77"> 
+              <div align="center">憑證號碼</div>
+            </td>
+            <td width="199"> 
+              <div align="center">基金名稱</div>
+            </td>
+            <td width="99"> 
+              <div align="center">轉入信託金額</div>
+            </td>
+            <td width="120"> [[%%REVE-TO-FUND-AMT-DATE%%]]
+                參考價格</div>
+            </td>
+          </tr>
+          <tr bgcolor="#E7F1EE"> 
+            <td>[[%%REVE-TO-FUNDID%%]]</td>
+            <td>[[%%REVE-CERT-NO%%]]</td>
+            <td>[[%%SEND-TO-FUND-CNAME%%]]</td>
+            <td>[[%%REVE-TO-CURRENCY-NAME%%]]&nbsp; [[%%SEND-TO-FUNDAMT%%]]
+            </td>
+            <td bgcolor="#E7F1EE" width="120">[[%%REVE-TO-FUND-AMT-REF%%]]
+            </td>
+          </tr>
+        </table>
+      </div>
+      <hr width="600" size="1" align="center">
+      <div align="center"> 
+        <table width="600" border="1" bordercolor="#999999">
+          <tr bgcolor="#C5DECF"> 
+            <td width="23%">委託人姓名： </td>
+            <td width="16%"> [[%%SEND-CNAME%%]]</td>
+            <td width="14%"> 繳款帳號：</td>
+            <td width="47%"> &nbsp;&nbsp;
+             	[[%%REVE-ACCT-NO%%]]
+            </td>
+          </tr>
+          <tr bgcolor="#C5DECF"> 
+            <td width="23%" rowspan="2">委託人身分證字號： </td>
+            <td width="16%" rowspan="2"> [[%%SEND-ID%%]]</td>
+            <td rowspan="2" width="14%">支付總額：</td>
+            <td rowspan="2" width="47%">  NT$： [[%%REVE-TXN-AMT%%]] </td>
+          </tr>
+          <tr> </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+<table width="600" border="0">
+  <tr>
+    <td><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;如您需了解該筆交易明細，請利用電話銀行或至個人網路銀行進行查詢。如對該筆交易有任何疑問，
+可電洽本行24小時客服中心，由客服人員為您服務。<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;因目前網際網路上充斥含有病毒或木馬程式或詐騙意圖的惡意電子郵件，為確保貴客戶之網路安全，
+本行網路服務系統所發送之通知類電子郵件將儘量避免在郵件內提供超連結或聯絡電話，如您需要與本行
+聯繫，可直接輸入本行網址連線至本行網站，或由本行之信用卡或金融卡上取得本行客服聯絡電話向本行
+客服中心洽詢。<br>
+&nbsp;&nbsp;&nbsp;&nbsp;感謝您對本行的支持與愛護。<font color="#FF0000">因本信件為系統自動發送,請勿直接以此郵件回覆。</font>
+    </td>
+  </tr>
+  <tr>
+    <td><div align="right">聯邦銀行</div></td>
+  </tr>  
+  <tr>
+    <td align="left"><br><br><font size=-1>
+        本通訊及其所有附件所含之資訊均屬機密，僅供指定之收件人使用，未經寄件人許可不得揭露、複製或散布本通訊。若您並
+非指定之收件人，請勿使用、保存或揭露本通訊之任何部份，並請即通知寄件人並完全刪除本通訊。網路通訊可能含有病毒
+，收件人應自行確認本郵件是否安全，若因此造成損害，寄件人恕不負責。
+    <br>
+      The information contained in this communication and attachment is confidential and
+      is intended only for the use of the recipient to which this communication is
+      addressed. Any disclosure, copying or distribution of this communication without the
+      sender's consents is strictly prohibited. If you are not the intended recipient,
+      please notify the sender and delete this communication entirely without using,
+      retaining, or disclosing any of its contents. Internet communications cannot be
+      guaranteed to be virus-free. The recipient is responsible for ensuring that this
+      communication is virus free and the sender accepts no liability for any damages
+    caused by virus transmitted by this communication.</font></td>
+  </tr>
+        </table>
+</body>
+</html>

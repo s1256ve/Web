@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<title>帳戶服務</title>
+<meta charset="utf-8">
+<meta http-equiv:"content-language" content="zh-tw">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+<link href="css/index.css" rel="stylesheet">
+<link href="css/2.css" rel="stylesheet">
+<link href="css/accessibility.css" rel="stylesheet" >
+ 
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js "></script> 
+<script language="JavaScript" src="script/accessible.js"></script> 
+
+<style type="text/css">
+.t17 {	font-size: 17px;
+	line-height: 26px;
+	color: #000000;
+}
+.t181 {	font-size: 18px;
+	line-height: 26px;
+	color: #000000;
+}
+</style>
+	
+	
+<script language="JavaScript">
+var nowDate = new Date();
+var nowDay = nowDate.getDate();
+var nowMonth = nowDate.getMonth();
+var nowYear = nowDate.getFullYear();
+var nowDateStr = getRCDateStr(nowYear + "/" + (nowMonth+1) + "/" + nowDay,0);
+var nowTimeStr = nowDate.getHours() + ":" + nowDate.getMinutes() ;
+var selDate = nowDateStr + "," + nowDateStr;
+<!--
+ function chkTitle(obj){
+	var statusArray = obj;
+	var tmp;
+	if(statusArray.length!=undefined){
+  	for (var i=0; i<statusArray.length; i++) {
+	    tmp = document.IP0208001.setStatus[i].value;
+	    var tmp2 = document.IP0208001.compMark[i].value;
+  		if ((tmp == "吉祥") || (tmp == "零整") ){
+  			document.IP0208001.setStatus[i].value = "明細";
+  	  }
+  	  else{
+    		document.IP0208001.setStatus[i].value = "續存";
+    		document.IP0208001.setStatus2[i].value = "解約";
+  	  }
+  	}
+	}
+	else{
+		tmp = document.IP0208001.setStatus.value;
+		if ((tmp == "吉祥") || (tmp == "零整") ){
+  			document.IP0208001.setStatus.value = "明細";
+  	  }
+  	  else{
+    		document.IP0208001.setStatus.value = "續存";
+    		document.IP0208001.setStatus2.value = "解約";
+  	  }
+	}
+	
+}
+    
+function ChgType1(str1) {
+
+        var str=str1;
+        if (str1=="機動"){
+            var tmp = "LoadAP?aptype=IBANK&pageid=IP0907100";
+            return "機動利率";
+        }
+        else{
+            return "固定利率<br>" + str + "%";
+        }
+        
+    }
+
+function ChgType2(str1) {
+
+        var str=str1;
+        if (str1=="1"){
+            return "到期領息";
+        }
+        if (str1=="2"){
+            return "每月領息";
+        }
+        else {
+        	return "";
+        }
+        
+    }
+
+function ChgType3(str1) {
+
+        var str=str1;
+        if (str1=="0"){
+            return "無設質";
+        }
+        if (str1=="1"){
+            return "含息設質";
+        }
+        if (str1=="2"){
+            return "不含息設質";
+        }
+        else{
+        	return "";
+        }
+    }
+
+function ChgType4(str1,str2) {
+
+        var str=str1;
+        var str2=str2;
+        if (str1=="0"){
+            return "不續存";
+        }
+        else{
+            if(str2=="0"){
+            	return "本金續存";
+            }
+            else if(str2=="1"){
+            	return "本利續存";
+            }
+        }
+    }
+
+function ChgType5(str1) {
+	var str=trimSpStr(str1,"*");
+	return str;
+}
+
+function showButton(vno,title1,bDate,eDate,blance,interest,intPay,collStatus,contiunue,mark){
+	if((title1 == "吉祥") || (title1 == "零整")){
+		return "";
+	}
+	else{
+		return "<input type=button name=setStatus2 onClick=chkSubmit2(\'"+vno+"\',\'"+title1+"\',\'"+bDate+"\',\'"+eDate+"\',\'"+blance+"\',\'"+interest+"\',\'"+intPay+"\',\'"+collStatus+"\',\'"+contiunue+"\',\'"+mark+"\')>";
+	}
+}
+
+
+
+
+function chkSubmit2(str1,str2,str3,str4,str5,str6,str7,str8,str9,str10){
+  mark = str10;
+  var turn = str9;
+  var title = str2;
+  document.IP0208001.SEND_V_NO.value = str1.toString;
+  document.IP0208001.SEND_TITLE.value = str2;
+  document.IP0208001.SEND_B_DATE.value = str3;
+  document.IP0208001.SEND_E_DATE.value = str4;
+  document.IP0208001.SEND_BALANCE.value = trimSpStr(str5,"*");
+  document.IP0208001.SEND_INTEREST.value = str6;
+  document.IP0208001.SEND_INT_PAY.value = str7;
+  document.IP0208001.SEND_COLL_STATUS.value = str8;  
+  document.IP0208001.SEND_CONTINUE.value = str9;
+  blance = document.IP0208001.SEND_BALANCE.value;
+	
+	if(mark == 0){
+		alert("本存單非綜存定存，無法由網銀線上執行中途解約交易，請至營業單位辦理，謝謝。");
+		return;
+	}
+	/**
+	if(eval(toFloat(blance)-1000000)>0){
+		alert("電子銀行定存單解款金額不得超過1,000,000，如需解約請親洽分行辦理!");
+		return;
+	}
+	**/
+	document.IP0208001.pageid.value="IP0209100";
+	document.IP0208001.submit();
+}
+-->
+
+</script>
+
+<script>
+
+var test=[
+[[%%LOOP_SEC SEND-V-NO%%]]
+	{SENDVNO:"[[%%SEND-V-NO%%]]",SENDTITLE:"[[%%SEND-TITLE%%]]",SENDBDATE:"[[%%SEND-B-DATE%%]]",
+	SENDEDATE:"[[%%SEND-E-DATE%%]]",SENDBALANCE:"[[%%SEND-BALANCE%%]]",SENDINTEREST:"[[%%SEND-INTEREST%%]]",
+	SENDINTPAY:"[[%%SEND-INT-PAY%%]]",SENDCOLLSTATUS:"[[%%SEND-COLL-STATUS%%]]",SENDCONTINUE:"[[%%SEND-CONTINUE%%]]",
+	SENDTRINT:"[[%%SEND-TR-INT%%]]",SENDSAVEDATE:"[[%%SEND-SAVE-DATE%%]]",SENDSAVEAMT:"[[%%SEND-SAVE-AMT%%]]",SENDCOMPMARK:"[[%%SEND-COMP-MARK%%]]"
+		},
+[[%%ELOOP_SEC%%]]
+];
+
+function chkSubmit(str1,str2,str3,str4,str5,str6,str7,str8,str9,str10,str11,str12,str13){
+		var trint = str13;
+    var mark = str12;
+    var turn = str9;
+    var title = str2;
+    document.IP0208001.SEND_V_NO.value = str1;
+    document.IP0208001.SEND_TITLE.value = str2;
+    document.IP0208001.SEND_B_DATE.value = str3;
+    document.IP0208001.SEND_E_DATE.value = str4;
+    document.IP0208001.SEND_BALANCE.value = trimSpStr(str5,"*");
+    document.IP0208001.SEND_INTEREST.value = str6;
+    document.IP0208001.SEND_INT_PAY.value = str7;
+    document.IP0208001.SEND_COLL_STATUS.value = str8;   
+    document.IP0208001.SEND_CONTINUE.value = str9;
+    document.IP0208001.SEND_SAVE_DATE.value = str10;
+    document.IP0208001.SEND_SAVE_AMT.value = str11;
+    document.IP0208001.SEND_TR_INT.value = str13;
+		
+	if(title=="吉祥"){
+		document.IP0208001.pageid.value="IP0212000";
+	}
+	
+	else if(title=="零整"){
+		document.IP0208001.pageid.value="IP0211000";
+	}
+	else{
+		if(mark == 0){
+			alert("本存單非綜存定存，無法由網銀線上執行續存設定，請至營業單位辦理，謝謝。");
+			return;
+		}
+		else{
+			document.IP0208001.pageid.value="IP0208002";
+		}		
+	}
+	document.IP0208001.submit();
+};
+
+function add1(){
+		for(var i=0;i<test.length;i++){
+		var num=document.getElementById("myTable").rows.length;
+		var tr=document.getElementById("myTable").insertRow(num);
+		tr.insertCell(0).innerHTML='<td class="box1">'+test[i].SENDVNO+'</td>';
+		tr.insertCell(1).innerHTML='<td class="box1">'+test[i].SENDTITLE+'</td>';
+		tr.insertCell(2).innerHTML='<td class="box1">'+getRCDateStr(test[i].SENDBDATE,0)+'</td>';
+		tr.insertCell(3).innerHTML='<td class="box1">'+getRCDateStr(test[i].SENDEDATE,0)+'</td>';
+		tr.insertCell(4).innerHTML='<td class="box2">'+trimSpStr(test[i].SENDBALANCE,"*")+'</td>';
+		//var td=tr.insertCell(5);
+		//td.setAttribute("class","color");
+		tr.insertCell(5).innerHTML='<td class="box1">'+ChgType1(test[i].SENDINTEREST)+'</td>';
+		tr.insertCell(6).innerHTML='<td class="box1">'+ChgType2(test[i].SENDINTPAY)+'</td>';
+		tr.insertCell(7).innerHTML='<td class="box1">'+ChgType3(test[i].SENDCOLLSTATUS)+'</td>';
+		tr.insertCell(8).innerHTML='<td class="box1">'+ChgType4(test[i].SENDCONTINUE,test[i].SENDTRINT)+'</td>';
+		//tr.insertCell(9).innerHTML='<div class="box1"><input type="button" name="setStatus" onclick="chkSubmit(\''+test[i].SENDVNO+'\',\''+test[i].SENDTITLE+'\',\''+test[i].SENDBDATE+'\',\''+test[i].SENDEDATE+'\',\''+test[i].SENDBALANCE+'\',\''+test[i].SENDINTEREST+'\',\''+test[i].SENDINTPAY+'\',\''+test[i].SENDCOLLSTATUS+'\',\''+test[i].SENDCONTINUE+'\',\''+test[i].SENDSAVEDATE+'\',\''+test[i].SENDSAVEAMT+'\',\''+test[i].SENDCOMPMARK+'\',\''+test[i].SENDTRINT+'\')" value="'+test[i].SENDTITLE+'"></div>'
+		//+'<input type="hidden" name="setStatus2">'+'<input type="hidden" name="compMark" value="'+test[i].SENDCOMPMARK+'">';
+		}
+};
+
+function add(){
+		for(var i=0;i<test.length;i++){
+		var sumTD = "";
+		sumTD = '<td class="box1" headers="vno">'+test[i].SENDVNO+'</td>'+'<td class="box1" headers="title">'+test[i].SENDTITLE+'</td>'+'<td class="box1" headers="bdate">'+getRCDateStr(test[i].SENDBDATE,0)+'</td>'+'<td class="box1" headers="edate">'+getRCDateStr(test[i].SENDEDATE,0)+'</td>'+'<td class="box2" headers="balance">'+trimSpStr(test[i].SENDBALANCE,"*")+'</td>'+'<td class="box1" headers="interest">'+ChgType1(test[i].SENDINTEREST)+'</td>'+'<td class="box1" headers="intpay">'+ChgType2(test[i].SENDINTPAY)+'</td>'+'<td class="box1" headers="collstatus">'+ChgType3(test[i].SENDCOLLSTATUS)+'</td>'+'<td class="box1" headers="continue">'+ChgType4(test[i].SENDCONTINUE,test[i].SENDTRINT)+'</td>';
+		$('#myTable').append("<tr>"+sumTD+"</tr>");
+		}
+};
+
+var sortSENDBDATE="";
+var sortSENDEDATE="";
+function mysort(species){
+	var tbl=document.getElementById('myTable');
+	
+		for(var i=0;i<test.length;i++){
+			tbl.deleteRow(1);
+		}		
+				
+			if(species==1){
+					if(sortSENDBDATE == ""){
+							sortSENDBDATE='asc';
+					}else if(sortSENDBDATE == 'asc'){
+							sortSENDBDATE='desc';
+					}else{
+							sortSENDBDATE='asc';
+							}
+							
+						test=test.sort(function(obj1,obj2){
+							if(sortSENDBDATE == 'desc'){
+								return obj2.SENDBDATE - obj1.SENDBDATE;
+							}else{
+								return obj1.SENDBDATE - obj2.SENDBDATE;
+							}
+					});	
+					add();
+			}else if(species==2){
+					if(sortSENDEDATE == ""){
+		 					sortSENDEDATE='asc';}
+					else if(sortSENDEDATE == 'asc'){
+							sortSENDEDATE='desc';}
+					else{
+							sortSENDEDATE='asc';}
+					test=test.sort(function(obj1,obj2){
+							if(sortSENDEDATE == 'desc'){
+								return obj2.SENDEDATE - obj1.SENDEDATE;
+							}else{
+								return obj1.SENDEDATE - obj2.SENDEDATE;
+							}
+					});	
+					add();	
+			}
+		
+}
+function change(x) {
+    x.style.color = "red";
+  }
+
+function normalchange(x) {
+    x.style.color = "black";
+    
+}	
+
+function chkSubmit98(){
+	alert(' 您好，謝謝您使用網路銀行！\n'+
+	      '為了您的交易資料安全，\n'+
+	      '請記得在視線離開電腦前關閉使用中的瀏覽器，\n'+
+	      '以確保您剛剛的使用記錄不被他人窺探！');
+	      //'登出時間為 '+getNowTime());
+	
+	document.AC0203004.pageid.value="IC0000999";
+	document.AC0203004.aptype.value="NOAP";
+	document.AC0203004.target="_parent";
+	document.AC0203004.submit();    
+}
+
+function BackSubmit(){
+    document.AC0203004.action = "LoadAP3?aptype=IBANK&pageid=IC000001B&sessid=[[%%SESSIONID%%]]";
+    document.AC0203004.submit();
+}
+
+function BackSubmit2(){
+
+    document.AC0203004.action = "LoadAP3?aptype=IBANK&pageid=IC000000B&[[%%SESSIONID%%]]";
+    document.AC0203004.submit();
+}
+
+function chkSubmit99(){
+	document.AC0203004.pageid.value="IC0000999";
+	document.AC0203004.aptype.value="NOAP";
+	document.AC0203004.target="_parent";
+	document.AC0203004.submit();    
+}
+</script>
+	
+	
+	
+</head>
+<body onload="initial();">
+<noscript>
+您的瀏覽器不支援JavaScript功能，若網頁功能無法正常使用時，請開啟瀏覽器JavaScript功能 
+</noscript> 
+<form method="post" name="AC0203004" action="LoadAP3">
+
+
+
+	
+
+<header>
+	<div class="wrapper">
+		
+		<div class="headerBox">	
+			 <a href="#C"  title="跳到主要內容區塊" tabindex="1" style="position: absolute" class="sr_only">跳到主要內容區塊</a>
+			  <h1 class="no-effect"> <a class="logo" href="https://freebank.ubot.com.tw/" target="_parent"><img src="Accessible/logo.png" alt="聯邦銀行友善服務網" title="聯邦銀行友善服務網" width="300" height="37" hspace="10" border="0"></a></h1>	
+			<div class="header-right">
+				<a href="#U" name="U" id="AU" accesskey="U" class="top" title="上方導覽區">:::</a> <a href="LoadAP3?aptype=IBANK&pageid=AC0000000" class="top">網站導覽</a> / <a href="LoadAP3?aptype=IBANK&pageid=AC0000001" class="top">金融友善服務準則</a>			
+		  </div>
+		</div>
+				
+		<div class="container_account">
+			<div class="logout">
+				<a href="#" onclick="chkSubmit98();"><img src="Accessible/main_button_02.gif" title="登出" alt="登出" border="0" align="absmiddle" /></a> 
+			</div>
+			<div class="con5">
+			<h2 class="account"><a accesskey="C" name="C" id="AC"  title="中央內容區塊" href="#C" style="text-decoration:none;color:#666;font-size:16px;">:::</a> 定存明細</h2>
+			  <div class="con5_1">	
+		      <table  id="myTable" width="100%" border="0" align="center" >
+			      <tr>
+			        <th class="box" id="vno"  scope="col"><strong>存單字號</strong></th>
+			        <th class="box" id="title"  scope="col"><strong>定存總類</strong></th>
+			        <th class="box" id="bdate"  scope="col"><strong>起息日</strong></th>
+			        <th class="box" id="edate"  scope="col"><strong>到期日</strong></th>
+			        <th class="box" id="balance"  scope="col"><strong>定存本金<br /> /存入金額</strong></th>
+			        <th class="box" id="interest"  scope="col"><strong>計息方式</strong></th>
+		            <th class="box" id="intpay"  scope="col"><strong>領息方式</strong></th>                   
+		            <th class="box" id="collstatus"  scope="col"><strong>是否設質</strong></th>                    
+		            <th class="box" id="continue"  scope="col"><strong>續存狀態</strong></th>                    
+		        </tr>
+		      </table>
+              </div>
+			</div>
+			</div>	
+				 <div class="info_container2">
+                    <a href="#" onClick="BackSubmit();"><img src="Accessible/button_09.gif" alt="回主選單" name="Image04" width="152" height="45" vspace="8" border="0" id="Image04" title="回主選單"    /></a>
+                    <a href="#" onClick="BackSubmit2();"><img src="Accessible/button_19.gif" alt="回帳務服務頁" name="Image04" width="196" height="45" vspace="8" border="0" id="Image04" title="回帳務服務頁"  /></a>
+                </div>		
+   
+  </div>
+</header>
+
+<div class="footer">
+	<div class="wrapper">				
+	 	<div class="footerBox">
+	        <p class="copyright">	 			
+		 		<a accesskey="Q" name="Q" id="AQ"  title="網頁資訊" href="#Q" style="text-decoration:none;color:#666;">:::</a>
+		 		<strong>客服中心電話：(02)2545-1788、0800-089-888 &copy;聯邦商業銀行版權所有</strong>
+		 		<a href="https://www.handicap-free.nat.gov.tw/Applications/Detail?category=20171108152834" title="無障礙網站"><img src="Accessible/20a.jpg" alt="通過A檢測等級無障礙網頁檢測" width="88" height="31" border="0" /></a>	
+	 		</p>
+		</div>
+	</div>
+</div>
+  <input type="hidden" name="SEND-BR-NAME" value="[[%%SEND-BR-NAME%%]]">
+  <input type="hidden" name="SEND-ACCT-DESC" value="[[%%SEND-ACCT-DESC%%]]">
+  <input type="hidden" name="SEND-ACCT-NO" value="[[%%SEND-ACCT-NO%%]]">
+  <input type="hidden" name="SEND_TITLE" value="">
+  <input type="hidden" name="SEND_BALANCE" value="">
+  <input type="hidden" name="pageid" value="IP0208002">
+  <input type="hidden" name="SEND_B_DATE" value="">
+  <input type="hidden" name="SEND_E_DATE" value="">
+  <input type="hidden" name="SEND_INTEREST" value="">
+  <input type="hidden" name="SEND_COLL_STATUS" value="">
+  <input type="hidden" name="SEND_INT_PAY" value="">
+  <input type="hidden" name="SEND_V_NO" value="">
+  <input type="hidden" name="SEND_CONTINUE" value="">
+  <input type="hidden" name="SEND_SAVE_DATE" value="">
+  <input type="hidden" name="SEND_SAVE_AMT" value="">
+  <input type="hidden" name="SEND_TR_INT" value="">	
+
+
+</form>
+<script>
+	add();
+	</script>	
+</body>
+</html>

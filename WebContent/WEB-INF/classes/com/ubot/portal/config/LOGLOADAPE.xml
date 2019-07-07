@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<conn type="datasource" dbdriver="" 
+			  dsn="jdbc/potlog" 
+              user="db2ibank" pass="db2ibank" isautocommit="1" />
+	
+	<!-- LOOP -->
+	<sql type="update" reletion="" isloop="0"  loopargv="LOGID">
+	    INSERT INTO db2ibank.LOADAPEND ( LOGID, SID , ENDTIME, SOF, SYSMSGCODE, TXNMSGCODE, RUNTIME)
+		VALUES ( '[[%%LOGID%%]]' , '[[%%SID%%]]' , '[[%%ENDTIME%%]]' , ? , 
+		         '[[%%MSG-ID%%]]' , '[[%%SEND-RETN-CODE%%]]' , [[%%RUNTIME%%]] )
+			 
+	</sql>
+	
+	<argv type="VAR" vname="LOGID"      value="LOGID"       preIdx="0" />	
+	<argv type="VAR" vname="SEND-ID-NO"      value="SID"       preIdx="0" />	
+	<argv type="VAR" vname="ENDTIME"    value="ENDTIME"     preIdx="0" />	
+	<argv type="VAR" vname="?"          value="SOF"         preIdx="1" />	
+	<argv type="VAR" vname="MSG-ID"     value="MSG-ID"      preIdx="0" />
+	<argv type="VAR" vname="SEND-RETN-CODE" value="SEND-RETN-CODE"  preIdx="0" />
+	<argv type="VAR" vname="RUNTIME"    value="RUNTIME"     preIdx="0" />
+	<!-- END LOOP -->
+	
+</root>

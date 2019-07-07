@@ -1,0 +1,534 @@
+<html>
+<head>
+<title>外匯交易</title>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<script>
+var ctype = "[[%%DBO_WFAC16%%]]";
+var setCurrAmt;
+var setDefAmt = "500000";
+function selectCurr(curr){
+	if(curr=="99"){
+		return "(NTD)"
+	}
+	else{
+		return "(" + ctype + ")";
+	}
+}
+
+function chgSelect(tmp){
+	document.getElementById("rsCal").innerHTML = "";
+	if(tmp=="0"){
+		document.getElementById("currType").innerHTML = "";
+		document.getElementById("cal").innerHTML = "";
+	}else{
+		var fromAcctArray = tmp.split("@");
+		document.IP0703401.SEND_ACCT_NO.value = fromAcctArray[0];
+		document.IP0703401.SEND_ACCT_CURRENCY.value = fromAcctArray[1];
+		document.IP0703401.SEND_ACCT_AMT.value = moneyTrimDot(fromAcctArray[2],",");
+		document.IP0703401.SEND_BR_NAME.value = fromAcctArray[3];
+		if(document.IP0703401.SEND_ACCT_CURRENCY.value=="99"){
+			document.getElementById("currType").innerHTML = "NTD";
+			document.getElementById("cal").innerHTML = "<input type='button' name='calCurr' value='試算' onClick='calCurrAmt()'>";
+		}else{
+			document.getElementById("cal").innerHTML = "";
+			document.getElementById("currType").innerHTML = ctype;
+		}	
+	}
+}
+
+function chkMoneyDot(amt){
+
+	var amtarray = amt.split(".");
+	var amt1,amt2;
+	if(amtarray[1]==undefined){
+		return moneyAddDot2(amtarray[0]);
+	}
+	else{
+		return moneyAddDot2(amtarray[0])+"."+amtarray[1];
+	}
+
+}
+
+function calCurrAmt(){
+	document.getElementById("rsCal").innerHTML = "";
+	var amt = document.IP0703401.TXN_AMT.value;
+	var sellrate = "[[%%SEND-SELL%%]]";
+	if(amt==""){
+		alert("請填入金額");
+    return;
+	}
+	if (isNaN(amt)) {  
+		alert("不合法的數值");  
+		return false;  
+	}
+	if(eval(amt)>499999){
+		alert("匯款金額不得超過等值新臺幣50萬元");
+		return;
+	}
+	var tpmAns = Math.round((amt*100)/(sellrate));
+	var total;
+  //日幣取整數，其餘幣別取小數兩位
+  if(ctype == "JPY"){ 
+  	total=Math.round(tpmAns/100);
+  }
+  else{
+  	total=Math.round(tpmAns)/100;
+  }
+  document.IP0703401.SEND_TXN_AMT.value = total;
+  document.getElementById("rsCal").innerHTML = "試算金額："+ctype+" "+total+" 元";
+}
+
+function calCurrAmt2(){
+	var amt = "499999";
+	var sellrate = "[[%%SEND-SELL%%]]";
+	var tpmAns = Math.round((amt*100)/(sellrate));
+	var total;
+  //日幣取整數，其餘幣別取小數兩位
+  if(ctype == "JPY"){ 
+  	total=Math.round(tpmAns/100);
+  }
+  else{
+  	total=Math.round(tpmAns)/100;
+  }
+  document.IP0703401.SEND_DEF_AMT.value = total;
+}
+
+function chkSubmit(){
+	
+	if(document.IP0703401.FROMACCTNO.value=="0"){
+		alert("請選擇帳號");
+		return;
+	}
+	if(document.IP0703401.TXN_AMT.value==""){
+		alert("請輸入匯款金額");
+		return;
+	}
+	if(document.IP0703401.RMTYPE.value=="0"){
+		alert("請選擇匯款性質別");
+		return;
+	}
+	else{
+		if(document.IP0703401.SEND_ACCT_CURRENCY.value=="99"){
+			calCurrAmt();
+		}else{
+			if(eval(document.IP0703401.TXN_AMT.value)>eval(document.IP0703401.SEND_DEF_AMT.value)){
+				alert("您的匯款金額大於等值新臺幣50萬元");
+				return;
+			}
+			document.IP0703401.SEND_TXN_AMT.value = document.IP0703401.TXN_AMT.value;
+		}
+	}
+	if(document.IP0703401.SEND_RM_MSG.value!=""){
+		var re = /^[a-z0-9+-.,\/]+$/g;
+		var str = document.IP0703401.SEND_RM_MSG.value;
+		if(!re.test(str)){
+			alert("匯款附言欄位僅能輸入半形英數字與特定符號(+、-、/、,、.)");
+			return;
+		}
+	}
+	var rmtypearray = document.IP0703401.RMTYPE.value.split("@");
+	document.IP0703401.SEND_RM_TYPE.value = rmtypearray[0];
+	document.IP0703401.SEND_RM_TYPE_NAME.value = rmtypearray[1];
+	document.IP0703401.submit1.disabled = true;
+	document.IP0703401.submit2.disabled = true;
+	document.IP0703401.submit();	
+}
+
+function addOptions(){
+	var obj = document.IP0703401.RMTYPE;
+	var num = 1;
+	var objType1 = document.IP0703401.DBO_WFAC18.value;
+	var objType2 = document.IP0703401.DBO_WFAC20.value;
+	var objType3 = document.IP0703401.DBO_WFAC22.value;
+	if(objType1!=""){
+		obj.options[num] = new Option(objType1+" "+document.IP0703401.DBO_WFAC19.value, objType1+"@"+document.IP0703401.DBO_WFAC19.value);
+		num = num + 1;
+	}
+	if(objType2!=""){
+		obj.options[num] = new Option(objType2+" "+document.IP0703401.DBO_WFAC21.value, objType2+"@"+document.IP0703401.DBO_WFAC21.value);
+		num = num + 1;
+	}
+	if(objType3!=""){
+		obj.options[num] = new Option(objType3+" "+document.IP0703401.DBO_WFAC23.value, objType3+"@"+document.IP0703401.DBO_WFAC23.value);
+		num = num + 1;
+	}
+}
+
+var diffTime = 1520;
+var diffTime2 = 0900;
+function getAlert(nowTime,nowDate){
+	var tt = nowTime.substr(0,4);
+	var d1 = nowDate.substr(0,4);
+	var d2 = nowDate.substr(4,2);
+	var d3 = nowDate.substr(6,2);
+	nowDate2 = new Date(d1,d2-1,d3);
+	if(nowDate2.getDay()==0||nowDate2.getDay()==6){
+		return flase;
+	}else{
+		var timeStr = getRCTimeStr(nowTime,1);
+		if(tt>diffTime){
+			alert("提醒您，目前時間為"+timeStr+"，\n匯出匯款交易可執行時間為本行營業日上午9:00~下午3:30，其他時段暫停服務。");
+		}else if(diffTime2>tt){
+			alert("提醒您，目前時間為"+timeStr+"，\n匯出匯款交易可執行時間為本行營業日上午9:00~下午3:30，其他時段暫停服務。");
+		}
+	}
+}
+
+function KeyPressChk(evt){
+	var evt=evt||window.event;
+	var iKeyCode = evt.keyCode;
+	if (!(iKeyCode >= 48 && iKeyCode <=57) && !(iKeyCode >= 65 && iKeyCode <=90) && !(iKeyCode >= 97 && iKeyCode <=122)){
+		//if(iKeyCode!=107 && iKeyCode!=109 && iKeyCode!=111 && iKeyCode!=188 && iKeyCode!=190){
+			window.event.keyCode = 0;
+		//}
+	}
+}
+
+function chkChar(word){
+	for(var i=0;i<word.length;i++){
+    var char2= word.charCodeAt(i);
+    if (!(char2>=32&&char2<=126)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function chkCancel(){
+	document.IP0703401.submit1.disabled = true;
+	document.IP0703401.submit2.disabled = true;
+	document.IP0703401.pageid.value = "IP0703400";
+	document.IP0703401.submit();
+}
+
+function chgSelect2(tmp){
+
+	if(tmp=="0"){
+	  
+		document.IP0703401.SEND_CHARGE.value="1";
+		
+	}
+	if(tmp=="1")
+	{
+	  
+		document.IP0703401.SEND_CHARGE.value="2";
+	}
+}
+
+</script>
+<form name="IP0703401" method="POST" action="LoadAP">
+<b>　外匯交易&gt;<font color="#003399"><font color="#0066FF">匯出匯款</font></font></b>
+<br/>
+<br/>
+<table width="60%" border="1" bordercolor="#999999" align="center" id="mytable">
+	<tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;扣款帳號&nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <select name="FROMACCTNO" onChange="chgSelect(this.value);">
+      	<option value="0" selected>==請選擇帳號；(幣別)餘額== </option>
+      	<!--[[%%LOOP_SEC SEND-ACCT-NO%%]]-->
+      	<option value="[[%%SEND-ACCT-NO%%]]@[[%%SEND-CURRENCY%%]]@[[%%SEND-AVAL-BALANCE%%]]@[[%%SEND-BR-NAME%%]]">
+      	[[%%SEND-BR-NAME%%]]
+      	<script language="JavaScript">
+          document.write(getAcctStr('[[%%SEND-ACCT-NO%%]]'));
+        </script>
+      		；
+      	<script>
+      		document.write(selectCurr('[[%%SEND-CURRENCY%%]]'));
+      	</script>
+      	<script>
+      		document.write(chkMoneyDot('[[%%SEND-AVAL-BALANCE%%]]'));
+      	</script>
+      		 元</option>
+      	<!--[[%%ELOOP_SEC%%]]-->
+      </select>
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;匯款幣別&nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <div align="left">[[%%DBO_WFAC16%%]]&nbsp;</div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;匯率&nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <div align="left">
+      NTD兌換[[%%DBO_WFAC16%%]]匯率：[[%%SEND-SELL%%]]&nbsp;
+      (&nbsp;資料時間：
+      <Script>
+      	document.write(getRCDateStr("[[%%SEND-DATE%%]]","0"))
+      </script>&nbsp;
+      <script>
+      	document.write(getRCTimeStr("[[%%SEND-TIME%%]]","1"))
+      </script>
+      &nbsp;)
+      </div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;匯款金額&nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <div align="left">
+      <span id="currType"></span>
+      &nbsp;&nbsp;<input name="TXN_AMT" size="6">&nbsp;&nbsp;元
+      <span id="cal">
+      </span>
+      <span id="rsCal"></span>
+      &nbsp;</div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;受款人姓名&nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <div align="left">[[%%DBO_WFAC25%%]]&nbsp;</div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;受款人帳號&nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <div align="left">[[%%DBO_WFAC24%%]]&nbsp;</div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;受款人地址&nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <div align="left">[[%%DBO_WFAC26%%]][[%%DBO_WFAC27%%]][[%%DBO_WFAC28%%]]&nbsp;</div>
+    </td>
+  </tr>
+  <!--
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;受款人電話&nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <div align="left">&nbsp;</div>
+    </td>
+  </tr>
+  -->
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;SWIFT Code &nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <div align="left">[[%%DBO_WFAC29%%]]&nbsp;</div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;受款銀行代號&nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <div align="left">[[%%DBO_WFAC36%%]]&nbsp;</div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;受款銀行名稱&nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <div align="left">[[%%DBO_WFAC30%%]]&nbsp;</div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;受款銀行地址&nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <div align="left">[[%%DBO_WFAC31%%]]&nbsp;</div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;國別&nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <div align="left">[[%%DBO_WFAC17%%]]&nbsp;</div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;匯款性質&nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <select name="RMTYPE">
+      	<option value="0" selected>= 請選擇匯款性質別 =</option>
+      </select>
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;匯款人聯絡電話&nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <input name="SEND_RM_PHONE" maxlength="10"  style="ime-mode:disabled" onpaste="return false;"><br/>
+      <font color=red>
+      	(若因約定資料有誤、不全或法令更改致無法匯出，交易指示當日前將以此電話號碼與您聯繫，以利後續作業)
+      </font>
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;匯出匯款附言&nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <input name="SEND_RM_MSG" size="45" maxlength="35"  style="ime-mode:disabled" onpaste="return false;" ><br/>
+      <font color=red>
+      	(此為告知受款人之匯款訊息，僅限35個字，並僅可輸入半形英數字與特定符號(+、-、/、,、.)，於交易成功後可至『外匯』>『匯出匯款』>『歷史記錄查詢』查詢您所記錄之附言。)
+      </font>
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;交易附註&nbsp;</div>
+    </td>
+    <td width="75%"> 
+      <input name="SEND_RM_MEMO" size="45" maxlength="50"><br/>
+      <font color=red>
+      	(限50字，如您輸入交易附註，則於交易成功後可至『帳戶查詢』>『台/外幣存款帳戶』>『交易明細』點選查詢類別為『網銀轉出交易』查詢您所記錄之交易附註。)
+      </font>
+    </td>
+  </tr>
+</table>
+
+
+<script>
+addTable();
+
+function addTable(){
+	
+var t = document.getElementById("mytable");
+
+var ct = "[[%%DBO_WFAC16%%]]";
+	
+
+if (ct == "USD" ){
+
+  var tr2 = t.insertRow(t.rows.length-1);
+
+	td  = tr2.insertCell(0);
+	td2 = tr2.insertCell(1);
+	
+	td.innerHTML="<table    bgcolor='#C4CBB8'><tr ><td width='75%'>是否全額到匯&nbsp;&nbsp;</td></tr></table>";
+	td2.innerHTML="<select name='telegraph' onChange='chgSelect2(this.value);'><option value='0' selected>一通電報(非全額到匯)</option><option value='1'>兩通電報(全額到匯至受款行)</option></select>";
+	
+ }	
+
+}
+</script>
+
+<table width="60%" border="0" align="center">
+  <tr> 
+    <td colspan=2>註：</td>
+ 	</tr>
+ 	<tr> 
+    <th width="2%" height="100%" valign="top"><font size="2">一、</font></td>
+    <td width="98%">交易時間：本行營業日上午9:00~下午3:30，其他時段暫停服務。</td>
+  </tr>
+  <tr> 
+    <th width="2%" height="100%" valign="top"><font size="2">二、</font></td>
+    <td width="98%">
+    	個人網路銀行外匯匯出匯款限制：<br/>
+    	1.匯款金額不得超過等值新臺幣50萬元(含)(手續費及郵電費不佔用限額)。<br/>
+    	2.目前網路銀行暫不提供人民幣匯出匯款業務。<br/>
+			3.本項服務無提供交易水單證明，若須交易水單證明，請逕洽往來分行臨櫃辦理。<br/>
+			4.個人網路銀行不提供取消機制，如欲取消交易，依臨櫃退匯方式辦理，請逕洽扣款帳號分行填寫退匯申請書辦理退匯。
+    </td>
+  </tr>
+  <tr> 
+    <th width="2%" height="100%" valign="top"><font size="2">三、</font></td>
+    <td width="98%">
+    費用收取：<br/>
+    1.手續費每筆為新臺幣100元。<br/>
+		2.郵電費每筆為新臺幣200元。<br/>
+		3.手續費及郵電費用皆由匯款人自行負擔，並自拉選之扣款帳號中扣收，若選臺幣帳戶為扣款帳戶，手續費及郵電費以新臺幣計收；若選外幣帳號為扣款帳戶，手續費及郵電費將依交易時之即期賣出匯率換算為匯款幣別後自外幣帳號與匯款本金一併扣款。<br/>
+		4.一般銀行間國際匯款，國外銀行會自款項中扣取美金20元至美金50元處理費，受款銀行亦會收取匯入款手續費，因此受款人實際收到之金額，會與原來匯款金額不同。
+    </td>
+  </tr>
+    <tr> 
+    <th width="2%" height="100%" valign="top"><font size="2">四、</font></td>
+    <td width="98%">
+    全額到匯服務限制：<br/>
+    1.全額到匯服務係指匯款金額全額到達受款銀行，受款銀行如須收取相關費用，須由受款人自行負擔支付。<br/>
+		2.匯款幣別限美金(不限國別)。<br/>
+		<font color=red>3.每筆全額到匯交易總計收取新臺幣500元(或等值美金)之服務費用。</font>
+    </td>
+  </tr>
+  <tr>
+  	<td colspan="2">
+  		<div align="center">
+	  	<input type="button" name="submit1" value=" 確定 " onClick="chkSubmit();">
+	  	<input type="button" name="submit2" value=" 取消 " onClick="chkCancel();">
+	  	</div>
+  	</td>
+  </tr>
+</table>
+<input type="hidden" name="DBO_WFAC01" value="[[%%DBO_WFAC01%%]]">
+<input type="hidden" name="DBO_WFAC02" value="[[%%DBO_WFAC02%%]]">
+<input type="hidden" name="DBO_WFAC03" value="[[%%DBO_WFAC03%%]]">
+<input type="hidden" name="DBO_WFAC04" value="[[%%DBO_WFAC04%%]]">
+<input type="hidden" name="DBO_WFAC05" value="[[%%DBO_WFAC05%%]]">
+<input type="hidden" name="DBO_WFAC06" value="[[%%DBO_WFAC06%%]]">
+<input type="hidden" name="DBO_WFAC07" value="[[%%DBO_WFAC07%%]]">
+<input type="hidden" name="DBO_WFAC08" value="[[%%DBO_WFAC08%%]]">
+<input type="hidden" name="DBO_WFAC10" value="[[%%DBO_WFAC10%%]]">
+<input type="hidden" name="DBO_WFAC16" value="[[%%DBO_WFAC16%%]]">
+<input type="hidden" name="DBO_WFAC17" value="[[%%DBO_WFAC17%%]]">
+<input type="hidden" name="DBO_WFAC18" value="[[%%DBO_WFAC18%%]]">
+<input type="hidden" name="DBO_WFAC19" value="[[%%DBO_WFAC19%%]]">
+<input type="hidden" name="DBO_WFAC20" value="[[%%DBO_WFAC20%%]]">
+<input type="hidden" name="DBO_WFAC21" value="[[%%DBO_WFAC21%%]]">
+<input type="hidden" name="DBO_WFAC22" value="[[%%DBO_WFAC22%%]]">
+<input type="hidden" name="DBO_WFAC23" value="[[%%DBO_WFAC23%%]]">
+<input type="hidden" name="DBO_WFAC24" value="[[%%DBO_WFAC24%%]]">
+<input type="hidden" name="DBO_WFAC25" value="[[%%DBO_WFAC25%%]]">
+<input type="hidden" name="DBO_WFAC26" value="[[%%DBO_WFAC26%%]]">
+<input type="hidden" name="DBO_WFAC27" value="[[%%DBO_WFAC27%%]]">
+<input type="hidden" name="DBO_WFAC28" value="[[%%DBO_WFAC28%%]]">
+<input type="hidden" name="DBO_WFAC29" value="[[%%DBO_WFAC29%%]]">
+<input type="hidden" name="DBO_WFAC30" value="[[%%DBO_WFAC30%%]]">
+<input type="hidden" name="DBO_WFAC31" value="[[%%DBO_WFAC31%%]]">
+<input type="hidden" name="DBO_WFAC36" value="[[%%DBO_WFAC36%%]]">
+<input type="hidden" name="SEND_BR_NAME">
+<input type="hidden" name="SEND_ACCT_NO">
+<input type="hidden" name="SEND_ACCT_CURRENCY">
+<input type="hidden" name="SEND_ACCT_AMT">
+<input type="hidden" name="SEND_TXN_AMT">
+<input type="hidden" name="SEND_DEF_AMT">
+<input type="hidden" name="SEND_RM_TYPE">
+<input type="hidden" name="SEND_RM_TYPE_NAME">
+<input type="hidden" name="SEND_DATE" value="[[%%SEND-DATE%%]]">
+<input type="hidden" name="SEND_TIME" value="[[%%SEND-TIME%%]]">
+<input type="hidden" name="SEND_BUY" value="[[%%SEND-BUY%%]]">
+<input type="hidden" name="SEND_SELL" value="[[%%SEND-SELL%%]]">
+<input type="hidden" name="SEND_CHARGE" value="1">
+<input type="hidden" name="pageid" value="IP0703402">
+<script>
+addOptions();
+calCurrAmt2();
+getAlert('[[%%SYSTIME%%]]','[[%%SYSDATE%%]]');
+</script>
+</form>
+</body>
+</html>

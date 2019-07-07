@@ -1,0 +1,288 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>帳戶交易</title>
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: Carl 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+*	EAI98046					2009.06.23			 Carl 
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<script language="Javascript">
+    //字串去空白
+    String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");} 
+</script>
+
+<style type="text/css">
+
+.buttonstyle
+{
+	
+   border-radius=35px;
+ 
+   border-radius:35px;
+}
+
+</style>
+
+<script>
+function chkSSL(tmp){
+	var ssl = tmp;
+	if(ssl == 2){
+		document.IP0712000.vtrType[0].checked = true;
+		return " ";
+	}
+	else{
+		document.IP0712000.vtrType[1].checked = true;
+		document.IP0712000.vtrType[0].disabled = true;
+		return " ";
+	}
+}
+
+function chkAcct(){
+	var acctArray = document.IP0712000.FROMACCTNO.value.split("@");
+        document.IP0712000.FROM_ACCT_NO.value = acctArray[0];
+    	document.IP0712000.FROM_BR_NAME.value = acctArray[1];
+    	document.IP0712000.FROM_AVAL_BALANCE.value = acctArray[2];
+    	document.IP0712000.SEND_AMT_LMT.value = acctArray[3];  //有無約定大額轉帳(0:無約定 其餘數目為約定金額 單位:萬元)
+    	document.IP0712000.SEND_AVAL_TFR.value = acctArray[4]; //無約定大額轉帳剩餘金額
+    	document.IP0712000.SEND_AVAL_LARGE.value = acctArray[5];  //約定大額轉帳剩餘金額 單位:元
+}
+
+function chkSubmit(){
+	var f = document.IP0712000;
+	if (f.FROMACCTNO.value == "0"){
+            alert("請選擇轉出帳號!");
+            return;
+        }
+        chkAcct();
+        if (f.TXN_AMT.value == ""){
+            alert("請輸入轉帳金額!");
+            return;
+        }
+        if (isNaN(f.TXN_AMT.value)){
+            alert("轉帳金額格式錯誤!");
+            return;
+        }
+        if(f.TXN_AMT.value.indexOf(".",0)!=-1){
+            alert("轉帳金額須為正整數!");
+            return;   
+        }
+        if(f.TXN_AMT.value.indexOf("-",0)!=-1){
+            alert("轉帳金額須為正整數!");
+            return;   
+        }
+        if(f.TXN_AMT.value.indexOf("+",0)!=-1){
+            alert("台幣轉帳不可帶正號!");
+            return;   
+        }
+        if(eval(f.TXN_AMT.value)==0){
+            alert("轉帳金額不可為零!");
+            return;   
+        }
+        if(f.FROM_ACCT_NO.value.substr(3,2)==51){
+        	alert("如您動用到達文西A+理財卡或國民現\n金貸款額度，且動用金額大於100元\n時，每筆計收提領費100元。");
+        }
+        if(eval(f.FROM_AVAL_BALANCE.value) < eval(f.TXN_AMT.value)){
+		alert("轉出帳號可用餘額不足!");
+		return;
+        }
+        
+        var barcode=f.REVE_BARCODE_1.value;
+	var date=barcode.substring(0,6);
+	var contDate = convertDate1(date);
+	var contYear = eval(""+contDate[0]);
+	var contMonth = eval(""+contDate[1]+"-1");
+	var contDay = eval(""+contDate[2])+1;
+	var todayDate = new Date();
+	var comDate = new Date(contYear,contMonth,contDay);
+	
+	if(comDate<=todayDate){
+		alert("本繳費單已逾期，無法透過個人網路銀行繳納，相關問題請逕洽勞動部勞工保險局");
+		return;
+	}
+        
+	var barcode1=document.IP0712000.REVE_BARCODE_1;
+	var barcode2=document.IP0712000.REVE_BARCODE_2;
+	var barcode3=document.IP0712000.REVE_BARCODE_3;
+	var  type_name='[[%%REVE-FEE-TYPE%%]]';
+	//檢查條碼是否正確
+	if(type_name == '09'){
+		if(!checkHealthInsurance(barcode1.value,barcode2.value,barcode3.value))
+			return;
+	}
+	else if(type_name == '34'){
+		if(!checkLaborPensionInsurance(barcode1.value,barcode2.value,barcode3.value,0))
+			return;
+	}
+	else if(type_name == '35'){
+		if(!checkLaborPensionInsurance(barcode1.value,barcode2.value,barcode3.value,1))
+			return;
+	}
+	else{
+		if(!checkNationalPensionInsurance(barcode1.value,barcode2.value,barcode3.value))
+			return;
+	}
+	//檢查金額是否正確
+	if(!checkAmount(barcode3.value,document.IP0712000.TXN_AMT.value))
+		return;
+	f.TXN_MEMO.value = HalfshapeToFullshape(f.TXN_MEMO.value);
+	document.IP0712000.Submit1.disabled = true;
+	f.submit();
+}
+
+function convertDate1(inDate){
+	var contDate = splitDate(inDate);
+	var contYear = contDate[0];
+	if(contYear.length==3||contYear.length==2){
+		contDate[0] = eval(contYear+"+2011");
+	}
+	return contDate;
+}
+
+</script>
+</script>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+</head>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+
+<form method="post" action="LoadAP" name="IP0712000">
+<p><b>帳戶交易&gt;<font color="#003399"><font color="#0066FF">繳費<br>
+  </font></font></b>
+<table width="630" border="0">
+	<tr> 
+		<td><br>
+			<table width="90%" align="center" border="1" bordercolor="#999999">
+				<tr>
+					<td width="14%" height="25" bgcolor="#C4CBB8" colspan="2">繳費類別</td>
+					<td width="72%" height="25">
+						<script>
+							var  type_name='[[%%REVE-FEE-TYPE%%]]';
+							if(type_name == '09')
+								document.write("健康保險費繳款");
+							else if(type_name == '34')
+								document.write("勞工保險費繳款");
+							else if(type_name == '35')
+								document.write("勞工退休金繳款");
+							else
+								document.write("國民年金繳款");
+						</script>
+					</td>	
+				</tr>
+				<tr> 
+					<td width="14%" height="25" bgcolor="#C4CBB8" colspan="2">轉出帳號<font color="#663300" face="Arial, Helvetica, sans-serif"></font></td>
+					<td width="72%" height="25"><font color="#663300" face="Arial, Helvetica, sans-serif"> 
+						 <select name="FROMACCTNO">
+							 <option value="0" selected>==請選擇帳號　可用餘額== </option>
+							<!--[[%%LOOP_SEC SEND-FROM-ACCT-NO%%]]-->
+							<option value="[[%%SEND-FROM-ACCT-NO%%]]@[[%%SEND-FROM-BR-NAME%%]]@[[%%SEND-FROM-AVAL-BALANCE%%]]@[[%%SEND-AMT-LMT%%]]@[[%%SEND-AVAL-TFR%%]]@[[%%SEND-AVAL-LARGE%%]]">[[%%SEND-FROM-BR-NAME%%]] 
+								<script language="JavaScript">
+									document.write(getAcctStr('[[%%SEND-FROM-ACCT-NO%%]]'));
+								</script>
+								新台幣
+								<script>
+									document.write(trimDecimal(moneyAddDot('[[%%SEND-FROM-AVAL-BALANCE%%]]')));
+								</script>元
+							</option>
+							<!--[[%%ELOOP_SEC%%]]-->
+						</select> 
+						</font>
+					</td> 
+				</tr> 
+				<tr> 
+					<td width="14%" height="25" bgcolor="#C4CBB8" rowspan="3">繳費資料</td> 
+					<td width="14%" height="25" bgcolor="#C4CBB8" >條碼一</td>
+					<td width="72%" height="25">
+						 <input name="REVE_BARCODE_1" type="text" maxlength="9" size="10" value="">(共09位元)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						 <a id="example"  target="_blank">條碼輸入範例</a>
+						 <script>
+							if(type_name == 9)
+								example.href="graph/Payment/Health.jpg";
+							else if(type_name == 34)
+								example.href="graph/Payment/Labor.jpg";
+							else if(type_name == 35)
+								example.href="graph/Payment/LaborPension.jpg";
+							else
+								example.href="graph/Payment/NationalPension.jpg";
+						 </script>
+					</td>
+				</tr>
+				<tr> 
+					<td width="14%" height="25" bgcolor="#C4CBB8" >條碼二</td>
+					<td width="72%" height="25">
+						 <input name="REVE_BARCODE_2" type="text" maxlength="16" size="17" value="">(共16位元)
+					</td>
+				</tr>
+				<tr>  
+					<td width="14%" height="25" bgcolor="#C4CBB8" >條碼三</td>
+					<td width="72%" height="25">
+						 <input name="REVE_BARCODE_3" type="text" maxlength="15" size="16" value="">(共15位元)
+					</td>
+				</tr>		
+				<tr>
+					<td width="14%" height="25" bgcolor="#C4CBB8" colspan="2">轉帳金額</td>
+					<td width="72%" height="25">
+						新臺幣 <input type="text" name="TXN_AMT" maxlength="9" size="10" value="">元
+					</td>
+				</tr>
+				<tr>
+					<td width="14%" height="25" bgcolor="#C4CBB8" colspan="2">交易附註</td>
+					<td width="72%" height="25">
+						<input type="text" name="TXN_MEMO" maxlength="50" size="80" value=""></br>
+						(限50字，如您輸入交易附註，則於交易成功後可至『帳戶查詢』>『台幣存款帳戶』>『交易明細』點選查詢類別為『網銀轉出交易』查詢您所記錄之交易附註。)
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div align="center" > 
+			  <input type="button" name="Submit1" value="確定" onClick="chkSubmit();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			  <input type="reset" name="Submit3" value="取消"  onClick="history.back()" >
+			</div>
+		</td>
+	</tr>
+</table>
+  </br>
+<div style="margin-left: 15;">
+	<p style="margin: 0"> 說明：  </p>
+	<p style="margin: 0">（1）帳務性交易時間為週一至週五09:00~15:30，若超過前述時間或例假日交易，皆為次一營業日帳。</p>
+	<p  style="margin: 0">（2）如執行轉帳交易發生網路傳輸異常而無法確認交易結果時，請先利用交易明細查詢功能確認交易是否成功。</p>
+	<p  style="margin: 0">（3）此為轉出交易，交易完成後，帳戶中款項將被轉出。</p>
+</div>
+
+<input type="hidden" name="FROM_ACCT_NO" value="">
+<input type="hidden" name="FROM_BR_NAME" value="">
+<input type="hidden" name="pageid" value="IP0712100">
+<input type="hidden" name="FROM_AVAL_BALANCE" value="">
+<input type="hidden" name="SEND_AMT_LMT">
+<input type="hidden" name="SEND_AVAL_TFR">
+<input type="hidden" name="SEND_AVAL_LARGE">
+<input type="hidden" name="REVE_FEE_TYPE" value='[[%%REVE-FEE-TYPE%%]]'>
+<script>
+getTimeAlert('[[%%SYSTIME%%]]','[[%%SYSDATE%%]]');
+</script>
+</form>
+</body>
+</html>

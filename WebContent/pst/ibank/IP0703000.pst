@@ -1,0 +1,559 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI98004           2009.02.17     YiSyun  
+*EAI98045           2009.06.30     Carl  
+*EAI99055           2010.09.20     Carl
+*EAI99058           2010.09.29     Carl
+*EAI100036          2011.07.01     Joe 
+*EAI100083          2011.12.19     simon 外匯優惠利率
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<script>
+var rate;
+var rate1;
+var total;
+var total1;
+var currency;
+var currencyType;
+var leave;//帳戶餘額
+function cal(){    
+    var display;
+    if ( document.IP0703000.textfield1.value == "" ){
+    	alert("請填入左側金額");
+    	return;
+   	}
+    if (document.IP0703000.select3.value == "" ){
+	alert("請選擇幣別");
+   	     return;
+   }
+   if (isNaN(IP0703000.textfield1.value)){
+      	alert("轉帳金額格式錯誤!");
+       	return;
+    } 
+    if (IP0703000.textfield1.value.indexOf(".")>-1){
+       alert("轉帳金額限輸入整數!");
+       return;
+    }
+    if (IP0703000.textfield1.value.indexOf("+")>-1){
+       alert("轉帳欄位不可帶正號!");
+       return;
+    }
+    if ( eval(document.IP0703000.textfield1.value) < 0 ){
+       alert("台幣轉帳不可為負數!");
+       return;
+    }
+    if ( eval(document.IP0703000.textfield1.value) == 0 ){
+       alert("台幣轉帳不可為零!");
+       return;
+    }
+    var money = IP0703000.textfield1.value;
+    //因浮點數相乘在javascript中會有誤差，所以先將金額乘倍數後再除回來
+		var tpmAns = Math.round((money*100)/(rate));
+    //日幣取整數，其餘幣別取小數兩位
+    if(currencyType == "03")
+    { 
+        total=Math.round(tpmAns/100);
+    }
+    else
+    {
+        total=Math.round(tpmAns)/100;
+    }
+    total = total + '';
+    display = moneyAddDot2(total);
+    td3.innerHTML=currency + ' ' + display;
+    document.IP0703000.SEND_TO_AMT.value = total;
+    document.IP0703000.SEND_FROM_AMT.value = IP0703000.textfield1.value;
+}
+
+function cal2(){    
+    var display;
+    if ( document.IP0703000.textfield2.value == "" ){
+    	alert("請填入左側金額");
+    	return;
+   	}
+    if (document.IP0703000.select3.value == "" ){
+	alert("請選擇幣別");
+   	     return;
+   }
+   if (isNaN(IP0703000.textfield2.value)){
+      	alert("轉帳金額格式錯誤!");
+       	return;
+    } 
+    if (IP0703000.textfield2.value.indexOf("+")>-1){
+       alert("轉帳欄位不可帶正號!");
+       return;
+    }
+    if ( eval(document.IP0703000.textfield2.value) < 0 ){
+       alert("轉帳金額不可為負數!");
+       return;
+    }
+    if ( eval(document.IP0703000.textfield2.value) == 0 ){
+       alert("轉帳金額不可為零!");
+       return;
+    }
+    var money = IP0703000.textfield2.value;
+    //因浮點數相乘在javascript中會有誤差，所以先將金額乘倍數後再除回來
+    var tpmAns = Math.round((money*100)*(rate*100000));
+		var total = Math.round(tpmAns/10000000);
+    total = total + '';
+    display = moneyAddDot2(total);
+    td4.innerHTML= "新台幣 " + display +  " 元";
+    document.IP0703000.SEND_TO_AMT.value = IP0703000.textfield2.value;
+    document.IP0703000.SEND_FROM_AMT.value = total;
+}
+
+function chgsel(fun){
+	if(fun=='0'){
+		document.IP0703000.textfield1.disabled = false;
+		document.IP0703000.textfield2.disabled = true;
+		document.IP0703000.Submit1.disabled = false;
+		document.IP0703000.Submit2.disabled = true;
+	}else if(fun=='1'){
+		document.IP0703000.textfield1.disabled = true;
+		document.IP0703000.textfield2.disabled = false;
+		document.IP0703000.Submit1.disabled = true;
+		document.IP0703000.Submit2.disabled = false;
+	}
+}
+
+function chgfromAcct(acctStr){
+    if(acctStr=="")
+    { 
+        alert("請重新選擇");
+        return;
+    }
+
+	var acctArray = acctStr.split("@");
+	document.IP0703000.SEND_FROM_BR_NAME.value = acctArray[0];
+	document.IP0703000.sendfromacctno.value = acctArray[1];
+	document.IP0703000.sendfromcurrency.value = acctArray[2];
+	leave = acctArray[2];
+}
+
+function chgtoAcct(acctStr1) {
+    if(acctStr1=="")
+    { 
+        alert("請重新選擇");
+        return;
+    }
+
+	var acctArray1 = acctStr1.split("@");
+	document.IP0703000.SEND_TO_BR_NAME.value = acctArray1[0];
+	document.IP0703000.sendtoacctno.value = acctArray1[1];
+	
+}
+
+
+function chgcurrency(icurrency){
+    var currencyArray = icurrency.split("@");
+    rate = currencyArray[2];
+    rate1 = currencyArray[1];
+    currencyType = currencyArray[3];
+    document.IP0703000.exchageratio.value = currencyArray[2];
+    currency = currencyArray[0];
+    document.IP0703000.SEND_CURRENCY_CNAME.value = currencyArray[0];
+    document.IP0703000.SEND_TO_CURRENCY.value = currencyArray[3];
+		if(rate==""){
+			alert("您目前所選擇的"+currency+"目前無匯率資料，請選擇其他幣種進行交易");
+			document.IP0703000.select3.options[0].selected = true;
+			td1.innerText='新台幣/ (請選擇幣別) 目前匯率：';
+      td3.innerHTML='請選擇幣別';
+      td2.innerText='新台幣/ (請選擇幣別) 目前匯率：';
+      td5.innerHTML='請選擇幣別';
+      return;
+		}
+    if(icurrency=="")
+    { 
+        alert("請重新選擇");
+        td1.innerText='新台幣/ (請選擇幣別) 目前匯率：';
+        td3.innerHTML='請選擇幣別';
+        td2.innerText='新台幣/ (請選擇幣別) 目前匯率：';
+      	td5.innerHTML='請選擇幣別';
+        return;
+    }
+    else
+    {
+        td1.innerHTML='新台幣/'+currencyArray[0]+'賣匯交易匯率：'+ currencyArray[2];
+        td3.innerHTML=currencyArray[0];
+        td2.innerHTML='新台幣/'+currencyArray[0]+'賣匯交易匯率：'+ currencyArray[2];
+        td5.innerHTML=currencyArray[0];
+    }
+}
+
+function ChkSubmit(){
+
+	if (IP0703000.select1.value == ""){
+		alert("請選擇轉出帳號!");
+		return;
+	}
+	if(document.IP0703000.sendfromacctno.value.substr(3,2)=="51"){
+		alert("本交易不得動用到達文西A+理財卡或國民現金貸款額度!");
+	}
+	if (IP0703000.select2.value == ""){
+		alert("請選擇轉入帳號!");
+		return;
+	}
+	
+	if (IP0703000.select3.value == ""){
+		alert("請選擇轉入幣別!");
+		return;
+	}
+	
+	if (IP0703000.SEND_FROM_AMT.value == ""){
+		alert("請輸入轉出金額!");
+		return;
+	}
+	if (isNaN(IP0703000.SEND_FROM_AMT.value)){
+		alert("轉帳金額格式錯誤!");
+		return;
+	} 
+	if (IP0703000.SEND_FROM_AMT.value.indexOf(".")>-1){
+		alert("轉帳金額須為正整數!");
+		return;
+	}
+	if(document.IP0703000.r1[0].checked){
+		cal();
+	}else{
+		cal2();
+	}
+	
+	//document.IP0703000.SEND_FROM_AMT.value = IP0703000.textfield1.value;
+	    
+	
+	if ( eval(document.IP0703000.SEND_FROM_AMT.value) > eval(leave) ){
+		alert("轉出帳號可用餘額不足!");
+		return;
+	} 
+	
+	if (IP0703000.SEND_FROM_AMT.value.indexOf("+")>-1){
+     alert("轉帳欄位不可帶正號!");
+     return;
+  }
+	    
+	if ( eval(document.IP0703000.SEND_FROM_AMT.value) < 0 ){
+		alert("轉帳金額須為正整數!");
+		return;
+	}
+	
+	if(eval(document.IP0703000.SEND_FROM_AMT.value <= 999)){
+		alert("轉換金額需大於等於新台幣1,000元!");
+		return;
+	}
+	if(eval(document.IP0703000.SEND_FROM_AMT.value >= 500000)){
+		alert("轉換金額不得大於等於新台幣500,000元!");
+		return;
+	}
+	if(document.IP0703000.BUY_TYPE.value=="NONE"){
+		alert("請選擇結購性質別！");
+		return;
+	}
+	
+  if(chkExecptional(document.IP0703000.SEND_MEMO.value)!=true){
+		return;
+	}
+  document.IP0703000.SEND_MEMO.value = HalfshapeToFullshape(document.IP0703000.SEND_MEMO.value);
+  	
+	if(currencyType == "08"){
+		if(document.IP0703000.SEND_TO_AMT.value>20000){
+			alert("目前台幣單次結購轉換金額不可大於20,000人民幣！");
+		 	return;
+		}
+	}
+	document.IP0703000.submit();
+}
+
+function chkReset(){
+	document.getElementById("td1").innerHTML = "";
+	document.getElementById("td2").innerHTML = "";
+	document.getElementById("td3").innerHTML = "請選擇幣別";
+	document.getElementById("td5").innerHTML = "請選擇幣別";
+} 
+
+function chgBuyType(bt){
+	document.IP0703000.BUY_TYPE.value = bt;
+}
+
+</script>
+<style type="text/css">
+<!--
+
+.t4	{
+	font-size: 9pt;
+	color: #000000;
+	line-height:12pt;
+	vertical-align:top;
+	text-align: right;
+}
+-->
+</style>
+
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF"  background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　帳戶交易&gt;<font color="#0066ff">台幣轉外幣<br>
+	<div align="right">	
+	<script>
+		document.write("資料時間:"+getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+		</script>
+	</div>
+	</font></b><br>
+
+<form name="IP0703000" method="POST" action="LoadAP">
+　<img border="0" name="imageField" src="graph/point.gif" height="12">
+台幣轉外幣
+<table cellSpacing="0" cellPadding="0" width="760" border="0" id="table1">
+	<tr>
+		<td bgColor="#ffe1d7" colspan="2">
+		<div align="center">
+			台幣</div>
+		</td>
+		<td rowSpan="3">
+		<div align="center">
+			<img height="51" src="graph/point01.gif" width="117"> 
+		</div>
+		</td>
+		<td width="288" bgColor="#f1ffc3">
+		<div align="center">
+			外幣</div>
+		</td>
+	</tr>
+	<tr>
+		<td align="left" bgColor="#ffe1d7" colspan="2">
+		　<img height="9" src="graph/arrow.gif" width="10">轉出帳號： 
+		<select name="select1" onChange="JavaScript:chgfromAcct(this.value);">
+              <option value="" selected>==請選擇帳號　可用餘額== </option>
+
+  [[%%LOOP_SEC SEND-FROM-ACCT-NO%%]]   
+             <option value="[[%%SEND-FROM-BR-NAME%%]]@[[%%SEND-FROM-ACCT-NO%%]]@[[%%SEND-FROM-AVAL-BALANCE%%]]">
+				[[%%SEND-FROM-BR-NAME%%]]  
+              <SCRIPT language="JavaScript">  
+                           document.write(getAcctStr('[[%%SEND-FROM-ACCT-NO%%]]'));   
+               </SCRIPT>   
+               新台幣 <script>document.write(trimDecimal(moneyAddDot("[[%%SEND-FROM-AVAL-BALANCE%%]]")));</script> 元</option>          
+   [[%%ELOOP_SEC%%]]   
+
+            </select> </td>
+		<td align="left" width="288" bgColor="#f1ffc3">
+		　<img height="9" src="graph/arrow.gif" width="10">轉入帳號： 
+		<select name="select2" onChange="JavaScript:chgtoAcct(this.value);">
+                <option value="" selected>==請選擇帳號== </option>
+
+   [[%%LOOP_SEC SEND-TO-ACCT-NO%%]]  
+         		<option value="[[%%SEND-TO-BR-NAME%%]]@[[%%SEND-TO-ACCT-NO%%]]">  
+ 			        <SCRIPT language="JavaScript">  
+ 				       	document.write('[[%%SEND-TO-BR-NAME%%]] ',getAcctStr('[[%%SEND-TO-ACCT-NO%%]]'));   
+ 			        </SCRIPT> </option>
+   					[[%%ELOOP_SEC%%]]  
+                  </select>
+                  <script>//去除重覆的外幣帳號
+                      var i;
+                      var index;
+                      index=document.IP0703000.select2.length;
+                      for(i=1;i<index;i++)
+                      {
+                          if(document.IP0703000.select2[i-1].value==document.IP0703000.select2[i].value)
+                          {
+                          document.IP0703000.select2.remove(i-1);
+                          index--;
+                          i--;
+                          }
+                      }
+                  </script>
+		 </td>
+	</tr>
+	<tr>
+		<td width="32" bgColor="#ffe1d7" rowSpan="2">
+		　</td>
+		<td width="256" bgColor="#ffe1d7" rowSpan="2">
+		　</td>
+		<td width="288" bgColor="#f1ffc3" rowSpan="2">
+		　<img height="9" src="graph/arrow.gif" width="10">轉入幣別： 
+		
+		
+		
+		
+		<select name="select3" onChange="JavaScript:chgcurrency(this.value);">
+     <option value="" selected>==請選擇幣別== </option>
+
+   [[%%LOOP_SEC SEND-CURRENCY%%]]    
+              <option value='[[%%SEND-CURRENCY-CNAME%%]]@[[%%SEND-BUY-RATE%%]]@[[%%SEND-SELL-RATE%%]]@[[%%SEND-CURRENCY%%]]'>
+				[[%%SEND-CURRENCY-CNAME%%]]</option>    
+   [[%%ELOOP_SEC%%]]          
+
+      </select> 
+		</td>
+	</tr>
+	<tr>
+		<td width="184" bgColor="#eaeaea">
+		<div align="center">
+			</div>
+		</td>
+	</tr>
+	<tr bgColor="#cccccc">
+		<td colSpan="4" height="2">
+		</td>
+	</tr>
+	<tr vAlign="top">
+		<td colSpan="4">
+		<table cellSpacing="0" cellPadding="0" width="760" border="0" id="table2">
+			<tr bgColor="#FFFFFF">
+				<td width="255" height="24" colspan="3">
+				　<img height="9" src="graph/arrow.gif" width="10">轉帳金額</td>
+				<td width="220" height="24">
+				　</td>
+				<td width="183" height="24" colspan="3">
+				　</td>
+			</tr>
+			<tr bgColor="#ffffcc">
+				
+				<td width="104" height="30">
+				<input type=radio name=r1 value=0 checked  onclick="chgsel(this.value);">　 
+				轉出金額：&nbsp;&nbsp; </td>
+				<td width="42" height="30">
+				新台幣</td>
+				<td width="109" height="30">
+				<input size="10" value="" name="textfield1" style="font-family: Arial; font-size: 8pt; vertical-align: middle; border: 1 solid #000000; background-color: #FFFFFF">元</td>
+				<td width="280" height="15">
+				<div align="center">
+					<input type="button" value="試算轉入金額 " name="Submit1" style="font-family: Arial; font-size: 8pt; vertical-align: middle; border: 1 solid #000000; background-color: #FFFFFF" onClick="JavaScript:cal();">
+					<br>
+					<table ><td id="td1"></td></table></td>
+
+					</div>
+				</td>
+				<td width="66" height="15">
+				轉入金額：&nbsp; </td>
+				<td width="96" height="15">
+				<table ><td id="td3"></td></table></td>
+				<td width="21" height="15">
+				</td>
+			</tr>
+			<tr bgColor="#ddddff">
+			
+				<td width="104" height="30">
+				<input type=radio name=r1 value=1 onclick="chgsel(this.value);">　 
+				轉入金額：&nbsp;&nbsp; </td>
+				<td width="42" height="30" id="td5">
+				</td>
+				<td width="109" height="30">
+				<input size="10" value="" name="textfield2" style="font-family: Arial; font-size: 8pt; vertical-align: middle; border: 1 solid #000000; background-color: #FFFFFF"></td>
+				<td width="280" height="15">
+				<div align="center">
+					<input type="button" value="試算轉出金額 " name="Submit2" style="font-family: Arial; font-size: 8pt; vertical-align: middle; border: 1 solid #000000; background-color: #FFFFFF" onClick="JavaScript:cal2();">
+					<br>
+					<table ><td id="td2"></td></table></td>
+
+					</div>
+				</td>
+				<td width="66" height="15">
+				轉出金額：&nbsp; </td>
+				<td width="96" height="15">
+				<table ><td id="td4"></td></table></td>
+				<td width="21" height="15">
+				</td>
+			</tr>
+			</table>
+		<table width="749" border="0" id="table3">
+			<tr>
+				<td colspan="2"><b>結購性質</b><font color="#663300" face="Arial, Helvetica, sans-serif">　 
+        
+          <select name="buyType" onChange="chgBuyType(this.value);">
+          <option value="NONE" selected>請選擇結購性質</option>
+          <option value="0">' ' 結購外匯僅作外存不再匯出</option>
+					<option value="A">'A' 股本投資、股權投資及國外存款等投資款</option>
+					<option value="B">'B' 對外貸款、國外借款及發行海外公司債等</option>
+					<option value="C">'C' 國外投資所得</option>
+					<option value="D">'D' 委外加工及商仲貿易貨款收支</option>
+					<option value="E">'E' 國外服務收支</option>
+					<option value="F">'F' 國外捐贈、贍家等移轉收支</option>
+					<option value="G">'G' 國外薪資所得</option>
+					<option value="I">'I' 出進口通關及指定國內交貨之貨款收支</option>
+					<option value="R">'R' 國內貨款之收付</option>
+					<option value="S">'S' 國內外幣保單、基金、債券等投資款項之收付</option>
+					<option value="T">'T' 國內贍家移轉收支</option>
+					<option value="Z">'Z' 其他</option>
+        </select>
+        </td>
+			</tr>
+			<tr>
+				<td width="743">
+				<img height="9" src="graph/arrow.gif" width="10">交易附註 
+				<input size="80" value="" MAXLENGTH="50" name="SEND_MEMO" > 
+				<br>
+            				<font color="#FF0000">(如您輸入交易附註，則於交易成功後可至『帳戶查詢』&gt;『外匯存款帳戶』&gt;『交易明細』點選查詢類別為『網銀轉出交易』查詢您所記錄之交易附註。) 
+            				</font>
+				</td>
+			</tr>
+		</table>
+		<br>
+<table id=rate_readme>
+			<tr><td><img src="graph/fx-001.gif" width="272" height="127" /></td>
+			</tr></table>
+		<br>
+		說明：<br>
+		      <table width="100%" border="0">
+		   <tr>
+		     <td valign="top" class="t4">1.</td>
+		     <td>本交易以客戶本人帳戶為限，<font color="red">最低單筆轉帳金額須為新台幣 1,000 元(含)以上</font>。</td>
+		   </tr>
+		   <tr>
+		     <td valign="top" class="t4">2.</td>
+		     <td>個人網路銀行及電話銀行之交易限額合併累積控管，每人每日結購外幣累積金額應低於等值新台幣 50 萬元，<font color="red">另結購人民幣單筆及每人每日累積限額全行各交易通路合併計算應低於人民幣 2 萬元</font>。</td>
+		   </tr>
+		   <tr>
+		     <td valign="top" class="t4">3.</td>
+		     <td>本服務交易時間為<font color="red">營業日每天早上 9 點至下午 3 點 30 分(均以本行主機時間為準，非營業日本服務暫停提供服務)</font>，如遇匯率波動過大或其他特殊因素，本行將視實際狀況關閉或開放本服務，並於本服務網站公告。</td>
+		   </tr>
+		 </table>
+
+		<div align="center">
+			<input type="button" value="確 定" name="Submit22" style="font-family: Arial; font-size: 8pt; vertical-align: middle; border: 1 solid #000000; background-color: #FFFFFF" onClick= "ChkSubmit()">
+			<input type="reset" value="重 填" name="Submit222" style="font-family: Arial; font-size: 8pt; vertical-align: middle; border: 1 solid #000000; background-color: #FFFFFF"  onClick="chkReset();">
+			<br>
+　</div>
+		</td>
+	</tr>
+</table>
+<script>
+
+        td1.innerHTML='新台幣/&nbsp;(請選擇幣別)&nbsp;目前匯率：';
+        td2.innerHTML='新台幣/&nbsp;(請選擇幣別)&nbsp;目前匯率：';
+        td3.innerHTML='請選擇幣別';
+        td5.innerHTML='請選擇幣別';
+        
+</script>
+<script>
+chgsel('0');
+</script>
+<input type="hidden" name="APTYPE" value="IBANK">
+<input type="hidden" name="pageid" value="IP0703001">
+<input type="hidden" name="sendfromcurrency" value="">
+<input type="hidden" name="amount">
+<input type="hidden" name="currency">   
+<input type="hidden" name="exchageratio" value = ""> 
+<input type="hidden" name="SEND_CURRENCY_CNAME" value="">
+<input type="hidden" name="sendfromacctno" value="">
+<input type="hidden" name="SEND_FROM_BR_NAME" value="">
+<input type="hidden" name="SEND_FROM_AMT" value="">
+<input type="hidden" name="SEND_TO_AMT" value="">
+<input type="hidden" name="sendtoacctno" value="">
+<input type="hidden" name="SEND_TO_BR_NAME" value="">
+<input type="hidden" name="SEND_TO_CURRENCY" value="">
+<input type="hidden" name="BUY_TYPE" value="NONE">
+<input type="hidden" name="SEND_ID_NO" value="[[%%SEND-ID-NO%%]]">
+</form>
+</body>
+</html>

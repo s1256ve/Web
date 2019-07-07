@@ -1,0 +1,215 @@
+<html>
+<head>
+<title>聯邦銀行個人金融網</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI99042           2010.04.15     Sandie
+*EAI99041	          2010.05.10	   David
+*EAI99052           2010.08.25     David
+*EAI99057           2010.09.29     David  
+***********************************************************************/
+</script>
+<style type="text/css">
+<!--
+    body,p,td,form,select{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:12pt;}
+    .t1{  font-family: "新細明體"; font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-family: "新細明體"; font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+body {
+	background-color: #dff0d3;
+}
+-->
+</style>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/iBank.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+</head>
+
+<body link="#0000FF" vlink="#0000FF" alink="#000000" leftmargin="0" topmargin="0" onLoad="MM_preloadImages('graph/icon007a.gif','graph/icon_08_01a.gif','graph/icon_08_02.gif','graph/icon_08_03.gif','graph/icon_08_04.gif','graph/icon_08_05.gif','graph/icon_08_06.gif','graph/icon_08_07.gif','graph/icon_08_08.gif','graph/icon_08_09.gif','graph/icon_08_01.gif','graph/icon_08_02a.gif','graph/icon_08_03a.gif','graph/icon_08_04a.gif','graph/icon_08_05a.gif','graph/icon_08_06a.gif','graph/icon_08_07a.gif','graph/icon_08_08a.gif','graph/icon_08_09a.gif')">
+
+<form method="post" name="IC0000002" target="_parent" action="LoadAP" >
+<table border="0" cellspacing="0" cellpadding="0" width="128">
+  <tr valign="top">
+    <td height="225">
+      <div align="center"> </div>
+      <table width="138" border="0" cellspacing="1" cellpadding="0">
+        <tr align="center" valign="top"> 
+          <td> 
+            <table width="137" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td><img src="graph/button-070704.gif" alt="網路服務" width="140" height="22"></td>
+              </tr>
+              <tr align="center" valign="top"> 
+                <td  height="10"> 
+                  <table width="137" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td height="4"></td>
+            </tr>
+                    <tr>
+                      <td height="40"><div align="center"><a href="HTTPS://MYBANK.UBOT.COM.TW" target="_blank"> <img src="graph/mybank_banner.gif" alt="個人網路銀行登入區" name="Image17" width="140" height="46" hspace="1" border="0"></a></div></td>
+                    </tr>            <tr>
+              <td height="4"></td>
+            </tr>
+                    <tr> 
+                      <td><img src="graph/blank.gif" width="1" height="5"><a href="https://atm.ubot.com.tw/" target="_blank"><img src="graph/atm_banner.gif" alt="聯邦網路ATM登入區" width="140" height="45" hspace="1" vspace="2" border="0"></a></td>
+                    </tr>            <tr>
+              <td height="4"></td>
+            </tr>
+            
+            
+            
+             <tr> 
+                      <td><img src="graph/blank.gif" width="1" height="5"><a href="http://www.ubot.com.tw/UB/mobilebank/index.asp" target="_blank"><img src="graph/app_banner.gif" alt="樂活APP" width="140" height="45" hspace="1" vspace="2" border="0"></a></td>
+                    </tr>    
+              <tr> 
+              	     <td><a href="javascript:void(0)" onClick="window.open('https://www.ubot.com.tw/rate/index.htm', '即時匯利率專區', config='height=600,width=800');"><img src="graph/rate_banner.gif" alt="即時匯利率專區" width="140" height="45" hspace="1" vspace="2" border="0"></a></td>
+                     <!-- <td><img src="graph/blank.gif" width="1" height="5"><a href="https://atm.ubot.com.tw/" target="_blank"><img src="graph/rate_banner.gif" alt="即時匯利率專區" width="140" height="45" hspace="1" vspace="2" border="0"></a></td>-->
+                    </tr> 
+                            <tr>
+              <td height="5"></td>
+            </tr>
+            
+            
+            
+            
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <table border="0" cellspacing="0" cellpadding="0" width="141">
+        <tr>
+          <td><img alt="個人金融服務介紹" name="Image1" border="0" src="graph/button-01.gif" width="140" height="22"></td>
+        </tr>
+        <tr>
+          <td>
+            <table width="141" border="0" cellspacing="1" cellpadding="0">
+              <tr bgcolor="#B0B6A7">
+                <td height="130"><table width="140" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td><a href="https://www.ubot.com.tw/a/a01_index.htm" target="main" onClick="MM_swapImage('icon_08_01','','graph/icon_08_01a.gif','icon_08_02','','graph/icon_08_02.gif','icon_08_03','','graph/icon_08_03.gif','icon_08_04','','graph/icon_08_04.gif','icon_08_05','','graph/icon_08_05.gif','icon_08_06','','graph/icon_08_06.gif','icon_08_07','','graph/icon_08_07.gif','icon_08_08','','graph/icon_08_08.gif','icon_08_09','','graph/icon_08_09.gif',1)"><img src="graph/icon_08_01.gif" alt="存款業務" name="icon_08_01" width="140" height="21" border="0" id="icon_08_01" /></a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.ubot.com.tw/a/a02_index.htm" target="main" onClick="MM_swapImage('icon_08_01','','graph/icon_08_01.gif','icon_08_02','','graph/icon_08_02a.gif','icon_08_03','','graph/icon_08_03.gif','icon_08_04','','graph/icon_08_04.gif','icon_08_05','','graph/icon_08_05.gif','icon_08_06','','graph/icon_08_06.gif','icon_08_07','','graph/icon_08_07.gif','icon_08_08','','graph/icon_08_08.gif','icon_08_09','','graph/icon_08_09.gif',1)"><img src="graph/icon_08_02.gif" alt="貸款業務" name="icon_08_02" width="140" height="21" border="0" id="icon_08_02" /></a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.ubot.com.tw/a/a03_index.htm" target="main" onClick="MM_swapImage('icon_08_01','','graph/icon_08_01.gif','icon_08_02','','graph/icon_08_02.gif','icon_08_03','','graph/icon_08_03a.gif','icon_08_04','','graph/icon_08_04.gif','icon_08_05','','graph/icon_08_05.gif','icon_08_06','','graph/icon_08_06.gif','icon_08_07','','graph/icon_08_07.gif','icon_08_08','','graph/icon_08_08.gif','icon_08_09','','graph/icon_08_09.gif',1)"><img src="graph/icon_08_03.gif" alt="外匯業務" name="icon_08_03" width="140" height="21" border="0" id="icon_08_03" /></a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.ubot.com.tw/a/a10_mybank_index.htm" target="main" onClick="MM_swapImage('icon_08_01','','graph/icon_08_01.gif','icon_08_02','','graph/icon_08_02.gif','icon_08_03','','graph/icon_08_03.gif','icon_08_04','','graph/icon_08_04a.gif','icon_08_05','','graph/icon_08_05.gif','icon_08_06','','graph/icon_08_06.gif','icon_08_07','','graph/icon_08_07.gif','icon_08_08','','graph/icon_08_08.gif','icon_08_09','','graph/icon_08_09.gif',1)"><img src="graph/icon_08_04.gif" alt="財富管理業務" name="icon_08_04" width="140" height="21" border="0" id="icon_08_04" /></a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.ubot.com.tw/a/a08_index.htm" target="main" onClick="MM_swapImage('icon_08_01','','graph/icon_08_01.gif','icon_08_02','','graph/icon_08_02.gif','icon_08_03','','graph/icon_08_03.gif','icon_08_04','','graph/icon_08_04.gif','icon_08_05','','graph/icon_08_05a.gif','icon_08_06','','graph/icon_08_06.gif','icon_08_07','','graph/icon_08_07.gif','icon_08_08','','graph/icon_08_08.gif','icon_08_09','','graph/icon_08_09.gif',1)"><img src="graph/icon_08_05.gif" alt="信託業務" name="icon_08_05" width="140" height="21" border="0" id="icon_08_05" /></a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.ubot.com.tw/a/a11_index.htm" target="main" onClick="MM_swapImage('icon_08_01','','graph/icon_08_01.gif','icon_08_02','','graph/icon_08_02.gif','icon_08_03','','graph/icon_08_03.gif','icon_08_04','','graph/icon_08_04.gif','icon_08_05','','graph/icon_08_05.gif','icon_08_06','','graph/icon_08_06a.gif','icon_08_07','','graph/icon_08_07.gif','icon_08_08','','graph/icon_08_08.gif','icon_08_09','','graph/icon_08_09.gif',1)"><img src="graph/icon_08_06.gif" alt="證券服務" name="icon_08_06" width="140" height="21" border="0" id="icon_08_06" /></a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://card.ubot.com.tw/" target="_blank"><img src="graph/icon_08_07.gif" alt="信用卡業務" name="icon_08_07" width="140" height="21" border="0" id="icon_08_07" onClick="MM_swapImage('icon_08_01','','graph/icon_08_01.gif','icon_08_02','','graph/icon_08_02.gif','icon_08_03','','graph/icon_08_03.gif','icon_08_04','','graph/icon_08_04.gif','icon_08_05','','graph/icon_08_05.gif','icon_08_06','','graph/icon_08_06.gif','icon_08_07','','graph/icon_08_07a.gif','icon_08_08','','graph/icon_08_08.gif','icon_08_09','','graph/icon_08_09.gif',1)" /></a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.ubot.com.tw/a/a01/a01_06_01.htm" target="main" onClick="MM_swapImage('icon_08_01','','graph/icon_08_01.gif','icon_08_02','','graph/icon_08_02.gif','icon_08_03','','graph/icon_08_03.gif','icon_08_04','','graph/icon_08_04.gif','icon_08_05','','graph/icon_08_05.gif','icon_08_06','','graph/icon_08_06.gif','icon_08_07','','graph/icon_08_07.gif','icon_08_08','','graph/icon_08_08a.gif','icon_08_09','','graph/icon_08_09.gif',1)"><img src="graph/icon_08_08.gif" alt="保管箱業務" name="icon_08_08" width="140" height="21" border="0" id="icon_08_08" /></a></td>
+                  </tr>
+                  <tr>
+                    <td><a href="https://www.ubot.com.tw/a/a05_mybank_index.htm" target="main" onClick="MM_swapImage('icon_08_01','','graph/icon_08_01.gif','icon_08_02','','graph/icon_08_02.gif','icon_08_03','','graph/icon_08_03.gif','icon_08_04','','graph/icon_08_04.gif','icon_08_05','','graph/icon_08_05.gif','icon_08_06','','graph/icon_08_06.gif','icon_08_07','','graph/icon_08_07.gif','icon_08_08','','graph/icon_08_08.gif','icon_08_09','','graph/icon_08_09a.gif',1)"><img src="graph/icon_08_09.gif" alt="電子金融業務" name="icon_08_09" width="140" height="21" border="0" id="icon_08_09" /></a></td>
+                  </tr>
+                </table></td>
+              </tr>
+          </table></td>
+        </tr>
+      </table>
+      </td>
+  </tr>
+  <tr valign="top">
+    <td height="29"><table width="140" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><img src="graph/icon_08_10.gif" width="140" height="7"></td>
+      </tr>
+      <tr>
+      	<td><a href="http://www.yesfund.com.tw/index.html" target="_blank"><img src="graph/icon_08_18.gif" alt="基金天地" width="140" height="23" border="0"></a></td>
+				
+      	<!--
+        <td><a href="https://mybank.ubot.com.tw/LoadAPWeb/LoadAP?pageid=IC000000F&PORTALTYPE=FUND" target="_top"><img src="graph/icon_08_18.gif" alt="基金天地" width="140" height="23" border="0"></a></td>
+				-->      
+      </tr>
+      <tr>
+        <td><a href="http://www.ubot.com.tw/stock/" target="_blank"><img src="graph/icon_08_12.gif" alt="證券下單" width="140" height="23" border="0"></a></td>
+      </tr>
+      <tr>
+        <td><a href="https://www.ubot.com.tw/Download/File/UBOT.pdf" target="_blank"><img src="graph/icon_08_14.gif" alt="每日巿場快訊" width="140" height="23" border="0"></a></td>
+      </tr>
+      <tr>
+        <td><a href="https://www.ubot.com.tw/UBOT2005/money/money.asp" target="main"><img src="graph/icon_08_15.gif" alt="財經訊息" width="140" height="23" border="0"></a></td>
+      </tr>
+      <tr>
+      	<td><a href="http://www.ubot.com.tw/ub/ebank_5/page04_1.asp" target="_blank"><img src="graph/icon_08_20.gif" alt="網路安全" width="140" height="23" border="0" style="cursor:hand" ></td>
+      	
+      	<!--
+      	<td><a href="https://mybank.ubot.com.tw/LoadAPWeb/pst/faq/page14_safe02a.htm" target="_blank"><img src="graph/icon_08_20.gif" alt="網路安全" width="140" height="23" border="0" style="cursor:hand" ></td>
+      	
+        <td><img src="graph/icon_08_20.gif" alt="網路安全" width="140" height="23" border="0" style="cursor:hand" onClick="window.open('https://mybank.ubot.com.tw/LoadAPWeb/pst/faq/page14_safe02a.htm','網路釣魚','toolbar=no,menubar=no,status=yes,scrollbars=yes,top=30,left=30,fullscream=yes,resizable=no')"></td>
+        -->
+      </tr>
+      <tr>
+        <td><a href="https://www.ubot.com.tw/news/2002/1018001.htm" target="main"><img src="graph/icon_08_21.gif" alt="防詐騙專欄" width="140" height="23" border="0"></a></td>
+      </tr>
+      <tr>
+        <td><a href="https://www.ubot.com.tw/UB/2007_privacy/2007_privacy.htm" target="main"><img src="graph/icon_08_22.gif" alt="隱私權聲明" width="140" height="23" border="0"></a></td>
+      </tr>
+	  <tr>
+        <td><a href="https://www.ubot.com.tw/UBOT2005/links/links2.html" target="main"><img src="graph/icon_08_226.gif" alt="關係企業" width="140" height="23" border="0"></a></td>
+      </tr>
+      <tr>
+        <td><a href="https://www.ubot.com.tw/UBOT2005/links/links.html" target="main"><img src="graph/icon_08_23.gif" alt="友好連結" width="140" height="23" border="0"></a></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<input type="hidden" name="REVE_ID_NO" value="">
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="REVE_PWD" value="">
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+
+</form>
+</body>
+</html>
+<!-- web17909.mail.tpe.yahoo.com uncompressed/chunked Thu Mar 16 08:40:50 CST 2006 -->

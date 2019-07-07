@@ -1,0 +1,348 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>外匯帳戶查詢</title>
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI99063           2010.10.18     David
+*EAI100036          2011.07.01     Joe  
+*EAI100041          2011.07.12     David
+*EAI100043          2011.07.14     David  
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<script language="JavaScript" SRC="script/acctfmt.js"></script>
+<script language="JavaScript" SRC="script/moneyfmt.js"></script>
+<script language="JavaScript" src="script/datefmt.js"></script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script>
+function ChgType1(str1) {
+  var str=str1;
+  if (str1=="機動"){
+      return "利率機動";
+  }
+  else{
+      return "固定" + str + "%";
+  }  
+}
+</script>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } .style1 {color: #FF0000}
+-->
+</style>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+<form method="POST" name="IP0405103" action="LoadAP">
+
+<input type="hidden" name="SEND-BR-NAME" value="[[%%SEND-BR-NAME%%]]">
+<input type="hidden" name="SEND-ACCT-DESC" value="[[%%SEND-ACCT-DESC%%]]">
+<input type="hidden" name="SEND_ACCT_NO" value="">
+<input type="hidden" name="SEND_B_DATE" value="[[%%SEND_B_DATE%%]]">
+<input type="hidden" name="SEND_E_DATE" value="[[%%SEND_E_DATE%%]]">
+<input type="hidden" name="SEND_INTEREST" value="[[%%SEND_INTEREST%%]]">
+<input type="hidden" name="SEND_COLL_STATUS" value="[[%%SEND_COLL_STATUS%%]]">
+<input type="hidden" name="SEND_INT_PAY" value="[[%%SEND_INT_PAY%%]]">
+<input type="hidden" name="SEND_V_NO" value="[[%%SEND_V_NO%%]]">
+<input type="hidden" name="SEND_BALANCE" value="[[%%SEND_BALANCE%%]]">
+<input type="hidden" name="SEND_MEMO" value="[[%%SEND_MEMO%%]]">
+<input type="hidden" name="SEND_DELAY" value="[[%%SEND_DELAY%%]]">
+<input type="hidden" name="SEND_REMOVE_DATE" value="[[%%SEND_REMOVE_DATE%%]]">
+<input type="hidden" name="SEND_CAPITAL" value="[[%%SEND_CAPITAL%%]]">
+<input type="hidden" name="SEND_AVAL_INT" value="[[%%SEND_AVAL_INT%%]]">
+<input type="hidden" name="SEND_TO_ACCT" value="[[%%SEND_TO_ACCT%%]]">
+<input type="hidden" name="SEND_TOACCT_BALANCE" value="[[%%SEND_TOACCT_BALANCE%%]]">
+<input type="hidden" name="SEND-EXP-RATE" value="">
+<input type="hidden" name="SEND_DETAIN_TAXATION" value="[[%%SEND_DETAIN_TAXATION%%]]">
+<input type="hidden" name="SEND_TO_ACCT_NO" value="">
+<input type="hidden" name="SEND_VCHR_NO" value="">
+
+<b>帳戶交易&gt;</b><font color="#0066FF"><b>綜存定存續存設定或中途解約&gt;<strong>外匯定存中途解約</strong></b></font><br>
+<br>
+<table width="630" border="0">
+  <tr>
+    <td><div align="center"><font color="#0000CC">交易訊息：交易成功<br>
+      交易時間：
+      <script>
+    		document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+    	</script>
+    </font></div>
+        <table width="500" border="1" align="center" bordercolor="#999999">
+          <tr>
+            <td width="22%" bgcolor="#C4CBB8">交易名稱<br></td>
+            <td width="78%" height="25"><p>外匯綜存定存中途解約<br>
+            </p>            </td>
+          </tr>
+          <tr>
+            <td width="22%" bgcolor="#C4CBB8">轉出帳號<br></td>
+            <td width="78%" height="25"><p>聯邦銀行 
+            <script language="javascript"> 
+        			document.write(getAcctStr("[[%%SEND-ACCT-NO%%]]"));
+        			
+              var acctNo = "[[%%SEND-ACCT-NO%%]]"; //定存帳號欄位遮蔽                                               
+              document.IP0405103.SEND_ACCT_NO_MARK.value = acctNo.substr(0,5) + "XXXXX" + acctNo.substr(10,2);    
+              
+        		</script>
+            </p></td>
+          </tr>
+          <tr>
+            <td width="22%" bgcolor="#C4CBB8">定存存單號碼<br></td>
+            <td width="78%" height="25">[[%%SEND-VCHR-NO%%]]</td>
+            
+            <script language="javascript"> 
+              var vchrNo = "[[%%SEND-VCHR-NO%%]]"; //定存存單號碼欄位遮蔽                                           
+              document.IP0405103.SEND_VCHR_NO_MARK.value = vchrNo.substr(0,3) + "XXX" + vchrNo.substr(6,2);  
+            </script>
+          </tr>
+          <tr>
+            <td width="22%" bgcolor="#C4CBB8">幣別/金額<br></td>
+            <td width="78%" height="25"><p>[[%%SEND-CURRENCY%%]] 
+            <script>
+              //document.write(moneyAddDot3(trimSpStr1("[[%%SEND-PRINCIPAL-BALANCE%%]]")));
+              document.write("[[%%SEND-PRINCIPAL-BALANCE%%]]");
+            </script>
+            元<br>
+            </p>
+            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8" width="22%"><span class="style1">原存單起息日<br>
+            </span></td>
+            <td height="25" width="78%">
+            <p>
+            <span class="style1">
+            <script>
+            	/*
+            	var intDate = "[[%%SEND-INT-DATE%%]]";
+            	var intDateYear = parseInt(intDate.substr(0,4),10);
+            	var intDateMonth =intDate.substr(4,2);
+            	var intDateDay = intDate.substr(6,2);
+            	document.write(intDateYear + "年" + intDateMonth + "月" + intDateDay + "日");
+            	*/
+            	document.write("[[%%SEND-INT-DATE%%]]");
+            </script>
+            </span>
+            </p></td>
+            
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8" width="22%"><span class="style1">原定存到期日<br>
+            </span></td>
+            <td height="25" width="78%"><p>
+            <span class="style1">
+            <script>
+            	/*
+            	var expDate = "[[%%SEND-EXP-DATE%%]]";
+            	var expDateYear = parseInt(expDate.substr(0,4),10);
+            	var expDateMonth = expDate.substr(4,2);
+            	var expDateDay = expDate.substr(6,2);
+            	document.write(expDateYear + "年" + expDateMonth + "月" + expDateDay + "日");
+            	*/
+            	document.write("[[%%SEND-EXP-DATE%%]]");
+            </script>
+            </span>
+            </p></td>
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8" width="22%"><span class="style1">預定解約日期</span><br>
+            </td>
+            <td height="25" width="78%"><p><span class="style1">
+            <script>
+            	/*
+            	var rescindDate = "[[%%SEND-RESCIND-DATE%%]]";
+            	var rescindDateYear = parseInt(rescindDate.substr(0,4),10);
+            	var rescindDateMonth = rescindDate.substr(5,2);
+            	var rescindDateDay = rescindDate.substr(8,2);
+            	document.write(rescindDateYear + "年" + rescindDateMonth + "月" + rescindDateDay + "日");
+            	*/
+      				//document.write(getRCDateStr("[[%%SYSDATE%%]]",3));
+      				document.write("[[%%SEND-RESCIND-DATE%%]]");
+      			</script>
+            </span>
+            </p></td>
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8" width="22%">原定存利率<br></td>
+            <td width="78%" height="25" bgcolor="#FFFFDD">
+            <p>
+            <script>
+            	/*
+            	var rate = "[[%%SEND-INT-RATE%%]]";
+            	var intRate = parseInt(rate.substr(0,2),10);
+            	var decimalPointRate = rate.substr(2,6);
+            	document.write(intRate + "." + decimalPointRate + "%");
+            	*/
+            	document.write("[[%%SEND-INT-RATE%%]]");
+            </script>
+            </p>
+            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8" width="22%">解約定存利息<br></td>
+            <td height="25" width="78%" bgcolor="#FFFFDD"><p>[[%%SEND-CURRENCY%%]] 
+            <script>
+            	//var interest = [[%%SEND-NET-AMOUNT%%]] - [[%%SEND-PRINCIPAL-BALANCE%%]]
+              //document.write(trimDecimal(moneyAddDot3(eval('[[%%Send-Gross-ProfiT%%]]')+""))); 
+              //document.write(moneyAddDot3(trimSpStr1(interest)));
+              //document.write(moneyAddDot3(trimSpStr1("[[%%SEND-EXP-RATE%%]]")));
+              document.write("[[%%SEND-GROSS-PROFIT%%]]");
+            </script>
+            元<br>
+            </p>            </td>
+          </tr>
+          <tr>
+          <td bgcolor="#C4CBB8" width="22%">代扣稅款<br></td>
+            <td height="25" width="78%" bgcolor="#FFFFDD"><p>[[%%SEND-CURRENCY%%]]
+           <script language="javascript"> 
+            	document.write("[[%%SEND_DETAIN_TAXATION%%]]");
+           </script>
+            元<br>
+            </p>            
+            </td>
+            </tr>
+          <td bgcolor="#C4CBB8" width="22%">補充保費<br></td>
+            <td height="25" width="78%" bgcolor="#FFFFDD"><p>[[%%SEND-CURRENCY%%]] 
+           	[[%%SEND_SUPP_PREM%%]] 元<br>
+            </p>            
+            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8">轉入帳號<br></td>
+            <td height="25" bgcolor="#FFFFDD"><p>聯邦銀行
+            <script language="javascript"> 
+        			document.write(getAcctStr("[[%%SEND-TO-ACCT-NO%%]]"));
+        			
+        			var toAcctNo = "[[%%SEND-TO-ACCT-NO%%]]"; //轉入帳號欄位遮蔽                                          
+              document.IP0405103.SEND_TO_ACCT_NO_MARK.value = toAcctNo.substr(0,5) + "XXXXX" + toAcctNo.substr(10,2);  
+
+        		</script>
+            </p>            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8">轉入金額<br></td>
+            <td height="25" bgcolor="#FFFFDD"><p>[[%%SEND-CURRENCY%%]] 
+            <script>
+              //document.write(trimDecimal(moneyAddDot3(eval('[[%%SEND_BALANCE%%]]'+'[[%%SEND-GROSS-PROFIT%%]]')+""))); 
+              //document.write(moneyAddDot3(trimSpStr1("[[%%SEND-NET-AMOUNT%%]]")));
+              document.write("[[%%SEND-NET-AMOUNT%%]]");
+            </script>
+            元</p>            </td>
+          </tr>
+          <!--
+          <tr>
+            <td bgcolor="#C4CBB8">轉入帳號餘額<br></td>
+            <td height="25" bgcolor="#FFFFDD"><p>[[%%SEND-CURRENCY%%]] 
+            <script>
+              //document.write(trimDecimal(moneyAddDot3(eval('[[%%SEND_TOACCT_BALANCE%%]]')+""))); 
+              //document.write(moneyAddDot3(trimSpStr1("[[%%SEND-TO-BALANCE%%]]")));
+              document.write("[[%%SEND-TO-BALANCE%%]]");
+            </script>
+            元</p></td>
+          </tr>
+          -->
+        </table>
+      <table width="100%" border="0">
+		  <tr>
+		    <td>註：<br>
+		    1.外匯綜存定存中途解約之利息計算方式，其計息期間及利率依其期別以存入當日本行牌告利率為準，按下<br>&nbsp;&nbsp;&nbsp;列方式計算：</td>
+		  </tr>
+		</table>
+		<table width="100%" border="0">
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td>a.未存滿一個月者，按實際天數，照外匯活期存款利率八折計息。</td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td>b.存滿一個月未滿三個月者，按其實存期間，照一個月期存款利率八折計息。</td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td>c.存滿三個月未滿六個月者，按其實存期間，照三個月期存款利率八折計息。</td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td>d.存滿六個月未滿九個月者，按其實存期間，照六個月期存款利率八折計息。</td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td>e.存滿九個月未滿一年者，按其實存期間，照九個月期存款利率八折計息。</td>
+		  </tr>
+		  
+		</table>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0">
+        <tr>
+          <td>
+            2.中華民國境內居住之個人存戶，應於給付利息時扣取百分之十稅額；惟每次應扣繳稅額未超過新台幣二千元<br>&nbsp;&nbsp;&nbsp;者，免予扣繳；如非中華民國境內居住之個人存戶應於給付利息時扣取百分之二十稅額。
+          </td>
+        </tr>
+      </table>
+	 <!--  
+      <table width="100%" border="0">
+        <tr>
+        	<td>
+        		3.因應102年1月1日二代健保補充保險費扣繳辦法上線，其利息補充保險費扣繳相關作業如下：
+        	</td>
+        </tr>
+      </table>
+      <table width="100%" border="0">
+        <tr>
+          <td></td>
+          <td></td>
+          <td>a.單次(筆)給付利息金額為新台幣5,000(含)~19,999元，於次年度由健保局開立繳款書向義務人收取。</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>b.單次(筆) 給付利息金額為新台幣20,000元(含)以上，由本行給付利息時，即先代扣2%補充保險費。</td>
+        </tr>
+      </table>
+	 -->
+      <table width="100%" border="0">
+        <tr>
+          <td>
+            3.若單次(筆)給付利息金額為新臺幣2萬元以上~1千萬元(含)以下(當金額超過1千萬元，以1千萬元計算)，由本<br>&nbsp;&nbsp;&nbsp;行給付利息時，即先代扣1.91%之補充保險費。
+          </td>
+        </tr>
+      </table>	 
+	  
+      <table width="100%" border="0">
+		  <tr>
+		    <td>4.本交易如在營業日下午4點以前執行，定存單解約後之本金及利息將計算至當日並轉入外匯綜存活期帳戶。</td>
+		  </tr>
+		  </table>
+		  <table width="100%" border="0">
+		  <tr>
+		    <td>5.本交易如逾營業日下午4點後或非營業日執行，則於次一營業日凌晨將定存單解約後，再將本金及利息轉入<br>&nbsp;&nbsp;&nbsp;外匯綜存活期帳戶(解約利息計算至次一營業日)。</td>
+		  </tr>
+		  </table>
+      <div align="center">
+          <table width="630" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td><div align="center"><a href="javascript:window.print()"><img src="graph/print.gif" width="52" height="24" border="0"></a></div></td>
+            </tr>
+          </table>
+      </div></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
+</form>
+</body>
+</html>

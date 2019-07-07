@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>忘記密碼</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="JavaScript">
+
+function chkSubmit(){
+    if (document.IP1099000.chkSel.value == 0){
+        alert('請選擇變更項目');
+        return;
+    }
+	if (document.IP1099000.chkSel.value == 1){
+		document.IP1099000.pageid.value = "IP1099001";
+		document.IP1099000.submit();
+	}else if(document.IP1099000.chkSel.value == 2){
+		document.IP1099000.pageid.value = "IP1099003";
+		document.IP1099000.submit();
+	}
+	else{};
+}
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+
+function showRule(){
+    window.open("LoadAP?pageid=IP1003006&aptype=NOAP","newWindow1",'width=630,height=420');
+}
+//-->
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+
+<form method="post" action="LoadAP" name="IP1099000">
+<img src="graph/point.gif" width="12" height="12">
+<b>個人設定&gt;<font color="#0066FF">網路密碼/使用者代號變更</font></b><br>
+<table width="630" border="0">
+  <tr> 
+    <td valign="bottom">&nbsp;變更項目 
+      <select name="chkSel">
+        <option value=0 selected>=請選擇變更項目=</option>
+        <option value=1>變更使用者代號</option>
+        <option value=2>變更網路密碼</option>
+      </select>
+    </td>
+    <td width="435" colspan="-1" valign="bottom"><img src="graph/go.gif" height="19" onClick="javascript:chkSubmit();"></td>
+  </tr>
+  <tr>
+    <td colspan="2" valign="bottom"><table width="100%"  border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td>
+          <div align="right">
+            <input type="button" name="view" value="使用者代號與網路密碼設定注意事項" onclick="javascript:showRule();">
+        </div></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="2" height="1"></td>
+  </tr>
+</table>
+
+<input type="hidden" name="pageid" value="IP1099001">
+</form>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+	<title>當日</title>
+  <meta charset="utf-8">
+  <meta http-equiv:"content-language" content="zh-tw">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+  <link href="css/index.css" rel="stylesheet">
+	<link href="css/2.css" rel="stylesheet">
+	 <link href="css/accessibility.css" rel="stylesheet" >
+	<style type="text/css">
+	.t17 {	font-size: 17px;
+	line-height: 26px;
+	color: #000000;
+}
+.t181 {	font-size: 18px;
+	line-height: 26px;
+	color: #000000;
+}
+    </style>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/acctfmt.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/datefmt.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/moneyfmt.js"></SCRIPT>
+<script language="JavaScript" src="script/accessible.js"></script>
+<script>
+
+var nowDate = new Date();
+var nowDay = nowDate.getDate();
+var nowMonth = nowDate.getMonth();
+var nowYear = nowDate.getFullYear();
+var nowDateStr = getRCDateStr(nowYear + "/" + (nowMonth+1) + "/" + nowDay,0);
+var nowTimeStr = nowDate.getHours() + ":" + nowDate.getMinutes() ;
+var selDate = nowDateStr + "," + nowDateStr;
+var csv ="交易日期  交易時間  記帳日期            摘要                支出              存入          帳戶餘額       交易附註";
+
+function addDeposit() {
+	var depositArray = document.IP0201101.deposit;
+	var count = 0;
+	if (depositArray) {
+			if(depositArray.length==undefined){
+	    	count = toFloat(depositArray.value);	    		
+	    }
+	    else{
+	    	for (var i=0; i<depositArray.length; i++) {
+				count += toFloat(depositArray[i].value);
+	    	}
+	    }
+	}
+	return moneyAddDot(count.toString());
+}
+
+function countLength(stringToCount)  
+ { 
+  //計算有幾個全型字、中文字...  
+     var c = stringToCount.match(/[^ -~]/g);  
+     return stringToCount.length + (c ? c.length : 0);  
+ }
+ 
+function addwhite(word){
+	var cWord = 0;
+	len = 17;
+	//alert("word="+word);
+	for(var i=0;i<word.length;i++){
+    var char1 = word.charAt(i);
+    var char2= word.charCodeAt(i);
+    if (!(char2>=32&&char2<=126)) {
+      cWord++;
+    }
+  }
+	newLen = eval(len-cWord);
+	//alert("cWord="+cWord+" newLen="+newLen);
+	for(i=word.length;i<newLen;i++){
+		word = " "+word;
+	}
+	return word;
+}
+
+function downloadAction(){
+	document.IP0201101.data.value=csv;
+	document.IP0201101.action = "pst/ibank/IP0201001F.jsp";
+  document.IP0201101.submit();
+}
+
+
+function addWithdraw(){
+	var withdrawArray = document.IP0201101.withdraw;
+	var i = 0;
+	var count = 0;
+	if (withdrawArray) {
+	    if(withdrawArray.length==undefined){
+	    	count = toFloat(withdrawArray.value);	    		
+	    }
+	    else{
+	    	for (i=0; i<withdrawArray.length; i++) {
+					count += toFloat(withdrawArray[i].value);
+	    	}
+	    }
+	}
+	return moneyAddDot(count.toString());
+}
+
+function chkSubmit98(){
+	alert(' 您好，謝謝您使用網路銀行！\n'+
+	      '為了您的交易資料安全，\n'+
+	      '請記得在視線離開電腦前關閉使用中的瀏覽器，\n'+
+	      '以確保您剛剛的使用記錄不被他人窺探！');
+	      //'登出時間為 '+getNowTime());
+	
+	document.IP0201101.pageid.value="IC0000999";
+	document.IP0201101.aptype.value="NOAP";
+	document.IP0201101.target="_parent";
+	document.IP0201101.submit();    
+}
+
+function BackSubmit(){
+
+    document.IP0201101.action = "LoadAP3?aptype=IBANK&pageid=IC000001B&[[%%SESSIONID%%]]";
+    document.IP0201101.submit();
+}
+
+
+function BackSubmit1(){
+
+   	var f = document.IP0201101;
+	
+	f.selAcctNo.value = "[[%%REVE-ACCT-NO%%]]"; 
+	f.pageid.value = "IP0201100";
+	f.action = "LoadAP3?pageid=IP0201100";
+	f.submit();	
+}
+
+function BackSubmit2(){
+
+    document.IP0201101.action = "LoadAP3?aptype=IBANK&pageid=IC000000B&[[%%SESSIONID%%]]";
+    document.IP0201101.submit();
+}
+
+
+function chkSubmit99(){
+	document.IP0201101.pageid.value="IC0000999";
+	document.IP0201101.aptype.value="NOAP";
+	document.IP0201101.target="_parent";
+	document.IP0201101.submit();    
+}
+</script>
+</head>
+<body onload="initial();">
+<noscript>
+您的瀏覽器不支援JavaScript功能，若網頁功能無法正常使用時，請開啟瀏覽器JavaScript功能 
+</noscript> 	
+<form name="IP0201101" method="POST" action="LoadAP3">
+<header>
+	<div class="wrapper">
+		
+		<div class="headerBox">	
+			 <a href="#C"  title="跳到主要內容區塊" tabindex="1" style="position: absolute" class="sr_only">跳到主要內容區塊</a>
+		  <h1 class="no-effect"> <a class="logo" href="https://freebank.ubot.com.tw/" target="_parent"><img src="Accessible/logo.png" alt="聯邦銀行友善服務網" title="聯邦銀行友善服務網" width="300" height="37" hspace="10" border="0"></a></h1>	
+		<div class="header-right">
+				<a href="#U" name="U" id="AU" accesskey="U" class="top" title="上方導覽區">:::</a> <a href="LoadAP3?aptype=IBANK&pageid=AC0000000" class="top">網站導覽</a> / <a href="LoadAP3?aptype=IBANK&pageid=AC0000001" class="top">金融友善服務準則</a>			
+		  </div>
+		</div>
+				
+		<div class="container2">
+			<div class="logout">
+				<a href="#" onclick="chkSubmit98();"><img src="Accessible/main_button_02.gif" title="登出" alt="登出" border="0" align="absmiddle"  /></a> 
+			</div>
+			<div class="con5">
+			<h2 class="account"><a accesskey="C" name="C" id="AC"  title="中央內容區塊" href="#C" style="text-decoration:none;color:#666;font-size:16px;">:::</a> 交易明細</h2>
+			  <div class="con5_1">	
+		      <table width="100%" border="0" align="center" >
+			      <tr>
+			        <th class="box" id="date"  scope="col" width="150"><strong>交易日期時間</strong></th>
+			        <th class="box" id="memo"  scope="col" width="90"><strong>摘要</strong></th>
+			        <th class="box" id="pay"   scope="col" width="145"><strong>支出</strong></th>
+			        <th class="box" id="income" scope="col"  width="145"><strong>收入</strong></th>
+			        <th class="box" id="balance" scope="col" width="155"><strong>帳戶餘額</strong></th>
+			        <th class="box" id="remarks" scope="col"><strong>交易備註</strong></th>
+		        </tr>
+	
+		 <!--[[%%LOOP_SEC SEND-TXN-DATE%%]]-->
+        <tr> 
+          <td headers="date"> 
+            <div  class="box1">
+			<script language="JavaScript">
+          	 document.write(getRCDateStr("[[%%SEND-REAL-DATE%%]]", 0)+" "+getRCTimeStr("[[%%SEND-REAL-TIME%%]]", 0));
+    	    </script>
+			</div>
+          </td>
+		  
+		  
+        
+		  
+		  
+		  
+          <td headers="memo"> 
+            <div  class="box1">
+			<script language="JavaScript">document.write(""+"[[%%SEND-TXN-MEMO%%]]")</script>
+			</div>
+          </td>
+		  
+		  
+		  
+		  
+		  
+		  
+          <td headers="pay"> 
+            <div  class="box2">
+			<script>
+              var str = "[[%%SEND-WITHDRAW%%]]";
+              if(str.indexOf(".")!=-1){
+            	var withdraw = moneyFormat3(str);
+	          }
+	          else {
+	    	    var withdraw = str;
+	          }
+	          document.write(withdraw);
+	        </script>
+			</div>
+			<input type="hidden" name="withdraw" value="[[%%SEND-WITHDRAW%%]]">
+          </td>
+		  
+		  
+		  
+		  
+		  
+          <td headers="income"> 
+            <div  class="box2">
+			<script>
+            var str2 = "[[%%SEND-DEPOSIT%%]]";
+            if(str2.indexOf(".")!=-1){
+            	var deposit = moneyFormat3(str2);
+            }
+            else {
+            	var deposit = str2;
+            }
+            document.write(deposit); 
+            </script>
+			</div>
+			<input type="hidden" name="deposit" value="[[%%SEND-DEPOSIT%%]]">
+          </td>
+		  
+		  
+		  
+		  
+		  
+		  
+          <td headers="balance"> 
+            <div  class="box2">
+			<script>
+            var str3 = "[[%%SEND-BALANCE%%]]";
+            /*
+            if(str3.indexOf(".")!=-1){
+            	var balance = moneyFormat3(str3);
+            }
+            else {
+            	var balance = str3;
+            }
+            document.write(balance);
+            */
+            document.write(trimDecimal(moneyFormat3(str3)));
+            </script>
+			</div>
+          </td>
+		  
+		  
+		  
+		  
+          <td headers="remarks"> 
+            <div  class="box3"><script language="JavaScript">document.write("&nbsp"+"[[%%SEND-MEMO%%]]")</script></div>
+          </td>
+          
+		  
+		  
+        </tr>
+		
+		
+		
+		
+        <script>
+        csv +="\n"+ getRCDateStr("[[%%SEND-REAL-DATE%%]]", 0)+" "+getRCTimeStr("[[%%SEND-REAL-TIME%%]]", 0)+" "+getRCDateStr("[[%%SEND-TXN-DATE%%]]", 0)+" "+addwhite("[[%%SEND-TXN-MEMO%%]]")+" "+addwhite(withdraw)+" "+addwhite(deposit)+" "+addwhite(trimDecimal(moneyFormat3(str3)))+" "+addwhite("[[%%SEND-MEMO%%]]");
+        </script>
+        <!--[[%%ELOOP_SEC%%]]-->
+		      </table>
+              </div>
+			</div>
+			</div>
+			
+  </div>
+</header>				
+				 <div class="info_container2">
+                    <a href="#" onClick="BackSubmit();"><img src="Accessible/button_09.gif" alt="回主選單" name="Image04" width="152" height="45" vspace="8" border="0" id="Image04" title="回主選單"  /></a>
+                
+                    <a href="#" onClick="BackSubmit2();"><img src="Accessible/button_19.gif" alt="回帳務服務頁" name="Image04" width="196" height="45" vspace="8" border="0" id="Image04" title="回帳務服務頁"  /></a>
+               
+                    <a href="#" onClick="BackSubmit1();"><img src="Accessible/button_18.gif" alt="回前一頁" name="Image04" width="152" height="45" vspace="8" border="0" id="Image04" title="回前一頁"  /></a>
+                 </div>					 
+   
+
+
+<div class="footer">
+	<div class="wrapper">				
+	 	<div class="footerBox">
+	        <p class="copyright">	 			
+		 		<a accesskey="Q" name="Q" id="AQ"  title="網頁資訊" href="#Q" style="text-decoration:none;color:#666;">:::</a>
+		 		<strong>客服中心電話：(02)2545-1788、0800-089-888 &copy;聯邦商業銀行版權所有</strong>
+		 		<a href="https://www.handicap-free.nat.gov.tw/Applications/Detail?category=20171108152834" title="無障礙網站"><img src="Accessible/20a.jpg" alt="通過A檢測等級無障礙網頁檢測" width="88" height="31" border="0" /></a>	
+	 		</p>
+		</div>
+	</div>
+
+<input type="hidden" name="data" value="">
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="aptype" value="IBANK">
+<input type="hidden" name="selAcctNo" value="">
+</div>
+</form>		
+</body>
+</html>

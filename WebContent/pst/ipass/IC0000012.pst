@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>聯邦銀行個人金融網</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script>
+
+var reveweb = "[[%%REVE_WEB%%]]";
+
+function urlRedirect(){
+	if(reveweb=="TRUE"){
+		window.location.href="https://www.ipasspay.com.tw/Views/payment-account-add-success.aspx";
+	}else{
+		document.IC0000012.action = "IPASS001.jsp";
+  		document.IC0000012.submit();
+	}
+}
+
+</script>
+</head>
+<form method="post" name="IC0000012" action="LoadAP2">
+<script>
+urlRedirect();
+</script>
+</form>
+</html>

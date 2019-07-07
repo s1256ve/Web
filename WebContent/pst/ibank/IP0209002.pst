@@ -1,0 +1,247 @@
+<html>
+<head>
+<title>台幣存款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+
+function ChgType1(str1) {
+
+        var str=str1;
+        if (str1=="機動"){
+            return "利率機動";
+        }
+        else{
+            return "固定"+"[[%%SEND-INTEREST%%]]"+"%";
+        }
+        
+    }
+
+function ChgType2(str1) {
+
+        var str=str1;
+        if (str1=="1"){
+            return "到期領息";
+        }
+        if (str1=="2"){
+            return "每月領息";
+        }
+        else {
+        	return "";
+        }
+        
+    }
+
+function ChgType3(str1) {
+
+        var str=str1;
+        if (str1=="0"){
+            return "無設質";
+        }
+        if (str1=="1"){
+            return "含息設質";
+        }
+        if (str1=="2"){
+            return "不含息設質";
+        }
+        else{
+        	return "";
+        }
+    }
+
+function ChgType4(str1,str2) {
+
+        var str=str1;
+        var str2=str2;
+        if (str1=="0"){
+            return "不續存";
+        }
+        else{
+            if(str2=="0"){
+            	return "本金續存";
+            }
+            else if(str2=="1"){
+            	return "本利續存";
+            }
+        }
+    }
+    
+function chkSubmit(){
+    var cont = document.IP0209002.CONTINUE.value; //1:不續存 0:續存
+    var turn = "[[%%SEND-CONTINUE%%]]"; //目前是否續存 1:是 0:否
+	
+		if(cont!="2"){
+			if (cont=="0"&turn=="0"){ 
+			document.IP0209002.pageid.value="IP0209003"; 
+			document.IP0209002.SEND_MARK.value="2"; } else if 
+			(cont=="0"&turn=="1"){ 
+			document.IP0209002.pageid.value="IP0209003"; 
+			document.IP0209002.SEND_MARK.value="2"; 
+			if(confirm("您目前已經是續存狀態,您要做改期設定嗎？")); else 
+			return; } else if (cont=="1"&turn=="1"){ 
+			document.IP0209002.pageid.value="IP0209005"; 
+			document.IP0209002.SEND_MARK.value="1"; } else if 
+			(cont=="1"&turn=="0"){ 
+			alert("您的選擇錯誤:您目前已是不續存狀態,不能再執行不續存設定！"
+			); return; } else{}
+			document.IP0209002.submit();
+		}else{
+			if(confirm("執行本利續存後，於存單到期時，本金及利息將一併續存，是否繼續進行交易？"))
+				document.IP0209002.pageid.value = "IP0209006";
+				document.IP0209002.submit();
+		}
+}
+
+function chkContiune(){
+	var turn = "[[%%SEND-CONTINUE%%]]";
+	var trint = "[[%%SEND_TR_INT%%]]";
+	if(turn==0){
+		return "<option value='0' selected>續存</option>";
+	}
+	if(turn==1){
+		if(trint==0){
+			return "<option value='0' selected>續存條件變更</option>"+"<option value='1'>不續存</option>"+"<option value='2'>本利續存</option>";
+		}
+		else if(trint==1){
+			return "<option value='0' selected>續存條件變更</option>"+"<option value='1'>不續存</option>";
+		}
+	}
+}
+
+function chkMonth(){
+	var bDate = "[[%%SEND-B-DATE%%]]";
+	var eDate = "[[%%SEND-E-DATE%%]]";
+	var period = eval(eDate.substr(0,4))*12+eval(eDate.substr(4,2))-eval(bDate.substr(0,4))*12-eval(bDate.substr(4,2));
+	document.IP0209002.SEND_PERIOD.value=period;
+}
+-->
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>帳戶交易&gt;</b><font color="#0066FF"><b>綜存定存續存設定或中途解約&gt;<strong>綜存定存續存設定</strong></b></font><br>
+<form method="POST" action="LoadAP" name="IP0209002">
+<input type="hidden" name="REVE_SCHD_DATE" value=""> 
+<font color="#0000CC">　<img src="graph/point.gif" width="12" height="12" align="absmiddle">以下是您在 
+[[%%SEND-BR-NAME%%]] 帳號：
+<script>
+document.write(getAcctStr("[[%%SEND-ACCT-NO%%]]"));
+document.IP0209002.REVE_SCHD_DATE.value=getADDateStr(getNowDate(),-1);
+</script>
+定期存款查詢結果： </font><br>
+<table width="763" border="1" bordercolor="#999999">
+<input type="hidden" name="SEND_CONTINUE_CHINESE" value="">
+  <tr> 
+    <td width="93" bgcolor="#C4CBB8"> 
+      <div align="center">存單字號</div>
+    </td>
+    <td width="85" bgcolor="#C4CBB8"> 
+      <div align="center">定存種類</div>
+    </td>
+    <td width="72" bgcolor="#C4CBB8"> 
+      <div align="center">起息日/<br>到期日</div>
+    </td>
+    <td width="101" bgcolor="#C4CBB8"> 
+      <div align="center">本金/<br>存入金額</div>
+    </td>
+    <td width="73" bgcolor="#C4CBB8"> 
+      <div align="center">計息方式</div>
+    </td>
+    <td width="60" bgcolor="#C4CBB8"> 
+      <div align="center">領息方式</div>
+    </td>
+    <td width="66" bgcolor="#C4CBB8"> 
+      <div align="center">是否質借</div>
+    </td>
+    <td width="60" bgcolor="#C4CBB8"> 
+      <div align="center">續存狀態</div>
+    </td>
+    <td width="95" bgcolor="#C4CBB8"> 
+      <div align="center">續存設定 </div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="93"> 
+      <div align="center">[[%%SEND-V-NO%%]]</div>
+    </td>
+    <td width="85"> 
+      <div align="center">[[%%SEND-TITLE%%]]</div>
+    </td>
+    <td width="72"> 
+      <script>
+      document.write(getRCDateStr("[[%%SEND-B-DATE%%]]",0));
+      </script>
+      /<br>
+      <script>
+      document.write(getRCDateStr("[[%%SEND-E-DATE%%]]",0));
+      </script>
+      </div>
+    </td>
+    <td width="101"> 
+      <div align="center">[[%%SEND-BALANCE%%]]</div>
+    </td>
+    <td width="73" bgcolor="#FFFFDD"> 
+      <div align="center">&nbsp;
+      	<SCRIPT language="JavaScript">     
+      	document.write(ChgType1('[[%%SEND-INTEREST%%]]'));
+      	</SCRIPT>
+      </div>
+    </td>
+    <td width="60"> 
+      <div align="center">&nbsp;
+      	<SCRIPT language="JavaScript">     
+      	document.write(ChgType2('[[%%SEND-INT-PAY%%]]'));
+      	</SCRIPT>
+      </div>
+    </td>
+    <td width="66"> 
+      <div align="center">&nbsp;
+      	<SCRIPT language="JavaScript">     
+      	document.write(ChgType3('[[%%SEND-COLL-STATUS%%]]'));
+      	</SCRIPT>
+      </div>
+    </td>
+    <td width="60"> 
+      <div align="center">&nbsp;
+      	<SCRIPT language="JavaScript">     
+      	document.write(ChgType4('[[%%SEND-CONTINUE%%]]','[[%%SEND_TR_INT%%]]'));
+      	</SCRIPT>
+      </div>
+    </td>
+    <td width="95">
+    <div align="center"> 
+        <select name="CONTINUE">
+         <script>
+         	document.write(chkContiune());
+         </script>
+        </select>
+        <img src="graph/go.gif" width="19" height="19" align="absmiddle" border="0" onClick="JavaScript:chkSubmit();">
+    </div> 
+    </td>
+  </tr>
+  <input type="hidden" name="SEND-BR-NAME" value="[[%%SEND-BR-NAME%%]]">
+  <input type="hidden" name="SEND-ACCT-DESC" value="[[%%SEND-ACCT-DESC%%]]">
+  <input type="hidden" name="SEND-ACCT-NO" value="[[%%SEND-ACCT-NO%%]]">
+  <input type="hidden" name="SEND-BALANCE" value="[[%%SEND-BALANCE%%]]">
+  <input type="hidden" name="SEND-TITLE" value="[[%%SEND-TITLE%%]]">
+  <input type="hidden" name="SEND-V-NO" value="[[%%SEND-V-NO%%]]">
+  <input type="hidden" name="SEND-B-DATE" value="[[%%SEND-B-DATE%%]]">
+  <input type="hidden" name="SEND-E-DATE" value="[[%%SEND-E-DATE%%]]">
+  <input type="hidden" name="SEND-INTEREST" value="[[%%SEND-INTEREST%%]]">
+  <input type="hidden" name="SEND-INT-PAY" value="[[%%SEND-INT-PAY%%]]">
+  <input type="hidden" name="SEND-COLL-STATUS" value="[[%%SEND-COLL-STATUS%%]]">
+  <input type="hidden" name="SEND-CONTINUE" value="[[%%SEND-CONTINUE%%]]">
+  <input type="hidden" name="SEND-TXN-AMT" value="[[%%SEND-BALANCE%%]]">
+  <input type="hidden" name="SEND_PERIOD">
+  <input type="hidden" name="pageid" value="IP0209003">
+  <input type="hidden" name="SEND_MARK" value="">
+</table>
+<script>
+chkMonth();
+</script>
+</form>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>基金申購</title>
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: YiSyun 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI98031          2009.05.07     YiSyun 
+* EAI98057	        2009.10.27	   Carl
+* EAI99052          2010.8.25      David 
+* EAI100077	        2011.10.26	   Carl
+***********************************************************************/
+</script>
+<!--script language="JavaScript" SRC="script/PreviousPageBlock.js"></script-->
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript">
+	var ttmp1;
+	var ttmp2;
+	var ttmp3;
+	var ttmp4;
+	var ttmp5;
+	var ttmp6;
+	var ttmp7;
+	var ttmp8;
+
+	function chksubmit(sREVE_CERT_NO, sREVE_FROM_FUNDID, sREVE_FROM_FUNDNAME, sREVE_COMPANY_ID, sFROM_CURRENCY_NAME,sREVE_FROM_AMT, sREVE_FROM_UNITS , sREVE_BC_FUND){
+		ttmp1=sREVE_CERT_NO;ttmp2=sREVE_FROM_FUNDID;ttmp3=sREVE_FROM_FUNDNAME;ttmp4=sREVE_COMPANY_ID;ttmp5=sFROM_CURRENCY_NAME;
+		ttmp6=sREVE_FROM_AMT;ttmp7=sREVE_FROM_UNITS;ttmp8=sREVE_BC_FUND;
+		/**
+		if(sFROM_CURRENCY_NAME != "NTD"){
+		alert("有關外幣信託之申購、贖回、轉換或交易條件變更等交易功能\n可利用電話銀行：(02)2545-1788 執行交易，相關交易之速撥碼如下，或請臨櫃辦理：\n申購請撥  1621\t變更扣款日期請撥  1631\t恢復扣款請撥  1634\n購回請撥  1622\t變更每月扣款金額請撥  1632\t變更扣款請撥  1635\n轉換請撥  1623\t暫停扣款請撥  1633\t恢復扣款請撥  1636");
+		return;
+		}
+		**/
+		var doc = document.IF0501000
+	 	var CertType = sREVE_CERT_NO.substring(0,1);
+	 	var nextPageid = "";
+	 if(sREVE_BC_FUND.length == 1)
+	{
+	var result_style = document.getElementById('table1').style;
+	result_style.display = 'block';
+	jump();
+	return;
+	}
+	else
+		;
+		
+                
+	 	if (CertType=="D" || CertType=="C" || CertType=="U"){
+	 		doc.REVE_LIMIT_AMT.value= "10000"
+	 	}else if(CertType=="T" || CertType=="M" || CertType=="K" || CertType=="Q"){	 	
+	 	  doc.REVE_LIMIT_AMT.value= "30000"
+	 	} 	
+	 	
+		if (CertType=="D" || CertType=="U" || CertType=="T" || CertType=="K"){
+			nextPageid = "IF0501110";
+		}else if(CertType=="C" || CertType=="M" || CertType=="Q"){
+			nextPageid = "IF0501120";
+		}else if(CertType=="F" || CertType=="W"){
+			nextPageid = "IF0501110";		
+		}else if(CertType=="S" || CertType=="P"){
+			nextPageid = "IF0501120";
+		}
+		
+		if (nextPageid != ""){
+			doc.pageForward.value = nextPageid;
+			doc.REVE_CERT_NO.value = sREVE_CERT_NO;
+			doc.REVE_FROM_FUNDID.value = sREVE_FROM_FUNDID;
+			doc.REVE_FROM_FUNDNAME.value = sREVE_FROM_FUNDNAME;
+			doc.REVE_COMPANY_ID.value = sREVE_COMPANY_ID;
+			doc.REVE_FROM_AMT.value = sREVE_FROM_AMT;
+			doc.REVE_FROM_UNITS.value = sREVE_FROM_UNITS;
+			doc.FROM_CURRENCY_NAME.value = sFROM_CURRENCY_NAME;
+			doc.FROM_CURRENCY_CODE.value = CuryMapping("NAME",sFROM_CURRENCY_NAME,"CODE");
+			doc.SEND_BC_FUND.value = sREVE_BC_FUND;			
+			doc.submit();		
+		}
+	}
+
+	function chkSubmit2()
+	{
+	var result_style = document.getElementById('table1').style;
+	result_style.display = 'none';
+	window.location.href = "#header";
+	}
+	
+	function jump()
+	{
+	window.location.href = "#anchor";
+	/*
+	setTimeout(function(){document.location.href = "#anchor";},500);
+	*/
+	}
+	
+</script>
+<link rel="stylesheet" type="text/css" media="all" href="theme/YesFund.css" title="win2k-cold-1" />
+</head>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0501000">
+<font color="#006666"><b>基金轉換&gt;</b></font><div align="right">
+<font color="#0000CC"face="Arial, Helvetica, sans-serif">資料時間： <script language="javascript">
+		document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));                  
+			      		   				//document.write(getNowTime());
+			      		   				</script></font> </div>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center" id="header">請選擇轉換之基金</div>
+    </td>
+    <td>
+<!--  <a href="#"><img src="graph/Learning_icon.gif" width="96" height="49" border="0" align="right" onClick="window.open('https://www.ubot.com.tw/UBOT2005/Learning/data/ubot430.asp','基金轉換','width=650,height=500')"></a>  -->
+    </td>
+  </tr>
+</table>
+  <table width="770" border="0">
+    <tr> 
+    <td colspan="3"> 
+        <div align="center"> 可供您轉換之投資明細<br>
+          <table width="500" border="0" cellpadding="0">
+            <tr> 
+            <td width="17%" bgcolor="58C681"><img src="graph/fund/graph/004.gif" width="8" height="25" align="absmiddle">憑證編號</td>
+            <td width="41%" bgcolor="58C681"> 
+              <div align="center">基金名稱</div>
+            </td>
+            <td width="22%" bgcolor="58C681"> 
+              <div align="center">累積信託金額</div>
+            </td>
+            <td width="20%" bgcolor="58C681"> 
+              <div align="right">參考價格&nbsp;&nbsp;<img src="graph/fund/graph/005.gif" width="8" height="25" align="absmiddle"></div>
+            </td>
+          </tr>
+          <!--[[%%LOOP_SEC SEND-ID%%]]-->
+          <tr bgcolor="#D8F7D5"> 
+            <td width="17%" height="25"> 
+              <div align="center"><A href='JavaScript:chksubmit("[[%%SEND-CERT-NO%%]]","[[%%SEND-FUND-ID%%]]","[[%%SEND-FUND-CNAME%%]]","[[%%SEND-COMPANY-ID%%]]","[[%%SEND-CURRENCY%%]]","[[%%SEND-AMT%%]]","[[%%SEND-UNITS%%]]","[[%%SEND-BC-FUND%%]]");'>[[%%SEND-CERT-NO%%]]</A></div>
+            </td>
+            <td width="41%"><A href='JavaScript:chksubmit("[[%%SEND-CERT-NO%%]]","[[%%SEND-FUND-ID%%]]","[[%%SEND-FUND-CNAME%%]]","[[%%SEND-COMPANY-ID%%]]","[[%%SEND-CURRENCY%%]]","[[%%SEND-AMT%%]]","[[%%SEND-UNITS%%]]","[[%%SEND-BC-FUND%%]]");'> [[%%SEND-FUND-CNAME%%]]</A><br>
+            </td>
+            <td width="22%"> &nbsp; 
+              [[%%SEND-CURRENCY%%]] &nbsp;               
+              <script>
+              	document.write(moneyAddDot("[[%%SEND-AMT%%]]"));
+              </script>              
+            </td>
+            <td width="20%"> 
+              <div align="center">
+              <script>
+              	document.write(moneyAddDot("[[%%SEND-REF-PRICE%%]]"));
+              </script>
+              </div>
+            </td>
+          </tr>    
+          <!--[[%%ELOOP_SEC%%]]-->     
+        </table>
+ </div>
+    </td>
+  </tr>
+</table>
+  <table width="740" border="0" cellpadding="0"  bordercolor="#999999" name="table1" id="table1" style="display:none";>
+		<div align="center">
+		<tr >
+            <td width="68%" height="25"><div align="center" id="anchor"><strong>**特定金錢信託投資手續費後收型基金特約事項**</strong></div></td>
+         	<div align="center">
+          </tr>
+	  <tr>
+    <td colspan="3" height="315">      <div align="center">
+
+		<iframe width="730" height="400" src="SpecialFundsItem.html" scrolling="yes" frameborder="0" style="scrollbar-face-color:#993300;"></iframe>
+					  </div></td>
+  					</tr>
+  				<tr>
+          	<td width="68%" height="25" ><div align="center"><strong>
+本特約事項全部係金融消費者保護法所稱之「重要內容」，為保障您的權益，於本行人員對您充分說明後，建議您確實詳讀每一約款，並於充分瞭解後，始為簽訂本特約事項，並於簽訂後，應隨時注意本行網站上之公告事項，如本特約事項內容變更，將依本行「特定金錢信託契約書」規定方式通知。
+委託人茲聲明已於合理期間充分審閱本特約事項書，且同意接受所投資標的之內容、交易條件及各項費用。</strong></div></td></tr>
+          <tr>
+            <td width="68%" height="25" ><div align="center"><strong>您欲交易的是手續費後收型基金，須依持有期間於贖回時收取遞延手續費，相關費用及特約事項如上：</strong></div></td>
+         	<div align="center">
+          </tr>
+          <tr>
+            <td width="68%" height="25"><table width="97%" border="0" align="center" cellpadding="3" cellspacing="0">
+                <tr>
+                	<div align="center">
+                  <input type="submit" name="Submit3" value="同意" onClick="chksubmit(ttmp1,ttmp2,ttmp3,ttmp4,ttmp5,ttmp6,ttmp7,ttmp1);">
+                  <input type="button" name="Submit4" value="不同意，選其他基金" onClick="chkSubmit2();">																												
+       						 </div>
+                </tr>
+            </table></td>
+          </tr>
+        </div>
+        </table>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+</table>
+  <input type="hidden" name="pageid" value="IF0501001">
+  <input type="hidden" name="pageForward" value="">
+  <input type="hidden" name="REVE_COMPANY_ID" value="">
+  <input type="hidden" name="REVE_CERT_NO" value="">
+  <input type="hidden" name="REVE_FROM_FUNDID" value="">
+  <input type="hidden" name="REVE_FROM_FUNDNAME" value="">
+  <input type="hidden" name="REVE_FROM_AMT" value="">
+  <input type="hidden" name="REVE_FROM_UNITS" value="">
+  <input type="hidden" name="REVE_LIMIT_AMT" value="">
+  <input type="hidden" name="FROM_CURRENCY_NAME" value="">
+  <input type="hidden" name="FROM_CURRENCY_CODE" value="">
+  <input type="hidden" name="SEND_BC_FUND" value=""> 
+  </form>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="Big5"?>
+<!-- IVR FUND INTCA 基金定期定額變更金額資料查詢(外幣) Last updated date 3-17-2004 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="INTCAi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+		<field id='9524i54' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="9524i55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="INTCAi01">
+		<name>REVE-FUND-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>基金代碼</description>
+	</field>
+	<field id="INTCAi02">
+		<name>REVE-FROM-CURRENCY</name>
+		<length>10</length>
+		<type>String</type>
+		<description>轉出幣別</description>
+	</field>
+	<field id="INTCAi04">
+		<name>REVE-FROM-AMT</name>
+		<length>10</length>
+		<type>String</type>
+		<description>轉出金額</description>
+	</field>
+	<field id="INTCAi05">
+		<name>REVE-QRY-ND2US</name>
+		<length>10</length>
+		<type>String</type>
+		<description>是否查詢台幣對美金之賣匯 (0:否,1:是)</description>
+	</field>
+	<field id="INTCAi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="INTCAi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="INTCAi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="INTCAi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

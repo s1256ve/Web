@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+	<title>使用者密碼變更</title>
+  <meta charset="utf-8">
+  <meta http-equiv:"content-language" content="zh-tw">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+  <link href="css/index.css" rel="stylesheet">
+  <link href="css/2.css" rel="stylesheet">	
+  <link href="css/accessibility.css" rel="stylesheet" >
+  <script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+  <SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+  <script language="JavaScript" src="script/accessible.js"></script>
+  <script language="JavaScript">
+<!--
+
+
+
+function chkSubmit(){
+	
+	document.AC1006000.REVE_PWD.value = document.AC1006000.PWD.value.toUpperCase();
+	document.AC1006000.REVE_NEW_PWD.value = document.AC1006000.PWD2.value.toUpperCase();
+	document.AC1006000.REVE_CFM_PWD.value = document.AC1006000.PWD3.value.toUpperCase();
+	
+	
+	if(!document.AC1006000.REVE_PWD.value){
+		alert("請輸入網路密碼!!");
+		return;
+	}
+	if(!document.AC1006000.REVE_NEW_PWD.value){
+		alert("請輸入新網路密碼!!");
+		return;
+	}
+	if(!document.AC1006000.REVE_CFM_PWD.value){
+		alert("請輸入確認新網路密碼!!");
+		return;
+	}
+	if(document.AC1006000.REVE_NEW_PWD.value != document.AC1006000.REVE_CFM_PWD.value){
+		alert("您輸入的兩次新密碼不相同!");
+		return;
+	}
+	if(document.AC1006000.REVE_PWD.value == document.AC1006000.REVE_CFM_PWD.value){
+		alert("新舊密碼不得相同!");
+		return;
+	}
+	
+	if(!pwdcheck(document.AC1006000.REVE_PWD.value)||!pwdcheck(document.AC1006000.REVE_NEW_PWD.value)||!pwdcheck(document.AC1006000.REVE_CFM_PWD.value)){
+		return;
+	}	 
+    //alert(document.AC1006000.REVE_PWD.value);
+	//alert(document.AC1006000.REVE_NEW_PWD.value);
+	//alert(document.AC1006000.REVE_CFM_PWD.value);
+	document.AC1006000.pageid.value = "AC1006001";
+	//document.AC1006000.action = "LoadAP3?pageid=AC1006001";
+	chgpwd();
+}
+
+function getresult(tp,rs){
+	if(tp=="0"){
+		alert("密碼變更成功，請用新密碼重新登入！");
+		document.AC1006000.action = "LoadAP3?pageid=IC0000104&aptype=NOAP";
+		document.AC1006000.submit();
+	}
+	else{
+		var rssplit = rs.split("html>");
+		var rssplitArray = rssplit[1].split("@");
+		if(rssplitArray[0]!="0000"){
+			var str = "密碼變更失敗,n錯誤代號:"+rssplitArray[0]+",訊息說明:"+rssplitArray[2]+";";
+			alert(str);
+		}
+		else{
+			var str = "密碼變更失敗,錯誤代號:"+rssplitArray[1]+",訊息說明:"+rssplitArray[3]+";";
+			alert(str);
+		}
+	}
+}
+
+function pwdcheck(pwd){
+	var re = /^[A-Za-z0-9]+$/;
+	var len = pwd.length;
+	if(len<6||len>12){
+		alert("您輸入的密碼長度不符，請重新輸入！");
+		return false;
+	}
+	if (!re.test(pwd)){
+		alert("密碼欄位僅能接受英數字！");
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function chkSubmit99(){
+	document.AC1006000.pageid.value="IC0000999";
+	document.AC1006000.aptype.value="NOAP";
+	//document.AC1006000.target="_self";
+	document.AC1006000.submit();    
+}
+
+function chkSubmit98(){
+	alert(' 您好，謝謝您使用網路銀行！\n'+
+	      '為了您的交易資料安全，\n'+
+	      '請記得在視線離開電腦前關閉使用中的瀏覽器，\n'+
+	      '以確保您剛剛的使用記錄不被他人窺探！');
+	      //'登出時間為 '+getNowTime());
+	
+	document.AC1006000.pageid.value="IC0000999";
+	document.AC1006000.aptype.value="NOAP";
+	document.AC1006000.target="_self";
+	document.AC1006000.submit();    
+}
+
+
+function formReset()
+  {
+  document.getElementById("myForm").reset()
+  }
+  
+  
+function chkSubmit2(){
+	
+	var userStatus = '[[%%SEND_USER_STATUS%%]]';
+	if(userStatus!='FIRSTLOGIN'&&userStatus!='CHANGE'){
+		document.AC1006000.pageid.value = "IC000001B";
+		document.AC1006000.action = "LoadAP3?pageid=IC000001B";
+		document.AC1006000.submit();
+	}
+}  
+  
+
+
+function MM_openBrWindow(theURL,winName,features) {; //v2.0
+  window.open(theURL,winName,features);
+}
+
+function showRule(){
+    window.open("LoadAP?pageid=IP1003006&aptype=NOAP","newWindow1",'width=630,height=420');
+}
+//-->
+</script>
+  
+ 
+</head>
+<body onfocus="onTop();" onload="initial();">
+<noscript>
+您的瀏覽器不支援JavaScript功能，若網頁功能無法正常使用時，請開啟瀏覽器JavaScript功能 
+</noscript> 
+<form method="post" action="LoadAP3" name="AC1006000" id="myForm">
+
+<header>
+	<div class="wrapper">
+		
+		<div class="headerBox">	
+			 <a href="#C"  title="跳到主要內容區塊" tabindex="1" style="position: absolute" class="sr_only">跳到主要內容區塊</a>
+		  <h1 class="no-effect"> <a class="logo" href="https://freebank.ubot.com.tw/" target="_parent"><img src="Accessible/logo.png" alt="聯邦銀行友善服務網" title="聯邦銀行友善服務網" width="300" height="37" hspace="10" border="0"></a></h1>
+			<div class="header-right">
+				<a href="#U" name="U" id="AU" accesskey="U" class="top" title="上方導覽區">:::</a><a href="#" class="top">網站導覽</a> / <a href="#" class="top">金融友善服務準則</a>
+		  </div>
+		</div>
+				
+		<div class="container">
+			<div class="logout">
+				<a href="#" onclick="chkSubmit98();" ><img src="Accessible/main_button_02.gif" title="登出" alt="登出" border="0" align="absmiddle" /> </a>
+			</div>
+			<div class="con1">
+				<div>
+					<div class="con1_left">
+						<a accesskey="L" name="L" id="AL" title="左方區塊" href="#L" style="text-decoration:none;color:#666;">::: </a>
+					</div>
+					<div class="con1_right">
+						<img src="Accessible/left_button_01.gif" title="利率查詢，功能暫不提供，請先至中央區塊進行密碼變更" alt="利率查詢，功能暫不提供，請先至中央區塊進行密碼變更" width="233" height="60" border="0">
+					</div>
+				</div>
+				<div><img src="Accessible/left_button_02.gif" title="匯率查詢，功能暫不提供，請先至中央區塊進行密碼變更" alt="匯率查詢，功能暫不提供，請先至中央區塊進行密碼變更" width="233" height="60" border="0"></div>
+				<div><img src="Accessible/left_button_03.gif" title="帳戶服務，功能暫不提供，請先至中央區塊進行密碼變更" alt="帳戶服務，功能暫不提供，請先至中央區塊進行密碼變更" width="233" height="60" border="0"></div>
+				<div><img src="Accessible/left_button_04.gif" title="約定轉帳交易，功能暫不提供，請先至中央區塊進行密碼變更" alt="約定轉帳交易，功能暫不提供，請先至中央區塊進行密碼變更" width="233" height="60" border="0"></div>
+				<div><img src="Accessible/left_button_05.gif" title="使用者代號變更，功能暫不提供，請先至中央區塊進行密碼變更" alt="使用者代號變更，功能暫不提供，請先至中央區塊進行密碼變更" width="233" height="60" border="0"></div>
+				<div><img src="Accessible/left_button_06.gif" title="使用者密碼變更，功能暫不提供，請先至中央區塊進行密碼變更" alt="使用者密碼變更，功能暫不提供，請先至中央區塊進行密碼變更" width="233" height="60" border="0"></div>
+			</div>
+			<div class="con2">
+				<h2 class="step0"><a accesskey="C" name="C" id="AC"  title="中央內容區塊" href="#C" style="text-decoration:none;color:#666;font-size:16px;">:::</a> 使用者密碼變更</h2>
+				<div class="user">
+				   <div class="user_01">
+                       <label for="PWD">舊使用者密碼</label>
+                   </div>  
+                    <div class="user_02"><input type="password" name="PWD" id="PWD" value="" maxlength="12" class="user_input"  >
+				    </div>
+				</div>
+				
+				<div class="user">
+				   <div class="user_01">
+                       <label for="PWD2">新使用者密碼</label>
+                   </div>  
+                    <div class="user_02"><input type="password" name="PWD2" id="PWD2" value="" maxlength="12" class="user_input" >
+				    </div>
+				    <div class="user_03">(6~12碼英數字組合)
+					</div>
+				</div>
+				
+				<div class="user">
+				   <div class="user_01">
+                       <label for="PWD3">確認新密碼</label>
+                   </div>  
+                    <div class="user_02"><input type="password" name="PWD3" id="PWD3" value="" maxlength="12" class="user_input" >
+				    </div>
+				  <div class="user_03">(6~12碼英數字組合)</div>
+				</div>
+				
+				   <div class="user_0">
+					<a href="#" onClick="javascrip:chkSubmit();"><img src="Accessible/button_10.gif" alt="確認" width="118" height="45" hspace="5" border="0"   name="Submit1"   > </a><a href="#" onclick="formReset()"><img src="Accessible/button_12.gif"    alt="重設" width="118" height="45" hspace="5" border="0"    /></a><a href="#" onclick="chkSubmit98();"> <img src="Accessible/button_13.gif" alt="取消" width="118" height="45" hspace="5" border="0"   /></a>
+				   </div>
+				  				   <div>
+                       <div class="rate_container5">說明：</div>
+                        <div class="rate_container6">
+                        <ol>
+                            <li>請勿使用個人或公司之相關資料作為使用者代號或網銀密碼，以避免遭有心人士猜中。如：身分證字號、生日、聯絡電話簿。</li>
+                            <li>請務必妥善保管「使用者代號」與「網路密碼」，若不慎忘記或遭鎖時，請至聯邦銀行任一分行進行辦理解鎖及重設。</li>
+						 </ol>
+                        </div>
+                        
+                    </div> 
+				   
+				</div>								
+		</div>		
+   
+  </div>
+</header>
+
+<div class="footer">
+	<div class="wrapper">				
+	 	<div class="footerBox">
+	 		  <p class="copyright">	 			
+		 		<a accesskey="Q" name="Q" id="AQ"  title="網頁資訊" href="#Q" style="text-decoration:none;color:#666;">:::</a>
+		 		<strong>客服中心電話：(02)2545-1788、0800-089-888 &copy;聯邦商業銀行版權所有</strong>
+		 		<a href="https://www.handicap-free.nat.gov.tw/Applications/Detail?category=20171108152834" title="無障礙網站"><img src="Accessible/20a.jpg" alt="通過A檢測等級無障礙網頁檢測" width="88" height="31" border="0" /></a>	
+	 		</p>
+		</div>
+	</div>
+</div>
+<input type="hidden" name="pageid" value="AC1006000">
+<input type="hidden" name="REVE_PWD" value="">
+<input type="hidden" name="REVE_NEW_PWD" value="">
+<input type="hidden" name="REVE_CFM_PWD" value="">
+<input type="hidden" name="aptype" value="IBANK">
+</form>		
+</body>
+</html>

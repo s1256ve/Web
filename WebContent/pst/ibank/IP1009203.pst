@@ -1,0 +1,124 @@
+<html xmlns="undefined">
+<head>
+<title>約定扣繳停車費</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<style type="text/css">
+<!--
+.style1 {color: #0066FF}
+.style2 {color: #0000FF}
+-->
+</style>
+<SCRIPT language="JavaScript">
+<!--
+var carnumber = '[[%%REVE-VEH-NO%%]]'.split(';'); 
+//alert('carnumber='+carnumber);
+var cartype = '[[%%REVE-VEH-TYPE%%]]'.split(';');
+var notitype = '[[%%REVE-NOTIFY%%]]'.split(';');
+var region = '[[%%REVE-AREA-CODE%%]]'.split(';');
+var acctno = '[[%%REVE-ACCT-NO%%]]'.split(';');
+var mobile = '[[%%REVE-MPHONE%%]]';
+//for (i = 0 ; i< carnumber.length ; i++){
+   // alert(i+'='+carnumber[i]);
+//}
+function getDetail(){
+    var str = '';
+    for (i = 0 ; i< carnumber.length ; i++){
+        str = str + "<tr><td><div align=\"center\">"+(i+1)+"</div></td>";
+        str = str + "<td><div align=\"center\">"+carnumber[i]+"</div></td>";
+        var cartypedesc = '';
+        if (cartype[i]=='1')    cartypedesc = '汽車';
+        if (cartype[i]=='2')    cartypedesc = '機車';
+        str = str + "<td><div align=\"center\">"+cartypedesc+"</div></td>";
+        str = str + "<td><div align=\"center\">"+getAcctStr(acctno[i])+"</div></td>";
+        var regiondesc = '';
+        //if (region[i]=='01')    regiondesc = '台南市';
+        //if (region[i]=='02')    regiondesc = '台北縣';
+        var regionarray = region[i].split(',');
+        for (j = 0 ; j<regionarray.length ; j++){
+            if (j!=0) regiondesc = regiondesc + "," ; 
+            if (regionarray[j]=='01') regiondesc = regiondesc + '臺南市';
+            if (regionarray[j]=='02') regiondesc = regiondesc + '新北市'; 
+            if (regionarray[j]=='03') regiondesc = regiondesc + '臺北市';
+            if (regionarray[j]=='04') regiondesc = regiondesc + '桃園市';
+            if (regionarray[j]=='05') regiondesc = regiondesc + '臺中市';
+			if (regionarray[j]=='06') regiondesc = regiondesc + '高雄市';
+            if (regionarray[j]=='07') regiondesc = regiondesc + '新竹市';  
+        }
+        str = str + "<td><div align=\"center\">"+regiondesc+"</div></td></tr>";
+    }
+    return str ;
+}
+
+function chkSubmit(){
+    document.IP1009203.pageid.value = 'IP1009204';
+    document.IP1009203.submit();     
+}
+    
+function back(){
+    document.IP1009203.pageid.value = 'IP1009000';
+    document.IP1009203.submit();    
+}
+
+function onTop() {
+  	if (kbWin==null) return;
+  	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+    
+-->
+</SCRIPT>
+<body bgcolor="#FFFFFF" onfocus="onTop();" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+<p><strong>約定代繳停車費&gt;<span class="style1">新增代繳停車費功能</span></strong></p>
+<form method="POST" name="IP1009203" action="LoadAP">
+<table width="750" border="0">
+  <tr>
+    <td colspan="5"><table width="650" border="0" align="center">
+        <tr>
+          <td><p align="center"><strong>停車費代繳約定</strong><br>
+            </p>
+            <table width="100%" border="1" bordercolor="#999999">
+              <tr>
+                <td width="7%" bgcolor="#C4CBB8"><div align="center">序號</div></td>
+                <td width="22%" bgcolor="#C4CBB8"><div align="center">登入車號	</div></td>
+                <td width="10%" bgcolor="#C4CBB8"><div align="center">車種	</div></td>
+                <td width="27%" bgcolor="#C4CBB8"><div align="center">約定扣款帳號	</div></td>
+                <td width="14%" bgcolor="#C4CBB8"><div align="center">地區	</div></td>
+              </tr>
+              <script language="JavaScript">document.write(getDetail());</script>
+            </table>
+            <br>
+            網路銀行密碼：
+            <input type="password" name="PWD" size="8" onclick="getKeyBoard('IP1009203','PWD','REVE_PWD','[[%%SEND-KB-KEYCODE%%]]','[[%%SEND-KB-KEYLETTER%%]]');onTop();" readonly></td>
+        </tr>
+      </table>
+      <br>
+      <br>
+      <div align="center">
+        <input type="button" name="button1" value="確定" onclick="javascript:chkSubmit();">
+        <input type="button" name="button2" value="取消" onclick="javascript:back();">
+      </div>
+      </div>
+      </div>
+      <div align="center"> </div></td>
+  </tr>
+  <tr>
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+    <input type="hidden" name="carnumber" value="[[%%REVE-VEH-NO%%]]">
+    <input type="hidden" name="aptype" value="IBANK">
+    <input type="hidden" name="pageid" value="">
+    <input type="hidden" name="cartype" value="[[%%REVE-VEH-TYPE%%]]">
+    <input type="hidden" name="notitype" value="[[%%REVE-NOTIFY%%]]">
+    <input type="hidden" name="region" value="[[%%REVE-AREA-CODE%%]]">
+    <input type="hidden" name="acctno" value="[[%%REVE-ACCT-NO%%]]">
+    <input type="hidden" name="email" value="[[%%REVE-EMAIL%%]]">
+    <input type="hidden" name="mobile" value="[[%%REVE-MPHONE%%]]">
+    <input type="hidden" name="REVE_PWD" value="">
+</form>
+</body>
+</html>

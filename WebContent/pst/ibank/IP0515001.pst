@@ -1,0 +1,162 @@
+<html>
+<head>
+<title>達文西A+理財卡業務查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI99041           2010.05.11     YiSyun
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript" src="script/calendar.js"></script>
+<script language="JavaScript" src="script/calendar-zh.js"></script>
+<script language="JavaScript" src="script/calendar-setup.js"></script>
+<script language="JavaScript" src="script/calendarface.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<link rel="stylesheet" type="text/css" media="all" href="theme/portal.css" />
+
+<SCRIPT language="JavaScript">
+var nowDate = new Date();
+var nowDay = nowDate.getDate();
+var nowMonth = nowDate.getMonth();
+var nowYear = nowDate.getFullYear();
+var nowDateStr = getRCDateStr(nowYear + "/" + (nowMonth+1) + "/" + nowDay,0);
+var nowTimeStr = nowDate.getHours() + ":" + nowDate.getMinutes() ;
+var selDate = nowDateStr + "," + nowDateStr;
+function BackSubmit(){
+
+    document.IP0515001.submit();
+}
+</SCRIPT>
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form action="LoadAP" method="post" name="IP0515001">
+<b>　達文西A+理財卡&gt;<font color="#003399"><font color="#0066FF">結清應繳總額查詢</font></font></b><br>
+<font class="t3">　聯邦銀行個人網路銀行交易結果</font><br>
+<br>
+<table width="762" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td height="2"> 
+      <div align="right"><font color="#0000CC">查詢時間： <script language="JavaScript">
+	document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));            
+								//document.write(nowDateStr );
+								//document.write("&nbsp;");
+								//document.write(nowTimeStr );
+								//document.write(getNowTime());
+							  </script></font></div>
+    </td>
+  </tr>
+</table>
+<table width="762" border="0">
+  <tr>
+    <td width="756"> <font color="#0000CC"> 　 <img src="graph/point.gif" width="12" height="12" align="absmiddle"> 
+      以下是您 [[%%REVE-BR-NAME%%]] [[%%REVE-ACCT-DESC%%]]帳號 <script language="JavaScript">
+    	    	document.write(getAcctStr("[[%%REVE-ACCT-NO%%]]"));
+    	    	document.write("&nbsp;&nbsp;");
+    	    	document.write(getRCDateStr("[[%%REVE-END-DATE%%]]",0));
+    	     </script>結清應繳總額及明細查詢結果： <br>
+      </font> 
+      <table width="361" border="0">
+        <tr> 
+          <td width="111">　結清時應繳總額</td>
+          <td width="240">＄[[%%SEND-TOT-AMT%%]] </td>
+        </tr>
+      </table>    </td>
+  </tr>
+  <tr>
+    <td>
+      <table width="620" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td> 
+            <div align="right"></div>
+            <div align="right">金額單位： 新台幣/元</div>
+          </td>
+        </tr>
+      </table>
+      <font color="#0000CC"> </font> 
+      <table width="754" border="1" bordercolor="#999999" cellpadding="2">
+        <tr> 
+          <td width="56" bgcolor="#C4CBB8"> 
+            <div align="center">起息日</div>
+          </td>
+          <td width="63" bgcolor="#C4CBB8"> 
+            <div align="center">止息日</div>
+          </td>
+          <td width="71" bgcolor="#C4CBB8"> 
+            <div align="center">日數</div>
+          </td>
+          <td width="90" bgcolor="#C4CBB8"> 
+            <div align="center">利率(%)</div>
+          </td>
+          <td width="120" bgcolor="#C4CBB8"> 
+            <div align="center">計息本金</div>
+          </td>
+          <td width="96" bgcolor="#C4CBB8"> 
+            <div align="center">提領費 </div>
+          </td>
+          <td width="90" bgcolor="#C4CBB8"> 
+            <div align="center">利息</div>
+          </td>
+          <td width="100" bgcolor="#C4CBB8"> 
+            <div align="center">違約金</div>
+          </td>
+        </tr>
+        <tr> 
+          <td width="56"> 
+            <div align="center"><script language="JavaScript">
+            				document.write(getRCDateStr("[[%%SEND-BEGIN-INTDATE%%]]",0));
+            			</script>&nbsp;</div>
+          </td>
+          <td width="63"> 
+            <div align="center"><script language="JavaScript">
+            				document.write(getRCDateStr("[[%%SEND-END-INTDATE%%]]",0));
+            			</script>&nbsp;</div>
+          </td>
+          <td width="71"> 
+            <div align="center">[[%%SEND-DAY-CNT%%]]</div>
+          </td>
+          <td width="90"> 
+            <div align="right">&nbsp;<script language="JavaScript">
+            				document.write(roundFloat("[[%%SEND-INT-RATE%%]]",2));
+            			</script></div>
+          </td>
+          <td width="120"> 
+            <div align="right">[[%%SEND-LOAN-BALANCE%%]]</div>
+          </td>
+          <td width="96"> 
+            <div align="right">[[%%SEND-FEE%%]]</div>
+          </td>
+          <td width="90"> 
+            <div align="right">[[%%SEND-INT-AMT%%]]</div>
+          </td>
+          <td width="100"> 
+            <div align="right">[[%%SEND-PENALTY%%]]</div>
+          </td>
+        </tr>
+      </table>
+      　註：<br>
+      　1. 查詢結果係以查詢當時之現欠為計算基準，如日後有任何交易，請重新查詢最新訊息。<br>
+      　2. 本頁資料，不得做為往來憑證之用。 
+      <table width="754" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td width="50%"> 
+            <div align="center"><a href="javascript:window.print()"><img src="graph/print.gif" width="52" height="24" border="0"></a>　 
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="IP0515000">
+</form> 
+</body>
+</html>

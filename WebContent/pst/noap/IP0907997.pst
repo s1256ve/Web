@@ -1,0 +1,61 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5" />
+<title>聯邦銀行</title>
+<link href="img/ubot.css" rel="stylesheet" type="text/css" />
+<SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script>
+function chkSubmit(){
+	
+	document.IP0907997.USERTYPE.value=document.IP0907997.USERINFO.value;
+	if(document.IP0907997.USERTYPE.value=="0"){
+		document.IP0907997.pageid.value="IP0907998";
+	}else if(document.IP0907997.USERTYPE.value=="1"){
+		document.IP0907997.pageid.value="IP0801202";
+	}else if(document.IP0907997.USERTYPE.value=="2"){
+		document.IP0907997.pageid.value="IP0907997A";
+	}
+	/**
+	//document.IP0907997.Submit01.disabled = true;
+	document.IP0907997.submit();	
+	**/
+	document.IP0907997.submit();
+}
+
+function chkType(){
+	var ct = "[[%%SEND-CUST-TYPE%%]]";
+	if(ct!=""){
+		if(ct=="1"){
+			//alert("第一類新戶，系統自動轉址");
+			document.IP0907997.USERTYPE.value="0"
+			document.IP0907997.pageid.value="IP0907998";
+		}else if(ct=="2"){
+			//alert("第二類新戶，系統自動轉址");
+			document.IP0907997.USERTYPE.value="1"
+			document.IP0907997.pageid.value="IP0801202";
+		}else if(ct=="3"){
+			//alert("第三類舊戶，系統自動轉址");
+			document.IP0907997.USERTYPE.value="2"
+			document.IP0907997.pageid.value="IP0907997A";
+		}
+		document.IP0907997.submit();
+	}else{
+	
+	}
+}
+
+</script>
+</head>
+<body onLoad="" leftmargin="0" topmargin="0">
+<form name="IP0907997" method="POST" action="LoadAP">
+       
+<input type="hidden" name="aptype" value="noap"/>
+<input type="hidden" name="pageid"/>
+<input type="hidden" name="USERTYPE"/>
+</form>
+<script>
+chkType();
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="big5"?>
+<!--UCPM 9340, 語音轉帳帳號查詢. Last updated date 12-27-2001 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPM">
+	<field id="MW9340i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>交易代號</description>
+	</field>	
+	<field id="ADDUSRi01">
+		<name>REVE-ID-NO</name>
+		<length>10</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+	<field id="ADDUSRi02">
+		<name>REVE-CNAME</name>
+		<length>20</length>
+		<type>String</type>
+		<description>中文姓名</description>
+	</field>
+	<field id="ADDUSRi03">
+		<name>REVE-NICK-NAME</name>
+		<length>10</length>
+		<type>String</type>
+		<description>暱稱</description>
+	</field>	
+	<field id="ADDUSRi04">
+		<name>REVE-EMAIL-ADDR</name>
+		<length>10</length>
+		<type>String</type>
+		<description>EMAIL</description>
+	</field>
+	<field id="ADDUSRi05">
+		<name>REVE-PWD2</name>
+		<length>12</length>
+		<type>String</type>
+		<description>密碼</description>
+	</field>
+	<field id="ADDUSRi05">
+		<name>REVE-PWD3</name>
+		<length>12</length>
+		<type>String</type>
+		<description>動態密碼</description>
+	</field>
+	<field id="ADDUSRi05">
+		<name>REVE-DY-PWD</name>
+		<length>12</length>
+		<type>String</type>
+		<description>動態密碼比對值</description>
+	</field>
+	<field id="ADDUSRi05">
+		<name>REVE-IGNORE-CASE</name>
+		<length>12</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="ADDUSRi05">
+		<name>REVE-TIME-RANGE</name>
+		<length>12</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="ADDUSRi05">
+		<name>COMP</name>
+		<length>12</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="ADDUSRi05">
+		<name>REVE-FUNC-CODE</name>
+		<length>12</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="MW9340i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="MW9340i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="MW9340i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="MW9340i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="fieldi07">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+     </field>
+	<field id="VTRTRi21">
+		<name>REVE-CURRENTTICK</name>
+		<length></length>
+		<type>String</type>
+		<description>簡訊發送時間</description>
+	</field>	 
+</catalog>

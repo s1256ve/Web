@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>託收票據查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<script language="JavaScript" src="script/Format.js"></script>
+<script language="JavaScript" src="script/CheckMap.js"></script>
+</head>
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0" style="font-size: 9pt;">
+	<b style="margin-left: 3%;">台幣存款帳戶查詢&gt;</b><font color="#0066FF;"><b>託收票據查詢明細：</b></font><br>
+	<font style="line-height: 180%;margin-left: 3%;">聯邦銀行個人網路銀行交易結果<font>
+	<div align="right" style="color: blue;font-size: 12px;">查詢時間：
+		<script>
+        		document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+		</script>
+	</div>
+	<strong style="color: blue;margin-left: 3%;font-size: 12px;line-height: 350%;">
+		以下是您在[[%%REVE-ACCT-NAME%%]]&nbsp;[[%%REVE-ACCT-DESC%%]]&nbsp;帳號[[%%REVE-ACCT-NO%%]]
+		
+		<script>
+			var startDate='[[%%REVE-START-DATE%%]]';
+			var endDate='[[%%REVE-END-DATE%%]]';
+			var showDateRange="&nbsp;"+startDate.substring(0,3)+"年"+startDate.substring(3,5)+"月"+startDate.substring(5,7)+"日"+"&nbsp;至&nbsp;"+endDate.substring(0,3)+"年"+endDate.substring(3,5)+"月"+endDate.substring(5,7)+"日"+"&nbsp;"; 
+			if([[%%REVE-START-DATE%%]] !="")
+				document.write(showDateRange);
+		</script>
+		託收票據查詢明細：
+	</strong> 
+ 
+	 <table width="95%" border="1" bordercolor="#808080" align="center" style="font-size: 12px;margin-left: 3%;">
+        <tr>
+          <td width="8%" bgcolor="#D8F1DC" ><p align="center">票號</p></td>
+		  <td width="16%" bgcolor="#D8F1DC" ><p align="center">發票人<br>付款行</p></td>
+          <td width="10%" bgcolor="#D8F1DC" ><p align="center">金額</p></td>
+          <td width="8%" bgcolor="#D8F1DC" ><p align="center">到期日</p></td>
+		  <td width="7%" bgcolor="#D8F1DC" ><p align="center">票據狀態</p></td>
+		  <td width="14%" bgcolor="#D8F1DC" ><p align="center">託收分行</p></td> 
+          <td width="8%" bgcolor="#D8F1DC"><p align="center">託收日</p></td> 
+        </tr>
+	[[%%LOOP_SEC SEND-CHECK-NO%%]]
+		<tr>
+			<td><p align="center">[[%%SEND-CHECK-NO%%]]</p></td>
+			<td ><p align="center">[[%%SEND-PAY-ACCTNO%%]]<br>
+											   [[%%SEND-BANK%%]]</p></td>
+			<td ><p align="right"><script type="text/javascript">document.write(formatAmount('[[%%SEND-AMT%%]]'))</script></p></td>
+			<td ><p align="center"><script type="text/javascript">document.write(formatDSPCDATE('[[%%SEND-EXCHG-DATE%%]]'))</script></p></td>
+			<td ><p align="center" class="t3"><script type="text/javascript">document.write(ChkStatus('[[%%SEND-STATUS%%]]'))</script></p></td>
+			<td ><p align="center">[[%%SEND-DEPOS-BRANCH%%]]<br>
+											   [[%%SEND-DEPOS-BRANCH-NAME%%]]</p></td>   
+			<td class="t3"><p align="center"><script type="text/javascript">document.write(formatDSPCDATE('[[%%SEND-DEPOS-DATE%%]]'))</script></p></td>
+		</tr>
+	[[%%ELOOP_SEC%%]]
+     </table>
+      <p style="font-size: 12px;margin-left: 3%;">註記：<br>
+			1.到期日若為非營業日時，提示日期則順延至次一營業日。<br>
+			2.「銷帳狀態」可能為已兌現票據，或為本(次)日交換票據。<br>
+			3.本日交換票據，可用餘額為次日生效。
+		</p>
+		
+</body>
+</html>

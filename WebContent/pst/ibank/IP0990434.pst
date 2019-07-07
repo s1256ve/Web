@@ -1,0 +1,397 @@
+<html>
+<head>
+<title>常用帳號管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+
+<script language="Javascript">
+    
+    String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");} 
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<style type="text/css">
+<!--
+.style1 {color: #0066FF}
+.style2 {color: #0000FF}
+td {vertical-align: top}
+-->
+</style>
+<SCRIPT language="JavaScript">
+<!--
+   
+var actinfos = '[[%%REVE-CANCEL-ACTINFO%%]]';
+   
+function getDetail(i){
+    var i;
+    var str;
+  
+    if (actinfos.length=1){
+        var actinfo = actinfos.split('#');
+        
+        
+        
+        if(i==0){
+        str =  "<input type='text' name='TOACTDESC' size='16'   maxlength='8'    value='"+actinfo[0]+"'>";
+        str =  str +  "<input type='hidden' name='TOACCTINFO1'   value='"+actinfo[1]+"'>";
+        
+       }
+       if(i==1){
+        return  actinfo[1]; 
+       }
+        if(i==2){
+     
+        str =  "<input type='text' name='ACCTNO' size='16'   maxlength='16'   value='"+actinfo[2]+"'>";
+        str = str + "<input type='hidden' name='ACCTNO1' size='16'   maxlength='16'   value='"+actinfo[2]+"'>";
+     
+       
+       }
+        if(i==3){
+        str =  "<input type='text' name='TXNDESC' size='30'  maxlength='50'  value='"+actinfo[3]+"'>";
+        
+        
+       }
+        if(i==5){
+        str =  "<input type='text' name='MOBILE' size='16'   maxlength='10'   value='"+actinfo[5]+"'>";
+       }
+       if(i==6){
+        str =  "<input type='text' name='EMAIL' size='20' value='"+actinfo[6]+"'>";
+       }
+         
+      
+    } 
+    //alert('str='+str);
+      return str;  
+   
+}
+
+
+
+
+
+
+
+
+
+
+function checked(t){
+	  var actinfos = '[[%%REVE-CANCEL-ACTINFO%%]]';
+    var t;
+    var st;
+    if (actinfos.length=1){
+        var info = actinfos.split('#');
+        
+        if(info[4]==t){
+        st =  "<input type='radio' name='notitype1' size='16' value='"+t+"' checked>";
+       }
+      else{
+      	 st =  "<input type='radio' name='notitype1' size='16' value='"+t+"' >";
+      }
+       
+      
+    } 
+    //alert('st='+st);
+      return st;   
+}
+
+
+
+
+
+
+function chkSubmit(){
+	
+	  var actinfos = '[[%%REVE-CANCEL-ACTINFO%%]]';
+    var f = document.IP0990434;
+    
+    
+   var  s1=  unAsc(f.TXNDESC.value);
+   var  s2=  unAsc(f.TOACTDESC.value);
+   
+   f.TXNDESC.value = s1;
+   f.TOACTDESC.value = s2;
+   s3 = f.TOACCTINFO.value;
+   s4 = f.MOBILE.value;
+             
+    
+    
+     if (f.TOACTDESC.value == ""){
+        alert('請輸入帳號暱稱!');
+        return;
+    } 
+    
+    
+    
+    
+    if (f.ACCTNO.value == ""){
+        alert('請輸入轉入帳號!');
+        return;
+    } 
+    
+    
+    
+    
+    
+    
+    
+    
+     if (actinfos.length=1){
+        var actinfo = actinfos.split('#');
+    
+    
+    
+    
+      if(  f.notitype1[1].checked && s3.substring(0,3) == 803  ) {
+
+		  	alert('目前僅跨行轉帳可執行簡訊通知!');
+		  
+		  	
+		  	return;
+	    }	
+    
+   
+    
+   
+   
+     if(  f.notitype1[1].checked && actinfo[1].substring(0,3) == 803  &&   s3.substring(0,3) == '' ) {
+
+		  	alert('目前僅跨行轉帳可執行簡訊通知!');
+		  
+		  	
+		  	return;
+	    }	
+   
+   
+   
+   
+   
+   
+   }	
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+       if(f.MOBILE.value != "" && s4.substring(0,2) != 09  ) {
+
+		  	alert('您輸入的行動電話號碼有誤!');
+		  	
+		  	
+		  	return;
+	}	
+    
+    
+    
+    
+   
+    
+    
+    
+     if (f.TXNDESC.value.length > 50){
+        alert('您輸入字數超過50個字，請重新輸入!');
+        return;
+    }    
+   
+    
+   
+    
+    if (!f.notitype1[0].checked&&!f.notitype1[1].checked&&!f.notitype1[2].checked){
+        alert('請選擇通知方式');
+        return;
+    }
+    
+    if (f.notitype1[0].checked){ //不通知
+        f.notitype.value='0';    
+    }
+    if (f.notitype1[1].checked){ //簡訊
+       f.notitype.value='1';     
+    }
+    if (f.notitype1[2].checked){ //email
+       f.notitype.value='2';     
+    }
+    
+ 
+    f.pageid.value='IP0990435';
+    
+    f.submit();    
+}
+
+
+
+function back(){
+    document.IP0990434.pageid.value = 'IP0990430';
+    document.IP0990434.submit();    
+}
+
+
+
+
+
+
+
+function unAsc(text) { 
+  
+  var asciiTable = "!\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+  var big5Table = "%uFF01%u201D%uFF03%uFF04%uFF05%uFF06%u2019%uFF08%uFF09%uFF0A%uFF0B%uFF0C%uFF0D%uFF0E%uFF0F%uFF10%uFF11%uFF12%uFF13%uFF14%uFF15%uFF16%uFF17%uFF18%uFF19%uFF1A%uFF1B%uFF1C%uFF1D%uFF1E%uFF1F%uFF20%uFF21%uFF22%uFF23%uFF24%uFF25%uFF26%uFF27%uFF28%uFF29%uFF2A%uFF2B%uFF2C%uFF2D%uFF2E%uFF2F%uFF30%uFF31%uFF32%uFF33%uFF34%uFF35%uFF36%uFF37%uFF38%uFF39%uFF3A%uFF3B%uFF3C%uFF3D%uFF3E%uFF3F%u2018%uFF41%uFF42%uFF43%uFF44%uFF45%uFF46%uFF47%uFF48%uFF49%uFF4A%uFF4B%uFF4C%uFF4D%uFF4E%uFF4F%uFF50%uFF51%uFF52%uFF53%uFF54%uFF55%uFF56%uFF57%uFF58%uFF59%uFF5A%uFF5B%uFF5C%uFF5D%uFF5E";
+    
+  var result = "";
+  for ( var i = 0 ; i < text.length ; i ++ ) {
+    var val = text.charAt(i) ;            
+    var j = asciiTable.indexOf(val) * 6 ;        
+    result += ( j > -1 ? unescape(big5Table.substring( j , j + 6 ) ) : val );    
+  }
+      
+  return result;
+ 
+}
+
+
+
+
+
+
+-->
+</SCRIPT>
+</SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+<p><strong>修改轉帳交易常用帳號&gt;<span class="style1">修改轉帳交易常用帳號資料   (※為必填資料)</span></strong></p>
+<form method="POST" name="IP0990434" action="LoadAP">
+<table width="750" border="0">
+  <tr>
+    <td colspan="5"><table width="650" border="0" align="center">
+    
+    
+        <tr>
+          <td>
+            <table width="100%" border="1" bordercolor="#999999">
+            
+            
+              <tr>
+                <td width="10%" bgcolor="#C4CBB8">資料名稱</td>
+                <td width="32%">修改資料</td>
+                <td width="15%">範例</td>
+                <td width="30%">說明</td>
+                
+              </tr>
+              
+              
+            
+              <tr>
+                <td width="10%" bgcolor="#C4CBB8">※帳號暱稱</td>
+                <td><script language="javascript">document.write(getDetail(0)); </script></td>
+                <td width="15%">聯邦理財帳戶</td>
+                <td width="30%">最多可設定8個中文字</td>
+              </tr>
+              
+                        
+              
+              <tr>
+                <td bgcolor="#C4CBB8">※轉入銀行</td>
+                <td>
+                 <select name="TOACCTINFO">
+								 <option ><script language="javascript">document.write(getDetail(1)); </script></option>
+    							<!--[[%%LOOP_SEC SEND-BANK-CODE%%]]-->
+                 <option value="[[%%SEND-BANK-CODE%%]] [[%%SEND-BANK-NAME%%]]">[[%%SEND-BANK-CODE%%]] [[%%SEND-BANK-NAME%%]]</option>
+    							<!--[[%%ELOOP_SEC%%]]-->    
+        				 </select>           
+                </td>
+                <td width="15%">803 聯邦銀行</td>
+                <td width="30%">請由下拉選單選擇銀行</td>
+              </tr>
+              
+              
+         
+              <tr>
+                <td width="10%" bgcolor="#C4CBB8">※轉入帳號</td>
+                <td><script language="javascript">document.write(getDetail(2)); </script></td>
+                <td width="15%">001500001235</td>
+                <td width="30%">最多可設定16個數字</td>
+              </tr>
+              
+              
+              
+              <tr>
+                <td width="10%" bgcolor="#C4CBB8">交易附註</td>
+                <td><script language="javascript">document.write(getDetail(3)); </script></td>
+                <td width="15%">高科技基金</td>
+                <td width="30%">最多可設定50個字，清單列示前10個字</td>
+              </tr>
+              
+              
+            
+           
+              
+              <tr>
+                <td valign="top" bgcolor="#C4CBB8">通知方式：</td>
+                
+                <td>
+                  <table width="100%" border="0">
+                    <tr>
+                      <td><script language="javascript">document.write(checked(0)); </script></td>
+                      <td width="94%">不通知 </td>
+                    </tr>
+                    <tr>
+                      <td><script language="javascript">document.write(checked(1)); </script></td>
+                      <td width="94%">簡訊通知: <script language="javascript">document.write(getDetail(5)); </script> </td>
+                    </tr>
+                    </tr>
+                      <td><script language="javascript">document.write(checked(2)); </script></td>
+                      <td width="94%">EMAIL通知:<script language="javascript">document.write(getDetail(6)); </script>  </td>
+                    </tr>
+                  </table></td>
+                  
+                <td width="15%">EMAIL通知：<br>abc@hotmail.com</td>
+                <td width="30%">通知方式選項有三種：不通知、簡訊通知及EMAIL通知，簡訊通知僅適用於跨行轉帳交易成功後立即發送國內簡訊，請留存通知對象之行動電話；EMAIL通知適用於所有交易成功後皆可發送EMAIL，請留存通知對象之EMAIL地址。</td>
+            
+              </tr>
+          </table>
+            <br>
+            說明：
+            
+            <table width="100%" border="0">
+              <tr>
+                <td width="2%" valign="top"><p>1.</p></td>
+                <td width="98%">常用帳號功能僅適用於非約定轉帳，最多可設定20組常用帳號。 </td>
+              </tr>
+              
+             
+              
+              <tr>
+                <td valign="top">2.</td>
+                <td>每欄交易附註內容可輸入最多50字，清單僅顯示前10個字。</td>
+              </tr>
+             
+            </table>
+            <br></td>
+        </tr>
+      </table>
+      <br>
+      <br>
+      <div align="center">
+        <input type="button" name="button2" value="確認" onclick="javascript:chkSubmit();">&nbsp;
+        <input type="button" name="button3" value="取消" onclick="javascript:back();">
+      </div>
+      </div>
+      </div>
+      <div align="center"> </div></td>
+  </tr>
+  <tr>
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+    <input type="hidden" name="aptype" value="IBANK">
+    <input type="hidden" name="pageid" value="">
+    
+    <input type="hidden" name="notitype" value="">
+  
+   
+</form>
+
+</body>
+
+</html>

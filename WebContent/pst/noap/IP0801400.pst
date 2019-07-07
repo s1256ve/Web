@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>首次登入</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg01.gif" leftmargin="0" topmargin="0">
+<p><b>首次登入<font color="#003399"><font color="#0066FF"> </font></font></b></p>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5"> 
+      <div align="center"></div>
+      <table width="49%" border="0" align="center">
+        <tr> 
+          <td height="74">您已執行過首次登入，請您於左方「網路銀行登入區」，輸入您的身分證字號、您所設定之使用者代號及網路密碼登入後，即可使用聯邦銀行網路銀行服務。</td>
+        </tr>
+      </table>
+      <div align="center"> 
+        <input type="button" name="Submit" value="確 定" onclick="javascript:window.open('[[%%HOSTNAME%%]]/','_top');">
+      </div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="5" valign="bottom" height="1" bgcolor="#663300"></td>
+  </tr>
+</table>
+</body>
+</html>

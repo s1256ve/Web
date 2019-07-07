@@ -1,0 +1,70 @@
+<html>
+<head>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/tmp/acctfmt.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/tmp/datefmt.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/tmp/moneyfmt.js"></SCRIPT>
+
+
+</head>
+<body>
+                  <script language="javascript">
+                  		document.write(getRCDateStr("20030101", 0));
+    				</script>
+
+		<SCRIPT language="JavaScript">
+				/*
+		window.onload=function(){
+      			alert('onload fired');
+      		//document.write("001500040761");
+      		}		
+		*/
+		
+		//var srcStr = "********102,029.00";
+		//document.write(srcStr.indexOf("(") + "<br>");
+		//document.write(toFloat(srcStr));
+
+		var inStr = "586393";
+		var tempStr = "";
+		if(inStr.indexOf(".")){
+			var inStrArray = inStr.split(".");
+			tempStr = inStrArray[1];
+			if (tempStr=="" || tempStr==null){ tempStr = "00";}
+			inStr = inStrArray[0];
+		}
+		document.write(tempStr + ":" + inStr);
+		var conStr = "";
+		for(var i = inStr.length ; 0 < i ; i--){
+			var pot = (inStr.length-i+1)%3;
+			if(pot==0&&i!=1){
+				conStr = ","+inStr.substring(i-1,i)+conStr;
+			}else{
+				conStr = inStr.substring(i-1,i)+conStr;
+			}
+		}
+		if(tempStr!=""){
+			conStr += "." + tempStr;
+		}
+
+
+		//document.write(moneyAddDot( (586393+0.00).toString()));
+		document.write(inStr);
+   		</SCRIPT>
+
+
+<p>請輸入：</p>
+<form method="POST" action="LoadAP">
+<p>身分證字號&nbsp;<input type="text" name="IDNO" size="12" value=19640416RUC></p>
+<p>匿稱&nbsp;<input type="text" name="NICKNAME" size="12" value=UB></p>
+<p>電子金融密碼(或語音密碼)&nbsp;<input type="password" name="PWD" size="12" value=123456></p>
+<input type="hidden" name="COMEFROM" value="172.16.2.144">
+
+<!--<input type="hidden" name="pageid" value="IP0201000">-->
+<input type="hidden" name="pageid" value="J000001">
+<input type="hidden" name="aptype" value="IBANK">
+
+<p><input type="submit" name="submit1" value="確定">
+<input type="reset" name="reset1" value="取消">
+</p>
+</form>
+</body>
+</html>

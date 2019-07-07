@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>首次登入</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="theme/normalize.css">
+    <link rel="stylesheet" href="theme/main.css">
+    <script src="script/vendor/jquery-1.10.2.min.js"></script>
+    <script src="script/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="script/plugins.js"></script>
+    <script src="script/main.js"></script>
+    <SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+		<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+		<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+    <script type="text/javascript" charset="utf-8" >
+			var twca_cn="mybank.ubot.com.tw";
+			var twca_d2hide=true;
+		</script>
+		<script type="text/javascript" src="//ssllogo.twca.com.tw/twcaseal_v3.js"charset="utf-8"></script>
+</head>
+<script language="JavaScript"> 
+ 
+ function chkSID(sid){
+ 		var fSid = false
+	 	if (sid.length == 10){
+	 			sub1 = sid.charAt(1);
+	 			if ("0123456789".indexOf(sub1,0)<0){
+	 					fSid = checkUnionId(sid);	// 檢查統一證號		 
+	 			}else{
+	 					fSid = checkID(sid);	 // 檢查身分證字號			
+	 			} 				 	
+	 	}else if(sid.length == 11){
+	 					fSid = checkID(sid);	 // 檢查身分證字號	
+	 	}else{
+	 					alert("請重新輸入身分證字號或統一證號!");
+	 					document.IP0801000.REVE_ID_NO.focus();
+	 	} 	 	
+	 	return fSid;
+ }
+ 
+ function KeyPressChk1(){
+	var iKeyCode = window.event.keyCode
+	if (!(iKeyCode >= 48 && iKeyCode <=57)){
+		window.event.keyCode = 0;
+	}
+}
+ 
+ function checkData(){
+    var f = document.IP0801000;
+    var sid = f.REVE_ID_NO.value.trim();
+    
+    if (f.REVE_ID_NO.value==""){
+        alert('身份証字號不可空白!');
+        document.IP0801000.REVE_ID_NO.focus();
+        return;
+    }else if (f.REVE_ACCT_NO.value==""){
+        alert('銀行帳號不可空白!');
+        document.IP0801000.REVE_ACCT_NO.focus();
+        return;
+    }else if (f.PWD.value==""){
+        alert('電子金融密碼不可空白!');        
+        return;
+    }else if(!chkSID(sid)){    	   
+        return;
+    }else{       	  
+       f.REVE_ID_NO.value = sid.toUpperCase();
+       //document.IP0801000.button1.disabled = true;
+       //document.IP0801000.reset.disabled = true;
+       document.IP0801000.submit();
+   }
+ } 
+
+ function reset1(){
+ 	document.IP0801000.reset();
+ }
+</script>
+<body>
+<form name="IP0801000" method="POST" action="LoadAP">
+<div class="head"></div>
+<div class="Headlogo"><a href="http://www.ubot.com.tw/web/guest/myfinancial"><img src="graph/logo_personal.png"></a></div>
+<div class="container">
+    <div class="area">
+        <div class="mainTitle">首次登入</div>
+        <div class="content">
+            <div id="twcaseal" class="MINI" align="right"><img src="graph/login0610_05.gif" width="71" height="71"  border="0"></div>
+            <div class="contentMask">
+            <div class="loginIdentity">身分證字號</div>
+            <input type="text" class="inputIdentity" name="REVE_ID_NO" value="" maxlength="11"></input>
+            <div class="loginUser">聯邦銀行帳號(任一組)</div>
+            <input type="text" class="inputUser" name="REVE_ACCT_NO" value="" maxlength="12" onKeypress="KeyPressChk1()" onpaste="return false;" style="ime-mode:disabled"></input>
+            <div class="loginPassword">語音密碼</div>
+            <input type="password" class="inputPassword" name="PWD" size="8" onclick="getKeyBoard2('IP0801000','PWD',' REVE_PWD','[[%%SEND-KB-KEYCODE%%]]','[[%%SEND-KB-KEYLETTER%%]]');onTop();" readonly></input>
+            </div>
+			<div class="two_column" style="width: 100%;">
+				<div style="width: 50%; float: right;" class="loginButton" onclick="javascript:checkData();">確定</div>
+				<div style="width: 50%; float:right;" class="cancelButton" onclick="javascript:reset1();">取消</div>
+			</div>
+            </div>
+        <div class="tipLogo">
+            <a href="https://web.ubot.com.tw/UBOT2005/Learning/data/ubot120.asp" target="_blank">
+            <img src="graph/tipLogo.png"/>操作小幫手
+            </a>
+        </div>
+        <div class="news">
+            <div class="newsTitle">網路安全提醒</div>
+            <a href="https://ms.ubot.com.tw/firstLogin/Contract.pdf" target="_blank">
+				<img class="logoImg" src="graph/logo.png"/>
+            </a>
+            <div class="newsContent">
+                <div class="tipTitle">祕訣一</div><div class="tipContent">
+					<span>登入前請確認聯邦個人網路銀行網址(<a href='http://ubot.com.tw/myFinancial'>http://ubot.com.tw/myFinancial</a>)、<br>
+					企業網路銀行網址(<a href='http://www.ubot.com.tw/enterprisefinancial'>http://www.ubot.com.tw/enterprisefinancial</a>)<br>
+					與行動銀行手機應用程式「聯邦樂活 APP 」名稱正確性。</span></div>
+                <div class="tipTitle">祕訣二</div><div class="tipContent">請提高警覺防範詐騙集團套取密碼。</div>
+                <div class="tipTitle">祕訣三</div><div class="tipContent">請於輸入密碼時，提高警覺避免旁人窺視。</div>
+                <div class="tipTitle">祕訣四</div><div class="tipContent">請經常或定期(建議每6個月)變更密碼且勿與其他應用系統及服務密碼共用。</div>
+                <div class="tipTitle">祕訣五</div><div class="tipContent">請勿點選來路不明網址及程式並建議安裝防毒軟體。</div>
+                <div class="tipTitle">祕訣六</div><div class="tipContent">請勿書寫密碼於金融卡或其他明顯且他人可取得處。</div>
+                <div class="tipTitle">祕訣七</div><div class="tipContent">請勿紀錄密碼於電腦或行動裝置內。</div>
+                <div class="tipTitle">祕訣八</div><div class="tipContent">請勿透過未加密機制傳送密碼。</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 20150420 -->
+<div class="warningLabel">
+	<img src="./graph/word.jpg">
+</div>
+<footer id="footer" role="contentinfo">
+	<div class="UBOT_footer">
+		<div class="blockH">
+			<div class="normal">
+				<div class="footerContainer">
+					<img style="float: left;" src="./graph/at.jpg">
+					<div class="bar"></div>
+					<div class="item">
+						<a href="https://www.facebook.com/unionbankoftaiwan" target="_blank">聯邦粉絲團
+							<img class="footer_FB" src="graph/footer_FB.png" alt="聯邦粉絲團" title="聯邦粉絲團">
+						</a>
+					</div>
+					<div class="bar"></div>
+					<div class="item">
+						<a href="https://edm.ubot.com.tw/epaper/index.asp" target="_blank">電子報訂退閱</a>
+					</div>
+					<div class="bar"></div>
+					<div class="item">
+						<a href="http://www.ubot.com.tw/link">相關連結</a>
+					</div>
+					<div class="bar"></div>
+					<div class="item">
+						<a href="http://www.ubot.com.tw/network_security#!id=190">網路安全</a>
+					</div>
+					<div class="bar"></div>
+					<div class="item">
+						<a href="http://www.ubot.com.tw/invasion_of_privacy#!id=189">隱私權保護及著作聲明</a>
+					</div>
+					<div class="bar"></div>
+					<div class="item">
+						<a href="http://www.ubot.com.tw/siteMap">網站導覽</a>
+					</div>
+					<div class="bar"></div>
+				</div>
+			</div>
+			<div class="mini">
+				<div class="footerContainer">
+					<div class="item">
+						<div class="des">
+							<a href="http://www.ubot.com.tw/invasion_of_privacy#!id=189">隱私權保護及著作聲明</a>
+						</div>
+					</div>
+					<div class="item">
+						<div class="des">
+							<a href="http://www.ubot.com.tw/network_security#!id=190">網路安全</a>
+						</div>
+					</div>
+					<div class="item">
+						<div class="des">
+							<a href="http://www.ubot.com.tw/link">相關連結</a>
+						</div>
+					</div>
+					<div class="item">
+						<div class="des">
+							<a href="https://edm.ubot.com.tw/epaper/index.asp" target="_blank">電子報訂退閱</a>
+						</div>
+					</div>
+					<div class="item">
+						<div class="des">
+							<a href="https://www.facebook.com/unionbankoftaiwan" target="_blank">聯邦粉絲團</a>
+						</div>
+					</div>
+					<div class="logo">
+						<div class="des">2015c聯邦商業銀行</div>
+					</div>
+				</div> 
+			</div> 
+		</div> 
+	</div> 
+	<script>
+		var browser=navigator.appName;
+		var b_version=navigator.appVersion;
+		var version=b_version.split(";");
+		var trim_Version=version[1].replace(/[ ]/g,"");
+		
+		if(browser=="Microsoft Internet Explorer"&&trim_Version=="MSIE7.0"){
+			$(".portlet-body > #wrapper").css("width",$(window).width()-17);
+			$(".wrapBlockC").css("width",$(window).width());
+			$(".owl-item").css("width","100%")
+		}
+		else{}
+		
+		var slimmenuOpt={
+			resizeWidth:"848",
+			collapserTitle:"",
+			animSpeed:"slow",
+			easingEffect:"easeOutExpo",
+			indentChildren:true,
+			childrenIndenter:"&nbsp;"
+		};
+		$("ul.slimmenu").slimmenu(slimmenuOpt);
+		$(window).resize(function(){setMenuSP()});
+		setMenuSP=function(){
+			if(window.innerWidth>=848){
+				$("ul.slimmenu li.layer1 ").css({width:"85px","margin-right":"47px"});
+				$("ul.slimmenu li.layer2 ").css({width:"127px",});
+				$("ul.slimmenu li > ul").css({width:"127px",});
+				$("ul.slimmenu li.layer2 ul").css({width:"200px",});
+				$(".layer1:eq(1)").find(".layer2:eq(5)").find("ul").css({width:"209%"});
+				$(".layer1:eq(1)").find(".layer2:eq(5)").find("ul li a").css({"padding-left":"3.424084%"})
+			}
+			else{
+				if(window.innerWidth<=848){
+					$("ul.slimmenu li.layer1 ").css({width:"100%"});
+					$("ul.slimmenu li.layer2").css({width:"100%"});
+					$("ul.slimmenu li > ul").css({width:"100%"});
+					$("ul.slimmenu li.layer2 ul").css({width:"100%"});
+					$(".layer1:eq(1)").find(".layer2:eq(5)").find("ul").css({width:"120%"});
+					$(".layer1:eq(1)").find(".layer2:eq(5)").find("ul li a").css({"padding-left":"9.424083769633508%"})
+				}
+			}
+		};
+		setMenuSP();
+	</script>
+</footer>
+<!-- End_20150420 -->
+
+<input type="hidden" name="pageid" value="IP0801001">
+<input type="hidden" name="REVE_PWD" value="">
+</form>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='Big5'?>
+<!-- UITC Schema Generater at 2003-09-24 -->
+<catalog>
+	 <field id='fieldi001' attr='S' default=''>
+        <name>REVE-CODE</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+     <field id='fieldi004' attr='I' default=''>
+        <name>REVE-ID-NO</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description>身份証字號</description>
+     </field>
+     <field id='fieldi005' attr='I' default=''>
+        <name>REVE-ACCT-NO</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description>帳號</description>
+     </field>
+     <field id='fieldi006' attr='I' default=''>
+        <name>REVE-PIN</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description>PIN</description>
+     </field>
+     <field id="3060i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	 </field>
+     <field id='fieldi007' attr='S' default=''>
+        <name>TXNTYPE</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+     <field id='fieldi008' attr='I' default=''>
+        <name>PBX-SID</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+     <field id='fieldi009' attr='S' default=''>
+        <name>TXN-SNO</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+</catalog>

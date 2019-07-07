@@ -1,0 +1,200 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI99055           2010.09.20     Carl
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/formatCheck.js?0"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+var txnMsg = "外轉台交易通知\n"+
+" 身分證字號："+"[[%%SEND_ID_NO%%]]".substr(0,10)+"\n"+
+" 轉出帳號：[[%%SEND_FROM_ACCT_NO%%]]\n"+
+" 轉入帳號：[[%%SEND_TO_ACCT_NO%%]]\n"+
+" 轉入幣別：[[%%SEND_FROM_ACCT_C_CURRENCY%%]]\n"+
+" 轉換金額：[[%%SEND_FROM_ACCT_C_CURRENCY%%]]"+moneyAddDot2('[[%%SEND_TXN_AMT%%]]')+"元\n"+
+" 轉換匯率：[[%%SEND_BUY_RATE%%]]\n";
+
+var kbWin = null;
+function getKeyBoard()
+{
+ var Mytype="width=450,height=250,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IP0703101.PWD.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IP0703101.REVE_PWD.value";  //User真正key的密碼
+       kbWin = window.open( "LoadAP?pageid=IP2001000&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IP0703101.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP0703101.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+function onTop() {
+  	if (kbWin==null) return;
+  	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+
+function chkSubmit(){
+	document.IP0703101.Submit.disabled = true;
+	document.IP0703101.Submit4.disabled = true;
+	if(document.IP0703101.REVE_PWD.value==""){
+		alert("請輸入網路密碼!");
+		document.IP0703101.Submit.disabled = false;
+		return;
+	}
+	document.IP0703101.REVE_MSG.value = txnMsg;
+	//alert(document.IP0703101.REVE_MSG.value);
+	document.onmousedown=noClick;
+	document.IP0703101.submit();
+}
+
+function noClick() {
+	if ((event.button==1)||(event.button==2)) {
+		alert('交易執行中，請稍候 ....');
+	}
+}
+
+function chkSubmit2(){
+	document.IP0703101.Submit.disabled = true;
+	document.IP0703101.Submit4.disabled = true;
+	document.IP0703101.pageid.value = "IP0703100";
+	document.IP0703101.submit();
+}
+
+function chgCurrencyType(tmp){
+	var cuurArray = new Array("01", "03", "04", "21", "05", "06", "07", "12", "15", "18");
+	var newCurrArray = new Array("00", "01", "04", "08", "07", "06", "07", "12", "05", "18");
+	var curr = tmp;
+	for(i=0;i<cuurArray.length;i++){
+		if(curr == cuurArray[i]){
+			document.IP0703101.SEND_FROM_ACCT_E_CURRENCY.value = newCurrArray[i];
+			return;
+		}
+	}
+}
+
+function chkTxnAmt(){
+	var amt = "[[%%SEND_TO_TXN_AMT%%]]";
+	if(amt==""){
+		return "無試算資料!";
+	}
+	else{
+		return "[[%%SEND_TO_ACCT_C_CURRENCY%%]] "+trimDecimal(moneyAddDot('[[%%SEND_TO_TXN_AMT%%]]'))+"元";
+	}
+}
+//-->
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onfocus="onTop();" onLoad="" background="/graph/bg01.gif" leftmargin="0" topmargin="0">
+<b>　帳戶交易&gt;<font color="#0066ff">外幣轉台幣</font></b><br><br>
+<form method="post" action="LoadAP" name="IP0703101">
+<img border="0" name="imageField" src="graph/point.gif" width="12" height="12">
+外幣轉台幣
+<table width="630" border="0">
+  <tr> 
+    <td> 
+      <div align="center"><font color="#0000CC">您的外幣轉台幣轉換設定為：</font></div>
+      <table width="350" border="1" align="center" bordercolor="#999999">
+        <tr> 
+          <td width="33%" bgcolor="#C4CBB8">轉帳類別</td>
+          <td width="67%" height="25">外幣轉台幣</td>
+        </tr>
+        <tr> 
+          <td width="33%" bgcolor="#C4CBB8"> 轉出帳號</td>
+          <td width="67%" height="25">[[%%SEND_FROM_BR_NAME%%]] 
+          <script language="JavaScript">
+                            document.write(getAcctStr('[[%%SEND_FROM_ACCT_NO%%]]'));
+          </script>
+          </td>
+        </tr>
+        <tr> 
+          <td width="33%" bgcolor="#C4CBB8">轉出幣別/金額</td>
+          <td width="67%" height="25">[[%%SEND_FROM_ACCT_C_CURRENCY%%]] 
+          <script>
+              	document.write(moneyAddDot('[[%%SEND_TXN_AMT%%]]'));
+          </script>
+          元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="33%">轉入帳號</td>
+          <td height="25" width="67%">[[%%SEND_TO_BR_NAME%%]] 
+          <script language="JavaScript">
+                            document.write(getAcctStr('[[%%SEND_TO_ACCT_NO%%]]'));
+          </script>
+          </td>
+        </tr>
+        <tr> 
+          <td width="33%" bgcolor="#C4CBB8">試算轉入幣別/金額</td>
+          <td width="67%" height="25">
+          <script>
+              	document.write(chkTxnAmt());
+          </script>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="33%">試算轉換匯率</td>
+          <td height="25" width="67%" bgcolor="#FFFFDD">[[%%SEND_BUY_RATE%%]] 新台幣/[[%%SEND_FROM_ACCT_C_CURRENCY%%]]</td>
+        </tr>
+        <tr>
+					<td width="33%" bgColor="#c4cbb8" style="font-size: 9pt; color: #000000; line-height: 12pt">
+					結售性質</td>
+					<td width="67%" height="25" style="font-size: 9pt; color: #000000; line-height: 12pt">
+					<script>
+						document.write(checkSCurrType('[[%%BUY_TYPE%%]]'));
+					</script>
+					&nbsp;</td>
+				</tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="33%"> 交易附註</td>
+          <td height="25" width="67%">[[%%SEND_TXN_MEMO%%]]&nbsp;</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="33%">網路密碼</td>
+          <td height="25" width="67%">
+          <input type="password" name="PWD" size="8" onclick="getKeyBoard();onTop();" readonly>
+          <input type="hidden" name="REVE_PWD" value="">
+          </td>
+        </tr>
+      </table>
+      
+              <div align="center"> 
+                <input type="button" name="Submit" value="確定" onClick="chkSubmit();">
+                <input type="button" name="Submit4" value="取消" onClick="chkSubmit2();">
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="IP0703102">
+  <input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+  <input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+  <input type="hidden" name="SEND_FROM_BR_NAME" value="[[%%SEND_FROM_BR_NAME%%]]">
+  <input type="hidden" name="SEND_FROM_ACCT_NO" value="[[%%SEND_FROM_ACCT_NO%%]]">
+  <input type="hidden" name="SEND_FROM_ACCT_C_CURRENCY" value="[[%%SEND_FROM_ACCT_C_CURRENCY%%]]">
+  <input type="hidden" name="SEND_FROM_AVAL_BALANCE" value="[[%%SEND_FROM_AVAL_BALANCE%%]]">
+  <input type="hidden" name="SEND_FROM_ACCT_E_CURRENCY" value="[[%%SEND_FROM_ACCT_E_CURRENCY%%]]">
+  <input type="hidden" name="SEND_TO_BR_NAME" value="[[%%SEND_TO_BR_NAME%%]]">
+  <input type="hidden" name="SEND_TO_ACCT_NO" value="[[%%SEND_TO_ACCT_NO%%]]">
+  <input type="hidden" name="SEND_TO_ACCT_C_CURRENCY" value="[[%%SEND_TO_ACCT_C_CURRENCY%%]]">
+  <input type="hidden" name="SEND_TO_AVAL_BALANCE" value="[[%%SEND_TO_AVAL_BALANCE%%]]">
+  <input type="hidden" name="SEND_TO_ACCT_E_CURRENCY" value="[[%%SEND_TO_ACCT_E_CURRENCY%%]]">
+  <input type="hidden" name="SEND_BUY_RATE" value="[[%%SEND_BUY_RATE%%]]">
+  <input type="hidden" name="SEND_SELL_RATE" value="[[%%SEND_SELL_RATE%%]]">
+  <input type="hidden" name="SEND_TXN_MEMO" value="[[%%SEND_TXN_MEMO%%]]">
+  <input type="hidden" name="SEND_TXN_AMT" value="[[%%SEND_TXN_AMT%%]]">
+  <input type="hidden" name="SEND_TO_TXN_AMT" value="[[%%SEND_TO_TXN_AMT%%]]">
+  <input type="hidden" name="REVE_MSG">
+  <input type="hidden" name="BUY_TYPE" value="[[%%BUY_TYPE%%]]">
+</table>
+</from>
+</body>
+</html>

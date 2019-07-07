@@ -1,0 +1,121 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>基金申購</title>
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: Alma 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI99041	        2010.05.10	   Alma
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+</head>
+<link rel="stylesheet" type="text/css" media="all" href="theme/YesFund.css" title="win2k-cold-1" />
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0">
+<font color="#006666"><b>基金申購&gt;</b></font><br>
+<font class="t3">聯邦銀行個人網路銀行交易結果</font><div align="right">
+<font color="#0000CC"face="Arial, Helvetica, sans-serif">資料時間： <script language="javascript">
+		document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));                  
+			      		   				//document.write(getNowTime());
+			      		   				</script></font> </div><br>
+<table width="770" border="0">
+  <tr>
+    <td>
+      <div align="center">單筆申購申請完成</div>
+    </td>
+  </tr>
+</table> 
+<table width="770" border="0">
+  <tr> 
+    <td colspan="3"> 
+      <div align="center"> <b></b> 
+        <table width="600" border="1" bordercolor="#999999">
+          <tr> 
+            <td colspan="2">
+              <div align="center">您的申購資料</div>
+            </td>
+          </tr>
+          <tr> 
+            <td width="104" bgcolor="#C5DECF">委託人姓名</td>
+            <td width="480" bgcolor="#E7F1EE">[[%%REVE-CNAME%%]]</td>
+          </tr>
+          <tr> 
+            <td width="104" bgcolor="#C5DECF">委託人身分證字號</td>
+            <td width="480" bgcolor="#E7F1EE">[[%%REVE-ID%%]]</td>
+          </tr>
+          <tr> 
+            <td width="104" bgcolor="#C5DECF">基金代號</td>
+            <td width="480" bgcolor="#E7F1EE">[[%%REVE-FUND-ID%%]]</td>
+          </tr>
+          <tr> 
+            <td width="104" bgcolor="#C5DECF">基金名稱</td>
+            <td width="480" bgcolor="#E7F1EE">[[%%REVE-FUND-CNAME%%]] </td>
+          </tr>
+          <tr> 
+            <td width="104" bgcolor="#C5DECF">申購申請日</td>
+            <td width="480" bgcolor="#E7F1EE"><script>document.write(getRCDateStr("[[%%REVE-TXN-DATE%%]]","3"));</script></td>
+          </tr>
+          <tr> 
+            <td width="104" bgcolor="#C5DECF">申購金額</td>
+            <td width="480" bgcolor="#E7F1EE">&nbsp;NT$&nbsp;<script>document.write(moneyAddDot("[[%%REVE-FUND-AMT%%]]"));</script> </td>
+          </tr>
+          <tr> 
+            <td width="104" bgcolor="#C5DECF">手續費</td>
+            <td width="480" bgcolor="#E7F1EE">&nbsp;NT$&nbsp;<script>document.write(moneyAddDot("[[%%REVE-FEE-AMT%%]]"));</script> </td>
+          </tr>
+          <tr> 
+            <td width="104" bgcolor="#C5DECF">應繳款金額</td>
+            <td width="480" bgcolor="#E7F1EE">&nbsp;NT$&nbsp;<script>document.write(moneyAddDot("[[%%REVE-TXN-AMT%%]]"));</script> </td>
+          </tr>       
+          <tr> 
+            <td width="104" bgcolor="#C5DECF">配息入帳帳號</td>
+            <td width="480" bgcolor="#E7F1EE">[[%%SEND-INTACCT-NO%%]]</td>
+          </tr>       
+          <tr> 
+            <td width="104" bgcolor="#C5DECF">繳款方式</td>
+            <td width="480" bgcolor="#E7F1EE">即時轉帳</td>
+          </tr>       
+          <tr> 
+            <td width="104" bgcolor="#C5DECF">聯邦銀行繳款帳號</td>
+            <td width="480" bgcolor="#E7F1EE"><script>document.write(getAcctStr("[[%%REVE-FROM-ACCT-NO%%]]"));</script></td>
+          </tr>
+		   <tr> 
+            <td width="104" bgcolor="#C5DECF">轉介人員編</td>
+            <td width="480" bgcolor="#E7F1EE"> [[%%REVE-RECOMMAND%%]]</td>
+          </tr>
+        </table>
+        <table width="600" border="0">
+          <tr>
+            <td><b>注意事項：</b><br>
+              1.銀行<font color="#FF0000">營業日<script>document.write(get12RCTimeStr("[[%%SEND-END-TIME%%]]",1));</script>前完成繳款</font>，並經本行確認款項已入帳無誤，始於當日下單投資，<font color="#0000CC">逾時則於次一營業日下單投資。</font><br>
+              2.因延遲繳款致所申購基金之計價淨值或匯率發生貶損，將由您自行承擔。</td>
+          </tr>
+        </table>
+        <table width="80%" border="0" cellspacing="0" cellpadding="0">
+          <tr> 
+            <td colspan="2"> 
+              <div align="center"><a href="javascript:window.print()"><img src="graph/fund/graph/print.gif" width="52" height="24" border="0"></a></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+<br>
+<table width="770" border="0">
+  <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

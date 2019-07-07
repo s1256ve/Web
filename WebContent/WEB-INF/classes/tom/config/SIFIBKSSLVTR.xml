@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- 
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+*SerialNo           Date Modified  Modified by   
+*=========          =============  ===========
+*EAI96072           2009.03.02     David 
+***********************************************************************/
+ -->
+<!-- SSL VTR SSL轉帳 Last updated date 12-11-2004 -->
+<!--catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPM"-->
+<catalog>
+	<field id="sslvtri01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='sslvtri54' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     	</field>
+	<field id="sslvtri55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="sslvtri02">
+		<name>REVE-PWD-PATTERN</name>
+		<length>12</length>
+		<type>String</type>
+		<description>動態密碼類型</description>
+	</field>
+	<field id="sslvtri03">
+		<name>REVE-PWD-LEN</name>
+		<length>4</length>
+		<type>String</type>
+		<description>動態密碼長度</description>
+	</field>
+	<field id="sslvtri04">
+		<name>REVE-MAIL-KEY</name>
+		<length>4</length>
+		<type>String</type>
+		<description>頻道確認</description>
+	</field>
+	<field id="sslvtri05">
+		<name>REVE-MSG-TYPE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>訊息傳送種類</description>
+	</field>
+	<field id="sslvtri50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="sslvtri51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="sslvtri52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="sslvtri53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

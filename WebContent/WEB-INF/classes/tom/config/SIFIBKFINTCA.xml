@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="Big5"?>
+<!-- IVR FUND INTCA 基金定期定額可變更資料查詢 Last updated date 3-17-2004 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="INTCAi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+		<field id='9524i54' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="9524i55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="INTCAi03">
+		<name>REVE-TXN-DATE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>交易日期</description>
+	</field>
+	<field id="INTCAi03">
+		<name>REVE-CHG-TYPE</name>
+		<length>2</length>
+		<type>String</type>
+		<description>變更種類</description>
+	</field>
+	<field id="INTCAi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="INTCAi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="INTCAi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="INTCAi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="INTCAi54">
+		<name>REVE-COME-FROM</name>
+		<length>16</length>
+		<type>String</type>
+		<description>來源位置</description>
+	</field>
+	<field id="INTCAi55">
+		<name>REVE-ID-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+	<field id="INTCAi56">
+		<name>REVE-SCHD-DATE</name>
+		<length>3</length>
+		<type>String</type>
+		<description>每月投資日</description>
+	</field>
+	<field id="INTCAi57">
+		<name>REVE-SCHD-DATE2</name>
+		<length>2</length>
+		<type>String</type>
+		<description>每月扣款日2</description>
+	</field>
+	<field id="INTCAi58">
+		<name>REVE-SCHD-DATE3</name>
+		<length>2</length>
+		<type>String</type>
+		<description>每月扣款日3</description>
+	</field>
+		<field id="INTCAi59">
+		<name>REVE-SCHD-DATE4</name>
+		<length>2</length>
+		<type>String</type>
+		<description>每月扣款日4</description>
+	</field>
+		<field id="INTCAi60">
+		<name>REVE-SCHD-DATE5</name>
+		<length>2</length>
+		<type>String</type>
+		<description>每月扣款日5</description>
+	</field>
+		<field id="INTCAi61">
+		<name>REVE-SCHD-DATE6</name>
+		<length>2</length>
+		<type>String</type>
+		<description>每月扣款日6</description>
+	</field>
+	<field id="INTCAi62">
+		<name>REVE-NEW-SCHDDATE</name>
+		<length>2</length>
+		<type>String</type>
+		<description>新每月扣款日</description>
+	</field>
+	<field id="INTCAi63">
+		<name>REVE-NEW-SCHDDATE2</name>
+		<length>2</length>
+		<type>String</type>
+		<description>新每月扣款日2</description>
+	</field>
+	<field id="INTCAi64">
+		<name>REVE-NEW-SCHDDATE3</name>
+		<length>2</length>
+		<type>String</type>
+		<description>新每月扣款日3</description>
+	</field>		
+		<field id="INTCAi65">
+		<name>REVE-NEW-SCHDDATE4</name>
+		<length>2</length>
+		<type>String</type>
+		<description>新每月扣款日4</description>
+	</field>		
+		<field id="INTCAi66">
+		<name>REVE-NEW-SCHDDATE5</name>
+		<length>2</length>
+		<type>String</type>
+		<description>新每月扣款日5</description>
+	</field>		
+		<field id="INTCAi67">
+		<name>REVE-NEW-SCHDDATE6</name>
+		<length>2</length>
+		<type>String</type>
+		<description>新每月扣款日6</description>
+	</field>		
+</catalog>

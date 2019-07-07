@@ -1,0 +1,172 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo           Date Modified  Modified by   
+* -------------      ----------     ----------
+* EAI99041           2010.05.11     David
+* EAI99055           2010.09.20     Carl
+* EAI100083          2011.12.19     simon 修改外匯優惠利率，一併修正"台幣轉外幣"
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script>
+function nocontextmenu(){
+event.cancelBubble = true
+event.returnValue = false;
+return false;}
+function norightclick(e){
+if (window.Event){
+if (e.which == 2 || e.which == 3)
+return false;}
+else
+if (event.button == 2 || event.button == 3){
+event.cancelBubble = true
+event.returnValue = false;
+return false;}
+}
+document.oncontextmenu = nocontextmenu;  // for IE5+
+document.onmousedown = norightclick;  // for all others
+</script>
+
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF"  background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　帳戶交易&gt;<font color="#0066ff">台幣轉外幣</font></b><br><br>
+　<img height="12" width="12" src="graph/point.gif" border="0" name="imageField">
+台幣轉外幣<br>
+<font class="t3">　聯邦銀行個人網路銀行交易結果</font><br>
+<table width="630" border="0" id="table1">
+	<tr>
+		<td height="371" style="font-size: 9pt; color: #000000; line-height: 12pt">
+		<div align="center">
+			<font color="#0000cc">交易訊息：交易成功<br>
+			交易日/時間：
+			<script>
+        				document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+        			</script>
+			</font></div>
+		<table borderColor="#999999" width="350" align="center" border="1" id="table2">
+			<tr>
+				<td width="33%" bgColor="#c4cbb8" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				轉帳類別</td>
+				<td width="67%" height="25" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				即時轉帳</td>
+			</tr>
+			<tr>
+				<td width="33%" bgColor="#c4cbb8" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				轉出帳號</td>
+				<td width="67%" height="25" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				[[%%SEND-FROM-BR-NAME%%]] <script>document.write(getAcctStr('[[%%SEND-FROM-ACCT-NO%%]]'));</script></td>
+			</tr>
+			<tr>
+				<td width="33%" bgColor="#c4cbb8" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				轉出幣別/金額</td>
+				<td width="67%" height="25" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				新台幣 <script>document.write(moneyAddDot2('[[%%REVE-FROM-AMT%%]]'));</script> 元</td>
+			</tr>
+			<tr>
+				<td width="33%" bgColor="#c4cbb8" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				轉入帳號</td>
+				<td width="67%" height="25" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				[[%%SEND-TO-BR-NAME%%]] <script>document.write(getAcctStr('[[%%SEND-TO-ACCTNO%%]]'));</script></td>
+			</tr>
+			<tr>
+				<td width="33%" bgColor="#c4cbb8" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				轉入幣別/金額</td>
+				<td width="67%" height="25" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				[[%%SEND-CURRENCY-CNAME%%]] <script>document.write(moneyAddDot2('[[%%SEND-TO-AMT%%]]'));</script> 元</td>
+			</tr>
+			<tr>
+				<td width="33%" bgColor="#c4cbb8" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				轉換匯率</td>
+				<td width="67%" height="25" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				[[%%EXCHAGERATIO%%]] 新台幣/
+				[[%%SEND-CURRENCY-CNAME%%]]</td>
+			</tr>
+			<tr>
+				<td width="33%" bgColor="#c4cbb8" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				轉出帳戶帳上餘額</td>
+				<td width="67%" height="25" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				新台幣 <script>document.write(moneyAddDot2(trimDecimal('[[%%SEND-TXN-AMT%%]]')));</script> 元</td>
+			</tr>
+			<tr>
+				<td width="33%" bgColor="#c4cbb8" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				轉出帳戶可用餘額</td>
+				<td width="67%" height="25" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				新台幣 <script>document.write(moneyAddDot2(trimDecimal('[[%%SEND-BALANCE%%]]')));</script> 元</td>
+			</tr>
+			<tr>
+				<td width="33%" bgColor="#c4cbb8" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				轉入帳戶可用餘額</td>
+				<td width="67%" height="25" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				[[%%SEND-CURRENCY-CNAME%%]]
+	&nbsp;<script>
+	        if([[%%REVE-TO-CURRENCY%%]]=="03")
+	        {
+	            document.write(moneyAddDot2(trimDecimal('[[%%SEND-AVAL-BALANCE%%]]')));
+	        }
+	        else
+	        {
+	            document.write(moneyAddDot2('[[%%SEND-AVAL-BALANCE%%]]'));
+	        }
+	</script>元</td>
+			</tr>
+			<tr>
+				<td width="33%" bgColor="#c4cbb8" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				手 續 費</td>
+				<td width="67%" height="25" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				0元</td>
+			</tr>
+			<tr>
+				<td width="33%" bgColor="#c4cbb8" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				結構性質</td>
+				<td width="67%" height="25" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				<script>
+					document.write(checkBCurrType('[[%%BUY_TYPE%%]]'));
+				</script>
+				&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="33%" bgColor="#c4cbb8" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				交易附註</td>
+				<td width="67%" height="25" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				[[%%REVE-TXN-MEMO%%]]&nbsp;</td>
+			</tr>
+		</table>
+		<table borderColor="#999999" width="350" align="center">
+		<tr>
+				<td width="99%" height="25" style="font-size: 9pt; color: #000000; line-height: 12pt">
+				說明：台幣帳戶可用餘額不含當日本交票與次交票金額，但包含透支帳戶之可動用金額。&nbsp;</td>
+		</tr>
+		</table>
+		<br>
+　<div align="center">
+			<table cellSpacing="0" cellPadding="0" width="620" border="0" id="table3">
+				<tr>
+					<td width="56%" style="font-size: 9pt; color: #000000; line-height: 12pt">
+					<div align="right">
+						<a href="javascript:window.print()">
+						<img height="24" src="graph/print.gif" width="52" border="0"></a>　 
+					</div>
+					</td>
+					<td width="44%" style="font-size: 9pt; color: #000000; line-height: 12pt">　</td>
+				</tr>
+			</table>
+		</div>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

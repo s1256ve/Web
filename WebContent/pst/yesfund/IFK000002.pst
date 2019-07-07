@@ -1,0 +1,1690 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>風險承受度分析</title>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script type="text/javascript"> 
+var exp = true;
+var Q5V = 0;
+var Q6V = 0;
+var myage = 0; 
+var SELFRANK_TYPE = 0;
+var QI10 = "C";
+var KYCRank = 1;
+
+function clear_all(item) 
+{     
+	var x=document.getElementsByName("QITEM"+item);  
+	for(var i=0;i<x.length;i++){ //
+		if (x[i].checked==true)
+		{
+			x[i].checked=false;
+			x[0].checked=true;
+		}
+	}
+} 
+function checkitem() 
+{     
+	var y=document.getElementsByName("QITEM"+1);  
+	for(var j = 0;j<=8;j++){
+	var x=document.getElementsByName("QITEM"+(j+1));  
+	for(var i=0;i<1;i++){ //
+		if (y[j].checked && x[0].checked==true && j!==0)
+		{
+  if(j==1)
+  {
+	alert("您的外匯存款子選項沒選取喔!!");
+	exp = false;
+	return;
+  }
+  else if(j==2)
+	{
+	alert("您的投資型保單子選項沒選取喔!!");
+	exp = false;
+	return;
+  }
+  else if(j==3)
+  {
+	alert("您的共同基金－貨幣型或國內債券型子選項沒選取喔!!");
+	exp = false;
+	return;
+	}
+	else if(j==4)
+	{
+	alert("您的共同基金－海外債券型子選項沒選取喔!!");
+	exp = false;
+	return;
+	}
+	else if(j==5)
+	{
+	alert("您的共同基金－股票型子選項沒選取喔!!");
+	exp = false;
+	return;
+	}
+	else if(j==6)
+	{
+	alert("您的股票子選項沒選取喔!!");
+	exp = false;
+	return;
+	}
+	else if(j==7)
+	{
+	alert("您的衍生性金融商品（如連動債、選擇權、期貨等）子選項沒選取喔!!");
+	exp = false;
+	return;
+	}
+	else if(j==8)
+	{
+	alert("您的房地產子選項沒選取喔!!");
+	exp = false;
+	return;
+  }
+  else
+	alert("您的投資經驗第"+j+"項沒選取喔!!");
+			exp = false;
+		}
+		else
+			;
+	}
+}
+} 
+function age()
+{
+var sysdate = "[[%%SYSDATE%%]]";
+var b = "[[%%SEND-BIRTH-DATE%%]]"; 
+var c = "[[%%SYSDATE%%]]"-"[[%%SEND-BIRTH-DATE%%]]";  
+
+	if(b =="" ||b =="00000000" || c.toString().length>6)
+	{
+		return;
+	}	
+ d = c.toString();
+ myage = d.substring(0,2);
+
+ if(myage>0 && 20>myage || c.toString().length<6)
+ {
+ document.IFK000002.QITEM10[0].checked = true ;
+ changeScore('QITEM10', 3);
+ QI10 = "A";
+ }
+ else if(myage>19 && 30>myage)
+ {
+ document.IFK000002.QITEM10[1].checked = true ;
+ changeScore('QITEM10', 4);
+ QI10 = "B";
+ }
+ else if(myage>29 && 40>myage)
+ {
+ document.IFK000002.QITEM10[2].checked = true ;
+ changeScore('QITEM10', 5);
+ QI10 = "C";
+ }
+ else if(myage>39 && 50>myage)
+ {
+ document.IFK000002.QITEM10[3].checked = true ;
+ changeScore('QITEM10', 4);
+ QI10 = "D";
+ }
+ else if(myage>49 && 60>myage)
+ {
+ document.IFK000002.QITEM10[4].checked = true ;
+ changeScore('QITEM10', 3);
+ QI10 = "E";
+ }
+ else if(myage>59 && 70>myage)
+ {
+ document.IFK000002.QITEM10[5].checked = true ;
+ changeScore('QITEM10', 2);
+ QI10 = "F";
+ }
+ else 
+ {
+ document.IFK000002.QITEM10[6].checked = true ;
+ changeScore('QITEM10', 1);
+ QI10 = "G";
+ }
+ 		if(b != "" && myage<100 && b != "00000000")
+ 		{
+ 				for(i=0; i<7 ;i++)
+ 				{
+ 					document.IFK000002.QITEM10[i].disabled = true;	
+ 				}	
+ 		}
+}
+</script>
+
+<script language="javascript" type="text/javascript">
+    var checkResult = true;
+		var checkZero = true;
+		var fone =0;
+		var ftwo =0;
+		var fthree =0;
+		var ffour =0;
+		var ffive =0;
+		var sone =0;
+		var stwo =0;
+		var sthree =0;
+		var sfour =0;
+		var sfive =0;
+	function changeScore2(iname, value ,item)  
+	{
+		if(document.IFK000002.QITEM14[item].checked == true )
+		{
+			if(value > Q5V)
+			{
+				Q5V = value;
+			}
+			if(value == 1)
+				fone++;
+			if(value == 2)
+				ftwo++;
+			if(value == 3)
+				fthree++;
+			if(value == 4)
+				ffour++;
+			if(value == 5)
+				ffive++;			
+	 }
+	else
+		{
+			if(value == 1)
+				fone--;
+			if(value == 2)
+				ftwo--;
+			if(value == 3)
+				fthree--;
+			if(value == 4)
+				ffour--;
+			if(value == 5)
+				ffive--;
+				
+			if(ffive > 0)
+				Q5V = 5;
+			else if(ffour >0)
+				Q5V = 4;
+			else if(fthree >0)
+				Q5V = 3;
+			else if(ftwo >0)
+				Q5V = 2;
+			else if(fone >0)
+				Q5V = 1;
+			else	
+				Q5V = 0;
+		}
+	changeScore(iname, Q5V);
+	}
+	
+	function changeScore3(iname, value ,item)  
+	{
+		if(document.IFK000002.QITEM15[item].checked == true )
+		{
+			if(value > Q6V)
+			{
+				Q6V = value;
+			}
+			if(value == 1)
+				sone++;
+			if(value == 2)
+				stwo++;
+			if(value == 3)
+				sthree++;
+			if(value == 4)
+				sfour++;
+			if(value == 5)
+				sfive++;			
+	 }
+	else
+		{
+			if(value == 1)
+				sone--;
+			if(value == 2)
+				stwo--;
+			if(value == 3)
+				sthree--;
+			if(value == 4)
+				sfour--;
+			if(value == 5)
+				sfive--;
+				
+			if(sfive > 0)
+				Q6V = 5;
+			else if(sfour >0)
+				Q6V = 4;
+			else if(sthree >0)
+				Q6V = 3;
+			else if(stwo >0)
+				Q6V = 2;
+			else if(sone >0)
+				Q6V = 1;
+			else	
+				Q6V = 0;
+		}
+	changeScore(iname, Q6V);
+	}
+	
+	
+	function changeRank()  
+	{
+	var allscore;
+		allscore = document.all["QITEMSUM"].value;
+		if(allscore >64)
+		{
+			if(document.IFK000002.CHECK4.checked == true )
+			{
+				document.IFK000002.SELFRANK.style.display = "";
+		 	}
+		 	else
+		 	{
+				closetype();
+		 	}
+	 	}
+	 	else if(allscore >50)
+		{
+			if(document.IFK000002.CHECK4.checked == true )
+			{
+				document.IFK000002.SELFRANK1.style.display = "";
+				SELFRANK_TYPE = 1;
+		 	}
+		 	else
+		 	{
+				closetype();
+		 	}
+	 	}
+	 	else if(allscore >35)
+		{
+			if(document.IFK000002.CHECK4.checked == true )
+			{
+				document.IFK000002.SELFRANK2.style.display = "";
+				SELFRANK_TYPE = 2;
+		 	}
+		 	else
+	 		{
+				closetype();
+		 	}
+	 	}
+	 	else
+		{
+			if(document.IFK000002.CHECK4.checked == true )
+			{
+				document.IFK000002.SELFRANK3.style.display = "";
+				SELFRANK_TYPE = 3;
+		 	}
+		 	else
+	 		{
+		 		closetype();
+		 	}
+	 	}	 	
+	}
+	function closetype()
+	{
+			document.IFK000002.SELFRANK.style.display = "none";
+		 	document.IFK000002.SELFRANK1.style.display = "none";
+		 	document.IFK000002.SELFRANK2.style.display = "none";
+		 	document.IFK000002.SELFRANK3.style.display = "none";
+		 	document.IFK000002.CHECK4.checked = false ;
+	}
+	
+	function changeScore(iname, value)  {
+		var s = iname+"SCORE";
+		var d = document.all[s]; //   .IFK000002.elements['QITEM10SCORE'].innertext = value;
+		
+		d.innerText = "";
+		s = iname+"VALUE";
+		d = document.all[s];
+		d.value = value;
+		
+		//document.all["QITEMSUM"].value = Number(document.all["QITEM1VALUE"].value) + Number(document.all["QITEM2VALUE"].value)+Number(document.all["QITEM3VALUE"].value)+Number(document.all["QITEM4VALUE"].value)+Number(document.all["QITEM5VALUE"].value)+Number(document.all["QITEM6VALUE"].value)+Number(document.all["QITEM7VALUE"].value)+Number(document.all["QITEM8VALUE"].value);
+		document.all["QITEMSUM"].value = Number(document.all["QITEM1VALUE"].value) + Number(document.all["QITEM2VALUE"].value)
+	+Number(document.all["QITEM3VALUE"].value)+Number(document.all["QITEM4VALUE"].value)+Number(document.all["QITEM5VALUE"].value)
+	+Number(document.all["QITEM6VALUE"].value)+Number(document.all["QITEM7VALUE"].value)+Number(document.all["QITEM8VALUE"].value)
+	+Number(document.all["QITEM9VALUE"].value)+Number(document.all["QITEM10VALUE"].value)+Number(document.all["QITEM11VALUE"].value)
+	+Number(document.all["QITEM12VALUE"].value)+Number(document.all["QITEM13VALUE"].value)+Number(document.all["QITEM14VALUE"].value)
+	+Number(document.all["QITEM15VALUE"].value)+Number(document.all["QITEM16VALUE"].value)+Number(document.all["QITEM17VALUE"].value)
+	+Number(document.all["QITEM18VALUE"].value)+Number(document.all["QITEM19VALUE"].value)+Number(document.all["QITEM20VALUE"].value)
+	+Number(document.all["QITEM21VALUE"].value)+Number(document.all["QITEM22VALUE"].value)+Number(document.all["QITEM23VALUE"].value)
+	+Number(document.all["QITEM24VALUE"].value)+Number(document.all["QITEM25VALUE"].value)+Number(document.all["QITEM26VALUE"].value)
+	+Number(document.all["QITEM27VALUE"].value);
+	//document.all["SUMSCORE"].innerText = document.all["QITEMSUM"].value;
+	document.all["SUMSCORE2"].innerText = Scorerank();
+		
+	AnalysisReport('N');
+	}
+	
+	function clearScore(iname, value)  {
+		
+		if(iname == "QITEM1")
+		for(i=2; i<10 ;i++)
+		{
+		var s = "QITEM"+i+"SCORE";
+		var d = document.all[s]; //   .IFK000002.elements['QITEM1SCORE'].innertext = value;
+		d.innerText = " ";
+		}
+		else if(iname == "clear")
+		{
+			var r = "QITEM1SCORE";
+			var e = document.all[r]; //   .IFK000002.elements['QITEM1SCORE'].innertext = value;
+			e.innerText =" ";
+		}
+		else
+		{
+		var s = iname+"SCORE";
+		var d = document.all[s]; //   .IFK000002.elements['QITEM1SCORE'].innertext = value;		
+		d.innerText =" ";
+		s = iname+"VALUE";
+		d = document.all[s];
+		d.value = value;
+		}
+		document.all["QITEMSUM"].value = Number(document.all["QITEM1VALUE"].value) + Number(document.all["QITEM2VALUE"].value)
+	+Number(document.all["QITEM3VALUE"].value)+Number(document.all["QITEM4VALUE"].value)+Number(document.all["QITEM5VALUE"].value)
+	+Number(document.all["QITEM6VALUE"].value)+Number(document.all["QITEM7VALUE"].value)+Number(document.all["QITEM8VALUE"].value)
+	+Number(document.all["QITEM9VALUE"].value)+Number(document.all["QITEM10VALUE"].value)+Number(document.all["QITEM11VALUE"].value)
+	+Number(document.all["QITEM12VALUE"].value)+Number(document.all["QITEM13VALUE"].value)+Number(document.all["QITEM14VALUE"].value)
+	+Number(document.all["QITEM15VALUE"].value)+Number(document.all["QITEM16VALUE"].value)+Number(document.all["QITEM17VALUE"].value)
+	+Number(document.all["QITEM18VALUE"].value)+Number(document.all["QITEM19VALUE"].value)+Number(document.all["QITEM20VALUE"].value)
+	+Number(document.all["QITEM21VALUE"].value)+Number(document.all["QITEM22VALUE"].value)+Number(document.all["QITEM23VALUE"].value)
+	+Number(document.all["QITEM24VALUE"].value)+Number(document.all["QITEM25VALUE"].value)+Number(document.all["QITEM26VALUE"].value)
+	+Number(document.all["QITEM27VALUE"].value);
+	//	document.all["SUMSCORE"].innerText = document.all["QITEMSUM"].value;
+	}
+	
+  function checkNotEmpty(item, num) {
+    if(num <= 0 ){
+      eval("var r = document.forms[0]." + item);
+			try{
+      	var v = r.value;
+     		if(v == "")
+        	return false;  
+				else
+					return true;		
+    		}
+      catch(showError){
+   			alert("輸入格式發生錯誤,請檢查輸入是否有不正常字眼或是請重新整理此頁面再做一次");
+   			}
+  	}
+ }
+  function resetA(item){
+  t = document.all[item];
+
+  	for(i=1;i<t.length;i++)
+  	{
+  		t[i].checked = false;
+  	}
+  	if(item=="ITEM5")
+  	{
+  	t = document.all['ITEM6'];
+  	for(i=0;i<t.length;i++)
+  	{
+  		t[i].checked = false;
+  	}
+  	}
+  }
+  
+  function nocheck(item){
+  t = document.all[item];
+  	t[0].checked = false;
+  	if(item=="ITEM5")
+  	{
+  	t[1].checked = true;
+  	}
+  	
+  }
+  
+  function changeItemDisplay(item) {
+   	var v = document.all[item];
+   	
+   	if(v=="undefine")
+   	    return;
+   	if(v.style.dosplay == "none")
+   	    v.style.display = "";
+   	else
+   	    v.style.display = "none";
+
+  }
+  
+  function changeSelectItem(item1, ind, item2) {
+    var k = document.all[item1][ind];
+   	var v = document.all[item2];
+   	var t;
+   	if(item1=="QITEM1") {
+   	    switch(ind) {
+   	        case 0:
+   	            if(!k.checked){
+   	                v.style.display = "";
+   	                }
+   	            else {
+   	               // v.style.display = "none";
+   	   							changeScore('QITEM1', 0);
+   	                var i = ind + 1;
+   	                t = document.all[item1];
+   	                for(i=1; i<t.length; i++) {
+   	                    t[i].checked = false;
+   	                    changeSelectItem(item1, i, "QITEM"+i+"_SPAN");
+   	                }
+   	            }
+   	            return;
+   	    }
+   	}
+
+   	if(k.checked){
+   	    v.style.display = "";
+   	    }
+   	else {
+   	    if(item1=="QITEM1") { 	
+   	   
+   	        var i = ind + 1;
+   	        t = document.all["QITEM" + i];
+   	      		  for(i=0; i<t.length; i++) {
+   	            if(i==0)
+   	            {
+   	                t[i].checked = true;
+   	             }
+   	            else
+   	            {
+   	                t[i].checked = false;
+   	            }
+   	            document.IFK000002.QITEM2VALUE.value = 0 ;
+   	            document.IFK000002.QITEM3VALUE.value = 0 ;
+   	            document.IFK000002.QITEM4VALUE.value = 0 ;
+   	            document.IFK000002.QITEM5VALUE.value = 0 ;
+   	            document.IFK000002.QITEM6VALUE.value = 0 ;
+   	            document.IFK000002.QITEM7VALUE.value = 0 ;
+   	            document.IFK000002.QITEM8VALUE.value = 0 ;
+   	            document.IFK000002.QITEM9VALUE.value = 0 ;
+   	            document.all["QITEM2_SPAN"].style.display = "none";
+   	    				document.all["QITEM3_SPAN"].style.display = "none";
+   	     				document.all["QITEM4_SPAN"].style.display = "none";
+   	     				document.all["QITEM5_SPAN"].style.display = "none";
+   	    				document.all["QITEM6_SPAN"].style.display = "none";
+   	     				document.all["QITEM7_SPAN"].style.display = "none";
+   	     				document.all["QITEM8_SPAN"].style.display = "none";
+   	     				document.all["QITEM9_SPAN"].style.display = "none";
+   	            clearScore('QITEM1', 0);     
+   	        }
+   	        	
+   	    }else {
+   	        t = document.all[item1 + "_TEXT"];
+   	        t.value="";
+   	    }
+   	}				
+  }
+  
+   function changeSelectItem2(item1, ind, item2, score) {
+    var k = document.all[item1][ind];
+   	var v = document.all[item2];
+   	var t;
+   	if(item1=="QITEM1") {
+   	    switch(ind) {
+   	        case 0:
+   	            if(!k.checked){
+   	                v.style.display = "";
+   	                }
+   	            else {
+   	                v.style.display = "none";
+   	                var i = ind + 1;
+   	                t = document.all[item1];
+   	                for(i=1; i<t.length; i++) {
+   	                    t[i].checked = false;
+   	                    changeSelectItem(item1, i, "QITEM"+i+"_SPAN");
+   	                }
+   	            }
+   	            return;
+   	    }
+   	}
+   		var n = ind;
+			var n2 = ind+1;
+			var s = "QITEM"+n2;
+   	if(k.checked){
+			changeScore(s, score);
+   	    v.style.display = "";
+   	    t = document.all[item1];
+   	     t[0].checked = false;
+   	     clearScore('clear', 0);  
+   	    }
+   	else {
+   	    v.style.display = "none";
+   	    if(item1=="QITEM1") {
+   	        var i = ind + 1;
+   	        t = document.all[item1+ i];
+   	        for(i=0; i<t.length; i++) {
+   	            if(i==0)
+   	            ;
+   	            else
+   	            {
+		   	            clear_all(ind+1);
+   	            }
+   	            var t = s + "VALUE";
+
+   	            //document.IFK000002.t.value = 0 ;
+   	            clearScore(s, 0);  						     
+   	        }
+   	    }else {
+   	        t = document.all[item1 + "_TEXT"];
+   	        t.value="";
+   	    }
+   	}				
+  }
+
+	function chkFormat(inputName, inputGroup){
+	
+	if(SELFRANK_TYPE == 1)
+	{
+		document.IFK000002.SELFRANK.value = document.IFK000002.SELFRANK1.value;
+	}
+	else if(SELFRANK_TYPE == 2)
+	{
+		document.IFK000002.SELFRANK.value = document.IFK000002.SELFRANK2.value;
+	}
+	else if(SELFRANK_TYPE == 3)
+	{
+		document.IFK000002.SELFRANK.value = document.IFK000002.SELFRANK3.value;
+	}
+	else
+		;
+	
+		
+	exp = true;
+   	//var inputName = "ITEM"; "QITEM";
+   	//var inputGroup = 6;      27;
+        var i = 0;
+        var j = 0; 
+        var q = 0;
+        var k = 0;
+        var m ;
+        if(inputName == "ITEM")
+        	k = 1;
+        if(inputName == "QITEM")
+        	k = 1;	
+	   for (i=k;i<=inputGroup;i++) { 
+            eval("var r = document.forms[0]." + inputName + i);	
+            var count = 0; 
+            m = document.all[inputName + i + "_MARK"];
+            try{
+            m.style.display = "none";
+            }
+            catch(showError)
+            {
+            	q++
+            	if(q == 9)
+            	{
+              n = document.all["QITEM1_MARK"];
+	   					n.style.display = "";
+	   					}
+            }
+	      for (j=0;j<r.length;j++) { 
+            if ( r[j].checked){
+                if(inputName=="ITEM" && i == 5 && j == 0)
+                {
+                    i++;
+                }
+                if(i !=19 && r[j].nextSibling.nodeValue.indexOf("其他")>=0) {
+                 if(inputName == "ITEM")
+                 {
+                    if(!checkNotEmpty("ITEM" + i + "_TEXT", 0))
+                    {
+                        m.style.display = "";
+                        checkResult = false;
+                    }
+                 }
+                 else
+                 {
+                		if(!checkNotEmpty("QITEM" + i + "_TEXT", 0))
+                    {
+                        m.style.display = "";
+                        checkResult = false;
+                    }
+                 }
+                  
+                }
+                break;
+            }	            
+	      }
+	      if(j>=r.length) {
+	      	checkResult = false;
+	      	m.style.display = "";
+	      }
+	   }
+	   if(inputName == "QITEM")
+	   {
+	   checkitem();
+	   	if(exp == false)
+	   	{
+	   		checkResult = false;
+	   		moveback();
+	   	}
+	   }
+	   
+	   if(i>inputGroup)
+	     ;
+	   else
+	     checkResult = false;	 
+	}
+	function HalfshapeToFullshape(text) {  
+  
+  var asciiTable = "!\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+  var big5Table = "%uFF01%u201D%uFF03%uFF04%uFF05%uFF06%u2019%uFF08%uFF09%uFF0A%uFF0B%uFF0C%uFF0D%uFF0E%uFF0F%uFF10%uFF11%uFF12%uFF13%uFF14%uFF15%uFF16%uFF17%uFF18%uFF19%uFF1A%uFF1B%uFF1C%uFF1D%uFF1E%uFF1F%uFF20%uFF21%uFF22%uFF23%uFF24%uFF25%uFF26%uFF27%uFF28%uFF29%uFF2A%uFF2B%uFF2C%uFF2D%uFF2E%uFF2F%uFF30%uFF31%uFF32%uFF33%uFF34%uFF35%uFF36%uFF37%uFF38%uFF39%uFF3A%uFF3B%uFF3C%uFF3D%uFF3E%uFF3F%u2018%uFF41%uFF42%uFF43%uFF44%uFF45%uFF46%uFF47%uFF48%uFF49%uFF4A%uFF4B%uFF4C%uFF4D%uFF4E%uFF4F%uFF50%uFF51%uFF52%uFF53%uFF54%uFF55%uFF56%uFF57%uFF58%uFF59%uFF5A%uFF5B%uFF5C%uFF5D%uFF5E";
+    
+  var result = "";
+  for ( var i = 0 ; i < text.length ; i ++ ) {
+    var val = text.charAt(i) ;            
+    var j = asciiTable.indexOf(val) * 6 ;        
+    result += ( j > -1 ? unescape(big5Table.substring( j , j + 6 ) ) : val );    
+  }
+      
+  return result;
+ 
+	}
+	
+	function moveback()
+	{
+	window.location.href = "#QITEM1SCORE";
+	}
+	
+	function chkZero()
+	{
+		if(document.all["QITEMSUM"].value < 13)
+		checkZero = false;
+		if(document.IFK000002.QITEM10VALUE.value==0||document.IFK000002.QITEM12VALUE.value==0||document.IFK000002.QITEM13VALUE.value==0||document.IFK000002.QITEM14VALUE.value==0||document.IFK000002.QITEM15VALUE.value==0||document.IFK000002.QITEM16VALUE.value==0||document.IFK000002.QITEM17VALUE.value==0||document.IFK000002.QITEM18VALUE.value==0||document.IFK000002.QITEM24VALUE.value==0||document.IFK000002.QITEM25VALUE.value==0||document.IFK000002.QITEM26VALUE.value==0||document.IFK000002.QITEM27VALUE.value==0)
+		checkZero = false;
+	}
+	function chkRank()
+	{
+		if(document.IFK000002.CHECK4.checked == false)
+			document.IFK000002.SELFRANK.value = "";
+	}
+	function Scorerank()
+	{
+	
+	var TaltleScroe = document.all["QITEMSUM"].value;
+		if(TaltleScroe<=20 ) {
+						KYCRank = "保守型";
+					}else if((TaltleScroe>=21 && TaltleScroe<=35 )) {
+						KYCRank = "穩健型";
+					}else if((TaltleScroe>=36 && TaltleScroe<=50 )) {
+						KYCRank = "平衡型";
+					}else if((TaltleScroe>=51 && TaltleScroe<=64 )) {
+						KYCRank = "成長型";
+					}else if(TaltleScroe>=65) {
+						KYCRank = "積極型";
+					}		
+					return KYCRank;
+		}
+
+  function chkSubmit(nextpage, confirm){ 
+  
+  		if(nextpage == "IC0201000")
+		{
+			alert("謝謝您的使用");
+			window.close();
+			return;
+		}
+    checkResult = true;
+    checkZero = true;
+    chkFormat("ITEM", 6);
+    chkFormat("QITEM",27); 
+		chkZero();
+		chkRank();
+		 document.IFK000002.ITEM4_TEXT.value = HalfshapeToFullshape(document.IFK000002.ITEM4_TEXT.value);
+ 		 document.IFK000002.QITEM15_TEXT.value = HalfshapeToFullshape(document.IFK000002.QITEM15_TEXT.value);
+
+		 if(document.IFK000002.CHECK1.checked == false)
+		{
+			alert('客戶確認事項第一項務必勾選!');
+			return;
+		}
+		 if(document.IFK000002.CHECK3.checked == false)
+		{
+			alert('客戶確認事項第三項務必勾選!');
+			return;
+		}		 		 
+
+		if(checkZero)
+			;
+		else
+			{
+				alert("您有選項尚未選擇!或是您的風險評估等級有誤!可重新整理此頁面再重做一次!");
+		 		return;
+		 	}	
+		if(checkResult){
+		    if(nextpage=='') {
+		      nextpage = 'IP0803001';
+		    }
+		    var chkb = document.IFK000002.ITEM3;
+		    var s = "";
+		    var i = 0;
+		    for(i=0; i<chkb.length; i++)
+		    {
+		      if(chkb[i].checked)
+		      {
+		        if(s=="") 
+		        {
+		          s=chkb[i].value;
+		        }else 
+		        {
+		          s=s+","+chkb[i].value;
+		        }
+		      }
+		    }
+		    document.IFK000002.CITEM3.value = s;
+		    
+		     chkb = document.IFK000002.QITEM14;
+		    s="";
+		    for(i=0; i<chkb.length; i++)
+		    {
+		      if(chkb[i].checked)
+		      {
+		        if(s=="") 
+		        {
+		          s=chkb[i].value;
+		        }else 
+		        {
+		          s=s+","+chkb[i].value;
+		        }
+		      }
+		    }
+		    document.IFK000002.CITEM5.value = s;
+		    
+		     chkb = document.IFK000002.QITEM15;
+		    s="";
+		    for(i=0; i<chkb.length; i++)
+		    {
+		      if(chkb[i].checked)
+		      {
+		        if(s=="") 
+		        {
+		          s=chkb[i].value;
+		        }else 
+		        {
+		          s=s+","+chkb[i].value;
+		        }
+		      }
+		    }
+		    document.IFK000002.CITEM6.value = s;
+
+		    document.IFK000002.CITEM8.value = QI10;
+				document.IFK000002.CITEM10.value = QI10;
+		    chkb = document.IFK000002.QITEM1;
+		    s="";
+		    for(i=0; i<chkb.length; i++)
+		    {
+		      if(chkb[i].checked)
+		      {
+		        if(s=="") 
+		        {
+		          s=chkb[i].value;
+		        }else 
+		        {
+		          s=s+","+chkb[i].value;
+		        }
+		      }
+		    }
+		    document.IFK000002.CITEM19.value = s;
+		   
+		    s = chkb.value;
+		    document.IFK000002.CITEM25.value = s;
+		  	document.IFK000002.pageid.value = nextpage;
+		  	document.IFK000002.Submit2.disabled = true;
+		  	if(confirm == "Y")
+		  		document.IFK000002.submit();
+		  	else
+		  	{
+			  	closetype();
+		  		changeRank();		
+		  		AnalysisReport('Y');
+		  	}		
+				
+	window.location.href = "#adjust";
+		  	
+		 }else{
+		 		alert("您有選項尚未選擇!");
+		 		document.IFK000002.Submit2.disabled = false;
+		 		return;
+		 } 	
+		 
+  }
+  function AnalysisReport(ans)
+  {
+  	var result_style = document.getElementById('adjust').style;
+  	var result_style2 = document.getElementById('adjust2').style;
+		var result_style3 = document.getElementById('adjust3').style;
+		
+		if(ans =="Y")
+		{
+		result_style.display = 'block';
+		result_style2.display = 'block';
+		result_style3.display = 'block';
+		}
+		else
+		{
+		result_style.display = 'none';
+		result_style2.display = 'none';
+		result_style3.display = 'none';
+		}
+  }
+  
+  
+  function chkPageName(nextpage){
+  	if(nextpage!="" && nextpage=='IF0101001') return '基金申購';
+  	if(nextpage!="" && nextpage=='IF0501000') return '基金轉換';
+  	else return '風險承受度分析';
+  }  
+</script>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{ font-family: "Arial"; font-size: 8pt}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } #Layer1 {
+	position:absolute;
+	left:531px;
+	top:1885px;
+	width:140px;
+	height:0px;
+	z-index:1;
+}
+#Layer2 {position:absolute;
+	left:540px;
+	top:6px;
+	width:96px;
+	height:49px;
+	z-index:2;
+	visibility: visible;
+}
+-->
+</style></head><body onload="" leftmargin="0" topmargin="0" background="../graph/bg.gif" bgcolor="#ffffff">
+<form method="post" action="LoadAP" name="IFK000002">
+<input name="CITEM3" id="CITEM3" value="" type="hidden">
+<input name="CITEM5" id="CITEM5" value="" type="hidden">
+<input name="CITEM6" id="CITEM6" value="" type="hidden">
+<input name="CITEM8" id="CITEM8" value="" type="hidden">
+<input name="CITEM10" id="CITEM10" value="" type="hidden">
+<input name="CITEM14" id="CITEM14" value="" type="hidden">
+<input name="CITEM16" id="CITEM16" value="" type="hidden">
+<input name="CITEM17" id="CITEM17" value="" type="hidden">
+<input name="CITEM19" id="CITEM19" value="" type="hidden">
+<input name="CITEM25" id="CITEM25" value="" type="hidden">
+
+
+<input name="QITEM1VALUE" id="QITEM1VALUE" value="0" type="hidden">
+<input name="QITEM2VALUE" id="QITEM2VALUE" value="0" type="hidden">
+<input name="QITEM3VALUE" id="QITEM3VALUE" value="0" type="hidden">
+<input name="QITEM4VALUE" id="QITEM4VALUE" value="0" type="hidden">
+<input name="QITEM5VALUE" id="QITEM5VALUE" value="0" type="hidden">
+<input name="QITEM6VALUE" id="QITEM6VALUE" value="0" type="hidden">
+<input name="QITEM7VALUE" id="QITEM7VALUE" value="0" type="hidden">
+<input name="QITEM8VALUE" id="QITEM8VALUE" value="0" type="hidden">
+<input name="QITEM9VALUE" id="QITEM9VALUE" value="0" type="hidden">
+<input name="QITEM10VALUE" id="QITEM10VALUE" value="0" type="hidden">
+<input name="QITEM11VALUE" id="QITEM11VALUE" value="0" type="hidden">
+<input name="QITEM12VALUE" id="QITEM12VALUE" value="0" type="hidden">
+<input name="QITEM13VALUE" id="QITEM13VALUE" value="0" type="hidden">
+<input name="QITEM14VALUE" id="QITEM14VALUE" value="0" type="hidden">
+<input name="QITEM15VALUE" id="QITEM15VALUE" value="0" type="hidden">
+<input name="QITEM16VALUE" id="QITEM16VALUE" value="0" type="hidden">
+<input name="QITEM17VALUE" id="QITEM17VALUE" value="0" type="hidden">
+<input name="QITEM18VALUE" id="QITEM18VALUE" value="0" type="hidden">
+<input name="QITEM19VALUE" id="QITEM19VALUE" value="0" type="hidden">
+<input name="QITEM20VALUE" id="QITEM20VALUE" value="0" type="hidden">
+<input name="QITEM21VALUE" id="QITEM21VALUE" value="0" type="hidden">
+<input name="QITEM22VALUE" id="QITEM22VALUE" value="0" type="hidden">
+<input name="QITEM23VALUE" id="QITEM23VALUE" value="0" type="hidden">
+<input name="QITEM24VALUE" id="QITEM24VALUE" value="0" type="hidden">
+<input name="QITEM25VALUE" id="QITEM25VALUE" value="0" type="hidden">
+<input name="QITEM26VALUE" id="QITEM26VALUE" value="0" type="hidden">
+<input name="QITEM27VALUE" id="QITEM27VALUE" value="0" type="hidden">
+<input name="QITEMSUM" id="QITEMSUM" value="0" type="hidden">
+<input name="NOWTIME" id="NOWTIME" value="[[%%SYSDATE%%]]+[[%%SYSTIME%%]]" type="hidden">
+<font color="#006666"><b><script>document.write(chkPageName('[[%%REVE-NEXT-PAGE%%]]'));</script>&gt;</b></font><br>
+<table border="0" width="730">
+  <tbody><tr>
+    <td bgcolor="#e7f1ee">
+      <p>&nbsp;</p>
+      <table align="center" bgcolor="#ffffff" border="0" width="660">
+        <tbody><tr>
+          <td height="40"><div align="center">
+            <h3><strong><br>
+              客戶風險承受度分析表</strong></h3>
+          </div></td>
+        </tr>
+        <tr>
+          <td>倘你不清楚本風險屬性問券之內容，請勿填寫，請洽本行理財人員說明。</td>
+        </tr>
+        <br>
+        <tr>
+          <td>本表係為瞭解客戶的基本資料、理財需求及風險承受度，請客戶完整填寫，俾利本行理財人員提供合適之投資建議予客戶。(未成年人請由法定代理人考量實際狀況填寫本表) </td>
+        </tr>
+      </tbody></table>
+        <table align="center" bgcolor="#ffffff" border="1" bordercolor="#999999" width="660">
+          <tbody><tr>
+            <td width="0"><strong>婚姻：<span name="ITEM1_MARK" id="ITEM1_MARK" style="display: none; color: rgb(255, 0, 0);">*</span></strong>
+              <input name="ITEM1" value="A" type="radio">
+              未婚
+              <input name="ITEM1" value="B" type="radio">
+              已婚
+              <input name="ITEM1" value="C" type="radio">
+              單親　
+            </td>
+          </tr>
+          <tr>
+            <td width="0"><strong>扶養人數：<span name="ITEM2_MARK" id="ITEM2_MARK" style="display: none; color: rgb(255, 0, 0);">*</span></strong>
+              <input name="ITEM2" value="A" type="radio">
+              1人
+              <input name="ITEM2" value="B" type="radio">
+              2人
+              <input name="ITEM2" value="C" type="radio">
+              3人
+              <input name="ITEM2" value="D" type="radio">
+              4人(含)以上
+              <input name="ITEM2" value="E" type="radio">
+              無
+              </td>
+          </tr>
+          <tr>
+            <td width="0"><strong>您是否具有下列身份(可複選)：<span name="ITEM3_MARK" id="ITEM3_MARK" style="display: none; color: rgb(255, 0, 0);">*</span></strong>
+              <input name="ITEM3" value="A" onclick="resetA('ITEM3');" type="checkbox">
+              否
+              <input name="ITEM3" value="B" onclick="nocheck('ITEM3');" type="checkbox">
+              低收入戶
+              <input name="ITEM3" value="C" onclick="nocheck('ITEM3');" type="checkbox">
+              長期失業
+              <input name="ITEM3" value="D" onclick="nocheck('ITEM3');" type="checkbox">
+              領有身心障礙手冊者
+               <input name="ITEM3" value="E" onclick="nocheck('ITEM3');" type="checkbox">
+              領有重大傷病證明者</td>
+          </tr>
+          <tr>
+            <td width="0">
+              <table border="0" cellspacing="0" width="100%">
+                <tbody><tr onmousemove="changeSelectItem('ITEM4', 17, 'ITEM4_SPAN');">
+                  <td><strong>職業：<span name="ITEM4_MARK" id="ITEM4_MARK" style="display: none; color: rgb(255, 0, 0);">*</span></strong></td>
+                  <td><input name="ITEM4" value="A" type="radio">
+                    金融
+                    <input name="ITEM4" value="B" type="radio">
+                    商
+  <input name="ITEM4" value="C" type="radio">
+                    工
+  <input name="ITEM4" value="D" type="radio">
+                    農
+  <input name="ITEM4" value="E" type="radio">
+                    營造
+  <input name="ITEM4" value="F" type="radio">
+                    公
+  <input name="ITEM4" value="G" type="radio">
+                    教
+  <input name="ITEM4" value="H" type="radio">
+                    醫藥護理
+  <input name="ITEM4" value="I" type="radio">
+                    會計師
+  <input name="ITEM4" value="J" type="radio">
+                    律師/法務相關
+  <input name="ITEM4" value="K" type="radio">
+                    軍警消
+  <input name="ITEM4" value="L" type="radio">
+                    通訊
+  <input name="ITEM4" value="M" type="radio">
+                    新聞媒體
+  <input name="ITEM4" value="N" type="radio">
+                    家管
+  <input name="ITEM4" value="O" type="radio">
+                    學生
+  <input name="ITEM4" value="P" type="radio">
+                    退休
+  <input name="ITEM4" value="Q" type="radio">
+                    無
+  <input name="ITEM4" value="R" type="radio">
+                    其他(請敘明)
+  <span name="ITEM4_SPAN" id="ITEM4_SPAN" style="display: none;"><input name="ITEM4_TEXT" type="text"></span></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>
+                </tr>
+              </tbody></table></td>
+          </tr>
+          <tr>
+            <td>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody><tr>
+                  <td width="179"><strong>您是否從事以下行業：<span name="ITEM5_MARK" id="ITEM5_MARK" style="display: none; color: rgb(255, 0, 0);">*</span></strong>
+                    <input name="ITEM5" value="A" onclick="resetA('ITEM5');" type="radio">
+                  否</td>
+                  <td width="469"> <input name="ITEM5" value="B" onclick="nocheck('ITEM5');" type="radio">
+                  是，請就下列行業勾選：<span name="ITEM6_MARK" id="ITEM6_MARK" style="display: none; color: rgb(255, 0, 0);">*</span> </td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td><input name="ITEM6" value="A" onclick="nocheck('ITEM5');" type="radio">
+                    國防武器或戰爭設備相關行業
+                      <input name="ITEM6" value="B" onclick="nocheck('ITEM5');" type="radio">
+                  賭場或賭博相關行業
+                  <br>
+                  <input name="ITEM6" value="C" onclick="nocheck('ITEM5');" type="radio">
+                  珠寶商或銀樓　　　　　　　
+                  <input name="ITEM6" value="D" onclick="nocheck('ITEM5');" type="radio">
+                  政治人物/軍警/媒體/法務相關<br>
+                  <input name="ITEM6" value="E" onclick="nocheck('ITEM5');" type="radio">
+                  現金密集之非銀行單位：如當舖、金融代辦中心等</td>
+                </tr>
+              </tbody></table>
+            </td>
+          </tr>
+          <td bgcolor="#c5decf" height="30"><div align="center"><strong>風　險　承　受　度　分　析　(未成年人請依其身分填寫本表)</strong></div></td>
+          <tr> 
+            <td height="0" valign="top" width="0">
+      <table align="center" bgcolor="#ffffff" border="1" bordercolor="#999999" width="660">     
+  <tbody><tr>
+          <td><strong>1.您現在的年齡：<span name="QITEM10_MARK" id="QITEM10_MARK" style="display: none; color: rgb(255, 0, 0);">*</span><br>
+            </strong>
+            <input name="QITEM10" value="A" onclick="changeScore('QITEM10', 3)" type="radio">
+            20歲(不含)以下
+            <input name="QITEM10" value="B" onclick="changeScore('QITEM10', 4)" type="radio">
+            20~29歲
+            <input name="QITEM10" value="C" onclick="changeScore('QITEM10', 5)" type="radio">
+            30~39歲
+            <input name="QITEM10" value="D" onclick="changeScore('QITEM10', 4)" type="radio">
+            40~49歲
+            <input name="QITEM10" value="E" onclick="changeScore('QITEM10', 3)" type="radio">
+            50~59歲
+            <input name="QITEM10" value="F" onclick="changeScore('QITEM10', 2)" type="radio">
+            60~69歲
+            <input name="QITEM10" value="G" onclick="changeScore('QITEM10', 1)" type="radio">
+            70歲以上</td>
+            <td width="15"><label>
+              </label><div id="QITEM10SCORE" align="center">&nbsp;*
+              </div>
+                      </td>
+        </tr>
+          <tr>
+          <td><strong>2.教育程度：<span name="QITEM11_MARK" id="QITEM11_MARK" style="display: none; color: rgb(255, 0, 0);">*</span><br>
+            </strong>
+            <input name="QITEM11" value="A" onclick="changeScore('QITEM11', 5)" type="radio">
+            博士
+            <input name="QITEM11" value="B" onclick="changeScore('QITEM11', 5)" type="radio">
+            碩士
+            <input name="QITEM11" value="C" onclick="changeScore('QITEM11', 4)" type="radio">
+            大學
+            <input name="QITEM11" value="D" onclick="changeScore('QITEM11', 3)" type="radio">
+            專科
+            <input name="QITEM11" value="E" onclick="changeScore('QITEM11', 2)" type="radio">
+            高中(職)
+            <input name="QITEM11" value="F" onclick="changeScore('QITEM11', 1)" type="radio">
+            國中
+            <input name="QITEM11" value="G" onclick="changeScore('QITEM11', 0)" type="radio">
+            國小
+            <input name="QITEM11" value="H" onclick="changeScore('QITEM11', 0)" type="radio">
+            國小(不含)以下
+            
+            </td>
+            <td width="15"><div id="QITEM11SCORE" align="center">&nbsp;*
+              </div></td>
+        </tr>
+        <tr>
+          <td><strong>3.個人年收入(新台幣)：<span name="QITEM12_MARK" id="QITEM12_MARK" style="display: none; color: rgb(255, 0, 0);">*</span><br>
+            </strong>
+            <input name="QITEM12" value="A" onclick="changeScore('QITEM12', 1)" type="radio">
+            未達100萬元
+            <input name="QITEM12" value="B" onclick="changeScore('QITEM12', 2)" type="radio">
+            100(含)~300萬元
+            <input name="QITEM12" value="C" onclick="changeScore('QITEM12', 3)" type="radio">
+            300(含)~500萬元
+            <input name="QITEM12" value="D" onclick="changeScore('QITEM12', 4)" type="radio">
+            500萬元(含)以上
+            <td width="15"><div id="QITEM12SCORE" align="center">&nbsp;*
+              </div></td>
+        </tr>
+        <tr>
+          <td><p style="line-height: 18pt;"><strong>4.家庭年收入(新台幣)：<span name="QITEM13_MARK" id="QITEM13_MARK" style="display: none; color: rgb(255, 0, 0);">*</span></strong><br>
+            <input name="QITEM13" value="A" onclick="changeScore('QITEM13', 1)" type="radio">
+            未達100萬元
+            <input name="QITEM13" value="B" onclick="changeScore('QITEM13', 2)" type="radio">
+            100(含)~300萬元
+            <input name="QITEM13" value="C" onclick="changeScore('QITEM13', 3)" type="radio">
+            300(含)~500萬元
+            <input name="QITEM13" value="D" onclick="changeScore('QITEM13', 4)" type="radio">
+            500萬元(含)以上
+          </p></td>
+            <td width="15"><div id="QITEM13SCORE" align="center">&nbsp;*
+              </div></td>
+        </tr>
+        <tr>
+          <td><strong>5.理財目的(可複選)：<span name="QITEM14_MARK" id="QITEM14_MARK" style="display: none; color: rgb(255, 0, 0);">*</span><br>
+            </strong>
+            <input name="QITEM14" value="A" onclick="changeScore2('QITEM14', 5 ,0)" type="checkbox">
+            投資
+            <input name="QITEM14" value="B" onclick="changeScore2('QITEM14', 4 ,1)" type="checkbox">
+            教育經費
+            <input name="QITEM14" value="C" onclick="changeScore2('QITEM14', 3 ,2)" type="checkbox">
+            儲備退休金
+            <input name="QITEM14" value="D" onclick="changeScore2('QITEM14', 5 ,3)" type="checkbox">
+            稅務規劃
+            <input name="QITEM14" value="E" onclick="changeScore2('QITEM14', 3 ,4)" type="checkbox">
+            保障規劃
+            <input name="QITEM14" value="F" onclick="changeScore2('QITEM14', 2 ,5)" type="checkbox">
+            置產
+            <input name="QITEM14" value="G" onclick="changeScore2('QITEM14', 1 ,6)" type="checkbox">
+            結婚
+            <input name="QITEM14" value="H" onclick="changeScore2('QITEM14', 2 ,7)" type="checkbox">
+            創業
+            <input name="QITEM14" value="I" onclick="changeScore2('QITEM14', 1 ,8)" type="checkbox">
+            旅遊
+            <input name="QITEM14" value="J" onclick="changeScore2('QITEM14', 2 ,9)" type="checkbox">
+            儲蓄</td>
+            <td width="15"><div id="QITEM14SCORE" align="center">&nbsp;*
+              </div></td>
+        </tr>
+        <tr onmousemove="changeSelectItem('QITEM15', 7, 'QITEM15_SPAN');">
+          <td><strong>6.所得資金來源(可複選)：<span name="QITEM15_MARK" id="QITEM15_MARK" style="display: none; color: rgb(255, 0, 0);">*</span><br>
+            </strong>
+            <input name="QITEM15" value="A" onclick="changeScore3('QITEM15', 5 ,0)" type="checkbox">
+            自營事業收入
+            <input name="QITEM15" value="B" onclick="changeScore3('QITEM15', 5 ,1)" type="checkbox">
+            薪資所得
+            <input name="QITEM15" value="C" onclick="changeScore3('QITEM15', 3 ,2)" type="checkbox">
+            繼承/贈與
+            <input name="QITEM15" value="D" onclick="changeScore3('QITEM15', 2 ,3)" type="checkbox">
+            理財投資
+            <input name="QITEM15" value="E" onclick="changeScore3('QITEM15', 1 ,4)" type="checkbox">
+            退休金
+            <input name="QITEM15" value="F" onclick="changeScore3('QITEM15', 4 ,5)" type="checkbox">
+            租金收入
+            <input name="QITEM15" value="G" onclick="changeScore3('QITEM15', 5 ,6)" type="checkbox">
+            專業執業收入
+            <input name="QITEM15" value="H" onclick="changeScore3('QITEM15', 1 ,7)" type="checkbox">
+            其他
+            <span name="QITEM15_SPAN" id="QITEM15_SPAN" style="display: none;"><input name="QITEM15_TEXT" type="text"></span></td>
+            </td>
+            <td width="15"><div id="QITEM15SCORE" align="center">&nbsp;*
+              </div></td>
+        </tr>
+        <tr>
+          <td><strong>7.對未來投資收益之現金流量期望：<span name="QITEM16_MARK" id="QITEM16_MARK" style="display: none; color: rgb(255, 0, 0);">*</span><br>
+            </strong>
+            <input name="QITEM16" value="A" onclick="changeScore('QITEM16', 1)" type="radio">
+            無固定配息需求
+            <input name="QITEM16" value="B" onclick="changeScore('QITEM16', 1)" type="radio">
+            年配息
+            <input name="QITEM16" value="C" onclick="changeScore('QITEM16', 1)" type="radio">
+            半年配
+            <input name="QITEM16" value="D" onclick="changeScore('QITEM16', 1)" type="radio">
+            季配息
+            <input name="QITEM16" value="E" onclick="changeScore('QITEM16', 1)" type="radio">
+            月配息</td>
+            <td width="15"><div id="QITEM16SCORE" align="center">&nbsp;*
+              </div></td>
+        </tr>
+        <tr>
+          <td><strong>8.扣除您想投資之金額後，您可支應生活之緊急預備金：<span name="QITEM17_MARK" id="QITEM17_MARK" style="display: none; color: rgb(255, 0, 0);">*</span><br>
+            </strong>
+            <input name="QITEM17" value="A" onclick="changeScore('QITEM17', 1)" type="radio">
+            3個月內
+            <input name="QITEM17" value="B" onclick="changeScore('QITEM17', 2)" type="radio">
+            3~6個月
+            <input name="QITEM17" value="C" onclick="changeScore('QITEM17', 3)" type="radio">
+            6~9個月
+            <input name="QITEM17" value="D" onclick="changeScore('QITEM17', 4)" type="radio">
+            9~12個月
+            <input name="QITEM17" value="E" onclick="changeScore('QITEM17', 5)" type="radio">
+            一年以上</td>
+            <td width="15"><div id="QITEM17SCORE" align="center">&nbsp;*
+              </div></td>
+        </tr>
+        <tr>
+          <td><strong>9.投資期限：<span name="QITEM18_MARK" id="QITEM18_MARK" style="display: none; color: rgb(255, 0, 0);">*</span><br>
+            </strong>
+            <input name="QITEM18" value="A" onclick="changeScore('QITEM18', 5)" type="radio">
+            6個月內
+            <input name="QITEM18" value="B" onclick="changeScore('QITEM18', 4)" type="radio">
+            6個月~1年
+            <input name="QITEM18" value="C" onclick="changeScore('QITEM18', 3)" type="radio">
+            1~3年
+            <input name="QITEM18" value="D" onclick="changeScore('QITEM18', 2)" type="radio">
+            3~5年
+            <input name="QITEM18" value="E" onclick="changeScore('QITEM18', 1)" type="radio">
+            5年以上</td>
+            <td width="15"><div id="QITEM18SCORE" align="center">&nbsp;*
+              </div></td>
+        </tr>
+        <tr>
+         <table border="1" width="100%">
+            <tbody><tr>
+
+        		</tr>
+                <tr>
+                <strong>10.投資經驗及投資期間(可複選)：<span name="QITEM1_MARK" id="QITEM1_MARK" style="display: none; color: rgb(255, 0, 0);">*</span></strong>
+                  <td align="left" height ="0" valign="center"><input name="QITEM1" value="A" onclick="changeSelectItem('QITEM1', 0, 'QITEM1_DIV');" type="checkbox">
+                  沒有投資經驗<label>
+              </label><td><div id="QITEM1SCORE" align="center">
+              </div></td>      
+            </td>
+                </tr>
+              </tbody></table>
+              <div name="QITEM1_DIV" id="QITEM1_DIV">
+              <table border="0" width="100%">
+                <tbody><tr>
+                  <td valign="top"><input name="QITEM1" value="B" onclick="changeSelectItem2('QITEM1', 1, 'QITEM2_SPAN', 1);" type="checkbox">
+                  外匯存款<span name="QITEM2_SPAN" id="QITEM2_SPAN" style="display: none;" onclick="changeScore('QITEM2', 1)">【
+                    <input name="QITEM2" value=""  checked="checked" style="display: none;" type="radio">
+                    <input name="QITEM2" value="A" type="radio">
+                    1年以下
+ 										<input name="QITEM2" value="B" type="radio">
+                    1~3年
+  									<input name="QITEM2" value="C" type="radio">
+                  3年以上 】</span>
+                  <span style="display: none;"><input name="QITEM2" value="" type="radio"></span>
+                  </td>
+                  <td width="0"><label>
+              </label><div id="QITEM2SCORE" align="center">&nbsp;
+              </div>
+                      
+            </td>
+                </tr>
+                <tr>
+                  <td valign="top"><input name="QITEM1" value="C" onclick="changeSelectItem2('QITEM1', 2, 'QITEM3_SPAN', 2);" type="checkbox">
+                  投資型保單<span name="QITEM3_SPAN" id="QITEM3_SPAN" style="display: none;" onclick="changeScore('QITEM3', 2)">【
+                    <input name="QITEM3" value="" checked="checked" style="display: none;" type="radio">
+                    <input name="QITEM3" value="A" type="radio">
+                    1年以下
+   									<input name="QITEM3" value="B" type="radio">
+                    1~3年
+  									<input name="QITEM3" value="C" type="radio">
+                    3年以上 】</span>
+                    <span style="display: none;"><input name="QITEM3" value="" type="radio"></span>
+                    </td>
+                     <td width="0"><label>
+              </label><div id="QITEM3SCORE" align="center">&nbsp;
+              </div>
+              
+             </td>   
+                </tr>  
+                <tr>
+                  <td valign="top"><input name="QITEM1" value="D" onclick="changeSelectItem2('QITEM1', 3, 'QITEM4_SPAN', 0);" type="checkbox">
+                  共同基金－貨幣型或國內債券型<span name="QITEM4_SPAN" id="QITEM4_SPAN" style="display: none;" onclick="changeScore('QITEM4', 0)">【
+                    <input name="QITEM4" value="" checked="checked" style="display: none;" type="radio">
+                    <input name="QITEM4" value="A" type="radio">
+                    1年以下
+  									<input name="QITEM4" value="B" type="radio">
+                    1~3年
+  									<input name="QITEM4" value="C" type="radio">
+                    3年以上 】</span>
+                    <span style="display: none;"><input name="QITEM4" value="" type="radio"></span>
+                    </td>
+                    <td width="0"><label>
+              </label><div id="QITEM4SCORE" align="center">&nbsp;
+              </div>
+               
+            </td> 
+                </tr>
+                <tr>
+                  <td valign="top"><input name="QITEM1" value="E" onclick="changeSelectItem2('QITEM1', 4, 'QITEM5_SPAN', 1);" type="checkbox">
+                  共同基金－海外債券型<span name="QITEM5_SPAN" id="QITEM5_SPAN" style="display: none;" onclick="changeScore('QITEM5', 1)">【
+                    <input name="QITEM5" value=""  checked="checked" style="display: none;" type="radio">
+                    <input name="QITEM5" value="A" type="radio">
+                    1年以下
+  									<input name="QITEM5" value="B" type="radio">
+                    1~3年
+  									<input name="QITEM5" value="C" type="radio">
+                    3年以上 】</span>
+                    <span style="display: none;"><input name="QITEM5" value="" type="radio"></span>
+                    </td>
+                     <td width="0"><label>
+              </label><div id="QITEM5SCORE" align="center">&nbsp;
+              </div>
+                      
+            </td>
+                </tr> 
+                <tr>
+                  <td valign="top"><input name="QITEM1" value="F" onclick="changeSelectItem2('QITEM1', 5, 'QITEM6_SPAN', 2);" type="checkbox">
+                  共同基金－股票型<span name="QITEM6_SPAN" id="QITEM6_SPAN" style="display: none;" onclick="changeScore('QITEM6', 2)">【
+                    <input name="QITEM6" value=""  checked="checked" style="display: none;" type="radio">
+                    <input name="QITEM6" value="A" type="radio">
+                    1年以下
+  									<input name="QITEM6" value="B" type="radio">
+                    1~3年
+  									<input name="QITEM6" value="C" type="radio">
+                    3年以上 】</span>
+                    <span style="display: none;"><input name="QITEM6" value="" type="radio"></span>
+                    </td>
+                     <td width="0"><label>
+              </label><div id="QITEM6SCORE" align="center">&nbsp;
+              </div>
+                     
+                </td></tr>
+                <tr>
+            
+                  <td valign="top"><input name="QITEM1" value="G" onclick="changeSelectItem2('QITEM1', 6, 'QITEM7_SPAN', 2);" type="checkbox">
+                  股票<span name="QITEM7_SPAN" id="QITEM7_SPAN" style="display: none;" onclick="changeScore('QITEM7', 2)">【
+                    <input name="QITEM7" value="" checked="checked" style="display: none;" type="radio">
+                    <input name="QITEM7" value="A" type="radio">
+                    1年以下
+  									<input name="QITEM7" value="B" type="radio">
+                    1~3年
+  									<input name="QITEM7" value="C" type="radio">
+                    3年以上 】</span>
+                    <span style="display: none;"><input name="QITEM7" value="" type="radio"></span>
+                    </td>
+                <td width="0"><label>
+              </label><div id="QITEM7SCORE" align="center">&nbsp;
+              </div>
+                      
+            </td>
+            </tr>
+                <tr>
+                  <td valign="top"><input name="QITEM1" value="H" onclick="changeSelectItem2('QITEM1', 7, 'QITEM8_SPAN', 3);" type="checkbox">
+                  衍生性金融商品（如結構債、選擇權、期貨等）<span name="QITEM8_SPAN" id="QITEM8_SPAN" style="display: none;" onclick="changeScore('QITEM8', 3)">【
+                    <input name="QITEM8" value="" checked="checked" style="display: none;" type="radio">
+                    <input name="QITEM8" value="A" type="radio">
+                    1年以下
+  									<input name="QITEM8" value="B" type="radio">
+                    1~3年
+  									<input name="QITEM8" value="C" type="radio">
+                    3年以上 】</span>
+                    <span style="display: none;"><input name="QITEM8" value="" type="radio"></span>
+                    </td>
+                    <td width="0"><label>
+              </label><div id="QITEM8SCORE" align="center">&nbsp;
+              </div>
+                      
+            </td>
+                </tr>
+                <tr>
+                  <td valign="top"><input name="QITEM1" value="I" onclick="changeSelectItem2('QITEM1', 8, 'QITEM9_SPAN', 1);" type="checkbox">
+                  房地產<span name="QITEM9_SPAN" id="QITEM9_SPAN" style="display: none;" onclick="changeScore('QITEM9', 1)">【
+                    <input name="QITEM9" value="" checked="checked" style="display: none;" type="radio">
+                    <input name="QITEM9" value="A" type="radio">
+                    1年以下
+  									<input name="QITEM9" value="B" type="radio">
+                    1~3年
+  									<input name="QITEM9" value="C" type="radio">
+                    3年以上 】</span>
+                    <span style="display: none;"><input name="QITEM9" value="" type="radio"></span>
+                    </td>
+                    <td width="0"><label>
+              </label><div id="QITEM9SCORE" align="center">&nbsp;
+              </div>
+                      
+            </td>
+                </tr>
+              </tbody></table>
+              <table align="center" bgcolor="#ffffff" border="1" bordercolor="#999999" width="660">     
+  						<tbody>
+         <tr>
+          <td><strong>11.對商品之風險辨識能力：<span name="QITEM19_MARK" id="QITEM19_MARK" style="display: none; color: rgb(255, 0, 0);">*</span><br>
+            </strong>
+            	 a.基金、保險、外國有價證券投資是否為聯邦銀行存款的一種？
+            <input name="QITEM19" value="A" onclick="changeScore('QITEM19', 0)" type="radio">
+            是
+            <input name="QITEM19" value="B" onclick="changeScore('QITEM19', 1)" type="radio">
+            否
+            </td><td width="0"><div id="QITEM19SCORE" align="center">&nbsp;*
+             </div></td>
+         </tr>
+          <tr>
+          <td>b.基金、保險、外國有價證券是否受中央存款保險之保障？<strong><span name="QITEM20_MARK" id="QITEM20_MARK" style="display: none; color: rgb(255, 0, 0);">*</span></strong>
+            <input name="QITEM20" value="A" onclick="changeScore('QITEM20', 0)" type="radio">
+            是
+            <input name="QITEM20" value="B" onclick="changeScore('QITEM20', 1)" type="radio">
+            否
+            </td><td width="0"><div id="QITEM20SCORE" align="center">&nbsp;*
+             </div></td>
+         </tr>
+         <tr>
+           	<td>c.您認為下列何組商品為衍生性金融商品？<strong><span name="QITEM21_MARK" id="QITEM21_MARK" style="display: none; color: rgb(255, 0, 0);">*</span></strong>
+            <input name="QITEM21" value="A" onclick="changeScore('QITEM21', 0)" type="radio">
+            政府公債/公司債
+            <input name="QITEM21" value="B" onclick="changeScore('QITEM21', 0)" type="radio">
+            股票/黃金
+             <input name="QITEM21" value="C" onclick="changeScore('QITEM21', 1)" type="radio">
+            期貨/選擇權
+            </td><td width="0"><div id="QITEM21SCORE" align="center">&nbsp;*
+              </div></td>
+          </tr>
+         <tr>
+						<td>d.外國有價證券之發行機構/保證機構發生信用違約風險時，投資本金是否仍獲保障？<strong><span name="QITEM22_MARK" id="QITEM22_MARK" style="display: none; color: rgb(255, 0, 0);">*</span></strong>
+            <input name="QITEM22" value="A" onclick="changeScore('QITEM22', 0)" type="radio">
+            是
+            <input name="QITEM22" value="B" onclick="changeScore('QITEM22', 1)" type="radio">
+            否
+            </td><td width="0"><div id="QITEM22SCORE" align="center">&nbsp;*
+              </div></td>
+          </tr>
+         <tr>
+         <td>e.您知道不保本型境外結構型商品的最大風險為？<strong><span name="QITEM23_MARK" id="QITEM23_MARK" style="display: none; color: rgb(255, 0, 0);">*</span></strong>
+            <input name="QITEM23" value="A" onclick="changeScore('QITEM23', 0)" type="radio">
+            只會損失利息
+            <input name="QITEM23" value="B" onclick="changeScore('QITEM23', 0)" type="radio">
+            可能會損失有限的本金
+             <input name="QITEM23" value="C" onclick="changeScore('QITEM23', 1)" type="radio">
+            有可能損失全部本金
+            </td><td width="0"><div id="QITEM23SCORE" align="center">&nbsp;*
+              </div></td>
+        </tr>
+        <tr>
+          <td><strong>12.您對於金融理財商品(包含股票、基金、外國債券)知識之了解程度：<span name="QITEM24_MARK" id="QITEM24_MARK" style="display: none; color: rgb(255, 0, 0);">*</span><br>
+            </strong>
+            <input name="QITEM24" value="A" onclick="changeScore('QITEM24', 4)" type="radio">
+            非常了解
+            <input name="QITEM24" value="B" onclick="changeScore('QITEM24', 3)" type="radio">
+            尚稱了解
+            <input name="QITEM24" value="C" onclick="changeScore('QITEM24', 2)" type="radio">
+            普通
+            <input name="QITEM24" value="D" onclick="changeScore('QITEM24', 1)" type="radio">
+            不甚了解</td>
+            <td width="15"><div id="QITEM24SCORE" align="center">&nbsp;*
+              </div></td>
+        </tr>
+        <tr>
+          <td><strong>13.您偏好的投資理財工具(擇一)：<span name="QITEM25_MARK" id="QITEM25_MARK" style="display: none; color: rgb(255, 0, 0);">*</span><br>
+            </strong>
+            <input name="QITEM25" value="A" onclick="changeScore('QITEM25', 4)" type="radio">
+            期貨、選擇權或其餘衍生性金融商品
+            <input name="QITEM25" value="B" onclick="changeScore('QITEM25', 3)" type="radio">
+            股票、股票型基金、投資型保單
+            <input name="QITEM25" value="C" onclick="changeScore('QITEM25', 2)" type="radio">
+            債券、債券型基金
+            <input name="QITEM25" value="D" onclick="changeScore('QITEM25', 1)" type="radio">
+            定存、儲蓄型保險</td>
+            <td width="15"><div id="QITEM25SCORE" align="center">&nbsp;*
+              </div></td>
+        </tr>
+        <tr>
+          <td><strong>14.當您的整體投資資產下跌超過20%，您將如何反應？ ：<span name="QITEM26_MARK" id="QITEM26_MARK" style="display: none; color: rgb(255, 0, 0);">*</span></strong><br>
+            <input name="QITEM26" value="A" onclick="changeScore('QITEM26', 1)" type="radio">
+            出售全部部位
+            <input name="QITEM26" value="B" onclick="changeScore('QITEM26', 3)" type="radio">
+            出售50%部位
+            <input name="QITEM26" value="C" onclick="changeScore('QITEM26', 4)" type="radio">
+            出售25%部位
+            <input name="QITEM26" value="D" onclick="changeScore('QITEM26', 5)" type="radio">
+            正常現象，觀望後再自行決定
+            <input name="QITEM26" value="E" onclick="changeScore('QITEM26', 6)" type="radio">
+            逢低加碼  </td>
+            <td width="15"><div id="QITEM26SCORE" align="center">&nbsp;*
+              </div></td>
+        </tr>
+        <tr>
+          <td><strong>15.您對投資的期望報酬大約傾向界在哪一個區間？：<span name="QITEM27_MARK" id="QITEM27_MARK" style="display: none; color: rgb(255, 0, 0);">*</span></strong><br>
+            <input name="QITEM27" value="A" onclick="changeScore('QITEM27', 1)" type="radio">
+            -5%~+5%  
+            <input name="QITEM27" value="B" onclick="changeScore('QITEM27', 3)" type="radio">
+						-10%~+10% 
+						<input name="QITEM27" value="C" onclick="changeScore('QITEM27', 4)" type="radio">
+            -15%~+15%
+            <input name="QITEM27" value="D" onclick="changeScore('QITEM27', 5)" type="radio">
+            -20%~+20%
+            <input name="QITEM27" value="E" onclick="changeScore('QITEM27', 6)" type="radio">
+            -30%~+30%</td>
+            <td width="15"><div id="QITEM27SCORE" align="center">&nbsp;*
+              </div></td>
+        </tr>
+         <!--tr>
+          <td height="30" bgcolor="#C5DECF"><div align="center"><strong>總　　　　　分</strong></div></td>
+            <td width=17 bgcolor="#C5DECF"><div align="center" id="SUMSCORE">&nbsp;
+          </div></td>
+        </tr-->
+      </tbody></table>
+        <table align="center" bgcolor="#ffffff" border="0" width="660">
+          <tbody><tr>
+            <td colspan="2">客戶聲明事項：</td>
+          </tr>
+          <tr>
+            <td valign="top" width="24">一、</td>
+            <td width="626">本
+						人同意合於貴行及貴行合作之事業單位、財團法人金融聯合徵信中心、財團法人中小企業信用保證基金、財金公司、經主管機關指定之機構或上述機構之會員，依其
+						營業登記項目或章程所定業務需要等特定目的，得蒐集、處理及利用個人資料，並依相關法令規定，不向其他第三者揭露、轉介、運用。</td>
+          </tr>
+          <tr>
+            <td valign="top">二、</td>
+            <td>本人知悉於 貴行辦理財富管理業務之相關權益事項，應受「財富管理客戶權益手冊」之規範，並同意自行至 貴行網站或營業場所查取閱覽權益手冊之內容。 </td>
+          </tr>
+        </tbody></table> 
+         <table align="center" bgcolor="#ffffff" border="0" width="660"> 
+          <tbody><tr>
+            <td width="0"><strong>※客戶確認事項：<span name="CHECK_MARK" id="CHECK5_MARK" style="display: none; color: rgb(255, 0, 0);">*</span></strong><br>
+							<input name="CHECK1" value="Y" type="checkbox">
+              本人無涉及洗錢或不法交易聲明：<br>　　本人於 貴行從事之各項理財投資交易，均為正常之資金來源或所得，並無涉及洗錢或不法交易之情事。<br>
+              <input name="CHECK2" value="Y" type="checkbox">
+             本人同意 貴行其他部門之人員得使用本人在 貴行之信託往來、交易資料。<br>
+              <input name="CHECK3" value="Y" type="checkbox">
+              本分析表之資料均由本人依境內/境外洗錢防制規範詳實填寫並確認無誤，本人並瞭解風險承受度分析結果係以本人所填<br>　　寫提供的個人資料推論得知，且其結果將作為本人在貴行投資商品時參考所用。貴行將不對本表之準確性或資訊是否完<br>　　整負責。<br>
+              
+						      
+          <tr>
+            <td colspan="2"><table align="center" border="0" cellpadding="3" width="200">
+              <tbody><tr>
+                <td><div align="right">
+                <!--
+                  <input type="button" name="Submit4" value="上一頁" onClick="chkSubmit('IFK000001');">
+                -->
+                </div><br>
+</td>
+                  <td><input name="Submit3" value="取消下次再作" onclick="chkSubmit('IC0201000','N');" type="button"></td>
+                  <td><input name="Submit2" value=" 顯示測試結果" onclick="chkSubmit('IFK000003','N');" type="button"></td>
+              </tr>
+              </tbody></table></td>
+          </tr>
+    </tbody></table>
+    </div></td></tr>
+</tbody></table>
+ <table align="center" bgcolor="#ffffcc" border="0" bordercolor="#999999" width="660" name="adjust" id="adjust"  style="display:none"; >
+					<tr bgcolor="#ffffcc"   height="40"><td align="center" width="660"><div style="border-bottom:1px #336699 dashed;padding:18px"><font size =3><b>風險承受度分析結果</b></font></div></td></tr>
+        	<tr ><td align="center">您的風險承受度類型為</td></tr>
+        	<tr bgcolor="#ffffcc" ><td align="center"><div id="SUMSCORE2" style="background-color:#c5decf ;width:80px;height:30px;border-top:0px #111111 dashed; font-size:15px;text-align:center;line-height:30px"></div></td></tr>
+<tr><td> 　</td></tr>
+ 			<tr><td td align="center" width="660"> 
+	<input name="CHECK4" value="Y" onclick="changeRank()"  type="checkbox" align="right" ><font size =3>
+            本人欲自行調降風險承受度類型為：</font> 
+						      <select name="SELFRANK" style="display: none;>
+						        <option name="SELFRANK"  value="">==請選擇==</option>
+						        <option name="SELFRANK"  value="" selected="true">==請選擇==</option>
+						        <option name="SELFRANK"  value="1">保守型</option>
+						        <option name="SELFRANK"  value="2">穩健型</option>
+						        <option name="SELFRANK"  value="3">平衡型</option>
+						        <option name="SELFRANK"  value="4">成長型</option>
+						      </select>
+						      <select name="SELFRANK1" style="display: none;>
+						        <option name="SELFRANK1"  value="">==請選擇==</option>
+						        <option name="SELFRANK1"  value="" selected="true">==請選擇==</option>
+						        <option name="SELFRANK1"  value="1">保守型</option>
+						        <option name="SELFRANK1"  value="2">穩健型</option>
+						        <option name="SELFRANK1"  value="3">平衡型</option>
+						      </select>
+						      <select name="SELFRANK2" style="display: none;>
+						        <option name="SELFRANK2"  value="">==請選擇==</option>
+						        <option name="SELFRANK2"  value="" selected="true">==請選擇==</option>
+						        <option name="SELFRANK2"  value="1">保守型</option>
+						        <option name="SELFRANK2"  value="2">穩健型</option>
+						      </select>
+						       <select name="SELFRANK3" style="display: none;>
+						        <option name="SELFRANK3"  value="">==請選擇==</option>
+						        <option name="SELFRANK3"  value="" selected="true">==請選擇==</option>
+						        <option name="SELFRANK3"  value="1">保守型</option>
+						      </select>
+				</td></tr>
+				<tr><td> 　</td></tr>
+</table>
+ <table align="center" bgcolor="#ffffcc" border="1" bordercolor="#999999" width="660" name="adjust2" id="adjust2" style="display:none"; >
+        <tbody bgcolor="#ffffcc">
+        	<tr>
+            <td rowspan="2"><strong>風險承受<br>度類型</strong></td>
+            <td width="80"><strong>
+              <!-- <input name="radiobutton" type="radio" value="radiobutton">-->
+              保守型</strong></td>
+            <td width="120"><strong>
+              <!-- <input name="radiobutton" type="radio" value="radiobutton">-->
+              穩健型</strong></td>
+            <td width="120"><strong>
+              <!-- <input name="radiobutton" type="radio" value="radiobutton">-->
+              平衡型</strong></td>
+            <td width="120"><strong>
+              <!-- <input name="radiobutton" type="radio" value="radiobutton">-->
+              成長型</strong></td>
+            <td width="120"><strong>
+              <!-- <input name="radiobutton" type="radio" value="radiobutton">-->
+              積極型</strong></td>
+          </tr>
+          <tr>
+            <td valign="top" width="80"><table border="0" height="100%" width="100%">
+                <tbody><tr>
+                  <td>您能承受的資產波動風險極低。</td>
+                </tr>
+                <tr>
+                </tr>
+              </tbody></table></td>
+            <td valign="top" width="120"><table border="0" height="100%" width="100%">
+                <tbody><tr>
+                  <td>您能承受的資產波動風險低，以追求穩定收益為目標。</td>
+                </tr>
+                <tr>
+                </tr>
+              </tbody></table>
+              <br></td>
+            <td valign="top" width="120"><table border="0" height="100%" width="100%">
+                  <tbody><tr>
+                    <td>您能承受的資產波動風險中庸，以追求兼顧資本利得及固定收益為目標。</td>
+                  </tr>
+                  <tr>
+                  </tr>
+                </tbody></table></td>
+            <td valign="top" width="120"><table border="0" height="100%" width="100%">
+                <tbody><tr>
+                  <td>您能承受的資產波動風險高，以追求資本利得為目標。</td>
+                </tr>
+                <tr>
+                </tr>
+              </tbody></table></td>
+            <td valign="top" width="120"><table border="0" height="100%" width="100%">
+                <tbody><tr>
+                  <td>您能承受的資產波動風險極高，以追求最大資本利得為目標。</td>
+                </tr>
+                <tr>
+                </tr>
+              </tbody></table></td>
+          </tr>
+      </tbody>
+      </table>
+      <table align="center">
+      <tr>
+      <td>
+      <input name="Submit2" value=" 確定送出結果" onclick="chkSubmit('IFK000003','Y');" type="button" id="adjust3" style="display:none";>
+      </td>
+      </tr>
+      </table>
+<br>
+  <input name="pageid" value="" type="hidden">
+  <input name="aptype" value="YESFUND" type="hidden">
+  <input name="birthday" value="[[%%SEND-BIRTH-DATE%%]]" type="hidden">
+  <input type="hidden" name="REVE_BIRTHDAY" value="[[%%SEND-BIRTH-DATE%%]]">
+  <input type="hidden" name="SEND_RETN_CODE" value="[[%%SEND-RETN-CODE%%]]">  
+  <input type="hidden" name="SEND-RETN-CODE-DESC" value="[[%%END-RETN-CODE-DESC%%]]"> 
+  <input type="hidden" name="REVE_SOURCE" value="1">
+  <input type="hidden" name="SEND_ID_NO" value="[[%%SEND-ID-NO%%]]"> 
+  <script>
+  age();
+  AnalysisReport('N');
+   </script>
+</td></tr></tbody></table></form></body></html>

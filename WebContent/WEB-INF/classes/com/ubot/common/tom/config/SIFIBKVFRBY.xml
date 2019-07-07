@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- NCR VFRBY, 外幣結購. Last updated date 9-20-2010 By Carl -->
+<!-- 
+/***********************************************************************
+* Remark Area
+* Create name	: Carl 
+* Change List:
+* SerialNo           Date Modified  Modified by   
+* =========          =============  ===========
+* EAI99055           2010.09.20     Carl
+***********************************************************************/
+ -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/NCR">
+	<field id="VFRBYi01">
+		<name>REVE-CODE</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='VFRBYi54' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="VFRBYi55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="VFRBY56">
+		<name>REVE-PWD</name>
+		<length>10</length>
+		<type>String</type>
+		<description>使用者密碼</description>
+	</field>
+	<field id="VFRBYi02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>轉出帳號</description>
+	</field>
+	<field id="VFRBYi03">
+		<name>REVE-PIN</name>
+		<security>DESYSDES</security>
+		<length>4</length>
+		<type>String</type>
+		<description>PIN</description>
+	</field>
+	<field id="VFRBYi04">
+		<name>REVE-TO-ACCTNO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>轉入帳號</description>
+	</field>
+	<field id="VFRBYi05">
+		<name>REVE-FROM-AMT</name>
+		<length>14</length>
+		<type>String</type>
+		<description>轉出金額</description>
+	</field>
+	<field id="VFRBYi06">
+		<name>REVE-FROM-CURRENCY</name>
+		<length>2</length>
+		<type>String</type>
+		<description>轉出幣別</description>
+	</field>
+	<field id="VFRBYi07">
+		<name>REVE-TO-CURRENCY</name>
+		<length>2</length>
+		<type>String</type>
+		<description>轉入幣別</description>
+	</field>
+	<field id="VFRBYi10">
+		<name>REVE-TXN-MEMO</name>
+		<length>2</length>
+		<type>String</type>
+		<description>交易附註</description>
+	</field>
+	<field id="VFRBYi07">
+		<name>REVE-EMAIL-ADDR</name>
+		<length>1</length>
+		<type>String</type>
+		<description>通知對象之Email</description>
+	</field>
+	<field id="VFRBYi08">
+		<name>REVE-MOBILE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>通知對象行動電話號碼</description>
+	</field>
+	<field id="VFRBYi09">
+		<name>REVE-MSG</name>
+		<length>1</length>
+		<type>String</type>
+		<description>訊息內容</description>
+	</field>
+	<field id="VFRBYi11">
+		<name>REVE-MSG-SENDTO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>通知對象</description>
+	</field>
+	<field id="VFRBYi12">
+		<name>REVE-MSG-CONTENT</name>
+		<length>1</length>
+		<type>String</type>
+		<description>通知之訊息內容</description>
+	</field>
+	<field id="VFRBYi13">
+		<name>REVE-MSG-TYPE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>訊息傳送種類</description>
+	</field>
+	<field id="VFRBYi14">
+		<name>REVE-MSG-SUBJECT</name>
+		<length>1</length>
+		<type>String</type>
+		<description>通知之訊息標題</description>
+	</field>
+	<field id="VFRBYi15">
+		<name>REVE-MAIL-KEY</name>
+		<length>1</length>
+		<type>String</type>
+		<description>頻道辨識</description>
+	</field>
+	<field id="VFRBYi15">
+		<name>REVE-TO-AMT</name>
+		<length>1</length>
+		<type>String</type>
+		<description>轉入金額</description>
+	</field>
+	<field id="VFRBYi15">
+		<name>SEND-BUY-RATE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>外幣結售賣匯</description>
+	</field>
+	<field id="VFRBYi08">
+		<name>REVE-VFR-TYPE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>結購性質別</description>
+	</field>
+	<field id="VFRBYi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="VFRBYi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="VFRBYi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="VFRBYi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="VFRBYi54">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>
+        <field id="VFRBYi55">
+		<name>SEND-TO-AMT</name>
+		<length>1</length>
+		<type>String</type>
+		<description></description>
+	</field>
+</catalog>

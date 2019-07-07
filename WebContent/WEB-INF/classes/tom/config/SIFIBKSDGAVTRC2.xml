@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- 
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+*SerialNo           Date Modified  Modified by   
+*=========          =============  ===========
+*EAI97076           2010.01.12     David 
+*EAI96072           2009.03.02     David 
+***********************************************************************/
+ -->
+<!-- NCR SDGAVTRC, 預約信用卡繳款. Last updated date 1-9-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/NCR">
+	<field id="SDGAVTRCi01">
+		<name>REVE-CODE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='SDGAVTRC03' attr='I' default=''>
+        	<name>REVE-ACTOR</name>
+        	<length>0</length>
+        	<type>STRING</type>
+        	<description></description>
+     	</field>
+	<field id="SDGAVTRC02">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="SDGAVTRC56">
+		<name>REVE-PWD</name>
+		<length>10</length>
+		<type>String</type>
+		<description>使用者密碼</description>
+	</field>
+	<field id="SDGAVTRCi02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>轉出帳號</description>
+	</field>
+	<field id="SDGAVTRCi04">
+		<name>REVE-CARD-NO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>信用卡號碼</description>
+	</field>
+	<field id="SDGAVTRCi05">
+		<name>REVE-TXN-AMT</name>
+		<length>12</length>
+		<type>String</type>
+		<description>轉帳金額</description>
+	</field>
+	<field id="SDGAVTRCi06">
+		<name>REVE-SCHD-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>預約日期</description>
+	</field>
+	<field id="SDGAVTRCi07">
+		<name>REVE-TXN-MEMO</name>
+		<length>8</length>
+		<type>String</type>
+		<description>交易附註</description>
+	</field>
+	<field id="SDGAVTRCi08">
+		<name>REVE-EMAIL-ADDR</name>
+		<length>1</length>
+		<type>String</type>
+		<description>通知對象之Email</description>
+	</field>
+	<field id="SDGAVTRCi09">
+		<name>REVE-MOBILE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>通知對象行動電話號碼</description>
+	</field>
+	<field id="SDGAVTRCi10">
+		<name>REVE-MSG</name>
+		<length>1</length>
+		<type>String</type>
+		<description>訊息內容</description>
+	</field>
+	<field id="SDGAVTRCi11">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="SDGAVTRCi12">
+		<name>REVE-MSG-TYPE</name>
+		<length></length>
+		<type>String</type>
+		<description>傳送訊息種類</description>
+	</field>
+	<field id="SDGAVTRCi13">
+		<name>REVE-MSG-SENDTO</name>
+		<length></length>
+		<type>String</type>
+		<description>傳送訊息給xxx</description>
+	</field>
+	<field id="SDGAVTRCi14">
+		<name>REVE-MSG-CONTENT</name>
+		<length></length>
+		<type>String</type>
+		<description>訊息傳送內容</description>
+	</field>
+	<field id="SDGAVTRCi15">
+		<name>REVE-MAIL-KEY</name>
+		<length></length>
+		<type>String</type>
+		<description>頻道確認</description>
+	</field>
+	<field id="SDGAVTRCi16">
+		<name>REVE-FROM-CURRENCY</name>
+		<length>3</length>
+		<type>String</type>
+		<description>幣別</description>
+	</field>
+	<field id="SDGAVTRCi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="SDGAVTRCi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="SDGAVTRCi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="SDGAVTRCi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="SDGAVTRCi54">
+		<name>REVE-DY-PWD</name>
+		<length>20</length>
+		<type>String</type>
+		<description>傳送動態簡訊密碼</description>
+	</field>
+	<field id="SDGAVTRCi55">
+		<name>REVE-IGNORE-CASE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>是否忽略大小寫</description>
+	</field>
+	<field id="SDGAVTRCi56">
+		<name>REVE-MSG-SUBJECT</name>
+		<length>1</length>
+		<type>String</type>
+		<description>通知之訊息標題</description>
+	</field>
+	<field id="SDGAVTRCi57">
+		<name>REVE-TIME-RANGE</name>
+		<length>2</length>
+		<type>String</type>
+		<description>比對時間</description>
+	</field>
+	<field id="SDGAVTRCi58">
+		<name>REVE_ID_NOA_MARK</name>
+		<length>16</length>
+		<type>String</type>
+		<description>有遮罩過的身分證字號A</description>
+	</field>
+	<field id="SDGAVTRCi59">
+		<name>REVE_CARD_NO_MARK</name>
+		<length>16</length>
+		<type>String</type>
+		<description>有遮罩過的信用卡卡號</description>
+	</field>
+	<field id="VTRTRi21">
+		<name>REVE-CURRENTTICK</name>
+		<length></length>
+		<type>String</type>
+		<description>簡訊發送時間</description>
+	</field>
+</catalog>

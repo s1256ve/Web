@@ -1,0 +1,153 @@
+<html>
+<head>
+<title>線上申請</title>
+</head>
+<style type="text/css">
+<!--
+
+.t4	{
+	font-size: 9pt;
+	color: #000000;
+	line-height:12pt;
+	vertical-align:top;
+	text-align: right;
+	
+}
+
+.t5{
+	text-align: justify;
+	text-justify: inter-ideograph;
+}
+-->
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+
+function chgAcct(acctStr) {
+	var acctArray = acctStr.split("@");
+	var i = 0;
+	document.IP0603000.REVE_BR_NAME.value = acctArray[0];
+	document.IP0603000.REVE_ACCT_NO.value = acctArray[1];
+}
+
+
+
+	function chkSubmit(){
+		 var acct = document.IP0603000.REVE_ACCT_NO.value;
+	if(acct==""){
+		alert("請選擇帳號！");
+		return;	
+	}
+	if(document.IP0603000.CONTINUE[0].checked){
+     document.IP0603000.REVE_PAY_TYPE.value = "10";//(需修改電文)
+  }
+  if(document.IP0603000.CONTINUE[1].checked){
+     document.IP0603000.REVE_PAY_TYPE.value = "20";//(需修改電文)
+  }
+     document.IP0603000.submit();    
+	}
+</SCRIPT>
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<p><b>信用卡&gt;<font color="#0066FF">自動扣款設定</font><font color="#003399"><font color="#0066FF"> 
+</font></font></b></p>
+<form method="POST" name="IP0603000" action="LoadAP">
+<table width="700" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td height="2"> 
+      <div align="right"><font color="#0000CC">查詢時間：<Script>document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));</Script></div>
+    </td>
+  </tr>
+</table>
+<table width="750" border="0">
+  <tr> 
+    <td colspan="5"> 
+ <table width="50%" border="1" bordercolor="#999999" align="center">
+       <tr>
+      　<td width="40%" bgcolor="#C4CBB8">指定自動扣繳帳號</td>
+        <td>
+		      <select name="ACCT_NO" onChange="JavaScript:chgAcct(this.value);">
+        	<option value="" selected>====請選擇帳號====</option>
+       	  [[%%LOOP_SEC SEND-ACCT-NO%%]]
+          <option value="[[%%SEND-BR-NAME%%]]@[[%%SEND-ACCT-NO%%]]@">
+        	[[%%SEND-BR-NAME%%]] &nbsp;&nbsp; 
+        	<script language="javascript"> 
+        	document.write(getAcctStr("[[%%SEND-ACCT-NO%%]]"));
+        	</script>
+          </option>
+          [[%%ELOOP_SEC%%]]
+      	  </select>
+      	</td>
+      	</tr>
+      	<tr>  
+       <td width="40%" bgcolor="#C4CBB8">指定扣繳方式</td>
+        <td>
+         <input type="radio" name="CONTINUE" value="10" checked >最低應繳金額
+         <br>
+         <input type="radio" name="CONTINUE" value="20">應繳總金額
+        </td>
+       </tr>
+</table>
+<table width="500" border="0" align="center">
+  <tr>
+    <td width="450"><strong>申請自動轉帳扣繳信用卡應付帳款注意事項如下:</strong></td>
+  </tr>
+  <table width="500" align="center">
+  <tr>
+    <td valign="top" class="t4">一、</td>
+    <td class="t5">完成自動轉帳扣繳手續需４５個工作天，經核淮生效後，您次月的帳單上將會列示自動轉帳訊息，
+        於自動轉帳手續未生效前，請信用卡持卡人自行持繳款單依信用卡約定條款至聯邦銀行各分行或以其它
+        規定方式繳納，以免因逾期產生循環信用利息、違約金及不良信用紀錄。
+    </td>
+  </tr>
+  <tr>
+  <td valign="top" class="t4">二、</td>
+    <td class="t5">約定扣款當日帳戶餘額不足，或因其它原因扣款失敗時，聯邦銀行將以留存本行之行動電話號碼發
+    送簡訊通知，於４日內進行第２次扣款作業。謹請　台端留意相關訊息，並主動關心帳戶餘額是否
+    足以扣繳應付帳款，以免因扣款失敗或餘額不足造成逾期致生循環信用利息、違約金及不良信用紀
+    錄。
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="t4">三、</td>
+    <td class="t5">本項授權係同意聯邦銀行就信用卡正卡持卡人（含附卡）戶號下所有之聯邦信用卡應付之款項，於
+    款項全部清償前由授權帳戶自動扣款轉帳，不因停卡或嗣後恢復持卡、重新辦卡而影響本項授權之
+    效力。
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="t4">四、</td>
+    <td class="t5">本項授權如欲變更扣繳帳號、扣繳金額或終止授權自動扣繳時，須填寫授權書通知聯邦銀行變更或
+    終止之作業。
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="t4">五、</td>
+    <td class="t5">服務洽詢電話：（02）2545-5168、（07）226-9393 聯邦銀行信用卡暨支付金融處。
+    </td>
+  </tr>
+</table> 
+
+<div align="center">
+   <input type="button" name="button1" value="確認" onclick="JavaScript:chkSubmit();">  
+</div>
+</table>
+
+  </td>
+  </tr>
+  </table>
+<input type="hidden" name="REVE_BR_NAME" value="">
+<input type="hidden" name="REVE_ACCT_NO" value="">
+<input type="hidden" name="REVE_PAY_TYPE" value="[[%%REVE-PAY-TYPE%%]]">
+<input type="hidden" name="aptype" value="ibank">
+<input type="hidden" name="pageid" value="IP0603001">
+</form>
+</body>
+</html>

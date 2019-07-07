@@ -1,0 +1,436 @@
+
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>登入個人網路銀行</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="theme/normalize.css">
+    <link rel="stylesheet" href="theme/main.css">
+</head>
+<style type="text/css">
+.ibkform{
+    height: 100%;
+    overflow-y: auto;
+}
+</style>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/iBank.js"></SCRIPT>
+<script type="text/javascript" charset="utf-8" >
+	var twca_cn="mybank.ubot.com.tw";
+	var twca_d2hide=true;
+</script>
+<script type="text/javascript" src="//ssllogo.twca.com.tw/twcaseal_v3.js"charset="utf-8"></script>
+<script language="JavaScript">
+<!--
+function getErrMsg(){
+	var msgID = '[[%%MSGID%%]]';
+	var errorID = '[[%%RETNCODE%%]]';
+	if ((msgID==''&&errorID=='')||(msgID=='0000'&&errorID=='0000')){
+		return "";
+	}else{
+		if (msgID!=''&&msgID!='0000'){
+			return "[[%%MSGID%%]] : [[%%MSGDESC%%]]";
+		}else{
+			return "[[%%RETNCODE%%]] : [[%%RETNCODEDESC%%]]";
+		}
+	}
+}
+
+var kbWin = null;
+function getKeyBoard()
+{
+ 	x = Math.floor(Math.random()*300);
+ 	y = Math.floor(Math.random()*300);
+ 	var Mytype="width=500,height=250,scrollbars=auto,center=yes,border=thin,help=no,status=no,position=relative,left="+x+"px,top="+y+"px";
+ 	var PWD = "window.opener.document.IC0000102.PWD.value";  //show在畫面上的密碼個數
+ 	var KBPWD = "window.opener.document.IC0000102.REVE_PWD.value";  //User真正key的密碼
+	kbWin = window.open("LoadAP?pageid=IP2001002&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IC0000102.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IC0000102.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+function onTop() {
+  if (kbWin==null) return;
+  if (kbWin != null && (!kbWin.closed)){
+	kbWin.focus();	
+	
+  }
+}
+
+function check_id()
+ {
+   var sid=IC0000102.sid.value;
+   var idx=sid.length;
+ 
+   if(!(idx==8 || idx==10))        //10和8位數,方可進行判斷並加入檢核字母(A/C), 否則直接送出 ,不處理
+     {
+        //IC0000102.submit();    // 不為10和8位數,不予處理,直接送出
+     }else  if(idx == 10)                            //字串為10碼
+           {
+               var chr=sid.charCodeAt(0);
+               if(chr<65 || chr>122 || (chr>90 && chr<97)) //第一碼不為英文字
+                	{
+             
+              			chr1=sid.charCodeAt(8);
+             			chr2=sid.charCodeAt(9);
+              				  //未兩碼其中有一碼不為英文字
+             			 if((chr1<65||chr1>122||(chr1<141&&chr1>90))||(chr2<65||chr2>122||(chr2<141&&chr2>90)))
+              					   return true;    // 10位數,但不為外籍人士編碼,不予處理,直接送出
+            			 else
+               					 {
+                  					IC0000102.sid.value=sid+'C';   //為外國人身份
+                 					 //IC0000102.submit();
+                				}
+                 
+             		 }else   //第一碼為英文字
+                 				{
+                  					 IC0000102.sid.value=sid+'A';   //為自然人身份
+                   					 //IC0000102.submit();
+                  				}
+          	}else{    //字串為8碼
+                  if(!isNaN(sid))
+                      	IC0000102.sid.value=sid+'A';   //為企業戶
+                   		//IC0000102.submit();
+                   } 
+       	    return true;
+} 	
+
+function chkSubmit(){
+	var nickName = document.IC0000102.REVE_NICK_NAME.value	
+
+	if (document.IC0000102.sid.value==""){
+		alert('請輸入身份證字號');
+		document.IC0000102.sid.focus();
+		return false;
+	}else if(nickName.trim() == ""){
+		alert('請輸入使用者代號');
+		document.IC0000102.REVE_NICK_NAME.focus();
+		return false;		
+	}else if(document.IC0000102.PWD.value==""){
+		alert('請輸入網路密碼');
+		return false;
+	}else if(!check_id()){
+    		alert('請輸入身份證字號');
+    		document.IC0000102.sid.value = "";
+    		document.IC0000102.SID2.focus();
+    		return false;
+    }else{
+	    document.IC0000102.pageid.value="IC0000008";
+	    document.IC0000102.REVE_ID_NO.value=document.IC0000102.sid.value.toUpperCase();
+		document.IC0000102.submit();
+    }
+    
+}
+
+
+var Reload_ID = null;
+
+function startTimer(isReset) {
+	if (isReset > 0) clearTimer();
+	Reload_ID=setInterval('location.reload();', 1000*60*10);
+}
+
+function clearTimer() {
+	clearInterval(Reload_ID);
+	Reload_ID=null;
+}
+
+function detectmob() 
+{ 
+ if( navigator.userAgent.match(/Android/i)
+ || navigator.userAgent.match(/webOS/i)
+ || navigator.userAgent.match(/iPhone/i)
+ || navigator.userAgent.match(/iPad/i)
+ || navigator.userAgent.match(/iPod/i)
+ || navigator.userAgent.match(/BlackBerry/i)
+ || navigator.userAgent.match(/Windows Phone/i)
+ )
+ {
+    return true;
+ }
+ else 
+ {
+   return false;
+ }
+}
+
+function set_focus(){
+	if(detectmob())//device on mobile
+	{
+		alert("親愛的客戶 您好：提醒您，目前使用行動裝置登入個人網路銀行，為確保交易順利執行，建議利用聯邦樂活APP執行交易，謝謝。");
+	}
+	else//device on PC
+	{
+		//alert("這是PC");
+	}
+document.IC0000102.SID2.focus();
+}
+
+function set_focus2(){
+document.IC0000102.REVE_NICK_NAME.focus();
+}
+
+function chkNum2(){
+	var oldID = document.all.SID2.value;
+	var newID = "";
+	document.all.sid.value = oldID;
+	for(i=0;i<oldID.length;i++){
+		if(i>3&&i<8){
+			newID = newID + '*';
+		}else{
+			newID = newID + oldID.charAt(i);
+		}
+	}
+	document.all.SID2.value = newID;
+}
+
+function clrID2(){
+	document.IC0000102.SID2.value = "";
+	document.IC0000102.sid.value = "";
+	document.IC0000102.lastlen.value = "0";
+}
+
+function showRealID(){
+	var idlen = document.IC0000102.SID2.value.length;
+	var realen = document.IC0000102.sid.value.length;
+	if(realen<10&&idlen>=10){
+		document.IC0000102.sid.value = document.IC0000102.sid.value + document.IC0000102.SID2.value.substr(realen,10-realen);
+	}else if(realen>10){
+		document.IC0000102.sid.value = document.IC0000102.sid.value.substr(0,10);
+	}else if(realen>idlen){
+		document.IC0000102.sid.value = document.IC0000102.sid.value.substr(0,idlen);
+	}
+	//alert(document.IC0000102.sid.value);
+}
+
+function showRealID2(){
+	var idlen = document.IC0000102.SID2.value.length;
+	var realen = document.IC0000102.sid.value.length;
+	if(realen<idlen){
+		document.IC0000102.sid.value = document.IC0000102.sid.value + document.IC0000102.SID2.value.substr(realen,idlen-realen);
+	}else if(realen>idlen){
+		document.IC0000102.sid.value = document.IC0000102.sid.value.substr(0,idlen);
+	}
+}
+startTimer(0);
+
+function bankApply(){
+	window.location.href= 'https://mybank.ubot.com.tw/LoadAP/OBapply.jsp';
+}
+
+function userExp(){
+	window.location.href= 'https://mybank.ubot.com.tw/LoadAP/pst/noap/pdf/fresh_start.pdf';
+}
+
+//-->
+</script>
+<body style=\"overflow: scroll;\">
+<form method="post" name="IC0000102" action="LoadAP" class="ibkform">
+<div class="head"></div>
+<div class="Headlogo"><a href="https://www.ubot.com.tw/web/guest/myfinancial"><img src="graph/logo_personal.png"></a></div>
+<div class="container">
+    <div class="area">
+        <div class="mainTitle">登入個人網路銀行</div>
+        <div class="content">
+            
+      		<div id="twcaseal" class="MINI" align="right"><img src="graph/login0610_05.gif" width="71" height="71"  border="0"></div>
+            <div class="contentMask">
+				<div class="loginIdentity">身分證字號</div>
+				<input type="text" class="inputIdentity"  name="SID2"  onFocus="clrID2();"  onBlur="chkNum2();" autocomplete="off"></input>
+				<div class="loginUser">使用者代號</div>
+				<input type="text" class="inputUser" name="REVE_NICK_NAME" onClick="javaScript:startTimer(1);" size="25" ></input>
+				<div class="loginPassword">網路密碼</div>
+				<input type="password" class="inputPassword"  name="PWD"  
+					onfocus="set_focus2();getKeyBoard();onTop();"  
+					onclick="set_focus2();getKeyBoard();onTop();" readonly="true" size="25"></input>
+					<br><br>
+				<div>
+					<!--
+					
+					<a href="https://mybank.ubot.com.tw/LoadAPWeb/OBapply.jsp">
+					<div class="firstLogin">電子銀行 申請/變更</div>
+					</a>
+					
+					<a href="https://mybank.ubot.com.tw/LoadAPWeb/pst/noap/pdf/fresh_start.pdf" target="_blank">
+					<div class="howTo">新手上路</div>
+					</a>
+					-->
+					<a href="https://mybank.ubot.com.tw/LoadAP/OBapply.jsp"><img src="graph/BANNER01.jpg"  width="123" height="30"></a>   
+					<a href="https://mybank.ubot.com.tw/LoadAP/pst/noap/pdf/fresh_start.pdf" target="_blank"><img src="graph/BANNER02.jpg" width="123" height="30"></a>
+					<!--
+					<input type="button" value="電子銀行 申請/變更" name="REVE_IBANK_APPLY" onclick="bankApply();">
+					<input type="button" value="新手上路" name="REVE_NEWUSER_EXP" onclick="userExp();">
+					-->
+				</div>
+				<div>
+					
+					<!--
+					<table>
+					<tr><td>
+					<font>說明：</font><br>
+					如果您尚未申請本行電子銀行，或是忘記語音密碼、網銀使用者代號或網路密碼，請利用「電子銀行 申請/變更」進行設定。
+					</td></tr>
+					</table>
+					-->
+					<!--<div class="notice">注意：請使用&nbsp;<a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=1e1550cb-5e5d-48f5-b02b-20b602228de6&amp;displaylang=zh-tw">IE5.5(含)以上</a>版本</div>-->
+				</div>
+            </div>
+			
+        </div>
+        <div class="content2">
+					<!--
+					<img src="graph/BANNER03.jpg" width="447" height="120">
+					-->
+					<br>
+					<table width="90%" align="center">
+					<tr><td>
+					<font size=2px>說明：</font><br>
+					<font size=2px>如果您尚未申請本行電子銀行服務，或者「電話語音密碼」、「網銀使用者代號/網路密碼」因遺忘或錯誤次數達上限而遭鎖，您可以利用「電子銀行 申請/變更」進行電子銀行申請及各項解鎖服務。</font>
+					</td></tr>
+					</table>
+					
+				</div>
+    </div>
+</div>
+
+<div class="iframe">
+	<iframe src="https://ms.ubot.com.tw//myBank/" width="100%" height="400" scrolling="auto"  frameborder="0" bgcolor="#F3FFEB"></iframe>
+</div>
+
+<!-- 20150420 -->
+<div class="warningLabel">
+	<img src="./graph/word.jpg">
+</div>
+<footer id="footer" role="contentinfo">
+	<div class="UBOT_footer">
+		<div class="blockH">
+			<div class="normal">
+				<div class="footerContainer">
+					<img style="float: left;" src="./graph/at.jpg">
+					<div class="bar"></div>
+					<div class="item">
+						<a href="https://www.facebook.com/unionbankoftaiwan" target="_blank">聯邦粉絲團
+							<img class="footer_FB" src="graph/footer_FB.png" alt="聯邦粉絲團" title="聯邦粉絲團">
+						</a>
+					</div>
+					<div class="bar"></div>
+					<div class="item">
+						<a href="https://edm.ubot.com.tw/epaper/index.asp" target="_blank">電子報訂退閱</a>
+					</div>
+					<div class="bar"></div>
+					<div class="item">
+						<a href="http://www.ubot.com.tw/link">相關連結</a>
+					</div>
+					<div class="bar"></div>
+					<div class="item">
+						<a href="http://www.ubot.com.tw/network_security#!id=190">網路安全</a>
+					</div>
+					<div class="bar"></div>
+					<div class="item">
+						<a href="http://www.ubot.com.tw/invasion_of_privacy#!id=189">隱私權保護及著作聲明</a>
+					</div>
+					<div class="bar"></div>
+					<div class="item">
+						<a href="http://www.ubot.com.tw/siteMap">網站導覽</a>
+					</div>
+					<div class="bar"></div>
+				</div>
+			</div>
+			<div class="mini">
+				<div class="footerContainer">
+					<div class="item">
+						<div class="des">
+							<a href="http://www.ubot.com.tw/invasion_of_privacy#!id=189">隱私權保護及著作聲明</a>
+						</div>
+					</div>
+					<div class="item">
+						<div class="des">
+							<a href="http://www.ubot.com.tw/network_security#!id=190">網路安全</a>
+						</div>
+					</div>
+					<div class="item">
+						<div class="des">
+							<a href="http://www.ubot.com.tw/link">相關連結</a>
+						</div>
+					</div>
+					<div class="item">
+						<div class="des">
+							<a href="https://edm.ubot.com.tw/epaper/index.asp" target="_blank">電子報訂退閱</a>
+						</div>
+					</div>
+					<div class="item">
+						<div class="des">
+							<a href="https://www.facebook.com/unionbankoftaiwan" target="_blank">聯邦粉絲團</a>
+						</div>
+					</div>
+					<div class="logo">
+						<div class="des">2015c聯邦商業銀行</div>
+					</div>
+				</div> 
+			</div> 
+		</div> 
+	</div> 
+	<script>
+		var browser=navigator.appName;
+		var b_version=navigator.appVersion;
+		var version=b_version.split(";");
+		var trim_Version=version[1].replace(/[ ]/g,"");
+		
+		if(browser=="Microsoft Internet Explorer"&&trim_Version=="MSIE7.0"){
+			$(".portlet-body > #wrapper").css("width",$(window).width()-17);
+			$(".wrapBlockC").css("width",$(window).width());
+			$(".owl-item").css("width","100%")
+		}
+		else{}
+		
+		var slimmenuOpt={
+			resizeWidth:"848",
+			collapserTitle:"",
+			animSpeed:"slow",
+			easingEffect:"easeOutExpo",
+			indentChildren:true,
+			childrenIndenter:"&nbsp;"
+		};
+		$("ul.slimmenu").slimmenu(slimmenuOpt);
+		$(window).resize(function(){setMenuSP()});
+		setMenuSP=function(){
+			if(window.innerWidth>=848){
+				$("ul.slimmenu li.layer1 ").css({width:"85px","margin-right":"47px"});
+				$("ul.slimmenu li.layer2 ").css({width:"127px",});
+				$("ul.slimmenu li > ul").css({width:"127px",});
+				$("ul.slimmenu li.layer2 ul").css({width:"200px",});
+				$(".layer1:eq(1)").find(".layer2:eq(5)").find("ul").css({width:"209%"});
+				$(".layer1:eq(1)").find(".layer2:eq(5)").find("ul li a").css({"padding-left":"3.424084%"})
+			}
+			else{
+				if(window.innerWidth<=848){
+					$("ul.slimmenu li.layer1 ").css({width:"100%"});
+					$("ul.slimmenu li.layer2").css({width:"100%"});
+					$("ul.slimmenu li > ul").css({width:"100%"});
+					$("ul.slimmenu li.layer2 ul").css({width:"100%"});
+					$(".layer1:eq(1)").find(".layer2:eq(5)").find("ul").css({width:"120%"});
+					$(".layer1:eq(1)").find(".layer2:eq(5)").find("ul li a").css({"padding-left":"9.424083769633508%"})
+				}
+			}
+		};
+		setMenuSP();
+	</script>
+</footer>
+<!-- End_20150420 -->
+
+<!--
+<table width="77.4%" border="0" align="center" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td><iframe src="http://210.65.249.135/myBank/" width="100%" height="222" scrolling="auto"  frameborder="0" bgcolor="#F3FFEB"></iframe></td>
+   </tr>
+</table>
+-->
+<input type="hidden" name="sid"  size="25" />
+<input type="hidden" name="REVE_ID_NO" value="">
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="REVE_PWD" value="">
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+<input type="hidden" name="lastlen" value="0">
+</form>
+</body>
+</html>

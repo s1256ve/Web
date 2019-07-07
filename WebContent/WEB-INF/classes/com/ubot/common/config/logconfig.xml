@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<stdtrace isdump="0" filepath="/eaicommon/log/eaiinfo/Loadap/"/>
+	<stderr 	isdump="0" filepath="/eaicommon/log/eaiinfo/Loadap/"/>
+	<ibank isdump="0" filepath="/eaicommon/log/eaiinfo/Loadap/"/>
+	<txndb isdump="0" filepath="/eaicommon/log/eaiinfo/Loadap/"/>
+    <txntom isdump="0" filepath="/eaicommon/log/eaiinfo/Loadap/"/>
+</root>

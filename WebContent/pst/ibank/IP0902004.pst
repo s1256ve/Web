@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>編輯約定轉入帳號暱稱(外匯)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+
+<script language="Javascript">
+   
+    String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");} 
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<style type="text/css">
+<!--
+.style1 {color: #0066FF}
+.style2 {color: #0000FF}
+td {vertical-align: top}
+-->
+</style>
+<SCRIPT language="JavaScript">
+
+function back(){
+    document.IP0902004.pageid.value = 'IP0902000';
+    document.IP0902004.submit();    
+}
+
+</SCRIPT>
+
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+<p><strong>編輯轉入帳號暱稱&gt;<span class="style1">編輯轉入帳號暱稱</span></strong></p>
+<form method="POST" name="IP0902004" action="LoadAP">
+<table width="750" border="0">
+  <tr>
+    <td colspan="5">
+     <table width="350" border="0" align="center">    
+      <tr>
+       <td><p align="center"><strong>交易完成訊息</strong></p>
+        轉入帳號資料：         
+         <table width="100%" border="1" bordercolor="#999999">
+          <tr>
+            <td width="20%" bgcolor="#C4CBB8">資料名稱[[%%REVE-FUNC%%]]</td>
+            <td width="32%">修改資料</td>
+          </tr>
+          <tr>
+            <td width="10%" bgcolor="#C4CBB8">轉入帳號</td>
+            <td><script language="javascript">document.write('[[%%SEND-REG-ACCTNO%%]]'); </script></td>               
+          </tr>         
+          <tr>
+            <td width="10%" bgcolor="#C4CBB8">帳號暱稱(最多8個字元)</td>
+            <td><script language="javascript">document.write('[[%%SEND-REG-ACCTDESC%%]]'); </script></td>              
+          </tr>   
+         </table>     
+   <br></td>
+      </tr>
+     </table>
+      <br>
+      <br>
+      <div align="center">      
+        <input type="button" name="button3" value="返回" onclick="javascript:back();">        
+      </div>
+      </div>
+      </div>
+      <div align="center"> </div></td>
+  </tr>  
+</table>
+    <input type="hidden" name="aptype" value="IBANK">
+    <input type="hidden" name="pageid" value="">    
+</form>
+</body>
+</html>

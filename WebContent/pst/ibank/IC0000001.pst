@@ -1,0 +1,408 @@
+<html>
+<head>
+<title>聯邦銀行個人金融網</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI99041	        2010.05.10	   David
+* EAI99052          2010.8.25      David 
+* EAI100078         2011.11.23     SIMON LIN		終止UMA網路服務
+***********************************************************************/
+</script>
+<style type="text/css">
+<!--
+    body,p,td,form,select{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:12pt}
+    .t1{  font-family: "新細明體"; font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-family: "新細明體"; font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+-->
+</style>
+<style>
+<!--
+.menuskin{
+position:absolute;
+width:110px;
+background-color:#EAF0EA;
+border:2px solid #009900;
+font:normal 9pt Verdana;
+line-height:18px;
+z-index:100;
+visibility:hidden;
+}
+
+.menuskin a{
+text-decoration:none;
+color:black;
+padding-left:10px;
+padding-right:10px;
+}
+
+#mouseoverstyle{
+background-color:#8FBC8F;
+}
+
+#mouseoverstyle a{
+color:white;
+}
+-->
+</style>
+
+<script language="JavaScript1.2">
+<!-- Original: Dynamicdrive (www.dynamicdrive.com) -->
+<!-- Download this script and many more at -->
+<!-- The Java Magician!! http://run.to/java168 -->
+var linkset=new Array()
+//設定子目錄,注意linkset[]中陣列數字需與主目錄的設定相同
+
+linkset[0]='<div class="menuitems" >公司簡介</div>'
+linkset[0]+='<div class="menuitems">關係企業</div>'
+linkset[0]+='<div class="menuitems">財務訊息</div>'
+linkset[0]+='<div class="menuitems">聯邦新聞稿</div>'
+
+linkset[1]='<div class="menuitems">酷必網</div>'
+linkset[1]+='<div class="menuitems">老師不在時</div>'
+linkset[1]+='<div class="menuitems">心靈童話書</div>'
+
+linkset[2]='<div class="menuitems">媚力發報台</div>'
+linkset[2]+='<div class="menuitems">GiGiGaGa發報台</div>'
+
+//以下勿動
+
+var ie4=document.all&&navigator.userAgent.indexOf("Opera")==-1
+var ns6=document.getElementById&&!document.all
+var ns4=document.layers
+
+function showmenu(e,which){
+
+if (!document.all&&!document.getElementById&&!document.layers)
+return
+
+clearhidemenu()
+
+menuobj=ie4? document.all.popmenu : ns6? document.getElementById("popmenu") : ns4? document.popmenu : ""
+menuobj.thestyle=(ie4||ns6)? menuobj.style : menuobj
+
+if (ie4||ns6)
+menuobj.innerHTML=which
+else{
+menuobj.document.write('<layer name=gui bgColor=#E6E6E6 width=165 onmouseover="clearhidemenu()" onmouseout="hidemenu()">'+which+'</layer>')
+menuobj.document.close()
+}
+
+menuobj.contentwidth=(ie4||ns6)? menuobj.offsetWidth : menuobj.document.gui.document.width
+menuobj.contentheight=(ie4||ns6)? menuobj.offsetHeight : menuobj.document.gui.document.height
+eventX=ie4? event.clientX : ns6? e.clientX : e.x
+eventY=ie4? event.clientY : ns6? e.clientY : e.y
+
+//Find out how close the mouse is to the corner of the window
+var rightedge=ie4? document.body.clientWidth-eventX : window.innerWidth-eventX
+var bottomedge=ie4? document.body.clientHeight-eventY : window.innerHeight-eventY
+
+//if the horizontal distance isn't enough to accomodate the width of the context menu
+if (rightedge<menuobj.contentwidth)
+//move the horizontal position of the menu to the left by it's width
+menuobj.thestyle.left=ie4? document.body.scrollLeft+eventX-menuobj.contentwidth : ns6? window.pageXOffset+eventX-menuobj.contentwidth : eventX-menuobj.contentwidth
+else
+//position the horizontal position of the menu where the mouse was clicked
+menuobj.thestyle.left=ie4? document.body.scrollLeft+eventX : ns6? window.pageXOffset+eventX : eventX
+
+//same concept with the vertical position
+if (bottomedge<menuobj.contentheight)
+menuobj.thestyle.top=ie4? document.body.scrollTop+eventY-menuobj.contentheight : ns6? window.pageYOffset+eventY-menuobj.contentheight : eventY-menuobj.contentheight
+else
+menuobj.thestyle.top=ie4? document.body.scrollTop+event.clientY : ns6? window.pageYOffset+eventY : eventY
+menuobj.thestyle.visibility="visible"
+return false
+}
+
+function contains_ns6(a, b) {
+//Determines if 1 element in contained in another- by Brainjar.com
+while (b.parentNode)
+if ((b = b.parentNode) == a)
+return true;
+return false;
+}
+
+function hidemenu(){
+if (window.menuobj)
+menuobj.thestyle.visibility=(ie4||ns6)? "hidden" : "hide"
+}
+
+function dynamichide(e){
+if (ie4&&!menuobj.contains(e.toElement))
+hidemenu()
+else if (ns6&&e.currentTarget!= e.relatedTarget&& !contains_ns6(e.currentTarget, e.relatedTarget))
+hidemenu()
+}
+
+function delayhidemenu(){
+if (ie4||ns6||ns4)
+delayhide=setTimeout("hidemenu()",500)
+}
+
+function clearhidemenu(){
+if (window.delayhide)
+clearTimeout(delayhide)
+}
+
+function highlightmenu(e,state){
+if (document.all)
+source_el=event.srcElement
+else if (document.getElementById)
+source_el=e.target
+if (source_el.className=="menuitems"){
+source_el.id=(state=="on")? "mouseoverstyle" : ""
+}
+else{
+while(source_el.id!="popmenu"){
+source_el=document.getElementById? source_el.parentNode : source_el.parentElement
+if (source_el.className=="menuitems"){
+source_el.id=(state=="on")? "mouseoverstyle" : ""
+}
+}
+}
+}
+
+if (ie4||ns6)
+document.onclick=hidemenu
+
+</script> 
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" link="#0000FF" vlink="#0000FF" alink="#000000" background="graph/bg.gif" onLoad="">
+<table width="780" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><img src="graph/blank.gif" width="5" height="1"><img src="graph/ub-logo.gif" border="0"></td>
+    <td align="right" valign="top"><img border="0" src="graph/map-01.gif"></td>
+  </tr>
+</table>
+<table width="780" border="0" cellspacing="0" cellpadding="0">
+  <tr align="left" valign="top"> 
+    <td> 
+      <table width="780" border="0" cellspacing="0" cellpadding="0">
+        <tr bgcolor="#80836E"> 
+          <td><img src="graph/blank.gif" width="1" height="1"></td>
+        </tr>
+        <tr bgcolor="#C4CBB8"> 
+          <td>
+            <table width="780" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td width="204"><img src="graph/map-08.gif" width="213" height="21"></td>
+                <td width="566" align="right" valign="bottom"> <div id="popmenu" class="menuskin" onMouseover="clearhidemenu();highlightmenu(event,'on')" onMouseout="highlightmenu(event,'off');dynamichide(event)">
+</div>
+
+｜關於聯邦｜客服中心｜聯絡我們｜網路銀行家｜聯邦首頁｜</td>
+                <td width="10"><img src="graph/blank.gif" width="10" height="8"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr bgcolor="#80836E"> 
+          <td><img src="graph/blank.gif" width="1" height="1"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<div id="Layer1" style="position:absolute; left:299px; top:78px; width:92px; height:31px; z-index:1"> 
+  <table width="92" border="1" bgcolor="#FFFFFF">
+    <tr bgcolor="#CEE6D1"> 
+      <td height="6"> 
+        <table width="100%" border="0" cellpadding="0">
+          <tr> 
+            <td>‧<a href="http://www.ubot.com.tw/ubotintro" target="_blank">公司簡介</a></td>
+          </tr>
+          <tr> 
+            <td>‧<a href="http://www.ubot.com.tw/investor" target="_blank">股東專區~</a></td>
+          </tr>
+          <tr> 
+            <td>‧<a href="http://www.ubot.com.tw/importantreport" target="_blank">財務訊息</a></td>
+          </tr>
+          <tr> 
+            <td>‧<a href="https://www.ubot.com.tw/UBOT2005/news_more.asp?topicNo=J" target="mainFrame">聯邦新聞稿 
+              </a></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="Layer3" style="position:absolute; left:397px; top:79px; width:195px; height:31px; z-index:1"> 
+  <table width="195" border="1" bgcolor="#FFFFFF">
+    <tr bgcolor="#CEE6D1"> 
+      <td> 
+        <table width="100%" border="0" cellpadding="0">
+          <tr> 
+            <td>‧<a href="call/Page001_003.htm" target="mainFrame">網路客服中心</a> 
+              <table width="100%" border="0" cellspacing="0" bgcolor="#E9F3EA">
+                <tr> 
+                  <td>　<a href="https://www.ubot.com.tw/call/Page001_001.htm" target="mainFrame">使用說明</a></td>
+                </tr>
+                <tr> 
+                  <td>　<a href="http://211.21.61.94/ubcallcenter/default.asp" target="mainFrame">線上即時服務</a></td>
+                </tr>
+                <tr> 
+                  <td>　<a href="https://www.ubot.com.tw/bankmail/bankmail.asp" target="mainFrame">客戶信箱</a></td>
+                </tr>
+                <tr> 
+                  <td>　<a href="https://www.ubot.com.tw/call/msjavx86.zip" target="mainFrame">下載更新程式</a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr> 
+            <td>‧答客問</td>
+          </tr>
+          <tr> 
+            <td>‧<a href="f/f02_index.htm" target="mainFrame">線上申請</a> 
+              <table width="100%" border="0" cellspacing="0">
+                <tr bgcolor="#E9F3EA"> 
+                  <td>　預約申請</td>
+                </tr>
+                <tr> 
+                  <td> 
+                    <table width="88%" border="0" align="right" cellspacing="0" bgcolor="#E9F3EA">
+                      <tr> 
+                        <td>國民現金卡</td>
+                      </tr>
+                      <tr> 
+                        <td> SSL轉帳</td>
+                      </tr>
+                      <tr> 
+                        <td>信用卡電子帳單</td>
+                      </tr>
+                      <tr> 
+                        <td><a href="http://yesfund.com.tw/fund/onlineopen/aboutfund.asp" target="_blank">Yesfund基金天地</a></td>
+                      </tr>
+                      <tr> 
+                        <td><a href="https://stock.ubot.com.tw/ebroker/ie4/eb_idxorder.html" target="_blank">證券下單</a></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              <table width="100%" border="0" cellspacing="0">
+                <tr bgcolor="#E9F3EA"> 
+                  <td>　索取申請書</td>
+                </tr>
+                <tr> 
+                  <td> 
+                    <table width="88%" border="0" align="right" cellspacing="0" bgcolor="#E9F3EA">
+                      <tr> 
+                        <td><a href="https://elife.ubot.com.tw/ubotaction/apply_card/apply_card.htm" target="mainFrame">信用卡</a></td>
+                      </tr>
+                      <tr> 
+                        <td> <a href="https://card.ubot.com.tw/requisition/ApplyQueryInput.aspx" target="_blank">Cyber</a></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr> 
+            <td>‧表格下載<br>
+              <table width="100%" border="0" cellspacing="0">
+                <tr bgcolor="#E9F3EA"> 
+                  <td>　<a href="https://elife.ubot.com.tw/ubotaction/apply_card/apply_card.htm" target="mainFrame">存戶基本資料變更通知書</a> 
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr> 
+            <td>‧定型化契約<br>
+              <table width="100%" border="0" cellspacing="0" bgcolor="#E9F3EA">
+                <tr> 
+                  <td>　<a href="https://www.ubot.com.tw/a/download/a07_01.doc" target="_blank">汽車借款約定書</a></td>
+                </tr>
+                <tr> 
+                  <td>　<a href="https://www.ubot.com.tw/a/download/a07_02.doc" target="_blank">動產抵押約定書</a>(汽車專用)</td>
+                </tr>
+                <tr> 
+                  <td>　網路銀行服務申請(註銷)約定書</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr> 
+            <td>‧程式下載專區<br>
+              <table width="100%" border="0" cellspacing="0" bgcolor="#E9F3EA">
+                <tr> 
+                  <td>　網路銀行</td>
+                </tr>
+                <tr> 
+                  <td> 　證券下單</td>
+                </tr>
+                <tr> 
+                  <td>　下載更新程式</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr> 
+            <td>‧服務據點
+              <table width="100%" border="0" cellspacing="0" bgcolor="#E9F3EA">
+                <tr> 
+                  <td>　<a href="http://www.ubot.com.tw/service_location" target="_blank">分行位址</a></td>
+                </tr>
+                <tr> 
+                  <td>　<a href="http://www.ubot.com.tw/service_location" target="_blank">ATM</a></td>
+                </tr>
+                <tr> 
+                  <td> 　<a href="http://www.ubot.com.tw/service_location" target="_blank">保管箱</a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>‧<a href="https://www.ubot.com.tw/news/2005/0050321.htm" target="_blank">客戶服務專線</a></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="Layer4" style="position:absolute; left:520px; top:80px; width:108px; height:31px; z-index:1"> 
+  <table width="108" border="1" bgcolor="#FFFFFF">
+    <tr bgcolor="#CEE6D1"> 
+      <td> 
+        <table width="100%" border="0" cellpadding="0">
+          <tr> 
+            <td>‧<a href="https://www.ubot.com.tw/bankmail/bankmail.asp" target="mainFrame">客戶信箱</a></td>
+          </tr>
+          <tr> 
+            <td>‧服務據點 
+              <table width="100%" border="0" cellspacing="0" bgcolor="#E9F3EA">
+                <tr>
+                  <td>　<a href="http://www.ubot.com.tw/service_location" target="_blank">分行位址</a></td>
+                </tr>
+                <tr>
+                  <td>　<a href="http://www.ubot.com.tw/service_location" target="_blank">ATM</a></td>
+                </tr>
+                <tr>
+                  <td> 　<a href="http://www.ubot.com.tw/service_location" target="_blank">保管箱</a></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr> 
+            <td>‧<a href="https://www.ubot.com.tw/news/2005/0050321.htm" target="_blank">客戶服務專線</a></td>
+          </tr>
+          <tr> 
+            <td>‧<a href="call/Page001_003.htm" target="_blank">網路客服中心</a></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

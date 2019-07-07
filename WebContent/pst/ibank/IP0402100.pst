@@ -1,0 +1,95 @@
+ <html>
+<head>
+<title>外匯帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js">
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI100036          2011.07.01     Joe  
+***********************************************************************/
+</script>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript">
+var tempAcct = 'aaa';
+function compAcct(REVE_ACCT_NO,selBrName,selAcctDesc,SEND_CURRENCY){
+//    alert('REVE_ACCT_NO='+REVE_ACCT_NO);
+	if (REVE_ACCT_NO!=tempAcct){
+		var str = '<option value=\"'+REVE_ACCT_NO+'\">'+
+		selBrName+selAcctDesc+
+		'<SCRIPT language=\"JavaScript\">'+
+			'document.write(getAcctStr(\''+ REVE_ACCT_NO +'\'));'+
+		'<\/SCRIPT>'+
+		'<\/option>';
+//		alert('str='+str);
+		tempAcct = REVE_ACCT_NO;
+		return str;
+	}
+}
+
+function chgAcct(acctStr) {
+        	var acctArray = acctStr.split("@");
+        	var i = 0;
+        	//alert(acctArray[0]);
+        	document.submitform.selBrName.value = acctArray[0];
+        	document.submitform.selAcctDesc.value = acctArray[1];
+        	document.submitform.REVE_ACCT_NO.value = acctArray[2];
+        	document.pageid.value="IP0402100";
+      		document.submitform.submit();
+}
+
+function chkSubmit(){
+	if(document.submitform.selAccount.value==""){
+		alert("請選擇帳號！");
+		return;
+	}
+	if(document.submitform.selCurrency.value==""){
+		alert("請選擇幣別");
+		return;
+	}
+	document.submitform.submit();
+}
+</SCRIPT>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　外匯帳戶查詢&gt;<font color="#003399"><font color="#0066FF">外匯活期存款餘額</font></b><br>
+<form name="submitform" method="POST" action="LoadAP">
+<table width="630" border="0">
+	<tr>    <td colspan="5">　查詢帳號<font color="#663300" face="Arial, Helvetica, sans-serif">
+ 	  <select name="selAccount" onChange="JavaScript:chgAcct(this.value);">
+[[%%LOOP_SEC SEND-ACCT-NO%%]] 	  
+		<SCRIPT language="JavaScript">
+        	document.write(compAcct('[[%%SEND-ACCT-NO%%]]','[[%%SEND-BR-NAME%%]]','[[%%SEND-ACCT-DESC%%]]','[[%%SEND-CURRENCY%%]]'));
+        </SCRIPT>
+[[%%ELOOP_SEC%%]]
+         </select> 
+<select name="selCurrency">
+        <option selected>==請選擇幣別==</option>
+        <option value="99">全部</option>
+[[%%LOOP_SEC SEND-CURRENCY%%]] 
+        <option value='[[%%SEND-CURRENCY%%]]'>[[%%SEND-CURRENCY%%]]</option>
+[[%%ELOOP_SEC%%]]
+      </select>
+      <img src="graph/go.gif" width="19" height="19" align="absmiddle" border="0" onClick="JavaScript:chkSubmit();"></font>
+    </td>
+  </tr>
+  <tr bgcolor="#663300">
+    <td colspan="5" valign="bottom" height="1"></td>
+  </tr>
+</table>
+<table width="626" border="0">
+	<tr>
+		<td width="605">說明：本服務交易時間原則上約為每日早上6點至晚上11點。</td>
+	</tr>
+</table>
+<input type="hidden" name="aptype" value="ibank">
+<input type="hidden" name="pageid" value="IP0402001">
+ <input type="hidden" name="selBrName">
+ <input type="hidden" name="selAcctDesc">
+ <input type="hidden" name="REVE_ACCT_NO">
+</form>
+</body>
+</html>

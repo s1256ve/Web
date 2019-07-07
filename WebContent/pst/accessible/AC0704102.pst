@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+	<title>約定轉帳交易</title>
+  <meta charset="utf-8">
+  <meta http-equiv:"content-language" content="zh-tw">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+  <link href="css/index.css" rel="stylesheet">
+	<link href="css/2.css" rel="stylesheet">	
+	 <link href="css/accessibility.css" rel="stylesheet" >
+</head>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<script language="JavaScript" src="script/accessible.js"></script>
+<script language="Javascript">
+    //字串去空白
+    String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");} 
+</script>	
+
+
+<script language="Javascript">
+    
+	function chkSubmit(){
+		
+	  var f = document.AC0704102;
+	  
+	  var change = "[[%%TO_CHANGE%%]]";
+	  
+	  var actinfos = '[[%%FROMACTINFO%%]]';
+
+      var actinfos1 = '[[%%TOACTINFOCHK%%]]';	  
+		
+	  var fromact = actinfos.split('@');
+	  
+	  var toact = actinfos1.split('@');
+				
+	  
+	  
+	  if (f.TXNAMT.value == ""){
+            alert("請輸入轉帳金額!");
+            return;
+        }
+        if (isNaN(f.TXNAMT.value)){
+            alert("轉帳金額格式錯誤!");
+            return;
+        }
+        if(f.TXNAMT.value.indexOf(".",0)!=-1){
+            alert("轉帳金額須為正整數!");
+            return;   
+        }
+        if(f.TXNAMT.value.indexOf("-",0)!=-1){
+            alert("轉帳金額須為正整數!");
+            return;   
+        }
+        if(f.TXNAMT.value.indexOf("+",0)!=-1){
+            alert("台幣轉帳不可帶正號!");
+            return;   
+        }
+        if(eval(f.TXNAMT.value)==0){
+            alert("轉帳金額不可為零!");
+            return;   
+        }
+	  
+	  
+	  
+	    if(eval(fromact[2]) < eval(f.TXNAMT.value)){
+			
+	        alert("轉出帳號可用餘額不足!");
+	        return;
+        }
+	  
+	  
+	  
+	  
+	      	if (change == 2){  //已約定帳號
+
+    	    
+    	    	if(toact[2]==803 && fromact[3]!=0){
+    	    		if(eval(f.TXNAMT.value)>eval(fromact[5])){
+    	    			alert("今日尚可轉入已約定聯邦帳戶限額為"+trimDecimal(moneyAddDot(fromact[5]))+"元!");
+    	    			return;
+    	    		}
+    	    	}
+    	        else{
+			           if(eval(f.TXNAMT.value) > 2000000){
+				       alert("轉帳金額單筆不得大於2,000,000元!");
+				       return;
+			           }
+					   
+			           else if(eval(f.TXNAMT.value) > eval(fromact[4])){
+				          if(toact[2]==803){
+					      alert("今日尚可轉入已約定帳戶限額為"+trimDecimal(moneyAddDot(fromact[4]))+"元!");
+					      return;
+				          }
+				          else{
+					      alert("今日尚可轉入已約定非聯邦帳戶或非約定帳戶限額為"+trimDecimal(moneyAddDot(fromact[4]))+"元!");
+					      return;
+				          }
+			           }
+					   
+			           else{}
+	   	           }
+    	    	    
+    	    	
+    	    }
+	
+	  f.pageid.value="AC0704103";
+      f.action = "LoadAP3?pageid=AC0704103";
+      f.submit();
+		
+	}
+	
+function chkSubmit98(){
+	alert(' 您好，謝謝您使用網路銀行！\n'+
+	      '為了您的交易資料安全，\n'+
+	      '請記得在視線離開電腦前關閉使用中的瀏覽器，\n'+
+	      '以確保您剛剛的使用記錄不被他人窺探！');
+	      //'登出時間為 '+getNowTime());
+	
+	document.AC0704102.pageid.value="IC0000999";
+	document.AC0704102.aptype.value="NOAP";
+	document.AC0704102.target="_parent";
+	document.AC0704102.submit();    
+}
+
+
+ function ChkSubmit2(){
+	    document.AC0704102.Submit1.disabled = true;
+        document.AC0704102.Submit2.disabled = true;
+    	document.AC0704102.pageid.value = "AC0704100";
+		document.AC0704102.action = "LoadAP3?pageid=AC0704100";
+    	document.AC0704102.submit();
+    }
+
+
+function chkSubmit99(){
+	document.AC0704102.pageid.value="IC0000999";
+	document.AC0704102.aptype.value="NOAP";
+	document.AC0704102.target="_parent";
+	document.AC0704102.submit();    
+}
+</script>
+
+
+
+<body onload="initial();">
+<noscript>
+您的瀏覽器不支援JavaScript功能，若網頁功能無法正常使用時，請開啟瀏覽器JavaScript功能 
+</noscript> 
+<form method="post" name="AC0704102" action="LoadAP3">
+<header>
+	<div class="wrapper">
+		
+		<div class="headerBox">	
+			 <a href="#C"  title="跳到主要內容區塊" tabindex="1" style="position: absolute" class="sr_only">跳到主要內容區塊</a>
+			  <h1 class="no-effect"> <a class="logo" href="https://freebank.ubot.com.tw/" target="_parent"><img src="Accessible/logo.png" alt="聯邦銀行友善服務網" title="聯邦銀行友善服務網" width="300" height="37" hspace="10" border="0"></a></h1>	
+			<div class="header-right">
+				<a href="#U" name="U" id="AU" accesskey="U" class="top" title="上方導覽區">:::</a> <a href="LoadAP3?aptype=IBANK&pageid=AC0000000" class="top">網站導覽</a> / <a href="LoadAP3?aptype=IBANK&pageid=AC0000001" class="top">金融友善服務準則</a>			
+		  </div>
+		</div>
+				
+		<div class="container">
+			<div class="logout">
+				<a href="#" onclick="chkSubmit98();"><img src="Accessible/main_button_02.gif" title="登出" alt="登出" border="0" align="absmiddle" ></a>
+			</div>
+			<div class="con1">
+				<div><div class="con1_left"><a accesskey="L" name="L" id="AL" title="左方區塊" href="#L" style="text-decoration:none;color:#666;">::: </a></div><div class="con1_right"><a href="LoadAP3?aptype=IBANK&pageid=AC0201000" target="_self"><img src="Accessible/left_button_01.gif" title="利率查詢" alt="利率查詢" width="233" height="60" border="0"></a></div></div><div><a href="LoadAP3?aptype=IBANK&pageid=AC0203000" target="_self"><img src="Accessible/left_button_02.gif" title="匯率查詢" alt="匯率查詢" width="233" height="60" border="0"></a></div><div><a href="LoadAP3?aptype=IBANK&pageid=IC000000B" target="_self"><img src="Accessible/left_button_03.gif" title="帳戶服務" alt="帳戶服務" width="233" height="60" border="0"></a></div><div><a href="LoadAP3?aptype=IBANK&pageid=AC0704100" target="_self"><img src="Accessible/left_button_04.gif" title="約定轉帳交易" alt="約定轉帳交易" width="233" height="60" border="0"></a></div><div><a href="LoadAP3?aptype=IBANK&pageid=AC1005000" target="_self"><img src="Accessible/left_button_05.gif" title="使用者代號變更" alt="使用者代號變更" width="233" height="60" border="0"></a></div><div><a href="LoadAP3?aptype=IBANK&pageid=AC1006000" target="_self"><img src="Accessible/left_button_06.gif" title="使用者密碼變更" alt="使用者密碼變更" width="233" height="60" border="0"></a></div>
+				<!--
+				<script>
+					getLeftmenu();
+				</script>
+				-->
+			</div>
+			<div class="con2">
+				<div><img src="Accessible/step03.gif" width="658" height="52" alt="共四步驟，目前為步驟3輸入金額"></div>
+				<h2 class="step1"><a accesskey="C" name="C" id="AC"  title="中央內容區塊" href="#C" style="text-decoration:none;color:#666;font-size:16px;">:::</a> 約定轉帳交易 步驟三</h2>
+				<div class="step1_1">輸入金額</div>
+				<div class="step3_1">
+					 <label for="textfield">新台幣 </label>
+                      <input type="text" name="TXNAMT" id="textfield"  value="" maxlength="10" class="step3_1_input" onkeypress="if (window.event.keyCode==13) return false;"> 元 </div>
+				<div class="step3_2">
+					<a href="#" onClick="chkSubmit();"><img src="Accessible/button_10.gif" title="確認" alt="確認" width="118" height="45" border="0"    name="Submit1"     /></a><a href="#" onClick="ChkSubmit2();"><img src="Accessible/button_11.gif" title="交易取消" alt="交易取消" width="135" height="45"  border="0"  name="Submit2"    /></a>
+				</div>
+			</div>								
+		</div>		
+   
+  </div>
+</header>
+
+<div class="footer">
+	<div class="wrapper">				
+	 	<div class="footerBox">
+	 	    <p class="copyright">	 			
+		 		<a accesskey="Q" name="Q" id="AQ"  title="網頁資訊" href="#Q" style="text-decoration:none;color:#666;">:::</a>
+		 		<strong>客服中心電話：(02)2545-1788、0800-089-888 &copy;聯邦商業銀行版權所有</strong>
+		 		<a href="https://www.handicap-free.nat.gov.tw/Applications/Detail?category=20171108152834" title="無障礙網站"><img src="Accessible/20a.jpg" alt="通過A檢測等級無障礙網頁檢測" width="88" height="31" border="0" /></a>	
+	 		</p>
+		</div>
+	</div>
+</div>
+
+
+<input type="hidden" name="pageid" value="">
+
+<input type="hidden" name="aptype" value="IBANK">
+
+<input type="hidden" name="FROMACTINFO" value="[[%%FROMACTINFO%%]]">
+
+<input type="hidden" name="TOACTINFOCHK" value="[[%%TOACTINFOCHK%%]]">
+
+<input type="hidden" name="TO_CHANGE" value="[[%%TO_CHANGE%%]]">
+<input type="hidden" name="FROMACCTNO" value="[[%%FROM_ACCT_NO%%]]">
+</form>		
+</body>
+</html>

@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>元富證券線上查詢服務</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+</head>
+
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+
+<form method="post" action="LoadAP" name="IP1008101">
+<input type="hidden" name="pageid" value="IP1008102">
+</form>
+<script>
+	document.IP1008101.submit();
+</script>
+
+</body>
+</html>

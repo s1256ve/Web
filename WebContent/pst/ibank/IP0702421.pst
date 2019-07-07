@@ -1,0 +1,184 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo           Date Modified  Modified by   
+* -------------      ----------     ----------
+* EAI97076           2010.01.12     David 
+* EAI96073           2009.04.01     David
+***********************************************************************/
+</script>
+<title>帳戶交易</title>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script>
+<!--
+
+var kbWin = null;
+
+function getKeyBoard()
+{
+ var Mytype="width=230,height=280,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IP0702421.PWD.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IP0702421.REVE_PWD.value";  //User真正key的密碼
+ var DESC = "語音";
+ //var DESC = "動態簡訊";
+ kbWin = window.open("LoadAP?pageid=IP2001001&PWD="+PWD+"&KBPWD="+KBPWD+"&DESC="+DESC+"&REVE_DESC=&REVE_KB_KEYCODE="+document.IP0702421.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP0702421.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+function onTop() {
+ 	if (kbWin==null) return;
+ 	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+
+function chkSubmit(){
+	document.IP0702421.Submit3.disabled = true;
+	document.IP0702421.Submit2.disabled = true;
+	if(document.IP0702421.PWD.value==""){
+		alert("請輸入動態簡訊密碼");
+		document.IP0702421.Submit3.disabled = false;
+		return;
+	}
+	document.onmousedown=noClick;
+	document.IP0702421.submit();
+	
+}
+
+function noClick() {
+	if ((event.button==1)||(event.button==2)) {
+		alert('交易執行中，請稍候 ....');
+	}
+}
+
+function chkSubmit2(){
+	document.IP0702421.Submit3.disabled = true;
+	document.IP0702421.Submit2.disabled = true;
+	document.IP0702421.pageid.value = "IP0702420";
+	document.onmousedown=noClick;
+	document.IP0702421.submit();
+}
+-->
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body onfocus="onTop();" bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　帳戶交易&gt;<font color="#0066FF">預約繳稅</font></b><br>
+
+<form method="post" action="LoadAP" name="IP0702421">
+<table width="630" border="0">
+  <tr> 
+    <td> 
+      <div align="center"><font color="#0000CC">您的預約繳稅設定為：</font></div>
+      <table width="350" border="1" align="center" bordercolor="#999999">
+        <tr> 
+          <td width="33%" bgcolor="#C4CBB8">交易類別</td>
+          <td width="67%" height="25">預約繳稅</td>
+        </tr>
+        <tr> 
+          <td width="33%" bgcolor="#C4CBB8">轉帳日期</td>
+          <td width="67%" height="25">
+          		<script language="JavaScript">
+          			document.write(getRCDateStr("[[%%SEND-TXN-DATE%%]]",3));
+		</script>
+          </td>
+        </tr>
+        <tr> 
+          <td width="33%" bgcolor="#C4CBB8">繳稅類別及代號</td>
+          <td width="67%" height="25"> 
+
+          	<script language="JavaScript">
+          	  document.write("[[%%REVE_PAY_TYPE_NAME%%]]");
+            </script>	
+
+          	[[%%REVE_PAY_TYPE%%]]</td>
+        </tr>
+        <tr> 
+          <td width="33%" bgcolor="#C4CBB8">銷帳編號</td>
+          <td width="67%" height="25">[[%%SEND-NOTICE-CODE%%]]</td>
+        </tr>
+        <tr> 
+          <td width="33%" bgcolor="#C4CBB8">轉出帳號</td>
+          <td width="67%" height="25">[[%%SEND-FROM-BR-NAME%%]] 
+          <SCRIPT language="JavaScript">
+                document.write(getAcctStr('[[%%SEND-FROM-ACCT-NO%%]]'));
+          </SCRIPT>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="33%">幣別/金額</td>
+          <td height="25" width="67%">新台幣
+          <SCRIPT language="JavaScript">
+               document.write(trimDecimal(moneyAddDot('[[%%SEND-TXN-AMT%%]]')));
+          </SCRIPT>
+          元</td>
+        </tr>
+        <tr> 
+          <td width="33%" bgcolor="#C4CBB8">繳款期限</td>
+          <td width="67%" height="25">[[%%SEND-DUE-DATE%%]]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="33%">交易附註</td>
+          <td height="25" width="67%" bgcolor="#FFFFDD">[[%%SEND-MEMO%%]]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="33%">通知方式</td>
+          <td height="25" width="67%">
+          [[%%HOW-TO-SEND%%]]  &nbsp;&nbsp; [[%%REVE_MSG_SENDTO%%]]
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="33%">動態簡訊密碼</td>
+          <td height="25" width="67%"> 
+            <input type="password" name="PWD" size="8" onclick="getKeyBoard();onTop();" readonly>
+          </td>
+        </tr>
+      </table>
+      <div align="center"> 
+        <input type="button" name="Submit3" value="確定預約轉帳" onClick="chkSubmit();">
+        <input type="button" name="Submit2" value="取消" onClick="chkSubmit2();">
+        <br>
+      </div>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="IP0702422">
+  <input type="hidden" name="SEND_FROM_BR_NAME" value="[[%%SEND-FROM-BR-NAME%%]]">
+  <input type="hidden" name="SEND_FROM_ACCT_NO" value="[[%%SEND-FROM-ACCT-NO%%]]">
+  <input type="hidden" name="SEND_FROM_ACCT_DESC" value="[[%%SEND-ACCT-DESC%%]]">
+  <input type="hidden" name="SEND_TXN_AMT" value="[[%%SEND-TXN-AMT%%]]">
+  <input type="hidden" name="SEND_TXN_MEMO" value="[[%%SEND-TXN-MEMO%%]]">
+  <input type="hidden" name="HOW_TO_SEND" value="[[%%HOW-TO-SEND%%]]">
+  <input type="hidden" name="SEND_TO_YOU" value="[[%%SEND-TO-YOU%%]]">
+  <input type="hidden" name="SEND_OFFICE_CODE" value="[[%%SEND-OFFICE-CODE%%]]">
+  <input type="hidden" name="SEND_DUE_DATE" value="[[%%SEND-DUE-DATE%%]]">
+  <input type="hidden" name="REVE_PWD" value="">
+  <input type="hidden" name="REVE_PAY_TYPE" value="[[%%REVE_PAY_TYPE%%]]">
+  <input type="hidden" name="REVE_PAY_TYPE_NAME" value="[[%%REVE_PAY_TYPE_NAME%%]]">
+  <input type="hidden" name="SEND_EMAIL_ADDR" value="[[%%SEND-EMAIL-ADDR%%]]">
+  <input type="hidden" name="SEND_MOBILE" value="[[%%SEND-MOBILE%%]]">
+  <input type="hidden" name="SEND_MSG" value="[[%%SEND-MSG%%]]">
+  <input type="hidden" name="SEND_TXN_DATE" value="[[%%SEND-TXN-DATE%%]]">
+  <input type="hidden" name="SEND_NOTICE_CODE" value="[[%%SEND-NOTICE-CODE%%]]">
+  <input type="hidden" name="SEND_OFFICE_CODE" value="[[%%SEND-OFFICE-CODE%%]]">
+  <input type="hidden" name="SEND_MEMO" value="[[%%SEND-MEMO%%]]">
+  <input type="hidden" name="REVE_MSG_SENDTO" value="[[%%REVE_MSG_SENDTO%%]]">
+  <input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+  <input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+  <input type="hidden" name="SEND_NOTICE_NO_MARK" value="">
+  <input type="hidden" name="REVE_PAY_TYPE_CHINESE" value="">
+</table>
+<script>
+		document.IP0702421.SEND_NOTICE_NO_MARK.value = document.IP0702421.SEND_NOTICE_CODE.value.substring(0,4)+"XXXXXXXX"+document.IP0702421.SEND_NOTICE_CODE.value.substring(12,16);
+		document.IP0702421.REVE_PAY_TYPE_CHINESE.value = document.IP0702421.REVE_PAY_TYPE_NAME.value+document.IP0702421.REVE_PAY_TYPE.value;
+</script>
+</form>
+</body>
+</html>

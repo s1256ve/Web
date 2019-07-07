@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='Big5'?>
+<!-- UITC Schema Generater at 2003-09-24 -->
+<catalog>
+     <field id='fieldi001' attr='S' default=''>
+        <name>REVE-CODE</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+     <field id='fieldi002' attr='I' default=''>
+        <name>REVE-SESSION-ID</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+     <field id='fieldi003' attr='I' default=''>
+        <name>REVE-ID-NO</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+     <field id='fieldi004' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>     
+     <field id='fieldi005' attr='S' default=''>
+        <name>TXNTYPE</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+     <field id='fieldi006' attr='I' default=''>
+        <name>PBX-SID</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+     <field id='fieldi007' attr='S' default=''>
+        <name>TXN-SNO</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+</catalog>

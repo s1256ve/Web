@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>基金單筆申購</title>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------------
+*EAI98049           2009.7.28      YiSyun
+*EAI99005           2010.1.14      Carl  
+***********************************************************************/
+</script>
+<script language="javascript" src="script/prototype.js" ></script>
+<script language="JavaScript" src="script/ReplaceDiv.js"></script>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<script language="JavaScript">
+
+function chkSubmit(nextPageid){
+
+	document.IF02010015.pageid.value = nextPageid;
+	document.IF02010015.submit();
+}
+
+<!--
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+function MM_showHideLayers() { //v3.0
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+  for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
+    if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v='hide')?'hidden':v; }
+    obj.visibility=v; }
+}
+
+//-->
+</script>
+</head>
+<form method="post" action="LoadAP" name="IF02010015">
+<body style="font-size:8pt" bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<table width="775" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+<td width="775"></td>
+<td>
+	  <table width="775" border="0" bgcolor="#DFEFFF">
+        <tr bgcolor="#DFEFFF"> 
+	    <td width=95%><b>│</b>
+	    <a id="id1" href="LoadAP?aptype=YESFUND&pageid=IF0201002&[[%%SESSIONID%%]]&REVE_FUND_ID=[[%%REVE-FUND-ID%%]]"  target="main" >基金單筆申購</a><b>│</b>	    
+	    <a id="id0" href="LoadAP?aptype=YESFUND&pageid=IF03010015&[[%%SESSIONID%%]]&REVE_FUND_ID=[[%%REVE-FUND-ID%%]]&REVE_CURRENCY_TYPE=[[%%SEND-FUND-CURRENCY%%]]&REVE_CURRENCY_CODE=[[%%SEND-FUND-TYPE%%]]" >基金定期定額申購</a><b>│</b> 
+	    </td>  
+	  </tr>
+	</table>
+
+
+<script language="javaScript">
+
+var Timeout_ID = null;
+var iMain 	= null;
+var pSubMain 	= null;	
+var pDown	= null;
+
+
+function chkTime(){
+  //var endTime = parseInt("[[%%SEND-END-TIME%%]]");
+  var endTime = 1500;
+  var preTime = 1450;
+	var curTime = [[%%SYSTIME%%]] /100;
+	if(curTime < endTime && curTime > preTime )
+	{
+	   curTime=curTime+"";
+		 alert("目前時間為 "+curTime.substring(0,2)+":"+curTime.substring(2,4)+" ，網路基金交易 15:00 後\n為次營業日交易 ， 請留意並儘速辦理。");
+	}		
+}
+
+</script>
+
+
+<!--iframe name="left" style="position: absolute; top:4 ; left:0 ; z-index:0" width="142" height="600" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?aptype=IBANK&pageid=IC0100001"/-->
+<iframe name="main" id="main"  onLoad="javaScript:Timeout_ID=setInterval('checkLoaded();', 500)"
+	style="position: absolute; top:30 ; left:0 ; z-index:0" width="775" height="900" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="AUTO" src="LoadAP?aptype=YESFUND&pageid=IF0201002&[[%%SESSIONID%%]]&REVE_FUND_ID=[[%%REVE-FUND-ID%%]]"></iframe>
+<!--iframe name="main" style="position: absolute; top:54 ; left:142 ; z-index:0" width="638" height="1600" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="AUTO" src="LoadAP?aptype=YESFUND&pageid=IF0101000" onLoad='javaScript:top.scrollTo(0,0);'/-->
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="REVE_FUND_ID" value="[[%%REVE-FUND-ID%%]]">
+<input type="hidden" name="SEND_END_TIME" value="[[%%SEND-END-TIME%%]]">
+<input type="hidden" name="REVE_BUSI_TYPE" value="">
+<input type="hidden" name="SEND_FUND_CURRENCY" value="[[%%SEND-FUND-CURRENCY%%]]">
+<input type="hidden" name="REVE_CURRENCY_TYPE" value="[[%%SEND-FUND-TYPE%%]]">
+<input type="hidden" name="CurrencyCode" value="">
+<input type="hidden" name="SEND_INTACCT_NO" value="">
+<input type="hidden" name="REVE_EX_DIVIDEND" value="[[%%SEND-EX-DIVIDEND%%]]">
+</form>
+</body>
+</html>

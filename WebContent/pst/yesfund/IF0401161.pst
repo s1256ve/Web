@@ -1,0 +1,181 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>基金申購</title>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<script type="text/JavaScript">
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI98039           2009.06.09     Carl 
+*EAI98051           2009.08.04     Alma 
+***********************************************************************/
+</script>
+</head>
+<style type="text/css">
+<!--
+.confirm_t11 {
+	font-size: 12px;
+	line-height: 18px;
+	color: #666666;
+}
+.confirm_t11r {
+	font-size: 12px;
+	line-height: 18px;
+	color: #FF0000;
+	font-weight: bold;
+}
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{ font-family: "Arial"; font-size: 8pt}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+<script language="javascript">
+function chkSubmit(nextPage){
+	disableButton2(document.IF0401161.bNext ,document.IF0401161.bCancel);
+	document.IF0401161.pageid.value =  nextPage;
+	document.IF0401161.submit();
+}
+</script>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form method="post" action="LoadAP" name="IF0401161">
+<font color="#006666"><b>基金贖回&gt;</b></font><br>
+<table width="630" border="0">
+  <tr>
+    <td>
+      <div align="center">請確認您贖回之基金資料</div>
+    </td>
+  </tr>
+</table>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="3"> 
+      <div align="center"> <font color="#FF0000"> </font><b> </b> 
+        <table width="457" border="1" cellpadding="0" bordercolor="#999999">
+          <tr bgcolor="#E7F1EE"> 
+            <td width="32%" height="25" bgcolor="#C5DECF">委託人姓名： </td>
+            <td width="68%" bgcolor="#E7F1EE">&nbsp;[[%%REVE-CNAME%%]] </td>
+          </tr>
+          <tr bgcolor="#E7F1EE"> 
+            <td width="32%" height="25" bgcolor="#C5DECF">委託人身份證字號 ： </td>
+            <td width="68%"> &nbsp;[[%%REVE-ID-NO%%]] </td>
+          </tr>
+          <tr bgcolor="#E7F1EE"> 
+            <td width="32%" height="25" bgcolor="#C5DECF">憑證號碼： </td>
+            <td width="68%"> &nbsp;[[%%REVE-CERT-NO%%]] </td>
+          </tr>
+          <tr bgcolor="#E7F1EE"> 
+            <td width="32%" height="25" bgcolor="#C5DECF">基金名稱： </td>
+            <td width="68%"> &nbsp;[[%%REVE-FUND-CNAME%%]] </td>
+          </tr>
+          <tr bgcolor="#E7F1EE"> 
+            <td width="32%" height="25" bgcolor="#C5DECF">原信託金額： </td>
+            <td width="68%"> &nbsp;[[%%REVE-CURRENCY-NAME%%]]&nbsp; 
+                <script>
+              	document.write(moneyAddDot("[[%%REVE-FROM-AMT%%]]"));              	
+              </script></td>
+          </tr>
+          <tr bgcolor="#E7F1EE"> 
+            <td width="32%" height="25" bgcolor="#C5DECF">贖回信託金額 ： </td>
+            <td width="68%"> &nbsp;[[%%REVE-CURRENCY-NAME%%]]&nbsp; <script>
+              	document.write(moneyAddDot("[[%%REVE-AMT%%]]"));              	
+              </script> </td>
+          </tr>
+          <tr bgcolor="#E7F1EE"> 
+            <td width="32%" height="25" bgcolor="#C5DECF">解款銀行： </td>
+            <td width="68%">&nbsp;[[%%REVE-BANK-NAME%%]] </td>
+          </tr>
+          <tr bgcolor="#E7F1EE"> 
+            <td width="32%" height="25" bgcolor="#C5DECF">解款分行： </td>
+            <td width="68%">&nbsp;[[%%REVE-BR-NAME%%]]</td>
+          </tr>
+          <tr bgcolor="#E7F1EE"> 
+            <td width="32%" height="25" bgcolor="#C5DECF">解款帳號： </td>
+            <td width="68%">&nbsp;[[%%REVE-ACCT-NO%%]] </td>
+          </tr>
+        </table>
+        
+        <table width="457" border="0">
+          <tr>
+            <td> 
+              <p><b>注意事項：</b><br>
+                1.銀行<b><font color="#FF0000">營業日下午3:00前完成贖回申請始為當日交易</font></b>，逾時則為次一營業日交易。<br>
+                2.委託人填寫解款資料，必須確認該帳號為委託人本人之帳號，且該帳號、解款行及分行別必須正確，<b><font color="#FF0000">若因任一解款資料有錯而造成退匯，重新匯款所衍生之相關費用需由委託人自行額外負擔。</font></b>　　　　　　　　　　　　　　　　　　　　　　 
+                <br>
+                3.基金贖回，經過本行SSL交易機制之認證，交易已具有契約效力，所以上述資料一經送出，交易便告完成，<b><font color="#FF0000">委託人不能於完成交易後否認或取消交易。</font></b><br>
+                4.委託人於此頁確認所有贖回資料正確無誤，始按下&quot;送出資料&quot;之按鈕。</p>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <table width="457" border="1" cellpadding="0" bordercolor="#999999">
+          <tr bgcolor="#E7F1EE">
+            <td width="68%" height="25" bgcolor="#ffeba4"><div align="center"><img src="graph/fund/graph/confirm_icon.gif" width="25" height="26" align="absmiddle"><strong>短線交易確認通知</strong></div></td>
+          </tr>
+          <tr bgcolor="#E7F1EE">
+            <td width="68%" height="25" bgcolor="#fcffd9"><table width="97%" border="0" align="center" cellpadding="3" cellspacing="0">
+                <tr>
+                  <td class="confirm_t11">親愛的客戶您好<br />
+                    依該發行公司規定，於<script>document.write(getRCDateStr("[[%%SEND-END-DATE%%]]","0"));</script>前之贖回交易視為短線交易(<a href="#" onclick="MM_openBrWindow('http://www.yesfund.com.tw/savefile/ma23.htm','ma23','scrollbars=yes,width=720,height=500')">說明</a>)，需額外收取短線交易手續費預估<span class="confirm_t11r">[[%%REVE-SENDCURRENCY%%]] <script>document.write(moneyAddDot("[[%%SEND-SHORT-FEE%%]]"));</script>元(單位數*參考淨值*短線費率=試算短線費用)</span>，如您同意繼續交易，請點選同意鍵，執行贖回交易；如不同意，請點選不同意鍵，則交易取消。<font color="#ff80ff">短線費用係以贖回或轉出基金的計價幣別計收。</font></td>
+                </tr>
+            </table></td>
+          </tr>
+        </table>
+        <table width="457" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="30"><div align="center">
+                <input type="button" name="bNext" value="同意" onClick="chkSubmit('IF0401162');">
+              　
+              <input type="button" name="bCancel" value="不同意" onClick="chkSubmit('IF0401000');">
+            </div></td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+<br>
+<table width="630" border="0">
+  <tr>
+    <td>
+      <div align="center"><!--<img src="banner/468_001.gif" width="468" height="60">--></div>
+    </td>
+  </tr>
+</table>
+  <input type="hidden" name="pageid" value="">
+   <input type="hidden" name="REVE_FUND_ID" value="[[%%REVE-FUND-ID%%]]">
+   <input type="hidden" name="REVE_CNAME" value="[[%%REVE-CNAME%%]]">
+   <input type="hidden" name="REVE_FUND_CNAME" value="[[%%REVE-FUND-CNAME%%]]">
+   <input type="hidden" name="REVE_CERT_NO" value="[[%%REVE-CERT-NO%%]]">
+   <input type="hidden" name="REVE_BANK_CODE" value="[[%%REVE-BANK-CODE%%]]">
+   <input type="hidden" name="REVE_ACCT_NO" value="[[%%REVE-ACCT-NO%%]]">
+   <input type="hidden" name="REVE_ACCTNO_FORMAT" value="">
+   <input type="hidden" name="REVE_AMT" value="[[%%REVE-AMT%%]]">
+    <input type="hidden" name="REVE_FROM_AMT" value="[[%%REVE-FROM-AMT%%]]">
+   <input type="hidden" name="REVE_BR_CODE" value="[[%%REVE-BR-CODE%%]]">
+   <input type="hidden" name="REVE_CHANGE_TYPE" value="[[%%REVE-CHANGE-TYPE%%]]"> 
+   <input type="hidden" name="REVE_CNAME" value="[[%%SEND-CNAME%%]]">
+   <input type="hidden" name="REVE_ID_NO" value="[[%%REVE-ID-NO%%]]"> 
+   <input type="hidden" name="REVE_CVT_TYPE" value="[[%%REVE-CVT-TYPE%%]]"> 
+   <input type="hidden" name="REVE_UNITS" value="[[%%REVE-UNITS%%]]">
+   <input type="hidden" name="REVE_CURRENCY_NAME" value="[[%%REVE-CURRENCY-NAME%%]]">
+   <input type="hidden" name="REVE_CURRENCY_CODE" value="[[%%REVE-CURRENCY-CODE%%]]">    
+   <input type="hidden" name="SEND_CUT_YORN" value="[[%%SEND-CUT-YORN%%]]">
+   <input type="hidden" name="SEND-EMAIL-ADDR" value="[[%%SEND-EMAIL-ADDR%%]]">
+</form>
+</body>
+</html>

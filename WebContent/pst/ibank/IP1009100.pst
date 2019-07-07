@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>約定扣繳停車費</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/parking.js"></SCRIPT>
+<style type="text/css">
+<!--
+.style1 {color: #0066FF}
+-->
+</style>
+<SCRIPT language="JavaScript">
+<!--
+var email = "[[%%SEND-EMAIL-ADDR%%]]";
+var mphone = "[[%%SEND-MPHONE%%]]";
+
+function changNotify(acctNo,area,vehtype,vehno,notify){
+
+    var f = document.IP1009100;
+    f.REVE_ACCT_NO.value = acctNo;
+    f.REVE_AREA_CODE.value = area;
+    f.REVE_VEH_TYPE.value = vehtype;
+    f.REVE_VEH_NO.value = vehno;
+    f.REVE_NOTIFY.value = notify;
+    f.submit();  
+}
+
+function chkbutton(obj1,obj2){
+    var buttonarray = obj1;
+    //alert('buttonarray='+buttonarray.length);
+    for (i=0; i<buttonarray.length; i++) {
+        var status = document.IP1009100.status[i].value;
+        if ((status=='6')||(status=='9')){
+            document.IP1009100.mod[i].disabled = true;
+        }
+    } 
+}
+//-->
+</SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+<p><strong>約定代繳停車費&gt;<span class="style1">查詢已約定代繳停車費明細 </span></strong></p>
+<form method="POST" name="IP1009100" action="LoadAP">
+<table width="750" border="0">
+  <tr>
+    <td colspan="5">
+      以下為您於本行申請約定代繳停車費之車輛明細：
+        <table width="650" border="1" bordercolor="#999999" cellpadding="2" align="center">
+        <tr>
+          <td width="75" bgcolor="#C4CBB8"><div align="center">車號 </div></td>
+          <td width="45" bgcolor="#C4CBB8"><div align="center">車種 </div></td>
+          <td width="100" bgcolor="#C4CBB8"><div align="center">約定扣款帳號 </div></td>
+          <td width="60" bgcolor="#C4CBB8"><div align="center">地區</div></td>
+          <td width="240" bgcolor="#C4CBB8"><div align="center">通知方式</div></td>
+          <td width="80" bgcolor="#C4CBB8"><div align="center">備註 </div></td>
+        </tr>
+        <!--[[%%LOOP_SEC SEND-ACCT-NO%%]]
+        <tr>
+          <td width="75"><div align="center">[[%%SEND-VEH-NO%%]]</div></td>
+          <td width="45"><div align="center">[[%%SEND-VEH-TYPE%%]]</div></td>
+          <td width="100"><div align="center"><script>document.write(getAcctStr('[[%%SEND-ACCT-NO%%]]'));</script></div></td>
+          <td width="60"><div align="center">[[%%SEND-AREA-CODE%%]]</div></td>
+          <td width="240"><div align="center">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="100%">
+                    <script language="javascript"> 
+        			    document.write(notifyMap('[[%%SEND-NOTIFY%%]]'));
+        		    </script>
+        		</td>
+                <!--td width="20%"><input type="button" name="mod" value="變更" onclick="javascript:changNotify('[[%%SEND-ACCT-NO%%]]','[[%%SEND-AREA-CODE%%]]','[[%%SEND-VEH-TYPE%%]]','[[%%SEND-VEH-NO%%]]','[[%%SEND-NOTIFY%%]]');">
+                <input type="hidden" name="status" value="[[%%SEND-STATUS-CODE%%]]">
+                </td-->
+                
+              </tr>
+            </table>
+          </div></td>
+          <td width="80"><div align="center">[[%%SEND-STATUS%%]]</div></td>
+        </tr>
+        <!--[[%%ELOOP_SEC%%]]-->
+      </table>
+      
+      </div>
+<div align="center"> </div></td>
+  </tr>
+  <tr>
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+<input type="hidden" name="aptype" value="IBANK">
+<input type="hidden" name="pageid" value="IP1009103">
+<input type="hidden" name="REVE_ACCT_NO" value="">
+<input type="hidden" name="REVE_AREA_CODE" value="">
+<input type="hidden" name="REVE_VEH_TYPE" value="">
+<input type="hidden" name="REVE_VEH_NO" value="">
+<input type="hidden" name="REVE_NOTIFY" value="">
+
+</form>
+<script><!--
+   //chkbutton(document.IP1009100.mod,document.IP1009100.status);        
+//--></script>
+</body>
+</html>

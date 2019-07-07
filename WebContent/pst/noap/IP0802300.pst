@@ -1,0 +1,118 @@
+<html>
+<head>
+<title>首次登入</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="Javascript">
+var UserAcctSourceString = 
+        "0123456789" +
+        "abcdefghijklmnopqrstuvwxyz" +
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+function chkUserAcct(sUserAcct){
+    var sFlag = true
+		if (sUserAcct.length < 6  || sUserAcct.length > 12){
+				alert("使用者代號輸入錯誤\n請重新新輸入!");				
+				sFlag = false;
+				return sFlag;
+		}	  
+	  var searchIndex = -1;
+	  for(var i = 0; i < sUserAcct.length; i++) {
+                searchIndex = UserAcctSourceString.indexOf(sUserAcct.charAt(i));
+                if(searchIndex == -1) {
+                			alert("使用者代號輸入錯誤!\n請重新新輸入!");	
+                      sFlag = false;
+                      return sFlag;
+                }               
+        }	
+	return sFlag;
+}        
+        
+function chkPWD(sPWD1, sPWD2){
+	if(sPWD1 != sPWD2){
+		alert("密碼和確認密碼不同\n請重新輸入密碼");
+		return false;
+	}else if(sPWD1 == "" || sPWD2 == ""){
+		alert("請輸入密碼和確認密碼");
+		return false;
+	}else{
+		return true;
+	} 
+}
+
+function chkSubmit(Pageid){	
+	document.IP0802300.pageid.value = Pageid;
+	
+	var sUserAcct = document.IP0802300.REVE_NICK_NAME.value.trim()
+	var sPWD1 = document.IP0802300.PWD.value.trim()
+	var sPWD2 = document.IP0802300.PWD2.value.trim()
+	
+	if (chkUserAcct(sUserAcct) && chkPWD(sPWD1,sPWD2)) {
+		document.IP0802300.submit();
+	}
+}
+
+
+function chkSubmit2(Pageid){
+	document.IP0802300.pageid.value = Pageid;
+	document.IP0802300.submit();
+}
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg01.gif" leftmargin="0" topmargin="0" onfocus="onTop();">
+<form name="IP0802300" method="POST" action="LoadAP">
+<p><b>首次登入<font color="#003399"><font color="#0066FF"><br>
+  </font></font></b></p>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5"> 
+      <table width="83%" border="1" align="center" bordercolor="#999999">
+        <tr> 
+          <td colspan="2"> 
+            <div align="center">基金天地帳號密碼設定</div>
+          </td>
+        </tr>       
+        <tr> 
+          <td width="39%" bgcolor="#C4CBB8">自行設定網路銀行使用者代號<br>
+          </td>
+          <td width="61%"> 
+            <input type="text" name="REVE_NICK_NAME" value="" maxlength="12">
+            （6-12碼，英數字皆可） </td>
+        </tr>
+         <tr>
+          <td width="39%" bgcolor="#C4CBB8">自行設定網路密碼</td>
+          <td width="61%">
+            <input type="password" name="PWD" size="8" onclick="getKeyBoard('IP0802300','PWD',' REVE_PWD','[[%%SEND-KB-KEYCODE%%]]','[[%%SEND-KB-KEYLETTER%%]]');onTop();" readonly>
+          </td>
+        </tr>
+        <tr>
+          <td width="39%" bgcolor="#C4CBB8">再次確認網路密碼</td>
+          <td width="61%">
+            <input type="password" name="PWD2" size="8" onclick="getKeyBoard('IP0802300','PWD2',' REVE_PWD2','[[%%SEND-KB-KEYCODE%%]]','[[%%SEND-KB-KEYLETTER%%]]');onTop();" readonly>
+          </td>
+        </tr>
+      </table><br>
+      <div align="center"> 
+        <input type="button" name="Submit1" value="確定" onclick="chkSubmit('IP0802301');">&nbsp;
+        <input type="button" name="Submit2" value="取消" onclick="chkSubmit2('IP0810000');">&nbsp;
+        <input type="reset" name="Submit3" value="重填">
+      </div>     
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="REVE_PWD" value=""> 
+<input type="hidden" name="REVE_PWD2" value="">
+<input type="hidden" name="REVE_REG_DATE" value=""> 
+</form>
+<script>
+	document.IP0802300.REVE_REG_DATE.value = "[[%%SYSDATE%%]]" ;
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<html>
+<head>
+<title>聯邦銀行個人金融網</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<link type="text/css" rel="stylesheet" href="theme/portal2.css">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI98052           2009.08.19     Carl
+*EAI99041	  	      2010.05.10	   David
+*EAI101062          2012.09.20     Simon
+***********************************************************************/
+</script>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/datefmt.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="./pst/yesgogogo/script/Dialog.js"></SCRIPT>
+
+<script language="JavaScript">
+<!--
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+
+function chkSubmit(){
+    alert('[[%%SEND-CNAME%%]] 先生/小姐您好，謝謝您使用網路銀行！\n'+
+          '為了您的交易資料安全，\n'+
+          '請記得在視線離開電腦前關閉使用中的瀏覽器，\n'+
+          '以確保您剛剛的使用記錄不被他人窺探！');
+          //'登出時間為 '+getNowTime());
+    document.IC0100000.pageid.value="IC0000999";
+    document.IC0100000.aptype.value="NOAP";
+    document.IC0100000.target="IC0000000"
+    document.IC0100000.submit();
+}
+
+function trnsTime(){
+	var timeStr = '[[%%SEND-LAST-LOGIN-TIME%%]]';
+	var date = timeStr.substr(0,8);
+	var hh = timeStr.substr(8,2);
+	var mm = timeStr.substr(10,2);
+	return getRCDateStr(date,0) + " " + hh + ":" + mm ;
+}
+
+function DistDay(){
+  var diffDays = DateDiff(getADDateStr(getNowDate(),0),getADDateStr('[[%%SEND-MDFDATE%%]]',0));                
+	if (diffDays > 180) 
+		document.write("<div align=\"left\"><font color='red'><b>您離上次變更密碼已超過6個月，建議請定期變更密碼!"+"<a href='#' onclick=\"alert('請至「個人設定」=>「網路密碼/使用者代號變更」，進行變更網路密碼。');\"></b>(說明)</font></a></div>");
+}
+
+function showCName(){
+   var cname='[[%%SEND-CNAME%%]]';
+   if(cname.length > 8){
+      return cname.substring(0,8)+"(略)";
+   }else{
+      return cname;
+   }
+}
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" link="#0000FF" vlink="#0000FF" alink="#000000" background="graph/bg.gif" onLoad="">
+<form method="post" name="IC0100000" action="LoadAP">
+
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="aptype" value="NOAP">
+<input type="hidden" name="del" value="Y">
+<input type="hidden" name="sessid" value="[[%%SESSIONID%%]]">
+</form>
+
+<script language="javaScript">
+
+	var Timeout_ID = setInterval('checkLoaded();', 500);
+	
+	function checkLoaded() {
+		
+		if (!document.getElementById){
+			clearInterval(Timeout_ID);
+			Timeout_ID = null;
+			//alert("IE failed:document.getElementById");
+			return;
+		}
+		
+		if (document.getElementById("submain").readyState == "complete" &&
+		    document.getElementById("down").readyState  == "complete") {
+			
+			clearInterval(Timeout_ID);
+			Timeout_ID = null;
+			
+			if (document.getElementById && 
+			    document.getElementById("submain") &&
+			    document.getElementById("down") ) {	
+			        
+				clearInterval(Timeout_ID);
+				Timeout_ID = 0;
+
+       				var bodySubmain = window.frames["submain"].document.body; 
+				var bodyDown = window.frames["down"].document.body;
+			        
+	  			var iSubMain = document.getElementById("submain").style;
+	  			var iDown = document.getElementById("down").style;
+
+	  			iSubMain.height = bodySubmain.scrollHeight;
+	  			iSubMain.width  = bodySubmain.scrollWidth;	  			
+	  			iSubMain.left = 0;
+
+	  			iDown.height = bodyDown.scrollHeight;
+	  			iDown.width  = bodyDown.scrollWidth;
+	  			
+	  			var a = parseInt(iSubMain.top, 10) + parseInt(iSubMain.height, 10);
+	  			if (!isNaN(a))	
+	  				iDown.top  = a + "px"; 
+	  			else    iDown.top  = 1200 + "px"; 
+	
+	     		}
+	     		if (parent.document.getElementById) {
+				parent.document.getElementById("IC0000000").style.height = parseInt(parseInt(iDown.height, 10) + parseInt(iDown.top, 10)) + "px";
+				//top.document.getElementById("IC0000000").style.height = parseInt(parseInt(pDown.height, 10) + parseInt(pDown.top, 10)) + "px";
+				//alert("IC0000000:" + parent.document.getElementById("IC0000000").style.height);
+			}else{alert("FAILED: parent.document.getElementById");}
+		}
+	}
+
+</script>
+
+<iframe name="main" 	id="main"	style="position: absolute; top:30 ; left:0" width="778" height="1300" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="auto" src="./pst/ibank/index.htm"></iframe>
+
+
+
+<!--iframe name="submain" style="position: absolute; top:130 ; left:0" width="778" height="1700" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="LoadAP?aptype=IBANK&pageid=[[%%FUNC-PAGE%%]]"/>
+<iframe name="down" 	id="down"	style="position: absolute ; top:1900 ; left:0 ; z-index:10 " width="778" height="22" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?pageid=IC0000004&aptype=noap"> </iframe-->
+</body>
+</html>

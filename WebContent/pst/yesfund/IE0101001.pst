@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>訊息代號及說明</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="javaScript">	
+    var havecard = "[[%%SEND-RETN-SCARD%%]]";
+    function chkSubmit(){ 
+	 if (havecard=='Y') document.IE0101001.pageid.value="IE0101003";
+	 if (havecard=='N') document.IE0101001.pageid.value="IE0101002";
+	 document.IE0101001.submit();
+	}
+    
+    
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form name="IE0101001" method="POST" action="LoadAP">
+<input type="hidden" name="pageid" value="">
+</form>
+<script>
+	chkSubmit();		
+</script>
+</body>
+</html>
+

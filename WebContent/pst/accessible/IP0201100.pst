@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+	<title>交易期間</title>
+  <meta charset="utf-8">
+  <meta http-equiv:"content-language" content="zh-tw">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+  <link href="css/index.css" rel="stylesheet">
+	<link href="css/2.css" rel="stylesheet">
+	 <link href="css/accessibility.css" rel="stylesheet" >
+</head>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript" src="script/calendar.js"></script>
+<script language="JavaScript" src="script/calendar-zh.js"></script>
+<script language="JavaScript" src="script/calendar-setup.js"></script>
+<script language="JavaScript" src="script/calendarface.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.js "></script>
+<script language="JavaScript" src="script/accessible.js"></script>
+<script>
+function chkSubmit98(){
+	alert(' 您好，謝謝您使用網路銀行！\n'+
+	      '為了您的交易資料安全，\n'+
+	      '請記得在視線離開電腦前關閉使用中的瀏覽器，\n'+
+	      '以確保您剛剛的使用記錄不被他人窺探！');
+	      //'登出時間為 '+getNowTime());
+	
+	document.IP0201100.pageid.value="IC0000999";
+	document.IP0201100.aptype.value="NOAP";
+	document.IP0201100.target="_parent";
+	document.IP0201100.submit();    
+}
+
+function chkSubmit99(){
+	document.IP0201100.pageid.value="IC0000999";
+	document.IP0201100.aptype.value="NOAP";
+	document.IP0201100.target="_parent";
+	document.IP0201100.submit();    
+}	
+</script>
+<SCRIPT language="JavaScript">
+var sysdate5 = "[[%%SYSDATE%%]]";
+var nowDate5 = new Date(sysdate5.substr(0,4), sysdate5.substr(4,2)-1, sysdate5.substr(6,2));
+var dd = new Array();
+var dd2 = new Array();
+var dd3 = new Array();
+var xx;
+for(i=0;i<3;i++){
+	if(i==0){
+		dd[i] = nowDate5;
+		dd2[i] = nowDate5.getFullYear();
+		dd3[i] = nowDate5.getMonth()+1;
+	}else{
+		xx = dd[i-1];
+		xx.setDate(xx.getDate()- xx.getDate());
+		dd[i] = xx;
+		dd2[i] = xx.getFullYear();
+		dd3[i] = xx.getMonth()+1;
+	}
+}
+var nowYear = dd2[0];2
+var nowMonth = dd3[0];
+var nowDay = eval(sysdate5.substr(6,2));
+var preYear2 = dd2[1];
+var preMonth2 = dd3[1];
+if (preMonth2.length<2) preMonth2 = "0"+preMonth2;
+var preYear3 = dd2[2];
+var preMonth3 = dd3[2];
+if (preMonth3.length<2) preMonth3 = "0"+preMonth3;
+
+
+var nowDateStr = getRCDateStr("[[%%SYSDATE%%]]",0);
+var selDate = nowDateStr + "," + nowDateStr;
+
+function chgAcct(acctStr) {
+	var acctArray = acctStr.split("@");
+	var i = 0;
+	document.IP0201100.selBrName.value = acctArray[0];
+	document.IP0201100.selBalType.value = acctArray[1];
+	document.IP0201100.selAcctNo.value = acctArray[2];
+	document.IP0201100.selAvalBalance.value = acctArray[3];
+}
+
+function countDate(inYear,inMonth,inDay){
+	var tmpYear = nowYear + eval(inYear);
+	var tmpMonth = nowMonth + eval(inMonth);
+	var tmpDay = nowDay + eval(inDay);
+	var reDate = new Date(tmpYear, (tmpMonth-1), tmpDay);
+	var reDateStr = getRCDateStr(reDate.getFullYear() + "/" + (reDate.getMonth()+1) + "/" + reDate.getDate(),0);
+	return reDateStr;
+}
+
+function countDate2(inYear,inMonth,inDay){
+	var tmpYear = nowYear + eval(inYear);
+	var tmpMonth = nowMonth + eval(inMonth);
+	var tmpDay = nowDay + eval(inDay);
+	var reDate = new Date(tmpYear, (tmpMonth-1), tmpDay);
+	var reDateStr = getADDateStr(reDate.getFullYear() + "/" + (reDate.getMonth()+1) + "/" + reDate.getDate(),-1);
+	return reDateStr;
+}
+
+function chgDate(inValue){
+
+    var inDateAry;
+	
+	if (inValue==0){
+		inDate = selDate;
+		
+	}
+	if (inValue==1){
+		var newWeek = countDate(0,0,-7);
+		selDate1 = newWeek + "," + nowDateStr;
+		inDate = selDate1;
+		
+		
+	}
+	if (inValue==2){
+		var lastMonth = countDate(0,-1,0);
+		var selDate2 = lastMonth + "," + nowDateStr;
+		inDate = selDate2;
+	
+	}
+	
+	if (inValue==3){
+		var selDate3 = getRCDateStr(nowYear + "/" + (nowMonth) + "/" + 1 ,0) + "," + nowDateStr;
+		inDate = selDate3;
+	
+	}
+	
+	if (inValue==4){
+		var lastMonth = (preYear2-1911) + "/" + (preMonth2) + "/"+ getMaxDays(preYear2,preMonth2);
+		var selDate4 = getRCDateStr(preYear2 + "/" + (preMonth2) + "/" + 1 ,0) + "," + lastMonth;
+		inDate = selDate4;
+		
+	}
+	if (inValue==5){
+		var lastMonth = (preYear3-1911) + "/" + (preMonth3) + "/"+ getMaxDays(preYear3,preMonth3);
+		var selDate5 = getRCDateStr(preYear3 + "/" + (preMonth3) + "/" + 1 ,0) + "," + lastMonth;
+		inDate = selDate5;
+		
+	}
+	//lockCalSelObj('IP0201100', inValue, inDate)
+	
+	inDateAry = inDate.split(",");
+	
+	var sdate=inDateAry[0];
+	var edate=inDateAry[1];
+	var startdate;
+	var enddate;
+	
+	
+	startdate = getADDateStr(sdate,-1)
+	enddate =   getADDateStr(edate,-1)
+	
+	document.IP0201100.selDateBegin.value=startdate;
+	document.IP0201100.selDateEnd.value=enddate;
+		
+			
+		
+}
+
+function chkSubmit(v){
+    
+	chgDate(v);
+	
+	
+    var acct 	  = document.IP0201100.selAcctNo.value;
+    var queryType = document.IP0201100.selQueryType.value;
+	var t = v;
+
+	if(acct==""){
+		alert("請選擇帳號！");
+		return;
+	}
+
+	// 帳戶: 30  (若為網銀交易明細查詢，不另行套FORM，同其它科目別之頁面格式，故同樣連至IP0201002)
+/*	
+	if (acct.substr(3,2)=="30"){
+		if (queryType=="0") { 
+			document.IP0201100.pageid.value="IP0201003";	
+		}else{
+			document.IP0201100.pageid.value="IP0201002"; //網銀交易
+		}	
+	}
+	*/
+	
+	// 帳戶: 10, 20, 50, 51
+	//else {
+		//if (queryType=="0") {
+		
+           onSend('IP0201100');
+		   
+           if (t==0){
+	        document.IP0201100.pageid.value="IP0201101";
+			document.IP0201100.action = "LoadAP3?pageid=IP0201101";
+			document.IP0201100.submit();
+	        }
+		   if (t==1){
+	        document.IP0201100.pageid.value="IP0201102";
+			document.IP0201100.action = "LoadAP3?pageid=IP0201102";
+			document.IP0201100.submit();
+	        }
+		   if (t==2){
+	        document.IP0201100.pageid.value="IP0201103";
+			document.IP0201100.action = "LoadAP3?pageid=IP0201103";
+			document.IP0201100.submit();
+	        }
+		   if (t==3){
+	        document.IP0201100.pageid.value="IP0201104";
+			document.IP0201100.action = "LoadAP3?pageid=IP0201104";
+			document.IP0201100.submit();
+	        }
+		   if (t==4){
+	        document.IP0201100.pageid.value="IP0201105";
+			document.IP0201100.action = "LoadAP3?pageid=IP0201105";
+			document.IP0201100.submit();
+	        }
+		   if (t==5){
+	        document.IP0201100.pageid.value="IP0201106";
+			document.IP0201100.action = "LoadAP3?pageid=IP0201106";
+			document.IP0201100.submit();
+	        }
+		
+				
+		//}
+		
+	/*	
+		else{
+			document.IP0201100.pageid.value="IP0201002";  //網銀交易
+		}*/	
+	//}
+	//onSend('IP0201100');
+	
+	/*
+	if(chkDateRule(document.IP0201100.DateBegin.value,document.IP0201100.DateEnd.value,
+		countDate2(0, 1, 0),
+		0,	//A年
+		-13,	//A月
+		0,	//A日
+		0,	//B年
+		1,	//B月
+		0	//B日
+		)==false){
+	alert("您所選擇的區間超過查詢範圍。\n詳見\"說明\"");
+	return ;
+	}
+	*/
+	//document.IP0201100.selDateBegin.value=document.IP0201100.DateBegin.value;
+	//document.IP0201100.selDateEnd.value=document.IP0201100.DateEnd.value;
+	//confirm(document.IP0201100.pageid.value);
+	//document.IP0201100.submit();
+}
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/acctfmt.js"></SCRIPT>
+<body onload="initial();">
+<noscript>
+您的瀏覽器不支援JavaScript功能，若網頁功能無法正常使用時，請開啟瀏覽器JavaScript功能 
+</noscript> 
+
+<script language="JavaScript">
+	window.onload=function(){
+ 		chgDate(0);
+ 	}
+</script>
+
+<form name="IP0201100" method="POST" action="LoadAP3">
+<header>
+	<div class="wrapper">
+		
+		<div class="headerBox">	
+			 <a href="#C"  title="跳到主要內容區塊" tabindex="1" style="position: absolute" class="sr_only">跳到主要內容區塊</a>
+	    <h1 class="no-effect"> <a class="logo" href="https://freebank.ubot.com.tw/" target="_parent"><img src="Accessible/logo.png" alt="聯邦銀行友善服務網" title="聯邦銀行友善服務網" width="300" height="37" hspace="10" border="0"></a></h1>	
+		<div class="header-right">
+				<a href="#U" name="U" id="AU" accesskey="U" class="top" title="上方導覽區">:::</a> <a href="LoadAP3?aptype=IBANK&pageid=AC0000000" class="top">網站導覽</a> / <a href="LoadAP3?aptype=IBANK&pageid=AC0000001" class="top">金融友善服務準則</a>			
+		  </div>
+		</div>
+				
+		<div class="container">
+			<div class="logout">
+				<a href="#" onclick="chkSubmit98();"><img src="Accessible/main_button_02.gif" title="登出" alt="登出" border="0" align="absmiddle" /></a> 
+			</div>
+			<div class="con1">
+				<div><div class="con1_left"><a accesskey="L" name="L" id="AL" title="左方區塊" href="#L" style="text-decoration:none;color:#666;">::: </a></div><div class="con1_right"><a href="LoadAP3?aptype=IBANK&pageid=AC0201000" target="_self"><img src="Accessible/left_button_01.gif" title="利率查詢" alt="利率查詢" width="233" height="60" border="0"></a></div></div><div><a href="LoadAP3?aptype=IBANK&pageid=AC0203000" target="_self"><img src="Accessible/left_button_02.gif" title="匯率查詢" alt="匯率查詢" width="233" height="60" border="0"></a></div><div><a href="LoadAP3?aptype=IBANK&pageid=IC000000B" target="_self"><img src="Accessible/left_button_03.gif" title="帳戶服務" alt="帳戶服務" width="233" height="60" border="0"></a></div><div><a href="LoadAP3?aptype=IBANK&pageid=AC0704100" target="_self"><img src="Accessible/left_button_04.gif" title="約定轉帳交易" alt="約定轉帳交易" width="233" height="60" border="0"></a></div><div><a href="LoadAP3?aptype=IBANK&pageid=AC1005000" target="_self"><img src="Accessible/left_button_05.gif" title="使用者代號變更" alt="使用者代號變更" width="233" height="60" border="0"></a></div><div><a href="LoadAP3?aptype=IBANK&pageid=AC1006000" target="_self"><img src="Accessible/left_button_06.gif" title="使用者密碼變更" alt="使用者密碼變更" width="233" height="60" border="0"></a></div>
+				<!--
+				<script>
+					getLeftmenu();
+				</script>
+				-->
+			</div>
+			<div class="con2">
+				<h2 class="account"><a accesskey="C" name="C" id="AC"  title="中央內容區塊" href="#C" style="text-decoration:none;color:#666;font-size:16px;">:::</a> 交易期間</h2>
+			</div>
+		  <div class="con4">
+				<!--<div class="account"><img src="Accessible/time_button_01.gif" title="當日" alt="當日" width="200" height="32" border="0" onClick="chkSubmit(0);" /></div>-->
+				<div class="account"><a href="#"  class="time_button_focus"  onClick="chkSubmit(0);"><div class="time_button" title="當 日" alt="當 日"  >當　日</div></a></div>
+			</div>
+	      <div class="con4">
+				<!--<div class="account"><img src="Accessible/time_button_02.gif"title="當週"  alt="當週" width="200" height="32" border="0" onClick="chkSubmit(1);" /></div>-->
+				<div class="account"><a href="#" class="time_button_focus"   onClick="chkSubmit(1);"><div class="time_button" title="當 週" alt="當 週"  >當　週</div></a></div>
+		  </div>
+	      <div class="con4">
+				<!--<div class="account"><img src="Accessible/time_button_03.gif" title="最近十日" alt="最近十日" width="200" height="32" border="0" onClick="chkSubmit(2);" /></div>-->
+				<div class="account"><a href="#" class="time_button_focus"   onClick="chkSubmit(2);"><div class="time_button" title="最近十日" alt="最近十日"  >最近十日</div></a></div>
+		  </div>
+	      <div class="con4">
+				<!--<div class="account"><img src="Accessible/time_button_04.gif"  id="one"  title="最近一個月" alt="最近一個月" width="200" height="32" border="0" onClick="chkSubmit(3);" /></div>-->
+				<div class="account"><a href="#" class="time_button_focus"   onClick="chkSubmit(3);"><div class="time_button"   id="one"    title="查詢本月" alt="查詢本月"  >查詢本月</div></a></div>
+		  </div>
+	      <div class="con4">
+				<!--<div class="account"><img src="Accessible/time_button_05.gif"  id="two"  title="最近二個月" alt="最近二個月" width="200" height="32" border="0" onClick="chkSubmit(4);" /></div>-->
+				<div class="account"><a href="#" class="time_button_focus"   onClick="chkSubmit(4);"><div class="time_button"   id="two"    title="查詢上月" alt="查詢上月"  >查詢上月</div></a></div>
+		  </div>
+	      <div class="con4">
+				<!--<div class="account"><img src="Accessible/time_button_06.gif"  id="three"  title="最近三個月" alt="最近三個月" width="200" height="32" border="0" onClick="chkSubmit(5);" /></div>-->
+				<div class="account"><a href="#" class="time_button_focus"   onClick="chkSubmit(5);"><div class="time_button"   id="three"    title="查詢上上月" alt="查詢上上月"  >查詢上上月</div></a></div>
+		  </div>
+		</div>		
+   
+  </div>
+</header>
+
+<div class="footer">
+	<div class="wrapper">				
+	 	<div class="footerBox">
+	        <p class="copyright">	 			
+		 		<a accesskey="Q" name="Q" id="AQ"  title="網頁資訊" href="#Q" style="text-decoration:none;color:#666;">:::</a>
+		 		<strong>客服中心電話：(02)2545-1788、0800-089-888 &copy;聯邦商業銀行版權所有</strong>
+		 		<a href="https://www.handicap-free.nat.gov.tw/Applications/Detail?category=20171108152834" title="無障礙網站"><img src="Accessible/20a.jpg" alt="通過A檢測等級無障礙網頁檢測" width="88" height="31" border="0" /></a>	
+	 		</p>
+		</div>
+	</div>
+</div>
+<input type="hidden" name="selBrName" value="">
+<input type="hidden" name="selBalType" value="">
+<input type="hidden" name="selAcctNo" value="[[%%ACCTNO%%]]">
+<input type="hidden" name="selAvalBalance" value="">
+<input type="hidden" name="selDateBegin" value="">
+<input type="hidden" name="selDateEnd" value="">
+<input type="hidden" name="aptype" value="ibank">
+<input type="hidden" name="pageid" value="IP0201101">
+
+<input type="hidden" name="selQueryType" value="0" >  
+<script>
+  
+
+    var nowMonth;
+	var preMonth2;
+	var preMonth3;
+	
+
+	//變更該ID(myImag)屬性為tilte資訊
+	$('#one').attr('title',nowMonth);
+	$('#two').attr('title',preMonth2);
+	$('#three').attr('title',preMonth3);
+	
+	//變更該ID(myImag)屬性為alt資訊
+	$('#one').attr('alt',nowMonth);
+	$('#two').attr('alt',preMonth2);
+	$('#three').attr('alt',preMonth3);
+	
+	//變更該ID(test123)展現文字內容
+	$('#one').text("").append(nowMonth+"月份");
+	$('#two').text("").append(preMonth2+"月份");
+	$('#three').text("").append(preMonth3+"月份");
+	
+	
+</script>
+</form>		
+</body>
+</html>

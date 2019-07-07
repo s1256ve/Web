@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- UCPTVTRTR 存單明細查詢 Last updated date 5-15-2003 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPT">
+	<field id="VTRTRi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id="VTRTRi02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>帳號</description>
+	</field>
+	<field id="VTRTRi03">
+		<name>REVE-PIN</name>
+		<length>4</length>
+		<type>String</type>
+		<description>PIN</description>
+	</field>
+	<field id="VTRTRi04">
+		<name>REVE-TO-ACCTNO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>轉入帳號</description>
+	</field>
+	<field id="VTRTRi05">
+		<name>REVE-TXN-AMT</name>
+		<length>1</length>
+		<type>String</type>
+		<description>轉帳金額</description>
+	</field>
+	<field id="VTRTRi06">
+		<name>REVE-BANK-CODE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>轉入銀行代號</description>
+	</field>
+	<field id="VTRTRi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="VTRTRi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="VTRTRi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="VTRTRi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

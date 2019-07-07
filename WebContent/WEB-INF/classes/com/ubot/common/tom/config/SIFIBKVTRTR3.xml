@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- IBKVTRTR 即時轉帳(憑證) Last updated date 5-15-2003 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPT">
+	<field id="VTRTRi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='VTRTRi54' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="VTRTRi55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="VTRTRi02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>帳號</description>
+	</field>
+	<field id="VTRTRi04">
+		<name>REVE-TO-ACCTNO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>轉入帳號</description>
+	</field>
+	<field id="VTRTRi05">
+		<name>REVE-TXN-AMT</name>
+		<length>1</length>
+		<type>String</type>
+		<description>轉帳金額</description>
+	</field>
+	<field id="VTRTRi06">
+		<name>REVE-TO-BANK</name>
+		<length>1</length>
+		<type>String</type>
+		<description>轉入銀行代號</description>
+	</field>
+	<field id="VTRTRi07">
+		<name>REVE-TXN-TYPE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>交易類別</description>
+	</field>
+	<field id="VTRTRi08">
+		<name>REVE-TXN-FEE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>手續費</description>
+	</field>
+	<field id="VTRTRi09">
+		<name>REVE-FROM-CURRENCY</name>
+		<length>2</length>
+		<type>String</type>
+		<description>轉入幣別</description>
+	</field>
+	<field id="VTRTRi10">
+		<name>REVE-TXN-MEMO</name>
+		<length>2</length>
+		<type>String</type>
+		<description>交易附註</description>
+	</field>
+	<field id="VTRTRi11">
+		<name>REVE-MSG-SENDTO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>通知對象</description>
+	</field>
+	<field id="VTRTRi12">
+		<name>REVE-MSG-CONTENT</name>
+		<length>1</length>
+		<type>String</type>
+		<description>通知之訊息內容</description>
+	</field>
+	<field id="VTRTRi13">
+		<name>REVE-MSG-TYPE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>訊息傳送種類</description>
+	</field>
+	<field id="VTRTRi14">
+		<name>REVE-MSG-SUBJECT</name>
+		<length>1</length>
+		<type>String</type>
+		<description>通知之訊息標題</description>
+	</field>
+	<field id="VTRTRi15">
+		<name>REVE-MAIL-KEY</name>
+		<length>1</length>
+		<type>String</type>
+		<description>頻道辨識</description>
+	</field>
+	<field id="VTRTRi16">
+		<name>REVE-MSG</name>
+		<length>1</length>
+		<type>String</type>
+		<description>通知之訊息</description>
+	</field>
+	<field id="VTRTRi16">
+		<name>REVE-SIGN</name>
+		<length>300</length>
+		<type>String</type>
+		<description>欲驗簽章內容</description>
+	</field>
+	<field id="VTRTRi07">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="VTRTRi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="VTRTRi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="VTRTRi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="VTRTRi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

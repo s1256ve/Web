@@ -1,0 +1,132 @@
+<html>
+<head>
+<title>忘記密碼</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+
+function chkSubmit(){
+	if (document.IP1099003.chkSel.value == 1){
+		document.IP1099003.pageid.value = "IP1099001";
+		
+		document.IP1099003.submit();
+	}
+	else if(document.IP1099003.chkSel.value == 2){
+		document.IP1099003.pageid.value = "IP1099003";
+		
+		document.IP1099003.submit();
+	}
+	else{}
+}
+
+function chkSubmit2(){
+	if(!document.IP1099003.REVE_PWD.value){
+		alert("請輸入網路密碼!!");
+		return;
+	}
+	if(!document.IP1099003.REVE_NEW_PWD.value){
+		alert("請輸入新網路密碼!!");
+		return;
+	}
+	if(!document.IP1099003.REVE_CFM_PWD.value){
+		alert("請輸入確認新網路密碼!!");
+		return;
+	}
+	if(document.IP1099003.REVE_NEW_PWD.value != document.IP1099003.REVE_CFM_PWD.value){
+		alert("您輸入的兩次新密碼不相同!");
+		return;
+	}
+	if(document.IP1099003.REVE_PWD.value == document.IP1099003.REVE_CFM_PWD.value){
+		alert("新舊密碼不得相同!");
+		return;
+	}
+	document.IP1099003.pageid.value = "IP1099004";
+	document.IP1099003.submit();
+}
+
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+
+function showRule(){
+    window.open("LoadAP?pageid=IP1003006&aptype=NOAP","newWindow1",'width=630,height=420');
+}
+//-->
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0" onfocus="onTop();">
+
+<form method="post" action="LoadAP" name="IP1099003">
+<img src="graph/point.gif" width="12" height="12">
+<b>個人設定&gt;<font color="#0066FF">網路密碼/使用者代號變更</font></b><br>
+<table width="630" border="0">
+  <tr> 
+    <td valign="bottom">&nbsp;變更項目 
+      <select name="chkSel">
+        <option value=0 selected>=請選擇變更項目=</option>
+        <option value=1>變更使用者代號</option>
+        <option value=2>變更網路密碼</option>
+      </select>
+    </td>
+    <td width="435" colspan="-1" valign="bottom"><img src="graph/go.gif" height="19" border="0" onClick="javascript:chkSubmit();"></td>
+  </tr>
+  <tr>
+    <td colspan="2" valign="bottom"><table width="100%"  border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td>
+          <div align="right">
+            <input type="button" name="view" value="使用者代號與網路密碼設定注意事項" onclick="javascript:showRule();">
+        </div></td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="4" height="1"></td>
+  </tr>
+</table>
+<br>
+<table width="630" border="0" cellspacing="0" cellpadding="0">
+  <tr valign="top"> 
+    <td height="95"> 　 <img src="graph/point.gif" width="12" height="12" align="absmiddle"><font color="#FF0000">變更網路密碼 
+      </font> 
+      <table width="300" bordercolor="#999999" align="center" border="1">
+        <tr> 
+          <td width="135" height="0"> 舊網路密碼</td>
+          <td width="147" height="0"> 
+          <input type="password" name="PWD" size="8" onClick="javascript:getKeyBoard('IP1099003','PWD','REVE_PWD','[[%%SEND-KB-KEYCODE%%]]','[[%%SEND-KB-KEYLETTER%%]]');onTop();" readonly>
+          
+          </td>
+        </tr>
+        <tr> 
+          <td width="135" height="0"> 新網路密碼</td>
+          <td width="147" height="0"> 
+          <input type="password" name="PWD2" size="8" onClick="javascript:getKeyBoard('IP1099003','PWD2','REVE_NEW_PWD','[[%%SEND-KB-KEYCODE%%]]','[[%%SEND-KB-KEYLETTER%%]]');onTop();" readonly>
+           
+          </td>
+        </tr>
+        <tr> 
+          <td height="0" width="135"> 確認新網路密碼</td>
+          <td width="147" height="0"> 
+            <input type="password" name="PWD3" size="8" onClick="javascript:getKeyBoard('IP1099003','PWD3','REVE_CFM_PWD','[[%%SEND-KB-KEYCODE%%]]','[[%%SEND-KB-KEYLETTER%%]]');onTop();" readonly>
+            
+          </td>
+        </tr>
+      </table>
+      <div align="center"> 
+        <input type="button" name="Submit" value="確定" onClick="javascrip:chkSubmit2();">
+        <input type="reset" name="Reset" value="重填">
+      </div>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="IP1099003">
+</table>
+<input type="hidden" name="REVE_PWD" value="">
+<input type="hidden" name="REVE_NEW_PWD" value="">
+<input type="hidden" name="REVE_CFM_PWD" value="">
+</form>
+</body>
+</html>

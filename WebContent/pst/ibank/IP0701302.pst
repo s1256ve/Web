@@ -1,0 +1,128 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI99041           2010.05.11     YiSyun
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<script>
+	var mobile = '[[%%SEND_MOBILE%%]]';
+    	var email = '[[%%SEND_EMAIL_ADDR%%]]';
+function getNotifyType(){
+    	var f=document.IP0701302;
+        if (mobile!=''){
+            return " 簡訊通知 "+ mobile;
+        }
+        else if (email!=''){
+            return " 電子郵件通知 "+ email;
+        }
+        else {
+        	return "不通知";
+        }
+	
+    }
+
+</script>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　帳戶交易&gt;<font color="#0066FF">即時轉帳</font></b><br>
+<font class="t3">　聯邦銀行個人網路銀行交易結果</font><br>
+<form method="post" action="LoadAP" name="IP0701302">
+<br>
+<table width="630" border="0">
+  <tr>
+    <td> 
+      <div align="center"><font color="#0000CC">交易訊息：交易成功<br>
+        交易日/時間：
+        <script>
+        	document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+        </script>
+        </font></div>
+      <table width="350" border="1" align="center" bordercolor="#999999">
+        <tr> 
+          <td width="27%" bgcolor="#C4CBB8">交易類別</td>
+          <td width="73%" height="25">即時轉帳</td>
+        </tr>
+        <tr> 
+          <td width="27%" bgcolor="#C4CBB8"> 轉出帳號</td>
+          <td width="73%" height="25">
+          [[%%FROM_BR_NAME%%]]
+          <SCRIPT language="JavaScript">
+                document.write(getAcctStr('[[%%FROM_ACCT_NO%%]]'));
+          </SCRIPT>
+          </td>
+        </tr>
+        <tr> 
+          <td width="27%" bgcolor="#C4CBB8">轉入銀行</td>
+          <td width="73%" height="25">[[%%TO_BANK_NAME%%]]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="27%">轉入帳號</td>
+          <td height="25" width="73%">
+          <SCRIPT language="JavaScript">
+                document.write(getAcctStr('[[%%TO_ACCTNO%%]]'));
+          </SCRIPT>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="27%">幣別/金額</td>
+          <td height="25" width="73%"> 
+            <p>[[%%CURRENCY-CNAME%%]]
+            <SCRIPT language="JavaScript">
+                document.write( moneyAddDot('[[%%TXN_AMT%%]]'));
+            </SCRIPT>
+            
+             元</p>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="27%">手 續 費</td>
+          <td height="25" width="73%">新台幣17元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="27%">轉出帳號餘額</td>
+          <td height="25" width="73%">
+          [[%%CURRENCY-CNAME%%]]
+          <SCRIPT language="JavaScript">
+                document.write( moneyAddDot('[[%%SEND_AVAL_BALANCE%%]] '));
+          </SCRIPT>
+          元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="27%">交易附註</td>
+          <td height="25" width="73%">[[%%TXN_MEMO%%]]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="27%"> 通知方式</td>
+          <td height="25" width="73%" bgcolor="#FFFFDD">
+          <script>
+          document.write(getNotifyType());
+          </script>
+          </td>
+        </tr>
+      </table>
+      <div align="center">
+        <table width="630" border="0" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td width="50%"> 
+              <div align="center"><a href="javascript:window.print()"><img src="graph/print.gif" width="52" height="24" border="0"></a>　 
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

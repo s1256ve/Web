@@ -1,0 +1,135 @@
+<html>
+<head>
+<title>歡迎光臨-聯邦銀行個人金融網</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI98041           2009.06.24     Carl
+*EAI98056           2009.10.13     David
+*EAI99041	          2010.05.10	   David
+***********************************************************************/
+</script>
+</head>
+<body bgcolor="#FFFFFF" onLoad="Layer1.style.visibility = 'visible';Layer2.style.visibility = 'hidden';" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+<table width="775" border="0">
+<tr>
+<td>
+	<table width="770" border="0" cellspacing="0" cellpadding="0">
+	  <tr bgcolor="#D7EBFF"> 
+	    <td><b>│</b>
+	    <a href="javaScript:void(0);" onClick="Layer1.style.visibility = 'visible';Layer2.style.visibility = 'hidden';">達文西A+理財卡</a><b>│</b>
+	    <a href="javaScript:void(0);" onClick="Layer1.style.visibility = 'hidden';Layer2.style.visibility = 'visible';">國民現金</a><b>│</b>
+	    </td>
+	  </tr>
+	</table>
+	<p>&nbsp;</p>
+	<div id="Layer1" style="position:absolute; left:0px; top:18px; width:636px; height:8px; z-index:1; visibility:hidden"> 
+	  <table width="770" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0500002&nextpage=IP0511000&[[%%SESSIONID%%]]" target="main">達文西A+理財卡帳務查詢</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0500002&nextpage=IP0512000&[[%%SESSIONID%%]]" target="main">達文西A+理財卡繳款</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0500002&nextpage=IP0513000&[[%%SESSIONID%%]]" target="main">達文西A+理財卡交易明細</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0500002&nextpage=IP0514000&[[%%SESSIONID%%]]" target="main">本期最低應繳金額</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0500002&nextpage=IP0515000&[[%%SESSIONID%%]]" target="main">結清應繳總額</a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+	<div id="Layer2" style="position:absolute; left:0px; top:18px; width:620px; height:19px; z-index:2; visibility:hidden"> 
+	  <table width="775" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0500001&nextpage=IP0501000&[[%%SESSIONID%%]]" target="main">國民現金帳務查詢</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0500001&nextpage=IP0705000&[[%%SESSIONID%%]]" target="main">國民現金繳款</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0500001&nextpage=IP0503000&[[%%SESSIONID%%]]" target="main">國民現金交易明細</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0500001&nextpage=IP0504000&[[%%SESSIONID%%]]" target="main">本期最低應繳金額</a></div>
+	      </td>
+	      <td> 
+	        <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IP0500001&nextpage=IP0505000&[[%%SESSIONID%%]]" target="main">結清應繳總額</a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+</td>
+</tr>
+</table>
+<script language="javaScript">
+
+var Timeout_ID = null;
+var iMain 	= null;
+var pSubMain 	= null;	
+var pDown	= null;
+
+function checkLoaded() {
+
+	if (!document.getElementById){
+		clearTimeout(Timeout_ID);
+		Timeout_ID = null;
+		//alert("IE failed:document.getElementById");
+		return;
+	}
+	
+	if ( (document.getElementById("main")) && (document.getElementById("main").style) ) {
+		iMain = document.getElementById("main").style;  			
+  		iMain.left = 0;
+     	}else {    
+     		clearInterval(Timeout_ID);	Timeout_ID = 0;
+     		//alert("Failed to load iFrame: main");      		
+     		return;
+     	}     	
+     	
+	if (parent.document.getElementById && 
+	    parent.document.getElementById("submain") &&    parent.document.getElementById("down")) {
+		pSubMain = parent.document.getElementById("submain").style;
+		pDown    = parent.document.getElementById("down").style;
+	}else{
+		clearInterval(Timeout_ID);	Timeout_ID = null;
+		//alert("Failed to load iFrame: submain & down ....");		
+		return;
+	}
+	
+	if (window.frames["main"].document.readyState == "complete" ) {
+		clearInterval(Timeout_ID);	Timeout_ID = null;		
+
+		var bodyMain = window.frames["main"].document.body;
+		
+		this.document.getElementById("main").style.width = bodyMain.scrollWidth;
+		if (parseFloat(bodyMain.scrollHeight, 10) < 385) 
+			this.document.getElementById("main").style.height = 385;
+		else    this.document.getElementById("main").style.height = bodyMain.scrollHeight ;
+
+     		//pSubMain.height = parseInt(this.document.body.scrollHeight, 10);
+     		pSubMain.height = parseInt(parseInt(iMain.height, 10) + parseInt(iMain.top, 10)) + "px";
+		pDown.top	= parseInt(pSubMain.height, 10) + parseInt(pSubMain.top, 10) + 50;
+
+		if (top.document.getElementById("IC0000000") != null)
+			top.document.getElementById("IC0000000").style.height = parseInt(parseInt(pDown.height, 10) + parseInt(pDown.top, 10)) + "px";
+	}
+}
+
+</script>
+
+
+<!--iframe name="left" style="position: absolute; top:4 ; left:0 ; z-index:0" width="142" height="600" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?aptype=IBANK&pageid=IC0100001"/-->
+<iframe name="main" id="main" onLoad="javaScript:Timeout_ID=setInterval('checkLoaded();', 500)"
+	style="position: absolute; top:42 ; left:0 ; z-index:0" width="775" height="1500" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?aptype=IBANK&pageid=IP0803001&[[%%SESSIONID%%]]"></iframe>
+</body>
+</html>

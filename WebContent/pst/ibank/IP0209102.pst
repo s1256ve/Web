@@ -1,0 +1,313 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>台幣存款帳戶查詢</title>
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------------
+*EAI99068           2010.11.29     Carl 
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<script language="JavaScript" SRC="script/acctfmt.js"></script>
+<script language="JavaScript" SRC="script/moneyfmt.js"></script>
+<script language="JavaScript" src="script/datefmt.js"></script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script>
+function ChgType1(str1) {
+  var str=str1;
+  if (str1=="機動"){
+      return "利率機動";
+  }
+  else{
+      return "固定" + str + "%";
+  }  
+}
+</script>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } .style1 {color: #FF0000}
+-->
+</style>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+<form method="POST" name="IP0209102" action="LoadAP">
+<b>帳戶交易&gt;</b><font color="#0066FF"><b>綜存定存續存設定或中途解約&gt;<strong>台幣定存中途解約</strong></b></font><br>
+<br>
+<table width="630" border="0">
+  <tr>
+    <td><div align="center"><font color="#0000CC">交易訊息：交易成功<br>
+      交易時間：
+      <script>
+    		document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+    	</script>
+    </font></div>
+        <table width="500" border="1" align="center" bordercolor="#999999">
+          <tr>
+            <td width="22%" bgcolor="#C4CBB8">交易名稱<br></td>
+            <td width="78%" height="25"><p>綜存定存中途解約<br>
+            </p>            </td>
+          </tr>
+          <tr>
+            <td width="22%" bgcolor="#C4CBB8">轉出帳號<br></td>
+            <td width="78%" height="25"><p>[[%%SEND-BR-NAME%%]] 
+            <script language="javascript"> 
+        			document.write(getAcctStr("[[%%SEND-ACCT-NO%%]]"));
+        		</script>
+            </p></td>
+          </tr>
+          <tr>
+            <td width="22%" bgcolor="#C4CBB8">定存存單號碼<br></td>
+            <td width="78%" height="25">[[%%SEND_V_NO%%]]</td>
+          </tr>
+          <tr>
+            <td width="22%" bgcolor="#C4CBB8">幣別/金額<br></td>
+            <td width="78%" height="25"><p>新台幣
+            <script>
+              document.write(trimDecimal(moneyAddDot('[[%%SEND_BALANCE%%]]'))); 
+            </script>
+            元<br>
+            </p>            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8" width="22%"><span class="style1">原存單起息日<br>
+            </span></td>
+            <td height="25" width="78%"><p><span class="style1">
+      				[[%%SEND_B_DATE%%]]
+            </span>
+            </p></td>
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8" width="22%"><span class="style1">原定存到期日<br>
+            </span></td>
+            <td height="25" width="78%"><p><span class="style1">
+      				[[%%SEND_E_DATE%%]]
+            </span>
+            </p></td>
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8" width="22%"><span class="style1">解約日期<br>
+            </span></td>
+            <td height="25" width="78%"><p><span class="style1">
+            <script>
+      				document.write(getRCDateStr("[[%%SYSDATE%%]]",0));
+      			</script>
+            </span>
+            </p></td>
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8" width="22%">原定存利率<br></td>
+            <td width="78%" height="25" bgcolor="#FFFFDD">
+            <p>
+            <SCRIPT language="JavaScript">     
+      				document.write(ChgType1('[[%%SEND_INTEREST%%]]'));
+      			</SCRIPT>
+            </p>
+            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8" width="22%">解約定存利息<br></td>
+            <td height="25" width="78%" bgcolor="#FFFFDD"><p>新台幣
+            <script>
+              document.write(trimDecimal(moneyAddDot(eval('[[%%SEND_AVAL_INT%%]]')+""))); 
+            </script>
+            元<br>
+            </p>            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8" width="22%">代扣利息所得稅<br></td>
+            <td height="25" width="78%" bgcolor="#FFFFDD"><p>新台幣
+            <script>
+              document.write(trimDecimal(moneyAddDot(eval('[[%%SEND_INCOME_TAX%%]]')+""))); 
+            </script>
+            元<br>
+            </p>            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8" width="22%">補充保費<br></td>
+            <td height="25" width="78%" bgcolor="#FFFFDD"><p>新台幣
+            <script>
+              document.write(trimDecimal(moneyAddDot(eval('[[%%SEND_SUPP_PREM%%]]')+""))); 
+            </script>
+            元<br>
+            </p>            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8">轉入帳號<br></td>
+            <td height="25" bgcolor="#FFFFDD"><p>
+            <script language="javascript"> 
+        			document.write(getAcctStr("[[%%SEND_TO_ACCT%%]]"));
+        		</script>
+            </p>            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8">轉入金額<br></td>
+            <td height="25" bgcolor="#FFFFDD"><p>新台幣
+            <script>
+              //document.write(trimDecimal(moneyAddDot(eval('[[%%SEND_BALANCE%%]]')+eval('[[%%SEND_AVAL_INT%%]]')-eval('[[%%SEND_INCOME_TAX%%]]')+""))); 
+              document.write(trimDecimal(moneyAddDot('[[%%SEND_REAL_TOTAL%%]]'))); 
+            </script>
+            元</p>            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#C4CBB8">轉入帳號餘額<br></td>
+            <td height="25" bgcolor="#FFFFDD"><p>新台幣
+            <script>
+              document.write(trimDecimal(moneyAddDot(eval('[[%%SEND_TOACCT_BALANCE%%]]')+""))); 
+            </script>
+            元</p></td>
+          </tr>
+        </table>
+        <table width="500" border="0" align="center">
+        <tr>
+          <td>說明：
+            <table width="100%" border="0">
+              <tr>
+              	<td style="vertical-align:top">1. 綜存中途解約之利息計算：</td>
+              <!--	<td>綜存中途解約之利息計算：</td>-->
+         <!--       
+              <tr>
+              	<td>
+              	<td>採用本行牌告利率固定計息之存款，按其實際存款期間（包括不足月零星日數），並依下列規定單利計息。</td>
+              </tr>
+         -->    
+            </table>
+            <table width="100%" border="0">
+              <tr>
+                <td></td>
+                <td></td>
+                <td>a.  未滿一個月時，不予計息。</td>  
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>b.  存滿一個月(含)以上時，按其實際存款期間(包括不足月零星日數)，以存入當日本行各期別之牌告利率八折單利計息，但採用機動利率計息之存款，在實際存款期間內，如遇本行牌告利率調整，應按實存期間分別以新、舊牌告利率分段單利計息。</td>
+              </tr>
+        <!--      
+              <tr>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>c.  存滿三個月未滿六個月時，照本行三個月期牌告利率八折計息。</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>d.  存滿六個月未滿九個月時，照本行六個月期牌告利率八折計息。</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>e.  存滿九個月未滿一年時，照本行九個月期牌告利率八折計息。</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>f.  存滿一年未滿二年時，照本行一年期牌告利率八折計息。</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>g.  存滿二年以上時，照本行二年期牌告利率八折計息。</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>前述各款牌告利率，以存入當日之牌告利率為準，但採用機動利率計息之存款，在實際存款期間內，如遇本行牌告利率調整，應按實存期間分別以新、舊牌告利率分段計息。</td>
+              </tr>
+         -->     
+            </table>
+            <table width="100%" border="0">
+              <tr>
+              	<td style="vertical-align:top">2. </td>
+              	<td>中華民國境內居住之個人存戶，應於給付利息時扣取百分之十稅額；惟每次應扣繳稅額未超過新台幣二千元者，免予扣繳；如非中華民國境內居住之個人存戶應於給付利息時扣取百分之二十稅額。</td>
+              </tr>
+            </table>
+		<!--	
+            <table width="100%" border="0">
+              <tr>
+              	<td style="vertical-align:top">3. </td>
+              	<td>因應102年1月1日二代健保補充保險費扣繳辦法上線，其利息補充保險費扣繳相關作業如下：</td>
+              </tr>
+            </table>
+            <table width="100%" border="0">
+              <tr>
+                <td></td>
+                <td></td>
+                <td>a.  單次(筆)給付利息金額為新台幣5,000(含)~19,999元，於次年度由健保局開立繳款書向義務人收取。</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+                <td></td>
+                <td>b.  單次(筆) 給付利息金額為新台幣20,000元(含)以上，由本行給付利息時，即先代扣2%補充保險費。</td>
+              </tr>
+            </table>
+		-->
+		
+		   <table width="100%" border="0">
+              <tr>
+              <td>
+            3.若單次(筆)給付利息金額為新臺幣2萬元以上~1千萬元(含)以下(當金額超過1千萬元，以1千<br>&nbsp;&nbsp;&nbsp;萬元計算)，由本行給付利息時，即先代扣1.91%之補充保險費。
+              </td>
+              </tr>
+            </table>
+			
+            <table width="100%" border="0">
+              <tr>
+              	<td style="vertical-align:top">4. </td>
+              	<td>中途解約支付本息時<b>有可能為負數</b>，係因存戶已照原存單利率按月領取之利息應予扣回，且已代扣之利息所得稅，不予退還。</td>
+              </tr>
+            </table>
+            <table width="100%" border="0">
+              <tr>
+                <td style="vertical-align:top">5.</td>
+                <td style="vertical-align:top"><font color=red>a.<br>
+                </font></td>
+                <td><font color=red>本交易如在營業日下午4點以前執行，定存單解約後之本金及利息將計算至當日並轉入綜存活儲帳戶。 </font></td>
+              </tr>
+              <tr>
+                <td style="vertical-align:top">&nbsp;</td>
+                <td style="vertical-align:top"><font color=red>b.</font></td>
+                <td><font color=red>本交易如逾營業日下午4點後執行之交易，則於次一營業日凌晨將定存單解約後，本金及利息將轉入綜存活儲帳戶(解約利息計算至次一營業日)。</font></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <div align="center">
+          <table width="630" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td><div align="center"><a href="javascript:window.print()"><img src="graph/print.gif" width="52" height="24" border="0"></a></div></td>
+            </tr>
+          </table>
+      </div></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<input type="hidden" name="SEND-BR-NAME" value="[[%%SEND-BR-NAME%%]]">
+<input type="hidden" name="SEND-ACCT-DESC" value="[[%%SEND-ACCT-DESC%%]]">
+<input type="hidden" name="SEND-ACCT-NO" value="[[%%SEND-ACCT-NO%%]]">
+<input type="hidden" name="SEND_B_DATE" value="[[%%SEND_B_DATE%%]]">
+<input type="hidden" name="SEND_E_DATE" value="[[%%SEND_E_DATE%%]]">
+<input type="hidden" name="SEND_INTEREST" value="[[%%SEND_INTEREST%%]]">
+<input type="hidden" name="SEND_COLL_STATUS" value="[[%%SEND_COLL_STATUS%%]]">
+<input type="hidden" name="SEND_INT_PAY" value="[[%%SEND_INT_PAY%%]]">
+<input type="hidden" name="SEND_V_NO" value="[[%%SEND_V_NO%%]]">
+<input type="hidden" name="SEND_BALANCE" value="[[%%SEND_BALANCE%%]]">
+<input type="hidden" name="SEND_MEMO" value="[[%%SEND_MEMO%%]]">
+<input type="hidden" name="SEND_DELAY" value="[[%%SEND_DELAY%%]]">
+<input type="hidden" name="SEND_REMOVE_DATE" value="[[%%SEND_REMOVE_DATE%%]]">
+<input type="hidden" name="SEND_CAPITAL" value="[[%%SEND_CAPITAL%%]]">
+<input type="hidden" name="SEND_AVAL_INT" value="[[%%SEND_AVAL_INT%%]]">
+<input type="hidden" name="SEND_TO_ACCT" value="[[%%SEND_TO_ACCT%%]]">
+<input type="hidden" name="SEND_TOACCT_BALANCE" value="[[%%SEND_TOACCT_BALANCE%%]]">
+</form>
+</body>
+</html>
+

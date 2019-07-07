@@ -1,0 +1,203 @@
+<html>
+<head>
+<title>掛失業務</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<script language="JavaScript">
+        var a1 = 0
+	var a2 = 0
+	var a3 = 0
+	var k = 200
+	var AcctAry10 = new Array(k) 
+	var AcctAry11 = new Array(k) 
+	var AcctAry20 = new Array(k)
+	var AcctAry21 = new Array(k) 
+	var AcctAry30 = new Array(k)
+	var AcctAry31 = new Array(k) 
+
+	function addAccountElement(AcctNo, BRName, AcctDesc){
+		var AccType = AcctNo.substring(3,5)
+		
+		switch (AccType){
+		  case "10":		  	
+		  	AcctAry10[a1] = AcctNo;
+		  	AcctAry11[a1] = BRName + " " + AcctDesc + " " + getAcctStr(AcctNo);
+		  	AcctAry20[a2] = AcctNo;
+		  	AcctAry21[a2] = BRName + " " + AcctDesc + " " + getAcctStr(AcctNo);
+		  	AcctAry30[a3] = AcctNo;
+		  	AcctAry31[a3] = BRName + " " + AcctDesc + " " + getAcctStr(AcctNo);
+		  	a1++;
+		  	a2++;
+		  	a3++;
+		  	break;
+		  case "20":		  	
+		  	AcctAry10[a1] = AcctNo;
+		  	AcctAry11[a1] = BRName + " " + AcctDesc + " " + getAcctStr(AcctNo);
+		  	AcctAry20[a2] = AcctNo;
+		  	AcctAry21[a2] = BRName + " " + AcctDesc + " " + getAcctStr(AcctNo);
+		  	AcctAry30[a3] = AcctNo;
+		  	AcctAry31[a3] = BRName + " " + AcctDesc + " " + getAcctStr(AcctNo);
+		  	a1++;
+		  	a2++;
+		  	a3++;
+		  	break; 
+		   case "30":
+		  	//AcctAry30[a3] = AcctNo;
+		  	//AcctAry31[a3] = BRName + " " + AcctDesc + " " + getAcctStr(AcctNo);		  	
+		  	//a3++;
+		  	break;
+		   case "40":		   	
+		  	break;
+		   case "50":		  	
+		  	AcctAry10[a1] = AcctNo;
+		  	AcctAry11[a1] = BRName + " " + AcctDesc + " " + getAcctStr(AcctNo);
+		  	AcctAry20[a2] = AcctNo;
+		  	AcctAry21[a2] = BRName + " " + AcctDesc + " " + getAcctStr(AcctNo);
+		  	AcctAry30[a3] = AcctNo;
+		  	AcctAry31[a3] = BRName + " " + AcctDesc + " " + getAcctStr(AcctNo);
+		  	a1++;
+		  	a2++;
+		  	a3++;
+		  	break;
+		   case "51":
+		  	AcctAry20[a2] = AcctNo;
+		  	AcctAry21[a2] = BRName + " " + AcctDesc + " " + getAcctStr(AcctNo);
+		  	AcctAry30[a3] = AcctNo;
+		  	AcctAry31[a3] = BRName + " " + AcctDesc + " " + getAcctStr(AcctNo);		  	
+		  	a2++;
+		  	a3++;
+		  	break;
+		   case "77":
+		  	//AcctAry20[a2] = AcctNo;
+		  	//AcctAry21[a2] = BRName + " " + AcctDesc + " " + getAcctStr(AcctNo);
+		  	//AcctAry30[a3] = AcctNo;
+		  	//AcctAry31[a3] = BRName + " " + AcctDesc + " " + getAcctStr(AcctNo);		  	
+		  	//a2++;
+		  	//a3++;
+		  	break;
+		   case "88":		   	
+		  	break;
+		}		
+	}
+	
+	function ClearAcctDisp(){
+	      var i = document.IP0901000.REVE_ACCT_NO.length
+	      for (j=0; j < i; j++){
+	      	document.IP0901000.REVE_ACCT_NO.options[j] = null;	      
+	      }		     
+	}
+	
+	function chgAcctDisp(acctSelect){	        	
+		var i = acctSelect.length				
+		ClearAcctDisp()
+		
+		for (j=0; j < i; j++ ){
+		   if (acctSelect.options[j].selected){
+		       switch (j){
+		       case 1 :		       	  
+		   	  for(k1 = 0 ; k1 < k ; k1++){
+		   	  	if (!isNaN(AcctAry10[k1])) document.IP0901000.REVE_ACCT_NO.options[k1] = new Option(AcctAry11[k1],AcctAry10[k1]);
+		   	  }
+		   	  break;		        
+		       case 2 :	
+		   	  for(k1 = 0 ; k1 < k ; k1++){
+		   	  	if (!isNaN(AcctAry20[k1])) document.IP0901000.REVE_ACCT_NO.options[k1] = new Option(AcctAry21[k1],AcctAry20[k1]);		   	  	
+		   	  	
+		   	  }
+		   	  break;
+		       case 3 :	
+		   	  for(k1 = 0 ; k1 < k ; k1++){
+		   	  	 if (!isNaN(AcctAry30[k1])) document.IP0901000.REVE_ACCT_NO.options[k1] = new Option(AcctAry31[k1],AcctAry30[k1]);
+		    	  }
+		   	  break;      	     
+		       }	   	
+		   }
+		}
+	
+	}
+	
+	function chksubmit(){
+		if (document.IP0901000.pageid.value == ""){
+			alert("請選擇掛失項目");
+			return false;
+		}
+		if(document.IP0901000.REVE_ACCT_NO.value == "") {
+			alert("請選擇帳號");
+			return false;
+		}
+		return true;		
+	}
+</script>
+
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<link rel="stylesheet" type="text/css" media="all" href="theme/portal.css" />
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　服務台&gt;<font color="#0066FF">掛失服務</font></b>
+<form name="IP0901000" method="POST" action="LoadAP" onSubmit='javascript:return chksubmit();'>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5" height="69"><font color="#663300" face="Arial, Helvetica, sans-serif"> 
+      </font> 
+      <table width="600" border="0">
+        <tr> 
+          <td>　 掛失項目 　 
+            <select name="pageid" onChange="chgAcctDisp(this);">
+              <option value="" selected>==請選擇掛失項目==</option>
+              <option value="IP0901100">金融卡</option>
+              <option value="IP0901200">存　摺</option>
+              <option value="IP0901300">印　鑑</option>
+            </select></td> </tr>
+        <tr> 
+          <td>　 帳　　號 　 
+        <select name="REVE_ACCT_NO">
+        <option selected>==請選擇帳號==</option>
+        
+       
+       
+             <!--   document.write(getAcctStr('[[%%SEND-ACCT-NO%%]]'));-->
+        
+        
+               
+      </select>
+           
+            <input type="submit" name="Submit" value="確定" >     </td>
+        </tr>
+        <tr>
+          <td>　 說明：   </td>
+        </tr>
+        <tr>
+          <td>
+          　 （1）銀行業務諮詢、申訴與掛失服務專線： (02)2545-1788 ， 由專人服務。<br>
+          　 （2）信用卡掛失請速撥信用卡掛失服務專線：（02）2545-5168或(07) 226-9393，由專人服務。<br>
+          　 （3）請攜帶身分證正本、第二證件及原留印鑑(或新印鑑)至原分行辦理金融卡、存摺或印鑑掛失<br>
+          　 　 　 之取消掛失或重新補發手續。
+          </td>
+       </tr>
+      
+                
+      
+      </table>
+    </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="5" valign="bottom" height="1"></td>
+  </tr>
+</table>
+
+</form>
+<script>
+<!-- [[%%LOOP_SEC SEND-ACCT-NO%%]] -->
+	addAccountElement("[[%%SEND-ACCT-NO%%]]","[[%%SEND-BR-NAME%%]]","[[%%SEND-ACCT-DESC%%]]");
+<!-- [[%%ELOOP_SEC%%]]  --> 
+
+</script>
+</body>
+</html>

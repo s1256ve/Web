@@ -1,0 +1,46 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+
+<form method="post" action="LoadAP" name="IP0703403">
+<input type="hidden" name="pageid" value="IP0703404">  
+<input type="hidden" name="DBO_WFAC16" value="[[%%DBO_WFAC16%%]]">
+<input type="hidden" name="DBO_WFAC17" value="[[%%DBO_WFAC17%%]]">
+<input type="hidden" name="DBO_WFAC24" value="[[%%DBO_WFAC24%%]]">
+<input type="hidden" name="DBO_WFAC25" value="[[%%DBO_WFAC25%%]]">
+<input type="hidden" name="DBO_WFAC26" value="[[%%DBO_WFAC26%%]]">
+<input type="hidden" name="DBO_WFAC27" value="[[%%DBO_WFAC27%%]]">
+<input type="hidden" name="DBO_WFAC28" value="[[%%DBO_WFAC28%%]]">
+<input type="hidden" name="DBO_WFAC29" value="[[%%DBO_WFAC29%%]]">
+<input type="hidden" name="DBO_WFAC30" value="[[%%DBO_WFAC30%%]]">
+<input type="hidden" name="DBO_WFAC31" value="[[%%DBO_WFAC31%%]]">
+<input type="hidden" name="DBO_WFAC36" value="[[%%DBO_WFAC36%%]]">
+<input type="hidden" name="SEND_ACCT_NO" value="[[%%SEND_ACCT_NO%%]]">
+<input type="hidden" name="SEND_ACCT_CURRENCY" value="[[%%SEND_ACCT_CURRENCY%%]]">
+<input type="hidden" name="SEND_TXN_AMT" value="[[%%SEND_TXN_AMT%%]]">
+<input type="hidden" name="TXN_AMT" value="[[%%TXN_AMT%%]]">
+<input type="hidden" name="SEND_RM_TYPE" value="[[%%SEND_RM_TYPE%%]]">
+<input type="hidden" name="SEND_RM_TYPE_NAME" value="[[%%SEND_RM_TYPE_NAME%%]]">
+<input type="hidden" name="SEND_RM_PHONE" value="[[%%SEND_RM_PHONE%%]]">
+<input type="hidden" name="SEND_RM_MSG" value="[[%%SEND_RM_MSG%%]]">
+<input type="hidden" name="SEND_RM_MEMO" value="[[%%SEND_RM_MEMO%%]]">
+<input type="hidden" name="SEND_DATE" value="[[%%SEND_DATE%%]]">
+<input type="hidden" name="SEND_TIME" value="[[%%SEND_TIME%%]]">
+<input type="hidden" name="SEND_BUY" value="[[%%SEND_BUY%%]]">
+<input type="hidden" name="SEND_SELL" value="[[%%SEND_SELL%%]]">
+<input type="hidden" name="SEND_TXNFEE_DESC" value="[[%%SEND_TXNFEE_DESC%%]]">
+<input type="hidden" name="SEND_TOTALAMT_DESC" value="[[%%SEND_TOTALAMT_DESC%%]]">
+<input type="hidden" name="SEND_BR_NAME" value="[[%%SEND_BR_NAME%%]]">
+</form>
+<script>
+   document.IP0703403.submit();
+</script>
+</body>
+</html>

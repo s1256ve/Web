@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- UATM 2289 Last updated date 10-13-2010 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPM">
+	<field id="2289i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='2289i03' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="2289i02">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="2289i02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>定存帳號</description>
+	</field>
+	<field id="2289i03">
+		<name>REVE-V-NO</name>
+		<length>8</length>
+		<type>String</type>
+		<description>定存存單字號</description>
+	</field>
+	<field id="2289i04">
+		<name>REVE-BALANCE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>定存金額</description>
+	</field>
+	<field id="2289i05">
+		<name>REVE-B-DATE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>原存單起息日</description>
+	</field>
+	<field id="2289i06">
+		<name>REVE-E-DATE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>原存單到期日</description>
+	</field>
+	<field id="2289i07">
+		<name>REVE-TERM-DATE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>解約日期</description>
+	</field>
+	<field id="2289i08">
+		<name>REVE-INTEREST</name>
+		<length>1</length>
+		<type>String</type>
+		<description>定存利率</description>
+	</field>
+	<field id="2289i09">
+		<name>REVE-AVAL-INT</name>
+		<length>1</length>
+		<type>String</type>
+		<description>解約定存利息</description>
+	</field>
+	<field id="2289i10">
+		<name>REVE-TO-ACCTNO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>轉入帳號</description>
+	</field>
+	<field id="2289i11">
+		<name>REVE-TO-AMT</name>
+		<length>1</length>
+		<type>String</type>
+		<description>轉入金額</description>
+	</field>
+	<field id="2289i11">
+		<name>REVE-INCOME-TAX</name>
+		<length>1</length>
+		<type>String</type>
+		<description>代扣利息所得稅</description>
+	</field>
+	<field id="2289i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="2289i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="2289i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="2289i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

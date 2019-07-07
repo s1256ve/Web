@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>聯邦銀行基金天地</title>
+<meta name="author" content="聯邦銀行">
+
+<meta name="keywords" content="聯邦銀行,基金天地,基金動態,全球財金資訊,基金學園,理財學院,國際金融行情,國際匯率,國際財金新聞,基金搜尋,特惠活動,產品訊息公告,樂活APP,個人網路,客服專線：銀行(02)2545-1788╱信用卡(02)2545-5168 北市承德路1段105號。">
+
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<link rel="stylesheet" href="theme/reset.css" type="text/css"/>
+<link rel="stylesheet" href="theme/layout.css" type="text/css"/>
+<link rel="stylesheet" href="theme/slider.css" type="text/css"/> 
+<link rel="stylesheet" href="theme/submenu.css" type="text/css"/>
+<link rel="stylesheet" href="theme/reward.css" type="text/css"/>     
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+
+<script>
+	function first()
+	{
+		//alert(document.form_search2.REVE_COMPANY_ID.value);
+	//document.form_search2.pageid="IF0803001";
+  document.form2.submit();
+	//onsubmit="document.getElementById('myframe1').src='IF0803001';" 
+	//alert(document.form_search2.REVE_COMPANY_ID.value);
+		
+}
+function second()
+	{
+		//alert("abc");
+		//alert(document.form_search3.REVE_FCID.value);
+	//document.form_search2.pageid="IF0803001";
+	document.getElementById('myframe2').style.display="";
+  document.form3.submit();
+	//onsubmit="document.getElementById('myframe1').src='IF0803001';" 
+	//alert(document.form_search3.REVE_FID.value);
+		
+}
+	</script>
+
+<script type="text/javascript">
+$(function(){
+	// 先取得必要的元素並用 jQuery 包裝
+	// 再來取得 $block 的高度及設定動畫時間
+	var $block = $('#abgne-block-20110317'),
+		$slides = $block.find('ul.abgne-list'),
+		_width = $block.width(),
+		$li = $slides.find('li'),
+		$control = $block.find('.abgne-control'),
+		_animateSpeed = 600;
+ 
+	// 設定 $slides 的寬(為了不讓 li 往下擠)
+	$slides.css('width', ($li.length + 1) * _width);
+	// 產生 li 選項
+	var _str = '';
+	for(var i=0, j=$li.length;i<j;i++){
+		// 每一個 li 都有自己的 className = playerControl_號碼
+		_str += '<li class="abgne-player-control_' + (i+1) + '">' + (i+1) + '</li>';
+	}
+ 
+	// 產生 ul 並把 li 選項加到其中
+	var $number = $('<ul class="numbers"></ul>').html(_str).appendTo($control), 
+		$numberLi = $number.find('li');
+ 
+	// 並幫 .numbers li 加上 click 事件
+	$numberLi.click(function(){
+		var $this = $(this);
+		$this.addClass('current').siblings('.current').removeClass('current');
+		// 移動位置到相對應的號碼
+		$slides.stop().animate({
+			left: _width * $this.index() * -1
+		}, _animateSpeed);
+ 
+		return false;
+	}).eq(0).click();
+ 
+	// 幫 .arrows li 加上 click 事件
+	$control.find('ul.arrows li').click(function(){
+		var _index = $numberLi.filter('.current').index();
+		$numberLi.eq((this.className.indexOf('next')>-1?_index+1:_index-1+$numberLi.length)%$numberLi.length).click();
+ 
+		return false;
+	});
+ 
+	// 當滑鼠移到 $control li 上時, 加上 .hover 效果
+	// 反之則移除
+	$control.find('li').hover(function(){
+		$(this).addClass('hover');
+	}, function(){
+		$(this).removeClass('hover');
+	});
+});
+</script>
+
+<script type="text/javascript">
+$(function(){
+	// 幫 #menu li 加上 hover 事件
+	$('#menus li').hover(function(){
+		// 先找到 li 中的子選單
+		var _this = $(this),
+			_subnav = _this.children('ul');
+ 
+		// 變更目前母選項的背景顏色
+		// 同時顯示子選單(如果有的話)
+		_this.css('backgroundColor', '#607750');
+        _this.css('opacity', '0.95');
+        _this.css('filter', 'alpha(opacity=80)'); // For IE8 and earlier, but does not work for IE6
+        
+		_subnav.css('display', 'block');
+	} , function(){
+		// 變更目前母選項的背景顏色
+		// 同時隱藏子選單(如果有的話)
+		// 也可以把整句拆成上面的寫法
+		$(this).css('backgroundColor', '').children('ul').css('display', 'none');
+	});
+    
+	$('#menus a').focus(function(){
+		// find the sibling ul
+        // and find the parent li
+		var _parent = $(this).parent('li'),
+			_siblingUL = $(this).siblings('ul');	
+		
+		_parent.css('backgroundColor', '#607750');
+        _parent.css('opacity', '0.95');
+        _parent.css('filter', 'alpha(opacity=80)'); // For IE8 and earlier, but does not work for IE6
+        
+		_siblingUL.css('display', 'block');	
+	});
+    
+    $('#menus a').blur(function(){
+		// find the sibling ul
+        // and find the parent li
+		var _parent = $(this).parent('li'),
+			_siblingUL = $(this).siblings('ul'); 
+		
+		_parent.css('backgroundColor', '');        
+		_siblingUL.css('display', 'none');	
+	}); 
+    
+    
+    // 取消超連結的虛線框
+	//$('a').focus(function(){
+	//	this.blur();
+	//});
+});
+</script>
+</head>
+
+<body>
+<table align="center" class="wrapper">
+	<tbody>
+    	<tr>
+        	<td>
+            	<table border="0" cellpadding="0" cellspacing="0" class="header">
+                	<tbody>
+                    	<tr>
+                        	<td align="center">
+                            	
+                                <div class="hdtop"><img src="images/header.jpg" alt="聯邦銀行財富管理" /></div>                
+                                <a href="#startcontent" style="display:none;" title="跳到主要內容" accesskey="2"></a>
+                                <a href="#jumpInternationalNews" style="display:none;" title="跳到國際財金新聞" accesskey="r"></a>                                
+                                <a href="#jumpFooter" style="display:none;" title="跳到基金警語" accesskey="b"></a>                                
+                              <div class="menu">
+                                		
+                                        <ul id="menus">
+                                        	
+                                            <li><a href="aa" tabindex="1">基金動態</a>
+                                            	
+                                                <ul class="subba">
+                                                	<li>
+                                                    	<div class="a01">
+                                                       	  <h3>國內基金</h3>
+                                                        	<p><a href="#" >投信公司績效比較</a></p>
+                                                            <p><a href="#">基金類別績效排行</a></p>
+                                                            <p><a href="#">投信公司淨值表</a></p>
+                                                            <p><a href="#">投信公司列表</a></p>
+                                                            <p><a href="#">投信公司旗下基金</a></p>
+                                                            <p><a href="#">投信持股狀況</a></p>
+                                                            <p><a href="#">基金基本資料</a></p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                    	<div class="a01">
+                                                       	  <h3>國外基金</h3>
+                                                        	<p><a href="#">績效比較</a></p>
+                                                            <p><a href="#">投資地區績效排行</a></p>
+                                                            <p><a href="#">基金公司淨值表</a></p>
+                                                            <p><a href="#">績效表</a></p>
+                                                            <p><a href="#">基金持股狀況</a></p>
+                                                            <p><a href="#">基金配息狀況</a></p>
+                                                            <p><a href="#">基金公司基本資料</a></p>
+                                                            <p><a href="#">公司旗下基金</a></p>
+                                                        </div>
+                                                    </li>
+                                                    <li><a style="font-size:13px; font-weight:bold; color:#bcc4a3;" href="#">連動式債券</a></li>
+                        							<li><a style="font-size:13px; font-weight:bold; color:#bcc4a3;" href="#">外國債</a></li>
+                                                </ul>
+                                            </li>
+                                            
+                                            <li><a href="#" tabindex="2">全球財經資訊</a>
+                                            
+                                            	 <ul class="subba">
+                                                 	<li>
+                                                    	<div class="a02">
+                                                        	<p><a href="#">投資藏寶圖</a></p>
+                                                            <p><a href="#">全球主要指數</a></p>
+                                                            <p><a href="#">主要債市行情</a></p>
+                                                            <p><a href="#">主要商品行情</a></p>
+                                                            <p><a href="#">最新經濟指標</a></p>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                    	<div class="a02">
+                                                        	<p><a href="#">各國經濟情勢</a></p>
+                                                            <p><a href="#">基金休市公告</a></p>
+                                                            <p><a href="#">全球投資快報</a></p>
+                                                            <p><a href="#">理財行事曆</a></p>
+                                                        </div>
+                                                    </li>
+                                                 </ul>
+                                            
+                                            </li>
+                                            
+                                            <li><a href="#" tabindex="3">基金學園</a>
+                                            
+                                            	<ul>
+                                                	<li><a href="#">金融詞庫</a></li>
+                                                    <li><a href="#">基金買賣方式</a></li>
+                                                    <li><a href="#">新手上路</a></li>
+                                                    <li><a href="#">入學測驗</a></li>
+                                                    <li><a href="#">基金小學</a></li>
+                                                    <li><a href="#">基金中學</a></li>
+                                                    <li><a href="#">基金大學</a></li>
+                                                </ul>
+                                            
+                                            </li>
+                                            
+                                            <li class="end"><a class="end" href="#" tabindex="4">理財學院</a>
+                                            
+                                            	<ul>
+                                                	<li><a href="#">性向測驗</a></li>
+                                                    <li><a href="#">基金速配</a></li>
+                                                    <li><a href="#">基金套餐</a></li>
+                                                    <li><a href="#">單筆投資試算</a></li>
+                                                    <li><a href="#">定時定額試算</a></li>
+                                                    <li><a href="#">理財規劃</a></li>
+                                                </ul>
+                                                
+                                            </li>
+                                        </ul>
+                                </div>
+                                
+                            </td>
+                      </tr>
+                    </tbody>
+                </table>
+              <a name="startcontent"><a>
+           	  <table border="0" cellpadding="0" cellspacing="0" class="show">
+                	<tbody>
+                    	<tr>
+                        	<td class="left">
+                            		<div class="frame"><a class="blogin" href="#" title="個人網路銀行" tabindex="5"><img src="images/login.jpg" alt="個人網路銀行"/></a></div>
+                              		<div class="frame"><a class="appdonlod" href="#" title="樂活APP" tabindex="6"><img src="images/app.jpg" alt="樂活APP"/></a></div>
+                            </td>
+                            
+                            <td class="right">
+<!------------------------------------------------ 圖片切換 --------------------------------------------------------------->
+							<div class="slider">
+                            	<div id="abgne-block-20110317">
+                                    <div class="abgne-player">
+                                        <ul class="abgne-list">
+                                            <li><a target="_blank" href="#"><img src="images/slide1.jpg"></a></li>
+                                            <li><a target="_blank" href="#"><img src="images/slide2.jpg"></a></li>
+                                            <li><a target="_blank" href="#"><img src="images/slide3.jpg"></a></li>
+                                            <li><a target="_blank" href="#"><img src="images/slide4.jpg"></a></li>
+                                            <li><a target="_blank" href="#"><img src="images/slide5.jpg"></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="abgne-control">
+                                        <ul class="arrows"> 
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>    
+                            </td>
+                            <td>
+                       	    <img src="images/left.jpg" width="21" height="236" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            	<table border="0" cellpadding="0" cellspacing="0">
+                	<tbody>
+                    	<tr>
+                        	<td><img src="images/line.jpg" width="822" height="21" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <table class="reward_stuff" border="0" cellpadding="0" cellspacing="0">
+                	<tbody>
+                    	<tr>
+                       	  <td valign="top">
+                           	  <div class="reward_form">
+                               	  <div class="bread_crumbs"><span><a href="#">首頁</a></span><span> / </span><span>基金動態</span><span> / </span><span>國內基金</span></div>
+                               	  <h2>基金搜尋</h2>
+                                  
+                                  <div class="data_for_embed">
+                                    <form id="form_search" name="form1" method="post" action="">
+                                    	<div class="srch1">請輸入關鍵字或標的代碼：</div>
+  <div class="srch2"><input type="text" id="srch_field" /></div>
+   <div class="srch3"><input type="submit" id="srch_but" value="" /></div> 
+                               	      
+                                    </form>
+                                  </div>
+                                  
+                                  <h2>基金通路報酬揭露</h2>
+                                  <form id="form_search2" name="form2" action="LoadAP" method="post"  target="myframe1">
+                                    	<div class="srch1"></div>
+                                    	<iframe src="LoadAP?aptype=NOAP&pageid=IF0803000" name="myframe" width="100%" height="50" scrolling="no" frameborder="0"></iframe>
+                                   
+                                    	<!--
+  										<div class="slct2"><select name="select" id="select" tabindex="10">
+                                            <option>02 基金公司名稱：富達證券投資顧問公司</option></select></div>
+                                            -->
+                                            
+                                            <iframe src="LoadAP?aptype=NOAP&pageid=IF0803001" name="myframe1" width="100%" height="80" scrolling="no" frameborder="0"></iframe>
+                                    	<!--
+                                        <div class="slct3"><select name="select" id="select" tabindex="10">
+                                          <option selected="selected">請選擇投資標的</option>
+                                          <option>英屬維京群島名字長得嚇死不償命人證券投資顧問公司</option>
+                                      	  </select>
+                                        </div>
+                                        -->
+                                         <div class="slct4">
+                                         <!--
+                                         <input type="submit" id="confirm_but" value="" />
+                                         -->
+                                        </div>     
+                                        <input type="hidden" name="pageid" value="IF0803001">
+                                        <input type="hidden" name="REVE_COMPANY_ID" value="01">                                       	      
+                                    </form>                                    
+                                  </div>
+                                  <form id="form_search3" name="form3" action="LoadAP" method="post"  target="myframe2">
+                                  <iframe src="" id="myframe2" name="myframe2" width="90%" height=550 scrolling="no" frameborder="0" align="center" style="display:none"></iframe>
+                              		
+                                  <!--
+                                  <iframe src="LoadAP?aptype=NOAP&pageid=IF0803002" name="myframe2" width="90%" height=600 scrolling="no" frameborder="0" align="center"></iframe>
+                              		-->
+                                  <input type="hidden" name="pageid" value="IF0803002">
+																	<input type="hidden" name="REVE_FCID" value="62">
+																	<input type="hidden" name="REVE_FID" value="12">
+                                 </form> 	                                   
+                                  </div>
+                                  <!--
+                                <div class="data_for_embed">
+                               		  <div class="cont_text">
+                                      <p class="item">本銀行銷售富達證券投資顧問公司 代理之「富達目標基金2020」 所收取之通路報酬如下：</p>
+                                      <table class="data_post" border="0" cellspacing="0" cellpadding="0">
+                                       	  <tbody>
+                                                <tr>
+                                                  <td class="th" colspan="2">一、投資人支付</td>
+                                                </tr>
+                                                <tr>
+                                                  <td align="center"><strong>項目</strong></td>
+                                                  <td align="center"><strong>說明</strong></td>
+                                                </tr>
+                                                <tr>
+                                                  <td><p>aaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                                                  <p>aaaaaaaaaaaaaaaaaa</p></td>
+                                                  <td><p>aaaaaaaaaaaaaaaaaaaaaaaaa</p>                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p></td>
+                                                </tr>
+                                                <tr>
+                                                  <td class="th" colspan="2">二、投資人支付</td>
+                                                </tr>
+                                                <tr>
+                                                 <td align="center"><strong>項目</strong></td>
+                                                  <td align="center"><strong>說明</strong></td>
+                                                </tr>
+                                                <tr>
+                                                  <td>aaaaaaaaaaaaaaaaaaaa</td>
+                                                  <td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>aaaaaaaaaaaaaaaaaaaa</td>
+                                                  <td>aaaaaaaaaaaaaaaaaaaa</td>
+                                                </tr>
+                                                <tr>
+                                                  <td>aaaaaaaaaaaaaaaaaaaa</td>
+                                                  <td>未收取。</td>
+                                                </tr>
+                                                <tr>
+                                                  <td class="th" colspan="2">三、其他報酬 (未收取)</td>
+                                                </tr>
+                                           </tbody>
+                                      </table>
+									  <p class="ex">計算說明：報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬報酬。</p>
+                                              <div class="warnning">
+                                              	<p class="item">本銀行辦理基金銷售業務</p>
+                                              </div>
+                                               <p class="ex">*未來若相關通路報酬變動，將於本行網頁上公告，不再另行通知 台端。</p>
+                                      </div>
+                                  </div>
+                                  -->
+                              </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="footer" border="0" cellpadding="0" cellspacing="0">
+               	   <tbody>
+                    	<tr>
+                        	<td>
+                            	<p class="footext">本行保留本行網站內容之一切法律權利，非經本行授權使用或同意，本行網站之資料
+均不得以任何形式，或利用任何電子、機械方式進行重製、轉載或製作衍生物。<br />
+建議解析度 1024 x 768。</p>
+                            </td>
+                            <td>
+                            	<div class="comp">
+                                	<p class="cominfo">客服專線：銀行(02)2545-1788╱信用卡(02)2545-5168<br /> 
+地址：台北市承德路1段105號。</p>
+								</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </td>
+      </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

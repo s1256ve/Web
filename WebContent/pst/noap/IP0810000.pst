@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>使用者登入作業</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: YiSyun 
+* Change List:
+*SerialNo           Date Modified  Modified by   
+*-------------      ----------     ----------
+*EAI98031           2009.05.07     YiSyun 
+*EAI99052           2010.8.25      David 
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<Script language="javascript">
+function chkSubmit(){
+	if (document.IP0810000.radio1[0].checked){
+		document.IP0810000.Submit.disabled = true;
+		//document.IP0810000.Reset.disabled = true;
+		document.IP0810000.pageid.value = document.IP0810000.radio1[0].value ;				
+		document.IP0810000.submit();
+	}else if(document.IP0810000.radio1[1].checked){
+		document.IP0810000.Submit.disabled = true;
+		//document.IP0810000.Reset.disabled = true;
+		document.IP0810000.pageid.value = document.IP0810000.radio1[1].value ;				
+		document.IP0810000.submit();	
+	}else{
+		alert("請選擇是否開立存款帳戶");
+	}
+	
+}
+function Submit2(){
+	document.IP0810000.Submit.disabled = true;
+	//document.IP0810000.Reset.disabled = true;	
+	document.IP0810000.pageid.value = "IC0000000";
+	document.IP0810000.submit();
+
+}
+</Script>
+</head>
+<link rel="stylesheet" type="text/css" media="all" href="theme/FirstLogon.css" title="win2k-cold-1" />
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form method="post" action="LoadAP" name="IP0810000" > 
+
+<p><b>首次登入<font color="#003399"><font color="#0066FF"><br>
+  </font></font></b></p>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5"> 是否於本行開立存款帳戶？    
+  <table width="100%" border="0">
+        <tr> 
+          <td rowspan="2" width="23%">&nbsp;</td>
+          <td height="2" width="7%"> 
+            <input type="radio" name="radio1" value="IP0801000">
+          </td>
+          <td height="2" width="70%">是</td>
+     <!--  <td><a href="#"><img src="graph/Learning_icon.gif" width="96" height="49" border="0" align="right" onClick="window.open('https://www.ubot.com.tw/UBOT2005/Learning/data/ubot120.asp','第一次啟動個人網路銀行','width=650,height=500')"></a></td>-->
+        </tr>
+        <tr> 
+          <td height="2" width="7%"> 
+            <input type="radio" name="radio1" value="IP0802000">
+          </td>
+          <td height="2" width="70%">否</td>
+        </tr>
+      </table>
+      <div align="center">
+        <input type="button" name="Submit" value="確定" onClick="chkSubmit();">&nbsp;&nbsp;&nbsp;
+         <!--<input type="button" name="Reset" value="取消" onclick="Submit2();">-->
+      </div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="aptype" value="noap">
+</form>
+<script>
+//	document.IP0810000.pageid.value = "IP0801000" ;				
+	//document.IP0810000.submit();
+</script>
+</body>
+</html>

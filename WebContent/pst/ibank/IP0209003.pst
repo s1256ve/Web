@@ -1,0 +1,270 @@
+<html>
+<head>
+<title>台幣存款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+
+
+<script language="JavaScript">
+<!--
+var kbWin = null;
+function getKeyBoard()
+{
+ var Mytype="width=450,height=250,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IP0209003.PWD.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IP0209003.REVE_PWD.value";  //User真正key的密碼
+       kbWin = window.open( "LoadAP?pageid=IP2001000&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IP0209003.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP0209003.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+function onTop() {
+  	if (kbWin==null) return;
+  	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+
+
+
+
+
+
+
+
+function checkFeild(tmp){
+
+	if (tmp == 0){
+		document.IP0209003.SEND_RATE_TYPE.value="0";
+		document.IP0209003.SEND_RATE_TYPE_CHINESE.value = "固定利率";
+	}
+	if (tmp == 1){
+		document.IP0209003.SEND_RATE_TYPE.value="1";
+		document.IP0209003.SEND_RATE_TYPE_CHINESE.value = "機動利率";
+	}
+	else{
+		document.IP0209003.SEND_RATE_TYPE.value="0";
+		document.IP0209003.SEND_RATE_TYPE_CHINESE.value = "固定利率";
+        }
+}
+    
+function checkFeild2(tmp){
+
+	if(tmp==0){
+		document.IP0209003.SEND_INT_PAY.value="1";
+		document.IP0209003.SEND_INT_NAME.value="到期領息";
+	}
+	if(tmp==1){
+		document.IP0209003.SEND_INT_PAY.value="2";
+		document.IP0209003.SEND_INT_NAME.value="每月領息";
+	}
+        else{
+        	document.IP0209003.SEND_INT_PAY.value="1";
+        	document.IP0209003.SEND_INT_NAME.value="到期領息";
+	}
+}
+    
+function checkTitle(tmp){
+	var temp=tmp;
+	document.IP0209003.TERM_CODE.value=temp;
+	    
+		
+}
+
+function chkSubmit(){
+	
+	 document.IP0209003.Submit.disabled = true;
+   document.IP0209003.Submit2.disabled = true;
+   document.IP0209003.Submit3.disabled = true;
+	
+	
+	var f2=document.IP0209003.SEND_INT_PAY.value;
+	var f=document.IP0209003.SEND_RATE_TYPE.value;
+	var m=document.IP0209003.TERM_CODE.value;
+	var d="定期存款";
+	var z="整存整付";
+	var s="存本取息";
+	    if(m>0 && m<12){
+	    	if(f2==1){
+	    		if(confirm("轉存期間在11個月內僅能選擇每月領息，請問您是否確定？")==true){
+	    			
+			    }
+			      
+			else {
+				    document.IP0209003.Submit.disabled = false;
+            document.IP0209003.Submit2.disabled = false;
+            document.IP0209003.Submit3.disabled = false;
+				    return
+				
+				};
+		}
+		document.IP0209003.SEND_SC_CODE.value="0";
+		document.IP0209003.SEND_SC_CODE_CHINESE.value="單利";
+		document.IP0209003.SEND_TITLE.value=d;
+		document.IP0209003.SEND_ACCT_CODE.value="40";
+		document.IP0209003.SEND_TERM_CODE.value=m;
+		document.IP0209003.SEND_INT_PAY.value="1";
+	    }
+	    if(m>0 && m>11 && f2==1){
+	    	document.IP0209003.SEND_SC_CODE.value="1";
+	    	document.IP0209003.SEND_SC_CODE_CHINESE.value="複利";
+	    	document.IP0209003.SEND_TITLE.value=z;
+	    	document.IP0209003.SEND_ACCT_CODE.value="70";
+	    	document.IP0209003.SEND_TERM_CODE.value=m;
+	    }
+	    if(m>0 && m>11 && f2==2){
+	    	document.IP0209003.SEND_SC_CODE.value="0";
+	    	document.IP0209003.SEND_SC_CODE_CHINESE.value="單利";
+	    	document.IP0209003.SEND_TITLE.value=s;
+	    	document.IP0209003.SEND_ACCT_CODE.value="60";
+	    	document.IP0209003.SEND_TERM_CODE.value=m;
+	    }
+	
+	if(confirm("您所選擇轉存期間為"+m+"個月,定存種類為"+document.IP0209003.SEND_TITLE.value)==true){
+		
+		        
+		
+		document.IP0209003.submit();
+	}
+	          
+	 
+	else{ 
+		 document.IP0209003.Submit.disabled = false;
+     document.IP0209003.Submit2.disabled = false;
+     document.IP0209003.Submit3.disabled = false;
+	
+		return 
+		};
+}
+
+function chkSubmit2(){
+	document.IP0209003.pageid.value = "IP0208000";
+	document.IP0209003.submit();
+}
+-->
+</script>
+
+<body bgcolor="#FFFFFF"  onfocus="onTop();"   onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+<br>
+<form method="POST" action="LoadAP" name="IP0209003">
+<font color="#0000CC"><img src="graph/point.gif" width="12" height="12" align="absmiddle"> 
+<b>帳戶交易&gt;</b><font color="#0066FF"><b>綜存定存續存設定或中途解約&gt;<strong>綜存定存續存設定</strong></b></font><br><br>
+以下是 您在 [[%%SEND-BR-NAME%%]] [[%%SEND-ACCT-DESC%%]] [[%%SEND-ACCT-NO%%]] 存單續存條件</font><br><br>
+  <table width="650" border="0" cellspacing="0" cellpadding="0">
+    <tr> 
+      <td> 
+        <table width="500" border="1" bordercolor="#999999" align="center">
+         <input type="hidden" name="SEND_CONTINUE_CHINESE" value="[[%%SEND_CONTINUE_CHINESE%%]]">
+         <input type="hidden" name="SEND_RATE_TYPE_CHINESE" value="固定利率">
+         <input type="hidden" name="SEND_SC_CODE_CHINESE" value="">
+          <tr> 
+            <td width="124" bgcolor="#C4CBB8"> 
+              <div align="center">轉存金額</div>
+            </td>
+            <td width="410"> 新台幣[[%%SEND-BALANCE%%]]元</td>
+          </tr>
+          <tr> 
+            <td width="124" bgcolor="#C4CBB8"> 
+              <div align="center">轉存期間</div>
+            </td>
+            <td width="410">
+              <select name="TERM_CODE" onChange="JavaScript:checkTitle(this.value);"> 
+                <option selected value="01">1</option>
+                <option value="02">2</option>
+                <option value="03">3</option>
+                <option value="04">4</option>
+                <option value="05">5</option>
+                <option value="06">6</option>
+                <option value="07">7</option>
+                <option value="08">8</option>
+                <option value="09">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+              </select>
+            個月</td>
+          </tr>
+          <tr> 
+            <td width="124" bgcolor="#C4CBB8"> 
+              <div align="center">計息方式</div>
+            </td>
+            <td width="410"> 
+              <input type="radio" name="rate" value="0" onClick="javascript:checkFeild(this.value);" checked >
+              固定利率 
+              <input type="radio" name="rate" value="1" onClick="javascript:checkFeild(this.value);">
+              機動利率　<a href='javaScript:window.open("[[%%HOSTNAME%%]]/LoadAPWeb/LoadAP?aptype=IBANK&pageid=IP0907100&sessid=[[%%SESSIONID%%]]","","width=600,height=700,toolbar=0,status=no");  void(0);'>利率表</a></td>
+          </tr>
+          <tr> 
+            <td width="124" bgcolor="#C4CBB8"> 
+              <div align="center">領息方式</div>
+            </td>
+            <td width="410"> 
+              <input type="radio" name="rate2" value="1" onClick="javascript:checkFeild2(this.value);"checked>
+              每月領息 
+              <input type="radio" name="rate2" value="0" onClick="javascript:checkFeild2(this.value);">
+              到期領息 </td>            
+          </tr>
+          
+          
+          <tr> 
+          <td width="124" bgcolor="#C4CBB8"><div align="center">網路密碼</div></td>
+          
+         
+          <td width="410"> 
+          	<input type="password" name="PWD" size="8" onclick="getKeyBoard();onTop();" readonly>
+          	<input type="hidden" name="REVE_PWD" value="">&nbsp;　　　　　　　　　　　　　　
+          </td>
+          </tr>
+          
+          
+          
+        </table>
+        <div align="center">
+          <input type="button" name="Submit" value="確定" onClick='javascript:chkSubmit();'> 
+          <input type="reset" name="Submit2" value="重填">
+          <input type="button" name="Submit3" value="取消" onClick="chkSubmit2();">
+          <br>
+        </div>
+      </td>
+    </tr>
+    <input type="hidden" name="SEND-ACCT-NO" value="[[%%SEND-ACCT-NO%%]]">
+    <input type="hidden" name="SEND-V-NO" value="[[%%SEND-V-NO%%]]">
+    <input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+    <input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">   	
+    <input type="hidden" name="SEND-MARK" value="2">
+    <input type="hidden" name="SEND_ACCT_CODE" value="">
+    <input type="hidden" name="SEND_RATE_TYPE" value="0">
+    <input type="hidden" name="SEND_INT_PAY" value="2">
+    <input type="hidden" name="SEND_INT_NAME" value="每月領息">
+    <input type="hidden" name="SEND_TITLE" value="">
+    <input type="hidden" name="SEND_SC_CODE" value="">
+    <input type="hidden" name="SEND_TERM_CODE" value="">
+    <input type="hidden" name="pageid" value="IP0209004">
+  </table>
+  </form>
+</body>
+</html>

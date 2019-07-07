@@ -1,0 +1,113 @@
+<html>
+<head>
+<title>基金申購</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="JavaScript" SRC="script/Fund01.js"></script>
+<script language="javascript">
+
+function chkSubmit(nextPage){
+	document.IF0401113.pageid.value = nextPage ;
+		
+	if (document.IF0401113.REVE_BANK_ACCT.value == "0" && document.IF0401113.pageid.value == "IF0401105"){
+		alert("請選擇你的帳號!");		
+	}else{
+		disableButton2(document.IF0401113.Submit1, document.IF0401113.Submit2);
+		document.IF0401113.submit();
+	}
+}
+function chgAcctValue(tmp){
+	var tmpArray = tmp.split("@");	
+	document.IF0401113.REVE_BR_CODE.value = tmpArray[0];
+	document.IF0401113.REVE_BR_NAME.value = tmpArray[1];
+	document.IF0401113.REVE_ACCT_NO.value = tmpArray[2];
+}
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" background="graph/bg.gif" topmargin="0" onLoad="">
+<form method="post" action="LoadAP" name="IF0401113">
+<font color="#006666"><b>基金贖回&gt;</b></font><br>
+  <table width="770" border="0">
+    <tr> 
+    <td> 
+      <div align="center"></div>
+    </td>
+  </tr>
+</table>
+  <table width="770" border="0">
+    <tr> 
+    <td colspan="3"> 
+      <div align="center"> 
+        <p><b>請鍵入贖回款入帳之本人帳號</b></p>
+        <table width="539" border="1" cellpadding="0" bordercolor="#999999">
+          <tr bgcolor="#C5DECF">
+            <td width="185" ><div align="center">銀行名稱</div></td>
+            <td width="342"  height="16"><div align="center">帳號</div></td>
+          </tr>
+          <tr bgcolor="#E7F1EE">
+            <td  height="50"><DIV align=center>聯邦商業銀行 </DIV></td>
+            <td height="50" ><div align="center">
+              <select name="REVE_BANK_ACCT" onChange="chgAcctValue(this.value);">
+              	<option value="0">請選擇你的帳號</option>
+              <!--[[%%LOOP_SEC SEND-ACCT-NO%%]]-->
+               <option value="[[%%SEND-BID%%]]@[[%%SEND-BR-NAME%%]]@[[%%SEND-ACCT-NO%%]]">[[%%SEND-ACCT-NO%%]]</option>
+              <!--[[%%ELOOP_SEC%%]]-->
+              </select>
+</div></td>
+          </tr>
+        </table>
+        <br>
+        
+        <br><table width="70%"  border="0">
+  <tr>
+    <th scope="row"><input type="button" name="Submit1" value="選擇其他銀行" onClick='chkSubmit("IF0401102");'></th>
+    <td><div align="left">
+      <input type="button" name="Submit2" value="下一步" onClick='chkSubmit("IF0401105");'>
+    </div></td>
+  </tr>
+</table>
+          </div>
+    </td>
+  </tr>
+</table>
+<br>
+<br>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="">
+  <input type="hidden" name="REVE_CERT_NO" value="[[%%REVE-CERT-NO%%]]">
+  <input type="hidden" name="REVE_FUND_CNAME" value="[[%%REVE-FUND-CNAME%%]]">
+  <input type="hidden" name="REVE_FUND_ID" value="[[%%REVE-FUND-ID%%]]">
+  <input type="hidden" name="REVE_FROM_AMT" value="[[%%REVE-FROM-AMT%%]]">
+  <input type="hidden" name="REVE_AMT" value="[[%%REVE-AMT%%]]">
+  <input type="hidden" name="REVE_UNITS" value="">
+  <input type="hidden" name="REVE_REF_PRICE" value="[[%%REVE-REF-PRICE%%]]">
+  <input type="hidden" name="REVE_REF_EXCHGRATE" value="[[%%REVE-REF-EXCHGRATE%%]]">
+  <input type="hidden" name="REVE_BANK_NAME" value="聯邦銀行">
+  <input type="hidden" name="REVE_BANK_CODE" value="803">
+  <input type="hidden" name="PRE_BANK_CODE" value="">
+  <input type="hidden" name="REVE_BR_CODE" value="">
+  <input type="hidden" name="REVE_BR_NAME" value="">
+  <input type="hidden" name="REVE_ACCT_NO" value="">
+  <input type="hidden" name="REVE_CVT_TYPE" value="[[%%REVE-CVT-TYPE%%]]">
+  <input type="hidden" name="REVE_CHANGE_TYPE" value="[[%%REVE-CHANGE-TYPE%%]]">
+  <input type="hidden" name="REVE_ID_NO" value="[[%%REVE-ID-NO%%]]"> 
+  
+</table>
+</form>
+<script>
+var iAcctLen = document.IF0401113.REVE_BANK_ACCT.options.length
+	
+if (iAcctLen==1){
+	alert("你沒有聯邦銀行帳號,請選其他銀行帳號");
+	document.IF0401113.pageid.value = "IF0401102" ;
+	document.IF0401113.submit();	
+}
+</script>
+</body>
+</html>

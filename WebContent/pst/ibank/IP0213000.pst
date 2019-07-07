@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>台幣存款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript" src="script/calendar.js"></script>
+<script language="JavaScript" src="script/calendar-zh.js"></script>
+<script language="JavaScript" src="script/calendar-setup.js"></script>
+<script language="JavaScript" src="script/calendarface.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<SCRIPT language="JavaScript">
+var nowDate = new Date();
+var nowDay = nowDate.getDate();
+var nowMonth = nowDate.getMonth();
+var nowYear = nowDate.getFullYear();
+var nowDateStr = getRCDateStr(nowYear + "/" + (nowMonth+1) + "/" + nowDay,0);
+var selDate = nowDateStr + "," + nowDateStr;
+
+
+function chgAcct(acctStr) {
+	var acctArray = acctStr.split("@");
+	var i = 0;
+	document.IP0213000.selBrName.value = acctArray[0];
+	document.IP0213000.selBalType.value = acctArray[1];
+	document.IP0213000.selAcctNo.value = acctArray[2];
+	document.IP0213000.selAvalBalance.value = acctArray[3];
+}
+
+function countDate(inYear,inMonth,inDay){
+	var tmpDate = new Date();
+	var tmpYear = tmpDate.getFullYear() + eval(inYear);
+	var tmpMonth = tmpDate.getMonth() + 1 + eval(inMonth);
+	var tmpDay = tmpDate.getDate() + eval(inDay);
+	var reDate = new Date(tmpYear, (tmpMonth-1), tmpDay);
+	var reDateStr = getRCDateStr(reDate.getFullYear() + "/" + (reDate.getMonth()+1) + "/" + reDate.getDate(),0);
+	return reDateStr;
+}
+
+function chkSubmit(){
+
+    var acct 	  = document.IP0213000.selAcctNo.value;
+    //var queryType = document.IP0213000.selQueryType;
+
+	if(acct==""){
+		alert("請選擇帳號！");
+		return;
+	}
+	/**
+	onSend('IP0213000');
+	if(chkDateRule(document.IP0213000.DateBegin.value,document.IP0213000.DateEnd.value,
+		"",
+		-1,	//A年
+		0,	//A月
+		0,	//A日
+		0,	//B年
+		1,	//B月
+		0	//B日
+		)==false){
+	alert("您所選擇的區間超過查詢範圍。\n詳見\"說明\"");
+	return ;
+	}
+	document.IP0213000.selDateBegin.value=document.IP0213000.DateBegin.value;
+	document.IP0213000.selDateEnd.value=document.IP0213000.DateEnd.value;
+	//confirm(document.IP0201000.pageid.value);
+	*/
+	document.IP0213000.submit();
+}
+
+
+</SCRIPT>
+</head>
+
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+
+<form name="IP0213000" method="POST" action="LoadAP">
+<b>支票存款帳戶&gt;</b><font color="#0066FF"><b>退票資料查詢</b></font><br>
+<br>
+<table width="750" border="0">
+  <tr> 
+    <td width="71">　查詢帳號</td>
+    <td width="486"><font color="#663300" face="Arial, Helvetica, sans-serif"> 
+            <select name="REVE_ACCT_NO" onChange="JavaScript:chgAcct(this.value);">
+
+        <option value="" selected>==請選擇帳號==</option>
+        [[%%LOOP_SEC SEND-ACCT-NO%%]]
+        <option value="[[%%SEND-BR-NAME%%]]@[[%%SEND-ACCT-DESC%%]]@[[%%SEND-ACCT-NO%%]]@[[%%SEND-AVAL-BALANCE%%]]">
+        		[[%%SEND-BR-NAME%%]] &nbsp;&nbsp; 
+        		[[%%SEND-ACCT-DESC%%]] &nbsp;&nbsp; 
+        		<script language="javascript"> 
+        			document.write(getAcctStr("[[%%SEND-ACCT-NO%%]]"));
+        		</script>
+        </option>
+        [[%%ELOOP_SEC%%]]
+      </select>
+      </font>
+      <img src="graph/go.gif" width="19" height="19" align="absmiddle" border="0" onClick="javascript:chkSubmit();">
+      </td>
+    <td width="179">&nbsp;</td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="3" height="1"></td>
+  </tr>
+</table>
+<input type="hidden" name="selBrName" value="">
+<input type="hidden" name="selBalType" value="">
+<input type="hidden" name="selAcctNo" value="">
+<input type="hidden" name="selAvalBalance" value="">
+<input type="hidden" name="selDateBegin" value="">
+<input type="hidden" name="selDateEnd" value="">
+<input type="hidden" name="aptype" value="ibank">
+<input type="hidden" name="pageid" value="IP0213001">
+</form>
+</body>
+</html>

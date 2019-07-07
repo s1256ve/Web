@@ -1,0 +1,144 @@
+<html>
+<head>
+<title>台幣貸款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="javascript">
+<!--
+a1 = 0;
+a2 = 0;
+a3 = 0;
+a4 = 0;
+function chkSelect(tmp,tmp2,tmp3,tmp4){
+	if(tmp2 == "00"){
+		a1 += eval(moneyTrimDot(tmp,','));
+		return "<td><div align='center'>" + tmp + "</div></td><td> <div align='center'>&nbsp;</div></td><td><div align='center'>0</div></td><td><div align='center'>"+tmp+"</div></td><td><div align='center'>" + tmp4 + "</div></td>"
+	}
+	if(tmp2 == "01"){
+		a2 += eval(moneyTrimDot(tmp4,','));
+		//alert(a2);
+		return "<td><div align='center'>&nbsp;</div></td><td> <div align='center'>&nbsp;" + tmp4 + "</div></td><td><div align='center'>0</div></td><td><div align='center'>" + tmp4 + "</div></td><td>&nbsp;<div align='center'></div></td>"
+	}
+	if(tmp2 =="02"){
+	    a3 += eval(moneyTrimDot(tmp,','));
+		return "<td><div align='center'>&nbsp;</div></td><td> <div align='center'>&nbsp;</div></td><td><div align='center'>&nbsp;" + tmp + "</div></td><td><div align='center'>&nbsp;" + tmp + "</div></td><td>&nbsp;<div align='center'></div></td>"
+	}
+}
+
+function chkSubmit(){
+	document.IP0303001.submit();
+}
+
+function chkDate(date){
+	if(date==19110101){
+		return "";
+	}else if(date==""){
+		return "";
+	}
+	else{
+		return getRCDateStr(date,0);
+	}	
+}
+-->
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　台幣貸款帳戶查詢&gt;<font color="#0066FF">貸款已還款明細</font></b>
+<form method="POST" action="LoadAP" name="IP0303001">
+<br>
+  <font color="#0000CC">　</font><font color="#0000CC"><img src="graph/point.gif" width="12" height="12" align="absmiddle">以下是 
+  您在[[%%SEND-BR-NAME%%]] [[%%SEND-ACCT-DESC%%]] [[%%SEND-ACCT-NO%%]]貸款已還款明細查詢結果：</font> <br>
+<table width="763" border="0">
+  <tr>
+    <td width="757">　授信號碼：[[%%SEND-AUTH-CODE%%]]</td>
+  </tr>
+  <tr>
+    <td>　查詢日期：
+      <script>
+    document.write(getRCDateStr("[[%%SEND-BEGIN-DATE%%]]",0));
+    </script>
+    -
+    <script>
+    document.write(getRCDateStr("[[%%SEND-END-DATE%%]]",0));
+    </script>
+    </td>
+  </tr>
+</table>
+<table width="763" border="1" bordercolor="#999999">
+  <tr bgcolor="#C4CBB8">
+    <td width="80" height="17">
+      <div align="center">繳款日期</div></td>
+    <td width="70" height="17">
+      <div align="center">當期起日</div></td>
+    <td width="70" height="17">
+      <div align="center">當期迄日</div></td>
+    <td width="90" height="17">
+      <div align="center">已繳本金</div></td>
+    <td width="90" height="17">
+      <div align="center">已繳利息 </div></td>
+    <td width="103" height="17">
+      <div align="center">違約金及逾期息</div></td>
+    <td width="110" height="17">
+      <div align="center">本期繳款金額小計</div></td>
+    <td width="98" height="17">
+      <div align="center">現貸餘額</div></td>
+  </tr>
+  [[%%LOOP_SEC SEND-PAY-DATE%%]]
+  <tr>
+    <td width="80">
+      <div align="center">
+        <script language="JavaScript">
+                document.write(getRCDateStr('[[%%SEND-PAY-DATE%%]]',0));
+      </script>
+    </div></td>
+    <td width="70">
+      <div align="center">&nbsp;
+        <script language="JavaScript">
+                document.write(chkDate('[[%%SEND-BEGIN-INTDATE%%]]'));
+      </script>
+    </div></td>
+    <td width="70">
+      <div align="center">&nbsp;
+        <script language="JavaScript">
+                document.write(chkDate('[[%%SEND-BEGIN-INTDATE%%]]'));
+      </script>
+    </div></td>
+    <script>
+    var tmp1 = trimDecimal(trimSpStr("[[%%SEND-TOTAL-AMT%%]]","*"));//計息本金或攤還金額
+    var tmp2 = trimDecimal(trimSpStr("[[%%SEND-TXN-TYPE%%]]","*"));//交易類別
+    var tmp3 = trimDecimal(trimSpStr("[[%%SEND-TXN-AMT%%]]","*"));//實際交易金額
+    var tmp4 = trimDecimal(trimSpStr("[[%%SEND-PAY-BALANCE%%]]","*"));//應繳金額或攤還後餘額
+    document.write(chkSelect(tmp1,tmp2,tmp3,tmp4));
+    </script>
+  </tr>
+  [[%%ELOOP_SEC%%]]
+  <tr>
+    <td colspan="3">
+      <div align="center">合計</div></td>
+    <td width="90">
+      <div align="center"><script>a4=a1+a2;a1=a1+"";document.write(moneyAddDot2(a1));</script></div></td>
+    <td width="90">
+      <div align="center"><script>a2=a2+"";document.write(moneyAddDot2(a2));</script></div></td>
+    <td width="103">
+      <div align="center"><script>a3=a3+"";document.write(moneyAddDot2(a3));</script></div></td>
+    <td width="110">
+      <div align="center"><script>a4=a4+"";document.write(moneyAddDot2(a4));</script></div></td>
+    <td>
+      <div align="center">-</div></td>
+  </tr>
+</table>
+<br>
+<table width="650" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td colspan="2"> 
+      <div align="center"><img src="graph/top.gif" width="64" height="16" onClick="chkSubmit();"></div>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="IP0301000">
+</table>
+</form>
+</body>
+</html>

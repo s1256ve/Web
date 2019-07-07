@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- FUND QRYBRANCH 輸入贖回款入帳之本人帳號-->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/NCR">
+	<field id="QRYBRANCHi01">
+		<name>REVE-CODE</name>
+		<length>3</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='QRYBRANCHi02' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="QRYBRANCHi03">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="QRYBRANCHi04">
+		<name>REVE-FUNC-CODE</name>
+		<length>12</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="QRYBRANCHi05">
+		<name>REVE-BANK-CODE</name>
+		<length>14</length>
+		<type>String</type>
+		<description>銀行代碼</description>
+	</field>
+	<field id="QRYBRANCHi06">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="QRYBRANCHi07">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="QRYBRANCHi08">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="QRYBRANCHi09">
+		<name>REVE-COME-FROM</name>
+		<length>16</length>
+		<type>String</type>
+		<description>來源位置</description>
+	</field>
+	<field id="QRYBRANCHi10">
+		<name>REVE-ID-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+</catalog>

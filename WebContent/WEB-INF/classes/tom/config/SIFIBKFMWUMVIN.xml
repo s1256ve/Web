@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="BIG5"?>
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="FMWUMVINi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='FMWUMVINi02' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="FMWUMVINi03">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="FMWUMVINi04">
+		<name>REVE-TITLE-CODE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>科目代碼</description>
+	</field>
+	<field id="FMWUMVINi05">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="FMWUMVINi06">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="FMWUMVINi07">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="FMWUMVINi08">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="FMWUMVINi09">
+		<name>REVE-COME-FROM</name>
+		<length>16</length>
+		<type>String</type>
+		<description>來源位置</description>
+	</field>
+	<field id="FMWUMVINi10">
+		<name>REVE-ID-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+	<field id="FMWUMVINi11">
+		<name>REVE-FUND-ID</name>
+		<length>4</length>
+		<type>String</type>
+		<description>基金代碼</description>
+	</field>
+</catalog>

@@ -1,0 +1,173 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script type="text/JavaScript">
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+</head>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/CertScript.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+var times = 0;//防止重複多次交易
+    //字串去空白
+    String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");}
+    
+    var kbWin = null;
+function getKeyBoard(){
+	var Mytype="width=450,height=250,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+	var PWD = "window.opener.document.IP0711100.PWD.value";  //show在畫面上的密碼個數
+	var KBPWD = "window.opener.document.IP0711100.REVE_PWD.value";  //User真正key的密碼
+	kbWin = window.open( "LoadAP?pageid=IP2001000&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IP0711100.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP0711100.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+function onTop() {
+  	if (kbWin==null) return;
+  	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+
+function ChkSubmit(){
+	document.IP0711100.Submit1.disabled = true;
+	document.IP0711100.Submit2.disabled = true;
+	var f=document.IP0711100;
+	if (f.REVE_PWD.value.Trim() == ""){
+		alert("請輸入網路密碼");
+		document.IP0711100.Submit1.disabled = false;
+		return;
+	}
+	times++;
+	if(times==1){
+		document.onmousedown=noClick;
+		f.submit();
+	}     
+}
+
+function noClick() {
+	if ((event.button==1)||(event.button==2)) {
+		alert('交易執行中，請稍候 ....');
+	}
+}
+    
+function ChkSubmit2(){
+	document.IP0711100.Submit1.disabled = true;
+	document.IP0711100.Submit2.disabled = true;
+	document.IP0711100.pageid.value = "IP0711000";
+	document.IP0711100.submit();
+}
+
+//-->
+</script>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+
+<form method="post" name="IP0711100" action="LoadAP">
+<p><b>帳戶交易&gt;<font color="#003399"><font color="#0066FF">繳費</font></font></b><br>
+<table width="630" border="0">
+  <tr> 
+    <td><div align="center"><font color="#0000CC">您的轉帳設定為：</font></div>
+      <table width="350" border="1" align="center" bordercolor="#999999">
+        <tr>
+          <td width="26%" height="25" bgcolor="#C4CBB8"><p>交易類別 </p></td>
+          <td width="71%"><p>即時轉帳 </p></td>
+        </tr>
+        <tr>
+          <td width="26%" height="25" bgcolor="#C4CBB8"><p>繳費類別 </p></td>
+          <td width="71%">其他</td>
+        </tr>
+        <tr>
+          <td width="26%" height="25" bgcolor="#C4CBB8"><p>轉帳日期 </p></td>
+          <td width="71%">
+          <p>
+          <SCRIPT language="JavaScript">
+                document.write(getRCDateStr("[[%%SYSDATE%%]]",3));
+          </SCRIPT>
+          </p>
+          </td>
+        </tr>
+        <tr>
+          <td width="26%" height="25" bgcolor="#C4CBB8"><p>轉出帳號 </p></td>
+          <td width="71%">
+          <p>
+          [[%%FROM_BR_NAME%%]]
+          <SCRIPT language="JavaScript">
+                document.write(getAcctStr('[[%%FROM_ACCT_NO%%]]'));
+          </SCRIPT>
+          </p>
+          </td>
+        </tr>
+        <tr>
+          <td width="26%" height="25" bgcolor="#C4CBB8"><p>轉入銀行 </p></td>
+          <td width="71%"><p>[[%%TO_BANK_NAME%%]]</p></td>
+        </tr>
+        <tr>
+          <td width="26%" height="25" bgcolor="#C4CBB8"><p>轉入帳號 </p></td>
+          <td width="71%">
+          <p>
+          <SCRIPT language="JavaScript">
+                document.write(getAcctStr('[[%%TO_ACCTNO%%]]'));
+          </SCRIPT>
+          </p></td>
+        </tr>
+        <tr>
+          <td width="26%" height="25" bgcolor="#C4CBB8"><p>幣別/金額 </p></td>
+          <td width="71%">
+          <p>[[%%CURRENCY-CNAME%%]]
+            <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot('[[%%TXN_AMT%%]]')));
+            </SCRIPT>
+             元
+          </p>
+          </td>
+        </tr>
+        <tr>
+          <td width="26%" height="25" bgcolor="#C4CBB8"><p>交易附註 </p></td>
+          <td width="71%"><p>[[%%TXN_MEMO%%]]&nbsp;</p></td>
+        </tr>
+        <tr>
+          <td width="26%" height="25" bgcolor="#C4CBB8"><p>網路密碼 </p></td>
+          <td width="71%">
+          <p>
+            <input type="password" name="PWD" size="8" onclick="getKeyBoard();onTop();" readonly>
+            <input type="hidden" name="REVE_PWD" value="">
+          </p>
+          </td>
+        </tr>
+      </table>
+      <div align="center">
+        <input type="button" name="Submit1" value="確定轉出款項" onclick="ChkSubmit();">
+        <input type="button" name="Submit2" value="取消" onclick="ChkSubmit2();">
+    </div>    </td></tr>
+</table>
+<input type="hidden" name="FROM_ACCT_NO" value="[[%%FROM_ACCT_NO%%]]">
+<input type="hidden" name="FROM_BR_NAME" value="[[%%FROM_BR_NAME%%]]">
+<input type="hidden" name="TO_ACCTNO" value="[[%%TO_ACCTNO%%]]">
+<input type="hidden" name="TO_BANK_CODE" value="[[%%TO_BANK_CODE%%]]">
+<input type="hidden" name="TO_BANK_NAME" value="[[%%TO_BANK_NAME%%]]">
+<input type="hidden" name="TXN_AMT" value="[[%%TXN_AMT%%]]">
+<input type="hidden" name="TXN_MEMO" value="[[%%TXN_MEMO%%]]">
+<input type="hidden" name="CURRENCY-CNAME" value="[[%%CURRENCY-CNAME%%]]">
+<input type="hidden" name="pageid" value="IP0711101">
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+</form>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<html>
+<head>
+<title>低風險交易轉帳限額查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<script language="JavaScript">
+	function chksubmit(nextPageid){
+		document.submitform.pageid.value = nextPageid;
+		document.submitform.submit();
+	}
+</script>
+
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<link rel="stylesheet" type="text/css" media="all" href="theme/portal.css" />
+
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+<p><b><font color="#003399"><font color="#0066FF">低風險交易轉帳限額查詢<br>
+  </font></font></b></p>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5" height="69"><font color="#663300" face="Arial, Helvetica, sans-serif"> 
+      </font> 
+      <div align="center">
+        <table width="100%" border="00">
+          <tr>
+            <td> <img src="graph/point.gif" width="12" height="12" align="absbottom">未申請網路銀行SSL低風險交易 
+              <table width="100%" border="1" bordercolor="#999999">
+                <tr> 
+                  <td rowspan="2" bgcolor="#C4CBB8" width="23%"> 
+                    <div align="right">通路類別</div>
+                    <div align="center">\<br></div>
+                      轉入帳戶 </td>
+                  <td colspan="2" bgcolor="#C4CBB8"> 
+                    <div align="center">電子金融服務<br>
+                      （電話語音與網路銀行）</div>
+                  </td>
+                  <td colspan="2" bgcolor="#C4CBB8"> 
+                    <div align="center">ATM</div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="11%"> 
+                    <div align="center">未約定</div>
+                  </td>
+                  <td width="22%"> 
+                    <div align="center"><font color="#FF0033">約定後</font></div>
+                  </td>
+                  <td width="22%"> 
+                    <div align="center">未約定</div>
+                  </td>
+                  <td width="22%"> 
+                    <div align="center"><font color="#FF0033">約定後</font></div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="23%">聯邦銀行本人帳戶/<br>
+                    轉入聯邦銀行收款專戶</td>
+                  <td width="11%"> 
+                    <div align="center">不限金額</div>
+                  </td>
+                  <td width="22%"> 
+                    <div align="center">不限金額</div>
+                  </td>
+                  <td width="22%">*每筆上限10萬元<br>
+                    <font color="#FF0000">*每日單一帳戶轉出上限：電話銀行、網路銀行及金融卡合併累計上限300萬元</font></td>
+                  <td width="22%"><font color="#FF0033">*每筆上限200萬元<br>
+                    *每日單一帳戶轉出上限：電話銀行、網路銀行及金融卡合併累計上限300萬元</font></td>
+                </tr>
+                <tr> 
+                  <td width="23%">已約定聯邦銀行非本人帳戶/ 已約定非聯邦銀行帳戶</td>
+                  <td width="11%"> 
+                    <div align="center">0<br>
+                      （不開放）</div>
+                  </td>
+                  <td width="22%"><font color="#FF0033">*每筆上限200萬元<br>
+                    *每日單一帳戶轉出上限：電話銀行、網路銀行及金融卡合併累計上限300萬元</font></td>
+                  <td width="22%">*每筆上限10萬元<br>
+                    <font color="#FF0000">*每日單一帳戶轉出上限：電話銀行、網路銀行及金融卡合併累計上限300萬元</font></td>
+                  <td width="22%"><font color="#FF0033">*每筆上限200萬元<br>
+                    *每日單一帳戶轉出上限：電話銀行、網路銀行及金融卡合併累計上限300萬元</font></td>
+                </tr>
+              </table>
+              <br>
+              <img src="graph/point.gif" width="12" height="12" align="absbottom">已申請網路銀行SSL低風險交易 
+              <table width="100%" border="1" bordercolor="#999999">
+                <tr> 
+                  <td rowspan="3" bgcolor="#C4CBB8" width="23%"> 
+                    <div align="right">通路類別</div>
+                    <div align="center">\<br>
+                    </div>
+                    轉入帳戶 </td>
+                  <td colspan="3" bgcolor="#C4CBB8"> 
+                    <div align="center">電子金融服務<br>
+                      （電話語音與網路銀行）</div>
+                  </td>
+                  <td colspan="2" bgcolor="#C4CBB8"> 
+                    <div align="center">ATM</div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td colspan="2"> 
+                    <div align="center">未約定</div>
+                  </td>
+                  <td width="13%" rowspan="2"> 
+                    <div align="center"><font color="#FF0033">約定後</font></div>
+                  </td>
+                  <td width="22%" rowspan="2"> 
+                    <div align="center">未約定</div>
+                  </td>
+                  <td width="22%" rowspan="2"> 
+                    <div align="center"><font color="#FF0033">約定後</font></div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="10%"> 
+                    <div align="center">電話語音 </div>
+                  </td>
+                  <td width="10%"> 
+                    <div align="center">網路銀行</div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="23%">聯邦銀行本人帳戶/<br>
+                    轉入聯邦銀行收款專戶</td>
+                  <td colspan="2"> 
+                    <div align="center">不限金額</div>
+                  </td>
+                  <td width="13%"> 
+                    <div align="center">不限金額</div>
+                  </td>
+                  <td width="22%">*每筆上限10萬元<br>
+                    <font color="#FF0033">*每日單一帳戶轉出上限：電話銀行、網路銀行及金融卡合併累計上限300萬元</font></td>
+                  <td width="22%"><font color="#FF0000">*每筆上限200萬元<br>
+                    *每日單一帳戶轉出上限：電話銀行、網路銀行及金融卡合併累計上限300萬元</font></td>
+                </tr>
+                <tr> 
+                  <td width="23%">已約定聯邦銀行非本人帳戶/ 已約定非聯邦銀行帳戶</td>
+                  <td width="10%"> 
+                    <div align="center">0<br>
+                      (不開放）</div>
+                  </td>
+                  <td width="10%">每筆5萬每日10萬每月20萬</td>
+                  <td width="13%" valign="top"><font color="#FF0000">*每筆上限200萬元<br>
+                    *每日單一帳戶轉出上限：電話銀行、網路銀行及金融卡合併累計上限300萬元</font></td>
+                  <td width="22%" valign="top">*每筆上限10萬元<br>
+                    <font color="#FF0000">*每日單一帳戶轉出上限：電話銀行、網路銀行及金融卡合併累計上限300萬元</font></td>
+                  <td width="22%" valign="top"><font color="#FF0000">*每筆上限200萬元<br>
+                    *每日單一帳戶轉出上限：電話銀行、網路銀行及金融卡合併累計上限300萬元</font></td>
+                </tr>
+              </table>
+              
+            </td>
+          </tr>
+        </table>
+        
+      </div>
+      </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="5" valign="bottom" height="1"></td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- IBKVIN Last updated date 9-30-2003 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/COMPTXN">
+	<field id="IBKVIN01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+
+	<field id='1' attr='I' default=''>
+		<name>REVE-SID</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+
+	<field id='2' attr='I' default=''>
+		<name>REVE-ACCT-NO</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+
+	<field id='3' attr='I' default=''>
+		<name>REVE-IP-ADDR</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+
+	<field id='4' attr='I' default=''>
+		<name>REVE-START-DATE</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+
+	<field id='5' attr='I' default=''>
+		<name>REVE-END-DATE</name>
+		<length>0</length>
+		<type>STRING</type>
+		<description></description>
+	</field>
+
+	<field id="IBKVIN05">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="IBKVIN06">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="IBKVIN07">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="IBKVIN08">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

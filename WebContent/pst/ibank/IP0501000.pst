@@ -1,0 +1,175 @@
+<html>
+<head>
+<title>國民現金業務查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<script language="JavaScript">
+	function chksubmit(nextPageid){
+		document.submitform.pageid.value = nextPageid;
+		document.submitform.submit();
+	}
+</script>
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<link rel="stylesheet" type="text/css" media="all" href="theme/portal.css" />
+
+<SCRIPT language="JavaScript">
+	var nowDate = new Date();
+	var nowDay = nowDate.getDate();
+	var nowMonth = nowDate.getMonth();
+	var nowYear = nowDate.getFullYear();
+	var nowDateStr = getRCDateStr(nowYear + "/" + (nowMonth+1) + "/" + nowDay,0);
+	var nowTimeStr = nowDate.getHours() + ":" + nowDate.getMinutes() ;
+	var selDate = nowDateStr + "," + nowDateStr;
+	var now_owe = "[[%%SEND-NOW-OWE%%]]";
+    var now_owe1 = now_owe.charAt(0);
+    var len = now_owe.length;
+    var avalBalance = "[[%%SEND-AVAL-BALANCE%%]]";
+    var nowOwe = "[[%%SEND-NOW-OWE%%]]";           
+    if(now_owe1 == "-"){
+    	acctBalance = "0";
+    	nowOwe = now_owe.substr(1,(len+1));
+    		
+    }else{
+    	acctBalance = now_owe.substr(0,len);
+    	nowOwe = "0";
+    }
+	function getAcctBal(){
+		return acctBalance;
+	}
+	
+	function getNowOwe(){
+		return nowOwe;
+	}
+	
+</SCRIPT>
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form name="submitform" method="POST" action="LoadAP">
+<table width="763" border="0">
+  <tr> 
+    <td width="757">
+    <table width="100%" border="0">
+    	<tr>
+    	  <td class="header0" colspan=2  > <font class="titleMsg0">　國民現金卡 &gt; </font>
+    					     <font class="titleMsg1">整合帳戶查詢</font></td>
+    
+    	    <td class="header0" align=right> <font class="titleQueryTime">查詢時間： <script language="JavaScript">
+		document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+		/**
+											document.write(nowDateStr );
+											document.write("&nbsp;");
+											document.write(nowTimeStr ); */
+										    </script></font></td></tr>
+    	
+    	<tr><td colspan=3><br></td></tr>
+    	<!--
+    	<tr><td class="header1" >您的國民現金卡帳號為</td>
+    	    <td class="header1" ><script language="JavaScript">
+    	    				document.write(getAcctStr("[[%%SEND-ACCT-NO%%]]"));
+    	    			 </script></td>
+    	    <td class="header1" >&nbsp;</td>
+	</tr>
+
+    	<tr><td class="header1" >您的國民現金信用卡卡號為</td>
+    	    <td class="header1" ><script language="JavaScript">
+    	    				document.write(getCardStr("[[%%SEND-CARD-NO%%]]"));
+    	    			 </script></td>
+    	    <td class="header1" ></td>&nbsp;</tr>
+    	-->
+    </table>
+     
+      <table width="100%" border="1" bordercolor="#999999">
+        <tr> 
+          <td width="110">&nbsp;</td>
+          <td bgcolor="#C4CBB8" width="136" align=center>金融卡功能</td>
+          <td bgcolor="#C4CBB8" width="130" align=center>現金卡功能</td>
+          <td bgcolor="#C4CBB8" width="226" align=center>信用卡功能 </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="110" align=center>帳號</td>
+          <td colspan="2"  align=center> <script language="JavaScript">
+						document.write(getAcctStr("[[%%SEND-ACCT-NO%%]]"));
+					 </script> </td>
+          <td width="226"  align=center> <script language="JavaScript">
+						document.write(getCardStr("[[%%SEND-CARD-NO%%]]"));
+					 </script> </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="110" align=center>可動用額度</td>
+          <td width="136"> 
+            <div align="center">－</div>
+          </td>
+          <td width="130"  align=right> <script language="JavaScript">
+          		var sendCardStatus = new String("[[%%SEND-CREDIT-STATUS%%]]");
+
+						  if(sendCardStatus == "啟用" || sendCardStatus == "恢復") document.write(moneyFormat2("[[%%SEND-ACCT-CREDIT%%]]", 0));
+					    else document.write(moneyFormat2("0", 0));
+					 </script>  元</td>
+          <td width="226"  align=right> <script language="JavaScript">
+						document.write(moneyFormat2("[[%%SEND-CARD-CREDIT%%]]", 0));
+					 </script>  元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="110" align=center>存款餘額</td>
+          <td width="136"  align=right><script language="JavaScript">
+						document.write(getAcctBal());
+					 </script> 元</td>
+          <td width="130"> 
+            <div align="center">－</div>
+          </td>
+          <td width="226"> 
+            <div align="center">－</div>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="110" align=center>現金卡現欠金額</td>
+          <td width="136"> 
+            <div align="center">－</div>
+          </td>
+          <td width="130"  align=right><script language="JavaScript">
+						document.write(getNowOwe());
+					 </script> 元
+          <td width="226"> 
+            <div align="center">－</div>
+          </td>
+                    
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="110" align=center>交易/帳單明細</td>
+          <td width="136">&nbsp; </td>
+          <td width="130" align=center> 
+          	<input class="inputWhite" type="button" name="submit002" value="查詢" onClick='JavaScript:chksubmit("IP0503000");'>
+          </td>
+          <td width="226" align=center>
+          	<input class="inputWhite"  type="button" name="submit002" value="查詢" onClick='JavaScript:chksubmit("IP0601000");'>
+          </td>
+        </tr>
+      </table>
+      <table width="75%" border="0">
+        <tr> 
+          <td>註：本頁資料，不得做為往來憑證之用。</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="aptype" value="ibank">
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="selAccount" value="[[%%SEND-ACCT-NO%%]]">
+<input type="hidden" name="selDateBegin" value="">
+<input type="hidden" name="selDateEnd" value="">
+<input type="hidden" name="REVE_ACCT_NO" value="[[%%SEND-ACCT-NO%%]]">
+<input type="hidden" name="REVE_BR_NAME" value="[[%%REVE-BR-NAME%%]]">
+<input type="hidden" name="REVE_ACCT_DESC" value="[[%%REVE-ACCT-DESC%%]]">
+<input type="hidden" name="SEND_AVAL_BB" value="">
+<input type="hidden" name="SEND_NOW" value="">
+
+</form>
+
+</body>
+</html>

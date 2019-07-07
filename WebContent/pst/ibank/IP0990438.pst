@@ -1,0 +1,274 @@
+<html xmlns="undefined">
+<head>
+<title>轉帳交易常用帳號管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<style type="text/css">
+<!--
+.style1 {color: #0066FF}
+.style2 {color: #0000FF}
+-->
+</style>
+<SCRIPT language="JavaScript">
+
+var i = 0 ;
+function getIndex(){
+    i++;
+    return i;    
+}
+   
+   
+   
+
+   
+   
+   
+      
+    
+
+
+
+function UchkActNo(){   
+    var f = document.IP0990438;
+    var j = 1;
+    f.changeact.value = '';
+    
+    
+    
+    if (typeof(f.chkindex.checked) == 'undefined'){  
+        for (i = 0 ; i<f.chkindex.length ; i++){
+            if (f.chkindex[i].checked&&j==1){
+                f.changeact.value = f.changeact.value + f.chkindex[i].value ;
+                j++;
+            }else if (f.chkindex[i].checked&&j!=1){
+            f.changeact.value = '';
+               alert('請只勾選一項欲設定之常用帳號項目!');
+                 return;
+            }
+        }
+        if (j==1){
+            alert('請勾選欲設定之常用帳號項目!');
+            return;    
+        }   
+    }else{  
+        if (f.chkindex.checked){
+            f.changeact.value = f.chkindex.value;   
+        }else{
+            alert('請勾選欲設定之常用帳號項目!');
+            return;
+        }      
+    }
+}
+
+
+
+
+
+
+
+function substr(s){
+
+var s;
+
+var subs=s.substring(0,10);
+
+return subs;
+
+}
+
+
+
+
+
+function chkStatus(toactdesc,toacctinfo,acctno,txndesc,notitype,mobile,email){
+    var str = "";
+   
+        str = "<tr><td width=\"7%\"><div align=\"center\"><input type=\"checkbox\" name=\"chkindex\" value=\""+toactdesc+"#"+toacctinfo+"#"+acctno+"#"+txndesc+"#"+notitype+"#"+mobile+"#"+email+"\"></div></td>"; 
+        str = str + "<td width=\"7%\"><div align=\"center\">"+getIndex()+"</div></td>"; 
+        str = str + "<td width=\"18%\"><div align=\"center\">"+toactdesc+"</div></td>";  
+        str = str + "<td width=\"15%\"><div align=\"center\">"+toacctinfo+"</div></td>";
+        str = str + "<td width=\"16%\"><div align=\"center\">"+getAcctStr(acctno);+"</div></td>";
+        str = str + "<td width=\"20%\"><div align=\"center\">"+substr(txndesc)+"</div></td>";
+        
+        if(notitype==0) {
+        str = str + "<td width='20%'><div align='center'>不通知</td></tr>";
+        }
+        if(notitype==1) {
+        str = str + "<td width='20%'><div align='center'>簡訊通知<br></div><div align=\'center\'>"+mobile+"</div></td></tr>";
+        }
+         if(notitype==2) {
+        str = str + "<td width='20%'><div align='center'>EMAIL通知<br></div><div align=\'center\'>"+email+"</div></td></tr>";
+        }
+       
+       
+        
+    
+    //alert('str='+str);
+    return str;
+}
+
+
+
+
+
+
+
+
+
+
+function set(){
+    var f = document.IP0990438;
+    
+    
+     if(typeof(f.chkindex) == 'undefined'){
+    	alert('目前尚無常用帳號資料！');
+ 
+    }
+      
+    
+    UchkActNo();
+    if (f.changeact.value=='') return;
+    //alert('f.changeact.value='+f.changeact.value);
+    
+  //var s=window.location.search.substring(1).split('=')[2];
+  
+  
+	
+	var oForm=opener.document.IP0702100;
+	
+	
+	
+	
+	
+	var d=f.changeact.value;
+	var actinfo = d.split('#');
+ 
+ 
+
+  
+  
+   var s=actinfo[1].substring(0,3)+"@"+actinfo[1].substring(4,8);
+ 
+ 
+	//eval('oForm.'+s+'.value=\''+d+'\'');
+   oForm.TOACCTNO.value=actinfo[2];
+   oForm.TOACCTINFO3.options[0].text=actinfo[1];
+   oForm.TOACCTINFO3.options[0].value=s;
+   
+   oForm.SEND_MEMO.value=actinfo[3];
+   
+   
+   
+   
+   if(actinfo[4]==1){                 
+    oForm.notifyType[1].checked=true; 
+    window.opener.showSendDiv(2); 
+    oForm.MOBILE.value=actinfo[5];
+   
+   }
+   
+    if(actinfo[4]==2){                
+    oForm.notifyType[0].checked=true; 
+    window.opener.showSendDiv(1); 
+    
+    oForm. EMAIL_ADDR.value=actinfo[6];
+   
+   
+   }
+   
+   
+    if(actinfo[4]==0){                
+    oForm.notifyType[2].checked=true; 
+    window.opener.showSendDiv(0); 
+    
+    
+  
+   
+   }
+   
+   
+   
+   
+   
+   
+   
+  
+   //oForm.notifyType[1].checked=true;   
+   //oForm.vtrType[2].checked=true;      
+   
+   
+   //window.opener.showVTRDiv(2);       
+   //window.opener.showSendDiv(1);      
+ 
+   //window.opener.getDetail();
+   
+ 
+   
+	 window.close();
+   
+    
+    
+}
+
+
+
+
+
+
+</SCRIPT>
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+
+<form name="IP0990438" method="POST" action="LoadAP">
+<table width="750" border="0">
+  <tr>
+    <td colspan="5"><table width="650" border="0" align="center">
+        <tr>
+          <td>
+            請選擇本次轉帳要使用的常用轉入帳號資料：
+            <table width="100%" border="1" bordercolor="#999999">
+              <tr>
+                <td width="7%" bgcolor="#C4CBB8">請選擇 </td>
+                <td width="7%" bgcolor="#C4CBB8"><div align="center">編號 </div></td>
+                <td width="18%" bgcolor="#C4CBB8"><div align="center">帳號暱稱 </div></td>
+                <td width="15%" bgcolor="#C4CBB8"><div align="center">銀行代號 </div></td>
+                <td width="16%" bgcolor="#C4CBB8"><div align="center">轉入帳號 </div></td>
+                <td width="20%" bgcolor="#C4CBB8"><div align="center">交易附註 </div></td>
+                <td width="20%" bgcolor="#C4CBB8"><div align="center">通知方式 </div></td>
+              </tr>
+              <!--[[%%LOOP_SEC SID%%]]
+                <script>document.write(chkStatus('[[%%TOACTDESC%%]]','[[%%TOACCTINFO%%]]','[[%%ACCTNO%%]]','[[%%TXNDESC%%]]','[[%%NOTITYPE%%]]','[[%%MOBILE%%]]','[[%%EMAIL%%]]'));</script>
+              <!--[[%%ELOOP_SEC%%]]-->
+     
+            </table>
+            
+          
+         
+          
+           
+          
+          </td>
+        </tr>
+      </table>
+      
+      <br>
+      <div align="center">
+       
+    
+         <input type="button" name="button2" value="設定" onclick="javascript:set();">
+      </div>
+      </div>
+      </div>
+      <div align="center"> </div></td>
+  </tr>
+  <tr>
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="aptype" value="IBANK">
+<input type="hidden" name="changeact" value="">
+</form>
+</body>
+</html>

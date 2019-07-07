@@ -1,0 +1,278 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<script language="Javascript">
+    //字串去空白
+    String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");} 
+</script>
+<script language="javascript">
+<!--
+function chgAcct(acctStr) {
+	var acctArray = acctStr.split("@");
+	var i = 0;
+	document.IP0705000.SEND_FROM_BR_NAME.value = acctArray[0];
+	document.IP0705000.SEND_FROM_ACCT_DESC.value = acctArray[1];
+	document.IP0705000.SEND_FROM_ACCT_NO.value = acctArray[2];
+	document.IP0705000.SEND_FROM_AVAL_BALANCE.value = acctArray[3];
+
+}
+
+function chkMoney(moneyStr) {
+	var moneyArray = moneyStr.split(",");
+	var tmp = "";
+	for (i=0;i<moneyArray.length;i++) tmp = tmp + moneyArray[i];
+	return tmp;
+}
+
+function chkCash(){
+	document.IP0705000.pageid.value = "IP0503000";
+	document.IP0705000.submit();
+}
+
+function chkCard(){
+	document.IP0705000.pageid.value = "IP0601000";
+	document.IP0705000.submit();
+}
+	
+function chkSel(tmp){
+	if(tmp == 1){
+		document.IP0705000.pageid.value = "IP0705001";
+	}
+	if(tmp == 2){
+		document.IP0705000.pageid.value = "IP0704000";
+	}
+}
+
+function chkSubmit() {
+	if(document.IP0705000.pageid.value=="IP0704000"){
+		document.IP0705000.submit();
+		return;
+	}
+	var aval = eval(document.IP0705000.SEND_FROM_AVAL_BALANCE.value);
+	var min = eval(chkMoney("[[%%SEND-ACCT-MIN-AMT%%]]"));
+	var fromAcct = document.IP0705000.SEND_FROM_ACCT_NO.value;
+	var acct = '[[%%SEND-ACCT-NO%%]]';
+	if(document.IP0705000.SEND_ACCT.value=="0"){
+		alert("請選擇轉出帳號!");
+		return;
+	}
+	  	if (fromAcct == acct){
+  		alert("轉出帳號不得和轉入帳號相同!");
+  		return;
+  	}
+	if(fromAcct.substr(3,2)==51){
+		alert("如您動用到達文西A+理財卡貸款額度\n，且動用金額大於100元時，每筆計收\n提領費100元。");
+	}
+	if (document.IP0705000.SEND_TXN_AMT.value == ""){
+    		alert("請輸入轉帳金額!");
+    		return;
+  	}
+  	if (isNaN(document.IP0705000.SEND_TXN_AMT.value)){
+    		alert("轉帳金額格式錯誤!");
+    		return;
+  	}
+  	if(document.IP0705000.SEND_TXN_AMT.value.indexOf(".",0)!=-1){
+	    alert("轉帳金額須為正整數!");
+	    return;   
+	}
+	if(document.IP0705000.SEND_TXN_AMT.value.indexOf("-",0)!=-1){
+	    alert("轉帳金額須為正整數!");
+	    return;   
+	}
+	if(document.IP0705000.SEND_TXN_AMT.value.indexOf("+",0)!=-1){
+	    alert("台幣轉帳不可帶正號!");
+	    return;   
+	}
+	if(eval(document.IP0705000.SEND_TXN_AMT.value)==0){
+	    alert("轉帳金額不得為零!!");
+	    return;   
+	}
+	if(aval < eval(document.IP0705000.SEND_TXN_AMT.value) || aval == ""){
+		alert("轉出帳號可用餘額不足!");
+		return;
+	}
+	if ( eval(document.IP0705000.SEND_TXN_AMT.value) < 0 ){
+        		alert("轉帳金額須為正整數!");
+        		return;
+    	}
+	document.IP0705000.SEND_MEMO.value = HalfshapeToFullshape(document.IP0705000.SEND_MEMO.value);
+	document.IP0705000.submit();
+}
+
+function chkSubmit2(){
+		document.IP0705000.pageid.value = "IP0903000";
+		document.IP0705000.submit();
+}
+
+-->
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg01.gif" leftmargin="0" topmargin="0">
+
+<form method="post" action="LoadAP" name="IP0705000">
+<b>帳戶交易&gt;<font color="#003399"><font color="#0066FF">國民現金卡繳款<br>
+<br>
+</font></font></b><font color="#003399"><font color="#0066FF"> <font color="#0000CC"> 
+</font></font></font><b><font color="#003399"><font color="#0066FF"> </font></font></b> 
+<table width="630" border="0">
+  <tr> 
+    <td height="276"> <font color="#0000CC">您的國民現金卡帳號為
+    		<SCRIPT language="JavaScript">
+                	document.write(getAcctStr('[[%%SEND-ACCT-NO%%]]'));
+                </SCRIPT>
+    <br>
+      您的國民現金信用卡卡號為 [[%%SEND-CARD-NO%%]]</font>
+      <table width="620" border="1" bordercolor="#999999">
+        <tr> 
+          <td bgcolor="#C4CBB8">項 目</td>
+          <td bgcolor="#C4CBB8">現金卡</td>
+          <td bgcolor="#C4CBB8">信用卡</td>
+        </tr>
+        <tr> 
+          <td>本期信用卡應繳總額</td>
+          <td bgcolor="#FFFFDD">&nbsp;</td>
+          <td bgcolor="#FFFFDD">
+          <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot('[[%%SEND-CARD-DUE-AMT%%]]')));
+          </SCRIPT>
+          元</td>
+        </tr>
+        <tr> 
+          <td>本期最低應繳金額</td>
+          <td bgcolor="#FFFFDD">
+          <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot('[[%%SEND-ACCT-MIN-AMT%%]]')));
+          </SCRIPT>
+          元 </td>
+          <td bgcolor="#FFFFDD">
+          <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot('[[%%SEND-CARD-MIN-AMT%%]]')));
+          </SCRIPT>
+          元 </td>
+        </tr>
+        <tr> 
+          <td>本期應繳日期</td>
+          <td bgcolor="#FFFFDD">
+          <script>
+          document.write(getRCDateStr("[[%%SEND-ACCT-DUE-DAY%%]]",0));
+          </script>
+          </td>
+          <td bgcolor="#FFFFDD">
+          <script>
+          document.write(getRCDateStr("[[%%SEND-CARD-DUE-DAY%%]]",0));
+          </script>
+          </td>
+        </tr>
+        <tr>
+          <td>帳單明細</td>
+          <td bgcolor="#FFFFDD">
+            <input type="button" name="cash" value="查詢" onClick="chkCash();">
+          </td>
+          <td bgcolor="#FFFFDD">
+            <input type="button" name="card" value="查詢" onClick="chkCard();">
+          </td>
+        </tr>
+      </table>
+      註：<br>
+      1.&nbsp;信用卡之帳單金額、應繳金額係您與聯邦銀行所有往來之信用卡總計。<br>
+      2.&nbsp;上表所列信用卡繳款金額係最近一期帳單資料，如您已繳款，則毋須重覆繳款。<br>
+      <table width="620" border="0">
+        <tr> 
+          <td colspan="2"> 
+            <input type="radio" name="sel" value="1" checked onClick="chkSel(this.value);">
+            繳交國民現金卡</td>
+        </tr>
+        <tr> 
+          <td width="14%">　轉出帳號<font color="#663300" face="Arial, Helvetica, sans-serif">　 
+            </font></td>
+          <td width="86%"><font color="#663300" face="Arial, Helvetica, sans-serif"> 
+            <select name="SEND_ACCT"  onChange="JavaScript:chgAcct(this.value);">
+              <option selected value="0">==請選擇帳號　可用餘額==</option>
+
+              [[%%LOOP_SEC SEND-FROM-ACCT-NO%%]]
+              <option value="[[%%SEND-FROM-BR-NAME%%]]@[[%%SEND-FROM-ACCT-DESC%%]]@[[%%SEND-FROM-ACCT-NO%%]]@[[%%SEND-FROM-AVAL-BALANCE%%]]">
+              [[%%SEND-FROM-BR-NAME%%]] 
+              <script language="JavaScript">
+                            document.write(getAcctStr('[[%%SEND-FROM-ACCT-NO%%]]'));
+              </script> 
+              新台幣
+              <script>
+              	document.write(trimDecimal(moneyAddDot('[[%%SEND-FROM-AVAL-BALANCE%%]]')));
+              </script>
+              元</option>
+              [[%%ELOOP_SEC%%]]
+
+            </select>
+            </font></td>
+        </tr>
+        <tr> 
+          <td width="14%"> 　轉入帳號　</td>
+          <td width="86%">
+              <script>
+              	document.write(getAcctStr('[[%%SEND-ACCT-NO%%]]'));
+              </script>
+          &nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="14%">　轉帳金額</td>
+          <td width="86%">新台幣 
+            <input type="text" name="SEND_TXN_AMT" size="15" value="">
+            元 </td>
+        </tr>
+        <tr> 
+          <td width="14%"> 　交易附註</td>
+          <td width="86%">
+          <input type="text" name="SEND_MEMO" value="" maxlength="50" size="80">
+          <br>
+            <font color="#FF0000">(如您輸入交易附註，則於交易成功後可至『帳戶查詢』&gt;『台幣存款帳戶』&gt;『交易明細』點選查詢類別為『網銀轉出交易』查詢您所記錄之交易附註。) 
+            </font>
+          </td>
+        </tr>
+      </table>
+      <table width="620" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td> 
+            <div align="center"> </div>
+          </td>
+        </tr>
+      </table>
+      <table width="620" border="0">
+        <tr> 
+          <td colspan="2"> 
+            <input type="radio" name="sel" value="2" onClick="chkSel(this.value);">
+            繳交信用卡</td>
+        </tr>
+      </table>
+      <br>
+      <table width="620" border="0" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td> 
+            <div align="center"> 
+              <input type="button" name="Submit" value="確  定" onClick="chkSubmit();">
+              <input type="reset" name="Submit2" value="重 填">
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="IP0705001">
+  <input type="hidden" name="SEND_FROM_BR_NAME" value="">
+  <input type="hidden" name="SEND_FROM_ACCT_DESC" value="">
+  <input type="hidden" name="SEND_FROM_ACCT_NO" value="">
+  <input type="hidden" name="SEND_FROM_AVAL_BALANCE" value="">
+  <input type="hidden" name="SEND-ACCT-NO" value="[[%%SEND-ACCT-NO%%]]">
+  <input type="hidden" name="REVE_BR_NAME" value="[[%%SEND-BR-NAME%%]]">
+  <input type="hidden" name="REVE_ACCT_DESC" value="[[%%SEND-ACCT-DESC%%]]">
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<html>
+<head>
+<title>約定扣繳停車費</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/parking.js"></SCRIPT>
+<style type="text/css">
+<!--
+.style1 {color: #0066FF}
+-->
+</style>
+<SCRIPT language="JavaScript">
+<!--
+
+function checkSubmit(){
+    var vehtype = '[[%%REVE-VEH-TYPE%%]]';
+    var area = '[[%%REVE-AREA-CODE%%]]';
+    var f = document.IP1009103;
+    f.REVE_AREA_CODE.value=getAreaCode(area); 
+    f.REVE_VEH_TYPE.value=vehtypeMap(vehtype);
+    if (f.notitype1[0].checked){
+        f.REVE_NOTIFY.value='1';    
+    }
+    if (f.notitype1[1].checked){
+       f.REVE_NOTIFY.value='0';     
+    }
+    f.submit();  
+}
+function back(){
+    document.IP1009103.pageid.value = 'IP1009100';
+    document.IP1009103.submit();    
+}
+//-->
+</SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+<div id="Layer1"><a href="page10-9_A01.html">確定</a></div>
+<p><strong>約定代繳停車費&gt;<span class="style1">查詢已約定代繳停車費明細 </span></strong></p>
+<form method="POST" name="IP1009103" action="LoadAP">
+<table width="750" border="0">
+  <tr>
+    <td colspan="5">您要變更下列資料之通知方式：
+    <table width="350" border="1" bordercolor="#999999" cellpadding="2" align="center">
+        <tr>
+          <td width="116" height="25" bgcolor="#C4CBB8"><div align="center">車號 </div></td>
+          <td width="214"><div align="center">[[%%REVE-VEH-NO%%]]</div></td>
+        </tr>
+        <tr>
+          <td height="25" bgcolor="#C4CBB8"><div align="center">車種</div></td>
+          <td width="214"><div align="center">[[%%REVE-VEH-TYPE%%]]</div></td>
+        </tr>
+        <tr>
+          <td height="25" bgcolor="#C4CBB8"><div align="center">約定扣款帳號 </div></td>
+          <td width="214" height="17"><div align="center">
+            <div align="center"><script>document.write(getAcctStr('[[%%REVE-ACCT-NO%%]]'));</script></div>
+          </div></td>
+        </tr>
+        <tr>
+          <td height="25" bgcolor="#C4CBB8"><div align="center">地區</div></td>
+          <td height="17"><div align="center">[[%%REVE-AREA-CODE%%]]</div></td>
+        </tr>
+        <tr>
+          <td height="25" valign="top" bgcolor="#C4CBB8"><div align="center">通知方式</div></td>
+          <td height="17"><div align="center">
+            <table width="100%" border="0">
+            <tr>
+              <td width="12%"><input name="notitype1" type="radio" value="1"></td>
+              <td width="88%">簡訊通知 [[%%SEND-MPHONE%%]]</td>
+            </tr>
+            <tr>
+              <td><input name="notitype1" type="radio" value="0"></td>
+              <td>不通知</td>
+            </tr>
+          </table>
+          </div></td>
+        </tr>
+      </table>
+<SCRIPT language="JavaScript">
+<!--
+    var email = '[[%%SEND-EMAIL-ADDR%%]]';
+    var mphone = '[[%%SEND-MPHONE%%]]';
+    var nofitype = '[[%%REVE-NOTIFY%%]]';
+    if (mphone.trim == '') document.IP1009103.notitype1[0].disabled = true;
+    if (nofitype=='0') document.IP1009103.notitype1[0].checked = true;
+    if (nofitype=='1') document.IP1009103.notitype1[1].checked = true;
+    
+    
+-->
+</SCRIPT>
+      <table width="350" border="0" align="center">
+        <tr>
+          <td><div align="center">
+            <input type="button" name="sure" value="確定" onclick="javascript:checkSubmit();">&nbsp;
+            <input type="button" name="cancel" value="取消" onclick="javascript:back();">
+          </div></td>
+        </tr>
+      </table>
+      </div>
+<div align="center"> </div></td>
+  </tr>
+  <tr>
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+<input type="hidden" name="aptype" value="IBANK">
+<input type="hidden" name="pageid" value="IP1009104">
+<input type="hidden" name="REVE_ACCT_NO" value="[[%%REVE-ACCT-NO%%]]">
+<input type="hidden" name="REVE_AREA_CODE" value="">
+<input type="hidden" name="REVE_VEH_TYPE" value="">
+<input type="hidden" name="REVE_VEH_NO" value="[[%%REVE-VEH-NO%%]]">
+<input type="hidden" name="REVE_NOTIFY" value="">
+</form>
+</body>
+</html>

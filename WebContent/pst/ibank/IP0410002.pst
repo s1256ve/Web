@@ -1,0 +1,290 @@
+<html>
+<head>
+<title>外匯存款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js">
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI100036          2011.07.01     Joe  
+*EAI100041          2011.07.12     David
+*EAI100056          2011.08.15     David
+***********************************************************************/
+</script>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script>
+
+function chkSubmit(){
+	document.IP0210002.submit();
+}
+
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form method="post" action="LoadAP" name="IP0410002">
+<b>　外匯存款帳戶查詢&gt;</b><font color="#0066FF"><b>定期存款中途解約試算</b></font> <br>
+<br>
+<table width="763" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td width="763" height="2"> 
+      <div align="right"><font color="#0000CC">查詢時間： 
+      <script>
+        	document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+      </script>
+      </font></div>
+    </td>
+  </tr>
+</table>
+<font color="#0000CC">　</font><font color="#0000CC"><img src="graph/point.gif" width="12" height="12" align="absmiddle"> 
+以下是 您 [[%%SEND-BR-NAME%%]] 定存帳號 [[%%SEND-ACCT-NO%%]] 定期存款中途解約試算結果</font><br>
+<br>
+　存單字號：[[%%SEND-VCHR-NO%%]]
+<br>
+	<script>
+		var intDate = "[[%%SEND-INT-DATE%%]]";
+		var intDateYear = parseInt(intDate.substr(0,4),10);
+		var inDateMonth = parseInt(intDate.substr(4,2),10);
+		var intDateDay = parseInt(intDate.substr(6,2),10);
+	
+		var annulDate = "[[%%SEND-PERIOD-DAY%%]]";
+		var annulDateYear = parseInt(annulDate.substr(0,3),10);
+		var annulDateMonth = parseInt(annulDate.substr(3,2),10);
+		var annulDateDay = parseInt(annulDate.substr(5,2),10);
+			
+		document.write("　定存試算區間：起息日" + getRCDateStr("[[%%SEND-INT-DATE%%]]",0) + " ～ " + "預訂解約日" + annulDateYear + "/" + annulDateMonth + "/" + annulDateDay);
+	</script>
+
+<table width="763" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td width="763"> 
+      <div align="right">單位：<script language="JavaScript">document.write("[[%%SEND-CURRENCY%%]]");</script></div>
+    </td>
+  </tr>
+</table>
+<font color="#0000CC"> </font> 
+<table width="630" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td> 
+      <table width="763" border="1" bordercolor="#999999" align="center">
+        <tr> 
+          <td bgcolor="#C4CBB8"> 
+            <div align="center">定存本金<br>存入金額 </div>
+          </td>
+          <td bgcolor="#C4CBB8"> 
+            <div align="center">利率</div>
+          </td>
+          <td bgcolor="#C4CBB8"> 
+            <div align="center">原計息期間(月)</div>
+          </td>
+          <td bgcolor="#C4CBB8"> 
+            <div align="center">解約利息試算<br></div>
+          </td>
+          <td bgcolor="#C4CBB8"> 
+            <div align="center">所得稅</div>
+          </td>
+          <td bgcolor="#C4CBB8"> 
+            <div align="center">補充保費</div>
+          </td>
+          <td bgcolor="#C4CBB8"> 
+            <div align="center">實領利息</div>
+          </td>
+        </tr>
+        <tr align=center> 
+          <td>&nbsp;
+          	<script language="JavaScript">
+                			document.write("[[%%SEND-CURRENCY%%]]" + " ");
+                			var principalBalance = "[[%%SEND-PRINCIPAL-BALANCE%%]]";
+                			//var intPrincipalBalance = parseInt(principalBalance.substr(0,13),10);
+                			//var decimalPointprincipalBalance = principalBalance.substr(13,2);
+                			//var principalBalanceString = intPrincipalBalance + "." + decimalPointprincipalBalance;              			
+                			document.write(moneyAddDot3(principalBalance));
+				  	</script>
+				  	</br>&nbsp;						
+				  	<script language="JavaScript">
+				  						document.write("[[%%SEND-CURRENCY%%]]" + " ");
+				  						var sendNewAmount = "[[%%SEND-NET-AMOUNT%%]]";
+	                  	//var intNewAmount = parseInt(sendNewAmount.substr(0,13),10);
+	                    //var decimalNewAmount = sendNewAmount.substr(13,2);
+	                    //var newAmountString = intNewAmount + "." + decimalNewAmount;
+                			document.write(moneyAddDot3(sendNewAmount));
+				  	</script>
+				  </td>
+          <td align=center>&nbsp;
+          	<script language="javascript">
+          			var rate = "[[%%SEND-INT-RATE%%]]";
+          			//var intRate = parseInt(rate.substr(0,2),10);
+                //var decimalPointRate = rate.substr(2,5);
+                //var totalRateString = intRate + "." + decimalPointRate;
+                //var totalRatevalue = parseFloat(totalRateString);
+           			document.write(rate);         
+    				</script>
+    				%
+    			</td>
+    			<td>&nbsp;
+    				<script language="JavaScript">    					
+    						document.write(trimSpStr1("[[%%SEND-PERIOD%%]]"));
+                //document.write(getRCDateStr("[[%%SEND-PERIOD%%]]", 0));
+				  	</script>
+				  </td>
+          <td>&nbsp;
+          	<script language="JavaScript">
+          		        var sendGrossProfit = "[[%%SEND-GROSS-PROFIT%%]]";
+          		        //var intSendGrossProfit = parseInt(sendGrossProfit.substr(0,11),10);
+          		        //var decimalSendGrossProfit = sendGrossProfit.substr(11,2);
+                			//document.write(trimSpStr1(intSendGrossProfit) + "." + decimalSendGrossProfit);
+                			document.write(moneyAddDot3(sendGrossProfit));
+				  	</script>
+				  </td>
+				  
+				  
+          <td>&nbsp;
+          	<script language="JavaScript">
+          		        var sendDetainTaxation = "[[%%SEND-DETAIN-TAXATION%%]]";
+          		        var intDetainTaxation = parseInt(sendDetainTaxation.substr(0,11),10);
+	                    var decimalDetainTaxation = sendDetainTaxation.substr(11,2);
+	                    var detainTaxationString = intDetainTaxation + "." + decimalDetainTaxation;
+                			document.write(moneyAddDot3(detainTaxationString));
+				  	</script>
+				  </td>
+				  
+				  <td>&nbsp;
+          	<script language="JavaScript">
+          		        var sendSuppPrem = "[[%%SEND-SUPP-PREM%%]]";
+                			document.write(moneyAddDot3(sendSuppPrem));
+				  	</script>
+				  </td>
+          
+          <td>&nbsp;
+          	<script language="JavaScript">
+          		       //var realInterest = "[[%%SEND-GROSS-PROFIT%%]]" - "[[%%SEND-DETAIN-TAXATION%%]]";
+          		        var sendGrossProfit = "[[%%SEND-GROSS-PROFIT%%]]";
+          		        //var intSendGrossProfit = parseInt(sendGrossProfit.substr(0,11),10);
+          		        //var decimalSendGrossProfit = sendGrossProfit.substr(11,2);
+          		        //var allSendGrossProfit = intSendGrossProfit + "." + decimalSendGrossProfit;
+          		        
+          		        var sendDetainTaxation = "[[%%SEND-DETAIN-TAXATION%%]]";
+          		       // var intSendDetainTaxation = parseInt(sendDetainTaxation.substr(0,11),10);
+          		        //var decimalSendDetainTaxation = sendDetainTaxation.substr(11,2);
+          		        //var allSendDetainTaxation = intSendDetainTaxation + "." + decimalSendDetainTaxation;
+          		        
+          		        var sendSuppPrem = "[[%%SEND-SUPP-PREM%%]]";
+          		        
+          		        var parIntSendGrossProfit = parseFloat(sendGrossProfit);
+          		        var ParntSendDetainTaxation = parseFloat(sendDetainTaxation);
+          		        var ParntSendSuppPrem = parseFloat(sendSuppPrem);
+          		        var RealInterest = parseFloat(parIntSendGrossProfit - ParntSendDetainTaxation - ParntSendSuppPrem);
+          		        var RealInterest2 = Math.round(RealInterest * 100) / 100; //取小數點第二位後四捨五入
+                      
+                      /*
+                      alert(parIntSendGrossProfit);          		        
+          		        alert(ParntSendDetainTaxation);
+          		        alert(RealInterest);
+          		        */
+          		        document.write(RealInterest2);
+                			//document.write(trimSpStr1(RealInterest));
+				  	</script>
+				  </td>
+          
+        </tr>
+      </table>
+<table width="100%" border="0">
+        <tr>
+          <td>註：<br>
+            1.中華民國境內居住之個人存戶，應於給付利息時扣取百分之十稅額；惟每次應扣繳稅額未超過新台幣二千元者，免予扣繳；如非中華民國境內<br>
+            	&nbsp&nbsp&nbsp居住之個人存戶應於給付利息時扣取百分之二十稅額。
+          </td>
+        </tr>
+      </table>
+	<!--  
+      <table width="100%" border="0">
+        <tr>
+        	<td>2.因應102年1月1日二代健保補充保險費扣繳辦法上線，其利息補充保險費扣繳相關作業如下：</td>
+        </tr>
+      </table>
+      <table width="100%" border="0">
+        <tr>
+          <td></td>
+          <td></td>
+          <td>a.  單次(筆)給付利息金額為新台幣5,000(含)~19,999元，於次年度由健保局開立繳款書向義務人收取。</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td></td>
+          <td>b.  單次(筆) 給付利息金額為新台幣20,000元(含)以上，由本行給付利息時，即先代扣2%補充保險費。</td>
+        </tr>
+      </table>
+	--> 
+     <table width="100%" border="0">
+        <tr>
+          <td>
+		  2.若單次(筆)給付利息金額為新臺幣2萬元以上~1千萬元(含)以下(當金額超過1千萬元，以1千萬元計算)，由本行給付利息時，即先代扣1.91%之<br>
+            	&nbsp&nbsp&nbsp補充保險費。
+          </td>
+        </tr>
+      </table>	
+      <table width="100%" border="0">
+		  <tr>
+		    <td>3.外匯綜存定存中途解約之利息計算方式，其計息期間及利率依其期別以存入當日本行牌告利率為準，按下列方式計算：</td>
+		  </tr>
+		</table>
+		<table width="100%" border="0">
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td>a.未存滿一個月者，按實際天數，照外匯活期存款利率八折計息。</td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td>b.存滿一個月未滿三個月者，按其實存期間，照一個月期存款利率八折計息。</td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td>c.存滿三個月未滿六個月者，按其實存期間，照三個月期存款利率八折計息。</td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td>d.存滿六個月未滿九個月者，按其實存期間，照六個月期存款利率八折計息。</td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td>e.存滿九個月未滿一年者，按其實存期間，照九個月期存款利率八折計息。</td>
+		  </tr>
+		  
+		</table>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0">
+        <tr>
+          <td>
+            4.本交易中途解約試算結果僅供參考，實際解約利息與利息所得稅計算仍依執行中途解約交易當日實際交易結果為準。
+            	
+          </td>
+        </tr>
+      </table>
+      <table width="100%" border="0">
+		  <tr>
+		    <td>5.本服務系統僅提供無實體存單之綜存定存中途解約服務，實體存單之解約作業請至各營業單位臨櫃辦理。</td>
+		  </tr>
+		</table>
+<br>
+<table width="763" height="18" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td colspan="2"> 
+      <div align="center"><img src="graph/top.gif" width="64" height="16"  onClick="chkSubmit();"></div>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="IP0410000">
+</table>
+</form>
+</body>
+</html>
+

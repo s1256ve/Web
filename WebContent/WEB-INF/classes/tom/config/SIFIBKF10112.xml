@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="Big5"?>
+<!-- IVR FUND F10112  基金單筆申購(即時繳款) Last updated date 3-17-2004 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="F10112i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='F10112i54' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="F10112i55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="F10112i04">
+		<name>REVE-BUSI-TYPE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>信託業務別</description>
+	</field>
+	<field id="F10112i05">
+		<name>REVE-FUND-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>基金代號</description>
+	</field>
+	<field id="F10112i06">
+		<name>REVE-AMT</name>
+		<length>10</length>
+		<type>String</type>
+		<description>申購金額</description>
+	</field>
+	<field id="F10112i07">
+		<name>REVE-FEE-RATE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>手續費率</description>
+	</field>
+	<field id="F10112i08">
+		<name>REVE-FEE-AMT</name>
+		<length>10</length>
+		<type>String</type>
+		<description>手續費</description>
+	</field>
+	<field id="F10112i09">
+		<name>REVE-TXN-AMT</name>
+		<length>10</length>
+		<type>String</type>
+		<description>扣款金額 (申購金額+手續費)</description>
+	</field>
+	<field id="F10112i10">
+		<name>REVE-ACCT-NO</name>
+		<length>10</length>
+		<type>String</type>
+		<description>轉出帳號</description>
+	</field>
+	<field id="F10112i13">
+		<name>REVE-O2ND-RATE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>原幣兌台幣匯率</description>
+	</field>
+	<field id="F10112i14">
+		<name>REVE-ND2US-RATE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>台幣兌美金匯率</description>
+	</field>
+	<field id="F10112i15">
+		<name>REVE-CURRENCY-NAME</name>
+		<length>10</length>
+		<type>String</type>
+		<description>申購基金幣別NAME</description>
+	</field>	
+	<field id="F10112i15">
+		<name>REVE-CHANNEL</name>
+		<length>10</length>
+		<type>String</type>
+		<description>交易管道</description>
+	</field>
+	<field id="F10101i21">
+		<name>REVE-INTACCT-NO</name>
+		<length>14</length>
+		<type>String</type>
+		<description>配息入帳帳號</description>
+	</field>
+	<field id="F10101i31">
+		<name>REVE-KYC-VALUE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>個人 KYC Value</description>
+	</field>
+	<field id="F10101i32">
+		<name>REVE-FUND-RANK</name>
+		<length>1</length>
+		<type>String</type>
+		<description>基金 KYC VALUE</description>
+	</field>
+	<field id="F10101i33">
+		<name>REVE-KYC-WEEK</name>
+		<length>1</length>
+		<type>String</type>
+		<description>基金 KYC VALUE</description>
+	</field>
+	<field id="F10112i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="F10112i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="F10112i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="F10112i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>		
+	</field>
+	<field id="F10101i18">
+		<name>REVE-SEARCH-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>營業日查詢: 基金 : 3</description>		
+	</field>
+	<field id="fieldi07">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="fieldi08">
+		<name>REVE-PWD</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="F10112i54">
+		<name>REVE-COME-FROM</name>
+		<length>16</length>
+		<type>String</type>
+		<description>來源位置</description>
+	</field>
+	<field id="F10112i55">
+		<name>REVE-ID-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+	<field id="F10112i56">
+		<name>REVE-RECOMMAND</name>
+		<length>8</length>
+		<type>String</type>
+		<description>推薦人員</description>
+	</field>
+	<field id="F10112i57">
+		<name>REVE-FUND-NAME</name>
+		<length>8</length>
+		<type>String</type>
+		<description>基金簡稱</description>
+	</field>
+	<field id="TNRD2i30">
+		<name>SEND-EMAIL-ADDR</name>
+		<length>1</length>
+		<type>String</type>
+		<description>電子郵件</description>
+	</field>
+	<field id="TNRD2i31">
+		<name>REVE-DY-PWD</name>
+		<length>1</length>
+		<type>String</type>
+		<description>動態密碼</description>
+	</field>
+	<field id="TNRD2i32">
+		<name>REVE-IGNORE-CASE</name>
+		<length>1</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="TNRD2i33">
+		<name>REVE-TIME-RANGE</name>
+		<length>1</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="TNRD2i34">
+		<name>REVE-CURRENTTICK</name>
+		<length>1</length>
+		<type>String</type>
+		<description></description>
+	</field>
+</catalog>

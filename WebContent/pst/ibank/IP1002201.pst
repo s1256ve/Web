@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>個人資料查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+
+<form action="LoadAP" name="IP1002201" method="post">
+<img src="graph/point.gif" width="12" height="12">
+<b>個人設定&gt;<font color="#0066FF">基本資料維護</font><font color="#003399"><font color="#0066FF"></font></font></b><br>
+
+<table width="630" border="0">
+  <tr> 
+    <td colspan="4"> 
+      <div align="right"> </div>
+      <table width="500" border="0" cellpadding="0" cellspacing="0" align="center">
+        <tr> 
+          <td>目前您所登錄個人資料如下：:<font color="#FF0000"> </font></td>
+        </tr>
+      </table>
+      <table width="500" border="1" align="center" cellpadding="3" bordercolor="#999999">
+        <tr bgcolor="#C4CBB8"> 
+          <td colspan="3"> 
+            <div align="center">個人基本資料：信託帳戶</div>
+          </td>
+        </tr>
+        <!--
+        <tr> 
+          <td colspan="2">身份證字號</td>
+          <td width="328">[[%%SEND-ID%%]]</td>
+        </tr>
+        <tr> 
+          <td colspan="2">姓名</td>
+          <td width="328">[[%%REVE-CNAME%%]]</td>
+        </tr>
+        -->
+        <tr> 
+          <td colspan="2"> <font color="#FF0000">*</font>通訊地址</td>
+          <td width="328">[[%%SEND-CONTACT-ZIP%%]] [[%%SEND-CONTACT-ADDR%%]]</td>
+        </tr>
+        <tr> 
+          <td colspan="2"><font color="#FF0000">*</font>日間電話</td>
+          <td width="328">[[%%SEND-DAILY-PHONE1%%]]</td>
+        </tr>
+        <tr> 
+          <td colspan="2"> <font color="#FF0000">*</font>夜間電話</td>
+          <td width="328">[[%%SEND-DAILY-PHONE2%%]]</td>
+        </tr>
+        <tr> 
+          <td colspan="2"> <font color="#FF0000">*</font>E-mail</td>
+          <td width="328">[[%%SEND-EMAIL-ADDR%%]]</td>
+        </tr>
+      </table>
+      <div align="center"> 註： 如須變更身份證字號、姓名、戶籍地址等欄位，請您攜帶身份證及印鑑至原開戶行辦理。<br>
+        <br>
+      </div>
+    </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="4" valign="bottom" height="1"></td>
+  </tr>
+</table>
+</body>
+</html>

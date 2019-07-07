@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>國民現金卡業務查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+<b>國民現金卡業務查詢&gt;<font color="#003399"><font color="#0066FF">國民現金卡繳款<br>
+<br>
+</font></font></b> 
+<table width="630" border="0">
+  <tr>
+    <td> 
+      <div align="center"><font color="#0000CC">您的轉帳設定為： </font></div>
+      <table width="350" border="1" align="center" bordercolor="#999999">
+        <tr> 
+          <td width="27%" bgcolor="#C4CBB8">轉帳類別</td>
+          <td width="73%" height="25">即時約定轉帳</td>
+        </tr>
+        <tr> 
+          <td width="27%" bgcolor="#C4CBB8">轉帳日期</td>
+          <td width="73%" height="25">XX年XX月XX日</td>
+        </tr>
+        <tr> 
+          <td width="27%" bgcolor="#C4CBB8"> 轉出帳號</td>
+          <td width="73%" height="25"> [[%%SELBRNAME%%]] [[%%SELACCOUNT%%]]</td>
+        </tr>
+        <tr> 
+          <td width="27%" bgcolor="#C4CBB8">轉入銀行</td>
+          <td width="73%" height="25">聯邦銀行 </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="27%">轉入帳號</td>
+          <td height="25" width="73%">[[%%SELINACCT%%]]</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="27%">幣別/金額</td>
+          <td height="25" width="73%">新台幣 [[%%SELMONEY%%]] 元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="27%">手 續 費</td>
+          <td height="25" width="73%"> 0 元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="27%"> 交易附註</td>
+          <td height="25" width="73%" bgcolor="#FFFFDD"> [[%%SELPAYTYPE%%]] </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="27%">密碼 </td>
+          <td height="25" width="73%">********</td>
+        </tr>
+      </table>
+      <div align="center">
+        <input type="submit" name="Submit" value="確定轉帳">
+        <input type="submit" name="Submit2" value="取消">
+      </div>
+    </td>
+  </tr>
+</table>
+<div id="Layer1" style="position:absolute; left:411px; top:355px; width:37px; height:21px; z-index:1"><a href="page5-2ok.htm">確定</a></div>
+</body>
+</html>

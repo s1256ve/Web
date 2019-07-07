@@ -1,0 +1,15 @@
+<html>
+<body>
+<p>請輸入：</p>
+<form method="POST" action="LoadAP">
+<p>身分證字號&nbsp;<input type="text" name="IDNO" size="12"></p>
+<p>匿稱&nbsp;<input type="text" name="NICKNAME" size="12"></p>
+<p>電子金融密碼(或語音密碼)&nbsp;<input type="password" name="PWD" size="12"></p>
+<input type="hidden" name="COMEFROM" value="172.16.2.144">
+<input type="hidden" name="pageid" value="J000001">
+<p><input type="submit" name="submit1" value="確定">
+<input type="reset" name="reset1" value="取消">
+</p>
+</form>
+</body>
+</html>

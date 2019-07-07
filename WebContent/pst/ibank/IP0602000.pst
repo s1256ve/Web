@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>信用卡查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript">
+<!--
+		
+
+	var nowDate=new Date();
+	var Year = nowDate.getFullYear()-1911;
+	var Month = (nowDate.getMonth()+1)+"";
+	if (Month.length<2) Month = "0"+Month;
+	//推算前三個月的年月
+	nowDate.setMonth(nowDate.getMonth()-1);
+	var preMonth = (nowDate.getMonth()+1)+"";
+	if (preMonth.length<2) preMonth = "0"+preMonth;
+    var preYear = nowDate.getFullYear()-1911;
+    nowDate.setMonth(nowDate.getMonth()-1);
+    var preMonth2 = (nowDate.getMonth()+1)+"";
+	if (preMonth2.length<2) preMonth2 = "0"+preMonth2;
+    var preYear2 = nowDate.getFullYear()-1911;
+    //nowDate.setMonth(nowDate.getMonth()-1);
+    //var preMonth3 = (nowDate.getMonth()+1)+"";
+	//if (preMonth3.length<2) preMonth3 = "0"+preMonth3;
+    //var preYear3 = nowDate.getFullYear()-1911;
+
+	function chkSubmit(predate){
+		var f = document.form1;
+		f.REVE_STMT_DATE.value = predate;
+		f.pageid.value = "IP0602001";
+		f.submit();
+		
+	}
+-->
+</SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　信用卡查詢&gt;<font color="#003399"><font color="#0066FF">信用卡帳單明細查詢</font></font></b><br>
+<br>
+<font color="#0000CC"> </font> 
+<form name="form1" method="post" action="LoadAP">
+<table width="720" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td width="720" height="2"> 
+      <div align="right">　
+      <font color="#0000FF">　查詢時間： 
+<SCRIPT language="JavaScript">
+document.write(getNowTime());
+//document.write(nowYear+"/"+nowMonth+"/"+nowDay+" "+nowHour+":"+nowMin+":"+nowSec);
+</SCRIPT>
+      </font>
+      </div>
+    </td>
+  </tr>
+</table>
+<font color="#0000CC"> </font> 
+<table width="720" border="0">
+  <tr> 
+    <td width="714"> 
+      <div align="center"><font color="#0000CC"> 最近三個月帳單明細查詢： </font></div>
+      <table width="200" border="1" align="center" bordercolor="#999999">
+        <tr> 
+          <td width="36%" bgcolor="#C4CBB8" height="25"> 
+            <div align="center">帳單月份</div>
+          </td>
+        </tr>
+        <tr> 
+          <td width="36%" height="25"> 
+            <div align="center">
+        		<a href="#"  onclick="chkSubmit((Year+1911)+Month)">
+                <SCRIPT language="JavaScript">
+                    document.write(Year+"/"+Month);
+                </SCRIPT>
+        		</a>
+	        </div>
+          </td>
+        </tr>
+        <tr> 
+          <td width="36%" height="25"> 
+            <div align="center"><a href="#" onclick="chkSubmit((preYear+1911)+preMonth)">
+                <SCRIPT language="JavaScript">
+                    document.write(preYear+"/"+preMonth);
+                </SCRIPT>
+		</a></div>
+          </td>
+        </tr>
+        <tr> 
+          <td width="36%" height="25"> 
+            <div align="center">
+                <a href="#"  onclick="chkSubmit((preYear2+1911)+preMonth2)">
+                <SCRIPT language="JavaScript">
+                document.write(preYear2+"/"+preMonth2);
+                </SCRIPT>
+		        </a> 
+		    </div>
+          </td>
+        </tr>
+      </table>
+      <div align="center">※請點選帳單月份查詢帳單明細。　</div>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="REVE_STMT_DATE" value="">
+<input type="hidden" name="pageid" value="">
+</form>
+</body>
+</html>

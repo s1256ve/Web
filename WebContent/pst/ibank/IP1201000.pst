@@ -1,0 +1,224 @@
+<html>
+<head>
+<title>台幣利率</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+<b>台幣利率&gt;<font color="#003399"><font color="#0066FF">查詢畫面</font></font></b><br>
+<br>
+<table width="630" border="0">
+  <tr>
+    <td> 
+      <table width="550" border="0" align="center">
+        <tr>
+          <td>
+            <div align="right">資料時間：92年7月22日03:00</div>
+          </td>
+        </tr>
+      </table>
+      <table width="550" border="1" align="center" bordercolor="#999999">
+        <tr> 
+          <td bgcolor="#C4CBB8" height="18"> 
+            <div align="center">利率別</div>
+          </td>
+          <td bgcolor="#C4CBB8"> 
+            <div align="center">期間(月)別</div>
+          </td>
+          <td bgcolor="#C4CBB8"> 
+            <div align="center">固定利率</div>
+          </td>
+          <td bgcolor="#C4CBB8"> 
+            <div align="center">機動利率</div>
+          </td>
+        </tr>
+        <tr> 
+          <td height="18" bgcolor="#C4CBB8"> 活期存款</td>
+          <td> 
+            <div align="center">-</div>
+          </td>
+          <td> 
+            <div align="center">-</div>
+          </td>
+          <td> 
+            <div align="center">0.2000 </div>
+          </td>
+        </tr>
+        <tr> 
+          <td height="18" bgcolor="#C4CBB8">活儲存款</td>
+          <td> 
+            <div align="center">-</div>
+          </td>
+          <td> 
+            <div align="center">-</div>
+          </td>
+          <td> 
+            <div align="center">0.5500 </div>
+          </td>
+        </tr>
+        <tr> 
+          <td height="18" bgcolor="#C4CBB8"> 定期存款</td>
+          <td> 
+            <div align="center">01</div>
+          </td>
+          <td> 
+            <div align="center">1.0500</div>
+          </td>
+          <td> 
+            <div align="center">1.0500 </div>
+          </td>
+        </tr>
+        <tr> 
+          <td height="18" bgcolor="#C4CBB8">…</td>
+          <td> 
+            <div align="center">…</div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+        </tr>
+        <tr> 
+          <td height="18" bgcolor="#C4CBB8"> 定期存款</td>
+          <td> 
+            <div align="center">13</div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+        </tr>
+        <tr> 
+          <td height="18" bgcolor="#C4CBB8"> 定期存款</td>
+          <td> 
+            <div align="center">24</div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+        </tr>
+        <tr> 
+          <td height="18" bgcolor="#C4CBB8"> 定期存款</td>
+          <td> 
+            <div align="center">36</div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+        </tr>
+        <tr> 
+          <td height="18" bgcolor="#C4CBB8"> 定期儲蓄存款</td>
+          <td> 
+            <div align="center">12</div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+        </tr>
+        <tr> 
+          <td height="18" bgcolor="#C4CBB8">定期儲蓄存款</td>
+          <td> 
+            <div align="center">13</div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+        </tr>
+        <tr> 
+          <td height="18" bgcolor="#C4CBB8">定期儲蓄存款</td>
+          <td> 
+            <div align="center">24</div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+        </tr>
+        <tr> 
+          <td height="18" bgcolor="#C4CBB8"> 定期儲蓄存款</td>
+          <td> 
+            <div align="center">36</div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+        </tr>
+        <tr> 
+          <td height="18" bgcolor="#C4CBB8"> 基本放款利率</td>
+          <td> 
+            <div align="center">-</div>
+          </td>
+          <td> 
+            <div align="center">-</div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+        </tr>
+        <tr> 
+          <td height="18" bgcolor="#C4CBB8"> 基準利率</td>
+          <td> 
+            <div align="center">-</div>
+          </td>
+          <td> 
+            <div align="center">-</div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+        </tr>
+        <tr> 
+          <td height="18" bgcolor="#C4CBB8"> 指數型房貸利率 </td>
+          <td> 
+            <div align="center">-</div>
+          </td>
+          <td> 
+            <div align="center">-</div>
+          </td>
+          <td> 
+            <div align="center"></div>
+          </td>
+        </tr>
+      </table>
+      <table width="550" border="0" align="center">
+        <tr>
+          <td>注意事項：以上資料僅供參考，實際利率以本行營業廳掛牌為準。<br>
+            與目前的差異？</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

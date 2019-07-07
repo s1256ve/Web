@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+<!--
+	<conn_default type="datasource" dbdriver="" dsn="jdbc/aptxn" user="db2ibank" pass="db2ibank" />
+-->
+	<conn_default type="datasource" 
+			   dbdriver="" 
+			   dsn="jdbc/aptxn" 
+               user="db2ibank" pass="db2ibank" />             
+    <!--conn_default type="driver" 
+			   dbdriver="COM.ibm.db2.jdbc.app.DB2Driver" 
+			   dsn="jdbc:db2:aptxn" 
+               user="db2ibank" pass="db2ibank" /-->
+    <conn_aptxn type="datasource" 
+			   dbdriver="" 
+			   dsn="jdbc/aptxn" 
+               user="db2ibank" pass="db2ibank" /> 
+    <conn_aplog type="datasource" 
+			   dbdriver="" 
+			   dsn="jdbc/aplog" 
+               user="db2ibank" pass="db2ibank" />    
+                               
+    <conn_aptxn type="driver" 
+			   dbdriver="COM.ibm.db2.jdbc.app.DB2Driver" 
+			   dsn="jdbc:db2:aptxn" 
+               user="db2ibank" pass="db2ibank" />            
+    
+    <conn_aplog type="driver" 
+			   dbdriver="COM.ibm.db2.jdbc.app.DB2Driver" 
+			   dsn="jdbc:db2:aplog" 
+               user="db2ibank" pass="db2ibank" />  
+          
+    <conn_eaitxn type="datasource" 
+			   dbdriver="" 
+			   dsn="jdbc/eaitxn" 
+               user="db2ibank" pass="db2ibank" />
+    
+
+	<svcinfo relation=""><![CDATA[
+			Select * from db2ibank.svcinfo where svcname='[[%%TXNID%%]]'
+	]]></svcinfo>
+	
+	<actinfo relation=""><![CDATA[
+			Select * from db2ibank.actinfo where actname='[[%%ACTNAME%%]]'
+	]]></actinfo>
+	
+	<getcust relation=""><![CDATA[
+			SELECT ID , NAME , UMA , IBANK , STATUS 
+			FROM DB2IBANK.CUSTOMER 
+        	WHERE ID  = '[[%%REVE-ID-NO%%]]'
+	]]></getcust>
+	
+	<logmaxid relation=""> 
+		SELECT MAX(LOGID) AS LID FROM DB2IBANK.APPSVCBEGIN
+		WHERE LOGID LIKE '[[%%LOGDATE%%]]%'	
+	</logmaxid>
+	
+	<gettxncur relation=""><![CDATA[
+		SELECT CODE , NAME , DESC FROM DB2IBANK.CURRENCY
+		WHERE FUNC_CODE = 1
+	]]></gettxncur>
+	
+	<getvar relation=""><![CDATA[
+	SELECT VNAME , VALUE , DESC 
+		       FROM DB2IBANK.GVAR
+       WHERE VNAME  = '[[%%REVE-VNAME%%]]'
+	]]></getvar>
+	
+	<getacctlmt_day relation=""><![CDATA[
+	SELECT ACCT_NO , DATE , AMT 
+		       FROM DB2IBANK.TXNLIMIT
+       WHERE ACCT_NO  = '[[%%REVE-ACCT-NO%%]]' AND DATE='[[%%SYSDATE%%]]'
+	]]></getacctlmt_day>
+	
+	<getacctlmt_mon relation=""><![CDATA[
+	SELECT SUM(AMT) AS AMT 
+		       FROM DB2IBANK.TXNLIMIT
+       WHERE ACCT_NO  = '[[%%REVE-ACCT-NO%%]]' AND DATE like '[[%%SYSDATE%%]]%'
+	]]></getacctlmt_mon>
+	
+	<updtxnlmt relation=""><![CDATA[
+	UPDATE DB2IBANK.TXNLIMIT SET AMT = [[%%REVE-TXN-TOTAL%%]]
+       WHERE ACCT_NO  = '[[%%REVE-ACCT-NO%%]]' AND DATE = '[[%%SYSDATE%%]]' AND TYPE = '[[%%REVE-TXN-TYPE%%]]'
+	]]></updtxnlmt>
+	
+	<instxnlmt relation=""><![CDATA[
+	INSERT INTO DB2IBANK.TXNLIMIT 
+       VALUES ( '[[%%REVE-ACCT-NO%%]]' , '[[%%SYSDATE%%]]' , [[%%REVE-TXN-TOTAL%%]] , '[[%%REVE-TXN-TYPE%%]]')
+	]]></instxnlmt>
+	
+	
+	
+	
+</root>

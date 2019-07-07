@@ -1,0 +1,12 @@
+<html>
+<body background="gRAPH/BG.GIF">
+<form method="post" action="LoadAP" name="IF0201111">
+<input type="hidden" name="pageid" value="">
+</form>
+<script>
+	alert("★	若您為本行『電子銀行服務』客戶，\n請至左上方「網路銀行登入區」登入。\n"+
+              "★	若您非為本行『電子銀行服務』客戶，請先申請本服務!");
+	window.history.back();		
+</script>
+</body>
+</html>

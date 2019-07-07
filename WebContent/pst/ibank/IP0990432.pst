@@ -1,0 +1,185 @@
+<html>
+<head>
+<title>常用帳號管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+
+<script language="Javascript">
+   
+    String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");} 
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<style type="text/css">
+<!--
+.style1 {color: #0066FF}
+.style2 {color: #0000FF}
+td {vertical-align: top}
+-->
+</style>
+<SCRIPT language="JavaScript">
+<!--
+   
+
+
+function chkStatus(notitype,mobile,email){
+    var str = "";
+  
+        
+        if(notitype==0) {
+        str =  "<td width='32%'>不通知</td>";
+        }
+        if(notitype==1) {
+        str =  "<td width='32%'>簡訊通知<br>"+mobile+"</td>";
+        }
+         if(notitype==2) {
+        str =  "<td width='32%'>EMAIL通知<br>"+email+"</td>";
+        }
+       
+            
+    
+    //alert('str='+str);
+    return str;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+function back(){
+    document.IP0990432.pageid.value = 'IP0990430';
+    document.IP0990432.submit();    
+}
+-->
+</SCRIPT>
+</SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+<p><strong>新增轉帳交易常用帳號&gt;<span class="style1">新增轉帳交易常用帳號資料</span></strong></p>
+<form method="POST" name="IP0990432" action="LoadAP">
+<table width="750" border="0">
+  <tr>
+    <td colspan="5"><table width="650" border="0" align="center">
+    
+    
+        <tr>
+          <td><p align="center"><strong>交易完成訊息</strong></p>
+           常用帳號新增資料明細：
+          
+          
+            <table width="100%" border="1" bordercolor="#999999">
+            
+            
+              <tr>
+                <td width="10%" bgcolor="#C4CBB8">資料名稱</td>
+                <td width="32%">新增資料</td>
+                <td width="15%">範例</td>
+                <td width="30%">說明</td>
+                
+              </tr>
+              
+              
+            
+              <tr>
+                <td width="12%" bgcolor="#C4CBB8">※帳號暱稱</td>
+                <td width="32%">[[%%TOACTDESC%%]]</td>
+                <td width="20%">聯邦理財帳戶</td>
+                <td width="21%">最多可設定8個中文字</td>
+              </tr>
+              
+                        
+              
+              <tr>
+                <td bgcolor="#C4CBB8">※轉入銀行</td>
+                <td width="32%">[[%%TOACCTINFO%%]]</td>
+                <td width="15%">803 聯邦銀行</td>
+                <td width="15%">請由下拉選單選擇銀行</td>
+              </tr>
+              
+              
+         
+              <tr>
+                <td width="12%" bgcolor="#C4CBB8">※轉入帳號</td>
+                <td width="32%">[[%%ACCTNO%%]]</td>
+                <td width="20%">001500001235</td>
+                <td width="21%">最多可設定16個數字</td>
+              </tr>
+              
+              
+              
+              <tr>
+                <td width="12%" bgcolor="#C4CBB8">交易附註</td>
+                <td width="32%">[[%%TXNDESC%%]]</td>
+                <td width="20%">高科技基金</td>
+                <td width="21%">最多可設定50個字，清單列示前10個字</td>
+              </tr>
+              
+              
+            
+           
+              
+              <tr>
+                <td valign="top" bgcolor="#C4CBB8">通知方式：</td>
+                
+                <script>document.write(chkStatus('[[%%NOTITYPE%%]]','[[%%MOBILE%%]]','[[%%EMAIL%%]]'));</script>
+                  
+                <td width="15%">EMAIL通知：<br>abc@hotmail.com </td>
+                <td width="15%">通知方式選項有三種：不通知、簡訊通知及EMAIL通知，簡訊通知僅適用於跨行轉帳交易成功後立即發送國內簡訊，請留存通知對象之行動電話；EMAIL通知適用於所有交易成功後皆可發送EMAIL，請留存通知對象之EMAIL地址。</td>
+            
+              </tr>
+          </table>
+            <br>
+            說明：
+            
+            <table width="100%" border="0">
+              <tr>
+                <td width="2%" valign="top"><p>1.</p></td>
+                <td width="98%">常用帳號功能僅適用於非約定轉帳，最多可設定20組常用帳號。 </td>
+              </tr>
+              
+             
+              
+              <tr>
+                <td valign="top">2.</td>
+                <td>每欄交易附註內容可輸入最多50字，清單僅顯示前10個字。</td>
+              </tr>
+             
+            </table>
+            <br></td>
+        </tr>
+      </table>
+      <br>
+      <br>
+      <div align="center">
+       
+        <input type="button" name="button3" value="返回" onclick="javascript:back();">
+        
+      </div>
+      </div>
+      </div>
+      <div align="center"> </div></td>
+  </tr>
+  <tr>
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+    <input type="hidden" name="aptype" value="IBANK">
+    <input type="hidden" name="pageid" value="">
+    <input type="hidden" name="TOACTDESC" value="">
+    <input type="hidden" name="TOACCTINFO" value="">
+    <input type="hidden" name="ACCTNO" value="">
+    <input type="hidden" name="TXNDESC" value="">
+    <input type="hidden" name="notitype" value="">
+    <input type="hidden" name="EMAIL" value="">
+    <input type="hidden" name="MOBILE" value="">
+   
+</form>
+
+</body>
+
+</html>

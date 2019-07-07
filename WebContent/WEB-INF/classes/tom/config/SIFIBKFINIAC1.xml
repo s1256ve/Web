@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="BIG5"?>
+<?xml-stylesheet type="text/xsl" href="UCPMi.xsl"?>
+<!-- FUND INIAC Last updated date 12-1-2004 -->
+<!--catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPM"-->
+<catalog>
+	<field id="INIACi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='INIACi02' attr='I' default=''>
+        	<name>REVE-ACTOR</name>
+        	<length>0</length>
+        	<type>STRING</type>
+        	<description></description>
+     	</field>
+	<field id="INIACi03">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="INIACi04">
+		<name>REVE-CURRENCY</name>
+		<length>1</length>
+		<type>String</type>
+		<description>CURRENCY</description>
+	</field>
+	<field id="INIACi05">
+		<name>REVE-FUNC-CODE</name>
+		<length>1</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="INIACi05">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="INIACi06">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="INIACi07">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="INIACi08">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="INIACi09">
+		<name>REVE-COME-FROM</name>
+		<length>16</length>
+		<type>String</type>
+		<description>來源位置</description>
+	</field>
+	<field id="INIACi10">
+		<name>REVE-ID-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+</catalog>

@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>台幣貸款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+</head>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+
+<form method="POST" action="LoadAP" name="IP0303002">
+<p><b>台幣貸款帳戶查詢&gt;<font color="#003399"><font color="#0066FF">貸款已還款明細查詢</font></font></b><font color="#0066FF"><b> 
+  </b></font></p>
+<font color="#0000CC"><img src="graph/point.gif" width="12" height="12" align="absmiddle">以下是 
+您南京東路分行 國民現金帳號 005-51-658741-1貸款已還款明細查詢結果：</font> 
+<table width="650" border="1" bordercolor="#999999">
+  <tr bgcolor="#C4CBB8"> 
+    <td width="51" height="17"> 
+      <div align="center">交易日期</div>
+    </td>
+    <td width="59" height="17"> 
+      <div align="center">摘要</div>
+    </td>
+    <td width="57" height="17"> 
+      <div align="center">支出</div>
+    </td>
+    <td width="63" height="17"> 
+      <div align="center">存入</div>
+    </td>
+    <td width="69" height="17"> 
+      <div align="center">帳戶餘額</div>
+    </td>
+    <td width="69" height="17"> 
+      <div align="center">備註</div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="51"> 
+      <div align="center">92/08/05</div>
+    </td>
+    <td width="59"> 
+      <div align="center"></div>
+    </td>
+    <td width="57"> 
+      <div align="center"></div>
+    </td>
+    <td width="63"> 
+      <div align="center"></div>
+    </td>
+    <td width="69"> 
+      <div align="center"></div>
+    </td>
+    <td width="69"> 
+      <div align="center"></div>
+    </td>
+  </tr>
+</table>
+<br>
+<table width="650" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td colspan="2"> 
+      <div align="center"><img src="graph/top.gif" width="64" height="16"></div>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

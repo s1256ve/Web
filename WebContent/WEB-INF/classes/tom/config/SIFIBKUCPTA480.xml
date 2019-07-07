@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="big5"?>
+
+<!--UCPT A480 , 新增修改外匯轉入暱稱. Last updated date 10-05-2017 -->
+
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPT">
+
+	<field id="A480i01">
+
+		<name>REVE-CODE</name>
+
+		<length>4</length>
+
+		<type>String</type>
+
+		<description>交易代號</description>
+
+	</field>
+
+	<field id='A480i03' attr='I' default=''>
+
+	  <name>REVE-ACTOR</name>
+
+	  <length>0</length>
+
+	  <type>STRING</type>
+
+	  <description></description>
+
+  </field>
+
+	<field id="A480i02">
+
+		<name>REVE-SESSION-ID</name>
+
+		<length>10</length>
+
+		<type>String</type>
+
+		<description>Session ID</description>
+
+	</field>
+
+	<field id="A480i03">
+
+		<name>REVE-REG-BCODE</name>
+
+		<length>10</length>
+
+		<type>String</type>
+
+		<description>銀行代號</description>
+
+	</field>
+
+	<field id="A480i03">
+
+		<name>REVE-REG-ACCTNO</name>
+
+		<length>10</length>
+
+		<type>String</type>
+
+		<description>帳號</description>
+
+	</field>
+
+	<field id="A480i03">
+
+		<name>REVE-ACCT-DESC</name>
+
+		<length>10</length>
+
+		<type>String</type>
+
+		<description>帳號暱稱</description>
+
+	</field>
+
+	<field id="A480i50">
+
+		<name>IPADDR</name>
+
+		<length>15</length>
+
+		<type>String</type>
+
+		<description>IP Address</description>
+
+	</field>
+
+	<field id="A480i51">
+
+		<name>TXNTYPE</name>
+
+		<length>20</length>
+
+		<type>String</type>
+
+		<description>Transaction Type</description>
+
+	</field>
+
+	<field id="A480i52">
+
+		<name>PBX-SID</name>
+
+		<length>5</length>
+
+		<type>String</type>
+
+		<description>語音線號碼</description>
+
+	</field>
+
+	<field id="A480i53">
+
+		<name>TXN-SNO</name>
+
+		<length>16</length>
+
+		<type>String</type>
+
+		<description>交易序號</description>
+
+	</field>
+
+</catalog>
+

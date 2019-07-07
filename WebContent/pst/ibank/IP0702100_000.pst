@@ -1,0 +1,605 @@
+<html>
+<head>
+<title>預約轉帳</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: YiSyun  
+* Change List:
+*SerialNo           Date Modified  Modified by   
+*-------------      ----------     ----------
+*EAI98053						2009.08.25		 YiSyun 
+*EAI98060           2009.12.03     YiSyun
+*EAI100018          2011.03.15     YiSyun  
+***********************************************************************/
+</script>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript" src="script/calendar.js"></script>
+<script language="JavaScript" src="script/calendar-zh.js"></script>
+<script language="JavaScript" src="script/calendar-setup.js"></script>
+<script language="JavaScript" src="script/calendarface.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<script language="Javascript">    
+    String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");}     
+
+function toArray(srcString, count, split) {
+	var srcArray = new Array(count);
+	for (var i=0; i<count; i++) {
+		if (srcString == null || srcString == '') {
+			srcArray[i] = '';
+		}else if (srcString.indexOf(',') >= 0) {
+			srcArray[i] = srcString.substring(0, srcString.indexOf(','));
+			srcString = srcString.substring(srcString.indexOf(',')+1, srcString.length);
+		}else {
+			srcArray[i] = srcString;
+			srcString = '';
+		}
+	//alert(srcArray[i]);
+	}	
+	return srcArray;
+}
+
+     
+</script>
+<script language="JavaScript">
+<!--
+    
+    function showVTRDiv(type){
+	    if (type==0){
+	        document.all.acctType1.style.display="block";
+	        document.all.acctType2.style.display="none";
+	        document.all.acctType3.style.display="none";
+	    }
+	    if (type==1){
+	        document.all.acctType1.style.display="none";
+	        document.all.acctType2.style.display="block";
+	        document.all.acctType3.style.display="none";
+	    }
+	    if (type==2){
+	        document.all.acctType1.style.display="none";
+	        document.all.acctType2.style.display="none";
+	        document.all.acctType3.style.display="block";
+	    }
+    }
+    
+    function showSendDiv(type){
+	    if (type==1){
+	        document.all.notiType1.style.display="block";
+	        document.all.notiType2.style.display="none";
+	        document.IP0702100.HOW_TO_SEND.value = "電子郵件通知";
+	        document.IP0702100.SEND_TO_YOU.value = "1";
+	    }
+	    if (type==2){
+	        document.all.notiType1.style.display="none";
+	        document.all.notiType2.style.display="block";
+	        document.IP0702100.HOW_TO_SEND.value = "簡訊通知";
+	        document.IP0702100.SEND_TO_YOU.value = "2";
+	    }
+	    if (type==0){
+	    	document.all.notiType1.style.display="none";
+	        document.all.notiType2.style.display="none";
+	    	document.IP0702100.HOW_TO_SEND.value = "不通知";
+	    	document.IP0702100.SEND_TO_YOU.value = "0";
+	    }
+    /*
+	    if (type==0){
+	        document.all.notiType1.style.display="block";
+	        document.all.notiType2.style.display="none";
+	        document.IP0702100.HOW_TO_SEND.value = "電子郵件通知";
+	        document.IP0702100.SEND_TO_YOU.value = "1";
+	    }
+	    if (type==1){
+	        document.all.notiType1.style.display="none";
+	        document.all.notiType2.style.display="block";
+	        document.IP0702100.HOW_TO_SEND.value = "簡訊通知";
+	        document.IP0702100.SEND_TO_YOU.value = "2";
+	    }
+	    if (type==2){
+	    	document.all.notiType1.style.display="none";
+	        document.all.notiType2.style.display="none";
+	    	document.IP0702100.HOW_TO_SEND.value = "不通知";
+	    	document.IP0702100.SEND_TO_YOU.value = "0";
+	    }
+	*/
+    }
+    
+    function chkToUse(){
+    	    if(document.IP0702100.useTo[1].checked){
+                  document.IP0702100.pageid.value = "IP0702120";
+                  return "ture";
+            }
+            if(document.IP0702100.useTo[0].checked){
+                  document.IP0702100.pageid.value = "IP0702130";
+                  return "ture";
+            }
+            if((!document.IP0702100.useTo[0].checked)&&(!document.IP0702100.useTo[1].checked)){
+                  
+                  return "false";
+            }
+    }
+    
+    function chkSSL(tmp){
+    	var ssl = tmp;
+    	if(ssl == 2){
+    		return " ";
+    	}
+    	else{
+    	  document.IP0702100.vtrType[2].disabled=true;
+    		return " ";
+    	}
+    }
+	    
+    function ChkSubmit(){
+        
+        var f=document.IP0702100;
+        if (f.FROMACCTNO.value == "0"){
+            	alert("請選擇轉出帳號!");
+            	return;
+        }
+        if (f.TXN_AMT.value == ""){
+            	alert("請輸入轉帳金額!");
+            	return;
+        }
+        if (isNaN(f.TXN_AMT.value)){
+            	alert("轉帳金額格式錯誤!");
+            	return;
+        }
+        if (f.TXN_AMT.value.indexOf(".")!=-1){
+               	alert("轉帳金額須為正整數!");
+                	return;
+        }
+        if(f.TXN_AMT.value.indexOf("-",0)!=-1){
+            	alert("轉帳金額須為正整數!");
+            	return;   
+        }
+        if(f.TXN_AMT.value.indexOf("+",0)!=-1){
+            	alert("台幣轉帳不可帶正號!");
+            	return;   
+        }
+        if(eval(f.TXN_AMT.value)==0){
+            alert("轉帳金額不可為零!");
+            return;   
+        }
+        var acctArray = f.FROMACCTNO.value.split("@");
+        f.FROM_ACCT_NO.value = acctArray[0];
+        f.FROM_BR_NAME.value = acctArray[1];
+        f.FROM_AVAL_BALANCE.value = acctArray[2];
+        f.SEND_AMT_LMT.value = acctArray[3];  //有無約定(0:無約定 其餘數目為約定金額 單位:萬元)
+    	f.SEND_AVAL_TFR.value = acctArray[4]; //無約定剩餘金額
+    	f.SEND_AVAL_LARGE.value = acctArray[5];  //約定剩餘金額 單位:元
+        if( f.FROM_ACCT_NO.value.substr(3,2)==51){
+        	    alert("如您動用到達文西A+理財卡或國民現\n金貸款額度，且動用金額大於100元\n時，每筆計收提領費100元。");
+        }
+        if (f.vtrType[0].checked){  //自行帳戶
+    	   if (f.notifyType[1].checked){
+        		alert("\"本人自行帳戶\"不提供簡訊通知功能!");
+        		return;
+        	    }
+    	    var acctArray = f.TOACCTINFO1.value.split("@");  
+    	    f.TO_BANK_CODE.value = acctArray[0];
+    	    f.TO_BANK_NAME.value = acctArray[1];
+    	    f.TO_ACCTNO.value = acctArray[2];
+    	    if(f.TOACCTINFO1.value=="0"){
+    	    	alert("請輸入轉入帳號!");
+    	    	return;
+    	    }
+    	    f.TO_CHANGE.value = "1";
+    	    f.pageid.value = "IP0702110";
+    	    
+        }
+        if (f.vtrType[1].checked){  //已約定帳號
+    	    var acctArray = f.TOACCTINFO2.value.split("@"); 
+    	    f.TO_BANK_CODE.value = acctArray[0];
+    	    f.TO_BANK_NAME.value = acctArray[2];
+    	    f.TO_ACCTNO.value = acctArray[1];
+    	    if(f.TOACCTINFO2.value=="0"){
+    	    	alert("請輸入轉入帳號!");
+    	    	return;
+    	    }
+    	    if(f.TO_BANK_CODE.value==803 && f.SEND_AMT_LMT.value!=0){
+    	    	if(eval(f.TXN_AMT.value)>(eval(f.SEND_AMT_LMT.value)*10000)){
+    	    		alert("本帳號每日轉出限額為"+trimDecimal(moneyAddDot(f.SEND_AMT_LMT.value))+"萬元!");
+    	    		return;
+    	    	}
+    	    }
+    	    else{
+		if(eval(f.TXN_AMT.value) > 2000000){
+			alert("每筆轉帳金額不可超過2,000,000元!");
+			return;
+		}
+	    }
+    	    f.TO_CHANGE.value = "2";
+    	    f.pageid.value = "IP0702110";
+       }
+       if (f.vtrType[2].checked){  //非約定帳號
+    	    var rec = "[[%%SEND-TXN-RECLMT%%]]";  //單筆限額
+    	    if(rec=="" ){
+    		alert("非約定轉帳限額未讀取到,請洽客服人員!");
+    		return;
+    	    }
+    	    if(eval(f.TXN_AMT.value) > eval(rec)){
+		alert("您欲轉帳金額大於您所設定的單筆限額!");
+		return;
+	    }
+    	    if (f.TOACCTINFO3.value == "0"){
+                		alert("請輸入轉入帳號!");
+                		return;
+            	    }
+            	      if (f.TOACCTNO.value==""){
+                   	alert("請輸入轉入帳號!");
+                		return;
+            	   }
+                    if (isNaN(f.TOACCTNO.value)){
+                   	alert("轉入帳號格式錯誤");
+                		return;
+            	   }
+            document.IP0702100.pageid.value = "IP0702120";
+    	    var acctArray = f.TOACCTINFO3.value.split("@");  
+    	    f.TO_BANK_CODE.value = acctArray[0];
+    	    f.TO_BANK_NAME.value = acctArray[1];
+    	    f.TO_ACCTNO.value = f.TOACCTNO.value; 
+      }
+      
+      	if(f.TO_BANK_CODE.value==803&&f.notifyType[1].checked){
+		  	alert("目前僅跨行轉帳可執行簡訊通知！");
+		  	return;
+	}	
+      
+      
+    	if (f.notifyType[0].checked){  //Email
+    	    document.IP0702100.MOBILE.value = "";
+    	    if (f.EMAIL_ADDR.value == ""){
+    	        	alert("請填寫通知對象電子郵件地址!");
+               		return;    
+    	    }
+    	    chkEmail = f.EMAIL_ADDR.value.match(/^\S+@\S+\.\S+$/);
+    	    if(!chkEmail || !f.EMAIL_ADDR.value){
+    	    	alert("電子郵件位址格式有誤!");
+    	    	return;
+    	    }
+    	    if (f.MSG1.value.Trim() == ""){
+    	        	alert("請填寫訊息內容!");
+                		return;    
+    	    }
+    	    if(f.MSG1.value.length>250){
+    		alert("郵件通知內容不得超過250字!");
+    		return;
+    	    }
+    	    f.SEND_MSG.value =addMailTitle( f.MSG1.value);
+    	}
+
+    	if (f.notifyType[1].checked){  //簡訊
+    	    	document.IP0702100.EMAIL_ADDR.value = "";
+    	    if (f.MOBILE.value == ""){
+    	        	alert("請填寫通知對象行動電話號碼!");
+                		return;    
+    	    }
+    	    if (isNaN(f.MOBILE.value)){
+            		alert("電話號碼格式錯誤!");
+            		return;
+        	    }
+        	    if (f.MOBILE.value.length!=10){
+            		alert("電話號碼長度錯誤!");
+            		return;
+        	    }
+        	    if(f.MOBILE.value.substr(0,2)!=09){
+ 		alert("您輸入的行動電話號碼有誤!");
+ 		return;
+ 	}
+    	    if (f.MSG2.value.Trim() == ""){
+    	        	alert("請填寫訊息內容!");
+                		return;    
+    	    }
+    	    if(f.MSG2.value.length > 42){
+    	    	alert("您輸入字數超過42個字，請重新輸入!");
+    	    	return;
+    	    }
+    	    var y = getADDateStr("[[%%SYSDATE%%]]",3)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",1); 
+    	    f.SEND_MSG.value = addMobileTitle2(f.MSG2.value,y);
+    	    
+    	}
+
+    	if (f.notifyType[2].checked){  //不通知
+    		document.IP0702100.MOBILE.value = "";
+		document.IP0702100.EMAIL_ADDR.value = "";
+    	}
+    	if(f.FROM_ACCT_NO.value == f.TO_ACCTNO.value){
+    		alert("轉入轉出不可為相同帳號!");
+    		return;
+    	}
+    	onSend('IP0702100');
+	document.IP0702100.SEND_SCHD_DATE.value = document.IP0702100.DateBegin.value;
+	if(document.IP0702100.SEND_SCHD_DATE.value==""){
+		alert("請輸入轉帳日期!");
+		return;
+	}
+        	date = eval(document.IP0702100.SEND_SCHD_DATE.value);
+        	date2 = "[[%%SYSDATE%%]]";
+        	if(date2==""){
+        		date2 = eval(getADDateStr(getNowDate(),-1));
+        	}
+	else{
+		date2 = eval(getADDateStr(date2,-1));
+	}
+	if(chkDateRule(document.IP0702100.DateBegin.value,"",
+		"[[%%SYSDATE%%]]",
+		0,	//A年
+		1,	//A月
+		0,	//A日
+		0,	//B年
+		1,	//B月
+		0	//B日
+		)==false){
+	alert("預約轉帳限預約最近一個月,如93/05/23可預約93/05/24-93/06/23期間執行之交易");
+	return ;
+	}
+	if(date > date2){
+		document.IP0702100.SEND_MEMO.value = HalfshapeToFullshape(document.IP0702100.SEND_MEMO.value);
+		document.IP0702100.submit();
+	}
+	else{
+		alert("預約轉帳限預約最近一個月,如93/05/23可預約93/05/24-93/06/23期間執行之交易");
+		return;
+	}
+    }
+
+-->
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal3.css">
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+
+<form name="IP0702100" method="POST" action="LoadAP">
+<b>帳戶交易&gt;<font color="#003399"><font color="#0066FF">預約台幣轉帳<br>
+</font></font></b>
+<table width="630" border="0">
+  <tr>
+    <td><!--img src="graph/point.gif" width="12" height="12" align="absmiddle"> 預約台幣轉帳--><font color="#003399"><font color="#0066FF"></font></font>
+      <table width="628" border="0">
+        <tr> 
+          <td colspan="4">
+            <font color="#0000CC"></font><font color="#0000CC"> </font>
+            <table width="598" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td>　<img src="graph/point.gif" width="12" height="12" align="absmiddle">轉帳日期 
+                 <script>
+                 var selDate = getRCDateStr("[[%%SYSDATE%%]]",0);
+                 crtDateInputObj("DateBegin");
+                 //lockCalSelObj('IP0702100',0,selDate);
+                 lockCalSelObj('IP0702100',-1,selDate);
+                 </script>
+                 <font color="#FF0000">(例如：預定轉帳日期為94年6月1日，則請輸入94/06/01)</font>
+                </td>
+              </tr>
+            </table>
+            <font color="#0000CC"></font></td>
+        </tr>
+        <tr> 
+          <td colspan="2"><b>轉出帳號</b><font color="#663300" face="Arial, Helvetica, sans-serif">　 
+            
+            <select name="FROMACCTNO">
+              <option value="0" selected>==請選擇帳號　可用餘額== </option>
+
+<!--[[%%LOOP_SEC SEND-FROM-ACCT-NO%%]]-->
+              <option value="[[%%SEND-FROM-ACCT-NO%%]]@[[%%SEND-FROM-BR-NAME%%]]@[[%%SEND-FROM-AVAL-BALANCE%%]]@[[%%SEND-AMT-LMT%%]]@[[%%SEND-AVAL-TFR%%]]@[[%%SEND-AVAL-LARGE%%]]">[[%%SEND-FROM-BR-NAME%%]] 
+              <SCRIPT language="JavaScript">
+                            document.write(getAcctStr('[[%%SEND-FROM-ACCT-NO%%]]'));
+              </SCRIPT>
+              新台幣 
+              <script>
+              	document.write(trimDecimal(moneyAddDot('[[%%SEND-FROM-AVAL-BALANCE%%]]'))); 
+              </script>
+              	元</option>        
+<!--[[%%ELOOP_SEC%%]]-->
+
+            </select>
+            </td>
+        </tr>
+        <tr> 
+          <td colspan="2"><b>轉入帳號</b> </td>
+        </tr>
+        <tr> 
+          <td height="151" colspan="2"> 
+            <table width="100%" border="0">
+              <tr> 
+                <td bgcolor="#C4CBB8"> 
+                  <input type="radio" name="vtrType" value="0" checked  onclick="javascript:showVTRDiv(this.value);">
+                  本人自行帳戶 </td>
+              </tr>
+              <tr> 
+                <td>
+                    <div id="acctType1" style="display:block">　　轉入帳號：&nbsp;&nbsp;
+                      <select name="TOACCTINFO1">
+			<option value="0" selected>==請選擇帳號== </option>
+    <!--[[%%LOOP_SEC SEND-ACCT-NO%%]]-->
+                        <option value="803@聯邦銀行@[[%%SEND-ACCT-NO%%]]">[[%%SEND-BR-NAME%%]] 
+                        <SCRIPT language="JavaScript">
+                                document.write(getAcctStr('[[%%SEND-ACCT-NO%%]]'));
+                        </SCRIPT>
+                        </option>
+    <!--[[%%ELOOP_SEC%%]]-->                       
+
+                      </select>
+                      
+                    </div>
+                </td>
+              </tr>
+              <tr> 
+                <td bgcolor="#C4CBB8"> 
+                  <input type="radio" name="vtrType" value="1" onclick="javascript:showVTRDiv(this.value);">
+                  已約定帳號
+                </td>
+              </tr>
+              <tr> 
+                <td>
+                    <div id="acctType2" style="display:none">　　轉入帳號：&nbsp;&nbsp;
+                      <select name="TOACCTINFO2">
+		      <option value="0" selected>==請選擇帳號== </option>
+    <!--[[%%LOOP_SEC SEND-REG-ACCTNO%%]]-->
+                        <script>
+                        	document.write(chkBankID("[[%%SEND-REG-BCODE%%]]","[[%%SEND-REG-ACCTNO%%]]","[[%%SEND-REG-BANK-NAME%%]]"));
+                        </script>
+    <!--[[%%ELOOP_SEC%%]]-->        
+
+                      </select>
+                    </div>
+                </td>
+              </tr>
+              <tr> 
+                <td bgcolor="#C4CBB8"> 
+                  <input type="radio" name="vtrType" value="2" onclick="javascript:showVTRDiv(this.value);">
+                  非約定帳號<font color="#FF0000">(如您尚未申請非約定轉帳功能，請立即至申請專區->申請/變更/取消非約定帳戶交易，依說明進行申請)</font>
+                </td>
+              </tr>
+              <tr> 
+                <td>
+                  <div id="acctType3" style="display:none">　　轉入銀行：&nbsp;&nbsp;
+                      <select name="TOACCTINFO3">
+                      
+    <!--[[%%LOOP_SEC SEND-BANK-CODE%%]]-->
+                        <option value="[[%%SEND-BANK-CODE%%]]@[[%%SEND-BANK-NAME%%]]">[[%%SEND-BANK-CODE%%]] [[%%SEND-BANK-NAME%%]]</option>
+    <!--[[%%ELOOP_SEC%%]]-->    
+   
+                      </select>
+                       <br>
+                       　　轉入帳號：&nbsp;&nbsp;
+                  <input type="text" name="TOACCTNO" value="" maxlength="16">
+                  <script>
+                  	document.write(chkSSL('[[%%SEND-STATUS%%]]'));
+                  </script>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"><b>轉帳金額</b>　新台幣 
+            <input type="text" name="TXN_AMT" value=""  size="6">
+            元</td>
+        </tr>
+        <tr> 
+          <td colspan="2"><b>交易附註</b>
+          <input type="text" name="SEND_MEMO" value="" size="80" maxlength="50">
+          <br>
+            <font color="#FF0000">(限50字，如您輸入交易附註，則於交易成功後可至『帳戶查詢』&gt;『台幣存款帳戶』&gt;『交易明細』點選查詢類別為『網銀轉出交易』查詢您所記錄之交易附註。) 
+            </font>
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"><b>通知方式</b><font color="#FF0000">（您可利用下列方式於本次轉帳成功後通知相關人員)</font></td>
+        </tr>
+        <tr> 
+          <td colspan="2" bgcolor="#C4CBB8"> 
+            <input type="radio" name="notifyType" value="1" onclick="javascript:showSendDiv(this.value);">
+            電子郵件通知 </td>
+        </tr>
+        <tr> 
+          <td colspan="2">
+          <div id="notiType1" style="display:none">　
+            通知對象電子郵件地址
+            　<input onpaste="return false;" type="text" name="EMAIL_ADDR" value="" size="85" style="ime-mode:disabled" ><br>　
+            訊息內容（限250字）<br>
+            　<textarea name="MSG1" cols="80" rows="3" maxlength="250"></textarea>
+          </div>
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"> 
+            <table width="100%" border="0">
+              <tr> 
+                <td colspan="2" bgcolor="#C4CBB8"> 
+                  <input type="radio" name="notifyType" value="2" onclick="javascript:showSendDiv(this.value);">
+                  簡訊通知<font color="#FF0000">( 如您使用本人自行帳戶互轉則不提供簡訊通知功能 )</font></td>
+              </tr>
+              <tr> 
+                <td colspan="2">
+                <div id="notiType2" style="display:none">　
+                  通知對象行動電話號碼
+                  　<input onpaste="return false;" type="text" name="MOBILE" value="" maxlength="10" style="ime-mode:disabled"><br>　
+                  <!--簡訊通知費用　　　　
+                　3元/通<font color="#FF0000">（簡訊通知成功後，將由您的轉出帳號扣款）</font><br>-->　
+                  訊息內容（簡訊開頭語為<聯邦網銀代理通知>，您可輸入42個字）<br>
+                  　<textarea name="MSG2" MAXLENGTH=70 cols="80" rows="3"></textarea>
+                </div>
+                </td>
+              </tr>
+            </table>
+            <table width="100%" border="0">
+              <tr> 
+                <td colspan="2" bgcolor="#C4CBB8"> 
+                  <input type="radio" name="notifyType" value="0" checked  onclick="javascript:showSendDiv(this.value);">
+                  不通知</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      
+      註：<br>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">1.</td>
+            <td valign="top">預約轉帳交易限預約最近一個月，如 93/05/23 可預約時間為 93/05/24-93/06/23 ； 欲註銷預約轉帳交易，應於預約轉帳日前辦理。</td>
+          </tr>
+          <tr>
+            <td valign="top">2.</td>
+            <td valign="top">若遇執行轉帳交易發生網路傳輸異常時，請至查詢 / 取消預約轉帳內確認預約交易是否設定成功。</td>
+          </tr>
+          <tr>
+            <td valign="top">3.</td>
+            <td valign="top">當您執行預約轉帳 轉入非約定帳號 時，預約日之轉帳金額須符合您所約定之每筆交易金額限制，實際轉帳日之轉帳金額須符合您所約定之每筆 / 每日 / 當月交易金額限制。</td>
+          </tr>
+          
+          <tr>
+            <td valign="top">4.</td>
+            <td valign="top">本行將於<font color="#FF0000"><B>每日上午8點起，開始執行當日之預約轉帳交易</B></font>。<U>惠請客戶注意依預約交易之執行時間及實際資金需求時點規劃適當的預約日期。</U></td>
+          </tr>
+          
+       </table> 
+      
+      
+      <table width="620" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td colspan="2"> 
+            <div align="center">　 
+              <input type="button" name="sure" value=" 確定 " onclick="ChkSubmit()";>
+              <input type="reset" name="reset" value=" 重填 ">
+              <br>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!--input type="hidden" name="FROM_ACCT_NO" value=""-->
+<input type="hidden" name="FROM_ACCT_NO" value="">
+<input type="hidden" name="FROM_BR_NAME" value="">
+<input type="hidden" name="TO_ACCTNO" value="">
+<input type="hidden" name="TO_BANK_CODE" value="">
+<input type="hidden" name="TO_BANK_NAME" value="">
+<input type="hidden" name="SEND_MSG" value="">
+<input type="hidden" name="pageid" value="IP0702110">
+<input type="hidden" name="HOW_TO_SEND"  value="不通知">
+<input type="hidden" name="SEND_SCHD_DATE" value="">
+<input type="hidden" name="SEND_TO_YOU" value="3">
+<input type="hidden" name="FROM_AVAL_BALANCE" value="">
+<input type="hidden" name="msgType"    value="0">
+<input type="hidden" name="msgSendTo"  value="0">
+<input type="hidden" name="msgContent" value="0">
+<input type="hidden" name="msgSubject" value="0">
+<input type="hidden" name="TO_CHANGE">
+<input type="hidden" name="NOTIFY_TYPE">
+<input type="hidden" name="SEND_AMT_LMT">
+<input type="hidden" name="SEND_AVAL_TFR">
+<input type="hidden" name="SEND_AVAL_LARGE">
+</form>
+<p><p><p><p><p><p><p><p><p><p><p><p>
+</body>
+</html>

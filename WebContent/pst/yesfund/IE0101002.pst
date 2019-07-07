@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>訊息代號及說明</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="Javascript">
+<!--
+
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form name="IE0101002">
+<center>
+<table width="630" border="0">
+  <tr>
+    <td>親愛的客戶您好：<br><br>
+    　　您於本行開立基金信託帳戶後，尚未繳回「信託委託人印鑑證明卡」。請您<br>
+    列印填寫「<font color="red">信託委託人印鑑證明卡</font>」（<a href="javascript:MM_openBrWindow('/LoadAPWeb/LoadAP?aptype=YESFUND&pageid=IE0101004','NewWindow','toolbar=no,menubar=yes,scrollbars=yes,resizable=yes,width=640,height=480')">按此列印</a>）後，附上您的<font color="red">身份證及第二身<br>
+    份證明文件（健保卡或駕照）影本</font>，寄回『台北市 104 南京東路二段 137 號 3 樓 <br>
+    聯邦商業銀行信託部基金組 收』辦理變更，約 5 個工作天後，即可使用基金功能<br>。<br><br>
+    　　謝謝您對聯邦銀行的愛護與支持，造成您的不便，尚祈見諒！<br><br>
+    <font color="red">提醒您：辦理上述事項，以本行收件後並鍵入電腦始生效。</font>
+    </td>
+  </tr>
+</table>
+</center>
+</form>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='Big5'?>
+<!-- UITC Schema Generater at 2003-09-24 -->
+<catalog>
+     <field id='fieldi001' attr='S' default=''>
+        <name>REVE-CODE</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+     <field id='fieldi002' attr='I' default=''>
+        <name>REVE-SESSION-ID</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+     <field id='fieldi003' attr='I' default=''>
+        <name>REVE-ID-NO</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description>Identify</description>
+     </field>
+     <field id='fieldi004' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>     
+     <field id='fieldi005' attr='S' default=''>
+        <name>TXNTYPE</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+     <field id='fieldi006' attr='I' default=''>
+        <name>PBX-SID</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+     <field id='fieldi007' attr='S' default=''>
+        <name>TXN-SNO</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	  <field id='fieldi008' default=''>
+        <name>REVE-PWD</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description>password</description>
+     </field>
+	 <field id='fieldi009' default=''>
+        <name>REVE-KB-IDX</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description>decode key</description>
+     </field>
+	  <field id='fieldi010' default=''>
+        <name>REVE-DAILY-PHONE</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	  <field id='fieldi011' default=''>
+        <name>REVE-DAILY-PHONE-EXT</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	  <field id='fieldi012' default=''>
+        <name>REVE-NIGHT-PHONE</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	  <field id='fieldi013' default=''>
+        <name>REVE-NIGHT-PHONE-EXT</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	  <field id='fieldi014' default=''>
+        <name>REVE-MPHONE</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	 <field id='fieldi015' default=''>
+        <name>REVE-CONTACT-ZIP</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	 <field id='fieldi016' default=''>
+        <name>REVE-CONTACT-ADDR1</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	 <field id='fieldi017' default=''>
+        <name>REVE-CONTACT-ADDR2</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	 <field id='fieldi018' default=''>
+        <name>REVE-CONTACT-ADDR3</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	 <field id='fieldi019' default=''>
+        <name>REVE-EMAIL-ADDR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	 <field id='fieldi020' default=''>
+        <name>REVE-E-BILL</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+</catalog>

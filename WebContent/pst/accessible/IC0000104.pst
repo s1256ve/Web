@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>	
+  <meta charset="utf-8">
+  <meta http-equiv:"content-language" content="zh-tw">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+  <title>聯邦友善金融網</title>
+  <link href="css/index.css" rel="stylesheet">	
+  <link href="css/1.css" rel="stylesheet">	
+	<link href="css/accessibility.css" rel="stylesheet" >
+	<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/iBank.js"></SCRIPT>
+<script language="JavaScript">
+function chkSubmit(){
+	var nickName = document.IC0000105.REVE_NICK_NAME.value;
+	var pwd = document.IC0000105.PWD.value;
+	//document.IC0000105.REVE_ID_NO.value = document.IC0000105.REVE_ID_NO2.value;
+	if (document.IC0000105.sid.value==""){
+		alert('請輸入身份證字號');
+		document.IC0000105.sid.focus();
+		return false;
+	}else if(nickName.trim() == ""){
+		alert('請輸入使用者代號');
+		document.IC0000105.REVE_NICK_NAME.focus();
+		return false;		
+	}else if(document.IC0000105.PWD.value==""){
+		alert('請輸入網路密碼');
+		return false;
+  }
+  if(!pwdcheck(pwd)){
+		return;
+	}
+	document.IC0000105.REVE_PWD.value = document.IC0000105.PWD.value.toUpperCase();
+  document.IC0000105.pageid.value="IC000000H";
+  document.IC0000105.aptype.value="NOAP";
+  if(document.IC0000105.sid.value.length==10){
+  	document.IC0000105.REVE_ID_NO.value = document.IC0000105.sid.value+"A";
+  }
+  document.IC0000105.REVE_ID_NO.value=document.IC0000105.REVE_ID_NO.value.toUpperCase();
+	document.IC0000105.submit(); 
+}
+
+function pwdcheck(pwd){
+	var re = /^[A-Za-z0-9]+$/;
+	var len = pwd.length;
+	if(len<6||len>12){
+		alert("您輸入的密碼長度不符，請重新輸入！");
+		return false;
+	}
+	if (!re.test(pwd)){
+		alert("密碼欄位僅能接受英數字！");
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function chkNum2(){
+	var oldID = document.all.SID2.value;
+	var newID = "";
+	document.all.sid.value = oldID;
+	for(i=0;i<oldID.length;i++){
+		if(i>3&&i<8){
+			newID = newID + '*';
+		}else{
+			newID = newID + oldID.charAt(i);
+		}
+	}
+	document.all.SID2.value = newID;
+}
+
+function clrID2(){
+	document.IC0000105.SID2.value = "";
+	document.IC0000105.sid.value = "";
+	document.IC0000105.lastlen.value = "0";
+}
+
+function redirUrl(){
+	top.window.location.replace("https://www.ubot.com.tw");
+}
+</script>
+	
+</head>
+<body>
+<noscript>
+您的瀏覽器不支援JavaScript功能，若網頁功能無法正常使用時，請開啟瀏覽器JavaScript功能 
+</noscript> 
+<form method="post" name="IC0000105" action="LoadAP3">
+<header>
+	<div class="wrapper">
+		
+		<div class="headerBox">	
+			 <a href="#C"  title="跳到主要內容區塊" tabindex="1" style="position: absolute" class="sr_only">跳到主要內容區塊</a>
+			    <h1 class="no-effect"> <a class="logo" href="https://freebank.ubot.com.tw/" target="_parent"><img src="Accessible/logo.png" alt="聯邦銀行友善服務網" title="聯邦銀行友善服務網" width="300" height="37" hspace="10" border="0"></a></h1>	
+			<div class="header-right">
+				<a href="#U" name="U" id="AU" accesskey="U" class="top" title="上方導覽區">:::</a> <a href="LoadAP3?aptype=IBANK&pageid=AC0000100" class="top">網站導覽</a> / <a href="LoadAP3?aptype=IBANK&pageid=AC0000101" class="top">金融友善服務準則</a>			
+		  </div>
+		</div>
+				
+		<div class="container">
+			<div class="con1">
+				<h2 class="t20_1">
+					<span class="t18"><a accesskey="C" name="C" id="AC" title="登入區塊" href="#C" style="text-decoration:none;color:#fff;">::: </a></span><img src="Accessible/arrow2.gif" alt="*" width="28" height="28" hspace="5" vspace="4" align="absmiddle"><font color="#ffffff">網 路 銀 行 登 入</font>
+				</h2>
+				<div>
+					<img src="Accessible/spacer_line.png" alt="*">
+				</div>
+				<div class="t20">
+					<label for="textfield1">身 分 證 字 號</label><input input name="SID2" type="text" maxlength="10" class="text1" id="textfield1" autocomplete="off" onFocus="clrID2();"  onBlur="chkNum2();">
+        </div>    
+				<div class="t20">
+					<label for="textfield2">	使 用 者 代 號</label><input name="REVE_NICK_NAME" type="password" maxlength="12" class="text1" id="textfield2" autocomplete="off">
+        </div> 
+				<div class="t20">
+					<label for="textfield3">密　　　　碼</label><input name="PWD" type="password" maxlength="12" class="text1" id="textfield3" autocomplete="off">
+        </div>
+               
+        <div>
+					<img src="Accessible/spacer_line.png"  alt="*">
+				</div>				
+				<div class="Conbtn2">
+					<a href="#" id="randimg"  onclick="chkSubmit();"><img src="Accessible/login.png" title="登入" alt="登入" border="0"></a>
+				</div>	                 
+      				
+			</div>
+			<div class="con2">
+				<div class="con2-1">	
+					<h2 class="t16a"><a accesskey="R" name="R" id="AR" title="右方區塊" href="#R" style="text-decoration:none;color:#666;">:::</a> 登入說明：</h2>					          			    			
+    			<div class="t16b">
+            <img src="Accessible/arrow_s.gif" alt="*" class="arrow_s">
+            <div class="con2-font">請輸入身分證字號、使用者代號及密碼，並點選『登入』</div>
+        	</div>
+          <div class="t16b">
+            <img src="Accessible/arrow_s.gif" alt="*" class="arrow_s">
+            <div class="con2-font">本簡易網路銀行僅提供『利率查詢』、『匯率查詢』、『帳戶服務』、『交易明細』、『約定轉帳交易』、『使用者代號變更』、『使用者密碼變更』</div>
+        	</div>  	
+				</div>				
+				<div class="con2-2">
+					<div class="t16a">最新消息：</div>					          			    			
+    			<div class="t16b">
+            <img src="Accessible/arrow_s.gif" alt="*" class="arrow_s">
+            <div class="con2-font">請輸入身分證字號、使用者代號及密碼，並點選『登入』</div>
+        	</div>
+          <div class="t16b">
+            <img src="Accessible/arrow_s.gif" alt="*" class="arrow_s">
+            <div class="con2-font">本簡易網路銀行僅提供『利率查詢』、『匯率查詢』、『帳戶服務』、『交易明細』、『約定轉帳交易』、『使用者代號變更』、『使用者密碼變更』</div>
+        	</div>  	
+				</div>				
+				</div>
+			</div>								
+		</div>		
+    <div class="Conbtn" align="center">
+     <a href="#" onclick="redirUrl();">
+            <img src="Accessible/button_ubot.gif" title="回聯邦銀行官網" alt="回聯邦銀行官網" width="252" height="54"  border="0" /></a>
+  	
+  	</div>
+  </div>
+</header>
+
+<div class="footer">
+	<div class="wrapper">				
+	 	<div class="footerBox">
+	 		<p class="copyright">	 			
+		 		<a accesskey="Q" name="Q" id="AQ"  title="網頁資訊" href="#Q" style="text-decoration:none;color:#666;">:::</a>
+		 		<strong>客服中心電話：(02)2545-1788、0800-089-888　建議瀏覽版本：IE6.0以上 解析度1024x768 &copy;聯邦商業銀行版權所有</strong>
+		 		<!--
+		 		<a href="http://www.handicap-free.nat.gov.tw/Applications/Detail?category=20141107180459" title="無障礙網站"><img src="img/aaa.jpg" alt="通過A+優先等級無障礙網頁檢測" width="88" height="31" border="0" /></a>	
+		 		-->
+	 		</p>
+		</div>
+	</div>
+</div>
+<input type="hidden" name="pageid" value="IC000000H">
+<input type="hidden" name="aptype" value="NOAP">
+<input type="hidden" name="REVE_PWD" value="">
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+<input type="hidden" name="REVE_ID_NO">
+<input type="hidden" name="sid"/>
+<input type="hidden" name="lastlen" value="0">
+<input type="hidden" name="Login01">
+<input type="hidden" name="REVE_ECARD_SN" value="[[%%REVE_ECARD_SN%%]]">
+<input type="hidden" name="REVE_TXSEQ" value="[[%%REVE_TXSEQ%%]]">
+</form>		
+</body>
+</html>

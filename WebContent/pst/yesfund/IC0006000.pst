@@ -1,0 +1,61 @@
+<html>
+<head></head>
+<style>
+body{font:small/1.2em arial,helvetica,clean,sans-serif;font:x-small;margin:0;}
+</style>
+<script type="text/javascript">
+<!--
+/*************************************************************************
+  This code is from Dynamic Web Coding at http://www.dyn-web.com/
+  See Terms of Use at http://www.dyn-web.com/bus/terms.html
+  regarding conditions under which you may use this code.
+  This notice must be retained in the code as is!
+*************************************************************************/
+
+function getDocHeight(doc) {
+  var docHt = 0, sh, oh;
+  if (doc.height) docHt = doc.height;
+  else if (doc.body) {
+    if (doc.body.scrollHeight) docHt = sh = doc.body.scrollHeight;
+    if (doc.body.offsetHeight) docHt = oh = doc.body.offsetHeight;
+    if (sh && oh) docHt = Math.max(sh, oh);
+  }
+  return docHt;
+}
+
+function setIframeHeight(iframeName) {
+  var iframeWin = window.frames[iframeName];
+  var iframeEl = document.getElementById? document.getElementById(iframeName): document.all? document.all[iframeName]: null;
+  if ( iframeEl && iframeWin ) {
+    //iframeEl.style.height = "auto"; // helps resize (for some) if new doc shorter than previous  
+    var docHt = getDocHeight(iframeWin.document);
+    // need to add to height to be sure it will all show
+    if (docHt){ 
+    	if (docHt<1470) docHt=1470;
+    	iframeEl.style.height = docHt + 30 + "px";
+    	//alert(docHt);
+    }
+  }
+}
+
+function loadIframe(iframeName, url) {
+  if ( window.frames[iframeName] ) {
+    window.frames[iframeName].location = url;   
+    return false;
+  }
+  else return true;
+}
+
+function goSetHeight() {
+  if (parent == window) return;
+  // arg: id of iframe element this doc is to be loaded into
+  else parent.setIframeHeight('submain');
+  //alert("5000 goSetHeight");
+}
+-->
+</script>
+<body onload="setIframeHeight('submain')" leftmargin="0" topmargin="0" rightmargin="0" marginwidth="0" marginheight="0" width="800" height="600">
+    <iframe name="submenu" style="position: absolute; top:0 ; left:0" width="778" height="60" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?aptype=YESFUND&pageid=IC0006001&[[%%SESSIONID%%]]"></iframe>
+    <iframe name="submain" style="position: absolute; top:60 ; left:0" width="778" height="1470" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="LoadAP?aptype=YESFUND&pageid=IF0101000&[[%%SESSIONID%%]]"></iframe>
+</body>
+</html>

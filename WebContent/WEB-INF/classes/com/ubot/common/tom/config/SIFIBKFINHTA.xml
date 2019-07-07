@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="Big5"?>
+<!-- IVR FUND INHTA 歷史交易查詢 Last updated date 3-17-2004 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="INHTAi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='INHTAi54' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="INHTAi55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="INHTAi03">
+		<name>REVE-CERT-NO</name>
+		<length>10</length>
+		<type>String</type>
+		<description>憑証號碼</description>
+	</field>
+	<field id="INHTAi03">
+		<name>REVE-BEGIN-DATE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>日期起</description>
+	</field>
+	<field id="INHTAi03">
+		<name>REVE-END-DATE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>日期迄</description>
+	</field>
+	<field id="INHTAi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="INHTAi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="INHTAi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="INHTAi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="INHTAi54">
+		<name>REVE-COME-FROM</name>
+		<length>16</length>
+		<type>String</type>
+		<description>來源位置</description>
+	</field>
+	<field id="INHTAi55">
+		<name>REVE-ID-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+</catalog>

@@ -1,0 +1,483 @@
+<html>
+<head>
+<title>聯邦銀行個人金融網</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="expires" CONTENT="0">
+<link type="text/css" rel="stylesheet" href="theme/portal2.css">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI98009           2009.02.19     Alma 
+*EAI98013           2009.03.10     Alma
+*EAI98014           2009.03.11     Alma
+*EAI98025           2009.04.09     Alan
+*EAI98026           2009.04.14     YiSyun,Alma
+*EAI98030           2009.04.28     Alma
+*EAI98041           2009.06.24     Carl
+*EAI98052           2009.08.18     Alma,Carl
+*EAI98056           2009.10.13     David
+*EAI98060           2009.11.05     David
+*EAI99041	     		  2010.05.10	   David
+*EAI99052           2010.8.25      David 
+*EAI100078         2011.11.23     SIMON LIN		終止UMA網路服務
+*EAI101074          2012.10.22     Carl
+*EAI101077          2012.11.16     Carl
+***********************************************************************/
+</script>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/datefmt.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="./pst/yesgogogo/script/Dialog.js"></SCRIPT>
+
+<script language="JavaScript">
+<!--
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+
+function chkSubmit(){
+	alert(cn+' 您好，謝謝您使用網路銀行！\n'+
+          '為了您的交易資料安全，\n'+
+          '請記得在視線離開電腦前關閉使用中的瀏覽器，\n'+
+          '以確保您剛剛的使用記錄不被他人窺探！');
+          //'登出時間為 '+getNowTime());
+    document.IC0100000.pageid.value="IC0000999";
+    document.IC0100000.aptype.value="NOAP";
+    document.IC0100000.logout.value="1";
+    document.IC0100000.target="_parent"
+    document.IC0100000.submit();
+}
+
+function chkSubmit2(){
+	if(document.IC0100000.logout.value==0){
+		//alert("doing!");
+		document.IC0100000.pageid.value="IC0000999";
+		document.IC0100000.aptype.value="NOAP";
+		document.IC0100000.submit();
+	}
+}
+
+function trnsTime(){
+	var timeStr = '[[%%SEND-LAST-LOGIN-TIME%%]]';
+	var date = timeStr.substr(0,8);
+	var hh = timeStr.substr(8,2);
+	var mm = timeStr.substr(10,2);
+	return getRCDateStr(date,0) + " " + hh + ":" + mm ;
+}
+
+function DistDay(){
+  var diffDays = DateDiff(getADDateStr(getNowDate(),0),getADDateStr('[[%%SEND-MDFDATE%%]]',0));                
+	if (diffDays > 180) {
+		document.write("<div align=\"left\"><font color='red'><b>您離上次變更密碼已超過6個月，建議請定期變更密碼!"+"<a href='#' onclick=\"alert('請至「個人設定」=>「網路密碼/使用者代號變更」，進行變更網路密碼。');\"></b>(說明)</font></a></div>");
+	}
+	if(diffDays > 365){
+		alert("您的「網路密碼」已超過一年未變更，\n為確保您的網路交易安全，建議您定期變更「網路密碼」，謝謝！\n\n變更密碼請至【個人設定-> 網路密碼/使用者代號變更】執行。");
+	}
+}
+
+var cn;
+var sn = '[[%%SEND-ID-NO%%]]';
+function showCName(){
+   var cname='[[%%SEND-CNAME%%]]';
+   var sex = sn.substring(1,2);
+   var title = "";
+   if(sex==1){
+   		title = "先生";
+   }
+   else if(sex==2){
+   		title = "小姐";
+   }
+   if(cname.length < 4){
+   		if(title!=""){
+   			cname = cname.substring(0,1)+title;
+   		}
+   		else{
+   		 cname = cname.substring(0,1)+replaceWord(cname.length-1);
+   		}
+   }
+   else{
+   		if(title!=""){
+   			cname = cname.substring(0,2)+title;
+   		}
+   		else{
+   		 	cname = cname.substring(0,2)+replaceWord(cname.length-2);
+   		}
+   }   
+   if(cname.length > 8){      
+      if(title!=""){
+      	cn = cname;
+      	return cname;
+      }else{
+      	cn = cname.substring(0,8)+"(略)";
+      	return cname.substring(0,8)+"(略)";
+      }
+   }else{
+      cn = cname;
+      return cname;
+   }
+}
+
+function replaceWord(num){
+	var sign = 'O';
+	var rtn = "";
+	for(i=0;i<num;i++){
+		rtn = rtn + sign;
+	}
+	return rtn;
+}
+//-->
+</script>
+</head><!-- [[%%APTYPE%%]] -->
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" link="#0000FF" vlink="#0000FF" alink="#000000" background="graph/bg.gif" onLoad=""   onUnload="">
+<form method="post" name="IC0100000" target="_self" action="LoadAP">
+
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="aptype" value="NOAP">
+<input type="hidden" name="sessid" value="[[%%SESSIONID%%]]">
+
+<table width="778" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><img src="graph/blank.gif" width="5" height="1"><img src="graph/ub-logo.gif" border="0"></td>
+    <td align="right" valign="top"><img border="0" src="graph/map-01.gif"></td>
+  </tr>
+</table>
+<table width="778" border="0" cellspacing="0" cellpadding="0">
+  <tr align="left" valign="top"> 
+    <td> 
+      <table width="778" border="0" cellspacing="0" cellpadding="0">
+        <tr bgcolor="#80836E"> 
+          <td><img src="graph/blank.gif" width="1" height="1"></td>
+        </tr>
+        <tr bgcolor="#C4CBB8"> 
+          <td>
+            <table width="778" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td width="204"><img src="graph/map-08.gif" width="213" height="21"></td>
+                <td width="566" align="right" valign="bottom"> <div id="popmenu" class="menuskin" onMouseover="clearhidemenu();highlightmenu(event,'on')" onMouseout="highlightmenu(event,'off');dynamichide(event)">
+</div>
+
+
+<!-- PLEASE INSERT THESE CODES BETWEEN <BODY> ... </BODY> TAGS! -->
+<!-- START Javascript Menu Builder PLATINUM 1.0 config parameters. Don't modify these codes by yourself -->
+<!-- (C)Copyright 2002 USINGIT.COM, All rights reserved! Javascript Menu Builder PLATINUM 1.0 -->
+
+<script language="JavaScript">
+
+var AWgmnBSpm=null;var aWGmnBSpm;var awGMnBSpm;var AWGmnBSpm=false;
+var aWGMnBSpm=true;var AWGMnBSpm=null;var awgmnbSPm;var AwgmnbSPm=aWGmNbspm;var aWGMnbSpm=0;
+
+awgmnbspm=(document.layers);
+Awgmnbspm=(document.getElementById&&!document.all);
+aWgmnbspm=(document.getElementById&&document.all);
+awGmnbspm=(navigator.userAgent.indexOf("Netscape6/6.0")!=-1);
+awgMnbspm=(navigator.userAgent.indexOf('OPERA')!=-1)||(navigator.appName.indexOf('OPERA')!=-1)||(window.opera);
+AWgmnbspm=(document.all&&!awgMnbspm);
+aWGmnbspm=((AWgmnbspm)&&(navigator.appVersion.indexOf ("Mac")!=-1));
+awGMnbspm=document.getElementById&&!awgmnbspm&&!AWgmnbspm&&!awgMnbspm;
+AWGmnbspm=(navigator.appVersion.indexOf("Windows")!=-1||navigator.appVersion.indexOf("WinNT")!=-1);
+if(awGMnbspm||awgmnbspm||AWgmnbspm||awgMnbspm){var aWGMnbspm;
+var AWGMnbspm;var awgmNbspm;var AwgmNbspm;var aWgmNbspm;var awGmNbspm;var awgMNbspm;var AWgmNbspm;var aWGmNbspm;var awGMNbspm;
+var AWGmNbspm;var aWGMNbspm;var AWGMNbspm;var awgmnBspm;var AwgmnBspm;var aWgmnBspm;var awGmnBspm;var awgMnBspm;var AWgmnBspm;
+var aWGmnBspm;var awGMnBspm;var AWGmnBspm;var aWGMnBspm;var AWGMnBspm;var awgmnbSpm;var AwgmnbSpm;var aWgmnbSpm;var awGmnbSpm;
+var awgMnbSpm;var AWgmnbSpm;var aWGmnbSpm;var awGMnbSpm;var AWGmnbSpm;};
+function AWGMnbSpm(awgmnbsPm,AwgmnbsPm,aWgmnbsPm,awGmnbsPm,awgMnbsPm,AWgmnbsPm,aWGmnbsPm,
+	awGMnbsPm,AWGmnbsPm,aWGMnbsPm,AWGMnbsPm,awgmnbspM,AwgmnbspM,aWgmnbspM,awGmnbspM,
+	awgMnbspM,AWgmnbspM,aWGmnbspM,awGMnbspM,AWGmnbspM,aWGMnbspM,AWGMnbspM,awgmNBspm,
+	AwgmNBspm,aWgmNBspm,awGmNBspm,awgMNBspm,AWgmNBspm,aWGmNBspm,awGMNBspm,AWGmNBspm,
+	aWGMNBspm,AWGMNBspm){
+	aWGMnbspm=awgmnbsPm;AWGMnbspm=AwgmnbsPm;
+	awgmNbspm=aWgmnbsPm;AwgmNbspm=awGmnbsPm;
+	aWgmNbspm=awgMnbsPm;awGmNbspm=AWgmnbsPm;
+	awgMNbspm=aWGmnbsPm;AWgmNbspm=awGMnbsPm;
+	aWGmNbspm=AWGmnbsPm;awGMNbspm=aWGMnbsPm;
+	AWGmNbspm=AWGMnbsPm;aWGMNbspm=awgmnbspM;
+	AWGMNbspm=AwgmnbspM;awgmnBspm=aWgmnbspM;
+	AwgmnBspm=awGmnbspM;aWgmnBspm=awgMnbspM;
+	awGmnBspm=AWgmnbspM;awgMnBspm=aWGmnbspM;
+	AWgmnBspm=awGMnbspM;aWGmnBspm=AWGmnbspM;
+	awGMnBspm=aWGMnbspM;AWGmnBspm=AWGMnbspM;
+	aWGMnBspm=awgmNBspm;AWGMnBspm=AwgmNBspm;
+	awgmnbSpm=aWgmNBspm; AwgmnbSpm=awGmNBspm;
+	aWgmnbSpm=awgMNBspm;awGmnbSpm=AWgmNBspm;
+	awgMnbSpm=aWGmNBspm;AWgmnbSpm=awGMNBspm;
+	aWGmnbSpm=AWGmNBspm;awGMnbSpm=aWGMNBspm;
+	AWGmnbSpm=AWGMNBspm;awgmnBSpm=AwgmnbSpm;
+	AwgmnBSpm=awGmnbSpm;aWgmnBSpm=aWgmnbSpm;awGmnBSpm=awgMnbSpm;
+};
+
+AWGMnbSpm(2000,1,10,1,500,0,0,0,100,-3,3,0,"#C0C0C0",2,1,"graph","scrollup_black.gif","scrolldown_black.gif",
+	"arrowright_black.gif",8,8,0,"main",1,5,"#000000","#FFFFFF","#C0C0C0","CEE6D1","新細明體","12px",false,false);
+awgMnBSpm11 = new Array("公司簡介","http://www.ubot.com.tw/ubotintro",0,"_blank","公司簡介","股東專區","http://www.ubot.com.tw/investor",0,"_blank","股東專區","財務訊息","http://www.ubot.com.tw/importantreport",0,"_blank","財務訊息");
+//awgMnBSpm12 = new Array("客戶服務專線","https://www.ubot.com.tw/news/2005/0050321.htm",0,"submain","客戶服務專線","客戶信箱","https://www.ubot.com.tw/bankmail/bankmail.asp",0,"submain","客戶信箱","網路客服中心","https://www.ubot.com.tw/call/Page001_003.htm",0,"submain","網路客服中心","定型化契約專區","https://www.ubot.com.tw/f/f03_01.htm",0,"submain","定型化契約專區","表格下載專區","https://www.ubot.com.tw/f/f04_01.htm",0,"submain","表格下載專區");
+awgMnBSpm13 = new Array("定型化契約專區","https://www.ubot.com.tw/f/f03_01.htm",0,"submain","定型化契約專區","表格下載專區","https://www.ubot.com.tw/f/f04_01.htm",0,"submain","表格下載專區");
+awgMnBSpm14 = new Array("分行位址","http://www.ubot.com.tw/service_location",0,"_blank","分行位址","ATM","http://www.ubot.com.tw/service_location",0,"_blank","ATM","保管箱","http://www.ubot.com.tw/service_location",0,"_blank","保管箱");
+
+awgMnBSpm2="";
+if(AWGmnBspm){
+	if(document.URL.lastIndexOf("\\")>document.URL.lastIndexOf("/")){
+		awgMnBSpm3="\\";
+	}else{
+		awgMnBSpm3="/";
+	}
+	awgMnBSpm2=document.URL.substring(0,document.URL.lastIndexOf(awgMnBSpm3)+1);};
+
+if(awgmnbspm){document.write("<script language=\'JavaScript1.2\' src=\'script//menunstrl.js\'><\/script>");}
+else{if(aWgmnbspm||Awgmnbspm){document.write("<script language=\'JavaScript1.2\' src=\'script//menuietrl.js\'><\/script>");}};
+
+document.write("<style type=\'text\/css\'>");
+document.write(".awgMnBSpm4{text-decoration:none;color:"+AwgmnbSpm+";}");
+if(!awGMnbspm){document.write(".awgMnBSpm5{position:relative}");}
+document.write(((awgmnbspm)?".awgMnBSpm6":".awgMnBSpm7")+"{padding-left:5px;padding-right:5px;line-height:7pt;}");
+document.write("<\/style>");
+
+</script>
+
+
+
+<table cellspacing="0" cellpadding="1" border="0" bgcolor="#C4CDB8"><tr><td>
+	<table class="awgMnBSpm6" width="100%" cellspacing="0" cellpadding="3" border="0" >
+		<tr align="center">
+		  <td onmouseover="awgMnBSpmc('awgMnBSpma0',1);awgMnBSpmd('awgMnBSpm11','awgMnBSpma0');" 
+		      onmouseout="awgMnBSpmc('awgMnBSpma0',0);awgMnBSpme('awgMnBSpm11');" id='awgMnBSpma0'  bgcolor="#C0C0C0" class="awgMnBSpm7" style="color:#C4CDB8; font-family:新細明體; font-size:12px;">
+		      <a id="awgMnBSpma0awgMnBSpmb" class="awgMnBSpm4" href="http://www.ubot.com.tw/ubotintro" target="_blank" style=\'text-decoration:none\' 
+		      		onMouseOver="awgMnBSpmf('awgMnBSpm11')" 
+		      		onmouseout="awgMnBSpmg('awgMnBSpm11')" ><div id='awgMnBSpm11aWGmnbSPMaaa' class='awgMnBSpm5'>關於聯邦<img width="8" height="8" src="graph/arrowdown_black.gif" align="texttop" border="0" /></div></a></td>
+<!--		  <td onmouseover="awgMnBSpmc('awgMnBSpma1',1);awgMnBSpmd('awgMnBSpm12','awgMnBSpma1');" 
+		      onmouseout="awgMnBSpmc('awgMnBSpma1',0);awgMnBSpme('awgMnBSpm12');" id='awgMnBSpma1'  bgcolor="#C0C0C0" class="awgMnBSpm7" style="color:#000000; font-family:新細明體; font-size:12px;">
+		      <a id="awgMnBSpma1awgMnBSpmb" class="awgMnBSpm4" href="http://www.ubot.com.tw/customerservice" target="_blank" style=\'text-decoration:none\' 
+		      		onMouseOver="awgMnBSpmf('awgMnBSpm12')" 
+		      		onmouseout="awgMnBSpmg('awgMnBSpm12')" ><div id='awgMnBSpm12aWGmnbSPMaaa' class='awgMnBSpm5'>客服中心<img width="8" height="8" src="graph/arrowdown_black.gif" align="texttop" border="0" /></div></a></td>-->
+		  <td id='awgMnBSpma1'  bgcolor="#C0C0C0" class="awgMnBSpm7" style="color:#000000; font-family:新細明體; font-size:12px;">
+		      <a id="awgMnBSpma1awgMnBSpmb" class="awgMnBSpm4" href="http://www.ubot.com.tw/customerservice" target="_blank"  style=\'text-decoration:none\'<div id='awgMnBSpm15aWGmnbSPMaaa' class='awgMnBSpm5'>客服中心</div></a></td>
+		      		
+		  <!--<td onmouseover="awgMnBSpmc('awgMnBSpma2',1);awgMnBSpmd('awgMnBSpm13','awgMnBSpma2');" 
+		      onmouseout="awgMnBSpmc('awgMnBSpma2',0);awgMnBSpme('awgMnBSpm13');" id='awgMnBSpma2'  bgcolor="#C0C0C0" class="awgMnBSpm7" style="color:#000000; font-family:新細明體; font-size:12px;">
+		      <a id="awgMnBSpma2awgMnBSpmb" class="awgMnBSpm4" href="https://www.ubot.com.tw/bankmail/bankmail.asp" target="_blank" style=\'text-decoration:none\' 
+		      		onMouseOver="awgMnBSpmf('awgMnBSpm13')" 
+		      		onmouseout="awgMnBSpmg('awgMnBSpm13')" ><div id='awgMnBSpm13aWGmnbSPMaaa' class='awgMnBSpm5'>線上服務<img width="8" height="8" src="graph/arrowdown_black.gif" align="texttop" border="0" /></div></a></td>-->
+		  <td onmouseover="awgMnBSpmc('awgMnBSpma3',1);awgMnBSpmd('awgMnBSpm14','awgMnBSpma3');" 
+		      onmouseout="awgMnBSpmc('awgMnBSpma3',0);awgMnBSpme('awgMnBSpm14');" id='awgMnBSpma3'  bgcolor="#C0C0C0" class="awgMnBSpm7" style="color:#000000; font-family:新細明體; font-size:12px;">
+		      <a id="awgMnBSpma3awgMnBSpmb" class="awgMnBSpm4" href="http://www.ubot.com.tw/service_location" target="_blank" style=\'text-decoration:none\' 
+		      		onMouseOver="awgMnBSpmf('awgMnBSpm14')" 
+		      		onmouseout="awgMnBSpmg('awgMnBSpm14')" ><div id='awgMnBSpm14aWGmnbSPMaaa' class='awgMnBSpm5'>服務據點<img width="8" height="8" src="graph/arrowdown_black.gif" align="texttop" border="0" /></div></a></td>
+		   <td id='awgMnBSpma4'  bgcolor="#C0C0C0" class="awgMnBSpm7" style="color:#000000; font-family:新細明體; font-size:12px;">
+		      <a id="awgMnBSpma4awgMnBSpmb" class="awgMnBSpm4" href="https://web.ubot.com.tw/ub/ebank_5/index.html" target="_blank" style=\'text-decoration:none\'<div id='awgMnBSpm15aWGmnbSPMaaa' class='awgMnBSpm5'>網銀小幫手</div></a></td>   		
+		  <td id='awgMnBSpma4'  bgcolor="#C0C0C0" class="awgMnBSpm7" style="color:#000000; font-family:新細明體; font-size:12px;">
+		      <a id="awgMnBSpma5awgMnBSpmb" class="awgMnBSpm4" target="_blank"    style=\'text-decoration:none\'<div id='awgMnBSpm16aWGmnbSPMaaa' class='awgMnBSpm5'>本站導覽</div></a></td>
+		  <td id='awgMnBSpma6'  bgcolor="#C0C0C0" class="awgMnBSpm7" style="color:#000000; font-family:新細明體; font-size:12px;">
+		      <a id="awgMnBSpma6awgMnBSpmb" class="awgMnBSpm4" href="http://www.ubot.com.tw/" target="_blank" style=\'text-decoration:none\'<div id='awgMnBSpm17aWGmnbSPMaaa' class='awgMnBSpm5'>聯邦首頁</div></a></td></tr></table></td></tr></table>
+
+
+<!-- END Javascript Menu Builder PLATINUM 1.0 config parameters -->
+<!-- PLEASE INSERT THESE CODES BETWEEN <BODY> ... </BODY> TAGS! -->
+
+
+<!--｜<a href="javaScript:;" >關於聯邦</a>｜<a href="javaScript:;" >客服中心</a>｜<a href="javaScript:;" >聯絡我們</a>｜<a href="javaScript:;" >網路銀行家</a>｜<a href="javaScript:;" >聯邦首頁</a>｜--></td>
+                <td width="10"><img src="graph/blank.gif" width="10" height="8"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr bgcolor="#80836E"> 
+          <td><img src="graph/blank.gif" width="1" height="1"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<table width="778" border="0" cellspacing="0" cellpadding="0">
+<tr><td align="right">
+
+<table width="778" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+  	<td width="10%">
+  		<a onclick="javascript:chkSubmit()" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image35','','graph/personal/icon03a.gif',1)"><img name="Image35" border="0" src="graph/personal/icon03.gif" width="51" height="19"></a>
+  	</td>
+    <td width="50%" style="font-family:新細明體; font-size:12px;"><div align="left"><font color="#0000FF"><script language="JavaScript">document.write(showCName());</script> 您好,您上次登入時間  
+    <script language="JavaScript">
+    	document.write(trnsTime());
+    </script>;上次變更密碼日期 <script language="JavaScript">document.write(getRCDateStr('[[%%SEND-MDFDATE%%]]',0));DistDay();</script>             
+    </font> 
+    </div>
+    </td>
+    <td colspan="2" align="right">
+      <table border="0" align="right" cellpadding="0" cellspacing="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC">
+        <tr bgcolor="#D7EBFF"> 
+        <!--  <td colspan="2" bgcolor="#D7EBFF" class="t3"> 
+          <div align="center">新手上路Demo</div>          </td> -->
+          
+          <td> <div align="center"><img src="graph/icon05.gif" onClick="showDialog('./pst/yesgogogo/YSGogogoOri.jsp?sessid=[[%%SESSIONID%%]]&aptype=IBANK','','resizable:yes;status:no;dialogWidth=467px;dialogHeight=310px;center=yes;help=no');"></div>          </td>
+          <!--
+          <td> <div align="center"><a href="http://web.ubot.com.tw/ub/ebank_5/page02_1.asp" target="IC0000101"><img src="graph/icon10.gif" border="0" width="62" height="20" ></A></div>          </td>
+					
+          <td> 
+          <div align="center"><a href="/LoadAPWeb/pst/faq/page13_1.htm" target="submain"><img src="graph/icon07.gif" border="0"></a></div>          </td>
+          -->          
+          <!--<td width="51" bgcolor="#D7EBFF" class="t3"> 
+          <div align="center"><a href="/LoadAPWeb/pst/faq/page13_1.htm" target="submain">答客問</a></div>          </td>-->
+					<!--
+					<td> 
+          <div align="center"><A href="/LoadAPWeb/pst/faq/page14_a1.htm" target="submain"><img src="graph/icon08.gif" border="0"></a></div>          </td>          
+          -->
+          <!--<td width="60" bgcolor="#D7EBFF" class="t3"> 
+          <div align="center"><A href="http://web.ubot.com.tw/ub/ebank_5/page04_1.asp" target="submain">安全宣告</a></div>          </td>-->
+          
+          <td colspan="2"> 
+          <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0120000" target="main"><img src="graph/icon09.gif" border="0"></a></div>          </td>
+
+          <!--<td width="79" colspan="2" bgcolor="#D7EBFF" class="t3"> 
+          <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0120000" target="main">匯利率查詢</a></div>          </td>-->
+          
+        </tr>
+    </table> 
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="4"><font color="#663300"> </font> 
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="7%"><a href="personallist/page8-4.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('999','','personal/graph/icon03a.gif',1)" target="mainFrame"></a></td>
+          <td width="6%"><table width="70" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="9%"><img src="graph/lef01.gif" width="9" height="20"></td>
+                <td background="graph/lef02.gif" width="81%"><div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0101000&sessid=[[%%SESSIONID%%]]" target="submain">帳戶查詢</a></div></td>
+                <td width="10%"><img src="graph/lef03.gif" width="9" height="20"></td>
+              </tr>
+          </table></td>
+          <td width="6%"><table width="83" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="9%"><img src="graph/lef01.gif" width="9" height="20"></td>
+              <td background="graph/lef02.gif" width="77%"><div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0102000&sessid=[[%%SESSIONID%%]]" target="submain">轉帳/繳款</a></div></td>
+              <td width="10%"><img src="graph/lef03.gif" width="9" height="20"></td>
+            </tr>
+          </table></td>
+        
+          <td width="4%"><table width="46" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="9%"><img src="graph/lef01.gif" width="9" height="20"></td>
+                <td background="graph/lef02.gif" width="30"><div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0109000&sessid=[[%%SESSIONID%%]]" target="submain">外 匯</a></div></td>
+                <td width="10%"><img src="graph/lef03.gif" width="9" height="20"></td>
+              </tr>
+          </table></td>
+          <td width="1%"><table width="46" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="9%"><img src="graph/lef01.gif" width="9" height="20"></td>
+                <td background="graph/lef02.gif" width="30"><div align="center"><a href="LoadAP?aptype=YESFUND&pageid=IC0201000&sessid=[[%%SESSIONID%%]]" target="submain">基 金</a></div></td>
+                <td width="10%"><img src="graph/lef03.gif" width="9" height="20"></td>
+              </tr>
+          </table></td>
+          <td width="4%"><table width="60" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="9%"><img src="graph/lef01.gif" width="9" height="20"></td>
+                <td background="graph/lef02.gif" width="81%"><div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0104000&sessid=[[%%SESSIONID%%]]" target="submain">信用卡</a></div></td>
+                <td width="10%"><img src="graph/lef03.gif" width="9" height="20"></td>
+              </tr>
+          </table></td>
+          <td width="6%"><table width="106" border="0" cellpadding="0" cellspacing="0">
+             <tr>
+               <td width="9%" align="right"><img src="graph/lef01.gif" width="9" height="20"></td>
+               <td background="graph/lef02.gif" width="84%"><div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0107000&sessid=[[%%SESSIONID%%]]" target="submain">達文西卡/現金卡</a></div></td>
+               <td width="10%"><img src="graph/lef03.gif" width="9" height="20"></td>
+             </tr>
+          </table></td>
+          <td width="5%"><a href="personallist/page8-4.htm" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('999','','personal/graph/icon03a.gif',1)" target="mainFrame"></a></td>
+          <td width="24%"><table width="75%" border="0" align="right" cellpadding="0" cellspacing="0">
+              <tr>
+                <td><a href="LoadAP?aptype=IBANK&pageid=IC0108000&sessid=[[%%SESSIONID%%]]" target="submain"><img src="graph/icon04.gif" width="65" height="17" border="0"></a></td>
+                <td height="2"><a href="LoadAP?aptype=IBANK&pageid=IC0105000&sessid=[[%%SESSIONID%%]]" target="submain"><img src="graph/icon01.gif" width="50" height="17" border="0"></a></td>
+                <td height="2"><a href="LoadAP?aptype=IBANK&pageid=IC0106000&sessid=[[%%SESSIONID%%]]" target="submain"><img src="graph/icon02.gif" width="65" height="17" border="0"></a></td>
+              </tr>
+          </table></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="logout" value=0>
+</td></tr>
+</table>
+</form>
+
+<script language="javaScript">
+
+	var Timeout_ID = setInterval('checkLoaded();', 500);
+	
+	function checkLoaded() {
+		
+		if (!document.getElementById){
+			clearInterval(Timeout_ID);
+			Timeout_ID = null;
+			//alert("IE failed:document.getElementById");
+			return;
+		}
+		
+		if (document.getElementById("submain").readyState == "complete" &&
+		    document.getElementById("down").readyState    == "complete") {
+			
+			clearInterval(Timeout_ID);
+			Timeout_ID = null;
+			
+			if (document.getElementById && 
+			    document.getElementById("submain") &&
+			    document.getElementById("down") ) {	
+			        
+				clearInterval(Timeout_ID);
+				Timeout_ID = 0;
+
+       				var bodySubmain = window.frames["submain"].document.body; 
+				var bodyDown = window.frames["down"].document.body;
+			        
+	  			var iSubMain = document.getElementById("submain").style;
+	  			var iDown = document.getElementById("down").style;
+
+	  			iSubMain.height = bodySubmain.scrollHeight;
+	  			iSubMain.width  = bodySubmain.scrollWidth;	  			
+	  			iSubMain.left = 0;
+
+	  			iDown.height = bodyDown.scrollHeight;
+	  			iDown.width  = bodyDown.scrollWidth;
+	  			
+	  			var a = parseInt(iSubMain.top, 10) + parseInt(iSubMain.height, 10);
+	  			if (!isNaN(a))	
+	  				iDown.top  = a + "px"; 
+	  			else    iDown.top  = 1200 + "px"; 
+	
+	     		}
+	     		if (parent.document.getElementById) {
+				//parent.document.getElementById("IC0000000").style.height = parseInt(this.document.body.scrollHeight, 10);
+				//alert("IC0000000:" + parent.document.getElementById("IC0000000").style.height);
+			}else{alert("FAILED: parent.document.getElementById");}
+		}
+	}
+
+</script>
+
+
+<!--
+<iframe name="submain" style="position: absolute; top:120 ; left:0" width="778" height="1300" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="LoadAP?aptype=YESFUND&pageid=IC0201000"></iframe>
+<iframe name="down" 	id="down"	style="position: absolute ; top:1900 ; left:0 ; z-index:10 " width="778" height="22" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?pageid=IC0000004&aptype=noap"> </iframe>
+-->
+
+<iframe name="submain" 	id="submain"	style="position: absolute; top:130 ; left:0" width="778" height="1300" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?aptype=YESFUND&pageid=IC0201000"></iframe>
+<iframe name="down" 	id="down"	style="position: absolute ; top:1900 ; left:0 ; z-index:10 " width="778" height="50" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?pageid=IC0000004&aptype=noap"> </iframe>
+
+
+</body>
+</html>

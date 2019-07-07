@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>基金申購</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{ font-family: "Arial"; font-size: 8pt}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form method="post" action="LoadAP" name="IF040100A" onSubmit="document.IF040100A.Submit.disabled=true;">
+<font color="#006666"><b>基金贖回&gt;</b></font> 
+<table width="630" border="0">
+  <tr>
+    <td bgcolor="#FFFFDD">
+    <div align="center" class="t1">重要訊息通知</div>    </td>
+  </tr>
+</table>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="3">      <div align="center"> 
+
+      <table width="85%" height="250"  border="0">
+        <tr>
+          <td colspan="2"><p align="left"> 　　本行為增進網路交易安全性，確保您於網路贖回基金後款項，確實匯入您指定之本人帳戶，即日起，開放客戶申請約定「個人網路銀行基金贖回約定轉入帳戶」之服務。 </p>
+            </td>
+          </tr>
+        <tr>
+          <td colspan="2"><p align="left">&nbsp;<strong> 辦理方式：</strong> </p>            </td>
+          </tr>
+        <tr>
+          <td width="12%" valign="top"><p align="right">(1)</p>            </td>
+          <td width="88%" valign="top">郵寄辦理：列印並填寫「聯邦銀行電子銀行服務申請 ( 註銷 ) 約定書」後，郵寄至您往來之分行辦理 (<a href="LoadAP?aptype=YESFUND&pageid=IF040100B&CNAME=[[%%SEND-CNAME%%]]&BR_NAME=[[%%SEND-BR-NAME%%]]&BR_ADDR=[[%%SEND-BR-ADDR%%]]&BR_TEL=[[%%SEND-BR-TEL%%]]" target="_blank"> 列印申請書</a>)。</td>
+        </tr>
+        <tr>
+          <td valign="top"><div align="right">(2) </div></td>
+          <td valign="top">臨櫃辦理：攜帶您身分證與第二身分證明文件 ( 健保卡或駕照 ) 及基金印鑑章，親至聯邦銀行全省各分行辦理。</td>
+        </tr>
+        <tr>
+          <td colspan="2">謝謝您對聯邦銀行的愛護與支持，倘若您尚有不明瞭之處，請直接洽詢聯邦銀行全省各分行或客服專線 (02)2545-1788 。</td>
+          </tr>
+      </table>
+      <input type="submit" name="Submit" value="基金贖回">
+    </div>
+    </td>
+  </tr>
+</table>
+<br>
+<table width="630" border="0">
+  <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="IF0401000">
+<input type="hidden" name="REVE-CNAME" value="[[%%SEND-CNAME%%]]">
+<input type="hidden" name="REVE-BR-NAME" value="[[%%SEND-BR-NAME%%]]">
+<input type="hidden" name="REVE-BR-ADDR" value="[[%%SEND-BR-ADDR%%]]">
+<input type="hidden" name="REVE-BR-TEL" value="[[%%SEND-BR-TEL%%]]">
+</form>
+</body>
+</html>

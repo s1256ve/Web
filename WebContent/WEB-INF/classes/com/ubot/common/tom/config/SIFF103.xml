@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="Big5"?>
+<!-- IVR FUND F103 Last updated date 21-6-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="F103i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id="F103i02">
+		<name>REVE-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>身分證字號或統一編號</description>
+	</field>
+	<field id="F103i03">
+		<name>REVE-CERT-NO</name>
+		<length>11</length>
+		<type>String</type>
+		<description>憑証號碼</description>
+	</field>
+	<field id="F103i04">
+		<name>REVE-TXN-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>交易日期</description>
+	</field>
+	<field id="F103i05">
+		<name>REVE-TXN-DATE-TYPE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>是否為次營業日</description>
+	</field>
+	<field id="F103i06">
+		<name>REVE-FROM-FUNDID</name>
+		<length>4</length>
+		<type>String</type>
+		<description>轉出基金代碼</description>
+	</field>
+	<field id="F103i07">
+		<name>REVE-CVT-TYPE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>轉換方式</description>
+	</field>
+	<field id="F103i08">
+		<name>REVE-TO-FUNDID</name>
+		<length>4</length>
+		<type>String</type>
+		<description>轉入基金代碼</description>
+	</field>
+	<field id="F103i09">
+		<name>REVE-FROM-AMT</name>
+		<length>15</length>
+		<type>String</type>
+		<description>轉出信託金額</description>
+	</field>
+	<field id="F103i10">
+		<name>REVE-CVT-FEE</name>
+		<length>7</length>
+		<type>String</type>
+		<description>轉換手續費</description>
+	</field>
+	<field id="F103i11">
+		<name>REVE-EXTRA-FEE</name>
+		<length>7</length>
+		<type>String</type>
+		<description>基金公司外加手續費</description>
+	</field>
+	<field id="F103i12">
+		<name>REVE-ACCT-NO</name>
+		<length>14</length>
+		<type>String</type>
+		<description>扣款帳號</description>
+	</field>
+	<field id="F103i13">
+		<name>REVE-PIN</name>
+		<security>DESYSDES</security>
+		<length>4</length>
+		<type>String</type>
+		<description>PIN</description>
+	</field>
+	<field id="F103i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="F103i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="F103i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="F103i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

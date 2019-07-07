@@ -1,0 +1,121 @@
+<html>
+<head>
+<title>約定扣繳停車費</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<style type="text/css">
+<!--
+.style1 {color: #0066FF}
+td {vertical-align: top}
+-->
+</style>
+<SCRIPT language="JavaScript">
+
+function chkSubmit(){
+    document.IP1009200.submit();    
+}
+function back(){
+    document.IP1009200.pageid.value = 'IP1009000';
+    document.IP1009200.submit();    
+}
+
+</SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+<p><strong>約定代繳停車費&gt;<span class="style1">新增代繳停車費功能</span></strong></p>
+<table width="750" border="0">
+  <tr>
+    <td colspan="5"><table width="650" border="1" align="center">
+        <tr>
+          <td bordercolor="#FFFFFF"><div align="center">
+            <h3><span class="style2"><br>
+              聯邦銀行  代繳停車費約定事項 </span>
+              <br>
+              </h3>
+          </div>
+            <table width="95%" border="0" align="center">
+              <tr>
+                <td width="7%" valign="top" class="t3"><div align="right">一、 </div></td>
+                <td width="93%" class="t3">凡委託人(即存戶)在貴行開設活期性存款(活期存款、活期儲蓄存款、行員儲蓄存款、支票存款)帳戶者，均可委託貴行代繳停車費，惟以支票存款帳戶委託代繳者，如因代繳後致存款不足而遭退票者，概由委託人自行負責；以現金卡帳戶委託代繳者，限以該帳戶存款可用餘額扣繳，  貴行不主動自已允許墊借之貸款額度內扣繳。<br>
+                  <br></td>
+              </tr>
+              <tr>
+                <td valign="top" class="t3"><div align="right">二、</div></td>
+                <td class="t3">委託代繳停車費項目以貴行經與停車管理處(以下簡稱停管處)或透過票交所ACH機制訂定契約者為限。<br>
+                  <br></td>
+              </tr>
+              <tr>
+                <td valign="top" class="t3"><div align="right">三、</div></td>
+                <td class="t3">委託人同意採用網路申請方式申請委託代繳停車費，以委託人的身分證字號、使用者代號與網路密碼登入個人網路銀行後選擇申請本服務，經線上瀏覽並同意本約定事項後，透過個人網路銀行向貴行登錄委託代繳之本人聯邦帳號、停車費地區別、牌照號碼與車種等必要資料，再由貴行依登錄之地區別向當地停管處提出申請，經回覆核准後即生效。如登錄之牌照號碼或車種有誤，以致無法辦理代繳時，委託人應自行負責，概與貴行無涉。<br>
+                  <br></td>
+              </tr>
+              <tr>
+                <td valign="top" class="t3"><div align="right">四、</div></td>
+                <td class="t3">委託人委託代繳停車費，經貴行洽請停管處將委託人資料登錄建檔完成後(約申請後3-5個工作天)開始代繳作業，未登錄建檔完成前，仍由委託人自行繳費，貴行依停管處傳輸之資料代繳停車費後，對委託事項即生效力，委託人於終止委託前，不得以未收到繳費通知單或其他任何事由拒絕承認貴行已代繳之停車費，委託人對停車費之金額、明細等有爭議時，應逕向停管處查詢處理，貴行不辦理退費、補繳或爭議處理。<br>
+                  <br></td>
+              </tr>
+              <tr>
+                <td valign="top" class="t3"><div align="right">五、</div></td>
+                <td class="t3">委託人授權貴行於接獲代繳停車費資料之次營業日，即辦理帳戶扣款作業。<br>
+                  <br></td>
+              </tr>
+              <tr>
+                <td valign="top" class="t3"><div align="right">六、</div></td>
+                <td class="t3">委託代繳停車費之車輛如有被竊、過戶、不堪使用，或其他脫離委託人(或車主)占有、管理之情事者，委託人於終止委託前，不得以未收到繳費通知單或其他任何事由，拒絕承認貴行已代繳之停車費。<br>
+                  <br></td>
+              </tr>
+              <tr>
+                <td valign="top" class="t3"><div align="right">七、</div></td>
+                <td class="t3">委託代繳帳戶因餘額不足或遭法院強制執行、扣押等原因以致貴行無法代繳而退件，因此所遭遇罰款或有其他損害及責任，概由委託人自行負責。<br>
+                  <br></td>
+              </tr>
+              <tr>
+                <td valign="top" class="t3"><div align="right">八、</div></td>
+                <td class="t3">委託人在未終止委託前自行結清委託代繳帳戶，則視同自動解除代繳之約定，其因此所產生之損害及責任，概由委託人自行負責。<br>
+                  <br></td>
+              </tr>
+              <tr>
+                <td valign="top" class="t3"><div align="right">九、</div></td>
+                <td class="t3">委託人如欲變更扣款之存款帳戶，須先取消原先之約定，再重新與貴行約定新存款帳戶。<br>
+                  <br></td>
+              </tr>
+              <tr>
+                <td valign="top" class="t3"><div align="right">十、</div></td>
+                <td class="t3">委託人擬終止委託代繳停車費時，應登入個人網路銀行執行「取消已約定代繳停車費功能」，惟貴行自接受終止之委託經洽妥停管處之時起終止代繳義務，在未洽妥同意前，委託人應繳之停車費仍逕自所約定之存款帳戶內撥付代繳。<br>
+                  <br></td>
+              </tr>
+              <tr>
+                <td valign="top" class="t3"><div align="right">十一、</div></td>
+                <td class="t3">委託人對於重覆繳納之停車費，相關退費事宜應向停管處申請退費或依各縣市停管處訂定之退費方式辦理；若停車管理單位未受理或訂定重覆繳納退費之處理方式時，委託人因重覆繳納停車費而造成之損失及責任，概由委託人自行負責。<br>
+                  <br></td>
+              </tr>
+              <tr>
+                <td valign="top" class="t3"><div align="right">十二、</div></td>
+                <td class="t3">委託人若已向其他金融機構或單位申請停車費代繳時(即貴行非第一申請對象)，則一律以先申請之金融機構或單位為扣款帳戶，委託人因重覆申請代繳停車費而造成之損失及責任概由委託人自行負責。<br>
+                  <br></td>
+              </tr>
+              <tr>
+                <td valign="top" class="t3"><div align="right">十三、</div></td>
+                  <td class="t3">本約定事項如有未盡事宜，委託人同意悉依相關法令、貴行有關規定及一般銀行慣例辦理。</td>
+              </tr>
+          </table>          </td>
+        </tr>
+      </table>
+
+      <br>
+      <br>
+      <form name="IP1009200" method="POST" action="LoadAP">
+      <div align="center">
+        <input type="button" name="button1" value="同意" onclick="javascript:chkSubmit();">
+        <input type="button" name="button2" value="不同意" onclick="javascript:back();">
+      </div>
+      <input type="hidden" name="aptype" value="IBANK">
+      <input type="hidden" name="pageid" value="IP1009201">
+      </form>
+</td>
+  </tr>
+  <tr>
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+</body>
+</html>

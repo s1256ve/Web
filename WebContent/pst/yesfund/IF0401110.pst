@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>基金申購</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="JavaScript" SRC="script/Fund01.js"></script>
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI98051           2009.08.04     Alma 
+*
+***********************************************************************/
+</script>
+<script language="Javascript">
+	var doc =document.IF0401110;
+	var tFlag = "N";          // 判斷是否有約定轉出帳號
+	//var tCury = "[[%%REVE-CURRENCY-CODE%%]]"   //判斷目前信託交易為台幣還是外幣
+	var tCury = "[[%%REVE-CURRENCY-NAME%%]]"   //判斷目前信託交易為台幣還是外幣
+	
+	function chkAcctExit(sCury,sBank,sAcct){			// 基金約定轉入帳號判斷
+		if (sAcct != ""){
+		 	if (tCury =="NTD" && sCury == "N"){  // 台幣帳號
+		 		tFlag = "Y";
+		 	}else if(tCury !="NTD" && sCury == "Y"){								// 外幣帳號			
+		 		if(sBank=="803") tFlag = "Y";		 	
+		 	}
+		}
+	}
+	
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0401110">
+  <input type="hidden" name="pageid" value="IF0401111">
+  <input type="hidden" name="REVE_CERT_NO" value="[[%%REVE-CERT-NO%%]]">
+  <input type="hidden" name="REVE_FUND_CNAME" value="[[%%REVE-FUND-CNAME%%]]">
+  <input type="hidden" name="REVE_FUND_ID" value="[[%%REVE-FUND-ID%%]]">
+  <input type="hidden" name="REVE_FROM_AMT" value="[[%%REVE-FROM-AMT%%]]">
+  <input type="hidden" name="REVE_AMT" value="[[%%REVE-AMT%%]]">
+  <input type="hidden" name="REVE_UNITS" value="">
+  <input type="hidden" name="REVE_REF_PRICE" value="[[%%REVE-REF-PRICE%%]]">
+  <input type="hidden" name="REVE_REF_EXCHGRATE" value="[[%%REVE-REF-EXCHGRATE%%]]"> 
+  <input type="hidden" name="REVE_CVT_TYPE" value="[[%%REVE-CVT-TYPE%%]]">
+  <input type="hidden" name="REVE_CHANGE_TYPE" value="[[%%REVE-CHANGE-TYPE%%]]">
+  <input type="hidden" name="REVE_ID_NO" value="[[%%REVE-ID-NO%%]]">
+  <input type="hidden" name="REVE_INIAC" value="">
+  <input type="hidden" name="REVE_CURRENCY" value="">
+  <input type="hidden" name="REVE_SENDCURRENCY" value="[[%%REVE-SENDCURRENCY%%]]">
+  <input type="hidden" name="SEND_CUT_YORN" value="[[%%SEND-CUT-YORN%%]]"> 
+  <input type="hidden" name="REVE_CURRENCY_NAME" value="[[%%REVE-CURRENCY-NAME%%]]">
+</form>
+<script>
+	var doc =document.IF0401110
+	if (doc.REVE_CVT_TYPE.value =="2" ){
+		if([[%%REVE-AMT%%]] < [[%%REVE-LIMIT-AMT%%]]){
+    	 	alert("部份贖回金額不可小於最低贖回金額");
+     		doc.pageid.value = "IF0401000" ;
+     		doc.submit();				         
+  	}     
+	} 
+
+<!--[[%%LOOP_SEC SEND-REG-ACCTNO%%]]-->
+		chkAcctExit("[[%%REVE-CURRENCY%%]]","[[%%SEND-BANK-CODE%%]]","[[%%SEND-REG-ACCTNO%%]]");						
+<!--[[%%ELOOP_SEC%%]]-->
+
+	if (tFlag == "Y"){
+ 		doc.pageid.value = "IF0401111"; 		
+ 		doc.REVE_INIAC.value = "Y";     <!-- 有約定帳號	-->	
+ 		if(tCury =="NTD"){
+ 			doc.REVE_CURRENCY.value = "N"; <!-- INIAC台幣帳號查詢 -->
+ 		}else{
+ 			doc.REVE_CURRENCY.value = "Y"; <!-- INIAC外幣帳號查詢 -->
+ 		} 		
+	}else{
+		doc.REVE_INIAC.value = "N";			<!-- 無約定帳號 -->
+		if(tCury =="NTD"){
+ 			doc.pageid.value = "IF040100C"; 			
+ 		}else{
+ 			doc.pageid.value = "IF040101C";
+ 		}	 		 
+	} 		
+	doc.submit(); 
+</script>
+</body>
+</html>

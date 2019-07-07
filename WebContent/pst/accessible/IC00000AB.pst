@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+	<title>帳戶服務-請選擇以下服務項目</title>
+  <meta charset="utf-8">
+  <meta http-equiv:"content-language" content="zh-tw">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+  <link href="css/index.css" rel="stylesheet">
+	<link href="css/2.css" rel="stylesheet">
+	 <link href="css/accessibility.css" rel="stylesheet" >
+	</head>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<script language="JavaScript" src="script/accessible.js"></script>
+<script language="Javascript">
+    //字串去空白
+    String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");} 
+</script>
+
+<script language="JavaScript">
+<!--
+/*
+function chkStatus(acctno,acctamt,avalamt){
+	var str = "";
+	var acctamt = moneyAddDot(acctamt);
+	var avalamt = moneyAddDot(avalamt);
+	
+	str = "<tr><td bgcolor='#efefef'><div align='center' class='t18'>"+getAcctStr(acctno)+"</div></td>"; 
+	str = str + "<td bgcolor='#efefef'><div align='right' class='t18' style='margin-right:5px;'>"+trimDecimal(acctamt)+"</div></td>";   
+	str = str + "<td bgcolor='#efefef'><div align='right' class='t18' style='margin-right:5px;'>"+trimDecimal(avalamt)+"</div></td>"; 
+	str = str + "<td bgcolor='#efefef'><div align='center'><a href='page007.asp'><img src='Accessible/main_button_03.gif' alt='交易明細' width='100' height='32' border='0' /></a>  </div></td></tr>";   
+	
+	return str;
+
+}
+*/
+
+/*
+var i = 0 ;
+function getIndex(){
+    i++;
+    return i;    
+}
+*/
+
+
+function chkStatus(){
+	
+		var actinfos = '[[%%FROMACTINFO%%]]';
+		var ss = actinfos.split('@');
+	    var acctno=ss[0];
+		var brname=ss[1];
+		var acctdesc=ss[2];
+	
+
+	
+	if(acctno.substr(3,2)==40) {
+		txndesc1(acctno,acctdesc,brname);   
+	}
+	else {
+		txndesc(acctno);   
+	}
+	
+		
+}
+function chkStatus1(){
+	
+		var actinfos = '[[%%FROMACTINFO%%]]';
+		var ss = actinfos.split('@');
+	    var acctno=ss[0];
+		var brname=ss[1];
+		var acctdesc=ss[2];
+	
+
+	
+	if(acctno.substr(3,2)==40) {
+		vini(acctno,acctdesc,brname);   
+	}
+	else {
+		vini1(acctno,acctdesc,brname);     
+	}
+	
+		
+}
+
+
+
+function txndesc(acct){
+
+	var f = document.IC000000B;
+	
+	f.selAcctNo.value = acct; 
+	f.pageid.value = 'IP0201100';
+	f.action = "LoadAP3?pageid=IP0201100";
+	f.submit();			       
+
+}
+
+function txndesc1(acct,desc,brname){
+
+	var f = document.IC000000B;
+	
+	f.SEND_ACCT_NO.value = acct;
+	f.SEND_ACCT_DESC.value = desc;
+	f.SEND_BR_NAME.value = brname;		  
+	f.pageid.value = 'AC0203004';
+	f.action = "LoadAP3?pageid=AC0203004";
+	f.submit();			       
+
+}
+
+function vini(acct,desc,brname){
+	
+	var f = document.IC000000B;
+	
+	f.SEND_ACCT_NO.value = acct;	
+	f.SEND_ACCT_DESC.value = desc;
+    f.SEND_BR_NAME.value = brname;
+	f.pageid.value = 'AC0203003';
+	f.action = "LoadAP3?pageid=AC0203003";
+	f.submit();			       
+
+}
+
+function vini1(acct,desc,brname){
+	
+	var f = document.IC000000B;
+	
+	f.SEND_ACCT_NO.value = acct;
+	f.SEND_ACCT_DESC.value = desc;
+	f.SEND_BR_NAME.value = brname;		  	
+	f.pageid.value = 'AC0203001';
+	f.action = "LoadAP3?pageid=AC0203001";
+	f.submit();			       
+   
+}
+
+function chkSubmit98(){
+	alert(' 您好，謝謝您使用網路銀行！\n'+
+	      '為了您的交易資料安全，\n'+
+	      '請記得在視線離開電腦前關閉使用中的瀏覽器，\n'+
+	      '以確保您剛剛的使用記錄不被他人窺探！');
+	      //'登出時間為 '+getNowTime());
+	
+	document.IC000000B.pageid.value="IC0000999";
+	document.IC000000B.aptype.value="NOAP";
+	document.IC000000B.logout.value="1";
+	document.IC000000B.target="_parent";
+	document.IC000000B.submit();    
+}
+
+function BackSubmit(){
+	
+	document.IC000000B.action = "LoadAP3?aptype=IBANK&pageid=IC000001B&[[%%SESSIONID%%]]";
+	document.IC000000B.submit();
+}
+
+
+function chkSubmit99(){
+	document.IC000000B.pageid.value="IC0000999";
+	document.IC000000B.aptype.value="NOAP";
+	document.IC000000B.target="_parent";
+	document.IC000000B.submit();    
+}	
+
+
+-->
+</script>
+<body onload="initial();">
+<noscript>
+您的瀏覽器不支援JavaScript功能，若網頁功能無法正常使用時，請開啟瀏覽器JavaScript功能 
+</noscript> 	
+<form method="post" name="IC000000B" action="LoadAP3">
+
+<header>
+	<div class="wrapper">
+		
+		<div class="headerBox">	
+			 <a href="#C"  title="跳到主要內容區塊" tabindex="1" style="position: absolute" class="sr_only">跳到主要內容區塊</a>
+			  <h1 class="no-effect"> <a class="logo" href="https://freebank.ubot.com.tw/" target="_parent"><img src="Accessible/logo.png" alt="聯邦銀行友善服務網" title="聯邦銀行友善服務網" width="300" height="37" hspace="10" border="0"></a></h1>	
+			<div class="header-right">
+				<a href="#U" name="U" id="AU" accesskey="U" class="top" title="上方導覽區">:::</a> <a href="LoadAP3?aptype=IBANK&pageid=AC0000000" class="top">網站導覽</a> / <a href="LoadAP3?aptype=IBANK&pageid=AC0000001" class="top">金融友善服務準則</a>			
+		  </div>
+		</div>
+				
+		<div class="container">
+			<div class="logout">
+				<a href="#" onclick="chkSubmit98();"><img src="Accessible/main_button_02.gif" title="登出" alt="登出" border="0" align="absmiddle" /></a>
+			</div>
+			<div class="con1">
+				<div><div class="con1_left"><a accesskey="L" name="L" id="AL" title="左方區塊" href="#L" style="text-decoration:none;color:#666;">::: </a></div><div class="con1_right"><a href="LoadAP3?aptype=IBANK&pageid=AC0201000" target="_self"><img src="Accessible/left_button_01.gif" title="利率查詢" alt="利率查詢" width="233" height="60" border="0"></a></div></div><div><a href="LoadAP3?aptype=IBANK&pageid=AC0203000" target="_self"><img src="Accessible/left_button_02.gif" title="匯率查詢" alt="匯率查詢" width="233" height="60" border="0"></a></div><div><a href="LoadAP3?aptype=IBANK&pageid=IC000000B" target="_self"><img src="Accessible/left_button_03.gif" title="帳戶服務" alt="帳戶服務" width="233" height="60" border="0"></a></div><div><a href="LoadAP3?aptype=IBANK&pageid=AC0704100" target="_self"><img src="Accessible/left_button_04.gif" title="約定轉帳交易" alt="約定轉帳交易" width="233" height="60" border="0"></a></div><div><a href="LoadAP3?aptype=IBANK&pageid=AC1005000" target="_self"><img src="Accessible/left_button_05.gif" title="使用者代號變更" alt="使用者代號變更" width="233" height="60" border="0"></a></div><div><a href="LoadAP3?aptype=IBANK&pageid=AC1006000" target="_self"><img src="Accessible/left_button_06.gif" title="使用者密碼變更" alt="使用者密碼變更" width="233" height="60" border="0"></a></div>
+				<!--
+				<script>
+					getLeftmenu();
+				</script>
+				-->
+			</div>
+		<div class="con2">
+				<h2 class="step1"><a accesskey="C" name="C" id="AC"  title="中央內容區塊" href="#C" style="text-decoration:none;color:#666;font-size:16px;">:::</a> 帳戶服務</h2>
+				<div class="step1_1">選擇服務項目</div>
+				 <div class="con6">
+				<div class="account"><a href="#"  class="time_button_focus"  onClick="chkStatus();"><div class="time_button" title="交　易　明　細" alt="交　易　明　細"   >交　易　明　細</div></a></div>
+				
+
+			</div>
+	      <div class="con6">
+				<div class="account"><a href="#"  class="time_button_focus"  onClick="chkStatus1();"><div class="time_button" title="餘　額　查　詢" alt="餘　額　查　詢"   >餘　額　查　詢</div></a></div>
+		  </div>
+			</div>								
+		</div>		
+   
+  </div>
+</header>
+
+<div class="footer">
+	<div class="wrapper">				
+	 	<div class="footerBox">
+            <p class="copyright">	 			
+		 		<a accesskey="Q" name="Q" id="AQ"  title="網頁資訊" href="#Q" style="text-decoration:none;color:#666;">:::</a>
+		 		<strong>客服中心電話：(02)2545-1788、0800-089-888 &copy;聯邦商業銀行版權所有</strong>
+		 		<a href="https://www.handicap-free.nat.gov.tw/Applications/Detail?category=20171108152834" title="無障礙網站"><img src="Accessible/20a.jpg" alt="通過A檢測等級無障礙網頁檢測" width="88" height="31" border="0" /></a>	
+	 		</p>
+		</div>
+	</div>
+</div>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="aptype" value="IBANK">
+<input type="hidden" name="selAcctNo" value="">
+<input type="hidden" name="logout" value=0>
+<input type="hidden" name="SID" value="[[%%REVE-ID-NO%%]]">
+<input type="hidden" name="SEND_ACCT_NO" value="">
+<input type="hidden" name="SEND_BR_NAME" value="">
+<input type="hidden" name="SEND_ACCT_DESC" value="">
+<input type="hidden" name="FROMACTINFO" value="[[%%FROMACTINFO%%]]">
+</form>		
+</body>
+</html>

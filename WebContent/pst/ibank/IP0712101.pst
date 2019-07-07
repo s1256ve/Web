@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------------
+* EAI98007           2009.2.19      Carl 
+* EAI99041           2010.05.11     David
+***********************************************************************/
+</script>
+</head>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+<p><b>帳戶交易&gt;<font color="#003399"><font color="#0066FF">繳費</font></font></b><br>
+</p>
+
+<form method="post" action="LoadAP" name="IP0711101">
+<div style="text-align:center;width:580px" style="margin:0 0 0 5%">
+<font class="t3">聯邦銀行個人網路銀行交易結果</font><br>
+<font color="#0000CC">交易訊息：交易成功<br>
+      交易日期/時間：
+      	<script>
+        	document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+        </script>
+      </font>
+</div>
+<table width="630" border="0">
+  <tr> 
+    <td>
+		<table width="90%" align="center" border="1" bordercolor="#999999">
+			<tr>
+				<td width="14%" height="25" bgcolor="#C4CBB8" colspan="2">繳費類別</td>
+				<td width="72%" height="25">
+					<script>
+							var  type_name='[[%%REVE-FEE-TYPE%%]]';
+							if(type_name == '09')
+								document.write("健康保險費繳款");
+							else if(type_name == '34')
+								document.write("勞工保險費繳款");
+							else if(type_name == '35')
+								document.write("勞工退休金繳款");
+							else
+								document.write("國民年金繳款");
+						</script>
+				</td>	
+			</tr>
+			<tr> 
+				<td width="14%" height="25" bgcolor="#C4CBB8" colspan="2">轉出帳號<font color="#663300" face="Arial, Helvetica, sans-serif"></font></td>
+				<td width="72%" height="25"><font color="#663300" face="Arial, Helvetica, sans-serif">[[%%REVE-ACCT-NO%%]]</td> 
+			</tr> 
+			<tr> 
+				<td width="14%" height="25" bgcolor="#C4CBB8" rowspan="3">繳費資料</td> 
+				<td width="14%" height="25" bgcolor="#C4CBB8" >條碼一</td>
+				<td width="72%" height="25">[[%%REVE-BARCODE-1%%]]</td>
+			</tr>
+			<tr> 
+				<td width="14%" height="25" bgcolor="#C4CBB8" >條碼二</td>
+				<td width="72%" height="25">[[%%REVE-BARCODE-2%%]]</td>
+			</tr>
+			<tr> 
+				<td width="14%" height="25" bgcolor="#C4CBB8" >條碼三</td>
+				<td width="72%" height="25">[[%%REVE-BARCODE-3%%]]</td>
+			</tr>
+			<tr>
+				<td width="14%" height="25" bgcolor="#C4CBB8" colspan="2">轉帳金額</td>
+				<td width="72%" height="25">新臺幣[[%%REVE-TXN-AMT%%]]元</td>
+			</tr>
+			<tr>
+				<td width="14%" height="25" bgcolor="#C4CBB8" colspan="2">交易附註</td>
+				<td width="72%" height="25">[[%%TXN_MEMO%%]]</td>
+			</tr>
+		</table>
+	  </td>
+	</tr>
+</table>
+<div style="margin-left: 15;">
+	<p style="margin: 0"> 說明：  </p>
+	<p style="margin: 0">（1）帳務性交易時間為週一至週五09:00~15:30，若超過前述時間或例假日交易，皆為次一營業日帳。</p>
+	<p  style="margin: 0">（2）如執行轉帳交易發生網路傳輸異常而無法確認交易結果時，請先利用交易明細查詢功能確認交易是否成功。</p>
+	<p  style="margin: 0">（3）此為轉出交易，交易完成後，帳戶中款項將被轉出。</p>
+</div>
+</form>
+</body>
+</html>

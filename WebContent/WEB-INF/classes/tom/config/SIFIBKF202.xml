@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- FUND F202 Last updated date 11-29-2001 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/FUND">
+	<field id="F202i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='F202i54' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="F202i55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="F202i05">
+		<name>REVE-BEGIN-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>交易日期起</description>
+	</field>
+	<field id="F202i06">
+		<name>REVE-END-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>交易日期迄</description>
+	</field>
+	<field id="F202i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="F202i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="F202i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="F202i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

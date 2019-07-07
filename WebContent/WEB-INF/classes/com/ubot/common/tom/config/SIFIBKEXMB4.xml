@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="BIG5"?>
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="3060i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='fieldi003' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="EXMBi02">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="EXMBi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="EXMBi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="EXMBi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="EXMBi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="EXMBi56">
+		<name>REVE-COME-FROM</name>
+		<length>16</length>
+		<type>String</type>
+		<description>來源位置</description>
+	</field>
+	<field id="EXMBi57">
+		<name>REVE-BEGIN-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>查詢起始時間</description>
+	</field>
+	<field id="EXMBi58">
+		<name>REVE-END-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>查詢結束時間</description>
+	</field>
+	<field id="EXMBi58">
+		<name>REVE-COME-FROM</name>
+		<length>8</length>
+		<type>String</type>
+		<description>使用者來源IP</description>
+	</field>
+</catalog>

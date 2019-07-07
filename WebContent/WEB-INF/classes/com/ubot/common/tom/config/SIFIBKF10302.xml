@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="Big5"?>
+<!-- IVR FUND F10302  基金轉換交易(自行繳款) Last updated date 3-17-2004 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="F10302i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='F10302i54' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="F10302i55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="F10302i02">
+		<name>REVE-CERT-NO</name>
+		<length>10</length>
+		<type>String</type>
+		<description>憑証號碼</description>
+	</field>
+	<field id="F10302i04">
+		<name>REVE-FROM-FUNDID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>轉出基金代碼</description>
+	</field>
+	<field id="F10302i04">
+		<name>REVE-FROM-FUNDNAME</name>
+		<length>10</length>
+		<type>String</type>
+		<description>轉出基金名稱</description>
+	</field>
+	<field id="F10302i05">
+		<name>REVE-CVT-TYPE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>轉換方式</description>
+	</field>
+	<field id="F10302i06">
+		<name>REVE-TO-FUNDID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>轉入基金代碼</description>
+	</field>
+	<field id="F10302i06">
+		<name>REVE-TO-CURRENCY</name>
+		<length>10</length>
+		<type>String</type>
+		<description>轉入信託金額幣別CODE</description>
+	</field>
+	<field id="F10302i06">
+		<name>REVE-TO-CURRENCY-NAME</name>
+		<length>10</length>
+		<type>String</type>
+		<description>轉入信託金額幣別NAME</description>
+	</field>
+	<field id="F10302i07">
+		<name>REVE-FROM-AMT</name>
+		<length>10</length>
+		<type>String</type>
+		<description>轉出信託金額</description>
+	</field>
+	<field id="F10302i08">
+		<name>REVE-CVT-FEE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>轉換手續費</description>
+	</field>
+	<field id="TNRD2i23">
+		<name>REVE-FROM-CURRENCY</name>
+		<length>10</length>
+		<type>String</type>
+		<description>轉出基金幣別CODE</description>
+	</field>
+	<field id="TNRD2i23">
+		<name>REVE-FROM-CURRENCY-NAME</name>
+		<length>10</length>
+		<type>String</type>
+		<description>轉出基金幣別NAME</description>
+	</field>	
+	<field id="F10302i09">
+		<name>REVE-EXTRA-FEE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>基金公司外加手續費</description>
+	</field>
+	<field id="F10302i14">
+		<name>REVE-TO-FUND-AMT-REF</name>
+		<length>10</length>
+		<type>String</type>
+		<description>參考價格</description>
+	</field>
+	<field id="F10302i14">
+		<name>REVE-TO-FUND-AMT-DATE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>參考價格日期</description>
+	</field>
+	<field id="F10302i14">
+		<name>REVE-CHANNEL</name>
+		<length>10</length>
+		<type>String</type>
+		<description>交易管道</description>
+	</field>	
+	<field id="F10302i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="F10302i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="F10302i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="F10302i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>		
+	</field>
+	<field id="TNSW1i54">
+		<name>REVE-SEARCH-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>查詢營業時間</description>
+	</field>
+		<field id="TNSW1i55">
+		<name>REVE-TOTAL-AMT</name>
+		<length>16</length>
+		<type>String</type>
+		<description>虛擬帳號所繳金額</description>
+	</field>
+	<field id="F10122i22">
+		<name>REVE-QRY-ND2US</name>
+		<length>1</length>
+		<type>String</type>
+		<description>查詢台幣對美金之賣匯</description>
+	</field>
+	<field id="F10302i54">
+		<name>REVE-COME-FROM</name>
+		<length>16</length>
+		<type>String</type>
+		<description>來源位置</description>
+	</field>
+	<field id="F10302i55">
+		<name>REVE-ID-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+		<field id="F10302i56">
+		<name>REVE-INTACCT-NO</name>
+		<length>14</length>
+		<type>String</type>
+		<description>收益入帳帳號</description>
+	</field>
+</catalog>

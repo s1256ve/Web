@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="big5"?>
+<!--UCPM 9340, 語音轉帳帳號查詢. Last updated date 12-27-2001 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPM">
+	<field id="MW9340i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>交易代號</description>
+	</field>	
+	<field id="9350i03">
+		<name>REVE-ID-ORG</name>
+		<length>10</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+	<field id="MW93491i03">
+		<name>REVE-SEARCH-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>查詢代碼(1:台幣)(</description>
+	</field>
+	<field id="MW93401i04">
+		<name>REVE-FUNC-CODE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>查詢對應銀行名稱</description>
+	</field>
+	<field id="MW9340i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="MW9340i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="MW9340i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="MW9340i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="MWRTVTRTR04">
+		<name>REVE-TITLE-CODE</name>
+		<length>3</length>
+		<type>String</type>
+		<description>科目(</description>
+	</field>	
+</catalog>

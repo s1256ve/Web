@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv:"content-language" content="zh-tw">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+  <title>金融友善服務準則</title>
+  <link href="css/index.css" rel="stylesheet">
+    <link href="css/2.css" rel="stylesheet">	
+     <link href="css/accessibility.css" rel="stylesheet" >
+</head>
+<body>
+<noscript>
+您的瀏覽器不支援JavaScript功能，若網頁功能無法正常使用時，請開啟瀏覽器JavaScript功能
+</noscript>
+    <header>
+        <div class="wrapper">
+
+            <div class="headerBox">
+                 <a href="#C"  title="跳到主要內容區塊" tabindex="1" style="position: absolute" class="sr_only">跳到主要內容區塊</a>
+                  <h1 class="no-effect"> <a class="logo" href="https://freebank.ubot.com.tw/" target="_parent"><img src="Accessible/logo.png" alt="聯邦銀行友善服務網" title="聯邦銀行友善服務網" width="300" height="37" hspace="10" border="0"></a></h1>	
+                <div class="header-right">
+				<a href="#U" name="U" id="AU" accesskey="U" class="top" title="上方導覽區">:::</a> <a href="LoadAP3?aptype=IBANK&pageid=AC0000100" class="top">網站導覽</a> / <a href="LoadAP3?aptype=IBANK&pageid=AC0000101" class="top">金融友善服務準則</a>			
+		  </div>
+            </div>
+
+            <div class="info_container">
+                <h2 class="info_title">
+                   <a accesskey="C" title="中央內容區塊" href="#" style="text-decoration:none;color:#666;">:::</a> 聯邦銀行金融友善服務準則辦理情形
+             	</h2>
+                <div class="info_date">
+                    更新公告日期 106 年 11 月 6日
+                </div>
+                <div class="info_text">
+                    <ol>
+                        <li>依據中華民國銀行商業同業公會全國聯合會105年8月18日全一字第1050002889A號函之「銀行業金融友善服務準則」辦理。</li>
+                        <li>本行目前已提供之金融友善服務措施如下：</li>
+                    </ol>
+                </div>
+                <div class="info_text">
+                    <div class="info_text2">(一) <strong>無障礙環境</strong>
+                    </div>
+                    <div class="info_text3">
+                        <ol>
+                            <li>各分行出入口適當位置均設有「服務鈴」，且設有「營業廳長」於營業時間中專人引導身心障礙人士辦理各項金融服務。</li>
+                            <li>營業廳均設有即時匯/利率看板，各作業櫃檯並公告最新服務收費標準。</li>
+                            <li>本行目前自行興建之行舍，均符合無障礙相關法令規範。</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="info_text">
+                    <div class="info_text2">(二) <strong>行內、外無障礙ATM服務</strong>
+                    </div>
+                    <div class="info_text3">
+                        <ol>
+                            <li>本行於各營業單位據點、桃園機場捷運車站、高雄捷運車站、微風百貨、萊爾富超商及OK超商等處提供符合輪椅者使用之ATM。</li>
+                            <li>本行於各營業單位據點、桃園機場捷運車站、高雄捷運車站、萊爾富超商及OK超商等處提供符合視障者使用之ATM。</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="info_text">
+                    <div class="info_text2">(三) <strong>無障礙網路服務</strong>
+                    </div>
+                    <div class="info_text4">
+                      本行入口網站已提供利率、匯率等公開資訊之無障礙網頁，並取得國家通訊傳播委員會標章等級A+，另提供文字客服及留言板服務，協助聽障人士可透過網路文字諮詢各項業務。
+                    </div>
+                </div>
+                <div class="info_text">
+                    <div class="info_text2">(四) <strong>電話服務</strong>
+                    </div>
+                    <div class="info_text3">
+                        <ol>
+                            <li>設置24小時客服專線(02)2545-1788、免付費服務專線0800-089-888，受理諮詢、掛失、查詢、轉帳等交易服務。</li>
+                            <li>信用卡24小時開卡及掛失服務管道</li>
+                        </ol>
+                        <div class="info_text5">
+                          <ol>
+                            <li>提供客服專線(02)2545-5168及(07)226-9393受理信用卡掛失。</li>
+                            <li>提供客服電話(02)2545-5168、(07)226-9393、聯邦樂活APP、網站及中華電信電話語音等管道受理信用卡開卡服務。</li>
+                        </ol>
+                           </div>
+                  </div>   
+                </div>
+                <div class="info_text">
+                    <div class="info_text2">(五) <strong>存款開戶</strong>
+                    </div>
+                    <div class="info_text3">
+                        <ol>
+                            <li>視障人士辦理開戶，除可由親友協同或選擇採「依公證法規定辦理公證」外，可由本行非經辦開戶之行員，擔任見證人協助配合辦理。</li>
+                            <li>身障/視障人士如因手無法寫字，開戶資料可由他人協助代為書寫，或可由客戶口頭告知開戶資料及申辦業務後，由本行人員以打字列印方式填寫開戶相關資料，供客戶簽名確認。</li>
+                            <li>身障/視障人士未能於開戶相關文件上親簽時，如用印章代簽名者，可經親友或社福機構人員或非經辦開戶行員任1人簽名證明；如以指印、十字或其他符號代簽名者，應經前述具完全行為能力之明眼見證人任2人簽名證明，始與簽名生同等之效力。</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="info_text">
+                    <div class="info_text2">(六) <strong>貸款業務</strong>
+                    </div>
+                    <div class="info_text3">
+                        <ol>
+                            <li>視障同胞辦理銀行貸款業務得自行選擇採用「依公證法規定辦理公證」或「1位見證人」；惟如以指印、十字或其他符號代簽名者，依民法第3條第3項之規定，須經2人簽名證明(即2位見證人)，始與簽名生同等之效力。【如以蓋章加指印代簽名者，僅須提供1位見證人】</li>
+                            <li>貸款業務之見證人身分以配偶或血親為原則，如提供配偶或血親有困難者，得由一般親友或社福機構人員擔任。</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="info_text">
+                    <div class="info_text2">(七) <strong>身心障礙者 ATM跨行提款手續費減免優惠</strong>
+                    </div>
+                    <div class="info_text4">
+                       本行存戶且領有身心障礙證明或手冊者(每人以申請一個帳戶為限)，每月可享有3次ATM跨行提款續費減免優惠，請存戶本人提示身心障礙證明或手冊正本臨櫃辦理。
+                    </div>
+                </div>
+                <div class="info_container2">
+                    <a href="LoadAP3?aptype=NOAP&pageid=IC0000104">
+                        <img src="Accessible/button_17.gif" title="回登入區" alt="回登入區" width="152" height="45" border="0">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <div class="footer">
+        <div class="wrapper">
+            <div class="footerBox">
+                <p class="copyright">	 			
+		 		<a accesskey="Q" name="Q" id="AQ"  title="網頁資訊" href="#Q" style="text-decoration:none;color:#666;">:::</a>
+		 		<strong>客服中心電話：(02)2545-1788、0800-089-888 &copy;聯邦商業銀行版權所有</strong>
+		 		<a href="https://www.handicap-free.nat.gov.tw/Applications/Detail?category=20171108152834" title="無障礙網站"><img src="Accessible/20a.jpg" alt="通過A檢測等級無障礙網頁檢測" width="88" height="31" border="0" /></a>	
+	 		</p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

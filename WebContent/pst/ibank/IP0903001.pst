@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>訊息代號及說明</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+<b>　訊息代號及說明<font color="#003399"><font color="#0066FF"></font></font></b><br>
+<br>
+<table width="630" border="0">
+  <tr>
+    <td> 
+      <table width="75%" border="0" align="center">
+        <tr bgcolor="#C4CBB8"> 
+          <td colspan="2">訊息代號：</td>
+        </tr>
+        <tr> 
+          <td width="13%">&nbsp;</td>
+          <td width="87%"></td>
+        </tr>
+        <tr bgcolor="#C4CBB8"> 
+          <td colspan="2">說　　明：</td>
+        </tr>
+        <tr> 
+          <td width="13%">&nbsp;</td>
+          <td width="87%">你尚未申請非約定轉帳，請至"申請/變更/取消非約定帳戶交易"申請</td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+</body>
+</html>

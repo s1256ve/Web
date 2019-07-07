@@ -1,0 +1,398 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo           Date Modified  Modified by   
+* -------------      ----------     ----------
+* EAI99041           2010.05.11     David
+***********************************************************************/
+</script>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script>
+function setMarkBirth(strBirth){
+	return strBirth.substring(0,2)+"/"+strBirth.substring(2,4)+"/"+strBirth.substring(4,6);
+}
+</script>
+</head>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+<body bgcolor="#FFFFFF" onLoad="" leftmargin="0" topmargin="0">
+<font class="t3">聯邦銀行個人網路銀行交易結果</font><br>
+<table width="630" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr> 
+    <td height="140"> <br>
+      <table width="600" border="1" align="center" cellspacing="0" cellpadding="0">
+        <tr bordercolor="#FFFFFF"> 
+          <td> <br>
+            <br>
+            <table width="550" border="0" align="center">
+              <tr> 
+                <td colspan="2" height="2"> 
+                  <div align="center"><br>
+                    <b><font size="3">聯邦銀行電子銀行服務申請約定書</font></b><br>
+                    供申請基金網路服務使用<br>
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="2" height="354"> 立約定書人&nbsp;<U>[[%%REVE-CNAME%%]]</U>&nbsp;(以下簡稱立約人)茲向　聯邦商業銀行(以下簡稱貴行)申請約定書內所選定之電子服務通路使用　貴行提供之金融服務（以下簡稱本服務），並同意及遵守下列各項約定：<br>
+                  <b>第一條 契約之適用範圍</b> 
+                  <table width="100%" border="0">
+                    <tr> 
+                      <td width="6%" valign="top">一、</td>
+                      <td width="94%">本契約係電子銀行服務之一般性共通約定，除依個別業務契約另有約定，從其約定外，悉依本契約之約定。</td>
+                    </tr>
+                    <tr>
+                      <td width="6%" valign="top">二、</td>
+                      <td width="94%">個別契約不得牴觸本契約。但個別契約對立約人之保護更有利者，從其約定。</td>
+                    </tr>
+                  </table>
+                  <b>第二條 名詞定義 </b> 
+                  <table width="100%" border="0">
+                    <tr> 
+                      <td width="6%" valign="top">一、</td>
+                      <td width="94%">「電子銀行服務」：指貴行藉由網際網路建構之電子服務通路，即個人網路銀行。</td>
+                    </tr>
+                    <tr> 
+                      <td width="6%" valign="top">二、</td>
+                      <td width="94%">「個人網路銀行」：「網路銀行」係指立約人利用客戶端電腦經由網際網路與貴行資訊系統連線，取得貴行提供之金融服務。「個人網路銀行」係指貴行提供個人戶申請與使用之網路銀行服務。</td>
+                    </tr>
+                    <tr>
+                      <td width="6%" valign="top">三、</td>
+                      <td width="94%">「電子訊息」：指貴行或立約人經由各種電子服務通路互相連線傳遞之訊息。</td>
+                    </tr>
+                    <tr>
+                      <td width="6%" valign="top">四、</td>
+                      <td width="94%">「使用者代號與網路密碼」：立約人使用個人網路銀行各項金融服務，必須依系統要求輸入使用者代號與網路密碼，以供身分辨識與交易授權之用。</td>
+                    </tr>
+                  </table>
+                  <b>第三條 線上交易身分確認</b><br>
+                  立約人充分了解並同意以下列方式，作為立約人與貴行所有往來帳戶進行電子銀行服務時身分識別及交易授權依據：
+                  <table width="100%" border="0">
+                    <tr> 
+                      <td width="6%" valign="top">一、</td>
+                      <td width="94%">立約人第一次使用個人網路銀行前，於網頁上設定使用者代號與網路密碼後，憑設定完成之使用者代號與網路密碼登入使用個人網路銀行服務。</td>
+                    </tr>
+                    <tr>
+                      <td width="6%" valign="top">二、</td>
+                      <td width="94%"> 設定完成且有效的使用者代號、網路密碼等二項資料，可由貴行依各種電子銀行服務規劃需要，選擇任一項或多項交叉使用作為提供服務之身分驗證機制。</td>
+                    </tr>
+                  </table>
+                  <b>第四條 電子訊息之接收與回應</b><br>
+                  立約人或貴行接收他方任何電子訊息，若無法辨識其內容時，視為自始未傳送。但可確定立約人身分時，貴行應將內容無法辨識之事實通知立約人。<br>
+                  <b>第五條 電子訊息之不執行</b>
+                  <table width="100%" border="0">
+                    <tr>
+                      <td width="6%" valign="top">一、</td>
+                      <td width="94%">如有下列情形之一，貴行將不執行任何接收之電子訊息：<br>
+                        1. 有相當理由懷疑電子訊息之真實性或所指定事項之正確性者。<br>
+                        2. 貴行依據電子訊息處理，將違反相關法律、命令之規定者。<br>
+                        3. 貴行無法於帳戶扣取立約人所應支付之費用者。<br>
+                        4. 立約人有第十九條第二項所述情形之一者。</td>
+                    </tr>
+                    <tr>
+                      <td width="6%" valign="top">二、</td>
+                      <td width="94%">貴行不執行前項電子訊息者，應同時將不執行之結果通知立約人。立約人接獲通知後得以電話向貴行確認。</td>
+                    </tr>
+                  </table>
+                  <b>第六條 電子訊息交換作業時限</b>
+                  <table width="100%" border="0">
+                    <tr>
+                      <td width="6%">一、</td>
+                      <td width="94%">立約人使用貴行電子銀行服務時，經發出電子訊息傳送至貴行後即不得撤回、撤銷或修改。</td>
+                    </tr>
+                    <tr>
+                      <td width="6%">二、</td>
+                      <td width="94%">各種電子銀行服務項目係依服務內容之不同分別訂定服務時間。立約人如逾當日交易服務時間始傳輸之各種帳務性交易者，視為逾時交易，該筆交易將依該服務項目之規劃決定處理方式，例如不予處理，或自動改於次一營業日處理。帳務性交易是否係逾時交易，以貴行電子銀行服務系統接獲檔案資料之時間為準，並以電子訊息回覆通知立約人判斷結果。立約人如逾時為帳務性交易致發生損失，概由立約人自行負責。貴行得依系統維護需求或其他因素暫停本項服務，立約人絕無異議。</td>
+                    </tr>
+                  </table>
+                  <b>第七條 費用</b>
+                  <table width="100%" border="0">
+                    <tr>
+                      <td width="6%" valign="top">一、</td>
+                      <td width="94%">立約人願依貴行規定收費標準繳納服務費及其他費用。收費標準如有調整，立約人同意貴行得於調整日三十日前公告其內容，立約人於該期間內終止契約，逾期未終止者，視為同意調整後之收費標準。</td>
+                    </tr>
+                    <tr>
+                      <td width="6%" valign="top">二、</td>
+                      <td width="94%">立約人應付貴行之所有費用，均不包括任何稅捐。若有稅捐，立約人應另行支付之。</td>
+                    </tr>
+                  </table>
+                  <b>第八條 立約人連線準備及其責任</b> 
+                  <table width="100%" border="0">
+                    <tr> 
+                      <td width="6%" valign="top">一、 </td>
+                      <td width="94%">立約人申請使用本契約之電子銀行服務項目，應自行備妥服務所需之軟體、硬體，以及其他與安全相關之設備，並自行備妥通訊網路連線所需服務。上述作業所需之費用及風險，由立約人自行負擔。貴行與立約人有特別約定者，必須與貴行為必要之測試後，始得連線。</td>
+                    </tr>
+                    <tr> 
+                      <td width="6%" valign="top">二、</td>
+                      <td width="94%">立約人對使用本服務所需之軟硬體及相關文件，應負保管之責。</td>
+                    </tr>
+                    <tr>
+                      <td width="6%" valign="top">三、</td>
+                      <td width="94%">第一項軟硬體設備及相關文件如係由銀行所提供，銀行僅同意客戶於約定服務之範圍內使用，不得將之轉讓、轉借或以任何方式交付第三人。倘因立約人之行為致侵害貴行或第三人之智慧財產權或其他權利，或因不當之操作使用致生損害時，應自負其責任。立約人如因電腦操作需要而安裝其他軟硬體，有與貴行所提供之軟硬體設備併用之必要者，應自行負擔其費用及風險。</td>
+                    </tr>
+                  </table>
+                  <b>第九條 電子訊息錯誤之處理</b><br>
+                  電子訊息因不可歸責於貴行之事由而發生錯誤時，貴行不負更正責任，惟貴行同意提供必要之協助。但因可歸責於貴行之事由而發生錯誤時，貴行應負責更正。<br>
+                  <b>第十條 授權及防範</b> 
+                  <table width="100%" border="0">
+                    <tr> 
+                      <td width="6%" valign="top">一、</td>
+                      <td width="94%">立約人及貴行同意確保所傳送至對方之電子訊息均經合法授權。 </td>
+                    </tr>
+                    <tr> 
+                      <td width="6%" valign="top">二、</td>
+                      <td width="94%">立約人及貴行同意於發現有第三人冒用或盜用使用者代號、網路密碼或其他身分認證授權資訊，或發生其他任何未經合法授權之情形，應立即以電話或書面通知他方停止使用該服務並採取防範之措施。貴行接受通知前，對第三人使用該服務已發生之效力，除非貴行故意或重大過失而不知係未經合法授權之電子訊息，貴行不負責任。</td>
+                    </tr>
+                    <tr> 
+                      <td width="6%" valign="top">三、</td>
+                      <td width="94%">為控管交易風險，貴行得依各種電子服務通路或交易類別，訂定單筆交易金額上限與總額交易上限相關規範，立約人同意配合相關服務規範之限制。</td>
+                    </tr>
+                    <tr> 
+                      <td width="6%" valign="top">四、</td>
+                      <td width="94%">立約人對於&quot;使用者代號&quot;、&quot;網路密碼&quot;等身分確認與授權資訊負保密義務，如有違反而遭致損失，立約人願負一切責任。貴行資訊系統僅負責核對前列各項交易授權資料是否相符，其餘事項不負審查之責任，倘遭第三人冒用或盜用前列身分認證與授權資料或為不法情事，其結果應由立約人自行全部負責。</td>
+                    </tr>
+                    <tr>
+                      <td width="6%" valign="top">五、</td>
+                      <td width="94%">倘立約人連續輸入網路密碼錯誤達四次，貴行將自動停止立約人利用網路密碼使用個人網路銀行服務。立約人隨時可透過網頁列印本申請約定書並簽蓋原留印鑑後，寄回貴行信託部，經該部重新設定即可再使用網路銀行服務。</td>
+                    </tr>
+                  </table>
+                  <b>第十一條 業務規範</b><br>
+                  立約人利用電子銀行服務從事各種業務往來，如無特別約定，需依循各種業務相關規範。<br>
+                  <b>第十二條 資料安全</b>
+                  <table width="100%" border="0">
+                    <tr>
+                      <td valign="top" width="6%">一、</td>
+                      <td width="94%">立約人與貴行應確保電子訊息安全，防止非法進入系統、竊取、竄改或毀損業務記錄及資料。</td>
+                    </tr>
+                    <tr>
+                      <td valign="top" width="6%">二、</td>
+                      <td width="94%">立約人同意並接受貴行採用但不限於以下方式確保各種電子服務通路提供電子銀行服務之資料安全：<br>
+                        1. 個人網路銀行利用128bit SSL( Secure Socket layer)通訊協定提供立約人與貴行間各種資料傳輸之隱密性與安全性。<br>
+                        2. 其他經主管機關核可之資料加密保護機制。<br>
+                        立約人同意以前述安全機制完成傳送之電子訊息均為有效，立約人不得主張或抗辨該電子訊息不完整、錯誤、有瑕疵、無效或不成立。</td>
+                    </tr>
+                  </table>
+                  <b>第十三條 通路服務</b><br>
+                  立約人同意電子服務通路提供的服務項目與使用規範，由貴行依電子服務通路與服務特性規劃調整，並透過&quot;使用手冊&quot;、&quot;公告&quot;等方式通知相關說明。<br>
+                  <b>第十四條 保密義務</b><br>
+                  立約人與貴行均應確保所交換之電子訊息或一方因使用或執行本契約服務而取得他方之資料，不洩漏予第三人，亦不可使用於與本契約無關之目的，且於經他方同意告知第三人時，應使第三人負本條之保密義務。<br>
+                  <b>第十五條 損害賠償責任</b><br>
+                  依本契約傳送或接收電子訊息，因可歸責於當事人一方之事由，致有遲延、遺漏或錯誤之情事，而致他方當事人受有損害時，該當事人僅就他方之積極損害（不包含所失利益）及其利息負賠償責任。<br>
+                  <b>第十六條 不可抗力</b><br>
+                  立約人或貴行發生不可抗力情事時，對於本契約所生義務之不履行或遲延履行均不視為違約，亦無須負任何賠償責任。<br>
+                  <b>第十七條 電子訊息之效力</b>
+                  <table width="100%" border="0">
+                    <tr> 
+                      <td width="6%" valign="top">一、</td>
+                      <td width="94%">立約人與貴行同意依本契約交換之電子訊息，其效力與書面文件相同，立約人與貴行就所生之任何糾紛，於審判、仲裁、調解或其他法定爭議處理程序中，均不得主張該電子訊息不具書面或簽名要件而歸於無效或不成立。</td>
+                    </tr>
+                    <tr> 
+                      <td width="6%" valign="top">二、</td>
+                      <td width="94%">於前項之審判、仲裁、調解或其他法定爭議程序中，立約人與貴行同意相關之訊息以貴行保存之電子訊息紀錄證明之。</td>
+                    </tr>
+                    <tr>
+                      <td width="6%" valign="top">三、</td>
+                      <td width="94%"><br>
+                        立約人利用本系統查詢所得到之利率、匯率、基金淨值等，僅為參考值，實際價格應以成交時貴行牌告或議定價格為準。</td>
+                    </tr>
+                  </table>
+                  <b>第十八條 契約終止</b>
+                  <table width="100%" border="0">
+                    <tr>
+                      <td valign="top" width="6%">一、</td>
+                      <td width="94%">立約人申請註銷本項業務終止本契約時，應親自或以書面親簽並加蓋原留印鑑委託代理人至貴行辦理。</td>
+                    </tr>
+                    <tr>
+                      <td valign="top" width="6%" height="74">二、</td>
+                      <td width="94%" height="74">貴行欲終止本契約時，須於終止日三十日前以電子訊息或書面通知立約人。但立約人如有下列情事之一者，貴行得隨時以電子訊息或書面通知立約人終止本契約：<br>
+                        1. 立約人未經貴行同意，擅自將契約之權利或義務轉讓第三人者。<br>
+                        2. 立約人違反本契約第十二條、第十四條、第十六條之規定者。<br>
+                        3. 立約人有第七條第一項所述情形之一者。<br>
+                        4. 貴行無法於帳戶扣取立約人所應支付之費用者。<br>
+                        5. 立約人違反本契約之其他約定，經催告改善或限期請求履行未果者。</td>
+                    </tr>
+                  </table>
+                  <b>第十九條 契約修訂</b><br>
+                  貴行新增電子銀行服務之服務項目時，立約人授權貴行得依新增服務之特性規劃服務內容與提供方式，如新增服務項目影響立約人權益甚大，立約人應另以書面方式進行申請。<br>
+                  <b>第二十條 法院管轄</b><br>
+                  因本契約而涉訟者，立約人與貴行同意以﹍﹍﹍﹍地方法院為第一審管轄之法院。（如立約人空白未填，則以受理本約定書申請之貴行營業單位所在地的地方法院為有權管轄之法院。）<br>
+                  <b>第二十一條 標題</b><br>
+                  本契約各條標題，僅為查閱方便而設，不影響契約有關條款之解釋、說明及瞭解。<br>
+                  <b>第二十二條 契約保存</b><br>
+                  本契約壹式貳份，由立約人與貴行各持乙份為憑。<br>
+                  <br>
+                  本合約書所列事項與各約定條款，立約人已經閱讀並確實明瞭，未來如有新增或刪減服務項目、調整計費、或分階段提供相關功能項目時，由貴行將前述資訊利用相關電子服務通路公告後，悉依　貴行或主管機關當時規定辦理，不另立書面約定。立約人並同意　貴行或　貴行關係企業得在經營經主管機關核定承辦之業務等特定目的下，　搜集、電腦處理及利用個人資料。<br>
+                  其餘未盡事宜，悉依　貴行綜合約定書之「指定用途信託資金信託約定事項」辦理。<br>
+                  <br>
+                  此　致<br>
+                  　　　聯邦商業銀行<br>
+                  <table width="100%" border="0">
+                    <tr>
+                      <td>
+                        <div align="center">以上約定書內容業經立約人於合理期間內詳細審閱全部條款之內容無誤</div>
+                      </td>
+                    </tr>
+                  </table>
+                <table width="100%" border="0">
+                    <tr> 
+                      <td width="55%"> 
+                        <div align="right">立約人：</div>
+                      </td>
+                      <td width="45%"><br>
+                        <br>
+                        （親簽並加蓋信託帳號原留印鑑）</td>
+                    </tr>
+                    <tr> 
+                      <td width="55%"> 
+                        <div align="right">身分證字號/統一編號：</div>
+                      </td>
+                      <td width="45%">[[%%REVE-ID-NO%%]]</td>
+                    </tr>
+                    <tr> 
+                      <td width="55%"> 
+                        <div align="right">電子郵件信箱：</div>
+                      </td>
+                      <td width="45%">[[%%REVE-EMAIL-ADDR%%]]</td>
+                    </tr>
+                    <tr> 
+                      <td width="55%"> 
+                        <div align="right">行動電話號碼：</div>
+                      </td>
+                      <td width="45%">[[%%REVE-MOBIL-NO%%]]</td>
+                    </tr>
+                    <tr> 
+                      <td width="55%"> 
+                        <div align="right">申請書序號：</div>
+                      </td>
+                      <td width="45%">[[%%SEND-REG-SERIAL%%]]</td>
+                    </tr>
+                    <tr> 
+                      <td width="55%"> 
+                        <div align="right">申請時間：</div>
+                      </td>
+                      <td width="45%">中華民國<script>document.write(getRCDateStr("[[%%SYSDATE%%]]",3))</script>&nbsp;&nbsp;<script>document.write(getRCTimeStr("[[%%SYSTIME%%]]","0"))</script></td>
+                    </tr>
+                  </table>
+                  <p> 【注意事項：本申請約定書各頁請用原留印鑑加蓋騎縫章】</p>
+                  <p>覆核：　　　　　　　　　　　 經辦：　　　　　　 　　 　　　 驗印： <br>
+                  </p>
+                </td>
+              </tr>
+            </table>
+            <table width="550" border="0" align="center">
+              <tr>
+                <td>---------------------------------------------------------------------------------------------------------------------------------------<br>
+                  <br>
+          <table width="500" border="1" cellpadding="0" cellspacing="0" align="center">
+                    <tr bordercolor="#FFFFFF"> 
+                      <td> 
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                          <tr> 
+                            <td colspan="5" height="75"> 
+                              <table width="97%" border="0" align="center">
+                                <tr> 
+                                  <td rowspan="2" width="57%"><img src="graph/personal/logo.gif" width="130" height="26"></td>
+                                  <td rowspan="2" bgcolor="#99CC99" width="43%"> 
+                                    <div align="center"> 委 託 人 基 本 資 料</div>
+                                  </td>
+                                </tr>
+                                <tr> </tr>
+                              </table>
+                              <table width="97%" border="1" align="center" cellpadding="0" cellspacing="0">
+                                <tr> 
+                                  <td width="14%" bgcolor="#FFCC99">戶籍地址</td>
+                                  <td colspan="3"> 
+                                  [[%%REVE-CONTACT-ZIP%%]]&nbsp;[[%%REVE-CONTACT-ADDR%%]]
+                                   <!-- <table width="100%" border="0" cellpadding="0" cellspacing="0" height="40">
+                                      <tr> 
+                                        <td colspan="9">                                       
+                                           
+                                          </td>
+                                      </tr>
+                                    </table>-->
+                                  </td>
+                                </tr>
+                                <tr> 
+                                  <td width="14%" bgcolor="#FFCC99">通訊地址</td>
+                                  <td colspan="3">
+                                  [[%%REVE-CONTACT2-ZIP%%]]&nbsp;[[%%REVE-CONTACT2-ADDR%%]] 
+                                    <!--<table width="100%" border="0" cellpadding="0" cellspacing="0" height="40">
+                                      <tr> 
+                                        <td colspan="9">&nbsp;</td>
+                                      </tr>
+                                    </table>-->
+                                  </td>
+                                </tr>
+                                <tr> 
+                                  <td width="14%" bgcolor="#FFCC99">出生年月日</td>
+                                  <td width="32%">&nbsp;<script>document.write(setMarkBirth("[[%%REVE-BIRTH%%]]"))</script></td>
+                                  <td width="20%" bgcolor="#FFCC99">E-mail</td>
+                                  <td width="34%">&nbsp;[[%%REVE-EMAIL-ADDR%%]]</td>
+                                </tr>
+                                <tr> 
+                                  <td width="14%" bgcolor="#FFCC99">電話</td>
+                                  <td colspan="3">(O)[[%%REVE-DAILY-PHONE1%%]]&nbsp;&nbsp;(H)[[%%REVE-DAILY-PHONE2%%]]</td>
+                                </tr>
+                                <tr> 
+                                  <td width="14%" bgcolor="#FFCC99">行動電話</td>
+                                  <td width="32%">&nbsp;[[%%REVE-MOBIL-NO%%]]</td>
+                                  <td width="20%" bgcolor="#FFCC99">傳真</td>
+                                  <td width="34%">&nbsp;</td>
+                                </tr>
+                              </table>
+                              <table width="97%" border="0" align="center">
+                                <tr> 
+                                  <td width="47%" height="11">主管______________________________ 
+                                  </td>
+                                  <td width="53%" height="11">經辦______________________________</td>
+                                </tr>
+                                <tr> 
+                                  <td width="47%">啟用日期 ：</td>
+                                  <td width="53%"> 註銷日期 ：</td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <br>
+                  --------------------------------------------------------------------------------------------------------------------------------------- 
+                </td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+            <p>&nbsp;</p>
+            </td>
+        </tr>
+      </table>
+      <div align="center"> <br>
+        <input type="button" name="Submit" value="列印" onclick="window.print();">
+        <input type="button" name="Submit2" value="關閉" onclick="window.close()">
+        <br>
+      </div>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

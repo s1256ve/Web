@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- NCR SDCAVTRR, 預約信用卡繳款. Last updated date 1-9-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/NCR">
+	<field id="SDCAVTRRi01">
+		<name>REVE-CODE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='SDCAVTRR03' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="SDCAVTRR02">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="SDCAVTRR56">
+		<name>REVE-PWD</name>
+		<length>10</length>
+		<type>String</type>
+		<description>使用者密碼</description>
+	</field>
+	<field id="SDCAVTRRi02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>轉出帳號</description>
+	</field>
+	<field id="SDCAVTRRi03">
+		<name>REVE-PIN</name>
+		<security>DESYSDES</security>		
+		<length>4</length>
+		<type>String</type>
+		<description>PIN</description>
+	</field>
+	<field id="SDCAVTRRi04">
+		<name>REVE-CARD-NO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>信用卡號碼</description>
+	</field>
+	<field id="SDCAVTRRi05">
+		<name>REVE-TXN-AMT</name>
+		<length>12</length>
+		<type>String</type>
+		<description>轉帳金額</description>
+	</field>
+	<field id="SDCAVTRRi06">
+		<name>REVE-SCHD-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>預約日期</description>
+	</field>
+	<field id="SDCAVTRRi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="SDCAVTRRi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="SDCAVTRRi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="SDCAVTRRi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

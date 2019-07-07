@@ -1,0 +1,114 @@
+<html>
+<head>
+<title>外匯帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js">
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI100036          2011.07.01     Joe  
+*EAI100043          2011.07.14     David  
+*EAI100056          2010.08.15     David   
+***********************************************************************/
+</script>
+</head>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+
+//-->
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　外匯帳戶查詢&gt;<font color="#0066FF">外匯綜存定存續存設定</font></b><br>
+<form name="IP0405004" method="POST" action="LoadAP">
+
+
+
+<table width="630" border="0">
+  <tr> 
+    <td height="92"> 
+      <table width="35%" border="0" align="center" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td><center><font color="#003399">下列存單續存狀態已設為續存：</font></center>
+            <table width="100%" border="1" bordercolor="#999999">
+              <tr> 
+                <td bgcolor="#C4CBB8">定存帳號：</td>
+                <td>
+                <script language="JavaScript">
+        					document.write(getAcctStr("[[%%SEND-ACCT-NO%%]]"));
+      					</script>
+                </td>
+              </tr>
+              <tr> 
+                <td bgcolor="#C4CBB8">存單字號：</td>
+                <td>[[%%SEND-DEPOSITRECEIPT-NO%%]]</td>
+              </tr>                          
+        			<tr> 
+        					<td bgcolor="#C4CBB8">定存金額：</td>
+                	<td>
+                		[[%%SEND-DEPOSITRECEIPT-COIN-LEAVES%%]]
+										<script>
+											var sendDepositreceiptAmt = "[[%%SEND-DEPOSITRECEIPT-AMT%%]]";
+											var intSendDepositreceiptAmt = parseInt(sendDepositreceiptAmt.substr(0,13),10);
+											var decimailSendDepositreceiptAmt = parseInt(sendDepositreceiptAmt.substr(13,2),10);
+											document.write(moneyFormat2(trimSpStr1(intSendDepositreceiptAmt)) + "." + decimailSendDepositreceiptAmt);
+										</script>
+                	</td>
+              </tr>           
+       				<tr> 
+        					<td bgcolor="#C4CBB8">續存方式：</td>
+                	<td>
+                		<script>
+                			var sendDepositreceiptCountinueKind = "[[%%SEND-DEPOSITRECEIPT-CONTINUE-KIND%%]]"
+                			if (sendDepositreceiptCountinueKind == 0) document.write("解除轉期申請");
+                			else if (sendDepositreceiptCountinueKind == 1) document.write("到期本金加利息自動轉期");
+                			else if (sendDepositreceiptCountinueKind == 2) document.write("到期本金加利息自動轉期");
+                			else document.write("");
+                		</script>
+                	</td>
+       				</tr>                    
+							<tr> 
+        					<td bgcolor="#C4CBB8">計息方式：</td>
+                	<td>                		
+                	  <script>
+                			var sendInterestAccrualKind = "[[%%SEND-INTEREST-ACCRUAL-KIND%%]]"
+                			if (sendInterestAccrualKind == 1) document.write("固定");                			
+                			else if (sendInterestAccrualKind == 2) document.write("機動");
+                			else document.write("");
+                		</script>
+                	</td>
+              </tr>            
+              <tr> 
+        				<td bgcolor="#C4CBB8">領息方式：</td>
+                <td>
+                	  <script>
+                			var sendLeadsRestKind = "[[%%SEND-LEADS-REST-KIND%%]]"
+                			if (sendLeadsRestKind == 1) document.write("按月領息");                			
+                			else if (sendLeadsRestKind == 2) document.write("按年領息");
+                			else if (sendLeadsRestKind == 3) document.write("到期領息");
+                			else document.write("");
+                		</script>                	
+                </td>
+              </tr>
+  						<tr> 
+        				<td bgcolor="#C4CBB8">定存種類：</td>
+                <td>
+                	 <script>
+                			var sendDererralKind = "[[%%SEND-DEFERRAL-KIND%%]]"
+                			if (sendDererralKind == 0) document.write("一般定存單");                			
+                			else if (sendDererralKind == 1) document.write("綜存戶存單");                			
+                			else document.write("");
+                		</script>     
+                </td>
+              </tr>
+          </td>
+        </tr>             
+      </table>
+      </td>
+		  </tr>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>台幣存款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------------
+* EAI99041           2010.05.11     David
+***********************************************************************/
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/acctfmt.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/datefmt.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/moneyfmt.js"></SCRIPT>
+<script>
+function BackSubmit(){
+
+    document.IP0204001.submit();
+}
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form action="LoadAP" method="post" name="IP0204001">
+ 　
+<b>台幣存款帳戶查詢&gt;<font color="#003399"><font color="#0066FF">當日餘額</font></font></b><br>
+<font class="t3">　&nbsp聯邦銀行個人網路銀行交易結果</font><br>
+<br>
+<form name="IP0204001" method="POST" action="LoadAP">
+<table width="762" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td width="762" height="2"> 
+      <div align="right"><font color="#0000CC">查詢時間： 
+        <script>
+        	document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+        </script>
+      </font></div>
+    </td>
+  </tr>
+</table>
+<table width="769" border="0">
+  <tr>
+    <td width="763">　<font color="#0000CC"><img src="graph/personal/point.gif" width="12" height="12" align="absmiddle"> 
+      以下是您　[[%%SEND_BR_NAME%%]]　[[%%SEND_ACCT_DESC%%]]　<font face="Arial, Helvetica, sans-serif">[[%%SEND-ACCT-NO%%]]</font>　 
+           今日 
+      <script language="javascript"> 
+          document.write(getRCDateStr("[[%%SYSDATE%%]]",0));
+      </script> 餘額查詢結果：</font> 
+      <table width="762" border="0" cellpadding="0">
+        <tr> 
+          <td width="762"> 
+            <div align="right">單位：新台幣/元</div>
+          </td>
+        </tr>
+      </table>
+      <table width="762" border="1" bordercolor="#999999" cellpadding="2">
+        <tr bgcolor="#FFFFDD"> 
+		<td width="176"> 
+		  <div align="right">可用餘額為</div>
+		</td>
+		<td width="582">
+		<script>
+		 document.write(moneyAddDot2(trimDecimal("[[%%SEND-AVAL-BALANCE%%]]")));
+	</script>         元 </td>
+	  </tr>
+	  <tr bgcolor="#FFFFDD"> 
+		<td width="176"> 
+		  <div align="right">帳戶餘額為</div>
+		</td>
+		<td width="582"> 
+		<script> 
+			document.write(moneyAddDot2(trimDecimal("[[%%SEND-ACCT-BALANCE%%]]")));  	
+		</script>	元</td>
+        </tr>
+      </table>
+      <table width="100%" border="0">
+        <tr>
+          <td>註：<br>
+            1.本頁資料不得做為&quot;存款餘額證明&quot;或往來憑證之用。<br>
+            2.可用餘額不含當日本交票與次交票金額，但包含透支帳戶可動用之金額。 <br>
+        </tr>
+      </table>
+      <br>
+      <table width="762" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td width="762" colspan="2"> 
+            <div align="center"><img src="graph/personal/top.gif" width="64" height="16" onClick="BackSubmit();"></div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="IP0204000">
+</form>
+</body>
+</html>

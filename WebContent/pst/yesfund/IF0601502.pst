@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>基金申購</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link rel="stylesheet" type="text/css" media="all" href="theme/YesFund.css" title="win2k-cold-1" />
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0601502">
+<input type="hidden" name="pageid" value="IF0601503">
+<input type="hidden" name="REVE_SYS_DATE" value="[[%%REVE-SYS-DATE%%]]">
+<input type="hidden" name="REVE_FUND_CNAME" value="[[%%REVE-FUND-CNAME%%]]">
+<input type="hidden" name="REVE_CERT_NO" value="[[%%REVE-CERT-NO%%]]">
+<input type="hidden" name="REVE_AMT" value="[[%%REVE-AMT%%]]">
+<input type="hidden" name="REVE_BANK_NAME" value="[[%%REVE-BANK-NAME%%]]">
+<input type="hidden" name="REVE_ACCT_NO" value="[[%%REVE-ACCT-NO%%]]">
+<input type="hidden" name="REVE_SCHD_DATE" value="[[%%REVE-SCHD-DATE%%]]">
+<input type="hidden" name="REVE_SCHD_DATE2" value="[[%%REVE-SCHD-DATE2%%]]">
+<input type="hidden" name="REVE_SCHD_DATE3" value="[[%%REVE-SCHD-DATE3%%]]">
+<input type="hidden" name="REVE_SCHD_ALL" value="[[%%REVE-SCHD-ALL%%]]">
+<input type="hidden" name="FROM_CURRENCY_NAME" value="[[%%FROM-CURRENCY-NAME%%]]">
+<input type="hidden" name="FROM_CURRENCY_CODE" value="[[%%FROM-CURRENCY-CODE%%]]">
+<input type="hidden" name="REVE_ACCT_TYPE" value="1">
+</form>
+<script>
+	var doc = document.IF0601502;
+	document.IF0601502.submit();
+</script>
+</body>
+</html>

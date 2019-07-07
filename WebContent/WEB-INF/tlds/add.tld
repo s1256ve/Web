@@ -1,0 +1,24 @@
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>add</short-name>
+
+	<tag>
+		<name>add</name>
+		<tag-class>code.tag.Tld621</tag-class>
+		<body-content>empty</body-content>
+		
+		<attribute>
+			<name>x</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+	
+		<attribute>
+			<name>y</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>

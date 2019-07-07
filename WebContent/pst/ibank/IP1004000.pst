@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>設為首頁</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js">
+/***********************************************************************
+* Remark Area
+* Create name	:
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI100078         2011.11.23     SIMON LIN		終止UMA網路服務
+***********************************************************************/
+</script>
+
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT language="JavaScript">
+	function chkSubmit(){
+		var f = document.IP1004000;
+		f.startpage.value = "";
+		if (f.channel[1].checked){
+			f.startpage.value = "IBANK";
+		}
+		if (f.channel[2].checked){
+			f.startpage.value = "YESFUND";
+		}
+		f.submit();
+	}
+</SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg01.gif" leftmargin="0" topmargin="0">
+<img src="graph/point.gif" width="12" height="12">
+<b>個人設定&gt;<font color="#0066FF">個人網銀首頁設定</font><font color="#003399"><font color="#0066FF"></font></font></b><br>
+</font></font></b></p>
+<form name="IP1004000" method="POST" action="LoadAP">
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5"> 
+      <table width="300" border="1" align="center" cellspacing="0" cellpadding="0">
+        <tr bordercolor="#FFFFFF"> 
+          <td> <br>
+            <table width="75%" border="0" align="center">
+              <tr>
+                <td>請選擇網路銀行之首頁設定：<br>
+                  <input type="radio" name="channel" checked>
+                  系統預設值<br>
+                  <input type="radio" name="channel">
+                  一般銀行服務<br>
+                  <input type="radio" name="channel">
+                  基金天地</td>
+              </tr>
+        
+            </table>
+            <div align="center">
+              <input type="button" name="sure" value="確定" onclick="chkSubmit();">
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="5" valign="bottom" height="1"></td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="IP1004001">
+<input type="hidden" name="startpage" value="">
+</form>
+</body>
+</html>

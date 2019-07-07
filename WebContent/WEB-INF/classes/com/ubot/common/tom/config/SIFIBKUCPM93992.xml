@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- UCPM 9399 Last updated date 2-3-2005 變更SSL轉帳功能資訊-->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPM">
+	<field id="9399i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='fieldi02' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="9399i03">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="9399i04">
+		<name>REVE-MOBILE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>手機號碼</description>
+	</field>
+	<field id="9399i05">
+		<name>REVE-RECLIMIT</name>
+		<length>8</length>
+		<type>String</type>
+		<description>非約定每筆限額</description>
+	</field>
+	<field id="9399i06">
+		<name>REVE-DAYLIMIT</name>
+		<length>8</length>
+		<type>String</type>
+		<description>非約定每日限額</description>
+	</field>
+	<field id="9399i07">
+		<name>REVE-MONLIMIT</name>
+		<length>8</length>
+		<type>String</type>
+		<description>非約定每月限額</description>
+	</field>
+	<field id="9399i08">
+		<name>REVE-BID</name>
+		<length>8</length>
+		<type>String</type>
+		<description>分行代號</description>
+	</field>
+	<field id="9399i09">
+		<name>REVE-EMAIL-ADDR</name>
+		<length>8</length>
+		<type>String</type>
+		<description>電子郵件</description>
+	</field>
+	<field id="9399i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="9399i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="9399i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="9399i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

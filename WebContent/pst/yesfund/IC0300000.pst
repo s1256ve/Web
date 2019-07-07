@@ -1,0 +1,241 @@
+<html>
+<head>
+<title>聯邦銀行個人金融網</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI99041	        2010.05.10	   David
+*	EAI100078         2011.11.23     SIMON LIN		終止UMA網路服務
+***********************************************************************/
+</script>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/datefmt.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+
+function chkSubmit(){
+    document.IC0300000.pageid.value="IC0000999";
+    document.IC0300000.aptype.value="NOAP";
+    document.IC0300000.target="IC0000000"
+    document.IC0300000.submit();
+}
+
+function trnsTime(){
+	var timeStr = '[[%%SEND-LAST-LOGIN-TIME%%]]';
+	var date = timeStr.substr(0,8);
+	var hh = timeStr.substr(8,2);
+	var mm = timeStr.substr(10,2);
+	return getRCDateStr(date,0) + " " + hh + ":" + mm ;
+}
+
+function goPageTop(){
+	window.scrollTo(0,0);	
+}
+
+function DistDay(){
+  var diffDays = DateDiff(getADDateStr(getNowDate(),0),getADDateStr('[[%%SEND-MDFDATE%%]]',0));                
+	if (diffDays > 180) 
+		document.write("<div align=\"left\"><font class=\"UPWD_T\">您離上次變更密碼已超過6個月，建議請定期變更密碼!</font>"+"<a href='#' onclick=\"alert('請至「個人設定」=>「網路密碼/使用者代號變更」，進行變更網路密碼。');\"><font class=\"UPWD_T2\">(說明)</font></a></div>");
+}
+
+function showCName(){
+   var cname='[[%%SEND-CNAME%%]]';
+   if(cname.length > 8){
+      return cname.substring(0,8)+"(略)";
+   }else{
+      return cname;
+   }
+}
+//-->
+</script>
+</head>
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" link="#0000FF" vlink="#0000FF" alink="#000000" background="graph/bg.gif" onLoad="">
+<form method="post" name="IC0300000" target="_parent" action="LoadAP">
+<table width="778" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><img src="graph/blank.gif" width="5" height="1"><a href="index_all01.htm" target="_parent"><img src="graph/ub-logo.gif" border="0"></a></td>
+    <td align="right" valign="top"><a href="index_personal.htm" target="_parent"><img border="0" src="graph/map-01.gif"></a></td>
+  </tr>
+</table>
+<table width="778" border="0" cellspacing="0" cellpadding="0">
+  <tr align="left" valign="top"> 
+    <td> 
+      <table width="778" border="0" cellspacing="0" cellpadding="0">
+        <tr bgcolor="#80836E"> 
+          <td><img src="graph/blank.gif" width="1" height="1"></td>
+        </tr>
+        <tr bgcolor="#C4CBB8"> 
+          <td>
+            <table width="778" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td width="204"><img src="graph/map-08.gif" width="213" height="21"></td>
+                <td width="566" align="right" valign="bottom"> <div id="popmenu" class="menuskin" onMouseover="clearhidemenu();highlightmenu(event,'on')" onMouseout="highlightmenu(event,'off');dynamichide(event)">
+</div>
+
+｜<a href="a/a01_index.htm" target="submainFrame">關於聯邦</a>｜<a href="">客服中心</a>｜<a href="">聯絡我們</a>｜<a href="">網路銀行家</a>｜<a href="">聯邦首頁</a>｜</td>
+                <td width="10"><img src="graph/blank.gif" width="10" height="8"></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr bgcolor="#80836E"> 
+          <td><img src="graph/blank.gif" width="1" height="1"></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="778" border="0" cellspacing="0" cellpadding="0">
+<tr><td align="right">
+
+<table width="778" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+  	<td width="80">
+  		<a onclick="javascript:chkSubmit()" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image35','','graph/personal/icon03a.gif',1)"><img name="Image35" border="0" src="graph/personal/icon03.gif" width="51" height="19"></a>
+  	</td>
+    <td width="500"><div align="left"><font color="#0000FF"><script language="JavaScript">document.write(showCName());</script> 您好， 您上次登入時間  
+    <script language="JavaScript">
+    	document.write(trnsTime());
+    </script> ； 上次變更密碼日期 <script language="JavaScript">document.write(getRCDateStr('[[%%SEND-MDFDATE%%]]',0));DistDay();</script>              
+    </font> 
+    </div>
+    </td>
+    <td colspan="2" align="right">
+      <table border="1" align="right" cellpadding="0" cellspacing="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC">
+        <tr bgcolor="#D7EBFF"> 
+        <!--  <td colspan="2" bgcolor="#D7EBFF" class="t3"> 
+          <div align="center">新手上路Demo</div>          </td> -->
+          <td width="51" bgcolor="#D7EBFF" class="t3"> 
+          <div align="center"><a href="/LoadAPWeb/pst/faq/page13_1.htm" target="submain">答客問</a></div>          </td>
+          <td width="56" bgcolor="#D7EBFF" class="t3"> 
+          <div align="center"><A href="/LoadAPWeb/pst/faq/page14_a1.htm" target="submain">安全宣告</a></div>          </td>
+          <td width="79" colspan="2" bgcolor="#D7EBFF" class="t3"> 
+          <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0110000&FUNC_PAGE=IP0907100" target="IC0000000">匯利率查詢</a></div>          </td>
+        </tr>
+    </table> 
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="4"><font color="#663300"> </font> 
+      <table width="630" border="0" cellspacing="0" align="right">
+        <tr> 
+          <td width="62">&nbsp;</td>
+          <td width="70"> 
+            <div align="center"> 
+              <table width="70" border="0" cellpadding="0" cellspacing="0">
+                <tr> 
+                  <td width="9%"><img src="graph/lef01.gif" width="9" height="20"></td>
+                  <td background="graph/lef02.gif" width="81%"> 
+                    <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0101000" target="submain">帳戶查詢</a></div>
+                  </td>
+                  <td width="10%"><img src="graph/lef03.gif" width="9" height="20"></td>
+                </tr>
+              </table>
+            </div>
+          </td>
+          <td width="86"> 
+            <div align="center"> 
+              <table width="83" border="0" cellpadding="0" cellspacing="0">
+                <tr> 
+                  <td width="10%"><img src="graph/lef01.gif" width="9" height="20"></td>
+                  <td background="graph/lef02.gif" width="77%"> 
+                    <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0102000" target="submain">轉帳/繳款</a></div>
+                  </td>
+                  <td width="13%"><img src="graph/lef03.gif" width="9" height="20"></td>
+                </tr>
+              </table>
+            </div>
+          </td>
+          <td colspan="2"> 
+            <div align="center"> 
+              <table width="70" border="0" cellpadding="0" cellspacing="0">
+                <tr> 
+                  <td width="9%"><img src="graph/lef01.gif" width="9" height="20"></td>
+                  <td background="graph/lef02.gif" width="81%"> 
+                    <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0103000" target="submain">國民現金</a></div>
+                  </td>
+                  <td width="10%"><img src="graph/lef03.gif" width="9" height="20"></td>
+                </tr>
+              </table>
+            </div>
+          </td>
+          <td width="65"> 
+            <div align="center"> 
+              <table width="65" border="0" cellpadding="0" cellspacing="0">
+                <tr> 
+                  <td width="9%"><img src="graph/lef01.gif" width="9" height="20"></td>
+                  <td background="graph/lef02.gif" width="81%"> 
+                    <div align="center"><a href="LoadAP?aptype=IBANK&pageid=IC0104000" target="submain">信 
+                      用 卡</a></div>
+                  </td>
+                  <td width="10%"><img src="graph/lef03.gif" width="9" height="20"></td>
+                </tr>
+              </table>
+            </div>
+          </td>
+          <td width="74"> 
+            <div align="center"> 
+              <table width="70" border="0" cellpadding="0" cellspacing="0">
+                <tr> 
+                  <td width="9%"><img src="graph/lef01.gif" width="9" height="20"></td>
+                  <td background="graph/lef02.gif" width="81%"> 
+                    <div align="center"><a href="LoadAP?aptype=YESFUND&pageid=IC0201000" target="submain">基　金</a></div>
+                  </td>
+                  <td width="10%"><img src="graph/lef03.gif" width="9" height="20"></td>
+                </tr>
+              </table>
+            </div>
+          </td>
+          <td colspan="3"> 
+            <div align="center"> 
+              <table width="59" border="0" cellpadding="0" cellspacing="0">
+               
+              </table>
+            </div>
+          </td>
+          <td width="129" valign="top"> 
+            <table width="75%" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td height="2"><a href="LoadAP?aptype=IBANK&pageid=IC0105000" target="submain"><img src="graph/personal/icon01.gif" width="50" height="17" border="0"></a></td>
+                <td height="2"><a href="LoadAP?aptype=IBANK&pageid=IC0106000" target="submain"><img src="graph/personal/icon02.gif" width="65" height="17" border="0"></a></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+</td></tr>
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="aptype" value="NOAP">
+</form>
+<iframe name="submain" style="position: absolute; top:130 ; left:0" width="778" height="1700" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="LoadAP?aptype=UMA&pageid=IC0301000"></iframe>
+<!--iframe name="dowm" style="position: absolute ; top:1900 ; left:0 ; z-index:0 " width="778" height="22" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?pageid=IC0000004"/--> 
+</body>
+</html>

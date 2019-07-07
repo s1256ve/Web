@@ -1,0 +1,333 @@
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI98016           2009.03.03     Alan 
+***********************************************************************/
+</script>
+<html>
+<head>
+<title>個人資料查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<script language="javascript">
+//字串去空白
+    String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");}
+
+function chkSubmit(){
+	addType = document.IP1002200.chgAdd.value;
+	var addConfirmText = "";
+ 	if(addType=="不變更"){
+ 		document.IP1002200.REVE_CONTACT_ZIP.value = document.IP1002200.REVE_CONTACT_ZIP1.value;
+ 		document.IP1002200.REVE_CONTACT_ADDR.value = document.IP1002200.REVE_CONTACT_ADDR1.value;
+ 		addConfirmText = addConfirmText+"\n通訊地址:"+document.IP1002200.REVE_CONTACT_ZIP.value+document.IP1002200.REVE_CONTACT_ADDR.value;
+ 	}
+ 	else if(addType=="變更"){
+ 		document.IP1002200.REVE_CONTACT_ZIP.value = document.IP1002200.REVE_PRE_CONTACT_ZIP.value;
+ 		document.IP1002200.REVE_CONTACT_ADDR.value = document.IP1002200.REVE_PRE_CONTACT_ADDR.value;
+ 	}
+	addr = document.IP1002200.REVE_CONTACT_ADDR.value.trim();
+	zip = document.IP1002200.REVE_CONTACT_ZIP.value.trim();
+	if(addr == "")
+	{
+	  alert("地址不可為空白");           
+            return;
+  }
+  if(zip == "")
+	{
+	  alert("郵遞區號不可為空白");           
+            return;
+  }
+ 	addr2 ="";
+	for(i=0; i<addr.length; i++)
+ 	{
+ 		if(addr.charAt(i)!=" ")
+ 		{
+ 			addr2 = addr2 + addr.charAt(i);
+ 		}
+ 	}
+ 	document.IP1002200.REVE_CONTACT_ADDR.value  = HalfshapeToFullshape(addr2);
+ 	
+ 	dayType = document.IP1002200.chgDphone.value;
+ 	if(dayType=="不變更"){
+ 		document.IP1002200.REVE_DAILY_PHONE1.value = document.IP1002200.REVE_DAILY_PHONE11.value;
+ 		addConfirmText = addConfirmText+"\n電話(O):"+document.IP1002200.REVE_DAILY_PHONE1.value;
+ 	}
+ 	else if(dayType=="變更"){
+ 		document.IP1002200.REVE_DAILY_PHONE1.value = document.IP1002200.REVE_PRE_DAILY_PHONE1.value;
+ 	}
+
+	day2Type = document.IP1002200.chgDphone2.value;
+ 	if(day2Type=="不變更"){
+ 		document.IP1002200.REVE_DAILY_PHONE2.value = document.IP1002200.REVE_DAILY_PHONE21.value;
+ 		addConfirmText = addConfirmText+"\n電話(H):"+document.IP1002200.REVE_DAILY_PHONE2.value;
+ 	}
+ 	else if(day2Type=="變更"){
+ 		document.IP1002200.REVE_DAILY_PHONE2.value = document.IP1002200.REVE_PRE_DAILY_PHONE2.value;
+ 	}
+ 	phone1 = document.IP1002200.REVE_DAILY_PHONE1.value.trim();
+ 	phone2 = document.IP1002200.REVE_DAILY_PHONE2.value.trim();
+	if(phone1 == "" && phone2 == "")
+	{
+	  alert("電話(O)與電話(H)不可同時空白");           
+            return;
+  }
+
+	emailType = document.IP1002200.chgEmail.value;
+ 	if(emailType=="不變更"){
+ 		document.IP1002200.REVE_EMAIL_ADDR.value = document.IP1002200.REVE_EMAIL_ADDR1.value;
+ 		addConfirmText = addConfirmText+"\nE-mail:"+document.IP1002200.REVE_EMAIL_ADDR.value;
+ 	}
+ 	else if(emailType=="變更"){
+ 		document.IP1002200.REVE_EMAIL_ADDR.value = document.IP1002200.REVE_PRE_EMAIL_ADDR.value;
+ 	}
+	
+	if(addConfirmText==""){
+		alert("請選擇您欲變更的項目");
+		return;
+	}
+	
+	if (IP1002200.REVE_PWD.value.Trim() == ""){
+            alert("請輸入網路密碼!");           
+            return;
+  }
+	else{
+		//比對欄位內容
+		chkCompare();
+		
+		if(confirm("您變更的資料如下"+addConfirmText)==true){
+			
+			 var pre_email = IP1002200.REVE_PRE_EMAIL_ADDR.value.trim();
+ 		     var new_email = IP1002200.REVE_EMAIL_ADDR.value.trim();
+ 		     if(pre_email == new_email){        // 寄送新舊email
+ 		     		IP1002200.REVE_MSG_SENDTO.value = new_email;
+ 		     }else{
+ 		     		IP1002200.REVE_MSG_SENDTO.value = pre_email + "," + new_email; 
+ 		     } 
+			document.IP1002200.Submit.disabled = true;
+			document.IP1002200.Submit2.disabled = true;
+			document.IP1002200.Submit3.disabled = true;
+			document.IP1002200.submit();
+		}
+		else return;
+	}
+}
+
+function chkCompare(){
+	var item="";
+	var f = document.IP1002200;
+	if ((f.REVE_CONTACT_ZIP.value != f.REVE_PRE_CONTACT_ZIP.value) || (f.REVE_CONTACT_ADDR.value != f.REVE_PRE_CONTACT_ADDR.value))
+		item+="「通訊地址」、";
+		
+	if (f.REVE_DAILY_PHONE1.value != f.REVE_PRE_DAILY_PHONE1.value)
+		item+="「電話(O)」、";
+		
+	if (f.REVE_DAILY_PHONE2.value != f.REVE_PRE_DAILY_PHONE2.value)
+		item+="「電話(H)」、";
+		
+	if (f.REVE_EMAIL_ADDR.value != f.REVE_PRE_EMAIL_ADDR.value)
+		item+="「EMAIL地址」";		
+	
+	if (item.substr(item.length-1,item.length) == "、"){
+		if (item.lastIndexOf("、") != -1 )
+				item = item.substr(0,item.length-1);	
+	}
+
+	f.REVE_CHANGE_ITEM.value=item;
+	
+}
+
+function chkSubmit2(){
+	document.IP1002200.pageid.value = "IP1002000";
+	document.IP1002200.submit();
+};
+
+ var kbWin = null;
+function getKeyBoard()
+{
+ var Mytype="width=450,height=250,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IP1002200.PWD.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IP1002200.REVE_PWD.value";  //User真正key的密碼
+     kbWin = window.open( "LoadAP?pageid=IP2001000&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IP1002200.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP1002200.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+
+function onTop() {
+  	if (kbWin==null) return;
+  	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+</script>
+<script language="JavaScript">
+function chgEmailSelect(tp){
+	if(tp=="變更"){
+		document.IP1002200.REVE_EMAIL_ADDR1.disabled = false;
+		document.IP1002200.REVE_EMAIL_ADDR1.style.backgroundColor = "#FFFFFF";
+		document.IP1002200.REVE_EMAIL_ADDR1.value = "";
+		document.IP1002200.chgEmail.value = "不變更";
+	}
+	else if(tp=="不變更"){
+		document.IP1002200.REVE_EMAIL_ADDR1.disabled = true;
+		document.IP1002200.REVE_EMAIL_ADDR1.style.backgroundColor = "#e5eecc";
+		document.IP1002200.REVE_EMAIL_ADDR1.value = "";
+		document.IP1002200.chgEmail.value = "變更";
+	}
+}
+
+function chgDphoneSelect2(tp){
+	if(tp=="變更"){
+		document.IP1002200.REVE_DAILY_PHONE21.disabled = false;
+		document.IP1002200.REVE_DAILY_PHONE21.style.backgroundColor = "#FFFFFF";
+		document.IP1002200.REVE_DAILY_PHONE21.value = "";
+		document.IP1002200.chgDphone2.value = "不變更";
+	}
+	else if(tp=="不變更"){
+		document.IP1002200.REVE_DAILY_PHONE21.disabled = true;
+		document.IP1002200.REVE_DAILY_PHONE21.style.backgroundColor = "#e5eecc";
+		document.IP1002200.REVE_DAILY_PHONE21.value = "";
+		document.IP1002200.chgDphone2.value = "變更";
+	}
+}
+
+function chgDphoneSelect(tp){
+	if(tp=="變更"){
+		document.IP1002200.REVE_DAILY_PHONE11.disabled = false;
+		document.IP1002200.REVE_DAILY_PHONE11.style.backgroundColor = "#FFFFFF";
+		document.IP1002200.REVE_DAILY_PHONE11.value = "";
+		document.IP1002200.chgDphone.value = "不變更";
+	}
+	else if(tp=="不變更"){
+		document.IP1002200.REVE_DAILY_PHONE11.disabled = true;
+		document.IP1002200.REVE_DAILY_PHONE11.style.backgroundColor = "#e5eecc";
+		document.IP1002200.REVE_DAILY_PHONE11.value = "";
+		document.IP1002200.chgDphone.value = "變更";
+	}
+}
+
+function chgAddSelect(tp){
+	if(tp=="變更"){
+		document.IP1002200.REVE_CONTACT_ZIP1.disabled = false;
+		document.IP1002200.REVE_CONTACT_ZIP1.style.backgroundColor = "#FFFFFF";
+		document.IP1002200.REVE_CONTACT_ZIP1.value = "";
+		document.IP1002200.REVE_CONTACT_ADDR1.disabled = false;
+		document.IP1002200.REVE_CONTACT_ADDR1.style.backgroundColor = "#FFFFFF";
+		document.IP1002200.REVE_CONTACT_ADDR1.value = "";
+		document.IP1002200.chgAdd.value = "不變更";
+	}
+	else if(tp=="不變更"){
+		document.IP1002200.REVE_CONTACT_ZIP1.disabled = true;
+		document.IP1002200.REVE_CONTACT_ADDR1.disabled = true;
+		document.IP1002200.REVE_CONTACT_ZIP1.style.backgroundColor = "#e5eecc";
+		document.IP1002200.REVE_CONTACT_ADDR1.style.backgroundColor = "#e5eecc";
+		document.IP1002200.REVE_CONTACT_ZIP1.value = "";
+		document.IP1002200.REVE_CONTACT_ADDR1.value = "";
+		document.IP1002200.chgAdd.value = "變更";
+	}
+}
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+
+<form action="LoadAP" name="IP1002200" method="post">
+<img src="graph/point.gif" width="12" height="12">
+<b>個人設定&gt;<font color="#0066FF">基本資料維護</font><font color="#003399"><font color="#0066FF"></font></font></b><br>
+
+<table width="630" border="0">
+  <tr> 
+    <td colspan="4"> <br>
+      <table width="500" border="1" align="center" cellpadding="3" bordercolor="#999999">
+        <tr bgcolor="#C4CBB8"> 
+          <td colspan="3"> 
+            <div align="center">個人基本資料：信託帳戶</div>
+          </td>
+        </tr>
+        <!--
+        <tr> 
+          <td colspan="2">身份證字號</td>
+          <td width="357">[[%%REVE-ID%%]]</td>
+        </tr>
+        -->
+        <tr> 
+          <td colspan="2">姓名</td>
+          <td width="357">
+          <script>
+          	document.write(showCName('[[%%SEND-CNAME%%]]'));
+          </script>
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"> <font color="#FF0000">*</font>通訊地址</td>
+          <td width="357"> 
+            <input type="text" name="REVE_CONTACT_ZIP1" value="" size="5" style="BACKGROUND-COLOR: #e5eecc"  disabled>
+            <input type="text" name="REVE_CONTACT_ADDR1" value="如欲變更資料請按變更鈕" size="35" style="BACKGROUND-COLOR: #e5eecc"  disabled>
+            <input type="button" name="chgAdd" value="變更" onClick="chgAddSelect(this.value)">
+            <input type="hidden" name="REVE_CONTACT_ZIP" value="[[%%REVE-CONTACT-ZIP%%]]">
+            <input type="hidden" name="REVE_CONTACT_ADDR" value="[[%%REVE-CONTACT-ADDR%%]]">
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"><font color="#FF0000">*</font>電話(O)</td>
+          <td width="357"> 
+            <input type='text' onpaste="return false;" name="REVE_DAILY_PHONE11" maxlength="20" value="如欲變更資訊請按變更鈕" style="ime-mode:disabled;BACKGROUND-COLOR: #e5eecc" size=32  disabled>
+            <input type="button" name="chgDphone" value="變更" onClick="chgDphoneSelect(this.value)">
+            <input type="hidden" name="REVE_DAILY_PHONE1" value="" style="ime-mode:disabled">
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"> <font color="#FF0000">*</font>電話(H)</td>
+          <td width="357"> 
+            <input type='text' onpaste="return false;" name="REVE_DAILY_PHONE21" maxlength="20" value="如欲變更資訊請按變更鈕" style="ime-mode:disabled;BACKGROUND-COLOR: #e5eecc" size=32  disabled>
+            <input type="button" name="chgDphone2" value="變更" onClick="chgDphoneSelect2(this.value)">
+            <input type="hidden" name="REVE_DAILY_PHONE2" value="" style="ime-mode:disabled" maxlength="16">
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"> <font color="#FF0000">*</font>E-mail</td>
+          <td width="357"> 
+            <input onpaste="return false;" type="text" name="REVE_EMAIL_ADDR1" value="如欲變更資訊請按變更鈕" style="ime-mode:disabled;BACKGROUND-COLOR: #e5eecc" maxlength="36" size=40  disabled>
+            <input type="button" name="chgEmail" value="變更" onClick="chgEmailSelect(this.value)">
+            <input type="hidden" name="REVE_EMAIL_ADDR" value="[[%%REVE-EMAIL-ADDR%%]]" style="ime-mode:disabled" maxlength="36">
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"> 網路密碼</td>
+          <td width="357"> 
+            <input type="password" name="PWD" size="8" onclick="getKeyBoard();onTop();" readonly>
+            <input type="hidden" name="REVE_PWD" value="">
+          </td>
+        </tr>            
+      </table>
+      <table width="500" border="0" align="center">
+        <tr>
+          <td>註：「<font color="#FF0000">*</font>」表示可於線上變更之資料欄位，如須變更身份證字號、姓名、戶籍地址等欄位，請您攜帶身份證及印鑑至原開戶行辦理。</td>
+        </tr>
+      </table>
+      <div align="center"><br>
+        <input type="button" name="Submit" value="確定" onClick="chkSubmit();">
+        <input type="reset" name="Submit3" value="重填">
+        <input type="submit" name="Submit2" value="取消" onClick="chkSubmit2();">
+      </div>
+    </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="4" valign="bottom" height="1"></td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="IP1002201">
+<input type="hidden" name="REVE-CNAME" value="[[%%SEND-CNAME%%]]">
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+
+<input type="hidden" name="REVE_PRE_DAILY_PHONE1" value="[[%%REVE-DAILY-PHONE1%%]]">
+<input type="hidden" name="REVE_PRE_DAILY_PHONE2" value="[[%%REVE-DAILY-PHONE2%%]]">
+<input type="hidden" name="REVE_PRE_EMAIL_ADDR" value="[[%%REVE-EMAIL-ADDR%%]]">
+<input type="hidden" name="REVE_PRE_CONTACT_ZIP" value="[[%%REVE-CONTACT-ZIP%%]]">
+<input type="hidden" name="REVE_PRE_CONTACT_ADDR" value="[[%%REVE-CONTACT-ADDR%%]]">
+<input type="hidden" name="REVE_CHANGE_ITEM" value="">
+<input type="hidden" name="REVE_MSG_SENDTO" value="">
+</body>
+</html>

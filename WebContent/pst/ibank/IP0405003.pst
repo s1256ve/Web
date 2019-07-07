@@ -1,0 +1,111 @@
+<html>
+<head>
+<title>外匯帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js">
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI100036          2011.07.01     Joe  
+*EAI100043          2011.07.14     David
+*EAI100056          2010.08.15     David   
+***********************************************************************/
+</script>
+</head>
+<script language="JavaScript">
+<!--
+var kbWin = null;
+function getKeyBoard()
+{
+ var Mytype="width=450,height=250,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IP0405003.PWD.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IP0405003.REVE_PWD.value";  //User真正key的密碼
+       kbWin = window.open( "LoadAP?pageid=IP2001000&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IP0405003.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP0405003.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+function onTop() {
+  	if (kbWin==null) return;
+  	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+
+
+    function ChkSubmit(type){
+     
+        var f=document.IP0405003;
+        if (type=="sure"){
+            f.submit();    
+        }
+    }
+    
+    function trnMonth(month){
+        var mon = month;
+        return eval(mon.substr(0,3)-0);
+    }
+
+    function chkSubmit2(){
+    	document.IP0405003.pageid.value = "IP0405000";
+    	document.IP0405003.submit();
+    }
+//-->
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onfocus="onTop();" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　外匯帳戶查詢&gt;<font color="#0066FF">外匯綜存定存續存設定</font></b><br>
+<form name="IP0405003" method="POST" action="LoadAP">
+<table width="630" border="0">
+  <tr> 
+    <td>
+      <table width="537" border="1" bordercolor="#999999" align="center">
+        <tr> 
+          <td width="78" bgcolor="#C4CBB8"> 　轉存期間 </td>
+          <td width="443">&nbsp;
+            <script language="JavaScript">
+                document.write(trnMonth('[[%%SEND_PERIOD%%]]'));  
+            </script> 個月
+          </td>
+        </tr>
+        <tr> 
+          <td width="78" height="18" bgcolor="#C4CBB8">　續存方式</td>
+          <td width="443" height="18"> 
+            <input type="radio" name="REVE_CONTINUE" value="1" checked>
+            本利續存 
+            <input type="radio" name="REVE_CONTINUE" value="2">
+            本金續存</td>
+        </tr>
+        <tr> 
+          <td width="78" bgcolor="#C4CBB8">　計息方式</td>
+          <td width="443">固定利率，新存單利率為原存款轉期當日（原存單到期日）聯邦銀行牌告利率</td>
+        </tr>
+        <tr> 
+          <td width="78" bgcolor="#C4CBB8">　領息方式</td>
+          <td width="443">到期領息</td>
+        </tr>
+        <tr> 
+          <td width="78" bgcolor="#C4CBB8">　定存種類</td>
+          <td width="443"> 定期存款　　　　　　　　　　　　　　</td>
+        </tr>
+        <tr> 
+          <td width="78" bgcolor="#C4CBB8">　網路密碼</td>
+          <td width="443"> 
+          	<input type="password" name="PWD" size="8" onclick="getKeyBoard();onTop();" readonly>
+          	<input type="hidden" name="REVE_PWD" value="">&nbsp;　　　　　　　　　　　　　　
+          </td>
+        </tr>
+      </table>
+      <div align="center"> 
+        <input type="button" name="Submit" value="確定" onclick="javascript:ChkSubmit('sure')">
+        <input type="button" name="Submit3" value="取消" onclick="chkSubmit2();">
+        <br>
+      </div>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="IP0405004">
+<input type="hidden" name="REVE_ACCT_NO" value="[[%%REVE-ACCT-NO%%]]">
+<input type="hidden" name="REVE_VCHR_NO" value="[[%%REVE-VCHR-NO%%]]">
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+</form>
+</body>
+</html>

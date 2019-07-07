@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!--?xml-stylesheet type="text/xsl" href="UCPMi.xsl"?-->
+<catalog>
+	<field id="103293i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='103293i05' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="103293i06">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="103293i02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>帳號</description>
+	</field>
+	<field id="103293i03">
+		<name>REVE-START-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>起日-YYYYMMDD</description>
+	</field>
+	<field id="103293i04">
+		<name>REVE-END-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>訖日-YYYYMMDD</description>
+	</field>
+	<field id="103293i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="103293i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="103293i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="103293i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+	<field id="103293i53">
+		<name>REVE-COME-FROM</name>
+		<length>16</length>
+		<type>String</type>
+		<description>來源位置</description>
+	</field>
+		<field id="103293i55">
+		<name>REVE-START-TIME</name>
+		<length>6</length>
+		<type>String</type>
+		<description>起時-HHMMSS</description>
+	</field>
+	<field id="103293i56">
+		<name>REVE-END-TIME</name>
+		<length>6</length>
+		<type>String</type>
+		<description>訖時-HHMMSS</description>
+	</field>
+</catalog>

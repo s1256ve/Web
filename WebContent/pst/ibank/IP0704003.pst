@@ -1,0 +1,138 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+*SerialNo           Date Modified  Modified by   
+*-------------      ----------     ----------
+*EAI97076           2010.01.12     David 
+*EAI96072           2009.03.02     David 
+*EAI99041           2010.05.11     David
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/yesgo.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+function sendIDOrCard(){
+	
+	
+	
+	var x = "[[%%SEND_ID_OR_SEND_CARD%%]]";
+
+	
+	if (x == 1)
+	{
+			 var str1 = "[[%%SEND_ID_ALWAYS%%]]";
+		   var str2 = str1.charAt(0).toUpperCase();
+		   var str3 = str2 + str1.substring(1,10);
+
+			 return str3;
+	}
+	
+  else
+	{
+		return "[[%%SEND_CARD_NO_ALWAYS%%]]";		
+	}
+}
+-->
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+</head>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg01.gif" leftmargin="0" topmargin="0">
+
+
+<form method="post" action="LoadAP" name="IP0704002">
+<b>帳戶交易&gt;<font color="#0066FF">本行信用卡繳款<br>
+<font class="t3">聯邦銀行個人網路銀行交易結果</font><br>
+<br>
+</font><font color="#0000CC"> 
+<img src="graph/point.gif" width="12" height="12">
+</font>信用卡繳款</b> 
+<table width="630" border="0">
+  <tr> 
+    <td height="276"> 
+      <div align="center"><font color="#0000CC">交易訊息：交易成功<br>
+        交易日/時間： 
+       <script>
+        	document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+        </script>
+        </font></div>
+      <table width="361" border="1" align="center" bordercolor="#999999">
+        <tr> 
+          <td bgcolor="#C4CBB8" width="171">轉帳類別</td>
+          <td height="25" width="192">即時轉帳</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="171">轉出帳號</td>
+          <td height="25" width="192">[[%%SEND-FROM-BR-NEME%%]] 
+          <script language="JavaScript">
+                            document.write(getAcctStr('[[%%SEND-FROM-ACCT-NO%%]]'));
+          </script>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="171">轉入銀行</td>
+          <td height="25" width="192"> 聯邦銀行</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="171">轉入身分證字號/信用卡卡號</td>
+          <td height="25" width="192">
+          <SCRIPT language="JavaScript">
+                	document.write(sendIDOrCard());
+          </SCRIPT>
+          </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="171">轉入金額</td>
+          <td height="25" width="192">新台幣
+          <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot('[[%%SEND-TXN-AMT%%]]')));
+          </SCRIPT>
+          元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="171">手 續 費</td>
+          <td height="25" width="192">0元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="171"> 轉出帳號餘額</td>
+          <td height="25" width="192">
+          <SCRIPT language="JavaScript">
+                document.write(trimDecimal(moneyAddDot('[[%%SEND-FROM-AVAL-BALANCE%%]]')));
+          </SCRIPT>
+          元</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#C4CBB8" width="171">交易附註</td>
+          <td height="25" width="192">[[%%SEND-MEMO%%]]&nbsp;</td>
+        </tr>
+      </table>
+      <div align="center"><br>
+        <table width="620" border="0" cellpadding="0" cellspacing="0">
+          <tr> 
+            <td width="50%"> 
+              <div align="center"><a href="javascript:window.print()"><img src="graph/print.gif" width="52" height="24" border="0"></a>　 
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+<script>
+	document.write(chgAction('[[%%SEND-YESGO-SN%%]]'));
+	//document.write(chgAction1('[[%%SEND-YESGO-SN%%]]','[[%%SYSDATE%%]]'));
+</script>
+</form>
+</body>
+</html>

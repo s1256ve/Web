@@ -1,0 +1,113 @@
+<html>
+<head>
+<title>國民現金卡業務查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link rel="stylesheet" type="text/css" media="all" href="theme/portal.css" />
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form name="submitform" method="POST" action="LoadAP">
+<b>　國民現金卡業務查詢&gt;<font color="#003399"><font color="#0066FF">國民現金卡繳款<br>
+<br>
+</font></font></b> 
+<table width="763" border="0">
+  <tr> 
+  	<td width="8"></td>
+    <td width="745">
+	<font color="#0000CC">您的國民現金卡帳號為 [[%%SEND-ACCT-NO%%]] <br>
+      您的國民現金信用卡卡號為 [[%%SEND-CARD-NO%%]] </font> <br>
+      <table width="631" border="1" bordercolor="#999999">
+        <tr> 
+          <td width="134" bgcolor="#C4CBB8">項 目</td>
+          <td width="237" bgcolor="#C4CBB8">現金卡</td>
+          <td width="238" bgcolor="#C4CBB8">信用卡</td>
+        </tr>
+        <tr> 
+          <td>本期信用卡應繳總額</td>
+          <td bgcolor="#FFFFDD" align=center> － </td>
+          <td bgcolor="#FFFFDD" align=right> [[%%SEND-CARD-DUE-AMT%%]] 元</td>
+        </tr>
+        <tr> 
+          <td>本期最低應繳金額</td>
+          <td bgcolor="#FFFFDD" align=right> [[%%SEND-ACCT-MIN-AMT%%]] 元 </td>
+          <td bgcolor="#FFFFDD" align=right> [[%%SEND-CARD-MIN-AMT%%]] 元 </td>
+        </tr>
+        <tr> 
+          <td>本期應繳日期</td>
+          <td bgcolor="#FFFFDD" align=center> [[%%SEND-ACCT-DUE-DAY%%]] </td>
+          <td bgcolor="#FFFFDD" align=center> [[%%SEND-CARD-DUE-DAY%%]] </td>
+        </tr>
+      </table>
+      註：信用卡之帳單金額、應繳金額係您與聯邦銀行所有往來之信用卡總計。 </td>
+  </tr>
+  <tr>
+    <td></td> 
+    <td>
+      <table width="705" border="0">
+        <tr> 
+          <td colspan="2"> 
+            <input type="radio" name="radiobutton" value="radiobutton">
+            繳交國民現金卡</td>
+        </tr>
+        <tr> 
+          <td width="13%">　轉出帳號<font color="#663300" face="Arial, Helvetica, sans-serif">　 
+            </font></td>
+          <td width="87%"><font color="#663300" face="Arial, Helvetica, sans-serif"> 
+            <select name="select2">
+              <option selected>==請選擇帳號　可用餘額==</option>
+              <option>[[%%SEND-FROM-BR-NAME%%]] [[%%SEND-FROM-ACCT-DESC%%]]　[[%%SEND-FROM-ACCT-NO%%]]</option>
+            </select>
+            </font><font face="Arial, Helvetica, sans-serif">（<a href="%A1%AD">轉帳限額查詢</a>）</font></td>
+        </tr>
+        <tr> 
+          <td width="13%"> 　轉入帳號　</td>
+          <td width="87%"> [[%%SEND-ACCT-NO%%]] </td>
+        </tr>
+        <tr> 
+          <td width="13%">　金　　額</td>
+          <td width="87%">新台幣 
+            <input type="text" name="textfield" size="15" value="1,600">
+            元 </td>
+        </tr>
+        <tr> 
+          <td width="13%"> 　交易附註</td>
+          <td width="87%"> 
+            <input type="text" name="textfield4" value="繳交國民現金">
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td></td>
+    <td>
+      <table width="620" border="0">
+        <tr> 
+          <td colspan="2"> 
+            <input type="radio" name="radiobutton" value="radiobutton">
+            繳交信用卡</td>
+		 
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2"> 
+      <div align="center">
+        <input type="submit" name="Submit" value="確  定">
+        <input type="submit" name="Submit2" value="取 消">
+      </div>
+    </td>
+  </tr>
+</table>
+<br>
+<input type="hidden" name="aptype" value="ibank">
+<input type="hidden" name="pageid" value="IP0502001">
+<input type="hidden" name="selBRName" value="">
+<input type="hidden" name="selAccount" value="">
+<input type="hidden" name="selInAcct" value="">
+<input type="hidden" name="selMoney" value="">
+<input type="hidden" name="selPayType" value="">
+</form>
+</body>
+</html>

@@ -1,0 +1,589 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5; no-cache" >
+<title>自行外匯轉帳</title>
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+*SerialNo           Date Modified  Modified by   
+*-------------      ----------     ----------
+*EAI99074           2010.12.22     David
+*EAI99076           2010.12.23     David
+*EAI100036          2011.07.01     Joe 
+***********************************************************************/
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+</head>
+<script language="Javascript">
+    //字串去空白
+    String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");} 
+</script>
+<script language="JavaScript">
+<!--
+
+var i = 0; 
+var j = 0;
+
+//UCPTA084外匯約定轉入
+var to_acct = [
+//<!--[[%%LOOP_SEC SEND-ACCT-NO%%]]-->
+                  ["[[%%SEND-ACCT-NO%%]]", "[[%%SEND-ACCT-MARK%%]]", "[[%%SEND-TO-BR-NAME%%]]", "[[%%SEND-ACCT-DESC%%]]"],
+//<!--[[%%ELOOP_SEC%%]]--> 
+              ["", "","",""]];
+
+var myacct = [];
+var notmyacct = [];
+
+function findAcctIndex(source, key) {
+  if(source.length <= 0 )
+    return -1;
+  var i = 0;
+  for(i=0; i<source.length; i++) {
+    if(key == source[i])
+      return i;
+  }
+  return -1;
+}
+
+function findAcctIndex2(source, key) {
+  if(source.length <= 0 )
+    return -1;
+  var i = 0;
+  for(i=0; i<source.length; i++) {
+    if(key == source[i][0])
+      return i;
+  }
+  return -1;
+}
+
+function buildAcct() {
+  var i = 0;
+    
+  for(i=0; i < to_acct.length; i++) {
+    if(to_acct[i][0] == "999999999999")
+      continue;
+    if(to_acct[i][1]=="1") { //本人
+        myacct.push(to_acct[i][0]);
+    }else { //他人
+        notmyacct.push(to_acct[i][0]);
+    }
+  }
+
+  if(myacct.length > 0)
+    myacct.sort();
+
+  if(notmyacct.length > 0)
+    notmyacct.sort();
+
+}
+
+buildAcct();
+
+//alert使用=================================================================
+
+function MyAcctDisplay() {
+  var result = "";
+  var i = 0; 
+  var mark = "";
+  for(i=0; i<myacct.length; i++) {
+    if(myacct[i]=="")
+      continue;
+      
+    j = findAcctIndex2(to_acct, myacct[i]);
+    if(j<0)
+      ;
+    else {
+        result = result + to_acct[j][0] + "@" + to_acct[j][2] + "\n";
+    }    
+  }
+  return result;
+}
+
+function NotMyAcctDisplay() {
+  var result = "";
+  var i = 0; 
+  var mark = "";
+  for(i=0; i<notmyacct.length; i++) {
+    if(notmyacct[i]=="")
+      continue;
+
+    j = findAcctIndex2(to_acct, notmyacct[i]);
+    if(j<0)
+      ;
+    else {
+        result = result + to_acct[j][0] + "@" + to_acct[j][2] + "\n";
+    }        
+  }
+  return result;
+}
+
+//alert(MyAcctDisplay());
+//alert(NotMyAcctDisplay());
+
+//========================================================================
+
+
+
+    
+    function showVTRDiv(type){
+	    if (type==0){
+	        document.all.acctType1.style.display="block";
+	        document.all.acctType2.style.display="none";
+	    }
+	    if (type==1){
+	        document.all.acctType1.style.display="none";
+	        document.all.acctType2.style.display="block";
+	    }
+    }
+    
+    function showSendDiv(type){
+      document.all.NOTIFY_TYPE.value=type;
+	    if (type==0){
+	        document.all.notiType1.style.display="block";
+	        //document.all.notiType2.style.display="none";
+	    }
+	    if (type==1){
+	        document.all.notiType1.style.display="none";
+	        //document.all.notiType2.style.display="block";
+	    }
+	    if (type==2){
+	        document.all.notiType1.style.display="none";
+	        //document.all.notiType2.style.display="none";
+	    }
+    }
+	   
+	  //切換幣別
+		function chgCurr(acctStr){
+			if (acctStr!=null && acctStr !=0){
+				var acctArray = acctStr.split("@");
+				document.getElementById("TXN_CURR").innerHTML=acctArray[4];
+			}else{
+				document.getElementById("TXN_CURR").innerHTML="";
+			}
+		}
+	   
+    
+		function chkCostFormat(amt){
+			  if (amt == ""){
+			      alert("請輸入轉帳金額!");
+			      return false;
+			  }
+			  if (isNaN(amt)){
+			      alert("轉帳金額格式錯誤!");
+			      return false;
+			  }
+			  /*
+			  if(amt.indexOf(".",0)!=-1){
+			      alert("轉帳金額須為正整數!");
+			      return false;
+			  }*/
+			  
+			  if(amt.indexOf("-",0)!=-1){
+			      alert("轉帳金額須為正整數!");
+			      return false;
+			  }
+			  if(amt.indexOf("+",0)!=-1){
+			      alert("台幣轉帳不可帶正號!");
+			      return false;
+			  }
+			  if(eval(amt)==0){
+			      alert("轉帳金額不可為零!");
+			      return false;
+			  }
+			return true;
+	}	
+        
+        
+function ChkSubmit(){
+        
+        var f=document.IP0703300;
+        var y=getADDateStr("[[%%SYSDATE%%]]",3)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",1);      
+        
+        if (f.FROMACCTNO.value == "0"){
+            alert("請選擇轉出帳號!");
+            return;
+        }
+				var acctArray = f.FROMACCTNO.value.split("@");
+        f.FROM_ACCT_NO.value = acctArray[0];
+	    	f.FROM_BR_NAME.value = acctArray[1];
+  	  	f.CURRENCY_ID.value = acctArray[2];
+  	  	f.CURRENCY_ENAME.value = acctArray[3];
+  	  	f.CURRENCY_CNAME.value = acctArray[4];
+				f.FROM_AVAL_BALANCE.value = acctArray[5];
+				
+		  	if(chkCostFormat(f.TXN_AMT.value)== false){
+						return;
+				}
+       
+        if (f.vtrType[0].checked){  //本人帳戶
+        /*
+        	if (f.notifyType[1].checked){
+        		alert("\"本人自行帳戶\"不提供簡訊通知功能!");
+        		return;
+        	}
+        */
+        	if (f.TOACCTINFO1.value=="0"){
+        		alert("請選擇自行本人外匯轉入帳號!");
+        		return;
+          }
+        	  var acctArray = f.TOACCTINFO1.value.split("@"); 
+    	    	f.TO_ACCTNO.value = acctArray[0];
+    	    	f.TO_BANK_NAME.value = acctArray[1];
+        }
+
+        if (f.vtrType[1].checked){  //他人帳戶
+        	if (f.TOACCTINFO2.value=="0"){
+        		alert("請選擇自行非本人外匯轉入帳號!");
+        		return;
+          }
+        	  var acctArray = f.TOACCTINFO2.value.split("@");                	
+    	    	f.TO_ACCTNO.value = acctArray[0];
+    	    	f.TO_BANK_NAME.value = acctArray[1];
+
+        }
+
+		   if(f.FROM_ACCT_NO.value == f.TO_ACCTNO.value){
+		    		alert("轉入轉出不可為相同帳號!");
+		    		return;
+	    	}                
+        	
+   		if( f.CURRENCY_ENAME.value == "JPY" ){            			
+      		re = /^\d+$/;  	//只接受正整數
+   	 				if(!re.test(f.TXN_AMT.value)){ 
+    					alert('日幣最小轉帳金額單位為元，請重新輸入轉帳金額。');
+    					return; 
+      			}
+      }      		
+     	else{
+      		re = /^[0-9]+(\.[0-9]{1,2})?$/;  //只接受至小數點第二位
+   	 				if(!re.test(f.TXN_AMT.value)){ 
+    					alert('本幣別最小轉帳金額單位為分(0.01)，請重新輸入轉帳金額。');
+    					return; 
+      			}
+   	 	
+   	  }
+   	
+   	
+	if (f.notifyType[0].checked){  //Email
+		if (f.EMAIL_ADDR.value == ""){
+     		alert("請填寫通知對象電子郵件地址!");
+    		return;    
+  	}
+   	chkEmail = f.EMAIL_ADDR.value.match(/^\S+@\S+\.\S+$/);
+   	if(!chkEmail || !f.EMAIL_ADDR.value){
+   		alert("電子郵件位址格式有誤!");
+  		return;
+   	}
+   	if (f.MSG1.value.Trim() == ""){
+   		alert("請填寫訊息內容!");
+   		return;    
+   	}
+   	
+    		f.HOW_TO_SEND.value = "電子郵件通知";
+    		f.SEND_TO_YOU.value = "";
+    		if(f.MSG1.value.length>250){
+    			alert("郵件通知內容不得超過250字!");
+    			return;
+    		}
+    		//f.REVE_MSG.value = addMailTitle(chkchar(f.MSG1.value));
+    		f.REVE_MSG_O.value = f.MSG1.value ;
+    		f.REVE_MSG.value = addMailTitle(f.MSG1.value);
+    		//document.IP0703300.MOBILE.value = "";
+   }
+    	
+    	/*
+    	if (f.notifyType[1].checked){  //簡訊
+    		   if (f.MOBILE.value == ""){
+    	        		alert("請填寫通知對象行動電話號碼!");
+                			return;
+    	    	}
+    	    	if (isNaN(f.MOBILE.value)){
+            			alert("電話號碼格式錯誤!");
+            			return;
+        		}
+        		if (f.MOBILE.value.length!=10){
+            			alert("電話號碼長度錯誤!");
+            			return;
+        		}
+        		if(f.MOBILE.value.substr(0,2)!=09){
+						 			alert("您輸入的行動電話號碼有誤!");
+						 			return;
+ 						}
+    	    	if (f.MSG2.value.Trim() == ""){
+    	        		alert("請填寫訊息內容!");
+                			return;
+    	    	}
+    	    	if(f.MSG2.value.length > 42){
+    	    		alert("您輸入字數超過42個字，請重新輸入!");
+    	    		return;
+    	    	}
+
+						f.REVE_MSG_O.value = f.MSG2.value;
+    	    	f.REVE_MSG.value = addMobileTitle2(f.MSG2.value,y);
+    	    	document.IP0703300.EMAIL_ADDR.value = "";    	    
+    	 }
+    	 */
+
+			if (f.notifyType[1].checked){  //不通知
+				//document.IP0703300.MOBILE.value = "";
+				document.IP0703300.EMAIL_ADDR.value = "";
+			}
+    	
+    	f.TXN_MEMO.value = HalfshapeToFullshape(f.TXN_MEMO.value);
+      f.submit();
+}
+
+
+  function chkSubmit2(){
+  	document.IP0703300.pageid.value = "IP0703300";
+		document.IP0703300.submit();
+	}  
+  
+  function AcctDesc(){
+  	document.IP0703300.pageid.value = "IP0902000";
+		document.IP0703300.submit();
+	}		
+  
+//-->
+</script>
+
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>帳戶交易&gt;<font color="#003399"><font color="#0066FF">自行外匯存款轉帳</font></font></b><br>
+<font color="#0000CC"> </font>
+
+<form name="IP0703300" method="POST" action="LoadAP">
+<table width="750" border="0">
+  <tr>
+    <td><font color="#0000CC"> </font> 
+      <table width="620" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td height="2"> 
+            <div align="right"><font color="#0000CC"> 資料時間：
+            	<script>
+        		document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+        	</script>
+            </font></div>
+          </td>
+        </tr>
+      </table>
+      <font color="#0000CC"> </font> 
+      <table width="620" border="0">
+        <tr> 
+          <td colspan="2"><b>外匯轉出帳號</b><font color="#663300" face="Arial, Helvetica, sans-serif">　 
+            
+              <select name="FROMACCTNO" onChange="chgCurr(this.value);">
+              <option value="0" selected>==請選擇帳號及幣別　可用餘額== </option>
+
+<!--[[%%LOOP_SEC SEND-FROM-ACCT-NO%%]]-->
+              <option value="[[%%SEND-FROM-ACCT-NO%%]]@[[%%SEND-FROM-BR-NAME%%]]@[[%%SEND-FROM-CURRENCY%%]]@[[%%SEND-FROM-CURRENCY-ENAME%%]]@[[%%SEND-FROM-CURRENCY-CNAME%%]]@[[%%SEND-FROM-AVAL-BALANCE%%]]">[[%%SEND-FROM-BR-NAME%%]] 
+              <script language="JavaScript">
+                     document.write(getAcctStr('[[%%SEND-FROM-ACCT-NO%%]]'));
+              </script>
+              [[%%SEND-FROM-CURRENCY-CNAME%%]]
+              <script>
+              	document.write(moneyAddDot('[[%%SEND-FROM-AVAL-BALANCE%%]]'));
+              </script>
+               元</option>
+<!--[[%%ELOOP_SEC%%]]-->
+
+            </select>
+            </td>
+        </tr>
+        <tr> 
+          <td colspan="2"><b>轉入帳號</b> </td>
+        </tr>
+        <tr> 
+          <td> 
+            <table width="100%" border="0">
+              <tr> 
+                <td bgcolor="#C4CBB8"> 
+                  <input type="radio" name="vtrType" value="0" checked  onclick="javascript:showVTRDiv(this.value);">
+                  已約定自行本人外匯轉入帳號:
+                </td>
+               </tr>
+
+              <tr> 
+                <td>
+                    <div id="acctType1" style="display:block">　　轉入帳號：&nbsp;&nbsp;
+                    <select name="TOACCTINFO1">
+											<option value="0" selected>==請選擇帳號== </option>
+											
+											<script>
+												for(i=0; i<myacct.length; i++) {
+					                if(myacct[i]=="")
+					                  continue;    
+					
+											    j = findAcctIndex2(to_acct, myacct[i]);
+								              
+											    if(j<0)
+											      ;
+											    else {											        
+											        document.write("<option value='" + to_acct[j][0]+"@"+to_acct[j][2] + "'>"+ to_acct[j][2] + " " + getAcctStr(to_acct[j][0]));
+											        document.write("</option>");
+											    }    
+											  }
+											 </script>                          
+               			</select>                      
+                </td>
+              </tr>
+              
+              <tr> 
+                <td bgcolor="#C4CBB8"> 
+                  <input type="radio" name="vtrType" value="1" onClick="javascript:showVTRDiv(this.value);">
+                  已約定自行非本人外匯轉入帳號：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  &nbsp&nbsp&nbsp&nbsp&nbsp 
+                  <input type="button" name="acctdesc" value=" 編輯帳號暱稱 " onclick="AcctDesc()";>
+                </td>
+              </tr>  
+              <tr> 
+                <td>
+                    <div id="acctType2" style="display:none">　　轉入帳號：&nbsp;&nbsp;                    	
+                    <select name="TOACCTINFO2">
+					            <option value="0" selected>==請選擇帳號== </option>
+					
+											<script>
+												for(i=0; i<notmyacct.length; i++) {
+					                if(notmyacct[i]=="")
+					                  continue;    
+					
+											    j = findAcctIndex2(to_acct, notmyacct[i]);
+											    if(j<0)
+											      ;
+											    else {											        
+											        document.write("<option value='" + to_acct[j][0]+"@"+to_acct[j][2] + "'>"+ to_acct[j][2] + " " + getAcctStr(to_acct[j][0]) + " " +  to_acct[j][3] );
+											        document.write("</option>");
+											    }    
+											  }
+											</script>     
+                      </select>
+                     </div> 
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"><b>轉帳幣別 / 金額</b>&nbsp;&nbsp;<span id="TXN_CURR" name="TXN_CURR"></span>
+            <input type="text" name="TXN_AMT" value=""  size="6">
+            元</td>
+        </tr>
+        <tr> 
+          <td colspan="2"><b>交易附註</b>
+          <input type="text" name="TXN_MEMO" value="" size="80" maxlength="50">
+          <br>
+            <font color="#FF0000">(限50字，如您輸入交易附註，則於交易成功後可至『帳戶查詢』&gt;『外匯存款帳戶』&gt;『交易明細』點選查詢類別為『網銀轉出交易』查詢您所記錄之交易附註。)            	
+            </font>
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"><b>通知方式</b><font color="#FF0000">（您可利用下列方式於本次轉帳成功後通知相關人員）</font></td>
+        </tr>
+                
+        <tr> 
+          <td colspan="2">           
+            <table width="100%" border="0">
+              <tr>
+		          <td colspan="2" bgcolor="#C4CBB8">
+		            <input type="radio" name="notifyType" value="0" onClick="javascript:showSendDiv(this.value);">
+        		    電子郵件通知 </td>
+              </tr>
+                <tr> 
+                  <td colspan="2">
+                  <div id="notiType1" style="display:none">　
+                    通知對象電子郵件地址
+                    　<input type="text" onpaste="return false;" name="EMAIL_ADDR" size="80" value="" style="ime-mode:disabled"><br>　
+                    訊息內容（限250字）<br>
+                    　<textarea name="MSG1" cols="80" rows="3" maxlength="250"></textarea>
+                  </div>
+                  </td>
+                </tr>
+            </table>
+            <!--
+            <table width="100%" border="0">
+              <tr> 
+                <td colspan="2" bgcolor="#C4CBB8"> 
+                  <input type="radio" name="notifyType" value="1" onClick="javascript:showSendDiv(this.value);">
+                  簡訊通知<font color="#FF0000">( 如您使用本人自行帳戶互轉則不提供簡訊通知功能 )</font></td>
+              </tr>
+              <tr> 
+                <td colspan="2">
+                <div id="notiType2" style="display:none">　
+                  通知對象行動電話號碼
+                  　<input onpaste="return false;" type="text" name="MOBILE" value="" maxlength="10" style="ime-mode:disabled"><br>　
+                  訊息內容（簡訊開頭語為<聯邦網銀代理通知>，您可輸入42個字）<br>
+                  　<textarea name="MSG2" MAXLENGTH=60 cols="80" rows="3"></textarea>
+                </div>
+                </td>
+              </tr>
+            </table>
+            -->
+            <table width="100%" border="0">
+              <tr> 
+                <td colspan="2" bgcolor="#C4CBB8"> 
+                  <input type="radio" name="notifyType" value="1" checked  onclick="javascript:showSendDiv(this.value);">
+                  不通知</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      
+      註1.：交易服務時間為每日上午06：00~晚上24：00，營業日下午15：30以後或例假日交易之帳務紀錄，皆記為次一營業日。<br>
+      註2.：如執行轉帳交易發生網路傳輸異常而無法確認交易結果時，請先利用交易明細查詢功能確認交易是否成功。<br>
+      註3.：本交易係以本行外匯帳戶間同幣別轉帳。<br>           
+      <font color="#FF0000">註4.：本人外匯帳戶間外幣互轉無交易限額；轉入他人外匯帳戶同一營業日每人累積轉出限額為等值美金10萬元(含)以下。</font>
+      <br>
+      <br>
+      <table width="620" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td colspan="2"> 
+            <div align="center">　 
+              <input type="button" name="sure" value=" 確定 " onClick="ChkSubmit()";>
+              <input type="reset" name="reset" value=" 重填 ">
+              <br>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<script>
+getTimeAlert('[[%%SYSTIME%%]]','[[%%SYSDATE%%]]');
+</script>
+
+<input type="hidden" name="FROM_ACCT_NO">
+<input type="hidden" name="FROM_BR_NAME">
+<input type="hidden" name="FROM_AVAL_BALANCE">
+<input type="hidden" name="FROM_ACCTDESC">
+
+<input type="hidden" name="CURRENCY_ID">
+<input type="hidden" name="CURRENCY_ENAME">
+<input type="hidden" name="CURRENCY_CNAME">
+
+<input type="hidden" name="TO_ACCTNO" value="">
+<input type="hidden" name="TO_BANK_NAME" value="">
+<input type="hidden" name="TO_ACCTDESC" value="">
+
+<input type="hidden" name="REVE_MSG_O" value="">
+<input type="hidden" name="REVE_MSG" value="">
+
+<input type="hidden" name="pageid" value="IP0703301">
+<input type="hidden" name="HOW_TO_SEND">
+<input type="hidden" name="SEND_TO_YOU" value="0">
+
+<input type="hidden" name="NOTIFY_TYPE">
+
+</form>
+
+<p><p><p><p><p><p><p><p><p><p><p><p>
+</body>
+</html>

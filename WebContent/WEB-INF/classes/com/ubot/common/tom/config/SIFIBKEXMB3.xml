@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="BIG5"?>
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="EXMB3i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='EXMB3i003' attr='I' default=''>
+    <name>REVE-ACTOR</name>
+    <length>0</length>
+    <type>STRING</type>
+    <description></description>
+ </field>
+	<field id="EXMB3i02">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="EXMB3i03">
+		<name>DBO-WFAC01</name>
+		<length>10</length>
+		<type>String</type>
+		<description>約定帳號編號</description>
+	</field>
+	<field id="EXMB3i03">
+		<name>DBO-WFAC02</name>
+		<length>10</length>
+		<type>String</type>
+		<description>建檔日期</description>
+	</field>
+	<field id="EXMB3i04">
+		<name>DBO-WFAC03</name>
+		<length>3</length>
+		<type>String</type>
+		<description>申請分行</description>
+	</field>
+	<field id="EXMB3i05">
+		<name>DBO-WFAC04</name>
+		<length>10</length>
+		<type>String</type>
+		<description>匯款人統一編號</description>
+	</field>
+	<field id="EXMB3i06">
+		<name>DBO-WFAC05</name>
+		<length>10</length>
+		<type>String</type>
+		<description>匯款人出生日期</description>
+	</field>
+	<field id="EXMB3i07">
+		<name>DBO-WFAC06</name>
+		<length>34</length>
+		<type>String</type>
+		<description>匯款人中文名稱</description>
+	</field>
+	<field id="EXMB3i08">
+		<name>DBO-WFAC07</name>
+		<length>35</length>
+		<type>String</type>
+		<description>匯款人英文名稱</description>
+	</field>
+	<field id="EXMB3i09">
+		<name>DBO-WFAC08</name>
+		<length>1</length>
+		<type>String</type>
+		<description>匯款人電話</description>
+	</field>
+	<field id="EXMB3i10">
+		<name>DBO-WFAC10</name>
+		<length>1</length>
+		<type>String</type>
+		<description>匯款人英文地址</description>
+	</field>
+	<field id="EXMB3i11">
+		<name>DBO-WFAC16</name>
+		<length>3</length>
+		<type>String</type>
+		<description>匯款幣別</description>
+	</field>
+	<field id="EXMB3i12">
+		<name>DBO-WFAC17</name>
+		<length>2</length>
+		<type>String</type>
+		<description>國別</description>
+	</field>
+	<field id="EXMB3i13">
+		<name>DBO-WFAC24</name>
+		<length>34</length>
+		<type>String</type>
+		<description>受款人帳號</description>
+	</field>
+	<field id="EXMB3i14">
+		<name>DBO-WFAC25</name>
+		<length>35</length>
+		<type>String</type>
+		<description>受款人姓名</description>
+	</field>
+	<field id="EXMB3i15">
+		<name>DBO-WFAC26</name>
+		<length>1</length>
+		<type>String</type>
+		<description>受款人地址1</description>
+	</field>
+	<field id="EXMB3i16">
+		<name>DBO-WFAC27</name>
+		<length>1</length>
+		<type>String</type>
+		<description>受款人地址2</description>
+	</field>
+	<field id="EXMB3i17">
+		<name>DBO-WFAC28</name>
+		<length>1</length>
+		<type>String</type>
+		<description>受款人地址3</description>
+	</field>
+	<field id="EXMB3i18">
+		<name>DBO-WFAC29</name>
+		<length>1</length>
+		<type>String</type>
+		<description>SWIFT CODE</description>
+	</field>
+	<field id="EXMB3i19">
+		<name>DBO-WFAC30</name>
+		<length>1</length>
+		<type>String</type>
+		<description>受款銀行名稱</description>
+	</field>
+	<field id="EXMB3i20">
+		<name>DBO-WFAC31</name>
+		<length>1</length>
+		<type>String</type>
+		<description>受款銀行地址</description>
+	</field>
+	<field id="EXMB3i20">
+		<name>DBO-WFAC36</name>
+		<length>1</length>
+		<type>String</type>
+		<description>受款銀行代號</description>
+	</field>
+	<field id="EXMB3i21">
+		<name>REVE-ACCT-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>轉出帳號</description>
+	</field>
+	<field id="EXMB3i22">
+		<name>REVE-ACCT-CURRENCY</name>
+		<length>1</length>
+		<type>String</type>
+		<description>轉出幣別(代號)</description>
+	</field>
+	<field id="EXMB3i23">
+		<name>REVE-INPUT-AMT</name>
+		<length>1</length>
+		<type>String</type>
+		<description>轉出金額</description>
+	</field>
+	<field id="EXMB3i24">
+		<name>REVE-TXN-AMT</name>
+		<length>1</length>
+		<type>String</type>
+		<description>匯款金額</description>
+	</field>
+	<field id="EXMB3i25">
+		<name>REVE-RM-TYPE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>匯款性質(代號)</description>
+	</field>
+	<field id="EXMB3i26">
+		<name>REVE-RM-TYPE-NAME</name>
+		<length>1</length>
+		<type>String</type>
+		<description>匯款性質(說明)</description>
+	</field>
+	<field id="EXMB3i27">
+		<name>REVE-RM-PHONE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>匯款人聯絡電話</description>
+	</field>
+	<field id="EXMB3i28">
+		<name>REVE-RM-MSG</name>
+		<length>1</length>
+		<type>String</type>
+		<description>匯出匯款附言</description>
+	</field>
+	<field id="EXMB3i29">
+		<name>REVE-RM-MEMO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>交易附註</description>
+	</field>
+	<field id="EXMB3i30">
+		<name>REVE-SELL</name>
+		<length>1</length>
+		<type>String</type>
+		<description>匯款幣種賣匯</description>
+	</field>
+	<field id="EXMB3i31">
+		<name>REVE-PWD</name>
+		<length>1</length>
+		<type>String</type>
+		<description>密碼</description>
+	</field>
+	<field id="EXMB3i32">
+		<name>REVE-KB-IDX</name>
+		<length>1</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="EXMB3i33">
+		<name>REVE-DEF-FEE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>預設匯款手續費(台幣，目前為300元)</description>
+	</field>
+	<field id="EXMB3i34">
+		<name>REVE-TXN-FEE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>匯款手續費(轉換後外幣金額)</description>
+	</field>
+	<field id="EXMB3i35">
+		<name>REVE-TXNFEE-DESC</name>
+		<length>1</length>
+		<type>String</type>
+		<description>匯款手續費說明</description>
+	</field>
+	<field id="EXMB3i36">
+		<name>REVE-TOTALAMT-DESC</name>
+		<length>1</length>
+		<type>String</type>
+		<description>匯款總金額說明</description>
+	</field>
+	<field id="EXMB3i37">
+		<name>REVE-TXN-MEMO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>交易附註說明</description>
+	</field>
+	<field id="EXMB3i38">
+		<name>REVE-TXN-AMT-DESC</name>
+		<length>1</length>
+		<type>String</type>
+		<description>匯款金額說明</description>
+	</field>
+	<field id="EXMB3i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="EXMB3i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="EXMB3i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="EXMB3i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>
+
+

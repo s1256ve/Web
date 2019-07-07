@@ -1,0 +1,149 @@
+<html>
+<head>
+<title>基金申購</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<script language="javascript">
+
+function chkBank(tmp){
+	splitBank(tmp);
+	document.IF0401103.pageid.value = "IF0401104";
+	document.IF0401103.submit();
+}
+
+function splitBank(tmp){
+	var tmpArray = tmp.split("@");
+	
+	document.IF0401103.REVE_BANK_NAME.value = tmpArray[1];
+	document.IF0401103.REVE_BANK_CODE.value = tmpArray[0];
+	document.IF0401103.PRE_BANK_CODE.value = tmpArray[0];
+}
+
+function splitBRBank(tmp){
+	var tmpArray = tmp.split("@");
+	
+	document.IF0401103.REVE_BR_CODE.value = tmpArray[0];
+	document.IF0401103.REVE_BR_NAME.value = tmpArray[1];	
+}
+
+function selBank(tmp,tmp2){
+	var bank = tmp;
+	var prebank = "[[%%PRE-BANK-CODE%%]]";
+	if(bank == prebank){
+		return "<option value='"+ tmp + "@" + tmp2 + "'selected>"+ tmp2 +"</option>";
+	}
+	else{
+		return "<option value='"+ tmp + "@" + tmp2 + "'>"+ tmp2 +"</option>";
+	}
+}
+
+function selBRBank(tmp,tmp2){
+		return "<option value='"+ tmp + "@" + tmp2 + "'>"+ tmp + " " +tmp2 +"</option>";
+}
+
+function chkSubmit(){
+	var tmpBank = document.IF0401103.select.value;
+	var tmpBRBank = document.IF0401103.select_BR.value;
+	splitBank(tmpBank);
+	splitBRBank(tmpBRBank);
+	
+	var acct = document.IF0401103.REVE_ACCT_NO.value;
+	if(acct == ""){
+		alert("請輸入轉入帳號!");
+		return;
+	}
+	disableButton(document.IF0401103.Submit2);
+	document.IF0401103.submit();
+}
+
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0401103">
+<font color="#006666"><b>基金贖回&gt;</b></font><br>
+
+  <table width="770" border="0">
+    <tr> 
+    <td colspan="3"> 
+        <div align="center"> <b>請鍵入贖回款入帳之本人帳號</b><b><br>
+        </b> 
+          <table width="600" border="1" cellpadding="0" bordercolor="#999999">
+            <tr bgcolor="#C5DECF"> 
+            <td width="31%" height="16"> 
+              <div align="center">銀行名稱</div>
+            </td>
+            <td width="33%" height="16"> 
+              <div align="center">分行名稱</div>
+            </td>
+            <td width="36%" height="16"> 
+              <div align="center">帳號</div>
+            </td>
+          </tr>
+          <tr bgcolor="#E7F1EE"> 
+            <td width="31%" height="25"> 
+              <div align="center"> 
+                <select name="select" onChange="chkBank(this.value);">
+                [[%%LOOP_SEC SEND-BANK-NAME%%]]
+                <script>
+                document.write(selBank("[[%%SEND-BANK-CODE%%]]","[[%%SEND-BANK-NAME%%]]"));
+                </script>
+                [[%%ELOOP_SEC%%]]
+                </select>
+              </div>
+            </td>
+            <td width="33%"> 
+              <div align="center"> 
+                <select name="select_BR">
+               	[[%%LOOP_SEC SEND-BID%%]]
+               		<script>
+                			document.write(selBRBank("[[%%SEND-BID%%]]","[[%%SEND-BR-NAME%%]]"));
+               	 </script>                  
+                [[%%ELOOP_SEC%%]]
+                </select>
+              </div>
+            </td>
+            <td width="36%"> 
+              <div align="center"> 
+                <input type="text" name="REVE_ACCT_NO" value="">
+              </div>
+            </td>
+          </tr>
+        </table>
+        <br>
+        <input type="button" name="Submit2" value="下一步" onClick="chkSubmit();">
+      </div>
+    </td>
+  </tr>
+</table>
+<br>
+<br>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="IF0401105">
+  <input type="hidden" name="REVE_CERT_NO" value="[[%%REVE-CERT-NO%%]]">
+   <input type="hidden" name="REVE_FUND_ID" value="[[%%REVE-FUND-ID%%]]">
+  <input type="hidden" name="REVE_FUND_CNAME" value="[[%%REVE-FUND-CNAME%%]]">
+   <input type="hidden" name="REVE_FROM_AMT" value="[[%%REVE-FROM-AMT%%]]">
+  <input type="hidden" name="REVE_AMT" value="[[%%REVE-AMT%%]]">
+  <input type="hidden" name="REVE_UNITS" value="[[%%REVE-UNITS%%]]">
+  <input type="hidden" name="REVE_REF_PRICE" value="[[%%REVE-REF-PRICE%%]]">
+  <input type="hidden" name="REVE_REF_EXCHGRATE" value="[[%%REVE-REF-EXCHGRATE%%]]">
+  <input type="hidden" name="CHECK_AMT" value="[[%%CHECK-AMT%%]]">
+  <input type="hidden" name="REVE_BANK_NAME" value="[[%%REVE-BANK-NAME%%]]">
+  <input type="hidden" name="REVE_BANK_CODE" value="">
+  <input type="hidden" name="PRE_BANK_CODE" value="[[%%PRE_BANK_CODE%%]]">
+  <input type="hidden" name="REVE_BR_CODE" value="">
+  <input type="hidden" name="REVE_BR_NAME" value="">
+  <input type="hidden" name="REVE_CVT_TYPE" value="[[%%REVE-CVT-TYPE%%]]">
+  <input type="hidden" name="REVE_CHANGE_TYPE" value="[[%%REVE-CHANGE-TYPE%%]]">
+  <input type="hidden" name="REVE_ID_NO" value="[[%%REVE-ID-NO%%]]">
+</table>
+</form>
+</body>
+</html>

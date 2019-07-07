@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- NCR SDGAVTRR3, 預約轉帳(憑證). Last updated date 1-9-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/NCR">
+	<field id="SDGAVTRRi01">
+		<name>REVE-CODE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='SDGAVTRR03' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="SDGAVTRR02">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="SDGAVTRRi02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>轉出帳號</description>
+	</field>
+	<field id="SDGAVTRRi04">
+		<name>REVE-TO-ACCTNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>轉入帳號</description>
+	</field>
+	<field id="SDGAVTRRi05">
+		<name>REVE-TXN-AMT</name>
+		<length>12</length>
+		<type>String</type>
+		<description>轉帳金額</description>
+	</field>
+	<field id="SDGAVTRRi06">
+		<name>REVE-TO-BANK</name>
+		<length>3</length>
+		<type>String</type>
+		<description>轉入銀行代號</description>
+	</field>
+	<field id="SDGAVTRRi07">
+		<name>REVE-SCHD-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>預約日期</description>
+	</field>
+	<field id="SDGAVTRRi08">
+		<name>REVE-TXN-MEMO</name>
+		<length>8</length>
+		<type>String</type>
+		<description>交易附註</description>
+	</field>
+	<field id="SDGAVTRRi10">
+		<name>REVE-MSG-TYPE</name>
+		<length></length>
+		<type>String</type>
+		<description>訊息傳送種類</description>
+	</field>
+	<field id="SDGAVTRRi11">
+		<name>REVE-MSG-SENDTO</name>
+		<length></length>
+		<type>String</type>
+		<description>傳送訊息給xxx</description>
+	</field>
+	<field id="SDGAVTRRi12">
+		<name>REVE-MSG-CONTENT</name>
+		<length></length>
+		<type>String</type>
+		<description>訊息傳送內容</description>
+	</field>
+	<field id="SDGAVTRRi13">
+		<name>REVE-MAIL-KEY</name>
+		<length></length>
+		<type>String</type>
+		<description>頻道確認</description>
+	</field>
+	<field id="SDGAVTRRi14">
+		<name>REVE-SIGN</name>
+		<length>300</length>
+		<type>String</type>
+		<description>欲驗簽章內容</description>
+	</field>
+	<field id="SDGAVTRRi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="SDGAVTRRi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="SDGAVTRRi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="SDGAVTRRi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

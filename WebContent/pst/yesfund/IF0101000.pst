@@ -1,0 +1,549 @@
+<html>
+<head>
+<title>基金申購</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: Alma 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI99041	        2010.05.10	   Alma
+***********************************************************************/
+</script>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<script language="javascript">
+location.reload;
+
+function chkSubmit(){
+	document.IF0101000.pageid.value = "IF0701000";
+	document.IF0101000.submit();
+}
+
+function chkSubmit2(){
+	document.IF0101000.pageid.value = "IF0701001";
+	document.IF0101000.submit();
+}
+
+function chkSubmit3(){
+	document.IF0101000.pageid.value = "IF0701002";
+	document.IF0101000.submit();
+}
+
+function chkSubmit4(tmp){
+	document.IF0101000.pageid.value = "IF0101002";
+	document.IF0101000.SEND_CERT_NO.value = tmp;
+	document.IF0101000.submit();
+}
+
+function dispExchange(Cury1,Cury2,ExRate){
+	if (Cury1 == Cury2){		
+		return "1";
+	}else{
+		return ExRate;	
+	}
+}
+
+function dispNONDIVMark(dMark){
+	if (dMark == "Y"){
+		document.write("<BR><font color=red>此筆為在途款</font>");	
+	}
+}
+
+var AMTAry = new Array(200)   //幣別加總
+            	
+function addFundAmt(dMark, Cury, addAmt, nowAmt){
+	var Curyexist = "0"
+	
+	if (dMark == "Y") return;    // 在途款不列入計算
+	
+	for(i = 0 ; i < AMTAry.length; i++){
+	    if (AMTAry[i] != null){	    			
+	     	if (AMTAry[i][0] == Cury){	     		 	
+			AMTAry[i][1] = Math.round((AMTAry[i][1] + parseFloat(addAmt))*100)/100;
+	   		AMTAry[i][2] = Math.round((AMTAry[i][2] + parseFloat(nowAmt))*100)/100; 
+	      		AMTAry[i][3] = Math.round((AMTAry[i][2]-AMTAry[i][1])*100)/100; 
+	      		Curyexist = "1";
+	     	}
+	     }else{
+	     	break;
+	     } 		
+	}		
+	if (Curyexist == "0"){		
+		AMTAry[i] = new Array(4);	    	
+	    	AMTAry[i][0] = Cury;
+            	AMTAry[i][1] = Math.round(parseFloat(addAmt)*100)/100;
+	     	AMTAry[i][2] = Math.round(parseFloat(nowAmt)*100)/100; 
+	    	AMTAry[i][3] = Math.round((AMTAry[i][2]-AMTAry[i][1])*100)/100;
+	}	
+}
+
+function showAddFund(){
+  var String01 = ""
+  for (i=0;i < AMTAry.length; i++){
+  	if (AMTAry[i] != null){
+   		String01 = String01 + "<tr><td width=48%><div align=right>"+ AMTAry[i][0] +"：</div></td><td width=52%>"+ moneyAddDot(AMTAry[i][1].toString()) +"</td></tr>" ;	
+   	}else{
+   		break;
+   	}   
+   }
+   return String01;
+}
+function shownowFund(){
+ var String01 = ""
+  for (i=0;i < AMTAry.length; i++){
+  	if (AMTAry[i] != null){
+   		String01 = String01 + "<tr><td width=48%><div align=right>"+ AMTAry[i][0] +"：</div></td><td width=52%>"+ moneyAddDot(AMTAry[i][2].toString()) +"</td></tr>" ;	
+   	}else{
+   		break;
+   	}   
+   }
+   return String01;
+}
+function showProfitFund(){
+var String01 = ""
+  for (i=0;i < AMTAry.length; i++){
+  	if (AMTAry[i] != null){
+   		String01 = String01 + "<tr><td width=48%><div align=right>"+ AMTAry[i][0] +"：</div></td><td width=52%>"+ moneyAddDot(AMTAry[i][3].toString()) +"</td></tr>" ;	
+   	}else{
+   		break;
+   	}   
+   }
+   return String01;
+}
+
+
+</script>
+<style type="text/css">
+<!--
+.t4	{
+	font-size: 9pt;
+	color: #000000;
+	line-height:12pt;
+	vertical-align:top;
+	text-align: right;
+}
+.t1 {font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+.style1 {color: #0000FF}
+.style2 {color: #FF0000}
+-->
+</style>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0" link="#FFFFFF" vlink="#FFFF99">
+<A name="TopofPage"></a> <form method="post" action="LoadAP" name="IF0101000"> 
+<font color="#006666"><b>個人化投資報告&gt;</b></font> <br>
+<font class="t3">聯邦銀行個人網路銀行交易結果</font><br>
+<br>
+<table width="765" border="1">
+  <tr>
+    <td colspan="3" bordercolor="#CCCCCC" bgcolor="#E7F1EE"><div align="center" class="t1">重要訊息通知</div></td>
+  </tr>
+  <tr>
+    <td colspan="3" bordercolor="#FFFFFF">
+      <div align="center">
+        <table width="90%" height="163"  border="0">
+          <tr>
+            <td height="41" colspan="2"><p align="left">　　本行為確保客戶於個人網路銀行執行基金贖回交易後，贖回款項確實匯入本人帳戶之安全性。<span class="style2">自95年2月6日起實施「個人網路銀行基金贖回約定轉入帳戶」之機制，凡於本行個人網路銀行執行基金贖回交易時，贖回之基金款項皆須匯入事先約定之帳戶，為避免您基金贖回款項無法入帳，煩請儘速至本行辦理</span>。 </p>
+              </td>
+          </tr>
+          <tr>
+            <td colspan="2"><p align="left">&nbsp;<strong> 辦理方式如下：</strong></p></td>
+          </tr>
+          <tr>
+            <td width="12%" height="28" class="t4">(1)</td>
+            <td width="88%" valign="top"><p>郵寄辦理：請下載【聯邦銀行電子銀行服務申請(註銷)約定書】填妥後寄回聯邦銀行辦理。<br> 
+              (<a href="LoadAP?aptype=YESFUND&pageid=IF040100B&CNAME=[[%%SEND-CNAME%%]]&BR_NAME=[[%%SEND-BR-NAME%%]]&BR_ADDR=[[%%SEND-BR-ADDR%%]]&BR_TEL=[[%%SEND-BR-TEL%%]]" target="_blank" class="style1"> 列印申請書</a>)</p>
+              </td>
+          </tr>
+          <tr>
+            <td height="28"  class="t4">(2)</td>
+            <td valign="top">臨櫃辦理：攜帶身分證與第二身分證明文件(健保卡或駕照)及基金印鑑章，親至聯邦全省分行填寫【聯邦銀行電子銀行服務申請(註銷)約定書】辦理。</td>
+          </tr>
+          <tr>
+            <td colspan="2">謝謝您對聯邦銀行的愛護與支持，倘若您尚有不明瞭之處，請直接洽詢聯邦銀行全省各分行或客服專線 (02)2545-1788 </td>
+          </tr>
+        </table>
+    </div></td>
+  </tr>
+</table>
+<br>
+<tr> 
+    <td colspan="3"> 
+        <div align="center"></div>
+        <table width="765" border="0" align="center" cellpadding="0">
+          <tr> 
+          <td colspan="3"> 
+              <table width="765" border="0">
+                <tr> 
+                <td width="245"> 
+                  <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#6CCEFF">
+                    <tr> 
+                      <td width="3%"><img src="graph/fund/graph/008.gif" width="8" height="25" align="absmiddle"></td>
+                      <td width="94%"> 
+                        <div align="center"><a href="javascript:chkSubmit();" ><b>截至 
+                          <script>document.write(getRCDateStr("[[%%SYSDATE%%]]","0"));</script>
+                          之投資組合明細</b></a></div>
+                      </td>
+                      <td width="3%"> 
+                        <div align="right"><img src="graph/fund/graph/009.gif" width="8" height="25" align="absmiddle"></div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td width="247"> 
+                  <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="FFB54A">
+                    <tr> 
+                      <td width="3%"><img src="graph/fund/graph/012.gif" width="8" height="25" align="absmiddle"></td>
+                      <td width="94%"> 
+                        <div align="center"><a href="javascript:chkSubmit2();" ><b>截至 
+                          <script>document.write(getRCDateStr("[[%%SYSDATE%%]]","0"));</script>
+                          止投資未分配明細</b></a></div>
+                      </td>
+                      <td width="3%"> 
+                        <div align="right"><img src="graph/fund/graph/013.gif" width="8" height="25" align="absmiddle"></div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td width="134">&nbsp;</td>
+              </tr>
+            </table>
+              <table width="100%" border="1" bordercolor="#999999" cellpadding="0">
+                <tr bgcolor="#6CCEFF"> 
+                <td width="59" height="0"> 
+                  <div align="center">基金代號</div>                </td>
+                <td width="59" height="0"> 
+                  <div align="center">基金名稱</div>                </td>
+                <td width="59" height="0"> 
+                  <div align="center">憑證號碼</div>                </td>
+                <td width="92" height="0"> 
+                  <div align="center">累積<br>
+                    信託金額</div>                </td>
+                <td width="52" height="0"> 
+                  <div align="center">累積<br>
+                    單位數<br>
+                    (A) </div>                </td>
+                <td width="55" height="0"> 
+                  <div align="center">參考<br>
+                    價格日期</div>                </td>
+                <td width="53" height="0"> 
+                  <div align="center">參考價格<br>
+                    (B) </div>                </td>
+                <td width="27" height="0"> 
+                  <div align="center">計價<br>
+                    幣別</div>                </td>
+                <td width="48" height="0"> 
+                  <div align="center">參考匯率<br>
+                    (C) </div>                </td>
+                <td width="92" height="0"> 
+                  <div align="center">參考現值(D=AxBxC) </div>                </td>
+                <td width="68" height="0"> 
+                  <div align="center">損益</div>                </td>
+                <td width="68"><div align="center">報酬率<br>
+                  %</div></td>
+                <td width="49" height="0"> 
+                  <div align="center">明細資料</div>                </td>
+              </tr>
+              
+              [[%%LOOP_SEC SEND-CN-NAME%%]]
+              <script>addFundAmt('[[%%SEND-NONDIV-MARK%%]]','[[%%SEND-TRUST-CURRENCY%%]]','[[%%SEND-AMT%%]]','[[%%SEND-NOW-VALUE%%]]')</script>
+              <tr> 
+                <td width="59" height="0">
+                		[[%%SEND-FUND-ID%%]]
+                </td>
+                <td width="59" height="0">[[%%SEND-CN-NAME%%]]</td>
+                <td width="59" height="0"> 
+                  <div align="center">[[%%SEND-CERT-NO%%]]</div>                </td>
+                <td width="92" height="0"> 
+                  <div align="center">[[%%SEND-TRUST-CURRENCY%%]]
+                  <script>
+                  document.write(moneyAddDot('[[%%SEND-AMT%%]]'));
+                  </script>
+                  <input type="hidden" name="nowFundAmt" value="[[%%SEND-AMT%%]]">
+                  </div>                </td>
+                <td width="52" height="0"> 
+                  <div align="center">
+                  <script>
+                  document.write(moneyAddDot('[[%%SEND-UNITS%%]]'));
+                  </script>
+                  </div>                </td>
+                <td width="55" height="0"> 
+                  <div align="center">
+                  <script>
+                  document.write(getRCDateStr("[[%%SEND-REF-DATE%%]]", 0));
+                  </script>
+                  </div>                </td>
+                <td width="53" height="0"> 
+                  <div align="center">
+                  <script>
+                  document.write(moneyAddDot('[[%%SEND-REF-PRICE%%]]'));
+                  </script>
+                  </div>                </td>
+                <td width="27" height="0"> 
+                  <div align="center">[[%%SEND-CURRENCY%%]]</div>                </td>
+                <td width="48" height="0"> 
+                  <div align="center"><script>document.write(dispExchange('[[%%SEND-TRUST-CURRENCY%%]]','[[%%SEND-CURRENCY%%]]','[[%%SEND-REF-EXCHGRATE%%]]'))</script></div>                </td>
+                <td width="92" height="0"> 
+                  <div align="center">[[%%SEND-TRUST-CURRENCY%%]]&nbsp;
+                  <script>
+                 		 document.write(moneyAddDot('[[%%SEND-NOW-VALUE%%]]'));                                  		
+                		dispNONDIVMark("[[%%SEND-NONDIV-MARK%%]]");                	
+                  </script>
+                  <input type="hidden" name="nowValue" value="[[%%SEND-NOW-VALUE%%]]" >
+                  </div>                </td>
+                <td width="68" height="0"> 
+                  <div align="center">[[%%SEND-LOSS-PROFIT%%]]
+                  <script>
+                  document.write(moneyAddDot('[[%%SEND-NET-AMT%%]]'));
+                  </script>
+                  <input type="hidden" name="amt" value="[[%%SEND-LOSS-PROFIT%%]][[%%SEND-NET-AMT%%]]" >
+                  </div>                </td>
+                <td width="68"><div align="center">[[%%SEND-LOSS-PROFIT%%]][[%%SEND-ROI%%]]%</div></td>
+                <td width="49" height="0"> 
+                  <div align="center"><img src="graph/fund/graph/print2.gif" onClick="javascript:chkSubmit4('[[%%SEND-CERT-NO%%]]');" width="32" height="32"></div>                </td>
+              </tr>
+              [[%%ELOOP_SEC%%]]                       
+            </table>
+           
+             <hr size="1">
+            <table width="100%" border="1" bordercolor="#999999">
+              <tr bgcolor="#6CCEFF"> 
+                <td width="35%"> 
+                  <div align="center">信託金額總計</div>
+                </td>
+                <td width="33%"> 
+                  <div align="center">參考現值</div>
+                </td>
+                <td width="32%"> 
+                  <div align="center">投資損益</div>
+                </td>
+              </tr>
+              <tr> 
+                <td width="35%" height="95"> 
+                  <table width="100%" border="0">
+                   <script>document.write(showAddFund());</script>
+                  </table>
+                </td>
+                <td width="33%" height="95"> 
+                  <table width="100%" border="0">
+                   <script>document.write(shownowFund());</script>
+                  </table>
+                </td>
+                <td width="32%" height="95"> 
+                  <table width="100%" border="0">
+                   <script>document.write(showProfitFund());</script>
+                  </table>
+                </td>
+              </tr>
+            </table>            
+   
+      <font color="#FF0000"><b>※ 委託人受益權單位數以本行帳載為準</b></font><br>
+      <div align="center"><a href="javascript:window.print()"><img src="graph/fund/graph/print.gif" width="52" height="24" border="0"></a></div>
+    </td>
+  </tr>
+</table>
+<br>
+
+<div id="jumpx" style="color:navy"></div>
+<script>
+if (document.all||document.getElementById){
+jump=(document.getElementById)? document.getElementById("jumpx") : document.all.jumpx
+}
+else
+document.write(message)
+</script>
+<SCRIPT>
+////////////////////////////////////////////////////////////////////
+// Setting
+
+var rate = 20;  // Increase amount(The degree of the transmutation)
+
+
+////////////////////////////////////////////////////////////////////
+// Main routine
+
+var obj;        // The object which event occured in
+var act = 0;    // Flag during the action
+var elmH = 0;   // Hue
+var elmS = 128; // Saturation
+var elmV = 255; // value
+var clrOrg;     // A color before the change
+var TimerID;    // Timer ID
+
+
+if (navigator.appName.indexOf("Microsoft",0) != -1 && parseInt(navigator.appVersion) >= 4) {
+   Browser = true;
+} else {
+   Browser = false;
+}
+
+if (Browser) {
+   document.onmouseover = doRainbowAnchor;
+   document.onmouseout = stopRainbowAnchor;
+}
+
+
+//=============================================================================
+// doRainbow
+//  This function begins to change a color.
+//=============================================================================
+function doRainbow()
+{
+   if (Browser && act != 1) {
+       act = 1;
+       obj = event.srcElement;
+       clrOrg = obj.style.color;
+       TimerID = setInterval("ChangeColor()",100);
+   }
+}
+
+
+//=============================================================================
+// stopRainbow
+//  This function stops to change a color.
+//=============================================================================
+function stopRainbow()
+{
+   if (Browser && act != 0) {
+       obj.style.color = clrOrg;
+       clearInterval(TimerID);
+       act = 0;
+   }
+}
+
+
+//=============================================================================
+// doRainbowAnchor
+//  This function begins to change a color. (of a anchor, automatically)
+//=============================================================================
+function doRainbowAnchor()
+{
+   if (Browser && act != 1) {
+       obj = event.srcElement;
+
+       while (obj.tagName != 'A' && obj.tagName != 'BODY') {
+           obj = obj.parentElement;
+           if (obj.tagName == 'A' || obj.tagName == 'BODY')
+               break;
+       }
+
+       if (obj.tagName == 'A' && obj.href != '') {
+           act = 1;
+           clrOrg = obj.style.color;
+           TimerID = setInterval("ChangeColor()",100);
+       }
+   }
+}
+
+
+//=============================================================================
+// stopRainbowAnchor
+//  This function stops to change a color. (of a anchor, automatically)
+//=============================================================================
+function stopRainbowAnchor()
+{
+   if (Browser && act != 0) {
+       if (obj.tagName == 'A') {
+           obj.style.color = clrOrg;
+           clearInterval(TimerID);
+           act = 0;
+       }
+   }
+}
+
+
+//=============================================================================
+// Change Color
+//  This function changes a color actually.
+//=============================================================================
+function ChangeColor()
+{
+   obj.style.color = makeColor();
+}
+
+
+//=============================================================================
+// makeColor
+//  This function makes rainbow colors.
+//=============================================================================
+function makeColor()
+{
+   // Don't you think Color Gamut to look like Rainbow?
+
+   // HSVtoRGB
+   if (elmS == 0) {
+       elmR = elmV;    elmG = elmV;    elmB = elmV;
+   }
+   else {
+       t1 = elmV;
+       t2 = (255 - elmS) * elmV / 255;
+       t3 = elmH % 60;
+       t3 = (t1 - t2) * t3 / 60;
+
+       if (elmH < 60) {
+           elmR = t1;  elmB = t2;  elmG = t2 + t3;
+       }
+       else if (elmH < 120) {
+           elmG = t1;  elmB = t2;  elmR = t1 - t3;
+       }
+       else if (elmH < 180) {
+           elmG = t1;  elmR = t2;  elmB = t2 + t3;
+       }
+       else if (elmH < 240) {
+           elmB = t1;  elmR = t2;  elmG = t1 - t3;
+       }
+       else if (elmH < 300) {
+           elmB = t1;  elmG = t2;  elmR = t2 + t3;
+       }
+       else if (elmH < 360) {
+           elmR = t1;  elmG = t2;  elmB = t1 - t3;
+       }
+       else {
+           elmR = 0;   elmG = 0;   elmB = 0;
+       }
+   }
+
+   elmR = Math.floor(elmR);
+   elmG = Math.floor(elmG);
+   elmB = Math.floor(elmB);
+
+   clrRGB = '#' + elmR.toString(16) + elmG.toString(16) + elmB.toString(16);
+
+   elmH = elmH + rate;
+   if (elmH >= 360)
+       elmH = 0;
+
+   return clrRGB;
+}
+
+</SCRIPT>
+
+  <table width="765" border="0">
+    <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="">
+  <input type="hidden" name="SEND_CERT_NO" value="">
+</table><p></p><p></p>
+<!--
+<table width="765" border="0" cellspacing="0" cellpadding="0">
+  <tr bgcolor="#80836E"> 
+    <td><img src="graph/blank.gif" width="1" height="1"></td>
+  </tr>
+  <tr bgcolor="#C4CBB8" align="center"> 
+    <td height="20" style="font-family:新細明體; font-size:12px;"><font color="#006600"><b>客服專線：銀行(02)2545-1788／信用卡(02)2545-5168</b></font>　 
+      聯邦銀行 版權所有 最佳解析度 800 x 600 製作公司 聯邦網通科技公司 </td>
+  </tr>
+  <tr bgcolor="#80836E"> 
+    <td><img src="graph/blank.gif" width="1" height="1"></td>
+  </tr>
+</table>-->
+
+</form>
+</table></body>
+</html>

@@ -1,0 +1,249 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>基金申購</title>
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: YiSyun 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI98031          2009.05.07     YiSyun 
+* EAI98057	        2009.10.27	   Carl
+* EAI99052          2010.8.25      David 
+* EAI100077	        2011.10.26	   Carl
+***********************************************************************/
+</script>
+<!--script language="JavaScript" SRC="script/PreviousPageBlock.js"></script-->
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="javascript">
+var ttmp1;
+var ttmp2;
+var ttmp3;
+var ttmp4;
+var ttmp5;
+var ttmp6;
+var ttmp7;
+var ttmp8;
+var ttmp9;
+var tcode1;
+var tcode2;
+var tcode3;
+var tcode4;
+var tcode5;
+var tcode6;
+function chkSubmit(tmp1,tmp2,tmp3,tmp4,tmp5,tmp6,tmp7,tmp8,tmp9,code1,code2,code3,code4,code5,code6){
+ttmp1=tmp1;ttmp2=tmp2;ttmp3=tmp3;ttmp4=tmp4;ttmp5=tmp5;ttmp6=tmp6;ttmp7=tmp7;ttmp8=tmp8;ttmp9=tmp9;
+tcode1=code1;tcode2=code2;tcode3=code3;tcode4=code4;tcode5=code5;tcode6=code6;
+
+	document.IF0401000.SEND_CERT_NO.value = tmp1;
+	var cert = tmp1.substr(0,1);
+	/**
+        if(tmp5 !="NTD"){
+	alert("有關外幣信託之申購、贖回、轉換或交易條件變更等交易功能\n可利用電話銀行：(02)2545-1788 執行交易，相關交易之速撥碼如下，或請臨櫃辦理：\n申購請撥  1621\t變更扣款日期請撥  1631\t恢復扣款請撥  1634\n購回請撥  1622\t變更每月扣款金額請撥  1632\t變更扣款請撥  1635\n轉換請撥  1623\t暫停扣款請撥  1633\t變更信用卡卡號請撥  1636");
+	return;
+	}
+	**/
+	if(code1 =="01" && code2 =="03")
+			alert("一、此基金已參加有利同享專案，若全部贖回後，專案將自動終止，則主、副投資基金將無法繼續或恢復扣款。\n二、此基金為未核備基金，全部贖回且不續扣後，則無法於本行重新申購。");
+	if(code1 =="03" && code2 =="05")
+			alert("一、此基金為未核備基金，若全部贖回且不續扣後，則無法於本行重新申購。\n二、此基金已參加金金樂到-定期(不)定額專案\n 1.全部贖回且不續扣後，專案將自動終止，則無法繼續或恢復扣款。\n 2.贖回時將視扣款次數，依專案約定條件收取後收手續費。");
+	if(code1 =="01" && code2 !="03")
+			alert("此基金已參加有利同享專案，若全部贖回後，專案將自動終止，則主、副投資基金將無法繼續或恢復扣款。");
+	if(code1 =="03" && code2 !="05")
+			alert("此基金為未核備基金，若全部贖回且不續扣後，則無法於本行重新申購。");
+	if(code1 =="05")
+			alert("此基金已參加金金樂到-定期(不)定額專案\n 1.全部贖回且不續扣後，專案將自動終止，則無法繼續或恢復扣款。\n 2.贖回時將視扣款次數，依專案約定條件收取後收手續費。");
+	if(code1 =="04" && code6.length == 1)
+			alert("此基金為後收型基金，贖回時基金公司將視持有期間收取遞延申購手續費。");			
+	if(code6.length == 1)
+	{
+	var result_style = document.getElementById('table1').style;
+	result_style.display = 'block';
+	jump();
+	return;
+	}
+	else
+		;
+	
+	if (cert=="D" || cert=="C" || cert=="U"){
+	 		document.IF0401000.REVE_LIMIT_AMT.value= "10000";
+	 }else if(cert=="T" || cert=="M" || cert=="K" || cert=="Q"){	 	
+	 	  document.IF0401000.REVE_LIMIT_AMT.value= "30000";
+	}
+	if(cert == "D" || cert == "U" || cert == "T" || cert=="K"){   // 單筆
+		document.IF0401000.pageForward.value = "IF0401100";
+	}else if(cert == "C" || cert == "M" || cert=="Q"){    // 定期定額
+		document.IF0401000.pageForward.value = "IF0401200";
+	}else if(cert == "F" || cert=="W"){	  // 外幣單筆
+		document.IF0401000.pageForward.value = "IF0401300";
+	}
+	else if(cert == "S" || cert=="P"){	  // 外幣定期定額
+		document.IF0401000.pageForward.value = "IF0401400";
+	}	
+	document.IF0401000.SEND_FUND_CNAME.value = tmp2;
+	document.IF0401000.SEND_AMT.value = tmp3;
+	document.IF0401000.SEND_REF_PRICE.value = tmp4;
+	document.IF0401000.SEND_CURRENCY.value = tmp5;
+	document.IF0401000.SEND_UNITS.value = tmp6;
+	document.IF0401000.SEND_REF_EXCHGRATE.value = tmp7;
+	document.IF0401000.SEND_FUND_ID.value = tmp8;
+	document.IF0401000.SEND_CUT_YORN.value = tmp9;
+	document.IF0401000.SEND_BC_FUND.value = code6;
+	
+	var tmp8 = document.IF0401000.SEND_CERT_NO.value;
+	document.IF0401000.submit();
+
+}
+function chkSubmit2()
+{
+	var result_style = document.getElementById('table1').style;
+	result_style.display = 'none';
+	window.location.href = "#header";
+	return;
+}
+	function jump()
+	{
+	window.location.href = "#anchor";
+	/*
+	setTimeout(function(){document.location.href = "#anchor";},500);
+	*/
+	}
+</script>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+</head>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0401000">
+<font color="#006666"><b>基金贖回&gt;</b></font><div align="right">
+<font color="#0000CC"face="Arial, Helvetica, sans-serif">資料時間： <script language="javascript">
+		document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));                  
+			      		   				//document.write(getNowTime());
+			      		   				</script></font> </div>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center" id="header">請選擇贖回之基金</div>
+    </td>
+    <td>
+<!--  <a href="#"><img src="graph/Learning_icon.gif" width="96" height="49" border="0" align="right" onClick="window.open('https://www.ubot.com.tw/UBOT2005/Learning/data/ubot420.asp','基金贖回','width=650,height=500')"></a>   -->
+    </td>
+  </tr>
+</table>
+  <table width="770" border="0">
+    <tr> 
+    <td colspan="3"> 
+      <div align="center"> 可供您贖回之投資明細
+<table width="400" border="0" cellpadding="0">
+          <tr> 
+            <td width="17%" bgcolor="58C681"><img src="graph/fund/graph/004.gif" width="8" height="25" align="absmiddle">憑證編號</td>
+            <td width="36%" bgcolor="58C681"> 
+              <div align="center">基金名稱</div>
+            </td>
+            <td width="22%" bgcolor="58C681"> 
+              <div align="center">累積信託金額</div>
+            </td>
+            <td width="15%" bgcolor="58C681"> 
+              <div align="right">參考價格<img src="graph/fund/graph/005.gif" width="8" height="25" align="absmiddle"></div>
+            </td>
+          </tr>
+          [[%%LOOP_SEC SEND-FUND-CNAME%%]]     
+          <tr bgcolor="#D8F7D5"> 
+            <td width="17%" height="25"> 
+              <div align="center">[[%%SEND-CERT-NO%%]]</div>
+            </td>
+            <td width="36%"><a href="javascript:chkSubmit('[[%%SEND-CERT-NO%%]]','[[%%SEND-FUND-CNAME%%]]','[[%%SEND-AMT%%]]','[[%%SEND-REF-PRICE%%]]','[[%%SEND-CURRENCY%%]]','[[%%SEND-UNITS%%]]','[[%%SEND-REF-EXCHGRATE%%]]','[[%%SEND-FUND-ID%%]]','[[%%SEND-CUT-YORN%%]]','[[%%SEND-ALERT1-CODE%%]]','[[%%SEND-ALERT2-CODE%%]]','[[%%SEND-ALERT3-CODE%%]]','[[%%SEND-ALERT4-CODE%%]]','[[%%SEND-ALERT5-CODE%%]]','[[%%SEND-BC-FUND%%]]');" >
+            [[%%SEND-FUND-CNAME%%]]</a><br>
+            </td>
+            <td width="22%"> 
+               &nbsp;     
+              [[%%SEND-CURRENCY%%]] &nbsp;                   
+              <script>
+              	document.write(moneyAddDot("[[%%SEND-AMT%%]]"));
+              </script> 
+            </td>
+            <td width="15%"> 
+              <div align="center">[[%%SEND-REF-PRICE%%]]</div>
+            </td>
+          </tr>
+  	  [[%%ELOOP_SEC%%]]   	  		
+       </table>    
+        
+      </div>
+        
+    </td>
+  </tr>
+</table>
+  <table width="700" border="0" cellpadding="0"  bordercolor="#999999" name="table1" id="table1" style="display:none";>
+		<tr >
+            <td width="68%" height="25"><div align="center" id="anchor"><strong>**特定金錢信託投資手續費後收型基金特約事項**</strong></div></td>
+         	<div align="center">
+   </tr>
+	  <tr>
+    <td colspan="3" height="315">      <div align="center">
+<iframe width="730" height="400" src="SpecialFundsItem.html" scrolling="yes" frameborder="0" style="scrollbar-face-color:#993300;"></iframe>
+		
+					  </div></td>
+  					</tr>
+  				<tr>
+          	<td width="68%" height="25" ><div align="center"><strong>
+本特約事項全部係金融消費者保護法所稱之「重要內容」，為保障您的權益，於本行人員對您充分說明後，建議您確實詳讀每一約款，並於充分瞭解後，始為簽訂本特約事項，並於簽訂後，應隨時注意本行網站上之公告事項，如本特約事項內容變更，將依本行「特定金錢信託契約書」規定方式通知。
+委託人茲聲明已於合理期間充分審閱本特約事項書，且同意接受所投資標的之內容、交易條件及各項費用。</strong></div></td></tr>
+          <tr>
+            <td width="68%" height="25" ><div align="center"><strong>您欲交易的是手續費後收型基金，須依持有期間於贖回時收取遞延手續費，相關費用及特約事項如上：</strong></div></td>
+         	<div align="center">
+          </tr>
+          <tr>
+            <td width="68%" height="25"><table width="97%" border="0" align="center" cellpadding="3" cellspacing="0">
+                <tr>
+                	<div align="center">
+                  <input type="submit" name="Submit3" value="同意" onClick="chkSubmit(ttmp1,ttmp2,ttmp3,ttmp4,ttmp5,ttmp6,ttmp7,ttmp8,ttmp9,tcode1,tcode2,tcode3,tcode4,tcode5,ttmp1);">
+                   <input type="button" name="Submit4" value="不同意，選其他基金" onClick="chkSubmit2();">
+       						 </div>
+                </tr>
+            </table></td>
+          </tr>
+        </div>
+        </table>
+
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="IF0401001">
+  <input type="hidden" name="pageForward" value="">
+  <input type="hidden" name="SEND_CERT_NO" value="">
+  <input type="hidden" name="SEND_FUND_ID" value="">
+  <input type="hidden" name="SEND_FUND_CNAME" value="">
+  <input type="hidden" name="SEND_AMT" value="">
+  <input type="hidden" name="SEND_REF_PRICE" value="">
+  <input type="hidden" name="SEND_CURRENCY" value="">
+  <input type="hidden" name="SEND_UNITS" value="">
+  <input type="hidden" name="SEND_REF_EXCHGRATE" value="">
+  <input type="hidden" name="REVE_LIMIT_AMT" value="">
+  <input type="hidden" name="REVE_ID_NO" value="[[%%SEND-ID%%]]"> 
+  <input type="hidden" name="SEND_CUT_YORN" value=""> 
+  <input type="hidden" name="SEND_BC_FUND" value=""> 
+</table>
+</form>
+</body>
+</html>

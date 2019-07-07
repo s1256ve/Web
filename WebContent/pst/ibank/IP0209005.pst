@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>台幣存款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+<b>帳戶交易&gt;</b><font color="#0066FF"><b>綜存定存續存設定或中途解約&gt;<strong>綜存定存續存設定</strong></b></font><br>
+</p>
+<form method="POST" action="LoadAP" name="IP0209005">
+<font color="#0000CC">　</font><font color="#0000CC"><img src="graph/point.gif" width="12" height="12" align="absmiddle"> 
+以下是 您存單續存條件</font>
+
+<table width="620" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td width="620" height="35"> 
+      <table width="60%" border="0" align="center" valign="bottom" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><br><br><font color="#003399">您已取消下列存單續存設定： </font>
+            <table width="100%" border="1" bordercolor="#999999">
+              <tr> 
+                <td width="35%" bgcolor="#C4CBB8">　定　存　帳　號：</td>
+                <td width="65%">[[%%SEND-ACCT-NO%%]]</td>
+              </tr>
+              <tr> 
+                <td bgcolor="#C4CBB8">　存　單　字　號：</td>
+                <td>[[%%SEND-V-NO%%]]</td>
+              </tr>
+            </table>
+            <font color="#003399"><br>
+            <br>
+            </font></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table width="620" border="0" cellpadding="0" cellspacing="0" align="center">
+        <tr> 
+          <td colspan="2"> 
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</form>  
+</body>
+</html>

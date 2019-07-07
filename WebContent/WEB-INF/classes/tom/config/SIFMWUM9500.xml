@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- IVR CARD 3060 Input Schema, Last updated date 3-11-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="3060i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id="3060i02">
+		<name>REVE-ID-NO</name>
+		<length>10</length>
+		<type>String</type>
+		<description>正卡身分證字號</description>
+	</field>
+	
+	<field id="3060i03">
+		<name>REVE-DAILY-PHONE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>正卡身分證字號</description>
+	</field>
+
+	<field id="3060i04">
+		<name>REVE-DAILY-PHONE-EXT</name>
+		<length>10</length>
+		<type>String</type>
+		<description>正卡身分證字號</description>
+	</field>
+
+	<field id="3060i05">
+		<name>REVE-NIGHT-PHONE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>正卡身分證字號</description>
+	</field>
+	<field id="3060i06">
+		<name>REVE-NIGHT-PHONE-EXT</name>
+		<length>10</length>
+		<type>String</type>
+		<description>正卡身分證字號</description>
+	</field>
+	<field id="3060i07">
+		<name>REVE-CONTACT-ADDR1</name>
+		<length>10</length>
+		<type>String</type>
+		<description>正卡身分證字號</description>
+	</field>
+	<field id="3060i08">
+		<name>REVE-CONTACT-ADDR2</name>
+		<length>10</length>
+		<type>String</type>
+		<description>正卡身分證字號</description>
+	</field>
+	<field id="3060i09">
+		<name>REVE-CONTACT-ADDR3</name>
+		<length>10</length>
+		<type>String</type>
+		<description>正卡身分證字號</description>
+	</field>
+	<field id="3060i10">
+		<name>REVE-CONTACT-ZIP</name>
+		<length>10</length>
+		<type>String</type>
+		<description>正卡身分證字號</description>
+	</field>
+	<field id="3060i11">
+		<name>REVE-MPHONE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>正卡身分證字號</description>
+	</field>
+	<field id="3060i12">
+		<name>REVE-EMAIL-ADDR</name>
+		<length>10</length>
+		<type>String</type>
+		<description>電子郵件地址</description>
+	</field>
+
+	<field id="3060i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="3060i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="3060i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="3060i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

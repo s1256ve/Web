@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>首次登入</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="Javascript">
+function DispExpNo(AccNo){
+	var rtnStr = ""
+	rtnStr = "<tr> <td height=17 width=300><div align=center>"+AccNo+"</div></td></tr>";	
+	return rtnStr;
+
+}
+function DispImpNo(BankCode, BankName, AccNo, RegNo){
+	var rtnStr = ""
+	rtnStr = "<tr><td height=17 width=184><div align=left>&nbsp;"+BankCode+"&nbsp;&nbsp;"+BankName+"</div></td><td height=17 width=300><div align=center>"+AccNo+"</div></td></tr> ";		
+	return rtnStr;
+
+}
+function chkSubmit(Pageid){
+	document.IP0801301.pageid.value = Pageid;
+	document.IP0801301.submit();
+}
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg01.gif" leftmargin="0" topmargin="0">
+<form name="IP0801301" method="POST" action="LoadAP" onSubmit="document.IP0801301.Submit1.disabled = true;">
+<p><b>首次登入<font color="#003399"><font color="#0066FF"> </font></font></b></p>
+<table width="628" border="0">
+  <tr> 
+    <td colspan="5" height="254"><font color="#663300" face="Arial, Helvetica, sans-serif"> 
+      </font> 
+      <table width="625" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td height="2"> 
+            <div align="right"><font color="#0000CC">查詢時間：<script language="JavaScript">document.write(getRCDateStr("[[%%SYSDATE%%]]",0));</script>&nbsp;
+    	     	<script language="JavaScript">document.write(getRCTimeStr('[[%%SYSTIME%%]]','0'));</script></font></div>
+          </td>
+        </tr>
+      </table>
+      <div align="center"> 
+        <table width="100%" border="00">
+          <tr> 
+            <td><img src="graph/point.gif" width="12" height="12" align="absbottom">已約定轉出帳號 
+			<div align="center">
+              <table width="310" border="1" bordercolor="#999999">
+                <tr bgcolor="#C4CBB8"> 
+                  <td width="300"><div align="center">本行約定轉出帳號</div></td>                  
+                </tr>
+              <!--[[%%LOOP_SEC SEND-FROM-ACCT-NO%%]]-->               
+                  <script>
+                  document.write(DispExpNo('[[%%SEND-FROM-ACCT-NO%%]]'));                  
+                  </script>
+                <!--[[%%ELOOP_SEC%%]]-->               
+              </table>
+			  </div>
+            </td>
+          </tr>
+        </table>
+        <table width="100%" border="00">
+          <tr> 
+            <td><img src="graph/point.gif" width="12" height="12" align="absbottom">已約定轉入帳號 
+			<div align="center">
+              <table width="500" border="1" bordercolor="#999999">
+                <tr bgcolor="#C4CBB8"> 
+                  <td width="160"><div align="center">轉入銀行名稱及代號</div></td>
+                  <td width="300"><div align="center">約定轉入帳號</div></td>                  
+                </tr>
+                <!--[[%%LOOP_SEC SEND-REG-BCODE%%]]-->
+                 <script>
+                  document.write(DispImpNo('[[%%SEND-REG-BCODE%%]]','[[%%SEND-BANK-NAME%%]]','[[%%SEND-REG-ACCTNO%%]]','[[%%SEND-REG-TYPE%%]]'));                  
+                  </script>               
+                <!--[[%%ELOOP_SEC%%]]-->        
+              </table>
+			  </div>
+              <div align="center"><br>
+                <input type="submit" name="Submit1" value="下一步">
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+ <input type="hidden" name="pageid" value="IP0801302">
+ <input type="hidden" name="REVE_EMAIL" value="[[%%REVE-EMAIL%%]]">
+</form>
+</body>
+</html>

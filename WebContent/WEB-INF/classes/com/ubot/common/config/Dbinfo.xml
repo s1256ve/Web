@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/******************************************************************************/
+/* 
+ * Remark Area                                                                
+ *
+ * Program name : Dbinfo.xml             				      
+ * Create name	:         Create Date : 		      
+ * Function	: Database definition		     
+ * Notice       : 
+ * I/O   	:
+ *
+ * Change List:                                                               
+ * Date 2006/03/01 by Sean   No:  
+ * add UMA's Database definition                                                                     
+*/
+/******************************************************************************/
+-->
+<SQL>
+<!-- ==============================================================================
+	<conn type="datasource"   	dbdriver="" 
+		  dsn="jdbc/ubsso" 
+		  user="db2iop1" pass="db2iop1" />
+		  
+	<conn_driver type="driver" 
+		  dbdriver="COM.ibm.db2.jdbc.app.DB2Driver" 
+		  dsn="jdbc:db2:ubsso" 
+		  user="db2iop1" pass="db2iop1" />
+	============================================================================== -->
+
+	
+	
+	<conn_default type="datasource" dbdriver="" dsn="jdbc/aptxn" user="db2ibank" pass="db2ibank" />	
+	
+	<conn_ibank type="driver"  dbdriver="com.ibm.db2.jcc.DB2Driver" dsn="jdbc:db2:pottxn" user="db2ibank" pass="db2ibank" />
+	<!-- jdbc:db2://172.16.45.119:50000/POTTXN	com.ibm.db2.jcc.DB2Driver	jdbc:db2://172.16.45.119:50000/conn_ibank
+ -->
+	<conn_aptxn type="datasource" dbdriver="" 
+			  dsn="jdbc/aptxn" 
+              user="db2ibank" pass="db2ibank" />
+
+	<conn_eaitxn type="datasource" dbdriver="" 
+			  dsn="jdbc/eaitxn" 
+              user="db2ibank" pass="db2ibank" />
+	
+    <conn_pottxn type="datasource" dbdriver="" 
+			  dsn="jdbc/pottxn" 
+              user="db2ibank" pass="db2ibank" />
+
+	<conn_eailog type="datasource" dbdriver="" 
+			  dsn="jdbc/eailog" 
+              user="db2ibank" pass="db2ibank" />
+
+    <conn_aplog type="datasource" dbdriver="" 
+			  dsn="jdbc/aplog" 
+              user="db2ibank" pass="db2ibank" />
+
+    <conn_potlog type="datasource" dbdriver="" 
+			  dsn="jdbc/potlog" 
+              user="db2ibank" pass="db2ibank" />
+
+    <conn_uma_ams type="datasource" dbdriver="" 
+			  dsn="jdbc/uma2_ams" 
+              user="db2uma2" pass="db2uma2" />
+
+    <conn_uma_ams_AP type="datasource" dbdriver="" 
+			  dsn="jdbc/umaamsap" 
+              user="db2uma2" pass="db2uma2" />
+</SQL>

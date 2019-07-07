@@ -1,0 +1,392 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>帳戶交易</title>
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: Carl 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+*	EAI98046					2009.06.23			 Carl 
+***********************************************************************/
+</script>
+</head>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<script language="Javascript">
+    //字串去空白
+    String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");} 
+</script>
+
+<style type="text/css">
+
+.buttonstyle
+{
+	
+   border-radius=35px;
+ 
+   border-radius:35px;
+}
+
+</style>
+
+<script>
+function chkSSL(tmp){
+	var ssl = tmp;
+	if(ssl == 2){
+		document.IP0711000.vtrType[0].checked = true;
+		return " ";
+	}
+	else{
+		document.IP0711000.vtrType[1].checked = true;
+		document.IP0711000.vtrType[0].disabled = true;
+		return " ";
+	}
+}
+
+function selBankCode(bankCode){
+	status = "[[%%SEND-STATUS%%]]";
+	if(status == 2){
+		len = document.IP0711000.TOACCTINFO3.length;
+		for(i=0; i<len-1; i++){
+			chkBankCode(i);
+			if(bankCode==document.IP0711000.TO_BANK_CODE.value){
+				document.IP0711000.TOACCTINFO3.options[i].selected = true;
+				break;
+			}
+		}
+	}
+}
+
+function chkBankCode(tmp){
+	var acctArray = document.IP0711000.TOACCTINFO3[tmp].value.split("@"); 
+    	document.IP0711000.TO_BANK_CODE.value = acctArray[0];
+    	document.IP0711000.TO_BANK_NAME.value = acctArray[1];
+}
+
+function chkAcct(){
+	var acctArray = document.IP0711000.FROMACCTNO.value.split("@");
+        document.IP0711000.FROM_ACCT_NO.value = acctArray[0];
+    	document.IP0711000.FROM_BR_NAME.value = acctArray[1];
+    	document.IP0711000.FROM_AVAL_BALANCE.value = acctArray[2];
+    	document.IP0711000.SEND_AMT_LMT.value = acctArray[3];  //有無約定大額轉帳(0:無約定 其餘數目為約定金額 單位:萬元)
+    	document.IP0711000.SEND_AVAL_TFR.value = acctArray[4]; //無約定大額轉帳剩餘金額
+    	document.IP0711000.SEND_AVAL_LARGE.value = acctArray[5];  //約定大額轉帳剩餘金額 單位:元
+}
+
+function chkSubmit(){
+	var f = document.IP0711000;
+	if (f.FROMACCTNO.value == "0"){
+            alert("請選擇轉出帳號!");
+            return;
+        }
+        chkAcct();
+        if (f.TXN_AMT.value == ""){
+            alert("請輸入轉帳金額!");
+            return;
+        }
+        if (isNaN(f.TXN_AMT.value)){
+            alert("轉帳金額格式錯誤!");
+            return;
+        }
+        if(f.TXN_AMT.value.indexOf(".",0)!=-1){
+            alert("轉帳金額須為正整數!");
+            return;   
+        }
+        if(f.TXN_AMT.value.indexOf("-",0)!=-1){
+            alert("轉帳金額須為正整數!");
+            return;   
+        }
+        if(f.TXN_AMT.value.indexOf("+",0)!=-1){
+            alert("台幣轉帳不可帶正號!");
+            return;   
+        }
+        if(eval(f.TXN_AMT.value)==0){
+            alert("轉帳金額不可為零!");
+            return;   
+        }
+        if(f.FROM_ACCT_NO.value.substr(3,2)==51){
+        	alert("如您動用到達文西A+理財卡或國民現\n金貸款額度，且動用金額大於100元\n時，每筆計收提領費100元。");
+        }
+        if(eval(f.FROM_AVAL_BALANCE.value) < eval(f.TXN_AMT.value)){
+		alert("轉出帳號可用餘額不足!");
+		return;
+        }
+        if (f.vtrType[0].checked){  //已約定帳號
+    	    	var acctArray = f.TOACCTINFO2.value.split("@"); 
+    	    	f.TO_BANK_CODE.value = acctArray[0];
+    	    	f.TO_ACCTNO.value = acctArray[1];
+    	    	f.TO_BANK_NAME.value = acctArray[2];
+    	    	if(f.TO_BANK_CODE.value==803 && f.SEND_AMT_LMT.value!=0){
+    	    		if(eval(f.TXN_AMT.value)>eval(f.SEND_AVAL_LARGE.value)){
+    	    			alert("今日尚可轉入已約定聯邦帳戶限額為"+trimDecimal(moneyAddDot(f.SEND_AVAL_LARGE.value))+"元!");
+    	    			return;
+    	    		}
+    	    	}
+    	    	else{
+			if(eval(f.TXN_AMT.value) > 2000000){
+				alert("轉帳金額單筆不得大於2,000,000元!");
+				return;
+			}
+			else if(eval(f.TXN_AMT.value) > eval(f.SEND_AVAL_TFR.value)){
+				if(f.TO_BANK_CODE.value==803){
+					alert("今日尚可轉入已約定帳戶限額為"+trimDecimal(moneyAddDot(f.SEND_AVAL_TFR.value))+"元!");
+					return;
+				}
+				else{
+					alert("今日尚可轉入已約定非聯邦帳戶或非約定帳戶限額為"+trimDecimal(moneyAddDot(f.SEND_AVAL_TFR.value))+"元!");
+					return;
+				}
+			}
+			else{}
+	   	}
+	   	f.pageid.value = "IP0711100";
+    	}
+    	
+    	if (f.vtrType[1].checked){  //非約定帳號
+    		var ssl = '[[%%SEND-STATUS%%]]';
+    		var rec = "[[%%SEND-TXN-RECLMT%%]]";  //單筆限額
+    		var day = "[[%%SEND-TXN-DAYLMT%%]]";  //當日限額
+    		var mon = "[[%%SEND-TXN-MONLMT%%]]";  //每月限額
+    		
+    		
+    		
+    		var rec = trimSpStr1(rec);
+    		var day = trimSpStr1(day);
+    		var mon = trimSpStr1(mon);
+    		
+    		var rec = rec + "0000";
+    		var rec = parseInt(rec);
+    		var day = day + "0000";
+    		var day = parseInt(day);
+    		var mon = mon + "0000";
+    		var mon = parseInt(mon);
+    		
+    	
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		if(rec=="" || day=="" || mon==""){
+    			alert("非約定轉帳限額未讀取到,請洽客服人員!");
+    			return;
+    		}
+    		if(eval(rec)<=eval(day)){
+    			if(eval(rec)<=eval(mon)){
+    				if(eval(f.TXN_AMT.value) > eval(rec)){
+    					alert("您所選擇的非約定轉帳金額大於您所設定的單筆限額!");
+    					return;
+    				}
+    			}
+    			else{
+    				if(eval(f.TXN_AMT.value) > eval(mon)){
+    					alert("您所選擇的非約定轉帳金額大於您本月剩餘可用限額!");
+    					return;
+    				}
+    			}
+    		}
+    		if(eval(rec)>=eval(day)){
+    			if(eval(day)<=eval(mon)){
+    				if(eval(f.TXN_AMT.value) > eval(day)){
+    					alert("您所選擇的非約定轉帳金額大於您所設定的每日限額所剩餘額!");
+    					return;
+    				}
+    			}
+    			else{
+    				if(eval(f.TXN_AMT.value) > eval(mon)){
+    					alert("您所選擇的非約定轉帳金額大於您本月剩餘可用限額!");
+    					return;
+    				}
+    			}
+    		}
+    		if(eval(f.TXN_AMT.value) > eval(f.SEND_AVAL_TFR.value)){
+    			alert("您輸入的金額大於本日剩餘可轉帳金額!");
+    			return;
+    		}
+    	    	if (f.TOACCTNO.value == ""){
+                		alert("請輸入轉入帳號!");
+                		return;
+            		} 
+            		if (f.TOACCTNO.value.length > 16){
+                		alert("目前僅支援16碼以下帳號!");
+                		return;
+            		} 
+            		if (!checkNum(f.TOACCTNO.value)){
+                		alert("轉入帳號格式錯誤");
+                		return;
+            		}
+    	    	var acctArray = f.TOACCTINFO3.value.split("@");  
+    	    	f.TO_BANK_CODE.value = acctArray[0];
+    	    	f.TO_BANK_NAME.value = acctArray[1];
+    	    	f.TO_ACCTNO.value = f.TOACCTNO.value;
+    	    	f.pageid.value="IP0711200";
+	}
+	f.TXN_MEMO.value = HalfshapeToFullshape(f.TXN_MEMO.value);
+        f.submit();
+}
+
+
+</script>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+
+<form method="post" action="LoadAP" name="IP0711000">
+<p><b>帳戶交易&gt;<font color="#003399"><font color="#0066FF">繳費<br>
+	<div align="right">	
+	<script>
+		
+		document.write("資料時間:"+getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+		</script>
+	</div>
+	<br>
+  </font></font></b>
+<table width="630" border="0">
+  <tr> 
+    <td><br>
+    <table width="90%" align="center" border="1" bordercolor="#999999">
+    	<!--
+      <tr>
+	<td height="25" bgcolor="#C4CBB8">繳費類別</td>
+	<td height="25">
+		<select name="select3" onChange="selBankCode(this.value);">
+		<option value="0" selected>==請選擇==</option>
+		<option value="803">學費</option>
+		<option value="013">台北市自來水費</option>
+		<option value="017">台灣大哥大</option>
+		<option value="805">遠傳電信電信費</option>
+		<option value="050">和信電信電信費</option>
+		<option value="008">東信電信電信費</option>
+		<option value="812">大眾電信電信費</option>
+		<option value="812">台灣固網電信費</option>
+		<option value="804">亞太固網寬頻電信費</option>
+		<option value="804">亞太線上電信費</option>
+		<option value="812">亞太行動電信費</option>
+		<option value="805">速博Sparq電信費</option>
+		<option value="000">其它</option>
+		</select>
+	</td>
+	</tr>
+	-->
+	<tr> 
+        <td width="17%" height="25" bgcolor="#C4CBB8">轉出帳號<font color="#663300" face="Arial, Helvetica, sans-serif"></font></td>
+            <td width="83%" height="25"><font color="#663300" face="Arial, Helvetica, sans-serif"> 
+              <select name="FROMACCTNO">
+              <option value="0" selected>==請選擇帳號　可用餘額== </option>
+
+		<!--[[%%LOOP_SEC SEND-FROM-ACCT-NO%%]]-->
+		<option value="[[%%SEND-FROM-ACCT-NO%%]]@[[%%SEND-FROM-BR-NAME%%]]@[[%%SEND-FROM-AVAL-BALANCE%%]]@[[%%SEND-AMT-LMT%%]]@[[%%SEND-AVAL-TFR%%]]@[[%%SEND-AVAL-LARGE%%]]">[[%%SEND-FROM-BR-NAME%%]] 
+		<script language="JavaScript">
+			document.write(getAcctStr('[[%%SEND-FROM-ACCT-NO%%]]'));
+		</script>
+		新台幣
+		<script>
+			document.write(trimDecimal(moneyAddDot('[[%%SEND-FROM-AVAL-BALANCE%%]]')));
+		</script>
+		元</option>
+		<!--[[%%ELOOP_SEC%%]]-->
+
+            </select> </font></td> </tr> <tr> <td width="17%" height="25" 
+            bgcolor="#C4CBB8">轉入帳號/銷帳編號</td> <td width="83%" 
+            height="25">
+              <input type="radio" name="vtrType">
+              已約定帳號
+		<select name="TOACCTINFO2">
+		
+		<option value="0" selected>==請選擇帳號== </option>
+		<!--[[%%LOOP_SEC SEND-REG-ACCTNO%%]]-->
+			<option value="[[%%SEND-REG-BCODE%%]]@[[%%SEND-REG-ACCTNO%%]]@[[%%SEND-REG-BANK-NAME%%]]">
+			[[%%SEND-REG-BCODE%%]] [[%%SEND-REG-BANK-NAME%%]] [[%%SEND-REG-ACCTNO%%]]
+		</option>
+		<!--[[%%ELOOP_SEC%%]]-->        
+		
+		</select>
+		<p>
+            	
+              <input type="radio" name="vtrType">
+              非約定帳號
+		<select name="TOACCTINFO3">
+		 <option value="803@聯邦銀行">803 聯邦銀行</option>
+		<!--[[%%LOOP_SEC SEND-BANK-CODE%%]]-->
+		        <option value="[[%%SEND-BANK-CODE%%]]@[[%%SEND-BANK-NAME%%]]">[[%%SEND-BANK-CODE%%]] [[%%SEND-BANK-NAME%%]]</option>
+		<!--[[%%ELOOP_SEC%%]]-->    
+		
+		</select>    
+              <input type="text" name="TOACCTNO" value="" maxlength="16">
+              </p>
+              </td>
+        </tr>
+	<script>
+		document.write(chkSSL('[[%%SEND-STATUS%%]]'));
+	</script>   
+      	<tr> 
+        <td width="17%" height="25" bgcolor="#C4CBB8">轉帳金額</td>
+            <td width="83%" height="25">新台幣 
+              <input type="text" name="TXN_AMT" value=""  size="6">
+              元</td>
+        </tr>
+      	<tr> 
+        <td width="17%" height="25" bgcolor="#C4CBB8">交易附註</td>
+            <td width="83%" height="25">
+            	<input type="text" name="TXN_MEMO" value="" size="80" maxlength="50">
+            </td>
+        </tr>
+      	</table>
+        <div align="center"> 
+          <input type="button" name="Submit" value="確定" onClick="chkSubmit();">
+          <input type="reset" name="Submit3" value="取消"  onClick="history.back()" >
+      </div>
+    </td></tr>
+    
+    
+      <tr>
+          <td>　 說明：   </td>
+        </tr>
+        <tr>
+          <td>
+          　 （1）帳務性交易時間為週一至週五09:00~15:30，若超過前述時間或例假日交易，皆為次一營業日帳。<br>
+          　 （2）如執行轉帳交易發生網路傳輸異常而無法確認交易結果時，請先利用交易明細查詢功能確認交易是否成功。<br>
+          　 （3）若帳單內容之「繳款方式」有「自動櫃員機(ATM)轉帳繳款」項目，即可執行「繳費」交易，請輸入帳單內容<br>
+          　 　 　 之「繳款帳號」及「繳款金額」進行繳費交易。<br>
+          　 （4）此為轉出交易，交易完成後，帳戶中款項將被轉出。<br>
+          </td>
+       </tr>
+      
+    
+    
+        
+</table>
+<input type="hidden" name="FROM_ACCT_NO" value="">
+<input type="hidden" name="FROM_BR_NAME" value="">
+<input type="hidden" name="TO_ACCTNO" value="">
+<input type="hidden" name="TO_BANK_CODE" value="">
+<input type="hidden" name="TO_BANK_NAME" value="">
+<input type="hidden" name="pageid" value="IP0711100">
+<input type="hidden" name="FROM_AVAL_BALANCE" value="">
+<input type="hidden" name="SEND_AMT_LMT">
+<input type="hidden" name="SEND_AVAL_TFR">
+<input type="hidden" name="SEND_AVAL_LARGE">
+<input type="hidden" name="CURRENCY-CNAME" value="台幣">
+<script>
+getTimeAlert('[[%%SYSTIME%%]]','[[%%SYSDATE%%]]');
+</script>
+</form>
+</body>
+</html>

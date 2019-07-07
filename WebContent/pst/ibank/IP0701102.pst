@@ -1,0 +1,34 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+
+<form method="post" action="LoadAP" name="IP0701102">  
+<input type="hidden" name="pageid" value="IP0701103">
+<input type="hidden" name="FROM_BR_NAME" value="[[%%FROM_BR_NAME%%]]">
+<input type="hidden" name="TO_BANK_NAME" value="[[%%TO_BANK_NAME%%]]">
+<input type="hidden" name="CURRENCY-CNAME" value="[[%%CURRENCY-CNAME%%]]">
+<input type="hidden" name="TXN_MEMO" value="[[%%TXN_MEMO%%]]">
+<input type="hidden" name="SEND_MOBILE" value="[[%%SEND_MOBILE%%]]">
+<input type="hidden" name="SEND_EMAIL_ADDR" value="[[%%SEND_EMAIL_ADDR%%]]">
+<input type="hidden" name="TO_BANK_CODE" value="[[%%TO_BANK_CODE%%]]">
+<input type="hidden" name="TXN_AMT" value="[[%%TXN_AMT%%]]">
+<input type="hidden" name="FROM_ACCT_NO" value="[[%%FROM_ACCT_NO%%]]">
+<input type="hidden" name="TO_ACCTNO" value="[[%%TO_ACCTNO%%]]">
+<input type="hidden" name="SEND_AVAL_BALANCE" value="[[%%SEND_AVAL_BALANCE%%]]">
+<input type="hidden" name="SEND-FEE-AMT" value="[[%%SEND-FEE-AMT%%]]">
+<input type="hidden" name="SEND-YESGO-SN" value="[[%%SEND-YESGO-SN%%]]">
+</form>
+<script>
+   document.IP0701102.submit();
+</script>
+</body>
+</html>

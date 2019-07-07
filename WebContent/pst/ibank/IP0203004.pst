@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>檢視交易附註/通知方式</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script language="JavaScript">
+	function windowclose(){
+	    alert('確定要關閉此視窗嗎?');
+	    window.close();
+	}
+	function getMsgType(){
+		var type = '[[%%SEND-MSG-TYPE%%]]';
+		if (type=='0') return "不通知";
+		if (type=='1') return "電子郵件通知";
+		if (type=='2') return "簡訊通知";
+		return "不通知";	
+	}
+</script>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　台幣存款帳戶查詢&gt;<font color="#003399"><font color="#0066FF">查詢/取消預約轉帳</font></font></b><font color="#003399"><font color="#0066FF"><b>&gt;</b></font></font><b><font color="#0066FF">待執行交易</font></b><br>
+<font color="#0000CC"><br>
+</font> 
+<table width="350" border="0">
+  <tr> 
+    <td align="center"> 
+      <table width="229" border="1" bordercolor="#999999" cellpadding="3">
+        <tr> 
+          <td width="61" valign="top" bgcolor="#C4CBB8">預約序號 <br>
+          </td>
+          <td width="144">&nbsp;[[%%REVE-SCHDNO%%]]</td>
+        </tr>
+        <tr> 
+          <td width="61" valign="top" bgcolor="#C4CBB8">交易附註</td>
+          <td width="144">[[%%SEND-TXN-MEMO%%]]&nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="61" valign="top" bgcolor="#C4CBB8">通知方式</td>
+          <td width="144">&nbsp;<script>document.write(getMsgType());</script></td>
+        </tr>
+      </table>
+      <br>
+      <div>
+        <input type="button" name="close" value="關閉本視窗" onclick="javascript:windowclose()">
+      </div>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5" />
+<title>聯邦銀行</title>
+<link href="img/ubot.css" rel="stylesheet" type="text/css" />
+<SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="JavaScript">
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+<script language="JavaScript">
+function chkSubmit(Pageid){
+ 	document.IP0801302.pageid.value = Pageid;
+ 	if(document.IP0801302.REVE_WISH[0].checked){
+		document.IP0801302.REVE_WISH_ANS.value = "2";
+	}else if(document.IP0801302.REVE_WISH[1].checked){
+		document.IP0801302.REVE_WISH_ANS.value = "3";
+	}else{
+		alert("您尚未選擇是否啟用非約轉！");
+		return;
+	}
+	var PWD1 = document.IP0801302.PWD.value
+	var PWD2 = document.IP0801302.PWD2.value
+	var sNickName = document.IP0801302.NickName.value
+	if (chkPWD(PWD1,PWD2)  && chkNickName(sNickName))  {
+	    if (document.IP0801302.email.value.trim() == ""){
+    	    var rt = confirm('您尚未填妥Email資料，本行將無法提供您部份\n利用Email通知之網路銀行通知服務！您可按"取\n消"回上頁填寫，或待您有Email帳號後，再至網\n路銀行內登錄！');
+    	    if (!rt){
+    	        return rt;
+    	    }
+    	}else{
+    	    var rtnEmail = chkEmail(document.IP0801302.email.value.trim())
+    		if(!rtnEmail){
+    			return rtnEmail;	
+    		}
+    	}	
+		document.IP0801302.submit();		
+	}
+    
+}
+
+function chkNickName(sNickName){
+
+	if (sNickName.trim() == ""){
+		alert("請輸入網路銀行使用者代號");
+		return false;	
+	}else if((sNickName.length < 6) || (sNickName.length > 12)){ 
+		alert("網路銀行使用者代號請輸入6-12碼");
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function chkPWD(sPWD1,sPWD2){
+	if(sPWD1 != sPWD2){
+		alert("密碼和確認密碼不同\n請重新輸入密碼");
+		return false;
+	}else if(sPWD1 == "" || sPWD2 == ""){
+		alert("請輸入密碼和確認密碼");
+		return false;
+	}else{
+		return true;
+	} 
+}
+function chkSubmit2(Pageid){
+	document.IP0801302.pageid.value = Pageid;
+	document.IP0801302.submit();
+}
+
+function KeyPressChk(){
+	var iKeyCode = window.event.keyCode
+	if (!(iKeyCode >= 48 && iKeyCode <=57) && !(iKeyCode >= 65 && iKeyCode <=90) && !(iKeyCode >= 97 && iKeyCode <=122)){
+		window.event.keyCode = 0;
+	}
+}
+
+function showRule(){
+    window.open("https://web.ubot.com.tw/ub/ebank_5/page04_2.asp");
+}
+
+function chkNum2(sid){
+	var oldID = sid;
+	var newID = "";
+	for(i=0;i<oldID.length-1;i++){
+		if(i>3&&i<8){
+			newID = newID + '*';
+		}else{
+			newID = newID + oldID.charAt(i);
+		}
+	}
+	return newID;
+}
+
+function chkAcct(act){
+	var oldact = act;
+	var newact = "";
+	for(i=0;i<oldact.length;i++){
+		if(i>3&&i<9){
+			newact = newact + '*';
+		}else{
+			newact = newact + oldact.charAt(i);
+		}
+	}
+	return newact;
+}
+</script>
+</head>
+<body onfocus="onTop();">
+<form name="IP0801302" method="POST" action="LoadAP">
+
+<table width="100%" height="500" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><table width="990" height="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="800" height="100%" valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td background="img/card_bg.gif"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="18%"><img src="img/page01_title.gif" alt="申請電子銀行服務" width="222" height="38"></td>
+              </tr>
+            </table>              </td>
+          </tr>
+		            <tr>
+		              <td><img src="img/line_990.gif" width="990" height="4"></td>
+              </tr>
+		            <tr>
+                      <td><img src="img/spacer.gif" alt="" width="100" height="13"></td>
+		            </tr>
+        </table>
+          <table width="990" height="33" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td height="33"><table id="___01" width="990" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td><img src="img/page01_bg01_990.gif" width="990" height="1" alt=""></td>
+                </tr>
+                <tr>
+                  <td><img src="img/page01_bg02_990.gif" width="990" height="10" alt=""></td>
+                </tr>
+                <tr>
+                  <td background="img/page01_bg02_990.gif"><table width="960" height="36" border="0" align="center" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td background="img/page01_bg.gif" class="t16_w"><strong><img src="img/spacer.gif" width="25" height="25" align="absmiddle">使用者代號及網銀密碼設定
+</strong></td>
+                      </tr>
+                  </table></td>
+                </tr>
+                <tr>
+                  <td><img src="img/page01_bg02_990.gif" width="990" height="10" alt=""></td>
+                </tr>
+                <tr>
+                  <td><img src="img/page01_bg03_990.gif" width="990" height="8" alt=""></td>
+                </tr>
+                <tr>
+                  <td><img src="img/page01_bg04_990.gif" width="990" height="2" alt=""></td>
+                </tr>
+                <tr>
+                  <td><img src="img/page01_bg05_990.gif" width="990" height="9" alt=""></td>
+                </tr>
+                <tr>
+                  <td background="img/page01_bg06_990.gif"><br>
+                    <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td><table width="750" border="0" align="center" cellpadding="0" cellspacing="0" id="___01">
+                            <tr>
+                              <td height="39" background="img/td_01a.gif"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                  <td width="35"><img src="img/spacer.gif" alt="" width="1" height="1"></td>
+                                  <td class="t18b">使用者代號及網銀密碼設定</td>
+                                  <td class="t18b"><div align="right"><img src="img/notice1.jpg" width="189" height="35" hspace="5" border="0" onclick="javascript:showRule();"></div></td>
+                                </tr>
+                              </table></td>
+                            </tr>
+                            <tr>
+                              <td><img src="img/td_02.gif" width="750" height="10" alt=""></td>
+                            </tr>
+                            <tr>
+                              <td height="40" background="img/td_03.gif"><table width="750" border="0" cellspacing="0" cellpadding="5">
+                                <tr>
+                                  <td width="350"><div align="center" class="t18">身分證字號</div></td>
+                                  <td class="t18">
+                                  <script>
+												        		document.write(chkNum2('[[%%SEND-ID-NO%%]]'));
+												          </script>
+                                  </td>
+                                </tr>
+                              </table></td>
+                            </tr>
+                            <tr>
+                              <td><img src="img/td_04.gif" width="750" height="3" alt=""></td>
+                            </tr>
+                            <tr>
+                              <td height="40" background="img/td_03.gif"><table width="750" border="0" cellspacing="0" cellpadding="5">
+                                <tr>
+                                  <td width="350"><div align="center" class="t18">銀行存款帳號
+</div></td>
+                                  <td class="t18">
+                                  <script>
+																		document.write(chkAcct('[[%%REVE-ACCT-NO%%]]'));
+																	</script>
+                                  </td>
+                                </tr>
+                              </table></td>
+                            </tr>
+                            <tr>
+                              <td><img src="img/td_04.gif" width="750" height="3" alt=""></td>
+                            </tr>
+                            <tr>
+                              <td height="40" background="img/td_03.gif"><table width="750" border="0" cellspacing="0" cellpadding="5">
+                                <tr>
+                                  <td width="350"><div align="center" class="t18">
+                                  網銀使用者代號 
+
+                                  </div></td>
+                                  <td><span class="s" style="text-align: left">
+                                    <input type="text" input type="text" maxlength="12" name="NickName" value="" onpaste="return false;" style="ime-mode:disabled;width:250px;font-size:18pt;font-family:Arial, Helvetica,sans-serif;height: 25pt;color: #04357D;">  
+                                  </span><span class="t13_r" style="text-align: left">(6~12碼,英數字皆可)</span></td>
+                                </tr>
+                              </table></td>
+                            </tr>
+                            <tr>
+                              <td><img src="img/td_04.gif" width="750" height="3" alt=""></td>
+                            </tr>
+                            <tr>
+                              <td height="40" background="img/td_03.gif"><table width="750" border="0" cellspacing="0" cellpadding="5">
+                                  <tr>
+                                    <td width="350"><div align="center" class="t18">設定網銀密碼 </div></td>
+                                    <td><span class="s" style="text-align: left">
+                                      <input type="password" name="PWD" size="12" onclick="getKeyBoard('IP0801302','PWD',' REVE_PWD','[[%%SEND-KB-KEYCODE%%]]','[[%%SEND-KB-KEYLETTER%%]]');onTop();" readonly style="ime-mode:disabled;width:250px;font-size:18pt;font-family:Arial, Helvetica,sans-serif;height: 25pt;color: #04357D;">
+                                    </span></td>
+                                  </tr>
+                              </table></td>
+                            </tr>
+                            <tr>
+                              <td><img src="img/td_04.gif" width="750" height="3" alt=""></td>
+                            </tr>
+                            <tr>
+                              <td height="40" background="img/td_03.gif"><table width="750" border="0" cellspacing="0" cellpadding="5">
+                                  <tr>
+                                    <td width="350"><div align="center" class="t18">再次確認   網銀密碼 
+</div></td>
+                                    <td><span class="s" style="text-align: left">
+                                      <input type="password" name="PWD2" size="12" onclick="getKeyBoard('IP0801302','PWD2',' REVE_PWD2','[[%%SEND-KB-KEYCODE%%]]','[[%%SEND-KB-KEYLETTER%%]]');onTop();" readonly style="ime-mode:disabled;width:250px;font-size:18pt;font-family:Arial, Helvetica,sans-serif;height: 25pt;color: #04357D;">
+                                    </span></td>
+                                  </tr>
+                              </table></td>
+                            </tr>
+                            <tr>
+                              <td><img src="img/td_04.gif" width="750" height="3" alt=""></td>
+                            </tr>
+                            <tr>
+                              <td height="40" background="img/td_03.gif"><table width="750" border="0" cellspacing="0" cellpadding="5">
+                                <tr>
+                                  <td width="350"><div align="center" class="t18">
+                                  有效e-mail帳號 
+
+                                  </div></td>
+                                  <td><span class="s" style="text-align: left">
+                                    <input type="text" name="email" value="" onpaste="return false;" style="ime-mode:disabled;width:250px;font-size:18pt;font-family:Arial, Helvetica,sans-serif;height: 25pt;color: #04357D;">  
+                                  </span></td>
+                                </tr>
+                              </table></td>
+                            </tr>
+                            <tr>
+                              <td><img src="img/td_04.gif" width="750" height="3" alt=""></td>
+                            </tr>
+                            
+                            <tr>
+                              <td background="img/td_03.gif"><table width="750" border="0" cellspacing="0" cellpadding="5">
+                                <tr>
+                                  <td width="350"><div align="center" class="t18a">同時啟用「非約定帳戶交易功能」</div></td>
+                                  <td><table border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                      <td width="32"><input name="REVE_WISH" type="radio"   style="width:15px;font-size:13pt;height: 15px;color: #04357D;"></td>
+                                      <td width="57" class="t18">同意</td>
+                                    </tr>
+                                    <tr>
+                                      <td><input name="REVE_WISH" type="radio"  style="width:15px;font-size:13pt;height: 15px;color: #04357D;" ></td>
+                                      <td class="t18a">不同意</td>
+                                    </tr>
+                                  </table></td>
+                                </tr>
+                              </table></td>
+                            </tr>
+                            <tr>
+                              <td><img src="img/td_06.gif" width="750" height="11" alt=""></td>
+                            </tr>
+                        </table></td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td><table border="0" align="center" cellpadding="0" cellspacing="0">
+                          <tr>
+                            <td><div align="center"><img src="img/OK_off.gif" alt="確定" name="Image44" width="129" height="65" hspace="10" border="0" onclick="chkSubmit('IP0801303')"></div></td>
+                            <td><div align="center"><img src="img/cancel_off.gif" alt="取消" name="Image27" width="129" height="65" hspace="10" border="0" onclick="chkSubmit2()"></div></td>
+                          </tr>
+                        </table></td>
+                      </tr>
+                      <tr>
+                        <td><table width="810" border="0" align="center" cellpadding="2" cellspacing="0">
+                          <tr>
+                            <td height="35" colspan="2" class="t18"><div class="t18"><strong><font color="#FF0000">注意事項：</font></strong></div></td>
+                          </tr>
+                          <tr>
+                            <td>&nbsp;</td>
+                            <td height="10"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                  <td height="25" colspan="2" valign="top" class="t15Gray"><font color="#FF0000">為保障您的權益，請務必確認以下事項：</font></td>
+                                  </tr>
+                                <tr>
+                                  <td height="25" valign="top" class="t15Gray">1.</td>
+                                  <td valign="top" class="t15Gray">本項服務提供您進行個人網路銀行「使用者代號」及「網銀密碼」之設定/變更或錯誤次數達上限時解除鎖定之功能。</td>
+                                </tr>
+                                <tr>
+                                  <td height="25" valign="top" class="t15Gray">2.</td>
+                                  <td valign="top" class="t15Gray">若您為首次完成個人網路銀行「使用者代號 / 網銀密碼」設定，本行將提供給您小額轉帳服務，您可於帳戶可用餘額內享受快速便利的轉帳服務<font color="#FF0000">（新臺幣1萬元/每次；新臺幣1萬元/每日；新臺幣2萬元/每月）</font>，若欲調高或修改交易限額，可攜帶相關證明文件親臨本行任一分行辦理變更。</td>
+                                </tr>
+                                <tr>
+                                  <td height="25" valign="top" class="t15Gray">3.</td>
+                                  <td valign="top" class="t15Gray">您可利用「啟用非約定帳戶交易功能」自行設定是否開啟服務：</td>
+                                </tr>
+                                <tr>
+                                  <td valign="top" class="t15Gray">&nbsp;</td>
+                                  <td valign="top" class="t15Gray"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                      <td width="12" valign="top" class="t15Gray">◆</td>
+                                      <td valign="top" class="t15Gray">選擇「同意」時，本行將為您啟用「非約定帳戶交易」功能，並提供上述交易限額，若已申辦過本項功能者，原申辦之額度不受本次申請影響。</td>
+                                    </tr>
+                                    <tr>
+                                      <td valign="top" class="t15Gray">◆</td>
+                                      <td valign="top" class="t15Gray">當您選擇「不同意」時，本行則不提供您「非約定帳戶交易功能」，若已申辦過本項功能者，亦同時註銷。</td>
+                                    </tr>
+                                  </table></td>
+                                </tr>
+                            </table></td>
+                          </tr>
+                        </table></td>
+                      </tr>
+                    </table>
+                    <br></td>
+                </tr>
+                <tr>
+                  <td><img src="img/page01_bg07_990.gif" width="990" height="13" alt=""></td>
+                </tr>
+                <tr>
+                  <td><img src="img/page01_bg09_990.gif" width="990" height="10" alt=""></td>
+                </tr>
+                <tr>
+                  <td><img src="img/page01_bg11_990.gif" width="990" height="33" alt=""></td>
+                </tr>
+              </table></td>
+            </tr>
+          </table>          </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="REVE_PWD" value="">
+<input type="hidden" name="REVE_PWD2" value="">
+<input type="hidden" name="USERTYPE" value="[[%%USERTYPE%%]]">
+<input type="hidden" name="REVE_WISH_ANS">
+</form>
+</body>
+</html>

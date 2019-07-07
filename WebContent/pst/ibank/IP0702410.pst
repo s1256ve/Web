@@ -1,0 +1,830 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo           Date Modified  Modified by   
+* -------------      ----------     ----------
+* EAI97076           2010.01.12     David 
+* EAI96073           2009.04.01     David
+* EAI98060           2009.12.03     YiSyun 
+* EAI100018          2011.03.15     YiSyun 
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript" src="script/calendar.js"></script>
+<script language="JavaScript" src="script/calendar-zh.js"></script>
+<script language="JavaScript" src="script/calendar-setup.js"></script>
+<script language="JavaScript" src="script/calendarface.js"></script>
+<script language="JavaScript" src="script/DynamicOptionList.js"></script>
+<script language="JavaScript" src="script/formatCheck.js"></script>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+
+<script language="Javascript">
+//字串去空白
+String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");} 
+
+ function chkSSL(tmp){
+    	var ssl = tmp;
+    	if(ssl == 2){
+    		return " ";
+    	}
+    	else{
+    	  document.IP0702410.radioname[1].disabled=true;
+    	  document.IP0702410.radioname[2].disabled=true;
+    	  document.IP0702410.radioname[3].disabled=true;
+    		return " ";
+    	}
+    }
+
+function chgAcct(acctStr) {
+	var acctArray = acctStr.split("@");
+	var i = 0;
+  document.IP0702410.REVE_BR_NAME.value 	= acctArray[0];  
+	document.IP0702410.REVE_ACCT_DESC.value = acctArray[1];
+	document.IP0702410.REVE_ACCT_NO.value 	= acctArray[2];
+	document.IP0702410.REVE_AVAL_BALANCE.value = acctArray[3];
+	document.IP0702410.SEND_FROM_BR_NAME1.value = acctArray[0];
+	document.IP0702410.SEND_FROM_ACCT_NO.value = acctArray[2];
+
+}
+
+function chkSendTo1(tmp0, desc0){
+
+  document.IP0702410.REVE_MSG_TYPE1.value 	= tmp0;
+  document.IP0702410.REVE_MSG_DESC1.value  = desc0;
+		
+	if (tmp0 == 0) {
+	  document.all.c.style.display="none";
+	}
+
+	if (tmp0 == 1) {
+	  document.all.c.style.display="block";
+	}
+	if (tmp0 == 2) {
+	  document.all.c.style.display="block";
+	}
+	
+
+	
+}
+
+function chkSendTo(tmp, desc){
+	
+	document.IP0702410.REVE_MSG_DESC.value  = desc;
+	document.IP0702410.REVE_MSG_TYPE.value 	= tmp;
+	document.IP0702410.SEND_TO_YOU.value = tmp;
+
+	if (tmp == 0) {
+		document.all.a.style.display="none";
+		//document.all.b.style.display="none";
+		document.IP0702410.REVE_MSG_DESC.value = "不通知";
+		
+	}
+	if (tmp == 1) {
+		document.all.a.style.display="block";
+		//document.all.b.style.display="none";
+		document.IP0702410.REVE_MSG_DESC.value = "電子郵件";
+			
+	}
+	if (tmp == 2) {
+		document.all.a.style.display="none";
+		document.all.b.style.display="block";
+		document.IP0702410.REVE_MSG_DESC.value = "簡訊通知";
+	 
+	}
+  
+  document.IP0702410.HOW_TO_SEND.value = document.IP0702410.REVE_MSG_DESC.value;
+}
+
+//傳遞是15類或是11類
+function chkSEND_PAY_TYPE(){
+	   
+	   if(document.IP0702410.radioname[0].checked == true)
+	   {
+	     document.IP0702410.REVE_PAY_TYPE.value = document.IP0702410.radioname[0].value;
+	   }
+	   
+	   if(document.IP0702410.radioname[1].checked == true)
+	   {
+	     document.IP0702410.REVE_PAY_TYPE.value = document.IP0702410.radioname[1].value; 
+	     
+	   } 
+	       
+	   if(document.IP0702410.radioname[2].checked == true)
+	   {
+	     document.IP0702410.REVE_PAY_TYPE.value = document.IP0702410.radioname[2].value;
+	     document.IP0702410.SEND_NOTICE_CODE.value = document.IP0702410.SEND_NOTICE_CODE1.value;
+	   }
+	      
+	   if(document.IP0702410.radioname[3].checked == true)
+	   {
+	     document.IP0702410.REVE_PAY_TYPE.value = document.IP0702410.radioname[3].value;
+	     document.IP0702410.SEND_NOTICE_CODE.value = document.IP0702410.SEND_NOTICE_CODE2.value;
+	   }
+}       
+        
+function chkSubmit()
+{       
+        
+	
+	var avalBalance = document.IP0702410.REVE_AVAL_BALANCE.value;
+	var amt 	= document.IP0702410.REVE_TXN_AMT.value;	
+	var msgType 	= document.IP0702410.REVE_MSG_TYPE.value;
+	var mail = document.IP0702410.msgEMail.value;
+	var msgContent = "";
+	var msgSendTo  = "";
+	
+  
+  document.IP0702410.SEND_EMAIL_ADDR.value = document.IP0702410.msgEMail.value;
+  //document.IP0702410.SEND_MOBILE.value = document.IP0702410.msgMobile.value;
+  
+  
+  chkSEND_PAY_TYPE();
+  document.IP0702410.SEND_TXN_DATE.value = selDate;
+  
+  if(document.IP0702410.radioname[0].checked == true)
+  {
+    var acct 	= document.IP0702410.REVE_ACCT_NO.value;
+   	var bal = document.IP0702410.REVE_TXN_AMT.value;
+   	var av  = document.IP0702410.REVE_AVAL_BALANCE.value.value;
+    document.IP0702410.pageid.value="IP0702401"; 
+    document.IP0702410.SEND_FROM_BR_NAME.value = document.IP0702410.REVE_BR_NAME.value;
+    document.IP0702410.REVE_MEMO.value = document.IP0702410.SEND_MEMO1.value;
+    document.IP0702410.REVE_PAY_TYPE_NAME.value = "結算申報本人自繳稅款"
+    document.IP0702410.REVE_OFFICE_CODE.value = document.IP0702410.REVE_OFFICE_CODE1.value;
+    var sendidno1 = new String;
+    var sendidno2 = new String;
+    sendidno1 = "[[%%SEND-ID-NO%%]]"
+    sendidno2 = sendidno1.substr(0,10);
+    document.IP0702410.REVE_NOTICE_NO.value = sendidno2;
+		if(acct == "" || acct == "undefined")
+		{	
+			alert("請選擇轉出帳號！");		
+			return false;	
+		}
+		
+		if(acct.substr(3,2)=="51")
+		{
+			alert("如您動用到達文西A+理財卡或國民現\n金貸款額度，且動用金額大於100元\n時，每筆計收提領費100元。");
+	  }
+	  
+		if(document.IP0702410.REVE_OFFICE_CODE1.value == "")
+		{  
+			alert("請輸入戶籍地代號!!"); 
+			return false; 
+		}	
+		
+		
+		if(document.IP0702410.REVE_OFFICE_CODE1.value.length != 3)
+   {
+       alert("納稅人戶籍所在地代號為三碼!")
+       return;
+   }
+  else
+  {
+      for (i = 0; i < 3; i++)
+      {
+      	sub_num = document.IP0702410.REVE_OFFICE_CODE1.value.charAt(i);
+				
+				if("0123456789".indexOf(sub_num,0)<0)
+				{
+					alert("納稅人戶籍所在地代號應為數字!");
+					return;
+				}
+      }
+   }
+  }		
+
+  
+  if(document.IP0702410.radioname[1].checked == true)
+  {
+    var acct 	= document.IP0702410.REVE_ACCT_NO.value;
+   	var bal = document.IP0702410.REVE_TXN_AMT.value;
+   	var av  = document.IP0702410.REVE_AVAL_BALANCE.value.value;
+    document.IP0702410.pageid.value="IP0702411"; 
+    document.IP0702410.SEND_FROM_BR_NAME.value = document.IP0702410.REVE_BR_NAME.value;
+    document.IP0702410.REVE_MEMO.value = document.IP0702410.SEND_MEMO1.value;
+    document.IP0702410.REVE_PAY_TYPE_NAME.value = "結算申報他人自繳稅款" 
+		document.IP0702410.REVE_OFFICE_CODE.value = document.IP0702410.REVE_OFFICE_CODE2.value.toUpperCase();
+		
+		if(acct == "" || acct == "undefined")
+		{	
+			alert("請選擇轉出帳號！");		
+			return false;	
+		}
+		
+		if(acct.substr(3,2)=="51")
+		{
+			alert("如您動用到達文西A+理財卡或國民現\n金貸款額度，且動用金額大於100元\n時，每筆計收提領費100元。");
+	  }
+	  if(checkID(document.IP0702410.REVE_NOTICE_NO1.value) == false)
+	  {
+		 	return;
+		}
+		else
+	  {
+			document.IP0702410.REVE_NOTICE_NO1.value = checkID(document.IP0702410.REVE_NOTICE_NO1.value) ;
+		}
+	
+	if(document.IP0702410.REVE_NOTICE_NO1.value == ""){  alert("請輸入身分證字號!!"); return false; }
+	if(chkFristWord()==false){  alert("您輸入的身分證字號第一碼有誤!"); return false; }	
+	
+	var send_id_no = new String ("[[%%SEND-ID-NO%%]]");
+	 
+	 if(!send_id_no == "")
+	 {
+	 
+	 	if(document.IP0702410.REVE_NOTICE_NO1.value == send_id_no.substr(0,10))
+	 	{
+	     alert("您輸入的身份證字號為您自己，若繳款對象為您自己，請點選 \"結算申報本人自繳稅款\" 選項!")
+       return; 	
+	 	}
+   }
+	
+	
+		if(document.IP0702410.REVE_OFFICE_CODE2.value == "")
+		{  
+			alert("請輸入戶籍地代號!!"); 
+			return false; 
+		}	
+		
+		
+		if(document.IP0702410.REVE_OFFICE_CODE2.value.length != 3)
+   {
+       alert("納稅人戶籍所在地代號為三碼!")
+       return;
+   }
+  else
+  {
+      for (i = 0; i < 3; i++)
+      {
+      	sub_num = document.IP0702410.REVE_OFFICE_CODE2.value.charAt(i);
+				
+				if("0123456789".indexOf(sub_num,0)<0)
+				{
+					alert("納稅人戶籍所在地代號應為數字!");
+					return;
+				}
+      }
+   }
+  }		
+
+	if(document.IP0702410.radioname[2].checked == true)
+ {
+	   
+	   var acct = document.IP0702410.SEND_FROM_ACCT_NO.value;
+	   document.IP0702410.SEND_FROM_BR_NAME.value = document.IP0702410.SEND_FROM_BR_NAME1.value;
+	   document.IP0702410.SEND_MEMO.value = document.IP0702410.SEND_MEMO1.value;
+	   document.IP0702410.REVE_PAY_TYPE_NAME.value = "結算申報核定補徵稅款"
+	   
+	   if(acct == "" || acct == "undefined")
+		{	
+			alert("請選擇轉出帳號！");		
+			return false;	
+		}
+		if(acct.substr(3,2)=="51")
+		{
+			alert("如您動用到達文西A+理財卡或國民現\n金貸款額度，且動用金額大於100元\n時，每筆計收提領費100元。");
+	  }
+	 
+	   
+	   if(document.IP0702410.SEND_NOTICE_CODE1.value == "")
+     {
+   			alert("請輸入銷帳編號!");
+   			return;
+   	 }
+   	
+    if(document.IP0702410.SEND_NOTICE_CODE1.value.length != 16)
+   	{
+   		alert("您輸入銷帳編號位數有誤，請檢查後再重新輸入!");
+   		return;
+   	}
+   	else
+  	{
+      for (i = 0; i < 16; i++)
+      {
+      	sub_num = document.IP0702410.SEND_NOTICE_CODE1.value.charAt(i);
+				
+				if("0123456789".indexOf(sub_num,0)<0)
+				{
+					alert("銷帳編號應為數字型態!");
+					return;
+				}
+      }
+   	}             
+  
+  	//document.IP0702410.REVE_PAY_TYPE.value = document.IP0702410.radioname[2].value;
+   	document.IP0702410.SEND_TXN_AMT.value = document.IP0702410.REVE_TXN_AMT.value;
+   	document.IP0702410.pageid.value="IP0702421";
+  }
+ 
+		
+	if(document.IP0702410.radioname[3].checked == true)
+ {
+ 	 var acct = document.IP0702410.SEND_FROM_ACCT_NO.value;
+ 	 document.IP0702410.SEND_FROM_BR_NAME.value = document.IP0702410.SEND_FROM_BR_NAME1.value; 	
+ 	 document.IP0702410.SEND_MEMO.value = document.IP0702410.SEND_MEMO1.value;	
+ 	 document.IP0702410.REVE_PAY_TYPE_NAME.value = "未申報核定補徵稅款"  	  
+ 	 
+ 	 if(acct == "" || acct == "undefined")
+		{	
+			alert("請選擇轉出帳號！");		
+			return false;	
+		}
+		if(acct.substr(3,2)=="51")
+		{
+			alert("如您動用到達文西A+理財卡或國民現\n金貸款額度，且動用金額大於100元\n時，每筆計收提領費100元。");
+	  }
+ 	 
+ 	 
+ 	 if(document.IP0702410.radioname[3].value == "")
+   {
+       alert("請輸入繳稅類別及代號!")
+       return;
+   }
+   	
+   if(document.IP0702410.SEND_NOTICE_CODE2.value == "")
+   {
+   	alert("請輸入銷帳編號!");
+   	return;
+   }
+   	
+   	if(document.IP0702410.SEND_NOTICE_CODE2.value.length != 16)
+    {
+   		alert("您輸入銷帳編號位數有誤，請檢查後再重新輸入!");
+   		return;
+   	}
+   	else
+  	{
+      for (i = 0; i < 16; i++)
+      {
+      	sub_num = document.IP0702410.SEND_NOTICE_CODE2.value.charAt(i);
+				
+				if("0123456789".indexOf(sub_num,0)<0)
+				{
+					alert("銷帳編號應為數字型態!");
+					return;
+				}
+      }
+   	}             
+    //document.IP0702410.REVE_PAY_TYPE.value = document.IP0702410.radioname[3].value;
+   	document.IP0702410.SEND_TXN_AMT.value = document.IP0702410.REVE_TXN_AMT.value;
+   	document.IP0702410.pageid.value="IP0702421";
+ }
+		
+		
+		
+		
+		
+		if(document.IP0702410.radioname[2].checked == true || document.IP0702410.radioname[3].checked == true)
+ {
+    if(document.IP0702410.SEND_DUE_DATE.value == "")
+   {
+   	alert("請輸入繳稅期限!");
+   	return;
+   }
+   if(document.IP0702410.SEND_DUE_DATE.value.length != 6)
+   {
+   	alert("繳稅期限日期長度錯誤!");
+   	return;
+   }
+   else
+  {
+   for (i = 0; i < 6; i++)
+   {
+    	sub_num = document.IP0702410.SEND_DUE_DATE.value.charAt(i);
+	  if("0123456789".indexOf(sub_num,0)<0)
+	  {
+		    alert("繳稅期限應為數字型態!");
+		    return;
+	  }
+   }
+  }         
+ }
+		
+		if(amt ==  "")
+		{	
+			alert("請輸入轉帳金額!");	
+			return false;	
+		}	
+	
+	 
+		if(msgType == 1)
+		{
+			msgSendTo = document.IP0702410.msgEMail.value;
+			chkEmail = document.IP0702410.msgEMail.value.match(/^\S+@\S+\.\S+$/);
+		
+			if(msgSendTo == "") 
+			{ 	
+				alert("請填寫通知對象電子郵件地址!");	
+				return false; 		
+			}
+			
+			if(!chkEmail || !mail)
+			{		
+				alert("電子郵件位址格式有誤!");		
+				return false;		
+			}
+			if(document.IP0702410.msgEContent.value.length>250)
+			{	
+				alert("您輸入郵件字數超過250個字，請重新輸入!");	
+				return false;	
+			}
+			if(document.IP0702410.msgEContent.value =="") 
+			{	
+				alert("請填寫訊息內容!");		
+				return false;		
+			}
+			msgContent  = addMailTitle(document.IP0702410.msgEContent.value);
+				
+	}
+	/**
+	if (msgType == 2) 
+	{
+		msgSendTo  = document.IP0702410.msgMobile.value;
+		if (msgSendTo == "") { 	alert("請填寫通知對象行動電話號碼!");	return false; 		}
+		if (msgSendTo.length != 10) { 	alert("電話號碼長度不對!!");		return false; 		}
+		if(isNaN(msgSendTo)){	alert("電話號碼格式不對!");		return false;		}
+		if(msgSendTo.substr(0,2)!=09){alert("您輸入的行動電話號碼有誤!");	return false;		}
+		if (document.IP0702410.msgMContent.value =="") {	alert("請填寫訊息內容!");		return false;		}
+		if(document.IP0702410.msgMContent.value.length>60){	alert("您輸入簡訊字數超過60個字，請重新輸入!");	return false;	}
+		msgContent = addMobileTitle(document.IP0702410.msgMContent.value);
+	}
+	**/
+	if (msgType == 0) 
+	{
+		//document.IP0702410.msgMobile.value = "";
+		document.IP0702410.msgEMail.value = "";
+	}
+	
+	document.IP0702410.REVE_MSG_SENDTO.value  = msgSendTo;
+	document.IP0702410.REVE_MSG_CONTENT.value = msgContent;	
+	
+  
+	
+	if(document.IP0702410.REVE_MSG_DESC.value == "")
+	{
+	  document.IP0702410.REVE_MSG_DESC.value = "不通知";
+	  document.IP0702410.HOW_TO_SEND.value = document.IP0702410.REVE_MSG_DESC.value;
+	}		
+		onSend('IP0702410');
+	
+	  document.IP0702410.SEND_TXN_DATE.value=document.IP0702410.REVE_SCHD_DATE.value;
+		date = eval(document.IP0702410.SEND_TXN_DATE.value);
+		date2 = "[[%%SYSDATE%%]]";
+    
+  if(date2=="")
+  {
+    date2 = eval(getADDateStr(getNowDate(),-1));
+  }
+	else
+	{
+		date2 = eval(getADDateStr(date2,-1));
+	}
+	
+	if(chkDateRule(document.IP0702410.SEND_TXN_DATE.value,"",
+		"[[%%SYSDATE%%]]",
+		0,	//A年
+		1,	//A月
+		0,	//A日
+		0,	//B年
+		1,	//B月
+		0	//B日
+		)==false)
+	{
+	
+		alert("預約轉帳限預約最近一個月,如93/05/23可預約93/05/24-93/06/23期間執行之交易");
+		return ;
+	}
+	if(date > date2)
+	{
+		//alert(f.TO_BANK_CODE.value +" "+f.TO_BANK_NAME.value);
+		if(isNaN(IP0702410.REVE_TXN_AMT.value))
+		{
+     		alert("轉帳金額格式錯誤!")
+     		return;
+ 		} 
+            		
+    if(IP0702410.REVE_TXN_AMT.value.indexOf(".")!=-1)
+    {
+       alert("轉帳金額須為正整數!");
+       return;
+   	}
+   
+    if(IP0702410.REVE_TXN_AMT.value.indexOf("-")!=-1)
+    {
+       alert("轉帳金額須為正整數!");
+       return;
+ 		}
+
+ 		if (IP0702410.REVE_TXN_AMT.value.indexOf("+")!=-1)
+ 		{
+      	alert("台幣轉帳不可帶正號!");
+      	return;
+   	}
+   
+    if (IP0702410.REVE_TXN_AMT.value=="0")
+    {
+      	alert("轉帳金額不得為零!");
+      	return;
+    }
+    
+    if(eval(IP0702410.REVE_TXN_AMT.value)>2000000)
+    {
+      	alert("目前繳稅單筆限額不得超過2百萬!");
+      	return;
+  	}      	
+    else
+    {           
+    		document.IP0702410.SEND_MEMO1.value = HalfshapeToFullshape(document.IP0702410.SEND_MEMO1.value);              
+    		document.IP0702410.submit();	
+    }		
+	}
+	else
+	{
+			alert("預約轉帳限預約最近一個月,如93/05/23可預約93/05/24-93/06/23期間執行之交易");
+			return;
+	}
+}
+
+function chkFristWord(){
+	if(document.IP0702410.radioname[0].checked == true)
+		{var id = document.IP0702410.REVE_NOTICE_NO.value;}
+	
+	if(document.IP0702410.radioname[1].checked == true)
+		{var id = document.IP0702410.REVE_NOTICE_NO1.value;}
+	
+	var fristWord = id.substr(0,1);
+	if(!isNaN(fristWord)){
+		return false;
+	}
+	else{
+		wordArray = new Array("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+		wordArray2 = new Array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z");
+		for(i=0;i<26;i++){
+		if(fristWord == wordArray2[i]){
+			if(document.IP0702410.radioname[0].checked == true)
+				{document.IP0702410.REVE_NOTICE_NO.value = wordArray[i]+id.substr(1,id.length-1);}
+			if(document.IP0702410.radioname[1].checked == true)
+				{document.IP0702410.REVE_NOTICE_NO1.value = wordArray[i]+id.substr(1,id.length-1);}
+			}
+		}
+	}
+}
+
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal3.css">
+<body bgcolor="#FFFFFF"  background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　帳戶交易&gt;<font color="#0066FF">預約繳稅</font></b><br>
+<form method="post" action="LoadAP" name="IP0702410" onSubmit='JavaScript:return chkSubmit();'>
+<table width="700" border="0">
+  <tr> 
+    <td colspan="4" >　<img src="graph/point.gif" tppabs="http://adm.uitc.com.tw/ubotfin/personallist/graph/point.gif" width="12" height="12">預約繳稅<br>
+      <table width="620" border="0">
+        <tr> 
+          <td colspan="2"> 　所得稅<br>
+            <table width="608" border="1" align="center" bordercolor="#999999">
+              <tr> 
+                <td width="22%" bgcolor="#C4CBB8">轉帳日期</td>
+                <td width="78%" height="25"> 
+                 <script>
+                 var selDate = getRCDateStr("[[%%SYSDATE%%]]",0);
+                 crtDateInputObj("REVE_SCHD_DATE");
+                 //lockCalSelObj('IP0702410',0,selDate);
+                 lockCalSelObj('IP0702410',-1,selDate);
+                
+                 </script>
+                 <font color="#FF0000">(例如：預定轉帳日期為94年6月1日，則請輸入94/06/01)</font>
+                 </td>
+              </tr>
+              <tr> 
+                <td width="22%" bgcolor="#C4CBB8">轉出帳號<font color="#663300" face="Arial, Helvetica, sans-serif"></font></td>
+                <td width="78%" height="25"><font color="#663300" face="Arial, Helvetica, sans-serif"> 
+                  <select name="SELECT-ACCT-NO" onChange="JavaScript:chgAcct(this.value);">
+                    <option selected>==請選擇帳號　可用餘額==</option>
+                    [[%%LOOP_SEC SEND-FROM-ACCT-NO%%]]
+                    	<option value="[[%%SEND-FROM-BR-NAME%%]]@[[%%SEND-FROM-ACCT-DESC%%]]@[[%%SEND-FROM-ACCT-NO%%]]@[[%%SEND-FROM-AVAL-BALANCE%%]]">
+                    	[[%%SEND-FROM-BR-NAME%%]] 
+                    	<script language="JavaScript">
+                    		document.write(getAcctStr("[[%%SEND-FROM-ACCT-NO%%]]"));
+                    		var avalBalance = trimDecimal(moneyAddDot('[[%%SEND-FROM-AVAL-BALANCE%%]]'));
+                    		if ( avalBalance != "" ){
+                    			document.write("&nbsp;&nbsp;&nbsp;");
+                    			document.write("新台幣 " +  avalBalance + " 元");
+                    		}
+                    	</SCRIPT> </option>
+                    [[%%ELOOP_SEC%%]]
+
+                  </select><br>
+                  </td>
+              </tr>
+              <TR>
+          <TD noWrap width="32%" bgColor=#c4cbb8>繳稅類別及代號</TD>
+          <TD width="68%" height=25>
+            <TABLE border=0>
+              <TBODY>
+              <TR>
+                 <TD><INPUT type=radio value="15001" name="radioname" checked onClick="chkSendTo1('0', '15001');"></TD>
+                	<TD noWrap>結算申報本人自繳稅款 15001 　機關代號 <INPUT maxLength=3 size=3 name=REVE_OFFICE_CODE1></TD>
+              </TR>
+              <TR>
+                <TD><INPUT type=radio value="15001" name="radioname" onClick="chkSendTo1('0', '15001');"></TD>
+                <TD noWrap>結算申報他人自繳稅款 15001 　機關代號 <INPUT maxLength=3 size=3 
+                  name=REVE_OFFICE_CODE2> + 身分證字號 <INPUT maxLength=10 size=10 
+                  name=REVE_NOTICE_NO1>
+                </TD>
+              </TR>
+              <TR>
+                <TD width=20>
+                	<INPUT type=radio value="11002" name="radioname" onClick="chkSendTo1('1', '11002');">
+                </TD>
+                <TD noWrap width=369>結算申報核定補徵稅款 11002  　銷帳編號16位 
+                	<INPUT type=text maxLength=16 size=16 name="SEND_NOTICE_CODE1" value=""  >
+                </TD>
+              </TR>
+              <TR>
+                <TD><INPUT type=radio value="11003" name="radioname" onClick="chkSendTo1('2', '11003');"></TD>
+                <TD>未申報核定補徵稅款 11003 　銷帳編號16位 
+                	<INPUT type=text maxLength=16 size=16 name="SEND_NOTICE_CODE2" value=""  >
+                </TD>
+              </TR>
+              </TBODY>
+            </TABLE>
+           </TD>
+                	
+                	
+                	
+          <tr id="c" style="display:none"> 
+          <div >
+          <td width="24%" bgcolor="#C4CBB8">繳稅期限</td>
+          <td width="76%" height="25"> 
+            <input type="text" name="SEND_DUE_DATE" value="" size="15" maxlength="6">
+            <br>
+            (例如：繳稅期限為89年4月30日則輸入890430)
+          </td>
+          </div>      
+          </tr>
+                	
+                	
+                	
+              <tr> 
+                <td width="22%" bgcolor="#C4CBB8">繳款金額</td>
+                <td width="78%" height="25">新台幣
+                  <input type="text" name="REVE_TXN_AMT" value="" size="15" maxlength="7">
+                  元 </td>
+              </tr>
+              <tr> 
+                <td width="22%" bgcolor="#C4CBB8" height="18">交易附註</td>
+                <td width="78%" height="25"> 
+                 <input type="text" name="SEND_MEMO1" value="" maxlength="50" size="80">
+                 <br>
+            <font color="#FF0000">(限50字，如您輸入交易附註，則於交易成功後可至『帳戶查詢』&gt;『台幣存款帳戶』&gt;『交易明細』點選查詢類別為『網銀轉出交易』查詢您所記錄之交易附註。) 
+            </font>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="2"><b>通知方式</b><font color="#FF0000">（您可利用下列方式於本次轉帳成功後通知相關人員)</font></td>
+        </tr>
+       <tr> 
+            <td colspan="2" bgcolor="#C4CBB8">            
+              <input type="radio" name="msgSendType" value="電子郵件通知" onClick="chkSendTo(1, this.value);">
+              電子郵件通知 </td>
+          </tr>
+          <tr>
+          <td colspan="2" bgcolor="#C4CBB8">	
+          <div id="a" style="display:none">           
+		通知對象電子郵件地址 
+              <input onpaste="return false;" type="text" name="msgEMail" size="80" value="" style="ime-mode:disabled"><br>
+		訊息內容（限250字）<br>
+              <textarea name="msgEContent" cols="80" maxlength="250"></textarea>
+          </div>
+		</td>
+          </tr>
+
+          <tr>           
+            <td colspan="2">               
+            <!--
+              <table width="100%" border="0">
+                <tr> 
+                  <td colspan="2" bgcolor="#C4CBB8"> 
+                    <input type="radio" name="msgSendType" value="簡訊通知" onClick="javascript:chkSendTo(2, this.value);">
+                    簡訊通知</td>
+                </tr>
+
+                <tr>
+                <td colspan="2" bgcolor="#C4CBB8">
+                <div id="b" style="display:none"> 
+                  通知對象行動電話號碼
+                    <input onpaste="return false;" type="text" name="msgMobile" value="" maxlength="10" style="ime-mode:disabled"><br>
+		  //簡訊通知費用 3元/通<font color="#FF0000">（簡訊通知成功後，將由您的轉出帳號扣款）</font><br>
+		  訊息內容（簡訊開頭語為<聯邦網銀代理通知>，您可輸入60個字）<br>
+                    <textarea name="msgMContent" cols="80" maxlength="70"></textarea>
+                </div>
+                </td>
+                </tr>
+              </table>
+              -->
+              
+              <table width="100%" border="0">
+                <tr> 
+                  <td colspan="2" bgcolor="#C4CBB8"> 
+                    <input type="radio" name="msgSendType" value="不通知" checked onClick="chkSendTo(0, this.value);">
+                    不通知</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      註：<br>
+       <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td valign="top">1.</td>
+            <td valign="top">預約轉帳交易限預約最近一個月，如 93/05/23 可預約時間為 93/05/24-93/06/23 ； 欲註銷預約轉帳交易，應於預約轉帳日前辦理。</td>
+          </tr>
+          <tr>
+            <td valign="top">2.</td>
+            <td valign="top">若遇執行轉帳交易發生網路傳輸異常時，請至查詢 / 取消預約轉帳內確認預約交易是否設定成功。</td>
+          </tr>
+          <tr>
+            <td valign="top">3.</td>
+            <td valign="top">如欲繳非本人稅款，請先至申請專區完成非約定轉帳交易之相關申請手續後，才能透過約定之行動電話號碼接收簡訊動態授權碼執行交易。</td>
+          </tr>
+          <tr>
+            <td valign="top">4.</td>
+            <td valign="top"><font color="#FF0000">繳交本人所得稅將以網路密碼執行交易授權；繳交非本人所得稅則須以簡訊動態授權碼執行交易授權。</font></td>
+          </tr>
+          
+          <tr>
+            <td valign="top">5.</td>
+            <td valign="top">本行將於<font color="#FF0000"><B>每日上午8點起，開始執行當日之預約轉帳交易</B></font>。<U>惠請客戶注意依預約交易之執行時間及實際資金需求時點規劃適當的預約日期。</U></td>
+          </tr>
+          
+          
+          
+          
+       </table>
+       <script language="JavaScript">
+              document.write(chkSSL('[[%%SEND-STATUS%%]]'));
+  	  </script>
+      <table width="620" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td colspan="2"> 
+            <div align="center">　 
+              <input type="button" name="Submit" value=" 確定 " onClick="chkSubmit();">
+              <input type="reset" name="Submit2" value="重填">
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  
+  <input type="hidden" name="pageid" value="">
+  <input type="hidden" name="APTYPE" value="IBANK">
+  <input type="hidden" name="REVE_BR_NAME" value="">
+  <input type="hidden" name="REVE_ACCT_DESC" value="">
+  <input type="hidden" name="REVE_ACCT_NO" value="">
+  <input type="hidden" name="REVE_AVAL_BALANCE" value="">
+  <input type="hidden" name="REVE_MSG_DESC"	value="">
+  <input type="hidden" name="REVE_MSG_TYPE"	value="">
+  <input type="hidden" name="REVE_MSG_DESC1"	value="">
+  <input type="hidden" name="REVE_MSG_TYPE1"	value="">
+  <input type="hidden" name="REVE_MSG_SENDTO" 	value="">
+  <input type="hidden" name="REVE_MSG_CONTENT" 	value="">
+  <input type="hidden" name="REVE_PAY_TYPE" 	value="">
+  <input type="hidden" name="SEND_NOTICE_CODE" 	value="">
+  <input type="hidden" name="REVE_PAY_TYPE_NAME" 	value="">
+  <input type="hidden" name="SEND_FROM_BR_NAME" 	value="">
+  <input type="hidden" name="SEND_TXN_AMT" 	value="">
+  <input type="hidden" name="HOW_TO_SEND" 	value="">
+  <input type="hidden" name="SEND_TXN_DATE" 	value="">
+  <input type="hidden" name="SEND_PAY_TYPE" value="">
+  <input type="hidden" name="SEND_FROM_ACCT_NO" value="">
+  <input type="hidden" name="SEND_FROM_BR_NAME1" 	value="">
+  <input type="hidden" name="REVE_MEMO" value="">
+  <input type="hidden" name="SEND_MEMO" 	value="">
+  <input type="hidden" name="SEND_TO_YOU" value="0">
+  <input type="hidden" name="REVE_OFFICE_CODE" value="">
+  <input type="hidden" name="REVE_NOTICE_NO" value="">
+  <input type="hidden" name="SEND_EMAIL_ADDR" value="">
+  <input type="hidden" name="SEND_MOBILE" value="">
+</table>
+</form>
+</body>
+</html>

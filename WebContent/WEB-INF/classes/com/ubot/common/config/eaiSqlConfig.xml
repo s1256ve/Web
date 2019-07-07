@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SQL>
+
+<!-- ==============================================================================
+	<conn type="datasource"   	dbdriver="" 
+		  dsn="jdbc/ubsso" 
+		  user="db2iop1" pass="db2iop1" />
+		  
+	<conn_driver type="driver" 
+		  dbdriver="COM.ibm.db2.jdbc.app.DB2Driver" 
+		  dsn="jdbc:db2:ubsso" 
+		  user="db2iop1" pass="db2iop1" />
+	============================================================================== -->
+
+<!-- ==============================================================================
+	For EaiService & EaiSVCLog
+	============================================================================== -->
+
+	<qrytxninfo><![CDATA[
+		select * from db2ibank.txnschema where TID = '[[%%REVE-CODE%%]]' and status = 1
+		]]></qrytxninfo>
+		
+	<logmaxid relation=""><![CDATA[ 
+		SELECT MAX(LOGID) AS LID FROM DB2IBANK.EAISVCBEGIN	WHERE LOGID LIKE '[[%%LOGDATE%%]]%'	
+		]]></logmaxid>	
+
+<!-- ==============================================================================
+	For PRE_TXNINFO
+	============================================================================== -->
+	
+
+	<pre901><![CDATA[ 
+			SELECT MAX(TXNSERNO)  AS TXNSERNO 
+			FROM DB2IBANK.PRE_TXNINFO	
+			WHERE TXNSERNO LIKE '[[%%DATEPATTERN%%]]%'
+			]]></pre901>
+
+	<pre902><![CDATA[ 
+			SELECT MAX(SCHDNO)  AS SCHDNO   
+			FROM DB2IBANK.PRE_TXNINFO	
+			WHERE ACCTNO_FROM = '[[%%ACCTNO_FROM%%]]' AND 
+				  SCHDNO LIKE '[[%%MONTH%%]]%'	
+			]]></pre902>
+
+<!-- ==============================================================================
+	For KEY BOARD PASSWORD
+	============================================================================== -->
+
+	<kb000 relation=""><![CDATA[
+			 			DELETE FROM KEYBOARDS 
+			 		   ]]></kb000>
+
+	<kb001 relation=""><![CDATA[
+						INSERT INTO KEYBOARDS 
+								(IDX, KEYCODE, KEYLETTER)
+						VALUES 	( ? ,    ?   ,   ?   ) 
+					   ]]></kb001>
+						
+	<kb002 relation=""><![CDATA[
+						SELECT RTRIM(IDX)	 AS SEND_KB_IDX, 
+							   KEYCODE	 AS SEND_KB_KEYCODE,
+							   KEYLETTER AS SEND_KB_KEYLETTER
+						FROM KEYBOARDS 
+						ORDER BY RAND() FETCH FIRST ROW ONLY 
+						]]></kb002>
+	
+	<kb003 relation=""><![CDATA[
+						SELECT IDX 		 AS SEND_KB_IDX, 
+							   KEYCODE	 AS SEND_KB_KEYCODE,
+							   KEYLETTER AS SEND_KB_KEYLETTER
+						FROM KEYBOARDS 
+						WHERE IDX = '[[%%REVE-KB-IDX%%]]' 
+						]]></kb003>			
+
+<!-- ==============================================================================
+	For YesFund Transaction
+	============================================================================== -->
+	<qryfdmain relation=""><![CDATA[
+						SELECT *
+						FROM DB2IBANK.FDMain 
+						WHERE FNDID='[[%%SEND-FUND-ID%%]]' 
+						]]></qryfdmain>
+
+	<qryfdcomp relation=""><![CDATA[
+						SELECT * 
+						FROM DB2IBANK.FDCOMPANY
+						WHERE COMPANYID='[[%%SEND-COMP-ID%%]]' 
+						]]></qryfdcomp>
+
+	<instfdmain relation=""><![CDATA[
+						INSERT INTO DB2IBANK.FDMain (FNDID) Values ('[[%%SEND-FUND-ID%%]]')  
+						]]></instfdmain>
+
+	<updfdmain relation=""><![CDATA[
+						UPDATE DB2IBANK.FDMAIN SET
+							CNNAME 					= '[[%%SEND-CN-NAME%%]]',
+							ENNAME 					= '[[%%SEND-EN-NAME%%]]',
+							Currency 					= '[[%%SEND-CURRENCY%%]]',
+							FNDAREA 				= '[[%%SEND-FUND-AREA%%]]',
+							ALLOWSMAILL 		= '[[%%SEND-ALLOW-SMALLINV%%]]',
+							ISCLOSED 				= '[[%%SEND-IS-CLOSED%%]]',
+							ISNONRPT				= '[[%%SEND-IS-NONRPT%%]]',
+							FDTYPE 					= '[[%%SEND-FUND-TYPE%%]]',
+							CompanyID 				= '[[%%SEND-COMP-ID%%]]',
+							SINGLEBUY 			= '[[%%SEND-SINGLE-BUYFEE%%]]',
+							SMALLBUY 			= '[[%%SEND-SMALL-BUYFEE%%]]',
+							INETSINBUY 			= '[[%%SEND-INTERNET-SINBUYFEE%%]]',
+							INETSMALBUY	 	= '[[%%SEND-INTERNET-SMLBUYFEE%%]]',
+							UNITFRAC 				= '[[%%SEND-UNIT-FRAC%%]]',
+							DUEDATE 				= '[[%%SEND-DUE-DATE%%]]',
+							GroupID 					= '[[%%SEND-COMPANY-ID%%]]',
+							INVSUBJECT 			= '[[%%SEND-INV-SUBJECT%%]]',
+							STARTDATE 			= '[[%%SEND-STARTED-DATE%%]]',
+							INITPRICE 				= '[[%%SEND-INIT-PRICE%%]]',
+							REGLOCATE	 		= '[[%%SEND-REG-PLACE%%]]',
+							FDMAG 					= '[[%%SEND-FUND-MGR%%]]',
+							MAGFREERATE 		= '[[%%SEND-MGMT-FEERATE%%]]',
+							FDINTRO 					= '[[%%SEND-FUND-INTRO%%]]',
+							FDNEWS 					= '[[%%SEND-FUND-NEWS%%]]',
+							EMPLSINBUY  		= '[[%%SEND-EMPL-SINBUYFEE%%]]',
+							EMPLSMLBUY	 	= '[[%%SEND-EMPL-SMLBUYFEE%%]]',
+							CORPSINBUY 			= '[[%%SEND-CORP-SINBUYFEE%%]]',
+							CORPSMLBUY 		= '[[%%SEND-CORP-SMLBUYFEE%%]]',
+							TWDMINSINBUY 	= '[[%%SEND-TWD-MINSINBUYAMT%%]]',
+							USDMINSINBUY 	= '[[%%SEND-USD-MINSINBUYAMT%%]]',
+							TWDMINSMLBUY = '[[%%SEND-TWD-MINSMLBUYAMT%%]]',
+							USDMINSMLBUY 	= '[[%%SEND-USD-MINSMLBUYAMT%%]]',
+							FDCOUNTRY			= '[[%%SEND-FUND-COUNTRY%%]]',
+							NOEBUY 					= '[[%%SEND-NO-EBUY%%]]',
+							NOFROM 					= '[[%%SEND-NO-FROM%%]]',
+							NOTO 						= '[[%%SEND-NO-TO%%]]',
+							NORECOVER 			= '[[%%SEND-NO-RECOVER%%]]',
+							EXPDATE 				= '[[%%SEND-EXP-DATE%%]]'   
+						WHERE fndid = '[[%%SEND-FUND-ID%%]]'
+						]]></updfdmain>
+						
+	<instfdcomp relation=""><![CDATA[
+						INSERT INTO DB2IBANK.FDCOMPANY (COMPANYID, CompanyName) Values ('[[%%SEND-COMP-ID%%]]', '[[%%SEND-COMPANY-NAME%%]]')  
+						]]></instfdcomp>
+						
+	<updfdcomp relation=""><![CDATA[
+						UPDATE DB2IBANK.FDCOMPANY SET CompanyName = '[[%%SEND-COMPANY-NAME%%]]'  WHERE COMPANYID = '[[%%SEND-COMP-ID%%]]'  
+						]]></updfdcomp>
+
+	<updfdamt relation=""><![CDATA[
+						Update DB2IBANK.FDMain Set FDAMT = '[[%%SEND-FUND-AMT%%]]', AMTDATE = '[[%%SEND-FUND-AMT-DATE%%]]' Where FNDID = '[[%%SEND-FUND-ID%%]]'
+						]]></updfdamt>
+
+	<qryfundname relation=""><![CDATA[
+						SELECT DB2IBANK.FDMAIN.*, DB2IBANK.FDCOMPANY.CompanyName 
+						FROM DB2IBANK.FDMAIN JOIN DB2IBANK.FDCOMPANY ON FDMAIN.COMPANYID = FDCOMPANY.COMPANYID  
+						WHERE FNDID='[[%%SEND-FUND-ID%%]]'
+						]]></qryfundname>			
+						
+	<qryfdinfo relation=""><![CDATA[
+						SELECT DB2IBANK.FDMAIN.*, DB2IBANK.FDCOMPANY.CompanyName 
+						FROM DB2IBANK.FDMAIN JOIN DB2IBANK.FDCOMPANY ON FDMAIN.COMPANYID = FDCOMPANY.COMPANYID  
+						WHERE [[%%CONDITION%%]]
+						Order By CompanyID
+						]]></qryfdinfo>			
+
+<!-- ==============================================================================
+	For Schedule Transaction
+	============================================================================== -->
+	<delcalendar relation=""><![CDATA[
+						DELETE FROM DB2IBANK.CALENDAR WHERE YEAR = '[[%%REVE-YEAR%%]]'
+						]]></delcalendar>
+
+	<inscalendar relation=""><![CDATA[
+						INSERT INTO DB2IBANK.CALENDAR (CID, PID, YEAR, MONTH, DAY, REMARK, ISWORK, EFFECT, WORKINGSTART, WORKINGEND, WEEK) VALUES (
+							'0000000000', 
+							'0000000000',
+							'[[%%REVE-YEAR%%]]',
+							'[[%%REVE-MONTH%%]]',
+							'[[%%REVE-DAY%%]]',
+							'',
+							[[%%REVE-IS-WORK%%]],
+							1,
+							'[[%%REVE-WORK-START%%]]',
+							'[[%%REVE-WORK-END%%]]', 
+							'[[%%REVE-WEEK%%]]')
+						]]></inscalendar>
+
+
+	<selectmaxsid relation=""><![CDATA[
+						SELECT MAX(SID) AS MSID FROM Schedule WHERE SID LIKE '[[%%REVE-SID-PAT%%]]%'
+						]]></selectmaxsid>
+
+	<selectmaxeid relation=""><![CDATA[
+						SELECT MAX(EID) AS MEID FROM DB2IBANK.Event WHERE EID LIKE '[[%%REVE-EID-PAT%%]]%'
+						]]></selectmaxeid>
+	
+	<selectschedule relation=""><![CDATA[
+						SELECT * FROM DB2IBANK.Schedule WHERE SID like '[[%%REVE-SID%%]]%' ORDER BY SID
+						]]></selectschedule>
+
+	<selectsidforevent relation=""><![CDATA[
+						SELECT sid FROM DB2IBANK.Schedule WHERE nexttime <= '[[%%REVE-NEXT-TIME%%]]' ORDER BY SID
+						]]></selectsidforevent>
+
+	<instschedule relation=""><![CDATA[
+						INSERT INTO 
+							DB2IBANK.Schedule (
+								SID, CID, NAME, EXEFILE, EXEARGV, STARTTIME, CURTIME, NEXTTIME, RUNTYPE, TARGV, TIMES, EXECTYPE, UPDATETIME, REMARK
+							)
+						VALUES (
+							'[[%%REVE-SID%%]]',
+							'0000000000',
+							'[[%%REVE-NAME%%]]',
+							'[[%%REVE-EXEFILE%%]]',
+							'[[%%REVE-EXEARGV%%]]',
+							'[[%%REVE-STARTTIME%%]]',
+							'[[%%REVE-CURTIME%%]]',
+							'[[%%REVE-NEXTTIME%%]]', 
+							[[%%REVE-RUNTYPE%%]], 
+							[[%%REVE-TARGV%%]], 
+							[[%%REVE-TIMES%%]], 
+							0, 
+							'[[%%REVE-UPDATETIME%%]]', 
+							'[[%%REVE-REMARK%%]]'
+						)
+						]]></instschedule>
+
+<!--	<updschedule relation=""><![CDATA[
+						UPDATE DB2IBANK.Schedule SET 
+							NAME 				= '[[%%REVE-NAME%%]]',
+							EXEFILE 			= '[[%%REVE-EXEFILE%%]]',
+							EXEARGV 		= '[[%%REVE-EXEARGV%%]]',
+							STARTTIME 	= '[[%%REVE-STARTTIME%%]]',
+							CURTIME 			= '[[%%REVE-CURTIME%%]]',
+							NEXTTIME 		= '[[%%REVE-NEXTTIME%%]]', 
+							RUNTYPE			= [[%%REVE-RUNTYPE%%]], 
+							TARGV 				= [[%%REVE-TARGV%%]], 
+							TIMES 				= [[%%REVE-TIMES%%]], 
+							UPDATETIME 	= '[[%%REVE-UPDATETIME%%]]', 
+							REMARK 			= '[[%%REVE-REMARK%%]]'
+						WHERE SID = '[[%%REVE-SID%%]]'
+						]]></updschedule> -->
+
+	<updschedule relation=""><![CDATA[
+						UPDATE DB2IBANK.Schedule SET 
+							NAME 				= '[[%%REVE-NAME%%]]',
+							EXEFILE 			= '[[%%REVE-EXEFILE%%]]',
+							EXEARGV 		= '[[%%REVE-EXEARGV%%]]',
+							STARTTIME 	= '[[%%REVE-STARTTIME%%]]',
+							NEXTTIME 		= '[[%%REVE-NEXTTIME%%]]', 
+							RUNTYPE			= [[%%REVE-RUNTYPE%%]], 
+							TARGV 				= [[%%REVE-TARGV%%]], 
+							TIMES 				= [[%%REVE-TIMES%%]], 
+							UPDATETIME 	= '[[%%REVE-UPDATETIME%%]]', 
+							REMARK 			= '[[%%REVE-REMARK%%]]'
+						WHERE SID = '[[%%REVE-SID%%]]'
+						]]></updschedule>
+						
+	<delschedule><![CDATA[  
+						DELETE FROM SCHEDULE WHERE SID = '[[%%REVE-SID%%]]'
+						]]></delschedule>
+
+	<delevent><![CDATA[  
+						DELETE FROM EVENT WHERE SID = '[[%%REVE-SID%%]]' AND ISEXEC = 0
+						]]></delevent>
+						
+	<selectevent relation=""><![CDATA[
+						SELECT * FROM DB2IBANK.Event WHERE SID like '[[%%REVE-SID%%]]%' and EID like '[[%%REVE-EID%%]]%' ORDER BY EID DESC
+						]]></selectevent>
+
+	<insevent relation=""><![CDATA[
+						INSERT INTO 
+							DB2IBANK.Event (
+								EID,SID,STARTTIME,EXEFILE,EXEARGV,EXECTYPE,ISEXEC,REMARK,FLAG,UPDATETIME
+							)
+						VALUES (
+							'[[%%REVE-EID%%]]',
+							'[[%%REVE-SID%%]]',
+							'[[%%REVE-START-TIME%%]]',
+							'[[%%REVE-EXEFILE%%]]',
+							'[[%%REVE-EXEARGV%%]]',
+							[[%%REVE-EXECTYPE%%]],
+							[[%%REVE-ISEXEC%%]],
+							'',
+							1,
+							'[[%%REVE-UPDATETIME%%]]'
+						)
+						]]></insevent>
+
+	<selevent relation=""><![CDATA[
+						SELECT * FROM DB2IBANK.Event WHERE starttime <= '[[%%REVE-START-TIME%%]]' and (IsExec=0 or IsExec=-1) and flag = 1 and EID like '[[%%REVE-EID%%]]%' ORDER BY EID
+						]]></selevent>
+
+	<updeventsts relation=""><![CDATA[
+						UPDATE DB2IBANK.Event SET ISEXEC=[[%%REVE-ISEXEC%%]] , UPDATETIME = '[[%%REVE-UPDATETIME%%]]' WHERE EID = '[[%%REVE-EID%%]]'
+						]]></updeventsts>
+						
+	<updeventtime relation=""><![CDATA[
+						UPDATE DB2IBANK.Event SET ISEXEC=[[%%REVE-ISEXEC%%]] , STARTTIME = '[[%%REVE-STARTTIME%%]]' , UPDATETIME = '[[%%REVE-UPDATETIME%%]]' WHERE EID = '[[%%REVE-EID%%]]'
+						]]></updeventtime>
+	
+	<updeventstsbysid relation=""><![CDATA[
+						UPDATE DB2IBANK.Event SET ISEXEC=[[%%REVE-ISEXEC%%]] WHERE SID = '[[%%REVE-SID%%]]' AND ISEXEC=0
+						]]></updeventstsbysid>
+	
+        <updnonworkevent relation=""><![CDATA[
+					UPDATE event SET isexec = -2 
+					WHERE eid IN 
+						(SELECT eid 
+						FROM 
+							(SELECT eid, isexec, sid FROM event WHERE isexec=0) AS events 
+						INNER JOIN 
+							(SELECT sid, nexttime FROM schedule WHERE nexttime <= '[[%%REVE-NEXT-TIME%%]]') AS schedules 
+						ON events.sid = schedules.sid)
+					]]></updnonworkevent>
+
+<!-- ==============================================================================
+	For Customer Table
+	============================================================================== -->
+	<selcust relation=""><![CDATA[
+						SELECT customer_id, name, uma, vip, status FROM DB2IBANK.Customers WHERE (customer_id like '[[%%REVE-CUSTOMER-ID%%]]%') AND UMA = 1 ORDER BY customer_id
+						]]></selcust>
+	
+	<selapcust relation=""><![CDATA[
+						SELECT customer_id, name, uma, vip, status, iseai FROM DB2IBANK.Customers WHERE customer_id like '[[%%REVE-CUSTOMER-ID%%]]%' ORDER BY customer_id
+						]]></selapcust>
+
+	<inscust relation=""><![CDATA[
+						INSERT INTO 
+							DB2IBANK.Customers (
+							Customer_ID, Name, UMA, VIP, Status
+							)
+						VALUES (
+							'[[%%REVE-CUSTOMER-ID%%]]',
+							'[[%%REVE-NAME%%]]',
+							[[%%REVE-UMA%%]],
+							[[%%REVE-VIP%%]],
+							1
+						)
+						]]></inscust>
+	
+	<updcust relation=""><![CDATA[
+						UPDATE DB2IBANK.Customers SET 
+								UMA = [[%%REVE-UMA%%]],
+								VIP =  [[%%REVE-VIP%%]]
+						WHERE customer_id = '[[%%REVE-CUSTOMER-ID%%]]'
+						]]></updcust>
+
+<!-- ==============================================================================
+	For FDMain Table
+	============================================================================== -->
+	<selfdinfo relation=""><![CDATA[
+						SELECT * FROM DB2IBANK.FDINFO ORDER BY FNDID
+						]]></selfdinfo>
+	
+	<selumafunds relation=""><![CDATA[
+						SELECT * FROM FUNDS WHERE FUND_ID LIKE '[[%%D-FUNDID%%]]%' ORDER BY FUND_ID
+						]]></selumafunds>
+
+	<insumafunds relation=""><![CDATA[
+						INSERT INTO 
+							FUNDS (
+								FUND_ID, CN_NAME, EN_NAME, CURRENCY, FUND_AREA, ALLOW_SMALLINV, IS_CLOSED, 
+								IS_NONRPT, FUND_TYPE, SINGLE_BUYFEE, SMALL_BUYFEE, INTERNET_SINBUYFEE,
+								INTERNET_SMLBUYFEE, UNIT_FRAC, DUE_DATE, COMPANY_ID, COMPANY_NAME, INV_SUBJECT,
+								STARTED_DATE, INIT_PRICE, REG_PLACE, FUND_MGR, MGMT_FEERATE, FUND_INTRO, 
+								FUND_NEWS, EMPL_SINBUYFEE, EMPL_SMLBUYFEE, CORP_SINBUYFEE, CORP_SMLBUYFEE,
+								TWD_MINSINBUYAMT, USD_MINSINBUYAMT, TWD_MINSMLBUYAMT, USD_MINSMLBUYAMT, 
+								FUND_COUNTRY, FUND_AMT, FUND_AMTDATE, DT_UPDATE, IP_ADDR)
+						VALUES (
+								'[[%%D-FUNDID%%]]', '[[%%D-CNNAME%%]]', '[[%%D-ENNAME%%]]', '[[%%D-CURRENCY%%]]', 
+								'[[%%D-FUNDAREA%%]]', '[[%%D-ALLOWSMALLINV%%]]', '[[%%D-ISCLOSED%%]]', '[[%%D-ISNONRPT%%]]', 
+								'[[%%D-FUNDTYPE%%]]', [[%%D-SINGLEBUYFEE%%]], [[%%D-SMALLBUYFEE%%]], [[%%D-INTERNETSINBUYFEE%%]], 
+								[[%%D-INTERNETSMLBUYFEE%%]], [[%%D-UNITFRAC%%]], [[%%D-DUEDATE%%]], '[[%%D-COMPANYID%%]]', 
+								'[[%%D-COMPANYNAME%%]]', '[[%%D-INVSUBJECT%%]]', [[%%D-STARTEDDATE%%]], [[%%D-INITPRICE%%]], 
+								'[[%%D-REGPLACE%%]]', '[[%%D-FUNDMGR%%]]', [[%%D-MGMTFEERATE%%]], '[[%%D-FUNDINTRO%%]]', 
+								'[[%%D-FUNDNEWS%%]]', [[%%D-EMPLSINBUYFEE%%]], [[%%D-EMPLSMLBUYFEE%%]], 
+								[[%%D-CORPSINBUYFEE%%]], [[%%D-CORPSMLBUYFEE%%]], [[%%D-TWDMINSINBUYAMT%%]], 
+								[[%%D-USDMINSINBUYAMT%%]], [[%%D-TWDMINSMLBUYAMT%%]], [[%%D-USDMINSMLBUYAMT%%]], 
+								'[[%%D-FUNDCOUNTRY%%]]', [[%%D-FUNDAMT%%]], [[%%D-FUNDAMTDATE%%]], 
+								[[%%D-DTUPDATE%%]], '[[%%D-IPADDR%%]]'
+						)
+						]]></insumafunds>
+	
+	<updumafunds relation=""><![CDATA[
+						UPDATE FUNDS SET 
+								FUND_ID = '[[%%D-FUNDID%%]]', 
+								CN_NAME = '[[%%D-CNNAME%%]]', 
+								EN_NAME = '[[%%D-ENNAME%%]]', 
+								CURRENCY = '[[%%D-CURRENCY%%]]', 
+								FUND_AREA = '[[%%D-FUNDAREA%%]]', 
+								ALLOW_SMALLINV = '[[%%D-ALLOWSMALLINV%%]]', 
+								IS_CLOSED = '[[%%D-ISCLOSED%%]]', 
+								IS_NONRPT = '[[%%D-ISNONRPT%%]]', 
+								FUND_TYPE = '[[%%D-FUNDTYPE%%]]', 
+								SINGLE_BUYFEE = [[%%D-SINGLEBUYFEE%%]], 
+								SMALL_BUYFEE = [[%%D-SMALLBUYFEE%%]], 
+								INTERNET_SINBUYFEE = [[%%D-INTERNETSINBUYFEE%%]], 
+								INTERNET_SMLBUYFEE = [[%%D-INTERNETSMLBUYFEE%%]], 
+								UNIT_FRAC = [[%%D-UNITFRAC%%]], 
+								DUE_DATE = [[%%D-DUEDATE%%]], 
+								COMPANY_ID = '[[%%D-COMPANYID%%]]', 
+								COMPANY_NAME = '[[%%D-COMPANYNAME%%]]', 
+								INV_SUBJECT = '[[%%D-INVSUBJECT%%]]', 
+								STARTED_DATE = [[%%D-STARTEDDATE%%]], 
+								INIT_PRICE = [[%%D-INITPRICE%%]], 
+								REG_PLACE = '[[%%D-REGPLACE%%]]', 
+								FUND_MGR = '[[%%D-FUNDMGR%%]]', 
+								MGMT_FEERATE = [[%%D-MGMTFEERATE%%]], 
+								FUND_INTRO = '[[%%D-FUNDINTRO%%]]', 
+								FUND_NEWS = '[[%%D-FUNDNEWS%%]]', 
+								EMPL_SINBUYFEE = [[%%D-EMPLSINBUYFEE%%]], 
+								EMPL_SMLBUYFEE = [[%%D-EMPLSMLBUYFEE%%]], 
+								CORP_SINBUYFEE = [[%%D-CORPSINBUYFEE%%]], 
+								CORP_SMLBUYFEE = [[%%D-CORPSMLBUYFEE%%]], 
+								TWD_MINSINBUYAMT = [[%%D-TWDMINSINBUYAMT%%]], 
+								USD_MINSINBUYAMT = [[%%D-USDMINSINBUYAMT%%]], 
+								TWD_MINSMLBUYAMT = [[%%D-TWDMINSMLBUYAMT%%]], 
+								USD_MINSMLBUYAMT = [[%%D-USDMINSMLBUYAMT%%]], 
+								FUND_COUNTRY = '[[%%D-FUNDCOUNTRY%%]]', 
+								FUND_AMT = [[%%D-FUNDAMT%%]], 
+								FUND_AMTDATE = [[%%D-FUNDAMTDATE%%]], 
+								DT_UPDATE = [[%%D-DTUPDATE%%]], 
+								IP_ADDR = '[[%%D-IPADDR%%]]' 
+						WHERE FUND_ID = '[[%%FUND-ID%%]]'
+						]]></updumafunds>
+	<delumafunds relation=""><![CDATA[	
+						DELETE FROM FUNDS
+						]]></delumafunds>					
+						
+<!-- ==============================================================================
+	For import NETOFIL to FDMain Table
+    ============================================================================== -->
+	<impnetofilselsql><![CDATA[
+		SELECT * FROM DB2IBANK.FDMAIN 
+		WHERE FNDID = '[[%%SEND-FUND-ID%%]]'
+	]]></impnetofilselsql>
+
+	<impnetofilinssql><![CDATA[
+		INSERT INTO DB2IBANK.FDMAIN (FDAMT, AMTDATE) 
+		VALUES ('[[%%SEND-FUND-AMT%%]]', '[[%%SEND-FUND-AMT-DATE%%]]')
+	]]></impnetofilinssql>
+	
+	<impnetofilupdsql><![CDATA[
+		UPDATE DB2IBANK.FDMAIN SET FDAMT='[[%%SEND-FUND-AMT%%]]', AMTDATE = '[[%%SEND-FUND-AMT-DATE%%]]' 
+		WHERE FNDID = '[[%%SEND-FUND-ID%%]]'
+	]]></impnetofilupdsql>
+
+
+<!-- ==============================================================================
+	For import FNDOFIL to FDMain Table
+	============================================================================== -->
+	<impfndofilselsql><![CDATA[
+		SELECT *
+		FROM DB2IBANK.FDMain 
+		WHERE FNDID='[[%%SEND-FUND-ID%%]]' 
+	]]></impfndofilselsql>
+
+	<impfndofilinssql><![CDATA[
+		INSERT INTO DB2IBANK.FDMain (FNDID) Values ('[[%%SEND-FUND-ID%%]]')  
+	]]></impfndofilinssql>
+
+	<impfndofilupdsql><![CDATA[
+		UPDATE DB2IBANK.FDMAIN SET
+			CNNAME 					= '[[%%SEND-CN-NAME%%]]',
+			ENNAME 					= '[[%%SEND-EN-NAME%%]]',
+			Currency 					= '[[%%SEND-CURRENCY%%]]',
+			FNDAREA 				= '[[%%SEND-FUND-AREA%%]]',
+			ALLOWSMAILL 		= '[[%%SEND-ALLOW-SMALLINV%%]]',
+			ISCLOSED 				= '[[%%SEND-IS-CLOSED%%]]',
+			ISNONRPT				= '[[%%SEND-IS-NONRPT%%]]',
+			FDTYPE 					= '[[%%SEND-FUND-TYPE%%]]',
+			CompanyID 				= '[[%%SEND-COMP-ID%%]]',
+			SINGLEBUY 			= '[[%%SEND-SINGLE-BUYFEE%%]]',
+			SMALLBUY 			= '[[%%SEND-SMALL-BUYFEE%%]]',
+			INETSINBUY 			= '[[%%SEND-INTERNET-SINBUYFEE%%]]',
+			INETSMALBUY	 	= '[[%%SEND-INTERNET-SMLBUYFEE%%]]',
+			UNITFRAC 				= '[[%%SEND-UNIT-FRAC%%]]',
+			DUEDATE 				= '[[%%SEND-DUE-DATE%%]]',
+			GroupID 					= '[[%%SEND-COMPANY-ID%%]]',
+			INVSUBJECT 			= '[[%%SEND-INV-SUBJECT%%]]',
+			STARTDATE 			= '[[%%SEND-STARTED-DATE%%]]',
+			INITPRICE 				= '[[%%SEND-INIT-PRICE%%]]',
+			REGLOCATE	 		= '[[%%SEND-REG-PLACE%%]]',
+			FDMAG 					= '[[%%SEND-FUND-MGR%%]]',
+			MAGFREERATE 		= '[[%%SEND-MGMT-FEERATE%%]]',
+			FDINTRO 					= '[[%%SEND-FUND-INTRO%%]]',
+			FDNEWS 					= '[[%%SEND-FUND-NEWS%%]]',
+			EMPLSINBUY  		= '[[%%SEND-EMPL-SINBUYFEE%%]]',
+			EMPLSMLBUY	 	= '[[%%SEND-EMPL-SMLBUYFEE%%]]',
+			CORPSINBUY 			= '[[%%SEND-CORP-SINBUYFEE%%]]',
+			CORPSMLBUY 		= '[[%%SEND-CORP-SMLBUYFEE%%]]',
+			TWDMINSINBUY 	= '[[%%SEND-TWD-MINSINBUYAMT%%]]',
+			USDMINSINBUY 	= '[[%%SEND-USD-MINSINBUYAMT%%]]',
+			TWDMINSMLBUY = '[[%%SEND-TWD-MINSMLBUYAMT%%]]',
+			USDMINSMLBUY 	= '[[%%SEND-USD-MINSMLBUYAMT%%]]',
+			FDCOUNTRY			= '[[%%SEND-FUND-COUNTRY%%]]',
+			NOEBUY 					= '[[%%SEND-NO-EBUY%%]]',
+			NOFROM 					= '[[%%SEND-NO-FROM%%]]',
+			NOTO 						= '[[%%SEND-NO-TO%%]]',
+			NORECOVER 			= '[[%%SEND-NO-RECOVER%%]]',
+			EXPDATE 				= '[[%%SEND-EXP-DATE%%]]'   
+		WHERE FNDID = '[[%%SEND-FUND-ID%%]]'
+	]]></impfndofilupdsql>
+	
+	<impfndofilcompselsql><![CDATA[
+		SELECT *
+		FROM DB2IBANK.FDCOMPANY
+		WHERE COMPANYID='[[%%SEND-COMP-ID%%]]' 
+	]]></impfndofilcompselsql>
+
+	<impfndofilcompinssql><![CDATA[
+		INSERT INTO DB2IBANK.FDCOMPANY Values ('[[%%SEND-COMP-ID%%]]', '[[%%SEND-COMP-CNAME%%]]')  
+	]]></impfndofilcompinssql>
+
+	<impfndofilcompupdsql><![CDATA[
+		UPDATE DB2IBANK.FDCOMPANY SET COMPANYID='[[%%SEND-COMP-ID%%]]', COMPANYNAME = '[[%%SEND-COMP-CNAME%%]]' 
+		WHERE COMPANYID='[[%%SEND-COMP-ID%%]]' 
+	]]></impfndofilcompupdsql>						
+</SQL>

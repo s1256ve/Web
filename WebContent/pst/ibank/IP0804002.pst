@@ -1,0 +1,225 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>個人薪資明細表</title>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script>
+
+function number_format(n) {
+    n += "";
+    var arr = n.split(".");
+    var re = /(\d{1,3})(?=(\d{3})+$)/g;
+    return arr[0].replace(re,"$1,") + (arr.length == 2 ? "."+arr[1] : "");
+}
+</script>
+<body ONDRAGSTART="window.event.returnValue=false" ONCONTEXTMENU="window.event.returnValue=false" >
+<form method="post" action="LoadAP" name="IP0804002">
+<b>我的薪資明細查詢</b>
+
+
+<table width="400" border="1" align="center" cellpadding="3" bordercolor="#DFEFFF">
+        <tr bgcolor="#DFEFFF"> 
+          <td colspan="2"><B><font color="#882017">
+            <div align="center">[[%%SEND-USER-NAME%%]]　薪資明細</div></font></B>
+          </td>
+        </tr>
+        <tr> 
+          <td width="122" bgcolor="#DEDEEE">公司統編</td>
+          <td width="354" bgcolor="#DFEFFF">
+          <script>
+          	var id = '[[%%SEND-COMPANY-ID%%]]';
+          	document.write(id.substr(0,id.length));
+          </script>
+          &nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="122"bgcolor="#DEDEEE">入帳帳號</td>
+          <td width="354" bgcolor="#DFEFFF">
+          <script>
+          	var id = '[[%%SEND-USER-ACCOUNT%%]]';
+          	document.write(id.substr(0,id.length));
+          </script>
+          &nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="122"bgcolor="#DEDEEE">薪資入帳日期</td>
+          <td width="354" bgcolor="#DFEFFF">
+          <script>
+          	var id = '[[%%SEND-PAY-DATE%%]]';
+          	//document.write(id.substr(0,id.length));
+          	  document.write(id.substr(0,4)+"年"+id.substr(4,2)+"月"+id.substr(6,2)+"日");
+          </script>
+          &nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="122"bgcolor="#DEDEEE">金額</td>
+          <td width="354" bgcolor="#DFEFFF">
+          <script>
+          	var id = number_format([[%%SEND-MONEY%%]]);
+          	document.write(number_format(id));	
+          </script>
+          &nbsp;</td>
+        </tr>
+        <!--tr> 
+          <td width="122"bgcolor="#DEDEEE">員工資訊</td>
+          <td width="354" bgcolor="#DFEFFF">
+          <script>
+          	var id = '[[%%SEND-USER-ID%%]]';
+          	document.write(id.substr(0,id.length));
+          </script>
+          &nbsp;</td>
+        </tr-->
+      </table>
+      <table width="400" border="0" cellpadding="1"  align="center" >
+          <td bgcolor="#95CAFE" align="center" ><font color="#882017"><B>
+          詳細薪資明細</B></font></td>
+      </table>    
+      <table width="400" border="0" cellpadding="1"  align="center" >    
+           <tr bgcolor="#DFEFFF"  align="center" >
+          <td width="180" align="left">薪資明細名稱</td>     <td width="121"  align="right">薪資明細金額(新台幣)</td>       <td width="99">備註</td>
+        </tr>
+      </table>
+     
+<script>
+  function chkSubmit(){
+    window.close();
+  }
+  
+  function chkSubmit2(){
+		window.print();
+  }  
+
+//var data1 =";薪資年月                        201603                          ;匯款日期                        20160420                        ;區股                            2104                            ;部門                            0973                            ;工號                            50001                           ;實發本薪                                     0元                ;職務加給                                     0元                ;經營加給                                     0元                ;特勤（輪班）津貼                             0元                ;夜勤津貼                                     0元                ;簽約金                                       0元                ;全勤獎金                                     0元                ;講師費                                       0元                ;特別獎金                                     0元                ;兼職薪資                                     0元                ;加班費（應稅）                               0元                ;補發稅前                                     0元                ;補發稅後（免稅）                             0元                ;伙食津貼（免稅）                             0元                ;加班費（免稅）                           2,442元                ;應發金額小計                             2,442元                ;扣缺勤                                       0元                ;補扣稅前                                     0元                ;補扣稅後                                     0元                ;所得稅                                       0元                ;員工自願提繳退休金                           0元                ;勞保費                                       0元                ;健保費(一般)                                 0元                ;健保費(補充)                                 0元                ;眷屬健保費                                   0元                ;職工福利金                                   0元                ;扣除金額小計                                 0元                ;實發金額                                 2,442元                ;所得稅申報金額                               0元                ;公司提繳退休金                               0元                ;兼職小計（時）                                 0                ;可休年假（天）                               0.0                ;已休年假（天）                               0.0                ;可休特休假（天）                             0.0                ;已休特休假（天）                             0.0                ;已休傷病假（時）                               0                ;已休事假（時）                                 0                ";
+var data1 = '[[%%SEND-SALARY-DETAIL%%]]';
+var data2 =data1.replace(/\ /g,"　");
+var datadata1 = data2.split(";");
+var data3;
+</script>
+ <table width="400" id="mytable" cellpadding="0"  align="center"  border="0" bgcolor="#FFFFFF"> 
+<tr border="0" bgcolor="#DFEFFF"><td>
+<script>
+
+for (var i=0 in datadata1) {
+	//data3.substring(0,11);
+		var chi = datadata1[i].indexOf("　",1);
+		CIDArray = new Array();
+		var chount = 0;
+		for (j=1;j<=datadata1[i].substring(0,chi).length;j++)     
+ 		{  
+	 if (datadata1[i].substring(0,chi).charCodeAt(j)<255)
+ 		 {
+ 			chount++;
+ 			}
+ 		}
+ 		for(k=1;k<=datadata1.length;k++)
+ 		{
+ 		NCIDArray = CIDArray.push(chount); 		
+		}
+		//alert(datadata1[i].substring(0,chi)+"有"+CIDArray[i]+"個英文字");
+		dataQ =datadata1[i].substring(32-chi,48-chi+CIDArray[i]).replace(/\　/g,"");
+		dataQQ =datadata1[i].substring(48-chi+CIDArray[i],64-chi+CIDArray[i]).replace(/\　/g,"");
+		if(dataQQ=="")
+{
+dataQQ = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+}
+		if(i>0)
+		{
+		if((i%2) == 0)
+			document.write("<tr bgcolor=#DFEFFF>"+"<td width=180>"+datadata1[i].substring(0,chi)+"</td>"+"<td align=right  width=121>"+"　"+dataQ+"</td>"+"<td align=right  width=99>"+"　"+dataQQ+"</td>"+"</tr>");
+		else
+			document.write("<tr>"+"<td>"+datadata1[i].substring(0,chi)+"</td>"+"<td align=right>"+"　　"+dataQ+"</td>"+"<td align=right>"+"　"+dataQQ+"</td>"+"</tr>");
+ 		}
+	}
+</script>
+ </td>
+</td></tr>
+
+        </table>
+<div align="center">
+<input type="button" name="submit1" value="關閉視窗" onClick="chkSubmit();">
+<input type="button" name="submit2" value="列印" onClick="chkSubmit2();">  
+</div> 
+
+ <script>
+ datadata1[1].substring(0,32);
+/*
+ 
+  for (i=1;i<4;i++){   
+ 		document.write("<tr bgcolor=white>");
+    document.write(datadata1[i*2-1]);
+     document.write("</tr>");
+    document.write("<tr bgcolor=#DFEFFF>");
+   	document.write(datadata1[i*2]);
+   	 document.write("</tr>");
+    }
+*/
+</script>
+
+ <!--table width="750" id="mytable" cellpadding="1"  align="center"  border="0" bgcolor="#DFEFFF"> 
+          		 <tr bgcolor="#DFEFFF"><td><script>document.write(datadata1[1]);</script></td></tr>       		  
+          	   <tr bgcolor="#FFFFFF"><td><script>document.write(datadata1[2]);</script></td></tr>    	  
+          	   <tr bgcolor="#DFEFFF"><td><script>document.write(datadata1[3]);</script></td></tr>
+          	   <tr bgcolor="#FFFFFF"><td><script>document.write(datadata1[4]);</script></td></tr>
+          	   <tr bgcolor="#DFEFFF"><td><script>document.write(datadata1[54]);</script></td></tr>
+      
+ </table-->
+ 
+ <!--table id="table1" bgcolor=#DFEFFF align="center" border="1">
+ 			<div style="text-align:right;">
+</table-->
+<script>
+	var table1=document.getElementById("table1");
+	for (var i=1; i<datadata1.length; i++){ //在表格結尾加入新的列
+		//var newrow=table1.insertRow(-1);
+		var newcell=newrow.insertCell(0); //在列中加入新的cell
+		var newcell2=newrow.insertCell(0); //在列中加入新的cell2
+		 		//newcell2=document.createElement("div");   
+		var newcell3=newrow.insertCell(0); //在列中加入新的cell3
+			var chi = datadata1[i].indexOf("　",1);
+//newcell.appendChild(document.createTextNode(datadata1[i].substring(48-chi,64-chi)));
+		//newcell.appendChild(document.createTextNode(datadata1[i].substring(chi,32-chi)));
+		
+		dataQ =datadata1[i].substring(32-chi,48-chi).replace(/\　/g,"");
+		var space = 16-dataQ.length;
+		var ch =0;
+		var add ="";
+		for (k=0;k<dataQ.length;k++)     
+ 		{  
+	 if (dataQ.charCodeAt(k)<255)
+ 		{
+ 		ch++;
+ 		add=add+"　";
+ 			}
+ 		}
+		for(var j=1;j<space;j++){
+			add=add+"　";
+		}
+  	var timediv=document.createElement("div");    
+		//newcell2.appendChild(document.createTextNode(dataQ));
+		//newcell3.appendChild(document.createTextNode(datadata1[i].substring(0,chi)));
+		document.getElementById('table1').style.align='right'; 
+
+		if((i%2) == 0)
+		document.getElementById('table1').style.backgroundColor='#FFFFFF'; 
+		else
+		document.getElementById('table1').style.backgroundColor='#DFEFFF'; 
+		
+	}
+</script>
+
+<script> 
+//alert(document.getElementById("myTable").rows.length);
+</script>
+
+<table width="400"  align="center" >
+                     
+</table>
+
+
+<input type="hidden" name="pageid" value="IP0804001">
+<input type="hidden" name="REVE_COMPANY_ID" value="[[%%SEND-FUND-COM-NO%%]]">
+<input type="hidden" name="aptype" value="IBANK">
+</form>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>基金申購</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript" src="script/calendar.js"></script>
+<script language="JavaScript" src="script/calendar-zh.js"></script>
+<script language="JavaScript" src="script/calendar-setup.js"></script>
+<script language="JavaScript" src="script/calendarface.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<script language="JavaScript">
+
+function chkSubmit(){
+
+	onSend('IF0801000');
+	document.IF0801000.SEND_DATE_BEGIN.value=document.IF0801000.DateBegin.value;
+	document.IF0801000.SEND_DATE_END.value=document.IF0801000.DateEnd.value;
+	document.IF0801000.submit();
+}
+
+</script>
+
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0801000">
+<font color="#006666"><b>歷史資料查詢&gt;</b></font><br>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center">請輸入您欲查詢的基金投資歷史資料</div>
+    </td>
+  </tr>
+</table>
+  <table width="770" border="0">
+    <tr> 
+      <td width="109" height="14"> 
+        <div align="right">請輸入起迄日：</div>
+    </td>
+      <td width="661"> 
+        <script language="JavaScript">
+            	<!--
+            	var lastMonth = countDate(0,-1,0);
+            	var selDate = getRCDateStr(getNowDate(), 0);
+            	document.write("　起始日　");
+							crtDateInputObj("DateBegin");
+							document.write("　迄日　");
+							crtDateInputObj("DateEnd");
+							lockCalSelObj('IF0801000',0,lastMonth+","+selDate);
+							lockCalSelObj('IF0801000',-1,lastMonth+","+selDate);
+							-->
+				</script>
+
+      <input type="button" name="Submit" value="列出清單" onClick="javaScript:chkSubmit();">
+      </td>
+  </tr>
+</table>
+<br>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+  	<input type="hidden" name="SEND_DATE_BEGIN" value="">
+  	<input type="hidden" name="SEND_DATE_END" value="">
+  	<input type="hidden" name="SEND-CERT-NO" value="">
+  	<input type="hidden" name="pageid" value="IF0801001">
+</table>
+</form>
+</body>
+</html>

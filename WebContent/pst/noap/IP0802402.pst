@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>使用者登入作業</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+</head>
+<body bgcolor="#FFFFFF" background="graph/bg01.gif" onLoad="" leftmargin="0" topmargin="0">
+<form name="IP0802402" method="POST" action="LoadAP">
+ 	<input type="hidden" name="pageid" value=""> 
+ 	<input type="hidden" name="REVE_ID_NO" value="[[%%REVE-ID-NO%%]]">
+ 	<input type="hidden" name="REVE_CNAME" value="[[%%REVE-CNAME%%]]">
+ 	<input type="hidden" name="REVE_BIRTH" value="[[%%REVE-BIRTH%%]]"> 	
+ 	<input type="hidden" name="REVE_CONTACT_ZIP" value="[[%%REVE-CONTACT-ZIP%%]]">
+ 	<input type="hidden" name="REVE_CONTACT_ADDR" value="[[%%REVE-CONTACT-ADDR%%]]">
+ 	<input type="hidden" name="REVE_CONTACT2_ZIP" value="[[%%REVE-CONTACT2-ZIP%%]]">
+ 	<input type="hidden" name="REVE_CONTACT2_ADDR" value="[[%%REVE-CONTACT2-ADDR%%]]">
+ 	<input type="hidden" name="REVE_DAILY_PHONE1" value="[[%%REVE-DAILY-PHONE1%%]]">
+ 	<input type="hidden" name="REVE_DAILY_PHONE2" value="[[%%REVE-DAILY-PHONE2%%]]">
+ 	<input type="hidden" name="REVE_EMAIL_ADDR" value="[[%%REVE-EMAIL-ADDR%%]]">
+ 	<input type="hidden" name="REVE_MOBIL_NO" value="[[%%REVE-MOBIL-NO%%]]">
+</form>
+<script>    
+	var sStatus = "[[%%SEND-RETN-SCARD%%]]" 
+	if (sStatus == "Y"){
+		document.IP0802402.pageid.value = "IP0802410";
+	}else if(sStatus == "N"){
+		document.IP0802402.pageid.value = "IP0802420";	
+	}
+	document.IP0802402.submit();	
+</script>
+</body>
+</html>

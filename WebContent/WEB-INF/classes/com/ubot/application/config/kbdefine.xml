@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<DEFAULT row='4' col='10'>
+		<cols len='3' israndom='1'>
+			<col>0123</col>
+			<col>4567</col>
+			<col>89</col>
+		</cols>
+		<rows len='4' israndom='0'>
+			<row>ABCDEFG</row>
+			<row>HIJKLMN</row>
+			<row>OPQRSTU</row>
+			<row>VWXYZ</row>
+		</rows>
+	</DEFAULT>
+	<AZ09 row='4' col='10'>
+		<cols len='3'>
+			<col>0123</col>
+			<col>4567</col>
+			<col>89</col>
+		</cols>
+		<rows len='4'>
+			<row>ABCDEFG</row>
+			<row>HIJKLMN</row>
+			<row>OPQRSTU</row>
+			<row>VWXYZ</row>
+		</rows>
+	</AZ09>
+	<AZad09 row='5' col='11'>
+		<cols len='4' israndom='1'>
+			<col>0123</col>
+			<col>4567</col>
+			<col>89</col>
+			<col>abcd</col>
+		</cols>
+		<rows len='4'>
+			<row>ABCDEFG</row>
+			<row>HIJKLMN</row>
+			<row>OPQRSTU</row>
+			<row>VWXYZ</row>
+		</rows>
+	</AZad09>
+</root>

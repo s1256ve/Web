@@ -1,0 +1,165 @@
+<html>
+<head>
+<title>國民現金卡業務查詢</title>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<script language="JavaScript" src="script/calendar.js"></script>
+<script language="JavaScript" src="script/calendar-zh.js"></script>
+<script language="JavaScript" src="script/calendar-setup.js"></script>
+<script language="JavaScript" src="script/calendarface.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+
+<SCRIPT language="JavaScript">
+var nowDate = new Date();
+var nowDay = nowDate.getDate();
+var nowMonth = nowDate.getMonth();
+var nowYear = nowDate.getFullYear();
+var nowDateStr = getRCDateStr(nowYear + "/" + (nowMonth+1) + "/" + nowDay,0);
+var selDate = nowDateStr + "," + nowDateStr;
+
+function chgAcct(acctStr) {
+	var acctArray = acctStr.split("@");
+	var i = 0;
+	document.submitform.selBrName.value = acctArray[0];
+	document.submitform.selBalType.value = acctArray[1];
+	document.submitform.selAcctNo.value = acctArray[2];
+	document.submitform.selAvalBalance.value = acctArray[3];
+}
+
+function countDate(inYear,inMonth,inDay){
+	var tmpDate = new Date();
+	var tmpYear = tmpDate.getFullYear() + eval(inYear);
+	var tmpMonth = tmpDate.getMonth() + 1 + eval(inMonth);
+	var tmpDay = tmpDate.getDate() + eval(inDay);
+	var reDate = new Date(tmpYear, (tmpMonth-1), tmpDay);
+	var reDateStr = getRCDateStr(reDate.getFullYear() + "/" + (reDate.getMonth()+1) + "/" + reDate.getDate(),0);
+	return reDateStr;
+}
+
+function chgDate(inValue){
+
+
+	if (inValue==0){
+		inDate = selDate;
+	}
+	if (inValue==1){
+		var newWeek = countDate(0,0,-7);
+		selDate1 = newWeek + "," + nowDateStr;
+		inDate = selDate1;
+		
+	}
+	if (inValue==2){
+		var selDate2 = getRCDateStr(nowYear + "/" + (nowMonth+1) + "/" + 1 ,0) + "," + nowDateStr;
+		inDate = selDate2;
+		
+	}
+	if (inValue==3){
+		var lastMonth = countDate(0,0,-30);
+		var selDate3 = lastMonth + "," + nowDateStr;
+		inDate = selDate3;
+		
+	}
+	lockCalSelObj('submitform', inValue, inDate)
+}
+
+function chkSubmit(){
+	/*
+	if (document.submitform.selQueryType.value="0"){
+		document.submitform.pageid.value="IP0503001";
+	}else{
+		document.submitform.pageid.value="IP0503001";
+	}
+	*/
+	document.submitform.pageid.value="IP0505001";
+	onSend('submitform');
+	/*
+	if(chkDateRule(document.submitform.DateBegin.value,document.submitform.DateEnd.value,
+		"",
+		0,	//A年
+		-3,	//A月
+		0,	//A日
+		0,	//B年
+		1,	//B月
+		0	//B日
+		)==false){
+	alert("您輸入的時間範圍不對!!")
+	return ;
+	}
+	*/
+	if (document.submitform.selDateType.value=="0"){
+		document.submitform.selDateEnd.value=[[%%SEND-ACCT-DUE-DAY%%]];	
+	}else{
+		document.submitform.selDateEnd.value=document.submitform.DateEnd.value;
+	}
+	//alert(document.submitform.selDateEnd.value);
+	if(chkBeforeToday(document.submitform.selDateEnd.value))
+	{
+	    alert("您已逾期繳款，繳款日期請選擇「自選日期」並選取今日後日期查詢！");
+	    return;
+	}
+	//document.submitform.selDateEnd.value=document.submitform.DateEnd.value;
+	
+	document.submitform.submit();
+}
+</SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="SCRIPT/acctfmt.js"></SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+
+<script language="JavaScript">
+	window.onload=function(){
+ 		chgDate(0);
+ 	}
+</script>
+<b>　國民現金卡&gt;<font color="#0066FF">結清應繳總額查詢</font></b><br>
+<form name="submitform" method="POST" action="LoadAP">
+<table width="707" border="0">
+  <tr align="left"> 
+    
+    <td colspan="1" valign="bottom" align="left" width="89">　繳款日期：</td>
+    <td colspan="4" align="left">
+      <select name="selDateType" onChange="JavaScript:chgDate(this.value);">
+        <option value="0" selected>本期應繳款日</option>
+        <option value="-1">自選日期</option>
+      </select>
+        
+    
+   
+  
+  <tr align="left">
+      <td colspan="1" valign="bottom" align="left"></td>
+      <td colspan="1" valign="bottom" align="left" width="181">  
+      	<script language="JavaScript">
+       		<!--
+       		var selDate = getRCDateStr("[[%%SYSDATE%%]]",0);
+       		//document.write("起日&nbsp;&nbsp;")
+		//crtDateInputObj("DateBegin");
+		crtDateInputObj("DateEnd");
+		lockCalSelObj('submitform',0,selDate);
+		-->
+      	</script>
+      </td>
+      <td width="423" colspan="3" align="left" valign="bottom">  
+      	<a href="JavaScript:chkSubmit();"><img src="graph/go.gif" width="19" height="19" align="absmiddle" border="0"></a>
+      </td>
+  </tr> 
+  <tr bgcolor="#663300"> 
+    <td colspan="5" valign="bottom" height="1"></td>
+  </tr>
+</table>
+<table width="750" border="0">
+  <tr> 
+    <td>說明：若您已逾期繳款，則無法選擇"本期應繳款日"查詢，僅能選擇"自選日期"查詢並選擇當日或當日之後日期。</td>
+  </tr>
+</table>
+<input type="hidden" name="selDateEnd" value="">
+<input type="hidden" name="aptype" value="ibank">
+<input type="hidden" name="pageid" value="IP0505001">
+</form>
+</body>
+</html>

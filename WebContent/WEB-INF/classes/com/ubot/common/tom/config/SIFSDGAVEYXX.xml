@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- NCR SDGAVEYXX, 預約轉帳. Last updated date 1-9-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/NCR">
+	<field id="SDGAVEYXXi01">
+		<name>REVE-CODE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id="SDGAVEYXXi02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>轉出帳號</description>
+	</field>
+	<field id="SDGAVEYXXi03">
+		<name>REVE-PIN</name>
+		<security>DESYSDES</security>
+		<length>4</length>
+		<type>String</type>
+		<description>PIN</description>
+	</field>
+	<field id="SDGAVEYXXi04">
+		<name>REVE-TO-ACCTNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>轉入帳號</description>
+	</field>
+	<field id="SDGAVEYXXi05">
+		<name>REVE-TXN-AMT</name>
+		<length>12</length>
+		<type>String</type>
+		<description>轉帳金額</description>
+	</field>
+	<field id="SDGAVEYXXi06">
+		<name>REVE-BANK-CODE</name>
+		<length>3</length>
+		<type>String</type>
+		<description>轉入銀行代號</description>
+	</field>
+	<field id="SDGAVEYXXi07">
+		<name>REVE-SCHD-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>預約日期</description>
+	</field>
+	<field id="SDGAVEYXXi8">
+		<name>REVE-SCHD-NOTE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>交易附註</description>
+	</field>
+	<field id="SDGAVEYXXi9">
+		<name>REVE-STOP-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>繳稅期限</description>
+	</field>
+	<field id="SDGAVEYXXi10">
+		<name>REVE-EMAIL-ADDR</name>
+		<length>8</length>
+		<type>String</type>
+		<description>通知對象電子郵件地址</description>
+	</field>
+	<field id="SDGAVEYXXi11">
+		<name>REVE-MOBILE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>通知對象行動電話號碼</description>
+	</field>
+	<field id="SDGAVEYXXi12">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="SDGAVEYXXi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="SDGAVEYXXi51">
+		<name>REVE-ID-NO</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="SDGAVEYXXi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+</catalog>

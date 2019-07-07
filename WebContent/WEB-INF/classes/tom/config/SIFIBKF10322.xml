@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="Big5"?>
+<!-- IVR FUND F10322  基金轉換交易(後收型基金無須繳款) Last updated date 3-17-2004 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="F10322i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description><![CDATA[語音功能代碼]]></description>
+	</field>
+	<field id='F10322i54' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description><![CDATA[]]></description>
+  </field>
+	<field id="F10322i55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[Session ID]]></description>
+	</field>
+	<field id="F10322i02">
+		<name>REVE-CERT-NO</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[憑証號碼]]></description>
+	</field>
+	<field id="F10322i04">
+		<name>REVE-FROM-FUNDID</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[轉出基金代碼]]></description>
+	</field>
+	<field id="F10322i04">
+		<name>REVE-FROM-FUNDNAME</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[轉出基金名稱]]></description>
+	</field>
+	<field id="F10322i05">
+		<name>REVE-CVT-TYPE</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[轉換方式]]></description>
+	</field>
+	<field id="F10322i06">
+		<name>REVE-TO-FUNDID</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[轉入基金代碼]]></description>
+	</field>
+	<field id="F10322i06">
+		<name>REVE-TO-CURRENCY</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[轉入信託金額幣別CODE]]></description>
+	</field>
+	<field id="F10322i06">
+		<name>REVE-TO-CURRENCY-NAME</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[轉入信託金額幣別Name]]></description>
+	</field>	
+	<field id="F10322i07">
+		<name>REVE-FROM-AMT</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[轉出信託金額]]></description>
+	</field>
+	<field id="F10322i08">
+		<name>REVE-CVT-FEE</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[轉換手續費]]></description>
+	</field>
+	<field id="F10322i09">
+		<name>REVE-EXTRA-FEE</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[基金公司外加手續費]]></description>
+	</field>
+	<field id="TNSW2Yi11">
+		<name>REVE-TXN-AMT</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[轉出金額(轉換手續費+基金公司外加手續費)]]></description>
+	</field>
+	<field id="TNSW2Yi11">
+		<name>REVE-ACCT-NO</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[轉出帳號]]></description>
+	</field>
+	<field id="TNRD2i23">
+		<name>REVE-FROM-CURRENCY</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[轉出基金幣別CODE]]></description>
+	</field>
+	<field id="TNRD2i23">
+		<name>REVE-FROM-CURRENCY-NAME</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[轉出基金幣別NAME]]></description>
+	</field>	
+	<field id="F10322i14">
+		<name>REVE-CHANNEL</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[交易管道]]></description>
+	</field>
+	<field id="F10322i14">
+		<name>REVE-TO-FUND-AMT-REF</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[參考價格]]></description>
+	</field>
+	<field id="F10322i14">
+		<name>REVE-TO-FUND-AMT-DATE</name>
+		<length>10</length>
+		<type>String</type>
+		<description><![CDATA[參考價格日期]]></description>
+	</field>
+	<field id="F10322i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description><![CDATA[IP Address]]></description>
+	</field>
+	<field id="F10322i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description><![CDATA[Transaction Type]]></description>
+	</field>
+	<field id="F10322i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description><![CDATA[語音線號碼]]></description>
+	</field>
+	<field id="F10322i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description><![CDATA[交易序號]]></description>
+	</field>
+	<field id="TNSW1i54">
+		<name>REVE-SEARCH-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description><![CDATA[查詢營業時間]]></description>
+	</field>
+	<field id="fieldi07">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description><![CDATA[]]></description>
+	</field>
+	<field id="fieldi08">
+		<name>REVE-PWD</name>
+		<length></length>
+		<type>String</type>
+		<description><![CDATA[]]></description>		
+	</field>
+		<field id="F10122i22">
+		<name>REVE-QRY-ND2US</name>
+		<length>1</length>
+		<type>String</type>
+		<description><![CDATA[查詢台幣對美金之賣匯]]></description>
+	</field>
+	<field id="F10322i54">
+		<name>REVE-COME-FROM</name>
+		<length>16</length>
+		<type>String</type>
+		<description>來源位置</description>
+	</field>
+	<field id="F10322i55">
+		<name>REVE-ID-NO</name>
+		<length>1</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+	<field id="F10322i56">
+		<name>REVE-INTACCT-NO</name>
+		<length>14</length>
+		<type>String</type>
+		<description>收益入帳帳號</description>
+	</field>
+	<field id="F10322i57">
+		<name>REVE-FUND-NAME</name>
+		<length>14</length>
+		<type>String</type>
+		<description>基金轉換</description>
+	</field>
+	<field id="F10322i58">
+		<name>SEND-TXN-DATE-TYPE</name>
+		<length>14</length>
+		<type>String</type>
+		<description>是否為次一營業日</description>
+	</field>
+	<field id="TNRD2i30">
+		<name>SEND-EMAIL-ADDR</name>
+		<length>1</length>
+		<type>String</type>
+		<description>電子郵件</description>
+	</field>
+	<field id="TNRD2i31">
+		<name>REVE-DY-PWD</name>
+		<length>1</length>
+		<type>String</type>
+		<description>動態密碼</description>
+	</field>
+	<field id="TNRD2i32">
+		<name>REVE-IGNORE-CASE</name>
+		<length>1</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="TNRD2i33">
+		<name>REVE-TIME-RANGE</name>
+		<length>1</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="TNRD2i34">
+		<name>REVE-CURRENTTICK</name>
+		<length>1</length>
+		<type>String</type>
+		<description></description>
+	</field>
+
+</catalog>

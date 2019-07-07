@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="Big5"?>
+<!-- IVR FUND F205 Last updated date 23-4-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="F2058i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='F2058i02' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="F2058i03">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>	
+	<!--field id="F2058i04">
+		<name>REVE-TYPE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>查詢功能碼</description>
+	</field-->
+	<field id="F2058i05">
+		<name>SEND-COMPANY-ID</name>
+		<length>2</length>
+		<type>String</type>
+		<description>公司統編</description>
+	</field>
+	<field id="F2058i06">
+		<name>SEND-PAY-DATE</name>
+		<length>2</length>
+		<type>String</type>
+		<description>日期</description>
+	</field>
+	<field id="F2058i07">
+		<name>REVE-COME-FROM</name>
+		<length>16</length>
+		<type>String</type>
+		<description>來源位置</description>
+	</field>
+	<field id="F2058i08">
+		<name>SEND-CUSTOMER-ID</name>
+		<length>1</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+		<field id="F2058i09">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+		<field id="F2058i10">
+		<name>SEND-RID</name>
+		<length>1</length>
+		<type>String</type>
+		<description>RID</description>
+	</field>
+</catalog>

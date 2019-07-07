@@ -1,0 +1,184 @@
+<html>
+<head>
+<title>信用卡查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------------
+*EAI99067           2010.11.17      YiSyun 
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="JavaScript" SRC="script/iBank.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/datefmt.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript">
+<!--
+	var count = 0 ;
+	function chgOriAmt(oriamt){
+		if (oriamt == "0.00")
+		{
+			return "";	
+		}else{
+			return oriamt;
+		}
+	}
+	
+	
+	function getStmtDate(stmtDate)
+	{
+		var mon = stmtDate.substr(0,2);
+		var date= stmtDate.substr(2,2);
+		var year = stmtDate.substr(4,4);
+		  
+	    if (stmtDate.trim()=="" || stmtDate == "00000000"){
+		   
+		    return "";
+		    
+		}else{
+		     //return mon+"/"+date+"/"+year;
+		     return mon+"/"+date;   
+		}
+	}
+	
+	function splitCard(inCardNum){
+	var cardStr;
+	var cardArray = new Array(4);
+	cardArray[0] = inCardNum.substring(0,4);
+	cardArray[1] = inCardNum.substring(4,8);
+	cardArray[2] = inCardNum.substring(8,12);
+	cardArray[3] = inCardNum.substring(12,16);
+	cardStr = cardArray[0] + "****" + "****" + cardArray[3];
+	return cardStr;
+}
+	
+-->
+</SCRIPT>
+
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　信用卡&gt;<font color="#003399"><font color="#0066FF">未出帳單消費明細查詢</font></font></b><br>
+<table width="760" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td width="760" height="2"> 
+      <div align="right">　<font color="#0000FF">　查詢時間：
+        <script>
+        	document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+        </script>
+        </font></div>
+    </td>
+  </tr>
+</table>
+<font color="#0000CC"> </font> 
+<form name="IP0602001" method="post" action="LoadAP">
+<table width="763" border="0">
+  <tr> 
+    <td width="757"> 
+      <div align="center"><font color="#0000CC"> </font>
+
+
+
+
+
+
+        <table width="630" border="1" bordercolor="#999999" id="mytable">
+          <tr bgcolor="#C4CBB8"> 
+            <td width="20%" height="25"> 
+              <div align="center">卡號</div>
+            </td>
+            <td width="10%"> 
+              <div align="center">消費日期</div>
+            </td>
+            <td width="10%"> 
+              <div align="center">入帳日</div>
+            </td>
+            <td width="10%"> 
+              <div align="center">交易金額</div>
+            </td>
+            <td width="10%"> 
+              <div align="center">幣別</div>
+            </td>
+            <td width="10%"> 
+              <div align="center">外幣金額</div>
+            </td>
+            <td> 
+              <div align="center">消費明細</div>
+            </td>
+          </tr>
+          
+          
+          
+        
+          
+          
+          
+          
+          
+<!--[[%%LOOP_SEC SEND-CARD-NO%%]]-->
+
+
+          <tr>
+          	
+          
+          	
+          	<td align="center"><SCRIPT language="JavaScript">
+                    document.write(splitCard('[[%%SEND-CARD-NO%%]]'));
+                </SCRIPT>&nbsp;</td>
+          	
+          	
+          	
+          	<td align="center"><SCRIPT language="JavaScript">
+                    document.write(getStmtDate('[[%%SEND-EFFECTIVE-DATE%%]]'));
+                </SCRIPT>&nbsp;</td> 
+          
+            <td align="center"><SCRIPT language="JavaScript">
+                    document.write(getStmtDate('[[%%SEND-POSTING-DATE%%]]'));
+                </SCRIPT>&nbsp;</td>
+                
+            <td align="right">
+                <SCRIPT language="JavaScript">      
+                      document.write(moneyAddDot2(trimSpStr1("[[%%SEND-TX-AMT%%]]")));
+                </SCRIPT>&nbsp;</td>
+                
+           <td align="center">[[%%SEND-ORI-CODE%%]]&nbsp;</td>
+           <!--<td align="center">外幣&nbsp;</td>-->
+            
+           <td align="right">
+                <SCRIPT language="JavaScript">               
+                   document.write(chgOriAmt(moneyAddDot2('[[%%SEND-ORI-AMT%%]]')));
+                </SCRIPT>&nbsp;</td>
+            
+           <td>[[%%SEND-TX-DESC%%]]</td>
+           
+            
+         </tr>
+          
+          
+          
+<!--[[%%ELOOP_SEC%%]]-->
+
+        </table>
+        
+        <p></p>
+        <table width="681" border="0" align="center">
+        <tr> 
+          <td>註：
+           未出帳消費明細查詢結果僅供您參考，正確之帳單總額及繳款金額，仍以結帳之消費明細表為準，如有疑問請洽客服專線(02)2545-5168 、(07)226-9393。
+              
+	        </td>
+        </tr>
+      </table>
+        
+               
+      </div>
+    </td>
+  </tr>
+</table>
+</form>
+
+
+</body>
+</html>

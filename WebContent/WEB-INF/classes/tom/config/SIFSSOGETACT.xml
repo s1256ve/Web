@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- IVR CARD SSOGETACT Input Schema, Last updated date 3-11-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/IVR">
+	<field id="SSOGETACTi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id="SSOGETACTi02">
+		<name>REVE-ID-NO</name>
+		<length>10</length>
+		<type>String</type>
+		<description>身份証帳號</description>
+	</field>
+	<field id="SSOGETACTi03">
+		<name>REVE-TITLE-CODE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>帳號類別</description>
+	</field>
+	<field id="SSOGETACTi03">
+		<name>REVE-FUNC-CODE</name>
+		<length>10</length>
+		<type>String</type>
+		<description>查詢代碼(0,查詢DB,再做TOM,1,強制做TOM)</description>
+	</field>
+	<field id="SSOGETACTi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="SSOGETACTi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="SSOGETACTi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="SSOGETACTi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

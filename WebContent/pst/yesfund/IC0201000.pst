@@ -1,0 +1,453 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>台幣存款帳戶查詢</title>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------------
+*EAI98049           2009.7.28      YiSyun
+*EAI99005           2010.1.14      Carl  
+***********************************************************************/
+</script>
+<script language="javascript" src="script/prototype.js" ></script>
+<script language="JavaScript" src="script/ReplaceDiv.js"></script>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+var founded = true;
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+function MM_showHideLayers() { //v3.0
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+  for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
+    if (obj.style) { obj=obj.style; v=(v=='show')?'visible':(v='hide')?'hidden':v; }
+    obj.visibility=v; }
+}
+
+function changeKYC() {
+//document.all["kyc01"].innerText = "風險承受度分析結果：未執行問券";
+	
+	var	batchno="kyc01";
+	var pars="pageid=IFK000004&aptype=YESFUND" ;
+	var url = "LoadAP";
+	setDevice(batchno, url, pars);
+
+}
+
+function changeKYC2() {
+document.all["kyc01"].innerText = "風險承受度分析結果：請執行問券";
+	founded = false;
+	/*
+	var	batchno="kyc01";
+	var pars="pageid=IFK000004&aptype=YESFUND" ;
+	var url = "LoadAP";
+	setDevice(batchno, url, pars);
+*/
+}
+function chooseFound()
+{
+	purchace();
+	var	batchno="ChosFound";
+	var pars="pageid=IF0101003&YEJBOMGZMXWDHHVFFC3V0FA&aptype=YESFUND" ;
+	var url = "LoadAP";
+	setDevice(batchno, url, pars);
+	}
+
+
+function chkUserInfo(){
+	mobile = "[[%%SEND-MPHONE%%]]";
+	//mobile = "";
+	email = "[[%%SEND-EMAIL-ADDR%%]]";
+	//email = "";
+	
+	if(mobile==""||email==""){
+		alert("您於本行未留存E-MAIL及手機號碼，僅能執行查詢作業，無法完成基金交易(申購/轉換/贖回/變更)，如需變更請洽本行理財顧問。");
+	}else{
+		mobile = mobile.substring(0,4)+"***"+mobile.substring(7); //replaceWord2(mobile,2);
+		email = replaceEmail(email);
+		alert("您留存在本行的手機號碼為："+mobile+"，\n電子郵件為："+email+"，\n相關通知流程作業將以上述資料進行，\n如需變更請洽分行或電洽客服為您服務。");
+	}
+}
+//-->
+</script>
+</head>
+
+<body style="font-size:8pt" bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<table width="775" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+<td width="775"></td>
+<td>
+	  <table width="775" border="0" bgcolor="#DFEFFF">
+        <tr bgcolor="#DFEFFF"> 
+	    <td width=90%><b>│</b>
+	    <a id="id1" href="javaScript:void(0);" onClick="closeform(); ChgStyle('id1',0,6);ChgStyle('id1',60,64);ChgStyle('id12',12,13);Layer1.style.visibility = 'hidden';Layer2.style.visibility = 'visible';Layer3.style.visibility = 'hidden';Layer4.style.visibility = 'hidden';Layer5.style.visibility = 'hidden';Layer6.style.visibility = 'hidden';Layer7.style.visibility = 'hidden';Layer8.style.visibility = 'hidden';Layer9.style.visibility = 'hidden';Layer10.style.visibility = 'hidden'; kyctable.style.top = '47px'; ">基金資產查詢</a><b>│</b>	
+	    <a id="id0"  href="LoadAP?aptype=YESFUND&pageid=IFK000001&nextpage=IFK000005&[[%%SESSIONID%%]]" target="main"  onClick="chooseFound();ChgStyle('id0',0,6);ChgStyle('id0',60,64);ChgStyle('id7',7,11);Layer1.style.visibility = 'hidden';Layer2.style.visibility = 'hidden';Layer3.style.visibility = 'hidden';Layer4.style.visibility = 'hidden';Layer5.style.visibility = 'hidden';Layer6.style.visibility = 'hidden';Layer7.style.visibility = 'hidden';Layer8.style.visibility = 'hidden';Layer9.style.visibility = 'hidden';Layer10.style.visibility = 'hidden'; kyctable.style.top = '27px';fundtable.style.height='50px';">基金申購</a><b>│</b>	
+	    <a id="id60" href="LoadAP?aptype=YESFUND&pageid=IF0401000&[[%%SESSIONID%%]];" target="main" onClick="closeform(); ChgStyle('id60',0,6);ChgStyle('id60',60,64);ChgStyle('id7',7,11);Layer1.style.visibility = 'hidden';Layer2.style.visibility = 'hidden';Layer3.style.visibility = 'hidden';Layer4.style.visibility = 'hidden';Layer5.style.visibility = 'hidden';Layer6.style.visibility = 'hidden';Layer7.style.visibility = 'hidden';Layer8.style.visibility = 'hidden';Layer9.style.visibility = 'hidden';Layer10.style.visibility = 'hidden'; kyctable.style.top = '27px';">基金贖回</a><b>│</b>	
+	    <a id="id61" href="LoadAP?aptype=YESFUND&pageid=IFK000001&nextpage=IF0501000&[[%%SESSIONID%%]];" target="main" onClick="closeform(); ChgStyle('id61',0,6);ChgStyle('id61',60,64);ChgStyle('id7',7,11);Layer1.style.visibility = 'hidden';Layer2.style.visibility = 'hidden';Layer3.style.visibility = 'hidden';Layer4.style.visibility = 'hidden';Layer5.style.visibility = 'hidden';Layer6.style.visibility = 'hidden';Layer7.style.visibility = 'hidden';Layer8.style.visibility = 'hidden';Layer9.style.visibility = 'hidden';Layer10.style.visibility = 'hidden'; kyctable.style.top = '27px';">基金轉換</a><b>│</b>
+	    <a id="id62" href="LoadAP?aptype=YESFUND&pageid=IF0601000&[[%%SESSIONID%%]];" target="main" onClick="closeform(); ChgStyle('id62',0,6);ChgStyle('id62',60,64);ChgStyle('id7',7,11);Layer1.style.visibility = 'hidden';Layer2.style.visibility = 'hidden';Layer3.style.visibility = 'hidden';Layer4.style.visibility = 'hidden';Layer5.style.visibility = 'hidden';Layer6.style.visibility = 'hidden';Layer7.style.visibility = 'hidden';Layer8.style.visibility = 'hidden';Layer9.style.visibility = 'hidden';Layer10.style.visibility = 'hidden'; kyctable.style.top = '27px';">交易資料變更</a><b>│</b>	
+	    <a id="id2" href="javaScript:void(0);" onClick="closeform(); ChgStyle('id2',0,6);ChgStyle('id2',60,64);ChgStyle('id14',14,16);ChgStyle('id37',37,43);Layer1.style.visibility = 'hidden';Layer2.style.visibility = 'hidden';Layer3.style.visibility = 'visible';Layer4.style.visibility = 'hidden';Layer5.style.visibility = 'hidden';Layer6.style.visibility = 'hidden';Layer7.style.visibility = 'hidden';Layer8.style.visibility = 'hidden';Layer9.style.visibility = 'hidden';Layer10.style.visibility = 'hidden'; kyctable.style.top = '47px';">基金動態</a><b>│</b>
+	    <a id="id63" href="LoadAP?aptype=IBANK&pageid=IFK0000021&[[%%SESSIONID%%]];" target="_blank" onClick="closeform(); ChgStyle('id63',0,6);ChgStyle('id63',60,64);ChgStyle('id7',7,11);Layer1.style.visibility = 'hidden';Layer2.style.visibility = 'hidden';Layer3.style.visibility = 'hidden';Layer4.style.visibility = 'hidden';Layer5.style.visibility = 'hidden';Layer6.style.visibility = 'hidden';Layer7.style.visibility = 'hidden';Layer8.style.visibility = 'hidden';Layer9.style.visibility = 'hidden';Layer10.style.visibility = 'hidden'; kyctable.style.top = '27px';">風險承受度分析</a><b>│</b>	
+	    <a id="id64" href="LoadAP?aptype=YESFUND&pageid=IFK0000010&[[%%SESSIONID%%]];" target="main" onClick="closeform(); ChgStyle('id64',0,6);ChgStyle('id64',60,64);ChgStyle('id7',7,11);Layer1.style.visibility = 'hidden';Layer2.style.visibility = 'hidden';Layer3.style.visibility = 'hidden';Layer4.style.visibility = 'hidden';Layer5.style.visibility = 'hidden';Layer6.style.visibility = 'hidden';Layer7.style.visibility = 'hidden';Layer8.style.visibility = 'hidden';Layer9.style.visibility = 'hidden';Layer10.style.visibility = 'hidden'; kyctable.style.top = '27px';">申請/撤銷推介同意書</a><b>│</b>		
+	    <a id="id3" href="javaScript:void(0);" onClick="closeform(); ChgStyle('id3',0,6);ChgStyle('id3',60,64);ChgStyle('id17',17,21);Layer1.style.visibility = 'hidden';Layer2.style.visibility = 'hidden';Layer3.style.visibility = 'hidden';Layer4.style.visibility = 'visible';Layer5.style.visibility = 'hidden';Layer6.style.visibility = 'hidden';Layer7.style.visibility = 'hidden';Layer8.style.visibility = 'hidden';Layer9.style.visibility = 'hidden';Layer10.style.visibility = 'hidden'; kyctable.style.top = '47px';">其他</a><b>│</b>
+	    <a id="id4" href="javaScript:void(0);" onClick="ChgStyle('id4',0,6);ChgStyle('id22',22,28);Layer1.style.visibility = 'hidden';Layer2.style.visibility = 'hidden';Layer3.style.visibility = 'hidden';Layer4.style.visibility = 'hidden';Layer5.style.visibility = 'hidden';Layer6.style.visibility = 'hidden';Layer7.style.visibility = 'hidden';Layer8.style.visibility = 'hidden';Layer9.style.visibility = 'hidden';"></a>
+	    <a id="id5" href="javaScript:void(0);" onClick="ChgStyle('id5',0,6);ChgStyle('id29',29,34);Layer1.style.visibility = 'hidden';Layer2.style.visibility = 'hidden';Layer3.style.visibility = 'hidden';Layer4.style.visibility = 'hidden';Layer5.style.visibility = 'hidden';Layer6.style.visibility = 'visible';Layer7.style.visibility = 'hidden';Layer8.style.visibility = 'hidden';Layer9.style.visibility = 'hidden';"></a>
+	    <a id="id6" href="javaScript:void(0);" onClick="ChgStyle('id6',0,6);ChgStyle('id35',35,36);Layer1.style.visibility = 'hidden';Layer2.style.visibility = 'hidden';Layer3.style.visibility = 'hidden';Layer4.style.visibility = 'hidden';Layer5.style.visibility = 'hidden';Layer6.style.visibility = 'hidden';Layer7.style.visibility = 'visible';Layer8.style.visibility = 'hidden';Layer9.style.visibility = 'hidden';"></a>  
+	    </td>
+	  </tr>
+	</table>
+	<br>  
+      <table id ="kyctable" width="250" border="0" bgcolor="#FF9900" style="position:absolute; left:0px; top:47px; width:495px; height:0px; z-index:2">
+        <tr>
+          <td bgcolor="#FFFFCC" class="style3"><div align="left" id="kyc01"></div></td>
+        </tr>
+      </table>
+      <table id ="fundtable" width="0" border="0" bgcolor="#FFFFFF" style="position:relative; left:-4px; top:63px; width:0px; height:0px; z-index:3">
+        <tr>
+          <td bgcolor="#FFFFFF" class="style3"><div align="left" id="ChosFound"></div></td>
+        </tr>
+      </table>
+	  <p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<div id="Layer1" style="position:absolute; left:0px; top:18px; width:423px; height:1px; z-index:1; visibility: hidden"> 
+	  <table width="775" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#CAE4FF"> 
+	      <td width="144"> 
+	        <div align="center"><a id="id7" href="LoadAP?aptype=YESFUND&pageid=IFK000001&nextpage=IF0101001&[[%%SESSIONID%%]]" target="main" onclick="ChgStyle('id7',7,11);chkTime();">基金申購</a></div>
+	      </td>
+	      <td width="144"> 
+	        <div align="center"><a id="id8" href="LoadAP?aptype=YESFUND&pageid=IF0401000&[[%%SESSIONID%%]]" target="main" onclick="ChgStyle('id8',7,11);chkTime();">基金贖回</a></div>
+	      </td>
+	      <td width="144"> 
+	        <div align="center"><a id="id9" href="LoadAP?aptype=YESFUND&pageid=IFK000001&nextpage=IF0501000&[[%%SESSIONID%%]]" target="main" onclick="ChgStyle('id9',7,11);chkTime();">基金轉換</a></div>
+	      </td>
+	      <td width="148"> 
+	        <div align="center"><a id="id10" href="LoadAP?aptype=YESFUND&pageid=IF0601000&[[%%SESSIONID%%]]" target="main" onclick="ChgStyle('id10',7,11);">交易資料變更</a></div>
+	      </td>
+	      <td width="152"> 
+	        <div align="center"><a id="id11-1" href="LoadAP?aptype=YESFUND&pageid=IFK0000021&[[%%SESSIONID%%]]" target="main" onclick="ChgStyle('id11-1',7,11);">風險承受度變更</a></div>
+	      </td>
+	      <td width="148"> 
+	        <div align="center"><a id="id11" href="LoadAP?aptype=YESFUND&pageid=IF0801000&[[%%SESSIONID%%]]" target="main" onclick="ChgStyle('id11',7,11);">歷史資料查詢</a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+	<div id="Layer2" style="position:absolute; left:0px; top:18px; width:495px; height:0px; z-index:2; visibility: hidden"> 
+	  <table width="778" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#B5DAFF"> 
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id12" href="LoadAP?aptype=YESFUND&pageid=IF0701000&[[%%SESSIONID%%]]" target="main" onclick="ChgStyle('id12',12,13);">個人化投資報告</a> 
+	        </div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id13" href="LoadAP?aptype=YESFUND&pageid=IF0801000&[[%%SESSIONID%%]]" target="main" onclick="ChgStyle('id13',12,13);">歷史資料查詢</a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+	<div id="Layer3" style="position:absolute; left:0px; top:18px; width:495px; height:0px; z-index:2; visibility: hidden"> 
+	  <table width="775" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id14" href="javaScript:void(0);" onClick="ChgStyle('id14',14,16);ChgStyle('id37',37,43);Layer8.style.visibility = 'visible';Layer9.style.visibility = 'hidden'; kyctable.style.top = '59px';">國內基金</a>
+	        </div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id15" href="javaScript:void(0);" onClick="ChgStyle('id15',14,16);ChgStyle('id44',44,51);Layer8.style.visibility = 'hidden';Layer9.style.visibility = 'visible'; kyctable.style.top = '59px';">國外基金</a></div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id16" href="http://www.yesfund.com.tw/BFT/BFRM/BFRM00.DJHTM?A=K8030000" target="main" onClick="ChgStyle('id16',14,16);Layer8.style.visibility = 'hidden';Layer9.style.visibility = 'hidden';">連動式債券</a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+	<div id="Layer4" style="position:absolute; left:0px; top:18px; width:495px; height:0px; z-index:2; visibility: hidden"> 
+	  <table width="775" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id17" href="javaScript:void(0);" onClick="ChgStyle('id17',0,6);ChgStyle('id17',17,20);Layer5.style.visibility = 'hidden';Layer6.style.visibility = 'hidden';Layer7.style.visibility = 'hidden';Layer10.style.visibility = 'visible'; kyctable.style.top = '59px';">新聞天地</a>
+	        </div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id18" href="javaScript:void(0);" onClick="ChgStyle('id18',0,6);ChgStyle('id18',17,20);Layer5.style.visibility = 'visible';Layer6.style.visibility = 'hidden';Layer7.style.visibility = 'hidden';Layer10.style.visibility = 'hidden'; kyctable.style.top = '59px';">基金學園</a></div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id19" href="javaScript:void(0);" onClick="ChgStyle('id19',0,6);ChgStyle('id19',17,20);Layer5.style.visibility = 'hidden';Layer6.style.visibility = 'visible';Layer7.style.visibility = 'hidden';Layer10.style.visibility = 'hidden'; kyctable.style.top = '59px';">理財學院</a></div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id20" href="javaScript:void(0);" onClick="ChgStyle('id20',0,6);ChgStyle('id20',17,20);Layer5.style.visibility = 'hidden';Layer6.style.visibility = 'hidden';Layer7.style.visibility = 'visible';Layer10.style.visibility = 'hidden'; kyctable.style.top = '59px';">挑選基金</a></div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id21" href="http://www.yesfund.com.tw/w/wh/wh01B_NA_0.djhtm" target="main" onClick="ChgStyle('id21',17,21);"></a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+	<div id="Layer5" style="position:absolute; left:0px; top:35px; width:495px; height:0px; z-index:2; visibility: hidden"> 
+	  <table width="778" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id22" href="http://www.yesfund.com.tw/z/glossary/glhome.djhtm" target="main" onClick="ChgStyle('id22',22,28);">金融詞庫</a> 
+	        </div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id23" href="http://www.yesfund.com.tw/W/WE/YP701000.HTM" target="main" onClick="ChgStyle('id23',22,28);">基金買賣方式</a></div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id24" href="http://www.yesfund.com.tw/W/WE/SCHOOL_A_01.HTML" target="main" onClick="ChgStyle('id24',22,28);">新手上路</a></div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id25" href="http://www.yesfund.com.tw/W/WE/YP801000.ASP" target="main" onClick="ChgStyle('id25',22,28);">入學測驗</a></div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id26" href="http://www.yesfund.com.tw/W/WE/SCHOOL_C_01.HTML" target="main" onClick="ChgStyle('id26',22,28);">基金小學</a></div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id27" href="http://www.yesfund.com.tw/W/WE/SCHOOL_D_01.HTML" target="main" onClick="ChgStyle('id27',22,28);">基金中學</a></div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id28" href="http://www.yesfund.com.tw/W/WE/SCHOOL_E_01.HTML" target="main" onClick="ChgStyle('id28',22,28);">基金大學</a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+	<div id="Layer6" style="position:absolute; left:0px; top:35px; width:495px; height:0px; z-index:2; visibility: hidden"> 
+	  <table width="778" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id29" href="http://www.yesfund.com.tw/w/wg/wg01.djhtm" target="main" onClick="ChgStyle('id29',29,34);">性向測驗</a> 
+	        </div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id30" href="http://www.yesfund.com.tw/w/wg/wg02.djhtm" target="main" onClick="ChgStyle('id30',29,34);">基金速配</a></div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id31" href="http://www.yesfund.com.tw/w/wf/wf01.htm" target="main" onClick="ChgStyle('id31',29,34);">基金套餐</a></div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id32" href="http://www.yesfund.com.tw/w/wg/yp503001.htm" target="main" onClick="ChgStyle('id32',29,34);">單筆投資試算</a></div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id33" href="http://www.yesfund.com.tw/w/wg/yp503002.htm" target="main" onClick="ChgStyle('id33',29,34);">定時定額試算</a></div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id34" href="http://www.yesfund.com.tw/w/wg/yp503003.htm" target="main" onClick="ChgStyle('id34',29,34);">理財規劃</a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+	<div id="Layer7" style="position:absolute; left:0px; top:35px; width:495px; height:0px; z-index:3; visibility: hidden"> 
+	  <table width="778" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id35" href="http://www.yesfund.com.tw/w/wt/wt01.djhtm" target="main" onClick="ChgStyle('id35',35,36);">國內基金</a> 
+	        </div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id36" href="http://www.yesfund.com.tw/w/wd/wd02.djhtm" target="main" onClick="ChgStyle('id36',35,36);">國外基金</a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+	<div id="Layer8" style="position:absolute; left:0px; top:35px; width:495px; height:0px; z-index:2; visibility: hidden"> 
+	  <table width="775" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td height="9"> 
+	        <div align="center"><a id="id37" href="http://www.yesfund.com.tw/w/wq/wq01.djhtm" target="main" onClick="ChgStyle('id37',37,43);">投信公司績效比較</a> 
+	        </div>
+	      </td>
+	      <td height="9"> 
+	        <div align="center"><a id="id38" href="http://www.yesfund.com.tw/w/wq/wq02.djhtm" target="main" onClick="ChgStyle('id38',37,43);">基金類別績效排行</a></div>
+	      </td>
+	      <td height="9"> 
+	        <div align="center"><a id="id39" href="http://www.yesfund.com.tw/w/ww/ww01.djhtm" target="main" onClick="ChgStyle('id39',37,43);">投信公司淨值表</a></div>
+	      </td>
+	      <td height="9"> 
+	        <div align="center"><a id="id40" href="http://www.yesfund.com.tw/w/wp/wp00.djhtm" target="main" onClick="ChgStyle('id40',37,43);">投信公司列表</a></div>
+	      </td>
+	      <td height="9"> 
+	        <div align="center"><a id="id41" href="http://www.yesfund.com.tw/w/wp/wp02.djhtm" target="main" onClick="ChgStyle('id41',37,43);">投信公司旗下基金</a></div>
+	      </td>
+	      <td height="9"> 
+	        <div align="center"><a id="id42" href="http://www.yesfund.com.tw/w/wr/wr04.djhtm" target="main" onClick="ChgStyle('id42',37,43);">投信持股狀況</a></div>
+	      </td>
+	      <td height="9"> 
+	        <div align="center"><a id="id43" href="http://www.yesfund.com.tw/w/wr/wr01.djhtm" target="main" onClick="ChgStyle('id43',37,43);">基金基本資料</a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+	<div id="Layer9" style="position:absolute; left:0px; top:35px; width:495px; height:0px; z-index:2; visibility: hidden"> 
+	  <table width="775" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td height="9"> 
+	        <div align="center"><a id="id44" href="http://www.yesfund.com.tw/w/wd/wd03_NA_NA_NA.djhtm" target="main" onClick="ChgStyle('id44',44,51);">績效比較</a> 
+	        </div>
+	      </td>
+	      <td height="9"> 
+	        <div align="center"><a id="id45" href="http://www.yesfund.com.tw/w/wd/wd01_1.djhtm" target="main" onClick="ChgStyle('id45',44,51);">投資地區績效排行</a></div>
+	      </td>
+	      <td height="9"> 
+	        <div align="center"><a id="id46" href="http://www.yesfund.com.tw/w/wc/wc02.djhtm" target="main" onClick="ChgStyle('id46',44,51);">基金公司淨值表</a></div>
+	      </td>
+	      <td height="9"> 
+	        <div align="center"><a id="id47" href="http://www.yesfund.com.tw/w/wb/wb03.djhtm" target="main" onClick="ChgStyle('id47',44,51);">績效表</a></div>
+	      </td>
+	      <td height="9"> 
+	        <div align="center"><a id="id48" href="http://www.yesfund.com.tw/w/wb/wb04.djhtm" target="main" onClick="ChgStyle('id48',44,51);">基金持股狀況</a></div>
+	      </td>
+	      <td height="9"> 
+	        <div align="center"><a id="id49" href="http://www.yesfund.com.tw/w/wb/wb05.djhtm" target="main" onClick="ChgStyle('id49',44,51);">基金配息狀況</a></div>
+	      </td>
+	      <td height="9"> 
+	        <div align="center"><a id="id50" href="http://www.yesfund.com.tw/w/wc/wc01.djhtm" target="main" onClick="ChgStyle('id50',44,51);">基金公司基本資料</a></div>
+	      </td>
+	      <td height="9"> 
+	        <div align="center"><a id="id51" href="http://www.yesfund.com.tw/w/wc/wc02.djhtm" target="main" onClick="ChgStyle('id51',44,51);">公司旗下基金</a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+	<div id="Layer10" style="position:absolute; left:0px; top:35px; width:495px; height:0px; z-index:2; visibility: hidden"> 
+	  <table width="775" border="1" cellpadding="0" bordercolorlight="#CCCCCC" bordercolordark="#CCCCCC" bgcolor="#FFFFFF">
+	    <tr bgcolor="#D7EBFF"> 
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id70" href="http://www.yesfund.com.tw/w/wu/wu01.djhtm?a=NA&b=NA&c=1" target="main" onClick="ChgStyle('id70',70,74);">國內基金新聞</a> 
+	        </div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id71" href="http://www.yesfund.com.tw/w/wu/wu01.djhtm?a=NA&b=NA&c=NA" target="main" onClick="ChgStyle('id71',70,74);">國際財經新聞</a></div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id72" href="http://www.yesfund.com.tw/w/wh/wh05_1.djhtm" target="main" onClick="ChgStyle('id72',70,74);">金融情勢</a></div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id73" href="http://www.yesfund.com.tw/w/wa/wa03.djhtm" target="main" onClick="ChgStyle('id73',70,74);">各國經濟情勢</a></div>
+	      </td>
+	      <td width="148" height="9"> 
+	        <div align="center"><a id="id74" href="http://www.yesfund.com.tw/w/wh/wh01B_NA_0.djhtm" target="main" onClick="ChgStyle('id74',70,74);">基金研究報告</a></div>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+</td>
+</tr>
+</table>
+<script>
+	ChgStyle('id1',0,6);
+</script>
+
+
+<script language="javaScript">
+
+var Timeout_ID = null;
+var iMain 	= null;
+var pSubMain 	= null;	
+var pDown	= null;
+
+function checkLoaded() {
+
+
+
+	if (!document.getElementById){
+		clearTimeout(Timeout_ID);
+		Timeout_ID = null;
+		//alert("IE failed:document.getElementById");
+		return;
+	}
+	
+	if ( (document.getElementById("main")) && (document.getElementById("main").style) ) {
+		iMain = document.getElementById("main").style;  			
+  		iMain.left = 0;
+     	}else {    
+     		clearInterval(Timeout_ID);	Timeout_ID = 0;
+     		//alert("Failed to load iFrame: main");      		
+     		return;
+     	}     	
+     	
+	if (parent.document.getElementById && 
+	    parent.document.getElementById("submain") &&    parent.document.getElementById("down")) {
+		pSubMain = parent.document.getElementById("submain").style;
+		pDown    = parent.document.getElementById("down").style;
+	}else{
+		clearInterval(Timeout_ID);	Timeout_ID = null;
+		//alert("Failed to load iFrame: submain & down ....");		
+		return;
+	}
+	
+	if (window.frames["main"].document.readyState == "complete" ) {
+		clearInterval(Timeout_ID);	Timeout_ID = null;		
+
+		var bodyMain = window.frames["main"].document.body;
+
+		this.document.getElementById("main").style.width = bodyMain.scrollWidth;
+
+		if (parseFloat(bodyMain.scrollHeight, 10) < 384) 
+		{
+			this.document.getElementById("main").style.height = 385; //435;
+			}
+		else   
+		 this.document.getElementById("main").style.height = bodyMain.scrollHeight;
+     		//pSubMain.height = parseInt(this.document.body.scrollHeight, 10);
+     		pSubMain.height = parseInt(parseInt(iMain.height, 10) + parseInt(iMain.top, 10)) + "px";
+     		//pSubMain.top	= 130;
+		pDown.top	= parseInt(pSubMain.height, 10) + parseInt(pSubMain.top, 10) + 10;
+		if (top.document.getElementById("IC0000000") != null)
+			top.document.getElementById("IC0000000").style.height = parseInt(parseInt(pDown.height, 10) + parseInt(pDown.top, 10)) + "px";
+		//top.document.getElementById("IC0000000").style.width  = parseInt(parseInt(pDown.width, 10) + "px";
+	}
+}
+function closeform(){
+	this.document.getElementById("main").style.top = '85px';
+	var	batchno="ChosFound";
+	var pars="pageid=IFK000005&YEJBOMGZMXWDHHVFFC3V0FA&aptype=YESFUND" ;
+	var url = "LoadAP";
+	setDevice(batchno, url, pars);
+	
+	if(founded == false)
+		changeKYC();
+	else
+		;
+}
+function purchace(){
+	this.document.getElementById("main").style.top = '238px';
+	
+	if(founded == false)
+		changeKYC();
+	else
+		;
+}
+
+function chkTime(){
+  //var endTime = parseInt("[[%%SEND-END-TIME%%]]");
+  var endTime = 1500;
+  var preTime = 1450;
+	var curTime = [[%%SYSTIME%%]] /100;
+	if(curTime < endTime && curTime > preTime )
+	{
+	   curTime=curTime+"";
+		 alert("目前時間為 "+curTime.substring(0,2)+":"+curTime.substring(2,4)+" ，網路基金交易 15:00 後\n為次營業日交易 ， 請留意並儘速辦理。");
+	}		
+}
+
+changeKYC();
+chkUserInfo();
+</script>
+
+
+<!--iframe name="left" style="position: absolute; top:4 ; left:0 ; z-index:0" width="142" height="600" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?aptype=IBANK&pageid=IC0100001"/-->
+<iframe name="main" id="main"  onLoad="javaScript:Timeout_ID=setInterval('checkLoaded();', 500)"
+	style="position: absolute; top:90 ; left:0 ; z-index:0" width="790" height="1150" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="AUTO" src="LoadAP?aptype=YESFUND&pageid=IP0803001&[[%%SESSIONID%%]]"></iframe>
+<!--iframe name="main" style="position: absolute; top:54 ; left:142 ; z-index:0" width="638" height="1600" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="AUTO" src="LoadAP?aptype=YESFUND&pageid=IF0101000" onLoad='javaScript:top.scrollTo(0,0);'/-->
+
+
+</body>
+</html>

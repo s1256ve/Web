@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="BIG5"?>
+<?xml-stylesheet type="text/xsl" href="UCPMi.xsl"?>
+<!-- UCPM SENDOTP Last updated date 24-7-2015 -->
+<catalog>
+	<field id="SENDOTPi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='SENDOTPi03' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="SENDOTPi02">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="SENDOTPi03">
+		<name>REVE-ID-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>身分證字號</description>
+	</field>
+	<field id="SENDOTPi02">
+		<name>REVE-MOBILE</name>
+		<length>12</length>
+		<type>String</type>
+		<description>已留存之手機號碼</description>
+	</field>
+	<field id="SENDOTPi02">
+		<name>REVE-PWD-PATTERN</name>
+		<length>12</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="SENDOTPi02">
+		<name>REVE-PWD-LEN</name>
+		<length>12</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="SENDOTPi02">
+		<name>REVE-MAIL-KEY</name>
+		<length>12</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="SENDOTPi02">
+		<name>REVE-MSG-TYPE</name>
+		<length>12</length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="SENDOTPi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="SENDOTPi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="SENDOTPi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="SENDOTPi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

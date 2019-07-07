@@ -1,0 +1,15 @@
+<html>
+
+<head>
+<title>基金</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<link rel="stylesheet" href="theme/reset.css" type="text/css"/>
+<link rel="stylesheet" href="theme/layout.css" type="text/css"/>
+<link rel="stylesheet" href="theme/slider.css" type="text/css"/> 
+<link rel="stylesheet" href="theme/submenu.css" type="text/css"/>
+<link rel="stylesheet" href="theme/reward.css" type="text/css"/>     
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+</head>
+</html>

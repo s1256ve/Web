@@ -1,0 +1,302 @@
+<html>
+<head>
+<title>歷史紀錄查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/acctfmt.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/datefmt.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/moneyfmt.js"></SCRIPT>
+<script language="Javascript">
+if (!String.prototype.trim) {
+	String.prototype.trim = function () {
+		return this.replace(/^\s+|\s+$/g, '');
+	};
+}
+
+function chkAcct(db24,db26){
+	if(db26==""){
+		return getAcctStr(db24);
+	}else{
+		return getAcctStr(db26);
+	}
+}
+
+
+function chkAmt(db04,db16,db18){
+	var amtArray;
+	if(eval(db18)>0){
+		amtArray = db18.split(".");
+		return "NTD "+trimDecimal(moneyAddDot(""+eval(amtArray[0])));
+	}
+	else{
+		return db04+" "+moneyAddDot(chkAmtCurr(db04,db16));
+	}
+}
+
+function chkAmtCurr(db04,amt){
+	var amtArray = amt.split(".");
+	if(db04=="JPY"){
+		return amtArray[0];
+	}
+	else{
+		return amtArray[0]+"."+amtArray[1].substr(0,2);
+	}
+}
+
+function chkStatus(sta){
+	if(sta=="1"){
+		return "待處理";
+	}else if(sta=="2"){
+		return "交易進行處理中";
+	}else if(sta=="3"){
+		return "已完成";
+	}else if(sta=="4"){
+		return "退匯處理";
+	}else if(sta=="5"){
+		return "退匯完成";
+	}else{
+		return sta;
+	}
+}
+
+function chgSno(sno){
+	return sno.substr(10,sno.length-10)
+}
+
+function chkMoneyDot(amt){
+
+	var amtarray = amt.split(".");
+	var amt1,amt2;
+	if(amtarray[1]==undefined){
+		return moneyAddDot2(amtarray[0]);
+	}
+	else{
+		return moneyAddDot2(amtarray[0])+"."+amtarray[1].substr(0,2);
+	}
+
+}
+</script>
+
+
+</head>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form name="IP0703501" method="POST" action="LoadAP">
+<b>　外匯交易&gt;<font color="#003399"><font color="#0066FF">歷史紀錄查詢</font></font></b>
+<br>
+<table width="60%" border="0" align="center">
+<tr>
+  <td>
+		<div align="left">您的匯出匯款資料如下：</div>
+		</td>
+  </tr>
+</table>
+<table width="60%" border="1" bordercolor="#999999" align="center">
+	<tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;交易類別&nbsp;</div>
+    </td>
+    <td width="75%">
+    	外匯匯出匯款&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;交易序號&nbsp;</div>
+    </td>
+    <td width="75%">
+    	<script>
+    		document.write(chgSno('[[%%DBO_WFOR01%%]]'));
+    	</script>
+    	&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;匯款日期&nbsp;</div>
+    </td>
+    <td width="75%">
+    	[[%%DBO_WFOR02%%]]&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;扣款帳號&nbsp;</div>
+    </td>
+    <td width="75%">
+    	<script>
+      	var db15 = "[[%%DBO_WFOR15%%]]";
+      	var db17 = "[[%%DBO_WFOR17%%]]";
+      	document.write(chkAcct(db15,db17));
+      </script>
+    	&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;匯款幣別&nbsp;</div>
+    </td>
+    <td width="75%">
+    	[[%%DBO_WFOR04%%]]&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;匯率&nbsp;</div>
+    </td>
+    <td width="75%">
+    	[[%%DBO_WFOR14%%]]&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;匯款金額&nbsp;</div>
+    </td>
+    <td width="75%">
+    	[[%%DBO_WFOR04%%]] 
+    	<script>
+      		document.write(chkMoneyDot('[[%%DBO_WFOR05%%]]'));
+      </script>
+    	 元&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;匯款手續費&nbsp;</div>
+    </td>
+    <td width="75%">
+    	
+    	等值新台幣100元
+    	 &nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;匯款郵電費&nbsp;</div>
+    </td>
+    <td width="75%">
+    	
+    	等值新台幣200元
+    	 &nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;總扣款金額&nbsp;</div>
+    </td>
+    <td width="75%">
+    	
+    	<script>
+    		document.write(chkAmt('[[%%DBO_WFOR04%%]]','[[%%DBO_WFOR16%%]]','[[%%DBO_WFOR18%%]]'));
+    	</script>
+    	 元&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;受款行代號&nbsp;</div>
+    </td>
+    <td width="75%">
+    	[[%%DBO_WFOR30%%]]&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;受款行&nbsp;</div>
+    </td>
+    <td width="75%">
+    	[[%%DBO_WFOR29%%]]&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;受款人帳號&nbsp;</div>
+    </td>
+    <td width="75%">
+    	[[%%DBO_WFOR23%%]]&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;受款人姓名&nbsp;</div>
+    </td>
+    <td width="75%">
+    	[[%%DBO_WFOR24%%]]&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;受款人地址&nbsp;</div>
+    </td>
+    <td width="75%">
+    	[[%%DBO_WFOR25%%]][[%%DBO_WFOR26%%]][[%%DBO_WFOR27%%]]&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;匯入國別&nbsp;</div>
+    </td>
+    <td width="75%">
+    	[[%%DBO_WFOR22%%]]&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;匯款性質&nbsp;</div>
+    </td>
+    <td width="75%">
+    	[[%%DBO_WFOR10%%]]&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;匯出匯款附言&nbsp;</div>
+    </td>
+    <td width="75%">
+    	[[%%DBO_WFOR11%%]][[%%DBO_WFOR12%%]][[%%DBO_WFOR13%%]]&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;SWIFTCODE&nbsp;</div>
+    </td>
+    <td width="75%">
+    	[[%%DBO_WFOR28%%]]&nbsp;
+    </td>
+  </tr>
+  <tr> 
+    <td width="25%" bgcolor="#C4CBB8"> 
+      <div align="left">&nbsp;匯款狀態&nbsp;</div>
+    </td>
+    <td width="75%">
+
+    	<script>
+      	document.write(chkStatus('[[%%DBO_WFOR19%%]]'));
+      </script>
+    	&nbsp;
+    </td>
+  </tr>
+  
+</table>
+<br>
+<!--
+<table width="60%" border="0" align="center">
+<tr>
+  <td align="center">
+		<input type=button name=goback value=回上頁 onClick='history.back()'>
+	</td>
+  </tr>
+</table>
+-->
+<table width="60%" border="0" cellpadding="0" cellspacing="0" align="center">
+  <tr> 
+    <td> 
+      <div align="center">
+      <a href="javascript:window.print()"><img src="graph/print.gif" width="52" height="24" border="0"></a>　 
+      </div>
+    </td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

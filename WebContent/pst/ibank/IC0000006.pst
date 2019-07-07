@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>聯邦銀行個人金融網</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<style type="text/css">
+<!--
+    body,p,td,form,select{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:12pt}
+    .t1{  font-family: "新細明體"; font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-family: "新細明體"; font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; font-family: "新細明體"; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+-->
+</style>
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI99041	        2010.05.10	   David
+* EAI99052           2010.8.25      David 
+* EAI100078         2011.11.23     SIMON LIN		終止UMA網路服務
+***********************************************************************/
+</script>
+<script language="JavaScript">
+<!--
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+
+function MM_findObj(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+}
+
+
+function chkSubmit(){
+    document.IC0000006.pageid.value="IC0000999";
+    document.IC0000006.aptype.value="NOAP";
+    document.IC0000006.target="_parent"
+    document.IC0000006.submit();
+}
+-->
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" link="#0000FF" vlink="#0000FF" alink="#000000" background="graph/bg.gif" onLoad="">
+<p></p>
+<form method="post" name="IC0000006" target="_parent" action="LoadAP">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+      <table border="0" cellspacing="0" cellpadding="0" width="131">
+        <tr>
+            <a onclick="javascript:chkSubmit()" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image35','','graph/personal/icon03a.gif',1)"><img name="Image35" border="0" src="graph/personal/icon03.gif" width="51" height="19"></a>
+        </tr>
+        <tr> 
+          <td>
+            <div align="center"><img name="Image1" border="0" src="graph/button-01.gif" width="140" height="22"></div>
+          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <table width="140" border="0" cellspacing="1" cellpadding="0">
+              <tr bgcolor="#B0B6A7"> 
+                <td height="152"> 
+                  <table width="140" border="0" cellspacing="0" cellpadding="0" bgcolor="#D6E8D2">
+                    <tr> 
+                      <td><img src="graph/blank.gif" width="1" height="5"></td>
+                    </tr>
+                    <tr> 
+                      <td><img src="graph/doc-02.gif" align="absmiddle" width="20" height="18"><a href="LoadAP?pageid=ID9999000" target="main">線上申請</a></td>
+                    </tr>
+                    <tr> 
+                      <td><img src="graph/doc-02.gif" align="absmiddle" width="20" height="18"><a href="cash/cash_all.htm" target="main">國民現金</a></td>
+                    </tr>
+                    
+                    <tr> 
+                      <td><img src="graph/doc-02.gif" align="absmiddle" width="20" height="18"><a href="http://yesfund.com.tw/utnewfund/defaults.htm" target="_blank">基金天地</a></td>
+                    </tr>
+                    <tr> 
+                      <td><img src="graph/doc-02.gif" align="absmiddle" width="20" height="18"><a href="https://www.ubot.com.tw/cardlife/index.htm" target="_blank">信用卡</a></td>
+                    </tr>
+                    <tr> 
+                      <td><img src="graph/doc-02.gif" align="absmiddle" width="20" height="18"><a href="https://stock.ubot.com.tw/" target="_blank">證券下單</a></td>
+                    </tr>
+                    <tr> 
+                      <td><img src="graph/doc-02.gif" align="absmiddle" width="20" height="18"><a href="https://www.ubot.com.tw/d/d01_01.htm" target="_blank">理財試算</a></td>
+                    </tr>
+                    <tr> 
+                      <td><img src="graph/doc-02.gif" align="absmiddle" width="20" height="18"><a href="product/product_all.htm" target="mainFrame">產品總覽</a></td>
+                    </tr>
+                    <tr> 
+                      <td><img src="graph/blank.gif" width="1" height="5"></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <div align="center"><br>
+        <img src="graph/ad_120_01.gif" width="120" height="60"><br>
+        <br>
+        <img src="graph/ad_120_01.gif" width="120" height="60"> </div>
+    </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="aptype" value="NOAP">
+</form>
+</body>
+</html>

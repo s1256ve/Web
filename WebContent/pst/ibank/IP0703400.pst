@@ -1,0 +1,195 @@
+<html>
+<head>
+<title>外匯交易</title>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+</head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<script language="Javascript">
+if (!String.prototype.trim) {
+	String.prototype.trim = function () {
+		return this.replace(/^\s+|\s+$/g, '');
+	};
+}
+</script>
+<script>
+function chkSubmit(){
+	if(document.IP0703400.r1 =="undefined"){
+		alert("您尚未約定受款人帳號，故無法繼續交易，請您先至往來分行申請外匯匯出匯款之約定受款人帳號，方可執行交易。");
+		document.IP0703400.button2.disabled = true;
+	}
+	if(document.IP0703400.chkRadio.value=="0"){
+		alert("請選擇匯款人資訊");
+		return;
+	}
+	var curr = document.IP0703400.DBO_WFAC16.value;
+	document.IP0703400.DBO_WFAC16A.value = chkCurrTable(curr);
+	document.IP0703400.pageid.value = "IP0703401";
+	document.IP0703400.button2.disabled = true;
+	document.IP0703400.submit();
+}
+
+function chgSelect(d01, d02, d03, d04, d05, d06, d07, d08, d10, d16, d17, d18, d19, d20, d21, d22, d23, d24, d25, d26, d27, d28, d29, d30, d31, d32){
+	document.IP0703400.chkRadio.value = "1";
+	document.IP0703400.DBO_WFAC01.value = d01.trim();
+	document.IP0703400.DBO_WFAC02.value = d02.trim();
+	document.IP0703400.DBO_WFAC03.value = d03.trim();
+	document.IP0703400.DBO_WFAC04.value = d04.trim();
+	document.IP0703400.DBO_WFAC05.value = d05.trim();
+	document.IP0703400.DBO_WFAC06.value = d06.trim();
+	document.IP0703400.DBO_WFAC07.value = d07.trim();
+	document.IP0703400.DBO_WFAC08.value = d08.trim();
+	document.IP0703400.DBO_WFAC10.value = d10.trim();
+	document.IP0703400.DBO_WFAC16.value = d16.trim();
+	document.IP0703400.DBO_WFAC17.value = d17.trim();
+	document.IP0703400.DBO_WFAC18.value = d18.trim();
+	document.IP0703400.DBO_WFAC19.value = d19.trim();
+	document.IP0703400.DBO_WFAC20.value = d20.trim();
+	document.IP0703400.DBO_WFAC21.value = d21.trim();
+	document.IP0703400.DBO_WFAC22.value = d22.trim();
+	document.IP0703400.DBO_WFAC23.value = d23.trim();
+	document.IP0703400.DBO_WFAC24.value = d24.trim();
+	document.IP0703400.DBO_WFAC25.value = d25.trim();
+	document.IP0703400.DBO_WFAC26.value = d26.trim();
+	document.IP0703400.DBO_WFAC27.value = d27.trim();
+	document.IP0703400.DBO_WFAC28.value = d28.trim();
+	document.IP0703400.DBO_WFAC29.value = d29.trim();
+	document.IP0703400.DBO_WFAC30.value = d30.trim();
+	document.IP0703400.DBO_WFAC31.value = d31.trim();
+	document.IP0703400.DBO_WFAC36.value = d32.trim();
+}
+
+</script>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+<form name="IP0703400" method="POST" action="LoadAP">
+<b>　外匯交易&gt;<font color="#003399"><font color="#0066FF">匯出匯款</font></font></b>
+<br/>
+<br/>
+<table width="100%" border="1" bordercolor="#999999">
+	<tr> 
+    <td width="5%" bgcolor="#C4CBB8"> 
+      <div align="center">&nbsp;</div>
+    </td>
+    <td width="20%" bgcolor="#C4CBB8"> 
+      <div align="center">受款人姓名</div>
+    </td>
+    <td width="20%" bgcolor="#C4CBB8"> 
+      <div align="center">帳號</div>
+    </td>
+    <td width="8%" bgcolor="#C4CBB8"> 
+      <div align="center">幣別</div>
+    </td>
+    <td width="15%" bgcolor="#C4CBB8"> 
+      <div align="center">銀行代號</div>
+    </td>
+    <td width="30%" bgcolor="#C4CBB8"> 
+      <div align="center">銀行名稱</div>
+    </td>
+    <td width="7%" bgcolor="#C4CBB8"> 
+      <div align="center">國別</div>
+    </td>
+  </tr>
+  
+  <!--[[%%LOOP_SEC DBO-WFAC25%%]]-->
+  <tr> 
+    <td width="5%"> 
+      <div align="center">
+      <input type="radio" name="r1" onClick="chgSelect('[[%%DBO-WFAC01%%]]','[[%%DBO-WFAC02%%]]','[[%%DBO-WFAC03%%]]','[[%%DBO-WFAC04%%]]','[[%%DBO-WFAC05%%]]','[[%%DBO-WFAC06%%]]','[[%%DBO-WFAC07%%]]','[[%%DBO-WFAC08%%]]','[[%%DBO-WFAC09%%]][[%%DBO-WFAC10%%]][[%%DBO-WFAC11%%]]','[[%%DBO-WFAC16%%]]','[[%%DBO-WFAC17%%]]','[[%%DBO-WFAC18%%]]','[[%%DBO-WFAC19%%]]','[[%%DBO-WFAC20%%]]','[[%%DBO-WFAC21%%]]','[[%%DBO-WFAC22%%]]','[[%%DBO-WFAC23%%]]','[[%%DBO-WFAC24%%]]','[[%%DBO-WFAC25%%]]','[[%%DBO-WFAC26%%]]','[[%%DBO-WFAC27%%]]','[[%%DBO-WFAC28%%]]','[[%%DBO-WFAC29%%]]','[[%%DBO-WFAC30%%]]','[[%%DBO-WFAC31%%]] [[%%DBO-WFAC32%%]] [[%%DBO-WFAC33%%]]','[[%%DBO-WFAC36%%]]')">
+      </div>
+    </td>
+    <td width="20%"> 
+      <div align="center">[[%%DBO-WFAC25%%]]</div>
+    </td>
+    <td width="20%"> 
+      <div align="center">[[%%DBO-WFAC24%%]]</div>
+    </td>
+    <td width="8%"> 
+      <div align="center">[[%%DBO-WFAC16%%]]</div>
+    </td>
+     <td width="15%"> 
+      <div align="center">[[%%DBO-WFAC36%%]]</div>
+    </td>
+    <td width="30%"> 
+      <div align="center">[[%%DBO-WFAC30%%]]</div>
+    </td>
+    <td width="7%"> 
+      <div align="center">[[%%DBO-WFAC17%%]]</div>
+    </td>
+  </tr>
+  <!--[[%%ELOOP_SEC%%]]-->
+</table>
+<br/>
+&nbsp;註：欲註銷已約定帳號，請攜帶身分證件及原留印鑑至往來分行辦理。
+<br/>
+<br/>
+<table width="100%" border="0">
+  <tr> 
+    <td colspan=2>◎網路銀行匯出匯款注意事項</td>
+ 	</tr>
+ 	<tr> 
+    <th width="2%" height="100%" valign="top"><font size="2">一、</font></td>
+    <td width="98%">匯款人授權本行或本行之通匯銀行，得以認為合適之任何方法或方式匯出款項並得以任和國外通匯銀行為解款行或轉匯行。本行如應匯款人之請求協助辦理追蹤、查詢，其所需之郵電費及國外銀行收取之費用，概由匯款人負擔，本行並得要求先付部分款項，再行辦理。</td>
+  </tr>
+  <tr> 
+    <th width="2%" height="100%" valign="top"><font size="2">二、</font></td>
+    <td width="98%">匯款人同意匯款如因郵遞或電報傳送途中所生之耽擱、遺失、殘缺或其他錯誤以及任何非銀行所能控制之誤失等，致令匯款遲延送達付款地或解款行或收款人，或匯款不能送達時，本行均不負任何責任；如因上列原因須辦理掛失止付或退匯或轉匯手續費經貴客戶請求本行協助時，其所需之郵電費及國外銀行收取之費用，均由匯款人負擔。</td>
+  </tr>
+  <tr> 
+    <th width="2%" height="100%" valign="top"><font size="2">三、</font></td>
+    <td width="98%">匯款人同意匯款於國外銀行解付或轉匯時，其依國際間銀行慣例由解款行或轉匯行自匯款金額內酌扣之處理費用，概由收款人負擔，匯款人絕無異議。</td>
+  </tr>
+  <tr> 
+    <th width="2%" height="100%" valign="top"><font size="2">四、</font></td>
+    <td width="98%">匯款人同意本行得將匯款作業之相關工作(包括，但不限於資料之建檔、登錄等)依財政部或金融監督管理委員會之規定或核准委託第三人辦理之。</td>
+  </tr>
+  <tr> 
+    <th width="2%" height="100%" valign="top"><font size="2">五、</font></td>
+    <td width="98%">為維護匯款交易安全及服務品質，網路銀行匯出匯款交易送出後非立即匯出，本行保有匯出匯款審核及執行權利，如因匯款約定資料有誤、不全或法令更改致無法匯出，且交易指示當日無法與匯款人聯繫，以致無法完成款項匯出時，本筆交易視同未成立(款項將於當日退回原扣款帳戶)。</td>
+  </tr>
+  <tr> 
+    <th width="2%" height="100%" valign="top"><font size="2">六、</font></td>
+    <td width="98%">如因不可抗力事由或其他原因(包括但不限於斷電、斷線、電信壅塞、網路傳輸干擾、電腦系統故障或第三人破壞等)，致無法於網路銀行完成交易者，請至臨櫃辦理。</td>
+  </tr>
+  <tr> 
+    <th width="2%" height="100%" valign="top"><font size="2">七、</font></td>
+    <td width="98%">本項服務有可能因匯率、利率變動致發生風險，於進行交易時，請依個人投資目標、財務狀況及風險承受度決定是否進行交易。</td>
+  </tr>
+  <tr>
+  	<td colspan=2 align="center">
+  		<input type='button' name='button2' value='已了解並同意上列注意事項，下一步' onclick="chkSubmit();">
+  	</td>
+  </tr>
+</table>
+<input type="hidden" name="pageid">
+<input type="hidden" name="chkRadio" value="0">
+<input type="hidden" name="DBO_WFAC01" value="">
+<input type="hidden" name="DBO_WFAC02" value="">
+<input type="hidden" name="DBO_WFAC03" value="">
+<input type="hidden" name="DBO_WFAC04" value="">
+<input type="hidden" name="DBO_WFAC05" value="">
+<input type="hidden" name="DBO_WFAC06" value="">
+<input type="hidden" name="DBO_WFAC07" value="">
+<input type="hidden" name="DBO_WFAC08" value="">
+<input type="hidden" name="DBO_WFAC10" value="">
+<input type="hidden" name="DBO_WFAC16" value="">
+<input type="hidden" name="DBO_WFAC17" value="">
+<input type="hidden" name="DBO_WFAC18" value="">
+<input type="hidden" name="DBO_WFAC19" value="">
+<input type="hidden" name="DBO_WFAC20" value="">
+<input type="hidden" name="DBO_WFAC21" value="">
+<input type="hidden" name="DBO_WFAC22" value="">
+<input type="hidden" name="DBO_WFAC23" value="">
+<input type="hidden" name="DBO_WFAC24" value="">
+<input type="hidden" name="DBO_WFAC25" value="">
+<input type="hidden" name="DBO_WFAC26" value="">
+<input type="hidden" name="DBO_WFAC27" value="">
+<input type="hidden" name="DBO_WFAC28" value="">
+<input type="hidden" name="DBO_WFAC29" value="">
+<input type="hidden" name="DBO_WFAC30" value="">
+<input type="hidden" name="DBO_WFAC31" value="">
+<input type="hidden" name="DBO_WFAC16A" value="">
+<input type="hidden" name="DBO_WFAC36" value="">
+</form>
+</body>
+</html>

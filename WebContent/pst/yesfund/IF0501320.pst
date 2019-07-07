@@ -1,0 +1,247 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>基金申購</title>
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: Alma 
+* Change List:
+* SerialNo          Date Modified  Modified by   
+*-------------      ----------     ----------
+* EAI99041	        2010.05.10	   Alma
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<script language="javascript">
+function rtnPID(sPID){
+	return sPID.substring(0,10);
+}
+function AMT(a1,a2){
+	var iAMT= parseInt(a1) + parseInt(a2);
+	return iAMT.toString();
+}
+function chksubmit(nextPageid){
+	disableButton2(document.IF0501320.Submit1, document.IF0501320.Submit2);
+	document.IF0501320.pageid.value = nextPageid;
+  if(AMT("[[%%REVE-TO-CVT-FEE%%]]","[[%%REVE-TO-EXTRA-FEE%%]]") == 0)
+	{
+	//document.IF0501320.pageid.value = "IF0501331";
+	}
+	document.IF0501320.submit();
+}
+function chkfee(){
+		if(AMT("[[%%REVE-TO-CVT-FEE%%]]","[[%%REVE-TO-EXTRA-FEE%%]]") == 0)
+		{
+		var result_style = document.getElementById('table2').style;
+		result_style.display = 'block';
+		return;
+		}
+		else
+		{
+		var result_style = document.getElementById('table1').style;
+		result_style.display = 'block';
+		eturn;
+		}
+}
+
+</script>
+</head>
+<link rel="stylesheet" type="text/css" media="all" href="theme/YesFund.css" title="win2k-cold-1" />
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0501320">
+<font color="#006666"><b>基金轉換&gt;</b></font><b><div align="right">
+<font color="#0000CC"face="Arial, Helvetica, sans-serif">資料時間： <script language="javascript">
+		document.write(getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));                  
+			      		   				//document.write(getNowTime());
+			      		   				</script></font></div><br>
+</b>
+<font class="t3">聯邦銀行個人網路銀行交易結果</font><br>
+<br>
+  請選擇繳款帳號並確認您轉換之基金資料 
+  <table width="770" border="0">
+    <tr> 
+    <td colspan="3"> 
+        <div align="center">轉換證明書 
+          <table width="600" border="1" bordercolor="#999999">
+            <tr> 
+              <td colspan="5" height="25" bgcolor="#63CB97"> 
+                <div align="center">轉=出=基=金</div>
+              </td>
+            </tr>
+            <tr> 
+              <td height="25" bgcolor="#C5DECF" width="70"> 
+                <div align="center">基金代號</div>
+              </td>
+              <td bgcolor="#C5DECF" width="66"> 
+                <div align="center">憑證號碼</div>
+              </td>
+              <td bgcolor="#C5DECF" width="186"> 
+                <div align="center">基金名稱</div>
+              </td>
+              <td bgcolor="#C5DECF" colspan="2" width="250"> 
+                <div align="center">轉出信託金額</div>
+              </td>
+            </tr>
+            <tr> 
+              <td height="25" bgcolor="#E7F1EE" width="70">[[%%REVE-FROM-FUNDID%%]]</td>
+              <td bgcolor="#E7F1EE" width="66">[[%%REVE-CERT-NO%%]]</td>
+              <td bgcolor="#E7F1EE" width="186">[[%%REVE-FROM-FUNDNAME%%]]</td>
+              <td bgcolor="#E7F1EE" colspan="2" width="250">[[%%FROM-CURRENCY-NAME%%]]&nbsp; 
+                <script>
+              	document.write(moneyAddDot("[[%%REVE-TO-AMT1%%]]"));
+              </script>
+              </td>
+              <!--<td bgcolor="#E7F1EE">&nbsp; <script>
+              	document.write(moneyAddDot(""));
+              </script> </td>--> </tr>
+          </table>
+          <table width="600" border="1" bordercolor="#999999">
+            <tr bgcolor="#66CC99"> 
+              <td colspan="5" height="25"> 
+                <div align="center">轉=入=基=金</div>
+              </td>
+            </tr>
+            <tr> 
+              <td height="25" bgcolor="#C5DECF" width="70"> 
+                <div align="center">基金代號</div>
+              </td>
+              <td bgcolor="#C5DECF" width="66"> 
+                <div align="center">憑證號碼</div>
+              </td>
+              <td bgcolor="#C5DECF" width="187"> 
+                <div align="center">基金名稱</div>
+              </td>
+              <td bgcolor="#C5DECF" width="118"> 
+                <div align="center">轉入信託金額</div>
+              </td>
+              <td bgcolor="#C5DECF" width="125"> 
+                <div align="center"> 
+                  <script>document.write(getADDateStr("[[%%REVE-TO-FUND-AMT-DATE%%]]",0));</script>
+                  參考價格</div>
+              </td>
+            </tr>
+            <tr> 
+              <td height="25" bgcolor="#E7F1EE" width="70">[[%%REVE-TO-FUNDID%%]]</td>
+              <td bgcolor="#E7F1EE" width="66">[[%%REVE-CERT-NO%%]]</td>
+              <td bgcolor="#E7F1EE" width="187">[[%%REVE-TO-FUNDNAME%%]]</td>
+              <td bgcolor="#E7F1EE" width="118" id="FundTO"></td>
+              <td bgcolor="#E7F1EE" width="125"> 
+                <script>
+              	document.write(moneyAddDot("[[%%REVE-TO-FUND-AMT-REF%%]]"));
+              </script>
+              </td>
+            </tr>
+          </table>
+      </div>
+        <hr width="600" size="1" align="center">
+      <div align="center"> 
+          <table width="600" border="1" bordercolor="#999999" name="table1" id="table1" style="display:none";>
+            <tr> 
+            <td width="23%" bgcolor="#C5DECF">委託人姓名： </td>
+            <td width="16%" bgcolor="#E7F1EE"> [[%%SEND-CNAME%%]]</td>
+           <td width="14%" bgcolor="#C5DECF"> 繳款帳號：</td>
+           <td width="47%" bgcolor="#E7F1EE"> 立即繳款 
+            <select name="REVE_FROM_ACCT_NO">
+              <!--[[%%LOOP_SEC SEND-FROM-ACCT-NO%%]]-->
+                <option value="[[%%SEND-FROM-ACCT-NO%%]]">[[%%SEND-FROM-ACCT-NO%%]]</option>
+              <!--[[%%ELOOP_SEC%%]]-->
+              </select>
+            </td>
+          </tr>
+          <tr> 
+            <td width="23%" bgcolor="#C5DECF" rowspan="2">委託人身分證字號： </td>
+            <td width="16%" bgcolor="#E7F1EE" rowspan="2"> <script>document.write(rtnPID("[[%%SEND-ID-NO%%]]"))</script> </td>
+            <td rowspan="2" bgcolor="#C5DECF" width="14%">支付總額：</td>
+            <td rowspan="2" bgcolor="#E7F1EE" width="47%"> NT$： <script>
+              	document.write(moneyAddDot(AMT("[[%%REVE-TO-CVT-FEE%%]]","[[%%REVE-TO-EXTRA-FEE%%]]")));
+              </script> </td>
+          </tr>
+        </table>
+        <table width="600" border="1" bordercolor="#999999" name="table2" id="table2" style="display:none";>
+            <tr> 
+            <td width="23%" bgcolor="#C5DECF">委託人姓名： </td>
+            <td width="16%" bgcolor="#E7F1EE"> [[%%SEND-CNAME%%]]</td>
+          </tr>
+          <tr> 
+            <td width="23%" bgcolor="#C5DECF" rowspan="2">委託人身分證字號： </td>
+            <td width="16%" bgcolor="#E7F1EE" rowspan="2"> <script>document.write(rtnPID("[[%%SEND-ID-NO%%]]"))</script> </td>
+          </tr>
+        </table>
+        <table width="600" border="1" bordercolor="#999999">
+        <tr><td width="23%" bgcolor="#C5DECF">配息入帳帳號： </td>
+            <td width="77%" bgcolor="#E7F1EE"> [[%%SEND-INTACCT-NO%%]]</td>
+            </td></tr>
+        </table>    
+          <table width="600" border="0">
+            <tr> 
+            <td><b>注意事項：</b><br>
+              1.銀行<b><font color="#FF0000">營業日下午3:00前完成繳款</font></b>，並經本行確認款項已入帳無誤，始於當日下單投資，<b><font color="#0000FF">逾時則於次一營業日下單投資。</font></b><br>
+              2.因延遲繳款致所申購基金之計價淨值或匯率發生貶損，將由您自行承擔。<BR>
+              3.不同幣別之外幣信託轉入信託金額須俟繳款成功後，方由系統自動回覆。</td>
+          </tr>
+        </table>
+        <br>
+          <table width="80%" border="0" cellspacing="0" cellpadding="0">
+            <tr> 
+            <td colspan="2"> 
+              <div align="center"> 
+                <input type="button" name="Submit1" value="確定" onClick='JavaScript:chksubmit("IF0501321");'>
+                <input type="button" name="Submit2" value="取消" onClick='JavaScript:chksubmit("IF0501000");'>
+                <!--<a href="javascript:window.print()"><img src="graph/fund/graph/print.gif" width="52" height="24" border="0"></a>--></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+  <br>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+</table>
+ <input type="hidden" name="pageid" value="">
+ <input type="hidden" name="REVE_CERT_NO" value="[[%%REVE-CERT-NO%%]]">
+  <input type="hidden" name="REVE_CVT_TYPE" value="[[%%REVE-CVT-TYPE%%]]">
+<input type="hidden" name="REVE_CHANGE_TYPE" value="[[%%REVE-CHANGE-TYPE%%]]">
+<input type="hidden" name="REVE_FROM_FUNDID" value="[[%%REVE-FROM-FUNDID%%]]">
+ <input type="hidden" name="REVE_FROM_FUNDNAME" value="[[%%REVE-FROM-FUNDNAME%%]]">
+ <input type="hidden" name="REVE_FROM_AMT" value="[[%%REVE-FROM-AMT%%]]">
+ <input type="hidden" name="REVE_FROM_UNITS" value="[[%%REVE-FROM-UNITS%%]]">
+  <input type="hidden" name="REVE_TO_FUNDID" value="[[%%REVE-TO-FUNDID%%]]">
+  <input type="hidden" name="REVE_TO_FUNDNAME" value="[[%%REVE-TO-FUNDNAME%%]]">
+<input type="hidden" name="REVE_TO_AMT1" value="[[%%REVE-TO-AMT1%%]]">  <!--//要轉出原幣金額-->
+<input type="hidden" name="REVE_TO_AMT2" value="[[%%REVE-TO-AMT2%%]]">  <!--//要轉入新幣別金額-->
+<input type="hidden" name="REVE_TO_UNITS" value="[[%%REVE-TO-UNITS%%]]">
+<input type="hidden" name="REVE_TO_CVT_FEE" value="[[%%REVE-TO-CVT-FEE%%]]">
+<input type="hidden" name="REVE_TO_EXTRA_FEE" value="[[%%REVE-TO-EXTRA-FEE%%]]">
+<input type="hidden" name="REVE_TO_FUND_AMT_DATE" value="[[%%REVE-TO-FUND-AMT-DATE%%]]">
+<input type="hidden" name="REVE_TO_CURRENCY" value="[[%%REVE-TO-CURRENCY%%]]">
+<input type="hidden" name="REVE_TO_CURRENCY_CODE" value="[[%%REVE-TO-CURRENCY-CODE%%]]">
+<input type="hidden" name="REVE_TO_FUND_AMT_REF" value="[[%%REVE-TO-FUND-AMT-REF%%]]">
+<input type="hidden" name="SEND-INTACCT-NO" value="[[%%SEND-INTACCT-NO%%]]">
+<input type="hidden" name="REVE_TO_OCVT_FEE" value="[[%%REVE-TO-OCVT-FEE%%]]">
+<input type="hidden" name="REVE_TO_OEXTRA_FEE" value="[[%%REVE-TO-OEXTRA-FEE%%]]">
+</form>
+<script>
+ var strSame = "[[%%REVE-TO-CURRENCY%%]]&nbsp;"+moneyAddDot("[[%%REVE-TO-AMT1%%]]")
+ var strDiff = "<font color=\"#FF0000\">&nbsp;注意事項3</font>"
+ var doc = document.IF0501320
+ var td1 = document.getElementById("FundTO")
+ if (doc.REVE_TO_CURRENCY.value  == "[[%%FROM-CURRENCY-NAME%%]]"){
+ 		td1.innerHTML = strSame; 
+ }else{
+ 		td1.innerHTML = strDiff;
+ }
+chkfee();
+              
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>基金轉換</title>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0501310">
+	<input type="hidden" name="pageid" value="IF0501311">
+	<input type="hidden" name="REVE_FROM_FUNDID" value="[[%%REVE-FROM-FUNDID%%]]">
+	<input type="hidden" name="REVE_CERT_NO" value="[[%%REVE-CERT-NO%%]]">
+	<input type="hidden" name="REVE_FROM_FUNDNAME" value="[[%%REVE-FROM-FUNDNAME%%]]">
+	<input type="hidden" name="REVE_FROM_AMT" value="[[%%REVE-FROM-AMT%%]]">
+	<input type="hidden" name="REVE_FROM_UNITS" value="[[%%REVE-FROM-UNITS%%]]">	
+	<input type="hidden" name="REVE_TO_FUND_AMT_DATE" value="[[%%REVE-TO-FUND-AMT-DATE%%]]">
+	<input type="hidden" name="REVE_TO_FUNDID" value="[[%%REVE-TO-FUNDID%%]]">
+	<input type="hidden" name="REVE_TO_FUNDNAME" value="[[%%REVE-TO-FUNDNAME%%]]">
+	<input type="hidden" name="REVE_TO_AMT1" value="[[%%REVE-TO-AMT1%%]]">	 			<!--//要轉出原幣金額-->
+	<input type="hidden" name="REVE_TO_AMT2" value="[[%%SEND-TO-FUNDAMT%%]]">			<!--//要轉入新幣別金額-->
+	<input type="hidden" name="REVE_TO_CURRENCY" value="[[%%REVE-TO-CURRENCY%%]]">
+	<input type="hidden" name="REVE_TO_FUND_AMT_REF" value="[[%%REVE-TO-FUND-AMT-REF%%]]">
+	<input type="hidden" name="SEND_CNAME" value="[[%%SEND-CNAME%%]]">
+	<input type="hidden" name="SEND_VIRTUAL_ACCTNO" value="[[%%SEND-VIRTUAL-ACCTNO%%]]">
+	<input type="hidden" name="SEND_ID" value="[[%%SEND-ID%%]]">
+	<input type="hidden" name="REVE_TO_CVT_FEE" value="[[%%REVE-TO-CVT-FEE%%]]">
+	<input type="hidden" name="REVE_TO_EXTRA_FEE" value="[[%%REVE-TO-EXTRA-FEE%%]]">
+	<input type="hidden" name="SEND_INTACCT_NO" value="[[%%REVE-INTACCT-NO%%]]">
+	<input type="hidden" name="REVE_TO_OCVT_FEE" value="[[%%REVE-TO-OCVT-FEE%%]]">
+  <input type="hidden" name="REVE_TO_OEXTRA_FEE" value="[[%%REVE-TO-OEXTRA-FEE%%]]">
+</form>
+<script>
+		document.IF0501310.submit();
+</script>
+</body>
+</html>

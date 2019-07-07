@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SQL>
+
+
+	<conn_sso type="datasource" dbdriver="" 
+			  dsn="jdbc/aptxn" 
+              user="db2ibank" pass="db2ibank" />
+              
+	<conn_test type="driver" 
+			   dbdriver="COM.ibm.db2.jdbc.app.DB2Driver" 
+			   dsn="jdbc:db2:aptxn" 
+               user="db2ibank" pass="db2ibank" />
+	
+<!-- ==============================================================================
+	For LOG
+	============================================================================== -->
+	<conn_log 	type="datasource" dbdriver="" 
+				dsn="jdbc/aptxn" 
+              	user="db2ibank" pass="db2ibank" />
+              	
+
+<!-- ==============================================================================
+	For Server Side UserProfile Class
+	ses0xx : delete session
+	ses1xx : insert session
+	ses2xx : update session
+	ses9xx : select session
+	============================================================================== -->	
+	
+	<ss100 relation=""><![CDATA[ 
+							INSERT INTO  DB2IBANK.SESSION 
+									(      SID       ,      SESSID      ,    USERID ,  VALIDFROM      ,  DURATION  ,      COMEFROM      )
+	    					VALUES	( '[[%%SID%%]]'  , '[[%%SESSID%%]]' , '[[%%USERID%%]]', '[[%%VALIDFROM%%]]' ,   100     , '[[%%COMEFROM%%]]' )	 ]]></ss100>
+
+	<ss000 relation=""><![CDATA[ 	DELETE FROM DB2IBANK.SESSION										 ]]></ss000>
+	<ss001 relation=""><![CDATA[ 	DELETE FROM DB2IBANK.SESSION    WHERE  SESSID = '[[%%SESSID%%]]'	 ]]></ss001>
+	<ss002 relation=""><![CDATA[ 	DELETE FROM DB2IBANK.SESSION    WHERE  SID    = '[[%%SID%%]]' 		 ]]></ss002>
+	<ss003 relation=""><![CDATA[ 	DELETE FROM DB2IBANK.SESSION    WHERE  SID    = '[[%%SID%%]]'  AND USERID = '[[%%USERID%%]]'		 ]]></ss003>
+
+	<mw001 relation=""><![CDATA[ 	DELETE FROM DB2IBANK.MWUMVIN4BUS WHERE  SID    = '[[%%SID%%]]' ]]></mw001>
+	
+	<ss900 relation=""><![CDATA[ 	SELECT * FROM DB2IBANK.SESSION	ORDER BY VALIDFROM					 ]]></ss900>
+	<ss901 relation=""><![CDATA[ 	SELECT * FROM DB2IBANK.SESSION	WHERE  SESSID = '[[%%SESSID%%]]'	 ]]></ss901>
+	<ss902 relation=""><![CDATA[ 	SELECT * FROM DB2IBANK.SESSION	WHERE  SID    = '[[%%SID%%]]' 		 ]]></ss902>
+	<ss903 relation=""><![CDATA[ 	SELECT * FROM DB2IBANK.SESSION	WHERE  SID    = '[[%%SID%%]]' 	  AND USERID = '[[%%USERID%%]]'	 ]]></ss903>
+
+	<ss904  relation=""><![CDATA[ 	SELECT COUNT ( * ) FROM DB2IBANK.SESSION WHERE SESSID = '[[%%SESSID%%]]'	 ]]></ss904>
+		
+	<ss905  relation=""><![CDATA[ 	SELECT COUNT ( * ) FROM DB2IBANK.SESSION WHERE SID    = '[[%%SID%%]]'		 ]]></ss905>
+	<ss906  relation=""><![CDATA[ 	SELECT SID, COUNT(SESSID) AS SESS_CNT FROM DB2IBANK.SESSION WHERE SID = '[[%%SID%%]]' GROUP BY SID ]]></ss906>
+	
+	<!-- ==============================================================================
+	For Server Side UserProfile Class
+	up0xx : delete UserProfile
+	up1xx : insert UserProfile
+	up2xx : update UserProfile
+	============================================================================== -->	
+	
+	<up100 relation=""><![CDATA[
+						INSERT INTO  DB2IBANK.UPROFILE
+							(  SID , NICKNAME , PWD , CNAME ,  ENAME , CRTDATE , STATUS , EMAIL ) 
+		    			VALUES
+						   (  '[[%%SID%%]]' , '' , '' , '[[%%CNAME%%]]' , '[[%%ENAME%%]]' , '[[%%CRTDATE%%]]'  , '[[%%STATUS%%]]' , '[[%%EMAIL%%]]'  )	]]></up100>
+
+	<up101 relation=""><![CDATA[
+			insert into ACL ( OWNER , NAME , DEP , TITLE , TEL , MOBILE , FAX , EMAIL , ROLE , QRY , KEYIN , 
+        				APRV , SELFAPRV , SIGN , AMTLMT1 , AMTLMT2 , ENABLE , USERID , USERPWD , LASTCHANGE , ADDTIME , STATUS ) 
+			values( '[[%%DB-ACL-OWNER%%]]' , '[[%%DB-ACL-NAME%%]]' , '[[%%DB-ACL-DEP%%]]' , '[[%%DB-ACL-TITLE%%]]' , '[[%%DB-ACL-TEL%%]]' ,
+       			'[[%%DB-ACL-MOBILE%%]]' , '[[%%DB-ACL-FAX%%]]' , '[[%%DB-ACL-EMAIL%%]]' , '[[%%DB-ACL-ROLE%%]]' , '[[%%DB-ACL-QRY%%]]' , 
+        		'[[%%DB-ACL-KEYIN%%]]' , '[[%%DB-ACL-APRV%%]]' , '[[%%DB-ACL-SELFAPRV%%]]' , '[[%%DB-ACL-SIGN%%]]' , [[%%DB-ACL-AMTLMT1%%]] , 
+        		[[%%DB-ACL-AMTLMT2%%]] , '[[%%DB-ACL-ENABLE%%]]' , '[[%%DB-ACL-USERID%%]]' , '[[%%DB-ACL-USERPWD%%]]' , '' , '[[%%CURRTIME%%]]'  , '[[%%STATUS%%]]' )  ]]></up101>
+	
+	<up102 relation=""><![CDATA[
+			insert into ACLTEMP ( OWNER , NAME , DEP , TITLE , TEL , MOBILE , FAX , EMAIL , ROLE , QRY , KEYIN , 
+        				APRV , SELFAPRV , SIGN , AMTLMT1 , AMTLMT2 , ENABLE , USERID , USERPWD , LASTCHANGE , ADDTIME , STATUS ) 
+			values( '[[%%DB-ACL-OWNER%%]]' , '[[%%DB-ACL-NAME%%]]' , '[[%%DB-ACL-DEP%%]]' , '[[%%DB-ACL-TITLE%%]]' , '[[%%DB-ACL-TEL%%]]' ,
+       			'[[%%DB-ACL-MOBILE%%]]' , '[[%%DB-ACL-FAX%%]]' , '[[%%DB-ACL-EMAIL%%]]' , '[[%%DB-ACL-ROLE%%]]' , '[[%%DB-ACL-QRY%%]]' , 
+        		'[[%%DB-ACL-KEYIN%%]]' , '[[%%DB-ACL-APRV%%]]' , '[[%%DB-ACL-SELFAPRV%%]]' , '[[%%DB-ACL-SIGN%%]]' , [[%%DB-ACL-AMTLMT1%%]] , 
+        		[[%%DB-ACL-AMTLMT2%%]] , '[[%%DB-ACL-ENABLE%%]]' , '[[%%DB-ACL-USERID%%]]' , '[[%%DB-ACL-USERPWD%%]]' , '' , '[[%%CURRTIME%%]]' , 'FIRSTLOGIN'  )  ]]></up102>
+      
+    <up103 relation=""><![CDATA[  
+    		INSERT INTO ACL SELECT * FROM ACLTEMP WHERE OWNER = '[[%%OWNER%%]]'	
+     ]]></up103>	
+     <up104 relation=""><![CDATA[  
+    		SELECT * FROM ACL WHERE OWNER = '[[%%OWNER%%]]'
+     ]]></up104>
+     
+     <up105 relation=""><![CDATA[  
+    		DELETE FROM ACL WHERE OWNER = '[[%%OWNER%%]]' AND ROLE = '0'	
+     ]]></up105>
+     
+     <up106 relation=""><![CDATA[  
+    		DELETE FROM ACLTEMP WHERE OWNER = '[[%%OWNER%%]]' AND ROLE = '[[%%ROLE%%]]'	
+     ]]></up106>
+     
+     <up107 relation=""><![CDATA[  
+    		SELECT * FROM ACLTEMP WHERE OWNER = '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]'
+     ]]></up107>
+     
+     <up108 relation=""><![CDATA[  
+    		DELETE FROM ACL WHERE OWNER = '[[%%OWNER%%]]'
+     ]]></up108>
+     
+     <up109 relation=""><![CDATA[  
+    		DELETE FROM ACL WHERE OWNER = '[[%%OWNER%%]]' AND ROLE <> '0'
+     ]]></up109>
+
+	<up201 relation=""> <![CDATA[ UPDATE DB2IBANK.ACL SET STATUS  = '[[%%STATUS%%]]' ,
+													 RETRIED = 0 	,  RETRIED_PWD = 0						WHERE OWNER = '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]'		]]> </up201>
+	<up202 relation=""> <![CDATA[ UPDATE DB2IBANK.ACL SET STATUS  = '[[%%STATUS%%]]' , 
+													 RETRIED = ( RETRIED + [[%%INC%%]] )	WHERE OWNER = '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]'		]]> </up202>
+	
+	<up203 relation=""> <![CDATA[ UPDATE DB2IBANK.ACL SET STATUS  = '[[%%STATUS%%]]'	WHERE OWNER = '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]'	]]> </up203>
+	
+	
+	<up204 relation=""><![CDATA[ UPDATE DB2IBANK.ACL 
+	                                                       SET LASTLOGINTIME = '[[%%LASTLOGINTIME%%]]' , 
+	                                                       LASTCOMEFROM  = '[[%%LASTCOMEFROM%%]]'  , RETRIED = 0 , RETRIED_PWD = 0 
+								                           WHERE  OWNER = '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]' ]]></up204>
+
+	<up205 relation=""><![CDATA[	UPDATE DB2IBANK.ACL SET USERID = '[[%%NEW_USERID%%]]' , LASTCHANGE = '[[%%CURRTIME%%]]'  WHERE OWNER = '[[%%OWNER%%]]'	AND  USERID = '[[%%USERID%%]]' ]]></up205>	
+	
+	<up206 relation=""><![CDATA[	UPDATE DB2IBANK.ACL 
+									SET USERPWD	         = '[[%%PWD%%]]' , PASSHISTORY1 = USERPWD , 
+									    PASSHISTORY2 = PASSHISTORY1  , PASSHISTORY3 = PASSHISTORY2 ,
+										LASTCHANGE     = '[[%%CURRTIME%%]]'	 , STATUS = '[[%%STATUS%%]]'
+									WHERE OWNER = '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]' 	 ]]></up206>
+
+	<up207 relation=""><![CDATA[ UPDATE DB2IBANK.ACL SET STATUS  = '[[%%STATUS%%]]' , 
+													 RETRIED_PWD = ( RETRIED_PWD + [[%%INC%%]] )	WHERE OWNER = '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]' 		]]></up207>
+	
+	<up208 relation=""><![CDATA[
+				UPDATE ACL SET ADDTIME = '[[%%CURRTIME%%]]' WHERE OWNER = '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]'
+	]]></up208>
+	
+	<up209 relation=""><![CDATA[
+				UPDATE UPROFILE SET STATUS = '[[%%STATUS%%]]' WHERE SID = '[[%%OWNER%%]]'
+	]]></up209>
+	
+	<up210 relation=""><![CDATA[
+				DELETE FROM ACLTEMP WHERE OWNER = '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]'
+	]]></up210>
+	
+	<up211 relation=""><![CDATA[
+				SELECT  USERID FROM ACL WHERE OWNER = '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]'
+	]]></up211>
+	
+
+<!-- ==============================================================================
+	For Server Side UserProfile Class
+	up90x : select UserProfile bySID
+	up91x : select UserProfile bySESSID)
+	============================================================================== -->	
+		
+	
+	<!-- FOR BUSINESS ===findByOWNER and USERID  mode=MODE_FULL -->
+	<up905 reletion=""><![CDATA[
+		SELECT UP.SID AS SEND_OWNER_ID , UP.CNAME AS SEND_OWNER_CNAME , UP.ENAME AS SEND_OWNER_ENAME , UP.STATUS AS SEND_OWNER_STATUS , UP.CRTDATE AS SEND_CRTDATE , 
+       	   ACLINFO.NAME AS SEND_USER_NAME , ACLINFO.DEP AS SEND_DEP, ACLINFO.TITLE AS SEND_TITLE , ACLINFO.TEL AS SEND_TEL , ACLINFO.MOBILE AS SEND_MOBILE, 
+           ACLINFO.FAX AS SEND_FAX , ACLINFO.EMAIL AS SEND_EMAIL_ADDR , ACLINFO.USERID AS SEND_USER_ID , ACLINFO.USERPWD AS SEND_USER_PWD , 
+           ACLINFO.LASTLOGINTIME AS SEND_LAST_LOGIN_TIME , ACLINFO.LASTLOGOUTTIME AS SEND_LAST_LOGOUT_TIME , ACLINFO.LASTCOMEFROM AS SEND_LAST_COME_FROM , 
+           ACLINFO.PASSHISTORY1 AS SEND_PWD_OLD1 , ACLINFO.PASSHISTORY2 AS SEND_PWD_OLD2 , ACLINFO.PASSHISTORY3 AS SEND_PWD_OLD3 , 
+           ACLINFO.RETRIED AS SEND_RETRIED , ACLINFO.STATUS AS SEND_USER_STATUS , ACLINFO.RETRIED_PWD AS SEND_RETRIED_PWD ,
+           SESSION.SESSID AS SEND_SESSION_ID , SESSION.VALIDFROM AS SEND_SESSION_VALID_FROM ,SESSION.DURATION AS SEND_SESSION_DURATION ,
+           SESSION.COMEFROM  AS SEND_SESSION_COME_FROM 
+       FROM ( SELECT * FROM DB2IBANK.UPROFILE WHERE SID =  '[[%%OWNER%%]]' ) AS UP 
+       LEFT OUTER JOIN ( SELECT * FROM DB2IBANK.ACL WHERE OWNER = '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]' )  AS ACLINFO ON UP.SID = ACLINFO.OWNER
+       LEFT OUTER JOIN ( SELECT * FROM DB2IBANK.SESSION  WHERE SID =  '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]'  ) 	AS SESSION ON UP.SID = SESSION.SID 
+	 ]]>
+	 </up905>
+	 
+	 <!-- FOR BUSINESS ===findByOWNER and USERID  mode=MODE_SIMPLE -->
+	<up906 reletion=""><![CDATA[
+		SELECT UP.SID AS SEND_OWNER_ID , UP.CNAME AS SEND_OWNER_CNAME , UP.ENAME AS SEND_OWNER_ENAME , UP.STATUS AS SEND_OWNER_STATUS , UP.CRTDATE AS SEND_CRTDATE , 
+       	   ACLINFO.NAME AS SEND_USER_NAME , ACLINFO.DEP AS SEND_DEP, ACLINFO.TITLE AS SEND_TITLE , ACLINFO.USERID AS SEND_USER_ID , ACLINFO.USERPWD AS SEND_USER_PWD , 
+           ACLINFO.LASTLOGINTIME AS SEND_LAST_LOGIN_TIME , ACLINFO.LASTLOGOUTTIME AS SEND_LAST_LOGOUT_TIME , ACLINFO.LASTCOMEFROM AS SEND_LAST_COME_FROM , 
+           ACLINFO.PASSHISTORY1 AS SEND_PWD_OLD1 , ACLINFO.PASSHISTORY2 AS SEND_PWD_OLD2 , ACLINFO.PASSHISTORY3 AS SEND_PWD_OLD3 , 
+           ACLINFO.RETRIED AS SEND_RETRIED , ACLINFO.STATUS AS SEND_USER_STATUS , ACLINFO.RETRIED_PWD AS SEND_RETRIED_PWD ,
+           SESSION.SESSID AS SEND_SESSION_ID , SESSION.VALIDFROM AS SEND_SESSION_VALID_FROM ,SESSION.DURATION AS SEND_SESSION_DURATION ,
+           SESSION.COMEFROM  AS SEND_SESSION_COME_FROM 
+       FROM ( SELECT * FROM DB2IBANK.UPROFILE WHERE SID =  '[[%%OWNER%%]]' ) AS UP 
+       LEFT OUTER JOIN ( SELECT * FROM DB2IBANK.ACL WHERE OWNER = '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]' )  AS ACLINFO ON UP.SID = ACLINFO.OWNER
+       LEFT OUTER JOIN ( SELECT * FROM DB2IBANK.SESSION  WHERE SID =  '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]'  ) 	AS SESSION ON UP.SID = SESSION.SID 
+	 ]]>
+	 </up906>
+	
+	<up907><![CDATA[
+			SELECT UP.SID AS SEND_OWNER_ID , UP.CNAME AS SEND_OWNER_CNAME , UP.ENAME AS SEND_OWNER_ENAME , UP.STATUS AS SEND_OWNER_STATUS , UP.CRTDATE AS SEND_CRTDATE , 
+       	   		ACLINFO.NAME AS SEND_USER_NAME , ACLINFO.DEP AS SEND_DEP, ACLINFO.TITLE AS SEND_TITLE , ACLINFO.TEL AS SEND_TEL , ACLINFO.MOBILE AS SEND_MOBILE, 
+           		ACLINFO.FAX AS SEND_FAX , ACLINFO.EMAIL AS SEND_EMAIL_ADDR , ACLINFO.USERID AS SEND_USER_ID , ACLINFO.USERPWD AS SEND_USER_PWD , 
+           		ACLINFO.LASTLOGINTIME AS SEND_LAST_LOGIN_TIME , ACLINFO.LASTLOGOUTTIME AS SEND_LAST_LOGOUT_TIME , ACLINFO.LASTCOMEFROM AS SEND_LAST_COME_FROM , 
+           		ACLINFO.PASSHISTORY1 AS SEND_PWD_OLD1 , ACLINFO.PASSHISTORY2 AS SEND_PWD_OLD2 , ACLINFO.PASSHISTORY3 AS SEND_PWD_OLD3 , 
+           		ACLINFO.RETRIED AS SEND_RETRIED , ACLINFO.STATUS AS SEND_USER_STATUS , ACLINFO.RETRIED_PWD AS SEND_RETRIED_PWD ,
+           		SESSION.SESSID AS SEND_SESSION_ID , SESSION.VALIDFROM AS SEND_SESSION_VALID_FROM ,SESSION.DURATION AS SEND_SESSION_DURATION ,
+           		SESSION.COMEFROM  AS SEND_SESSION_COME_FROM 
+       		FROM ( SELECT * FROM DB2IBANK.UPROFILE WHERE SID =  '[[%%OWNER%%]]' ) AS UP 
+       		LEFT OUTER JOIN ( SELECT * FROM DB2IBANK.ACLTEMP WHERE OWNER = '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]' )  AS ACLINFO ON UP.SID = ACLINFO.OWNER
+       		LEFT OUTER JOIN ( SELECT * FROM DB2IBANK.SESSION  WHERE SID =  '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]'  ) 	AS SESSION ON UP.SID = SESSION.SID 
+	
+	 ]]></up907>
+	<!--FOR BUSINESS === findBySESSID and USERID mode=MODE_FULL -->
+	<up915 reletion=""><![CDATA[
+	   SELECT UP.SID AS SEND_OWNER_ID , UP.CNAME AS SEND_OWNER_CNAME , UP.ENAME AS SEND_OWNER_ENAME , UP.STATUS AS SEND_OWNER_STATUS , UP.CRTDATE AS SEND_CRTDATE , 
+         ACLINFO.NAME AS SEND_USER_NAME , ACLINFO.DEP AS SEND_DEP, ACLINFO.TITLE AS SEND_TITLE , ACLINFO.TEL AS SEND_TEL , ACLINFO.MOBILE AS SEND_MOBILE, 
+         ACLINFO.FAX AS SEND_FAX , ACLINFO.EMAIL AS SEND_EMAIL_ADDR , ACLINFO.USERID AS SEND_USER_ID , ACLINFO.USERPWD AS SEND_USER_PWD , 
+         ACLINFO.LASTLOGINTIME AS SEND_LAST_LOGIN_TIME , ACLINFO.LASTLOGOUTTIME AS SEND_LAST_LOGOUT_TIME , ACLINFO.LASTCOMEFROM AS SEND_LAST_COME_FROM , 
+         ACLINFO.PASSHISTORY1 AS SEND_PWD_OLD1 , ACLINFO.PASSHISTORY2 AS SEND_PWD_OLD2 , ACLINFO.PASSHISTORY3 AS SEND_PWD_OLD3 , 
+         ACLINFO.RETRIED AS SEND_RETRIED , ACLINFO.STATUS AS SEND_USER_STATUS , ACLINFO.RETRIED_PWD AS SEND_RETRIED_PWD ,
+         SESSION.SESSID AS SEND_SESSION_ID , SESSION.VALIDFROM AS SEND_SESSION_VALID_FROM ,SESSION.DURATION AS SEND_SESSION_DURATION ,
+         SESSION.COMEFROM  AS SEND_SESSION_COME_FROM 
+       FROM ( SELECT * FROM DB2IBANK.SESSION  WHERE SESSID =  '[[%%SESSID%%]]' AND USERID = '[[%%USERID%%]]' ) AS SESSION 
+       JOIN DB2IBANK.UPROFILE AS UP ON UP.SID = SESSION.SID 
+       LEFT OUTER JOIN DB2IBANK.ACL AS ACLINFO ON UP.SID = ACLINFO.OWNER AND ACLINFO.USERID = SESSION.USERID
+	 ]]>
+	 </up915>
+	 
+	 <up916><![CDATA[
+	 	SELECT SESS.SESSID AS SEND_SESSION_ID , SESS.VALIDFROM AS SEND_SESSION_VALID_FROM , SESS.DURATION AS SEND_SESSION_DURATION , SESS.COMEFROM AS SEND_SESSION_COME_FROM , 
+	 	ACL.* FROM ( SELECT * FROM ACL WHERE OWNER = '[[%%OWNER%%]]' AND USERID = '[[%%USERID%%]]' ) AS ACL 
+	 	LEFT OUTER JOIN (SELECT * FROM SESSION) AS SESS  ON SESS.SID = ACL.OWNER AND SESS.USERID = ACL.USERID	
+	  ]]></up916>	
+	  
+	  <mw921>	SELECT ACCTNO    AS SEND_ACCT_NO  		, BID AS SEND_BID             	  ,	BRNAME AS SEND_BR_NAME , 
+				   BALTYPE   AS SEND_BAL_TYPE 		, ACCTDESC AS SEND_ACCT_DESC  	  , AVALBALANCE AS SEND_AVAL_BALANCE , 
+			       TIME      AS SEND_TIME     		, CURRENCY AS SEND_CURRENCY   	  , ACCTBALANCE AS SEND_ACCT_BALANCE ,
+				   CURENAME  AS SEND_CURRENCY_ENAME , CURCNAME AS SEND_CURRENCY_CNAME, REGFROM AS SEND_IS_REGFROM 
+			FROM DB2IBANK.MWUMVIN4BUS
+			WHERE  SESSID = '[[%%SESSID%%]]'
+	 </mw921>
+	
+	 <mw922>	SELECT ACCTNO    AS SEND_ACCT_NO  		, BID AS SEND_BID             	  ,	BRNAME AS SEND_BR_NAME , 
+				   BALTYPE   AS SEND_BAL_TYPE 		, ACCTDESC AS SEND_ACCT_DESC  	  , AVALBALANCE AS SEND_AVAL_BALANCE , 
+			       TIME      AS SEND_TIME     		, CURRENCY AS SEND_CURRENCY   	  , ACCTBALANCE AS SEND_ACCT_BALANCE ,
+				   CURENAME  AS SEND_CURRENCY_ENAME , CURCNAME AS SEND_CURRENCY_CNAME, REGFROM AS SEND_IS_REGFROM 
+			FROM DB2IBANK.MWUMVIN4BUS
+			WHERE  SID = '[[%%SID%%]]'
+	 </mw922> 
+	 
+	 <!--取得管理者的ACL資料-->
+	 <getManagerAcl>
+	 	<![CDATA[
+	 	SELECT * FROM ACL WHERE OWNER='[[%%OWNER%%]]' AND ROLE='2'
+	 	]]>
+	 </getManagerAcl>
+	 <!--更新管理者的資料(變更:userid,userpwd,tel,email,lastchange)-->
+	 <updateManagerData>
+	 	<![CDATA[
+	 	UPDATE ACL SET USERID='[[%%NEWUSERID%%]]' , USERPWD='[[%%USERPWD%%]]' ,
+	 		AREA= '[[%%AREA%%]]', TEL='[[%%TEL%%]]' , EMAIL='[[%%EMAIL%%]]' , LASTCHANGE='[[%%CURRTIME%%]]' ,
+	 		PASSHISTORY1 = USERPWD , PASSHISTORY2 = PASSHISTORY1  , PASSHISTORY3 = PASSHISTORY2 ,
+	 		LASTCOMEFROM  = '[[%%LASTCOMEFROM%%]]'  
+	 		WHERE OWNER='[[%%OWNER%%]]' AND USERID='[[%%OLDUSERID%%]]'
+	 	]]>
+	 </updateManagerData>
+
+</SQL>

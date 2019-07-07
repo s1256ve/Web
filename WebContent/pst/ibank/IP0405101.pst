@@ -1,0 +1,170 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>外匯帳戶查詢</title>
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI99063           2010.10.18     David
+*EAI100036          2011.07.01     Joe  
+*EAI100043          2011.07.14     David  
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<script language="JavaScript" SRC="script/acctfmt.js"></script>
+<script language="JavaScript" SRC="script/moneyfmt.js"></script>
+<script language="JavaScript" src="script/datefmt.js"></script>
+<SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script>
+
+function chkSubmit(){
+	
+	  var intDate = "[[%%SEND-INT-DATE%%]]";
+   	var intDateYear = parseInt(intDate.substr(0,4),10);
+   	var intDateMonth =intDate.substr(4,2);
+   	var intDateDay = intDate.substr(6,2);
+   	document.IP0405101.SEND_INT_DATE.value = (intDateYear + "年" + intDateMonth + "月" + intDateDay + "日");
+	
+		var expDate = "[[%%SEND-EXP-DATE%%]]";
+    var expDateYear = parseInt(expDate.substr(0,4),10);
+    var expDateMonth = expDate.substr(4,2);
+    var expDateDay = expDate.substr(6,2);
+    document.IP0405101.SEND_EXP_DATE.value =(expDateYear + "年" + expDateMonth + "月" + expDateDay + "日");
+    
+    var rescindDate = "[[%%SEND-RESCIND-DATE%%]]";
+    var rescindDateYear = parseInt(rescindDate.substr(0,4),10);
+    var rescindDateMonth = rescindDate.substr(4,2);
+    var rescindDateDay = rescindDate.substr(6,2);
+    document.IP0405101.SEND_RESCIND_DATE.value = (rescindDateYear + "年" + rescindDateMonth + "月" + rescindDateDay + "日");
+		//alert(document.IP0405101.SEND_RESCIND_DATE.value);
+	  var rate = "[[%%SEND-INT-RATE%%]]";
+    var intRate = parseInt(rate.substr(0,2),10);
+    var decimalPointRate = rate.substr(2,6);
+    document.IP0405101.SEND_INT_RATE.value = (intRate + "." + decimalPointRate + "%");
+	  
+	  //document.IP0405101..value =(moneyAddDot(trimSpStr1("[[%%SEND-EXP-RATE%%]]")));  
+	  
+	  //document.IP0405101.SEND_PRINCIPAL_BALANCE.value = moneyAddDot(trimSpStr1("[[%%SEND-PRINCIPAL-BALANCE%%]]"));
+	  var principalBalance = "[[%%SEND-PRINCIPAL-BALANCE%%]]"; //本金餘額(原幣)
+	  var intPrincipalBalance = parseInt(principalBalance.substr(0,13),10);
+	  var decimalPrincipalBalance = principalBalance.substr(13,2);
+	  var principalBalanceString = intPrincipalBalance + "." + decimalPrincipalBalance;
+	  var tatalprincipalBalance = moneyAddDot3(principalBalanceString);
+	  document.IP0405101.SEND_PRINCIPAL_BALANCE.value = tatalprincipalBalance; 
+	  
+	  
+	  var detainTaxation = "[[%%SEND-DETAIN-TAXATION%%]]"; //代扣稅款(原幣)
+	  var intDetainTaxation = parseInt(detainTaxation.substr(0,11),10);
+	  var decimalDetainTaxation = detainTaxation.substr(11,2)
+	  var detainTaxationString = intDetainTaxation + "." + decimalDetainTaxation;
+	  document.IP0405101.SEND_DETAIN_TAXATION.value = moneyAddDot3(detainTaxationString);
+	  
+	  /*
+	  alert("david1");
+		alert(detainTaxation);
+		alert(intDetainTaxation);
+		alert(decimalDetainTaxation);
+		alert(detainTaxationString);		
+		alert(document.IP0405101.SEND_DETAIN_TAXATION.value);
+	  */
+	  
+	  //var grossProfit = "[[%%SEND-GROSS-PROFIT%%]]"; //毛息(原幣)
+		//var intGrossProfit = parseInt(grossProfit.substr(0,11),10);
+		//var decimalGrossProfit = grossProfit.substr(11,2);
+		var grossProfitString = "[[%%SEND-GROSS-PROFIT%%]]";
+    document.IP0405101.SEND_GROSS_PROFIT.value = moneyAddDot3(grossProfitString);
+	  document.IP0405101.SEND_EXP_RATE.value = moneyAddDot3(grossProfitString);
+	  
+	  var newAmount = "[[%%SEND-NET-AMOUNT%%]]"; //淨額(原幣)
+	  var intNewAmount = parseInt(newAmount.substr(0,13),10);
+	  var decimalNewAmount = newAmount.substr(13,2);
+	  var newAmountString = intNewAmount + "." + decimalNewAmount;
+    document.IP0405101.SEND_NET_AMOUNT.value = moneyAddDot3(newAmountString);
+    
+    
+		var newAmountValue = parseFloat(newAmountString);//淨額(原幣)
+		var principalBalance2 = "[[%%SEND-PRINCIPAL-BALANCE%%]]";  //本金餘額(原幣)
+    var principalBalance2String = parseInt(principalBalance2.substr(0,13),10) + "." + principalBalance2.substr(13,2);
+    var principalBalance2Value = parseFloat(principalBalance2String);
+    eval('var sendToBalanceValue = ' + newAmountValue + '-' + principalBalance2Value); //實領餘額(原幣)
+    var sendToBalanceString = sendToBalanceValue + "";
+		document.IP0405101.SEND_TO_BALANCE.value = moneyAddDot3(sendToBalanceString);
+		
+		/*
+		alert("david2");
+		alert(newAmountValue);
+		alert(principalBalance2Value);
+		alert(sendToBalanceValue);	
+		alert("david3");	
+		alert("sendToBalanceString");
+		alert(sendToBalanceString);
+		alert(document.IP0405101.SEND_TO_BALANCE.value);
+		*/
+		
+		var acctNo = "[[%%SEND-ACCT-NO%%]]"; //定存帳號欄位遮蔽                                            
+   	document.IP0405101.SEND_ACCT_NO_MARK.value = acctNo.substr(0,5) + "XXXXX" + acctNo.substr(10,2); 
+   		
+   	var vchrNo = "[[%%SEND-VCHR-NO%%]]"; //定存存單號碼欄位遮蔽                                        
+    document.IP0405101.SEND_VCHR_NO_MARK.value = vchrNo.substr(0,3) + "XXX" + vchrNo.substr(6,2);         
+    	
+   	var toAcctNo = "[[%%SEND-TO-ACCT-NO%%]]"; //轉入帳號欄位遮蔽                                       
+   	document.IP0405101.SEND_TO_ACCT_NO_MARK.value = toAcctNo.substr(0,5) + "XXXXX" + toAcctNo.substr(10,2);    
+	
+	var businessDay = "[[%%SEND-BUSINESS-DAY%%]]";
+	
+	if(businessDay == "Y"){
+	
+		document.IP0405101.pageid.value = "IP0405102";
+	}
+	
+	else if(businessDay == "N"){
+	
+		document.IP0405101.pageid.value = "IP0405103";
+	}
+	
+		document.IP0405101.submit();
+}
+
+</script>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+<form method="POST"  name="IP0405101" action="LoadAP">
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="SEND_ACCT_NO" value="[[%%SEND-ACCT-NO%%]]">
+<input type="hidden" name="SEND_VCHR_NO" value="[[%%SEND-VCHR-NO%%]]">
+<input type="hidden" name="SEND-CURRENCY" value="[[%%SEND-CURRENCY%%]]">
+<input type="hidden" name="SEND-PERIOD" value="[[%%SEND-PERIOD%%]]">
+<input type="hidden" name="SEND-PERIOD-TYPE" value="[[%%SEND-PERIOD-TYPE%%]]">
+<input type="hidden" name="SEND_INT_RATE" value="">
+<input type="hidden" name="SEND_INT_DATE" value="">
+<input type="hidden" name="SEND_EXP_DATE" value="">
+<input type="hidden" name="SEND_EXP_RATE" value="">
+<input type="hidden" name="SEND_RESCIND_DATE" value="">
+<input type="hidden" name="SEND_PRINCIPAL_BALANCE" value="">
+<input type="hidden" name="SEND_GROSS_PROFIT" value="">
+<input type="hidden" name="SEND-DETAIN-TAXATION" value="">
+<input type="hidden" name="SEND_NET_AMOUNT" value="">
+<input type="hidden" name="SEND-BR-NAME" value="[[%%SEND-BR-NAME%%]]">
+<input type="hidden" name="SEND-BUSINESS-DAY" value="[[%%SEND-BUSINESS-DAY%%]]">
+<input type="hidden" name="SEND_TO_ACCT_NO" value="[[%%SEND-TO-ACCT-NO%%]]">
+<input type="hidden" name="SEND-TO-CURRENCY" value="[[%%SEND-TO-CURRENCY%%]]">
+<input type="hidden" name="SEND_TO_BALANCE" value="">
+<input type="hidden" name="SEND_SYSDATE" value="">
+<input type="hidden" name="SEND_DETAIN_TAXATION" value="">	
+<input type="hidden" name="SEND_SUPP_PREM" value="[[%%SEND-SUPP-PREM%%]]">
+
+<input type="hidden" name="SEND_ACCT_NO_MARK" value="">	
+<input type="hidden" name="SEND_VCHR_NO_MARK" value="">	
+<input type="hidden" name="SEND_TO_ACCT_NO_MARK" value="">	
+	
+<script>
+	chkSubmit();
+</script>	
+
+</form>
+</body>
+</html>
+
+

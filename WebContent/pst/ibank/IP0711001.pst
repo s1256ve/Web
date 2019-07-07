@@ -1,0 +1,111 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>帳戶交易</title>
+<script>
+</script>
+</head>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<script language="Javascript">
+  
+    String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");} 
+
+	function chkSubmit(type){	
+		var f= document.IP0711001;
+		
+		f.REVE_FEE_TYPE.value = type;
+		f.submit();
+	}
+</script>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+
+<form method="post" action="LoadAP" name="IP0711001">
+<p><b>帳戶交易&gt;<font color="#003399"><font color="#0066FF">繳費<br>
+  </font></font></b>
+<table width="720" border="0">
+	<tr> 
+		<td><br>
+			<table width="90%" align="center" border="1" bordercolor="#999999">
+				<tr>
+					<td style="font-size: 100%; color: rgb(101, 101, 171); font-weight: 800; height: 35;">◆網路銀行非約定轉帳繳納費用</td>
+				</tr>
+				<tr> 
+					<td width="17%" height="25" >
+						1.繳【健保費】、【勞保費】、【勞退基金費】、【國民年金】，請輸入繳費單上「三段式條碼編號」進行費用繳納。</br>
+						2.繳【其他費用】(水電費等)，請參考繳費單上或有關自動櫃員機(ATM)轉帳繳款說明，請輸入「轉入銀行代碼3碼」、轉入帳號/銷帳編號(最多16碼) 」進行費用繳納，適用非約定轉帳限額並需支付跨行轉帳手續費。
+						<div align="center"> 
+							<input type="button" name="Submit" value="繳健保費" onClick="chkSubmit('09');" style="cursor: pointer;">
+							<input type="button" name="Submit" value="繳勞保費" onClick="chkSubmit('34');"  style="cursor: pointer;">
+							<input type="button" name="Submit" value="繳勞退基金" onClick="chkSubmit('35');"  style="cursor: pointer;">
+							<input type="button" name="Submit" value="繳國民年金" onClick="chkSubmit('43');"  style="cursor: pointer;">
+							<input type="button" name="Submit" value="繳其他費用" onClick="location.href='LoadAP?aptype=IBANK&pageid=IP0711000&[[%%SESSIONID%%]]'"  style="cursor: pointer;">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td style="font-size: 100%; color: rgb(101, 101, 171); font-weight: 800; height: 35;">◆繳費服務網繳納費用　(※將離開聯邦網路銀行至其他網站繳費)</td>
+				</tr>
+				<tr>
+					<td height="25" ><FONT COLOR="green">繳納下列費用，將另開啟新視窗連結至該服務網頁進行繳納，並由該網站負責營運，相關繳納規則及流程依其規範，不屬於聯邦銀行負責範圍，且限定由本人帳號繳納本人費用，請輸入本人之往來銀行(如:聯邦銀行803)及轉帳帳號。</font></td>
+				</tr>
+				<tr> 
+					<td width="17%" height="25">
+						繳【汽(機)車燃料使用費】，將另開啟新視窗連結至「電子公路監理網」，請提供「身分證號(統一證號) 」、「車號」、「監理單位站所」、「驗證碼」進行費用繳納。
+						<br>
+						<div align="center"> 
+						<input type="button" name="Submit" value="同意並開始繳費" onClick="window.open('https://www.mvdis.gov.tw/m3-emv-car/fee/fuelFee');" style="cursor: pointer;">
+					</div>
+				</tr>
+				<tr> 
+					<td width="17%" height="25">
+						繳【交通罰緩】，將另開啟新視窗連結至「電子公路監理網」，請提供「身分證號(統一證號) 」、「生日」、「監理單位站所」、「驗證碼」進行費用繳納。
+						<div align="center"> 
+							<input type="button" name="Submit" value="同意並開始繳費" onClick="window.open('https://www.mvdis.gov.tw/m3-emv-vil/vil/penaltyQueryPay');" style="cursor: pointer;">
+						</div>
+					</td>
+				</tr> 
+				<tr> 
+					<td width="17%" height="25" >
+						繳【中華電信費】，將另開啟新視窗連結至「中華電信HiNet帳務服務網」，請提供「電話號碼」、「用戶身分證號(統一證號) 」進行費用繳納。
+						<div align="center"> 
+							<input type="button" name="Submit" value="同意並開始繳費" onClick="window.open('https://info.hinet.net/account/tele_fee.asp');" style="cursor: pointer;">
+						</div>
+					</td>
+				</tr>
+				<tr> 
+					<td width="17%" height="25" >
+						聯邦學費網及其他【國民年金】、【勞保費】、【健保費】、【勞工退休金】等繳費專區，請提供「銷帳編號」及憑「晶片金融卡」進行費用繳納。
+						<div align="center"> 
+							<input type="button" name="Submit" value="同意並開始繳費" onClick="window.open('http://web.ubot.com.tw/ubotfee/index.htm');" style="cursor: pointer;">
+						</div>
+					</td>
+				<tr> 
+					<td width="17%" height="25" >eBill全國繳費網繳費【其他各項繳費】
+						<div align="center"> 
+							<input type="button" name="Submit" value="同意並開始繳費" onClick="window.open('https://ebill.ba.org.tw/CPP/DesktopDefault.aspx');" style="cursor: pointer;">
+						</div>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>    
+</table>
+<input type="hidden" name="REVE_FEE_TYPE" value="">
+<input type="hidden" name="pageid" value="IP0712000">
+</form>
+</body>
+</html>

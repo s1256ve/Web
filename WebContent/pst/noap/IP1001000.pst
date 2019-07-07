@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>使用者登入作業</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<script language="JavaScript">
+<!--
+function chkSubmit(){
+	var sid = document.IP1001000.REVE_ID_NO.value
+	var acct = document.IP1001000.REVE_ACCT_NO.value
+	if (sid.trim() != "" || acct.trim() != "" ){
+		document.IP1001000.submit();
+	}else{
+		alert("請填入身分證字號或銀行帳號");	
+	}
+
+}
+//-->
+</script>
+</head>
+<link rel="stylesheet" type="text/css" media="all" href="theme/FirstLogon.css" title="win2k-cold-1" />
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg01.gif" leftmargin="0" topmargin="0" onfocus="onTop();">
+<form method="post" action="LoadAP" name="IP1001000"> 
+<p><b>首次登入<font color="#003399"><font color="#0066FF"></font></font><font color="#003399"><font color="#0066FF"><br>
+  </font></font></b></p>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5"> 
+      <table width="300" border="0" align="center">
+        <tr> 
+          <td height="2">身分證字號</td>
+          <td height="2"> 
+            <input type="text" name="REVE_ID_NO">
+          </td>
+        </tr>
+        <tr> 
+          <td height="2">聯邦銀行帳號（任一組）</td>
+          <td height="2"> 
+            <input type="text" name="REVE_ACCT_NO">
+          </td>
+        </tr>
+        <tr>
+          <td height="2">語音密碼</td>
+          <td height="2">
+            <input type="password" name="PWD" size="8" onclick="getKeyBoard2('IP1001000','PWD','REVE_PWD','[[%%SEND-KB-KEYCODE%%]]','[[%%SEND-KB-KEYLETTER%%]]');onTop();" readonly>
+          </td>
+        </tr>
+      </table>
+      <div align="center">
+        <input type="button" name="Submit" value="確定" onClick="chkSubmit();">
+        <input type="reset" name="Reset" value="取消">
+      </div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="5" valign="bottom" height="2" bgcolor="#663300"></td>
+  </tr>
+</table>
+<div id="Layer1" style="position:absolute; left:116px; top:163px; width:387px; height:92px; z-index:1"> 
+  <p><font color="#666666"><img src="graph/fund/graph/in-point.gif" border="0">已申請「電子金融服務」（<a href="page8-2c.htm">Case 1-1</a>）<br>
+    <img src="graph/fund/graph/in-point.gif" border="0">已申請「電話銀行家服務」且已升級為「電子金融服務」（<a href="page8-2d.htm">Case 1-2</a>）<br>
+    <img src="graph/fund/graph/in-point.gif" border="0">已申請「電話銀行家服務」但未升級為「電子金融服務」（<a href="page8-2e.htm">Case1-3</a>）<br>
+    、或未申請「電子金融服務」（<a href="page8-2f.htm">Case1-4</a>）<br>
+    【其他：ID、密碼或帳號有誤 <a href="page8-2g.htm">Case1-5</a>~~<a href="page8-2h.htm">1-6</a>~~~~<a href="page8-2j.htm">1-8</a>】<br>
+    是否於本行開立存款帳戶？<br>
+    <br>
+    </font>
+</div>
+<input type="hidden" name="pageid" value="IP1001001">
+<input type="hidden" name="REVE_PWD" value="">
+</Form>
+</body>
+</html>

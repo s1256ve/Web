@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>通路報酬揭露</title>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script>
+function chkSubmit(FUNDID,NONRPT,CLOSED){
+if(NONRPT== "Y" || CLOSED =="Y")
+	{
+	alert('此筆基金暫不開放揭露資訊');
+	return ;
+	}
+	document.IF0803001.REVE_FCID.value = FUNDID.substring(0,2);
+	document.IF0803001.REVE_FID.value =  FUNDID.substring(2,4);
+	document.IF0803001.submit();
+}
+
+function chkSubmit2(){
+	document.IF0803001.pageid.value = "IF0803000";
+	document.IF0803001.submit();
+}
+
+</script>
+<form method="post" action="LoadAP" name="IF0803001">
+<b>基金通路報酬揭露&gt;基金公司&gt;基金選單&gt;</b>
+<table width="500" border="0">
+<!--[[%%LOOP_SEC SEND-FUND-ID%%]]-->
+<tr>
+<td>基金代號：[[%%SEND-FUND-ID%%]]        </td>
+<td>基金名稱：[[%%SEND-FUND-CNAME%%]]</td></td>
+<td><input type="button" name="submit1[[%%SEND-FUND-ID%%]]"  submit1[[%%SEND-FUND-ID%%]].style.display == "hidden"  value="查看揭露資訊" onClick="chkSubmit('[[%%SEND-FUND-ID%%]]','[[%%SEND-IS-NONRPT%%]]','[[%%SEND-IS-CLOSED%%]]');"></td>
+<td>
+<script>
+if('[[%%SEND-IS-NONRPT%%]]'== "Y" || '[[%%SEND-IS-CLOSED%%]]' =="Y")
+{
+	document.write("此筆基金已停止銷售");
+	document.IF0803001.submit1[[%%SEND-FUND-ID%%]].disabled = "disabled";
+}
+else
+  ;
+</script>
+</td>
+</tr>
+<!--[[%%ELOOP_SEC%%]]-->
+</table>
+<input type="button" name="submit1" value="回上頁" onClick="chkSubmit2();">
+<input type="hidden" name="pageid" value="IF0803002">
+<input type="hidden" name="REVE_FCID" value="62">
+<input type="hidden" name="REVE_FID" value="12">
+</form> 
+</body>
+</html>

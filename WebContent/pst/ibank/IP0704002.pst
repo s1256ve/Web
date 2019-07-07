@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+*SerialNo           Date Modified  Modified by   
+*-------------      ----------     ----------
+*EAI96072           2009.03.02     David 
+*EAI97076           2010.01.12     David 
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<form method="post" action="LoadAP" name="IP0704002">
+<input type="hidden" name="pageid" value="IP0704003">
+<input type="hidden" name="SEND-CARD-NO" value="[[%%SEND_NO%%]]">
+<input type="hidden" name="SEND-FROM-ACCT-NO" value="[[%%SEND-FROM-ACCT-NO%%]]">
+<input type="hidden" name="SEND-FROM-BR-NAME" value="[[%%SEND-FROM-BR-NAME%%]]">
+<input type="hidden" name="SEND-FROM-AVAL-BALANCE" value="[[%%SEND-AVAL-BALANCE%%]]">
+<input type="hidden" name="SEND-TXN-AMT" value="[[%%SEND-TXN-AMT%%]]">
+<input type="hidden" name="SEND-MEMO" value="[[%%SEND-MEMO%%]]">
+<input type="hidden" name="HOW-TO-SEND" value="[[%%HOW-TO-SEND%%]]">
+<input type="hidden" name="SEND-TO-YOU" value="[[%%SEND-TO-YOU%%]]">
+<input type="hidden" name="SEND_NO" value="[[%%SEND_NO%%]]">
+<input type="hidden" name="SEND_ID_ALWAYS" value="[[%%SEND_ID_ALWAYS%%]]">
+<input type="hidden" name="SEND_ID_OR_SEND_CARD" value="[[%%SEND_ID_OR_SEND_CARD%%]]">
+<input type="hidden" name="SEND_CARD_NO_ALWAYS" value="[[%%SEND_CARD_NO_ALWAYS%%]]">
+<input type="hidden" name="SEND-YESGO-SN" value="[[%%SEND-YESGO-SN%%]]">
+<input type="hidden" name="SEND_YESGO_SN" value="[[%%SEND-YESGO-SN%%]]">
+<script>
+document.IP0704002.submit();
+</script>
+</form>
+</body>
+</html>

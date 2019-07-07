@@ -1,0 +1,170 @@
+<html>
+<head>
+<title>台幣貸款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<script>
+<!--
+
+function chkSubmit(str){
+	var auth = str;
+	document.IP0301001.SEND_AUTH_CODE.value = auth;
+	document.IP0301001.submit();
+}
+-->
+</script>
+</head>
+<link rel="stylesheet" type="text/css" media="all" href="theme/portal.css" />
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+
+<form method="POST" action="LoadAP" name="IP0301001">
+<p><b>台幣貸款帳戶查詢&gt;</b><font color="#0066FF"><b>貸款帳戶查詢<br>
+  </b></font><br>
+<table width="620" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td height="2"> 
+      <div align="right"><font color="#0000CC">查詢時間： 
+      <script>document.write(getNowTime());</script>
+      </font></div>
+    </td>
+  </tr>
+</table>
+  <font color="#0000CC"><img src="graph/point.gif" width="12" height="12" align="absmiddle">以下是 
+  您在[[%%SEND-BR-NAME%%]] [[%%SEND-ACCT-DESC%%]] 
+  <SCRIPT language="JavaScript">
+          document.write(getAcctStr('[[%%SEND-ACCT-NO%%]]'));
+  </SCRIPT>
+  帳戶查詢結果：</font> 
+<table width="650" border="1" bordercolor="#999999">
+  <tr bgcolor="#C4CBB8"> 
+    <td width="100" height="26"> 
+      <div align="center">授信號碼<br>
+      (委託繳息帳號)</div>
+      </td>
+          <td width="72" height="26"> 
+            <div align="center">初貸日</div>
+          </td>
+          <td width="54" height="26"> 
+            <div align="center">到期日</div>
+          </td>
+          <td width="77" height="26"> 
+            <div align="center">每月繳款日</div>
+          </td>
+          <td width="55" height="26"> 
+            <div align="center">利率(%)</div>
+          </td>
+          <td width="74" height="26"> 
+            <div align="center">初貸金額</div>
+          </td>
+          <td width="73" height="26"> 
+            <div align="center">現貸餘額</div>
+          </td>
+          <td width="73" height="26">已還款明細</td>
+    </tr>
+  [[%%LOOP_SEC SEND-AUTH-CODE%%]]
+  <tr> 
+          <td width="100"> 
+            <div align="center">[[%%SEND-AUTH-CODE%%]]<br>
+              ([[%%SEND-PAY-ACCTNO%%]])</div>
+          </td>
+          <td width="72"> 
+            <div align="center">
+	    <script>document.write(getRCDateStr("[[%%SEND-INIT-DATE%%]]",0));</script>	    
+            </div>
+          </td>
+          <td width="54"> 
+            <div align="center">
+            <script>document.write(getRCDateStr("[[%%SEND-EXP-DATE%%]]",0));</script>
+            </div>
+          </td>
+          <td width="77"> 
+            <div align="center">[[%%SEND-PAY-DAY%%]]日</div>
+          </td>
+          <td width="55"> 
+            <div align="center">[[%%SEND-INT-RATE%%]]</div>
+          </td>
+          <td width="74"> 
+            <div align="right">
+            <script>document.write(trimSpStr("[[%%SEND-INIT-AMT%%]]","*"));</script>
+            </div>
+          </td>
+          <td width="73"> 
+            <div align="right">
+            <script>
+            document.write(trimSpStr("[[%%SEND-NOW-AMT%%]]","*"));
+            </script>
+            <input type="hidden" name="amt" value="[[%%SEND-NOW-AMT%%]]">
+            </div>
+          </td>
+          <td width="73" align="center"> 
+            <input type="button" name="Submit1" value="查詢" onClick="javascript:chkSubmit('[[%%SEND-AUTH-CODE%%]]');">
+          </td>
+    </tr>
+  [[%%ELOOP_SEC%%]]
+  <script language="javascript">
+  function addLen(){
+  var amtArray = document.IP0301001.amt;
+  if(amtArray.length == undefined){
+  	return '1';
+  }
+  else{
+  	return amtArray.length;
+  }
+  }
+
+  function addAmt(){
+  var amtArray = document.IP0301001.amt;
+  var count = 0;
+  for(var i = 0;i < amtArray.length;i++){
+  	count += toFloat(amtArray[i].value);
+  	}
+  return  count;
+  }
+  </script>
+</table>
+     <table width="630" border="0">
+       <tr>
+         <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+             <tr>
+               <td nowrap>註：</td>
+               <td>1.</td>
+               <td><p>本頁資料，不得做為往來憑證之用。 <br>
+               </p></td>
+             </tr>
+             <tr>
+               <td>&nbsp;</td>
+               <td valign="top">2.</td>
+               <td>上表之利率為客戶與本行簽訂契約書之核定利率(=客戶負擔利率+政府補貼利率)，故若屬於辦理政府優惠貸款者，客戶實際負擔利率係依與本行簽訂之該優惠貸款增補條款契約書為準。 <br></td>
+             </tr>
+         </table></td>
+       </tr>
+     </table>
+<table width="650" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td colspan="2"> 
+      <div align="center">
+	<script>
+		document.write("共" + addLen() +"筆，現貸總餘額：新台幣" + trimDecimal(moneyAddDot(addAmt()+"")) + "元");
+	</script>
+      </div>
+    </td>
+  </tr>
+</table>
+<br>
+<table width="650" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td colspan="2"> 
+      <div align="center" valign="bottom"><img src="graph/top.gif" width="64" height="16" onClick="history.back()"></div>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="IP0303000">
+  <input type="hidden" name="SEND_AUTH_CODE" value="">
+  <input type="hidden" name="SEND-BR-NAME" value="[[%%SEND-BR-NAME%%]]">
+  <input type="hidden" name="SEND-ACCT-NO" value="[[%%SEND-ACCT-NO%%]]">
+  <input type="hidden" name="SEND-ACCT-DESC" value="[[%%SEND-ACCT-DESC%%]]">
+</table>
+</form>
+</body>
+</html>

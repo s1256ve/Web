@@ -1,0 +1,217 @@
+<html>
+<head>
+<title>歷史紀錄查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/acctfmt.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/datefmt.js"></SCRIPT>
+<SCRIPT LANGUAGE="JAVASCRIPT" SRC="script/moneyfmt.js"></SCRIPT>
+<script language="Javascript">
+if (!String.prototype.trim) {
+	String.prototype.trim = function () {
+		return this.replace(/^\s+|\s+$/g, '');
+	};
+}
+</script>
+<script>
+
+function chkSubmit(db1,db2,db4,db5,db10,db22,db28,db29,db23,db24,db25,db11,db12,db13,db14,db15,db16,db17,db18,db19,db20,db21,db30){
+	document.IP0703501.DBO_WFOR01.value = db1.trim();
+	document.IP0703501.DBO_WFOR02.value = selectDateType(db2.trim());
+	document.IP0703501.DBO_WFOR04.value = db4.trim();
+	document.IP0703501.DBO_WFOR05.value = db5.trim();
+	document.IP0703501.DBO_WFOR10.value = db10.trim();
+	document.IP0703501.DBO_WFOR22.value = db22.trim();
+	document.IP0703501.DBO_WFOR28.value = db28.trim();
+	document.IP0703501.DBO_WFOR29.value = db29.trim();
+	document.IP0703501.DBO_WFOR23.value = db23.trim();
+	document.IP0703501.DBO_WFOR24.value = db24.trim();
+	document.IP0703501.DBO_WFOR25.value = db25.trim();
+	document.IP0703501.DBO_WFOR11.value = db11.trim();
+	document.IP0703501.DBO_WFOR12.value = db12.trim();
+	document.IP0703501.DBO_WFOR13.value = db13.trim();
+	document.IP0703501.DBO_WFOR14.value = db14.trim();
+	document.IP0703501.DBO_WFOR15.value = db15.trim();
+	document.IP0703501.DBO_WFOR16.value = db16.trim();
+	document.IP0703501.DBO_WFOR17.value = db17.trim();
+	document.IP0703501.DBO_WFOR18.value = db18.trim();
+	document.IP0703501.DBO_WFOR19.value = db19.trim();
+	document.IP0703501.DBO_WFOR20.value = db20.trim();
+	document.IP0703501.DBO_WFOR21.value = db21.trim();
+  document.IP0703501.DBO_WFOR30.value = db30.trim();
+	document.IP0703501.submit();
+}
+
+function selectDateType(date1){
+	var newdate = date1.substr(0,10);
+	var dateArray = newdate.split("-");
+	newdate = dateArray[0]+dateArray[1]+dateArray[2];
+	return getRCDateStr(newdate,0);
+}
+
+function chkAcct(db15,db17){
+	if(db17==""){
+		return getAcctStr(db15);
+	}else{
+		return getAcctStr(db17);
+	}
+}
+
+function chkAmtCurr(db04,amt){
+	var amtArray = amt.split(".");
+	if(db04=="JPY"){
+		return trimDecimal(moneyAddDot(amtArray[0]));
+	}
+	else{
+		return trimDecimal(moneyAddDot(amtArray[0]))+"."+amtArray[1].substr(0,2);
+	}
+}
+
+function chkStatus(sta){
+	if(sta=="1"){
+		return "待處理";
+	}else if(sta=="2"){
+		return "交易進行處理中";
+	}else if(sta=="3"){
+		return "已完成";
+	}else if(sta=="4"){
+		return "退匯處理";
+	}else if(sta=="5"){
+		return "退匯完成";
+	}else{
+		return sta;
+	}
+}
+</script>
+</head>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<form name="IP0703501" method="POST" action="LoadAP">
+<b>　外匯交易&gt;<font color="#003399"><font color="#0066FF">歷史紀錄查詢</font></font></b>
+<br>
+<br>
+以下是您&nbsp;
+<script language="javascript">
+	var dateArray = "";
+	document.write(getRCDateStr("[[%%REVE-BEGIN-DATE%%]]",0));
+	document.write(" 至 ");
+	document.write(getRCDateStr("[[%%REVE-END-DATE%%]]",0));
+</script>
+&nbsp;之外匯匯出匯款交易明細：
+<table width="95%" border="1" bordercolor="#999999" cellpadding="2">
+  <tr>
+  	<td width="10%" bgcolor="#C4CBB8"> 
+      <div align="center">匯款日期</div>
+    </td>
+    <td width="12%" bgcolor="#C4CBB8"> 
+      <div align="center">扣款帳號</div>
+    </td>
+    <td width="13%" bgcolor="#C4CBB8"> 
+      <div align="center">受款人<br>(顯示前8英文字)</div>
+    </td>
+    <td width="12%" bgcolor="#C4CBB8"> 
+      <div align="center">受款人帳號</div>
+    </td>
+    <td width="10%" bgcolor="#C4CBB8"> 
+      <div align="center">銀行代號</div>
+    </td>
+    <td width="5%" bgcolor="#C4CBB8"> 
+      <div align="center">幣別</div>
+    </td>
+    <td width="10%" bgcolor="#C4CBB8"> 
+      <div align="center">匯款金額</div>
+    </td>
+    <td width="11%" bgcolor="#C4CBB8"> 
+      <div align="center">匯款狀態</div>
+    </td>
+    <td width="7%" bgcolor="#C4CBB8"> 
+      <div align="center">功能<br>項目</div>
+    </td>
+  </tr>
+  <!--[[%%LOOP_SEC DBO-WFOR01%%]]-->
+  <tr>
+  	<td align="center"> 
+      
+      <script>
+      	document.write(selectDateType('[[%%DBO-WFOR02%%]]'));
+      </script>
+      &nbsp;
+    </td>
+    <td> 
+      <div align="center">
+      
+      <script>
+      	var db15 = "[[%%DBO-WFOR15%%]]";
+      	var db17 = "[[%%DBO-WFOR17%%]]";
+      	document.write(chkAcct(db15,db17));
+      	
+      </script>
+      &nbsp;</div>
+    </td>
+    <td> 
+      <div align="center"> 
+      <script>
+      	var db24 = '[[%%DBO-WFOR24%%]]';
+      	document.write(db24.substr(0,8));
+      </script>
+      &nbsp;</div>
+    </td>
+    <td> 
+      <div align="center">[[%%DBO-WFOR23%%]]&nbsp;</div>
+    </td>  
+     <td> 
+      <div align="center">[[%%DBO-WFOR30%%]]&nbsp;</div>
+    </td>
+    <td> 
+      <div align="center">[[%%DBO-WFOR04%%]]&nbsp;</div>
+    </td>
+    <td> 
+      <div align="right">
+      <script>
+    		document.write(chkAmtCurr('[[%%DBO-WFOR04%%]]','[[%%DBO-WFOR05%%]]'));
+    	</script>
+      &nbsp;</div>
+    </td>
+    <td> 
+      <div align="center">
+      <script>
+      	document.write(chkStatus('[[%%DBO-WFOR19%%]]'));
+      </script>
+      &nbsp;</div>
+    </td>
+    <td> 
+      <div align="center"><input type="button" name="showDetails" value="明細" onClick="chkSubmit('[[%%DBO-WFOR01%%]]','[[%%DBO-WFOR02%%]]','[[%%DBO-WFOR04%%]]','[[%%DBO-WFOR05%%]]','[[%%DBO-WFOR10%%]]','[[%%DBO-WFOR22%%]]','[[%%DBO-WFOR28%%]]','[[%%DBO-WFOR29%%]]','[[%%DBO-WFOR23%%]]','[[%%DBO-WFOR24%%]]','[[%%DBO-WFOR25%%]]','[[%%DBO-WFOR11%%]]','[[%%DBO-WFOR12%%]]','[[%%DBO-WFOR13%%]]','[[%%DBO-WFOR14%%]]','[[%%DBO-WFOR15%%]]','[[%%DBO-WFOR16%%]]','[[%%DBO-WFOR17%%]]','[[%%DBO-WFOR18%%]]','[[%%DBO-WFOR19%%]]','[[%%DBO-WFOR20%%]]','[[%%DBO-WFOR21%%]]','[[%%DBO-WFOR30%%]]');"></div>
+    </td>
+  </tr>
+  
+  <!--[[%%ELOOP_SEC%%]]-->
+</table>
+<br>
+如需瀏覽各筆外幣匯出匯款資料內容，請點選「明細」鈕。
+<input type="hidden" name="pageid" value="IP0703502">
+<input type="hidden" name="DBO_WFOR01">
+<input type="hidden" name="DBO_WFOR02">
+<input type="hidden" name="DBO_WFOR04">
+<input type="hidden" name="DBO_WFOR05">
+<input type="hidden" name="DBO_WFOR10">
+<input type="hidden" name="DBO_WFOR11">
+<input type="hidden" name="DBO_WFOR12">
+<input type="hidden" name="DBO_WFOR13">
+<input type="hidden" name="DBO_WFOR14">
+<input type="hidden" name="DBO_WFOR15">
+<input type="hidden" name="DBO_WFOR16">
+<input type="hidden" name="DBO_WFOR17">
+<input type="hidden" name="DBO_WFOR18">
+<input type="hidden" name="DBO_WFOR19">
+<input type="hidden" name="DBO_WFOR20">
+<input type="hidden" name="DBO_WFOR21">
+<input type="hidden" name="DBO_WFOR22">
+<input type="hidden" name="DBO_WFOR23">
+<input type="hidden" name="DBO_WFOR24">
+<input type="hidden" name="DBO_WFOR25">
+<input type="hidden" name="DBO_WFOR28">
+<input type="hidden" name="DBO_WFOR29">
+<input type="hidden" name="DBO_WFOR30">
+</form>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>台幣存款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="JavaScript" src="script/acctfmt.js"></script>
+<script language="JavaScript">
+<!--
+function chgAcct(acctStr) {
+	var acctArray = acctStr.split("@");
+	var i = 0;
+	document.IP0205000.SEND_BR_NAME.value = acctArray[0];
+	document.IP0205000.SEND_ACCT_DESC.value = acctArray[1];
+	document.IP0205000.SEND_ACCT_NO.value = acctArray[2];
+	document.IP0205000.SEND_AVAL_BALANCE.value = acctArray[3];
+
+}
+
+function chkSubmit(){
+    var acct = document.IP0205000.SEND_ACCT_NO.value;
+	if(acct==""){
+		alert("請選擇帳號！");
+		return;
+	} 
+   document.IP0205000.submit();	
+}
+
+-->
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+
+<form method="POST" action="LoadAP" name="IP0205000">
+<b>支票存款帳戶&gt;<font color="#003399"><font color="#0066FF">支存待補金額</font></font></b><br>
+<br>
+<table width="763" border="0">
+  <tr> 
+    <td colspan="5">　查詢帳號<font color="#663300" face="Arial, Helvetica, sans-serif">　 
+      <select name="SEND-ACCT-NO"  onChange="JavaScript:chgAcct(this.value);">
+        <option value="" selected>==請選擇帳號==</option>
+        [[%%LOOP_SEC SEND-ACCT-NO%%]]
+        <option value="[[%%SEND-BR-NAME%%]]@[[%%SEND-ACCT-DESC%%]]@[[%%SEND-ACCT-NO%%]]@[[%%SEND-AVAL-BALANCE%%]]@[[%%SEND-AVAL-BALANCE%%]]">
+        		[[%%SEND-BR-NAME%%]] &nbsp;&nbsp; [[%%SEND-ACCT-DESC%%]] &nbsp;&nbsp; 
+        		<script language="javascript"> 
+        			document.write(getAcctStr("[[%%SEND-ACCT-NO%%]]"));
+        		</script>
+        </option>
+        [[%%ELOOP_SEC%%]]
+
+      </select>
+      </font><img src="graph/go.gif" width="19" height="19" align="absmiddle" border="0"  onClick="JavaScript:chkSubmit();"></a>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="4" valign="bottom" height="1" bgcolor="#663300"></td>
+  </tr>
+  <input type="hidden" name="SEND_BR_NAME" value="">
+  <input type="hidden" name="SEND_ACCT_DESC" value="">
+  <input type="hidden" name="SEND_ACCT_NO" value="">
+  <input type="hidden" name="SEND_AVAL_BALANCE" value="">
+  <input type="hidden" name="pageid" value="IP0205001">
+</table>
+</body>
+</html>

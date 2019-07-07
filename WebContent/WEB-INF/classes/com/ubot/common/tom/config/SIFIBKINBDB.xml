@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- 
+/***********************************************************************
+* Remark Area
+* Create name	: Alan 
+* Change List:
+*SerialNo           Date Modified  Modified by   
+*=========          =============  ===========
+*EAI98016           2009.03.03     Alan 
+***********************************************************************/
+ -->
+<!--catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPM"-->
+<catalog>
+	<field id="INBDBi01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='INBDBi54' attr='I' default=''>
+        	<name>REVE-</name>
+        	<length>0</length>
+        	<type>STRING</type>
+        	<description></description>
+     	</field>
+     	<field id='INBDBi54' attr='I' default=''>
+        	<name>REVE-CONTACT-ZIP</name>
+        	<length>0</length>
+        	<type>STRING</type>
+        	<description></description>
+     	</field>
+     	<field id='INBDBi54' attr='I' default=''>
+        	<name>REVE-CONTACT-ADDR</name>
+        	<length>0</length>
+        	<type>STRING</type>
+        	<description></description>
+     	</field>
+     	<field id='INBDBi54' attr='I' default=''>
+        	<name>REVE-DAILY-PHONE1</name>
+        	<length>0</length>
+        	<type>STRING</type>
+        	<description></description>
+     	</field>
+     	<field id='INBDBi54' attr='I' default=''>
+        	<name>REVE-DAILY-PHONE2</name>
+        	<length>0</length>
+        	<type>STRING</type>
+        	<description></description>
+     	</field>
+     	<field id='INBDBi54' attr='I' default=''>
+        	<name>REVE-EMAIL-ADDR</name>
+        	<length>0</length>
+        	<type>STRING</type>
+        	<description></description>
+     	</field>
+     	<field id='INBDBi54' attr='I' default=''>
+        	<name>REVE-TXN-DATE</name>
+        	<length>0</length>
+        	<type>STRING</type>
+        	<description></description>
+     	</field>
+	<field id='INBDBi54' attr='I' default=''>
+        	<name>REVE-ACTOR</name>
+        	<length>0</length>
+        	<type>STRING</type>
+        	<description></description>
+     	</field>
+	<field id="INBDBi55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="INBDBi50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="INBDBi51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="INBDBi54">
+		<name>REVE-PWD</name>
+		<length>10</length>
+		<type>String</type>
+		<description>使用者密碼</description>
+	</field>     
+	<field id="INBDBi55">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>	
+	<field id="INBDBi56">
+		<name>REVE-CHANGE-ITEM</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>	
+	<field id="INBDBi567">
+		<name>REVE-MSG-SENDTO</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>	
+	<field id="INBDBi52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="INBDBi53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

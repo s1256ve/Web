@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>外匯帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI99063           2010.10.18     David
+*EAI100036          2011.07.01     Joe  
+*EAI100043          2011.07.14     David  
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="JavaScript" SRC="script/acctfmt.js"></script>
+</head>
+<script language="JavaScript">
+<!--
+
+    function ChkSubmit(){
+     
+        var f=document.form1;
+        if (f.REVE_ACCT_NO.value=="0"){
+            alert("請選擇帳號!");
+            return;
+        }
+        f.pageid.value="IP0405001";
+        f.submit(); 
+    }
+    
+    function chgAcct(acctStr) {
+        	var acctArray = acctStr.split("@");
+        	var i = 0;
+        	//alert(acctArray[0]);
+        	document.form1.selBrName.value = acctArray[0];
+        	document.form1.selAcctDesc.value = acctArray[1];
+        	document.form1.REVE_ACCT_NO.value = acctArray[2];
+    }
+
+//-->
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　外匯帳戶查詢&gt;<font color="#0066FF">外匯綜存定存續存設定或中途解約</font></b><br>
+<br>
+<form name="form1" method="POST" action="LoadAP">
+<table width="763" border="0">
+  <tr> 
+    <td width="757" colspan="5">　定存帳號<font color="#663300" face="Arial, Helvetica, sans-serif">　 
+        <select name="ACCT_NO" onChange="JavaScript:chgAcct(this.value);">
+        <option value="0" selected>==請選擇帳號==</option>
+
+        <!--[[%%LOOP_SEC SEND-ACCT-NO%%]]-->
+        <option value="[[%%SEND-BR-NAME%%]]@[[%%SEND-ACCT-DESC%%]]@[[%%SEND-ACCT-NO%%]]">[[%%SEND-BR-NAME%%]][[%%SEND-ACCT-DESC%%]]
+            <SCRIPT language="JavaScript">     
+                    document.write(getAcctStr('[[%%SEND-ACCT-NO%%]]'));
+            </SCRIPT>
+        </option>
+        <!--[[%%ELOOP_SEC%%]]-->
+      </select>
+       <SCRIPT>
+            var i;
+            var index;
+            index=document.form1.ACCT_NO.length;
+            for(i=1;i<index;i++)
+            {
+                if(document.form1.ACCT_NO[i-1].value==document.form1.ACCT_NO[i].value)
+                {
+                    document.form1.ACCT_NO.remove(i-1);   
+                    index--;
+                    i--;
+                }
+            }                  
+      	</SCRIPT>
+      </font> <img src="graph/go.gif" width="19" height="19" align="absmiddle" border="0" onclick="ChkSubmit()"></td>
+  </tr>
+
+  <tr bgcolor="#663300"> 
+    <td colspan="5" valign="bottom" height="1"></td>
+  </tr>
+</table>
+<table width="626" border="0">
+	<tr>
+		<td width="605">      </td>
+	</tr>
+</table>
+<input type="hidden" name="pageid">
+<input type="hidden" name="selBrName">	
+<input type="hidden" name="selAcctDesc">
+<input type="hidden" name="REVE_ACCT_NO">
+<input type="hidden" name="SEND-BR-NAME" value="[[%%SEND-BR-NAME%%]]">
+</form>
+</body>
+</html>

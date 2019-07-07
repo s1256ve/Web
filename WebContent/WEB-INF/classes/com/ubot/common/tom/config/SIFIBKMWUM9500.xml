@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='Big5'?>
+<!-- 
+/***********************************************************************
+* Remark Area
+* Create name	: Alan 
+* Change List:
+*SerialNo           Date Modified  Modified by   
+*=========          =============  ===========
+*EAI98016           2009.03.03     Alan 
+***********************************************************************/
+ -->
+<!-- UITC Schema Generater at 2003-09-24 -->
+<catalog>
+	 <field id='fieldi001' attr='S' default=''>
+        <name>REVE-CODE</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+     <field id='fieldi002' attr='I' default=''>
+        <name>REVE-SESSION-ID</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+     <field id='fieldi003' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>  
+     <field id='fieldi004' attr='I' default=''>
+        <name>REVE-DAILY-PHONE</name>
+        <length>10</length>
+        <type>STRING</type>
+        <description>電話號碼(日)</description>
+     </field>
+     <field id='fieldi005' attr='I' default=''>
+        <name>REVE-DAILY-PHONE-EXT</name>
+        <length>5</length>
+        <type>STRING</type>
+        <description>電話號碼(日)分機</description>
+     </field>
+     <field id='fieldi006' attr='I' default=''>
+        <name>REVE-NIGHT-PHONE</name>
+        <length>10</length>
+        <type>STRING</type>
+        <description>電話號碼(夜)</description>
+     </field>
+     <field id='fieldi007' attr='I' default=''>
+        <name>REVE-NIGHT-PHONE-EXT</name>
+        <length>5</length>
+        <type>STRING</type>
+        <description>電話號碼(夜)分機</description>
+     </field>
+     <field id='fieldi008' attr='I' default=''>
+        <name>REVE-MPHONE</name>
+        <length>10</length>
+        <type>STRING</type>
+        <description>手機</description>
+     </field>
+     <field id='fieldi009' attr='I' default=''>
+        <name>REVE-CONTACT-ZIP</name>
+        <length>5</length>
+        <type>STRING</type>
+        <description>通訊地址，郵遞區號</description>
+     </field>
+     <field id='fieldi010' attr='I' default=''>
+        <name>REVE-CONTACT-ADDR1</name>
+        <length>6</length>
+        <type>STRING</type>
+        <description>通訊地址，縣(市)</description>
+     </field>
+     <field id='fieldi011' attr='I' default=''>
+        <name>REVE-CONTACT-ADDR2</name>
+        <length>6</length>
+        <type>STRING</type>
+        <description>通訊地址，市(鎮)</description>
+     </field>
+     <field id='fieldi012' attr='I' default=''>
+        <name>REVE-CONTACT-ADDR3</name>
+        <length>54</length>
+        <type>STRING</type>
+        <description>通訊地址</description>
+     </field>
+     <field id='fieldi013' attr='I' default=''>
+        <name>REVE-EMAIL-ADDR</name>
+        <length>20</length>
+        <type>STRING</type>
+        <description>電子郵件地址</description>
+     </field>   
+     <field id='fieldi014' attr='S' default='UMA'>
+        <name>TXNTYPE</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+     <field id='fieldi015' attr='I' default=''>
+        <name>PBX-SID</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+     <field id='fieldi016' attr='S' default=''>
+        <name>TXN-SNO</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+  <field id="fieldi017">
+		<name>REVE-PWD</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>    
+	<field id="fieldi018">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="fieldi019">
+		<name>REVE-MSG-SENDTO</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>	
+	<field id="fieldi020">
+		<name>REVE-CHANGE-ITEM</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>	
+	<field id="fieldi021">
+		<name>REVE-E-BILL</name>
+		<length></length>
+		<type>String</type>
+		<description>帳單類型</description>
+	</field>
+	<field id="fieldi021">
+		<name>REVE-DY-PWD</name>
+		<length>1</length>
+		<type>String</type>
+		<description>動態密碼</description>
+	</field>
+	<field id="fieldi021">
+		<name>REVE-IGNORE-CASE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>是否忽略大小寫</description>
+	</field>
+	<field id="fieldi021">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description></description>
+	</field>
+	<field id="fieldi021">
+		<name>REVE-TIME-RANGE</name>
+		<length></length>
+		<type>String</type>
+		<description>時限區間</description>
+	</field>
+	<field id="fieldi021">
+		<name>REVE-CURRENTTICK</name>
+		<length></length>
+		<type>String</type>
+		<description>簡訊發送時間</description>
+	</field>	     
+</catalog>

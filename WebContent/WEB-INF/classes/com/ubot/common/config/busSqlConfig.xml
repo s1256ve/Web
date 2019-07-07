@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="Big5"?>
+
+<SQL>
+	
+	<getwebedit><![CDATA[
+		select * from WEBEDIT where OWNER = '[[%%DB-TXD-OWNER%%]]' and BATCHNO = '[[%%DB-TXD-BATCHNO%%]]' and TXNID like '%[[%%DB-TXD-TXNID%%]]%' order by  refno
+	]]></getwebedit>
+	
+	<updbatchno><![CDATA[
+		update WEBEDIT set BATCHNO = '[[%%NEW-BATCHNO%%]]' where  OWNER = '[[%%DB-TXD-OWNER%%]]' and BATCHNO = '[[%%DB-TXD-BATCHNO%%]]' and TXNID like '%[[%%DB-TXD-TXNID%%]]%'
+	]]></updbatchno>
+	
+	<updrefno><![CDATA[
+		update WEBEDIT set REFNO = '[[%%NEW-REFNO%%]]' where  OWNER = '[[%%DB-TXD-OWNER%%]]' and BATCHNO = '[[%%NEW-BATCHNO%%]]' and TXNID like '%[[%%DB-TXD-TXNID%%]]%'
+	]]></updrefno>
+	
+	<gettxntemp><![CDATA[
+		select * from TXNTEMPLATE where OWNER = '[[%%DB-TXD-OWNER%%]]' and TXNID = '[[%%DB-TXD-TXNID%%]]' and KEYIN = '[[%%DB-TXD-KEYIN%%]]' 
+	]]></gettxntemp>
+	
+	<gettxnstag><![CDATA[
+		select * from STAGING where OWNER = '[[%%DB-TXD-OWNER%%]]' and BATCHNO = '[[%%DB-TXD-BATCHNO%%]]' and TXNID like '%[[%%DB-TXD-TXNID%%]]%' 
+	]]></gettxnstag>
+	
+	<gettxndata><![CDATA[
+		select * from TXNDATA where BATCHNO='[[%%DB-TXD-BATCHNO%%]]'
+	]]></gettxndata>
+	
+	<movetxntemp><![CDATA[
+		insert into WEBEDIT 
+                  select FRMACT,TOACT,TOBANK,TOBRH,TOTYPE,TOAMT,FEE,FEETYPE,SCHDULE,TXNDESC,NOTIFEE,EMAIL,MOBILE,NOTICONT,OWNER,
+                             REFNO, '[[%%CURRTIME%%]]' ,KEYIN,TXNID,PAYEE,PAYER,RMITDESC,FRMCRCY,TOCRCY,TOACTDES,SUBST,VFYCODE,EMPLID,EMPLNO,
+                             NOSHOW,TXNSIF,TXNSNO,TXNNAME,NOTITYPE,KEYINNAME ,PAYEEACTNM,PAYEEMEMO, '[[%%NEW-BATCHNO%%]]' ,  '[[%%SESSID%%]]' , '','',0,0,0,'' 
+        from TXNTEMPLATE where OWNER = '[[%%DB-TXD-OWNER%%]]' and BATCHNO = '[[%%DB-TXD-BATCHNO%%]]' and TXNID like '%[[%%DB-TXD-TXNID%%]]%'
+	]]></movetxntemp>
+	
+	<!--movestag><![CDATA[
+		insert into WEBEDIT select * from STAGING where OWNER = '[[%%DB-TXD-OWNER%%]]' and BATCHNO = '[[%%DB-TXD-BATCHNO%%]]' and TXNID like '%[[%%DB-TXD-TXNID%%]]%' 
+	</movestag-->
+	
+	<movestag><![CDATA[
+		insert into WEBEDIT 
+                  select FRMACT,TOACT,TOBANK,TOBRH,TOTYPE,TOAMT,FEE,FEETYPE,SCHDULE,TXNDESC,NOTIFEE,EMAIL,MOBILE,NOTICONT,OWNER,
+                             REFNO, '[[%%CURRTIME%%]]' ,KEYIN,TXNID,PAYEE,PAYER,RMITDESC,FRMCRCY,TOCRCY,TOACTDES,SUBST,VFYCODE,EMPLID,EMPLNO,
+                             NOSHOW,TXNSIF,TXNSNO,TXNNAME,NOTITYPE,KEYINNAME,PAYEEACTNM,PAYEEMEMO, '[[%%NEW-BATCHNO%%]]' , '[[%%SESSID%%]]' 
+        from STAGING where OWNER = '[[%%DB-TXD-OWNER%%]]' and BATCHNO = '[[%%DB-TXD-BATCHNO%%]]' and TXNID like '%[[%%DB-TXD-TXNID%%]]%'
+	]]></movestag>
+	
+	<insertedit><![CDATA[
+		insert into WEBEDIT ( OWNER , REFNO , FRMACT , TOACT , TOBANK , TOBRH , TOTYPE , TOAMT , FEE , FEETYPE ,
+                                              SCHDULE , TXNDESC , NOTIFEE , EMAIL , MOBILE , NOTICONT , DTUPDATE , KEYIN , TXNID , PAYEE ,
+                                              PAYER , RMITDESC , FRMCRCY , TOCRCY , TOACTDES , SUBST , VFYCODE , EMPLID , EMPLNO , NOSHOW ,
+                                              TXNSIF , TXNSNO , TXNNAME , NOTITYPE , KEYINNAME , PAYEEACTNM , PAYEEMEMO , BATCHNO , SESSID , FRMACTDESC , 
+                                              FRMACTBRH , FRMAMT , RMITAMT , DCNTFEE , VERTYPE , TOBANKNAME , TOBRHNAME ) 
+       values( '[[%%DB-TXD-OWNER%%]]' , '[[%%REFNO%%]]' , '[[%%DB-TXD-FRMACT%%]]' , '[[%%DB-TXD-TOACT%%]]' , '[[%%DB-TXD-TOBANK%%]]' ,
+                    '[[%%DB-TXD-TOBRH%%]]' , '[[%%DB-TXD-TOTYPE%%]]' , [[%%DB-TXD-TOAMT%%]] , [[%%DB-TXD-FEE%%]] , '[[%%DB-TXD-FEETYPE%%]]' ,
+                    '[[%%DB-TXD-SCHDULE%%]]' , '[[%%DB-TXD-TXNDESC%%]]' , '[[%%DB-TXD-NOTIFEE%%]]' , '[[%%DB-TXD-EMAIL%%]]' , '[[%%DB-TXD-MOBILE%%]]' ,
+                    '[[%%DB-TXD-NOTICONT%%]]' , '[[%%CURRTIME%%]]' , '[[%%DB-TXD-KEYIN%%]]' , '[[%%DB-TXD-TXNID%%]]' , '[[%%DB-TXD-PAYEE%%]]' ,
+                    '[[%%DB-TXD-PAYER%%]]' , '[[%%DB-TXD-RMITDESC%%]]' , '[[%%DB-TXD-FRMCRCY%%]]' , '[[%%DB-TXD-TOCRCY%%]]' , '[[%%DB-TXD-TOACTDES%%]]' ,
+                    '[[%%DB-TXD-SUBST%%]]' , '[[%%DB-TXD-VFYCODE%%]]' , '[[%%DB-TXD-EMPLID%%]]' , '[[%%DB-TXD-EMPLNO%%]]' , '[[%%DB-TXD-NOSHOW%%]]' ,
+                    '' , '' , '[[%%DB-TXD-TXNNAME%%]]' , '[[%%DB-TXD-NOTITYPE%%]]' , '[[%%DB-TXD-KEYINNAME%%]]' ,
+                    '[[%%DB-TXD-PAYEEACTNM%%]]' , '[[%%DB-TXD-PAYEEMEMO%%]]' , '[[%%NEW-BATCHNO%%]]' , '[[%%SESSID%%]]' , '[[%%DB-TXD-FRMACTDESC%%]]' , 
+                    '[[%%DB-TXD-FRMACTBRH%%]]' ,  [[%%DB-TXD-FRMAMT%%]] , [[%%DB-TXD-RMITAMT%%]] , [[%%DB-TXD-DCNTFEE%%]] , '[[%%DB-TXD-VERTYPE%%]]' ,
+                    '[[%%DB-TXD-TOBANKNAME%%]]' , '[[%%DB-TXD-TOBRHNAME%%]]' )
+	]]></insertedit>
+	
+	<inserttemp><![CDATA[
+		insert into TXNTEMPLATE (OWNER , REFNO , FRMACT , TOACT , TOBANK , TOBRH , TOTYPE , TOAMT , FEE , FEETYPE ,
+                                              SCHDULE , TXNDESC , NOTIFEE , EMAIL , MOBILE , NOTICONT , DTUPDATE , KEYIN , TXNID , PAYEE ,
+                                              PAYER , RMITDESC , FRMCRCY , TOCRCY , TOACTDES , SUBST , VFYCODE , EMPLID , EMPLNO , NOSHOW ,
+                                              TXNSIF , TXNSNO , TXNNAME , NOTITYPE , KEYINNAME , PAYEEACTNM , PAYEEMEMO , BATCHNO , SESSID , FRMACTDESC , 
+                                              FRMACTBRH , FRMAMT , RMITAMT , DCNTFEE , VERTYPE , TOBANKNAME , TOBRHNAME ) 
+       values( '[[%%DB-TXD-OWNER%%]]' , '[[%%REFNO%%]]' , '[[%%DB-TXD-FRMACT%%]]' , '[[%%DB-TXD-TOACT%%]]' , '[[%%DB-TXD-TOBANK%%]]' ,
+                    '[[%%DB-TXD-TOBRH%%]]' , '[[%%DB-TXD-TOTYPE%%]]' , [[%%DB-TXD-TOAMT%%]] , [[%%DB-TXD-FEE%%]] , '[[%%DB-TXD-FEETYPE%%]]' ,
+                    '[[%%DB-TXD-SCHDULE%%]]' , '[[%%DB-TXD-TXNDESC%%]]' , '[[%%DB-TXD-NOTIFEE%%]]' , '[[%%DB-TXD-EMAIL%%]]' , '[[%%DB-TXD-MOBILE%%]]' ,
+                    '[[%%DB-TXD-NOTICONT%%]]' , '[[%%CURRTIME%%]]' , '[[%%DB-TXD-KEYIN%%]]' , '[[%%DB-TXD-TXNID%%]]' , '[[%%DB-TXD-PAYEE%%]]' ,
+                    '[[%%DB-TXD-PAYER%%]]' , '[[%%DB-TXD-RMITDESC%%]]' , '[[%%DB-TXD-FRMCRCY%%]]' , '[[%%DB-TXD-TOCRCY%%]]' , '[[%%DB-TXD-TOACTDES%%]]' ,
+                    '[[%%DB-TXD-SUBST%%]]' , '[[%%DB-TXD-VFYCODE%%]]' , '[[%%DB-TXD-EMPLID%%]]' , '[[%%DB-TXD-EMPLNO%%]]' , '[[%%DB-TXD-NOSHOW%%]]' ,
+                    '' , '' , '[[%%DB-TXD-TXNNAME%%]]' , '[[%%DB-TXD-NOTITYPE%%]]' , '[[%%DB-TXD-KEYINNAME%%]]' ,
+                    '[[%%DB-TXD-PAYEEACTNM%%]]' , '[[%%DB-TXD-PAYEEMEMO%%]]' , '[[%%DB-TXD-BATCHNO%%]]' , '[[%%SESSID%%]]' , '[[%%DB-TXD-FRMACTDESC%%]]' , 
+                    '[[%%DB-TXD-FRMACTBRH%%]]' ,  [[%%DB-TXD-FRMAMT%%]] , [[%%DB-TXD-RMITAMT%%]] , [[%%DB-TXD-DCNTFEE%%]] , '[[%%DB-TXD-VERTYPE%%]]' ,
+                    '[[%%DB-TXD-TOBANKNAME%%]]' , '[[%%DB-TXD-TOBRHNAME%%]]' )
+	]]></inserttemp>
+	
+	<insertstag><![CDATA[
+		insert into STAGING ( OWNER , REFNO , FRMACT , TOACT , TOBANK , TOBRH , TOTYPE , TOAMT , FEE , FEETYPE ,
+                                              SCHDULE , TXNDESC , NOTIFEE , EMAIL , MOBILE , NOTICONT , DTUPDATE , KEYIN , TXNID , PAYEE , PAYER ,
+                                              RMITDESC , FRMCRCY , TOCRCY , TOACTDES , SUBST , VFYCODE , EMPLID , EMPLNO , NOSHOW , TXNSIF , TXNSNO , TXNNAME , NOTITYPE , KEYINNAME , PAYEEACTNM , PAYEEMEMO , BATCHNO ) 
+       values( '[[%%DB-TXD-OWNER%%]]' , '[[%%REFNO%%]]' , '[[%%DB-TXD-FRMACT%%]]' , '[[%%DB-TXD-TOACT%%]]' , '[[%%DB-TXD-TOBANK%%]]' ,
+                    '[[%%DB-TXD-TOBRH%%]]' , '[[%%DB-TXD-TOTYPE%%]]' , [[%%DB-TXD-TOAMT%%]] , [[%%DB-TXD-FEE%%]] , '[[%%DB-TXD-FEETYPE%%]]' ,
+                    '[[%%DB-TXD-SCHDULE%%]]' , '[[%%DB-TXD-TXNDESC%%]]' , '[[%%DB-TXD-NOTIFEE%%]]' , '[[%%DB-TXD-EMAIL%%]]' , '[[%%DB-TXD-MOBILE%%]]' ,
+                    '[[%%DB-TXD-NOTICONT%%]]' , '[[%%CURRTIME%%]]' , '[[%%DB-TXD-KEYIN%%]]' , '[[%%DB-TXD-TXNID%%]]' , '[[%%DB-TXD-PAYEE%%]]' ,
+                    '[[%%DB-TXD-PAYER%%]]' , '[[%%DB-TXD-RMITDESC%%]]' , '[[%%DB-TXD-FRMCRCY%%]]' , '[[%%DB-TXD-TOCRCY%%]]' , '[[%%DB-TXD-TOACTDES%%]]' ,
+                    '[[%%DB-TXD-SUBST%%]]' , '[[%%DB-TXD-VFYCODE%%]]' , '[[%%DB-TXD-EMPLID%%]]' , '[[%%DB-TXD-EMPLNO%%]]' , '[[%%DB-TXD-NOSHOW%%]]' , '' , '' ,
+                    '[[%%DB-TXD-TXNNAME%%]]' , '[[%%DB-TXD-NOTITYPE%%]]' , '[[%%DB-TXD-KEYINNAME%%]]' , '[[%%DB-TXD-PAYEEACTNM%%]]' , '[[%%DB-TXD-PAYEEMEMO%%]]' , '[[%%DB-TXD-BATCHNO%%]]' )
+	]]></insertstag>
+	
+	<inserttxd><![CDATA[
+		insert into TXNDATA ( OWNER , REFNO , FRMACT , TOACT , TOBANK , TOBRH , TOTYPE , TOAMT , FEE , FEETYPE ,
+                                              SCHDULE , TXNDESC , NOTIFEE , EMAIL , MOBILE , NOTICONT , DTUPDATE , KEYIN , TXNID , PAYEE ,
+                                              PAYER , RMITDESC , FRMCRCY , TOCRCY , TOACTDES , SUBST , VFYCODE , EMPLID , EMPLNO , NOSHOW ,
+                                              TXNSIF , TXNSNO , TXNNAME , NOTITYPE , KEYINNAME , PAYEEACTNM , PAYEEMEMO , BATCHNO , SESSID , FRMACTDESC , 
+                                              FRMACTBRH , FRMAMT , RMITAMT , DCNTFEE , VERTYPE , TOBANKNAME , TOBRHNAME ) 
+       values( '[[%%DB-TXD-OWNER%%]]' , '[[%%REFNO%%]]' , '[[%%DB-TXD-FRMACT%%]]' , '[[%%DB-TXD-TOACT%%]]' , '[[%%DB-TXD-TOBANK%%]]' ,
+                    '[[%%DB-TXD-TOBRH%%]]' , '[[%%DB-TXD-TOTYPE%%]]' , [[%%DB-TXD-TOAMT%%]] , [[%%DB-TXD-FEE%%]] , '[[%%DB-TXD-FEETYPE%%]]' ,
+                    '[[%%DB-TXD-SCHDULE%%]]' , '[[%%DB-TXD-TXNDESC%%]]' , '[[%%DB-TXD-NOTIFEE%%]]' , '[[%%DB-TXD-EMAIL%%]]' , '[[%%DB-TXD-MOBILE%%]]' ,
+                    '[[%%DB-TXD-NOTICONT%%]]' , '[[%%CURRTIME%%]]' , '[[%%DB-TXD-KEYIN%%]]' , '[[%%DB-TXD-TXNID%%]]' , '[[%%DB-TXD-PAYEE%%]]' ,
+                    '[[%%DB-TXD-PAYER%%]]' , '[[%%DB-TXD-RMITDESC%%]]' , '[[%%DB-TXD-FRMCRCY%%]]' , '[[%%DB-TXD-TOCRCY%%]]' , '[[%%DB-TXD-TOACTDES%%]]' ,
+                    '[[%%DB-TXD-SUBST%%]]' , '[[%%DB-TXD-VFYCODE%%]]' , '[[%%DB-TXD-EMPLID%%]]' , '[[%%DB-TXD-EMPLNO%%]]' , '[[%%DB-TXD-NOSHOW%%]]' ,
+                    '' , '' , '[[%%DB-TXD-TXNNAME%%]]' , '[[%%DB-TXD-NOTITYPE%%]]' , '[[%%DB-TXD-KEYINNAME%%]]' ,
+                    '[[%%DB-TXD-PAYEEACTNM%%]]' , '[[%%DB-TXD-PAYEEMEMO%%]]' , '[[%%DB-TXD-BATCHNO%%]]' , '[[%%SESSID%%]]' , '[[%%DB-TXD-FRMACTDESC%%]]' , 
+                    '[[%%DB-TXD-FRMACTBRH%%]]' ,  [[%%DB-TXD-FRMAMT%%]] , [[%%DB-TXD-RMITAMT%%]] , [[%%DB-TXD-DCNTFEE%%]] , '[[%%DB-TXD-VERTYPE%%]]' ,
+                    '[[%%DB-TXD-TOBANKNAME%%]]' , '[[%%DB-TXD-TOBRHNAME%%]]' )
+	]]></inserttxd>
+	
+	<insertapprove>
+		<![CDATA[
+		insert into APPROVE ( OWNER , REFNO , KEYIN , KEYIN_DT ,KEYINNAME , APRV,SIGN , APRVNAME ,SIGNNAME, STATUS ,SIGN_DT) 
+			values( '[[%%DB-APV-OWNER%%]]' , '[[%%DB-TXD-REFNO%%]]' , '[[%%DB-APV-KEYIN%%]]' , '[[%%CURRTIME%%]]' 
+		  	, '[[%%DB-APV-KEYINNAME%%]]' , '[[%%DB-APV-APRV%%]]' ,'[[%%DB-APV-SIGN%%]]' , '[[%%DB-APV-APRVNAME%%]]' ,'[[%%DB-APV-SIGNNAME%%]]', '[[%%DB-STATUS%%]]' , '[[%%DB-APV-SIGN_DT%%]]')
+		]]>
+	</insertapprove>
+	
+	<deletetemp><![CDATA[
+		delete from TXNTEMPLATE where  OWNER = '[[%%DB-TXD-OWNER%%]]' and TXNID = '[[%%DB-TXD-TXNID%%]]'  and KEYIN = '[[%%DB-TXD-KEYIN%%]]'
+	]]></deletetemp>
+	
+	<deletestag><![CDATA[
+		delete from STAGING where  OWNER = '[[%%DB-TXD-OWNER%%]]' and TXNID like '%[[%%DB-TXD-TXNID%%]]%' and BATCHNO = '[[%%DB-TXD-BATCHNO%%]]'
+	]]></deletestag>
+	
+	<deletebatchtmp><![CDATA[
+		delete from BUSBATCHTMP where OWNER = '[[%%DB-TXD-OWNER%%]]' and TXNID = '[[%%DB-TXD-TXNID%%]]' and KEYIN = '[[%%DB-TXD-KEYIN%%]]'
+	]]></deletebatchtmp>
+	
+	<deltxndata>
+		<![CDATA[
+		delete from TXNDATA where  OWNER = '[[%%DB-TXD-OWNER%%]]'  and BATCHNO = '[[%%DB-TXD-BATCHNO%%]]' and TXNID like '%[[%%DB-TXD-TXNID%%]]%'
+		]]>
+	</deltxndata>	
+	<delbatchtxn>
+		<![CDATA[
+		delete from BUSBATCHTXN where  OWNER = '[[%%DB-TXD-OWNER%%]]'  and BATCHNO = '[[%%DB-TXD-BATCHNO%%]]' and TXNID like '%[[%%DB-TXD-TXNID%%]]%'
+		]]>
+	</delbatchtxn>
+	<delapprove>
+		<![CDATA[
+		delete from APPROVE where  OWNER = '[[%%DB-TXD-OWNER%%]]'  and REFNO = '[[%%DB-TXD-REFNO%%]]'
+		]]>
+	</delapprove>
+	<delwebedit>
+		<![CDATA[
+		delete from WEBEDIT where  SESSID='[[%%REVE-SESSION-ID%%]]'
+		]]>
+	</delwebedit>
+	
+	<getstagcount>
+		select distinct batchno as distbatchno from STAGING where OWNER = '[[%%DB-TXD-OWNER%%]]' and TXNID like '%[[%%DB-TXD-TXNID%%]]%'
+	</getstagcount>
+	
+	<getstagbybatchno><![CDATA[
+		select count(*) as SUM from STAGING where OWNER = '[[%%DB-TXD-OWNER%%]]' and TXNID like '%[[%%DB-TXD-TXNID%%]]%' and BATCHNO='[[%%REVE-TXN-BATCHNO%%]]'
+	]]></getstagbybatchno>
+	
+	<gettempbybatchno><![CDATA[
+		select count(*) as SUM from TXNTEMPLATE where OWNER = '[[%%DB-TXD-OWNER%%]]' and TXNID like '%[[%%DB-TXD-TXNID%%]]%' and BATCHNO='[[%%REVE-TXN-BATCHNO%%]]'
+	]]></gettempbybatchno>
+	
+	<getbatchtmp><![CDATA[
+		select * from BUSBATCHTMP where OWNER = '[[%%DB-TXD-OWNER%%]]' and TXNID = '[[%%DB-TXD-TXNID%%]]' and BATCHNO = '[[%%DB-TXD-BATCHNO%%]]' and KEYIN = '[[%%DB-TXD-KEYIN%%]]'
+	]]></getbatchtmp>
+	
+	<getbatchtxn><![CDATA[
+		select * from BUSBATCHTXN where OWNER = '[[%%DB-TXD-OWNER%%]]' and TXNID = '[[%%DB-TXD-TXNID%%]]' and BATCHNO = '[[%%DB-TXD-BATCHNO%%]]' and KEYIN = '[[%%DB-TXD-KEYIN%%]]'
+	]]></getbatchtxn>
+	
+	<!--insbatchtmp><![CDATA[
+		insert into BUSBATCHTMP select OWNER , BATCHNO , FRMACT , SUBST , CNT , TOTALAMT , VFYCODE , BATCHDESC , NOTIFEE , EMAIL ,
+	              EMAILCONT , MOBILE , NOTICONT , DTSCHEDULE , DTUPDATE , TXNID , TXNNAME , NOTITYPE , FRMACTDESC , FRMACTBRH ,
+	              KEYIN
+	    from BUSBATCHTXN where OWNER = '[[%%DB-TXD-OWNER%%]]' and TXNID = '[[%%DB-TXD-TXNID%%]]' and BATCHNO = '[[%%DB-TXD-BATCHNO%%]]'  and KEYIN = '[[%%DB-TXD-KEYIN%%]]'
+	]]></insbatchtmp-->
+	
+	<insbatchtmp><![CDATA[
+		insert into BUSBATCHTMP ( OWNER , BATCHNO , FRMACT , FRMACTDESC, FRMACTBRH, SUBST , CNT , TOTALAMT ,  TXNID , TXNNAME ,
+	               VFYCODE , BATCHDESC , NOTIFEE , EMAIL ,  EMAILCONT , MOBILE , NOTICONT , DTSCHEDULE , DTUPDATE , NOTITYPE ,
+	               KEYIN , TOTFRMAMT , TOTRMITAMT , EXFEE , INCFEE ) 
+    values( '[[%%DB-TXD-OWNER%%]]' , '[[%%DB-TXD-BATCHNO%%]]' , '[[%%DB-TXD-FRMACT%%]]' , '[[%%DB-TXD-FRMACTDESC%%]]' , '[[%%DB-TXD-FRMACTBRH%%]]' ,
+        '[[%%DB-TXD-SUBST%%]]' , [[%%DB-TXD-CNT%%]] , [[%%DB-TXD-TOTALAMT%%]] ,  '[[%%DB-TXD-TXNID%%]]' , '[[%%DB-TXD-TXNNAME%%]]' ,
+	    '[[%%DB-TXD-VFYCODE%%]]' , '[[%%DB-TXD-BATCHDESC%%]]' , '[[%%DB-TXD-NOTIFEE%%]]' , '[[%%DB-TXD-EMAIL%%]]' ,  '' ,
+	    '[[%%DB-TXD-MOBILE%%]]' , '[[%%DB-TXD-NOTICONT%%]]' , '[[%%DB-TXD-DTSCHEDULE%%]]' , '[[%%DB-TXD-DTUPDATE%%]]' , '[[%%DB-TXD-NOTITYPE%%]]' , 
+	    '[[%%DB-TXD-KEYIN%%]]' , [[%%DB-TXD-TOTFRMAMT%%]] , [[%%DB-TXD-TOTRMITAMT%%]] , [[%%DB-TXD-EXFEE%%]] , [[%%DB-TXD-INCFEE%%]] )
+	]]></insbatchtmp>
+	
+	<insbatchtxn><![CDATA[
+	insert into BUSBATCHTXN ( OWNER , BATCHNO , FRMACT , FRMACTDESC, FRMACTBRH, SUBST , CNT , TOTALAMT ,  TXNID , TXNNAME ,
+	               VFYCODE , BATCHDESC , NOTIFEE , EMAIL ,  EMAILCONT , MOBILE , NOTICONT , DTSCHEDULE , DTUPDATE , NOTITYPE ,
+	               KEYIN , TOTFRMAMT , TOTRMITAMT , EXFEE , INCFEE ) 
+    values( '[[%%DB-TXD-OWNER%%]]' , '[[%%DB-TXD-BATCHNO%%]]' , '[[%%DB-TXD-FRMACT%%]]' , '[[%%DB-TXD-FRMACTDESC%%]]' , '[[%%DB-TXD-FRMACTBRH%%]]' ,
+        '[[%%DB-TXD-SUBST%%]]' , [[%%DB-TXD-CNT%%]] , [[%%DB-TXD-TOTALAMT%%]] ,  '[[%%DB-TXD-TXNID%%]]' , '[[%%DB-TXD-TXNNAME%%]]' ,
+	    '[[%%DB-TXD-VFYCODE%%]]' , '[[%%DB-TXD-BATCHDESC%%]]' , '[[%%DB-TXD-NOTIFEE%%]]' , '[[%%DB-TXD-EMAIL%%]]' ,  '' ,
+	    '[[%%DB-TXD-MOBILE%%]]' , '[[%%DB-TXD-NOTICONT%%]]' , '[[%%DB-TXD-DTSCHEDULE%%]]' , '[[%%DB-TXD-DTUPDATE%%]]' , '[[%%DB-TXD-NOTITYPE%%]]' , 
+	    '[[%%DB-TXD-KEYIN%%]]' , [[%%DB-TXD-TOTFRMAMT%%]] , [[%%DB-TXD-TOTRMITAMT%%]] , [[%%DB-TXD-EXFEE%%]] , [[%%DB-TXD-INCFEE%%]] )
+	]]></insbatchtxn>
+	
+ <!-- for E-BANK Schedule service use  -->
+	<selectmaxsid relation=""><![CDATA[
+						SELECT MAX(SID) AS MSID FROM DB2IBANK.BUSSCHDL WHERE SID LIKE '[[%%SID-PAT%%]]%'
+						]]></selectmaxsid>
+	<sel_busschdl relation=""><![CDATA[
+						SELECT * FROM DB2IBANK.BUSSCHDL WHERE SID like '[[%%SID%%]]%' ORDER BY SID
+						]]></sel_busschdl>
+
+	<ins_busschdl relation=""><![CDATA[
+						INSERT INTO DB2IBANK.BUSSCHDL (SID, NAME, EXEFILE, EXEARGV, REOCCURE, NEXTTIME, FREQ, ENABLE, REMARK, UPDATETIME) 
+						VALUES('[[%%SID%%]]', '[[%%NAME%%]]', '[[%%EXEFILE%%]]', '[[%%EXEARGV%%]]', [[%%REOCCURE%%]], '[[%%NEXTTIME%%]]', '[[%%FREQ%%]]',
+						[[%%ENABLE%%]], '[[%%REMARK%%]]', '[[%%UPDATETIME%%]]',)
+						]]></ins_busschdl>
+
+	<upd_busschdl relation=""><![CDATA[
+		UPDATE DB2IBANK.BUSSCHDL SET NAME = '[[%%NAME%%]]',
+		EXEFILE = '[[%%EXEFILE%%]]', 
+		EXEARGV = '[[%%EXEARGV%%]]', 
+		REOCCURE = [[%%REOCCURE%%]], 
+		FREQ = '[[%%FREQ%%]]', 
+		ENABLE = [[%%ENABLE%%], 
+		REMARK = '[[%%REMARK%%]]', 
+		UPDATETIME = '[[%%UPDATETIME%%]]' WHERE SID = '[[%%SID%%]]'
+		]]></upd_busschdl>
+						
+	<del_busschdl relation=""><![CDATA[  
+		DELETE FROM DB2IBANK.BUSSCHDL WHERE SID = '[[%%SID%%]]'
+		]]></del_busschdl>
+<!-- 
+	sel_busschdl_for_exec relation=""><![CDATA[
+		SELECT * FROM DB2IBANK.BUSSCHDL WHERE (EXECSTATUS = 0) AND 
+		(ENABLE = 1) AND
+		(NEXTTIME = '[[%%CURTIME%%]]')
+		]]></sel_busschdl_for_exec>
+ -->	
+	<sel_busschdl_for_exec relation=""><![CDATA[
+		SELECT * FROM DB2IBANK.BUSSCHDL WHERE (ENABLE = 1) ORDER BY NEXTTIME
+		]]></sel_busschdl_for_exec>
+						
+	<update_busschdl_for_time relation=""><![CDATA[
+		UPDATE DB2IBANK.BUSSCHDL SET LASTTIME = '[[%%LASTTIME%%]]', 
+		NEXTTIME = '[[%%NEXTTIME%%]]',
+		EXESTATUS = [[%%EXECSTATUS%%]] WHERE (SID = '[[%%SID%%]]') 
+		]]></update_busschdl_for_time>
+
+	<update_busschdl_for_nexttime relation=""><![CDATA[
+		UPDATE DB2IBANK.BUSSCHDL SET NEXTTIME = '[[%%NEXTTIME%%]]' WHERE (SID = '[[%%SID%%]]') 
+		]]></update_busschdl_for_nexttime>
+						
+
+	<upd_busschdl_for_finish relation=""><![CDATA[
+		UPDATE DB2IBANK.BUSSCHDL SET LASTFINISHED = '[[%%LASTFINISHED%%]]',
+		UPDATETIME = '[[%%UPDATETIME%%]]', 
+		EXESTATUS = [[%%EXECSTATUS%%]] WHERE (SID = '[[%%SID%%]]') 
+		]]></upd_busschdl_for_finish>
+						
+	<upd_busschdl_for_finish_exception relation=""><![CDATA[
+		UPDATE DB2IBANK.BUSSCHDL SET UPDATETIME = '[[%%UPDATETIME%%]]', 
+		EXESTATUS = [[%%EXECSTATUS%%]] WHERE (SID = '[[%%SID%%]]') 
+		]]></upd_busschdl_for_finish_exception>
+
+	<!-- end for E-BANK Schedule service use  -->
+	
+	<!-- for E-BANK Schedule txns exection event use -->
+	<sel_schedule_txn relation=""><![CDATA[
+		SELECT db2ibank.TXNDATA.OWNER, db2ibank.TXNDATA.REFNO, db2ibank.TXNDATA.SCHDULE, db2ibank.TXNDATA.TXNSIF, 
+		db2ibank.TXNDATA.TXNID, db2ibank.TXNDATA.STATUS as txndatastatus, db2ibank.APPROVE.STATUS as approvestatus 
+		FROM db2ibank.APPROVE INNER JOIN db2ibank.TXNDATA ON 
+		(db2ibank.APPROVE.REFNO = db2ibank.TXNDATA.REFNO) AND 
+		(db2ibank.APPROVE.OWNER = db2ibank.TXNDATA.OWNER) 
+		WHERE db2ibank.TXNDATA.SCHDULE = '[[%%DODATE%%]]' AND 
+		db2ibank.APPROVE.STATUS = '5' AND 
+		db2ibank.TXNDATA.STATUS = '0' AND 
+		(db2ibank.TXNDATA.TXNID = 'SDUATM7770' OR 
+		db2ibank.TXNDATA.TXNID = 'SDVERTR')
+		]]></sel_schedule_txn>
+
+	<upd_schedule_txn_status relation=""><![CDATA[
+		UPDATE DB2IBANK.TXNDATA SET 
+		RTNCODE = '[[%%RTNCODE%%]]', 
+		SYSCODE = '[[%%SYSCODE%%]]', 
+		STATUS = '[[%%STATUS%%]]', 
+		EXECDATE = '[[%%EXECDATE%%]]' 
+		WHERE (OWNER = '[[%%OWNER%%]]' AND REFNO = '[[%%REFNO%%]]') 
+		]]></upd_schedule_txn_status>
+	<!-- end for E-BANK Schedule txns exection event use -->
+	
+	<!-- for E-BANK Mulit-Txns exection use -->
+	<sel_multi_txn relation=""><![CDATA[
+		SELECT * FROM db2ibank.TXNDATA 
+		WHERE OWNER = '[[%%OWNER%%]]' AND 
+		BATCHNO = '[[%%BATCHNO%%]]' AND 
+		TXNID = '[[%%TXNID%%]]' 
+		ORDER BY REFNO
+		]]></sel_multi_txn>
+
+	<upd_multi_txn_status relation=""><![CDATA[
+		UPDATE DB2IBANK.TXNDATA SET 
+		RTNCODE = '[[%%RTNCODE%%]]', 
+		SYSCODE = '[[%%SYSCODE%%]]', 
+		STATUS = '[[%%STATUS%%]]', 
+		EXECDATE = '[[%%EXECDATE%%]]' 
+		WHERE (OWNER = '[[%%OWNER%%]]' AND REFNO = '[[%%REFNO%%]]') 
+		]]></upd_multi_txn_status>
+	<!-- end for E-BANK Mulit-Txns exection use -->		
+	<qry_txnamtlmt>
+		<![CDATA[
+		select * from DB2IBANK.txnamtlmt where account_no in ('[[%%REVE-ACCOUNT-NO%%]]') and owner='[[%%REVE-OWNER%%]]'
+		]]>
+	</qry_txnamtlmt>
+	<add_txnamtlmt>
+		<![CDATA[
+		insert into DB2IBANK.txnamtlmt 
+		(ACCOUNT_NO,SELFBANKME_ONEROW,
+		SELFBANKME_DAILY,SELFBANKOTHER_ONEROW,
+		SELFBANKOTHER_DAILY,OTHERBANK_ONEROW,
+		OTHERBANK_DAILY,NONESELFBANK_DAILY,
+		OWNER,USERID,LASTCOMEFROM,LASTCHANGE)
+		values (?,?,?,?,?,?,?,?,?,?,?,?)
+		]]>
+	</add_txnamtlmt>
+	<upd_txnamtlmt>
+		<![CDATA[
+		update DB2IBANK.txnamtlmt set 
+		SELFBANKME_ONEROW=[[%%REVE-SELFBANKME_ONEROW%%]],
+		SELFBANKME_DAILY=[[%%REVE-SELFBANKME_DAILY%%]],
+		SELFBANKOTHER_ONEROW=[[%%REVE-SELFBANKOTHER_ONEROW%%]],
+		SELFBANKOTHER_DAILY=[[%%REVE-SELFBANKOTHER_DAILY%%]],
+		OTHERBANK_ONEROW=[[%%REVE-OTHERBANK_ONEROW%%]],
+		OTHERBANK_DAILY=[[%%REVE-OTHERBANK_DAILY%%]],
+		NONESELFBANK_DAILY=[[%%REVE-NONESELFBANK_DAILY%%]],
+		USERID='[[%%REVE-ACTOR%%]]',
+		LASTCOMEFROM='[[%%REVE-LASTCOMEFROM%%]]',
+		LASTCHANGE='[[%%REVE-LASTCHANGE%%]]'
+		where ACCOUNT_NO='[[%%REVE-ACCOUNT-NO%%]]' and OWNER='[[%%REVE-OWNER%%]]'
+		]]>
+	</upd_txnamtlmt>
+	<qry_defaultUserDefineAmtLmt>
+		<![CDATA[
+		SELECT VName, Value , DESC FROM DB2IBANK.GVAR
+		WHERE VName in ('UNONESELFBANK_DAILY','UTXNOB_DAILYAMTLMT','UTXNOB_ONERAMTLMT','UTXNSBM_DAILYAMTLMT','UTXNSBM_ONERAMTLMT','UTXNSBOARDAILYAMTLMT','UTXNSBOARONERAMTLMT')
+		]]>
+	</qry_defaultUserDefineAmtLmt>
+	<getBusTxnAmt>
+		<![CDATA[
+		select '[[%%REVE-ACCT-NO%%]]' as acct_no,amt
+		from DB2IBANK.BUSTXNLIMIT
+		where type='[[%%REVE-TYPE%%]]' and date='[[%%REVE-DATE%%]]' and acct_no='[[%%REVE-ACCT-NO%%]]' and sid='[[%%REVE-OWNER%%]]'
+		union all
+		select 'total' as acct_no,sum(amt) as amt
+		from DB2IBANK.BUSTXNLIMIT
+		where date='[[%%REVE-DATE%%]]' and sid='[[%%REVE-OWNER%%]]' and type != '1'
+		union all
+		select 'noneSelf' as acct_no,sum(amt) as amt
+		from DB2IBANK.BUSTXNLIMIT
+		where date='[[%%REVE-DATE%%]]' and acct_no='[[%%REVE-ACCT-NO%%]]' and sid='[[%%REVE-OWNER%%]]' and type in ('2','3')
+		]]>
+	</getBusTxnAmt>
+	<getBusTxnAmtLmt>
+		<![CDATA[
+		select * from DB2IBANK.txnamtlmt where account_no = '[[%%REVE-ACCT-NO%%]]' and owner='[[%%REVE-OWNER%%]]'
+		]]>
+	</getBusTxnAmtLmt>
+	<getSysTxnAmtLmt>
+		<![CDATA[
+		select value from DB2IBANK.GVAR where vname='[[%%REVE-VNAME%%]]'
+		]]>
+	</getSysTxnAmtLmt>
+	<testBusTxnAmt>
+		<![CDATA[
+		select amt
+		from DB2IBANK.BUSTXNLIMIT
+		where type='[[%%REVE-TYPE%%]]' and date='[[%%REVE-DATE%%]]' and acct_no='[[%%REVE-ACCT-NO%%]]'  for update
+		]]>
+	</testBusTxnAmt>
+	<insertBusTxnAmt>
+		<![CDATA[
+		insert into DB2IBANK.BUSTXNLIMIT (acct_no,sid,date,amt,type)
+		values ( '[[%%REVE-ACCT-NO%%]]' , '[[%%REVE-OWNER%%]]' , '[[%%REVE-DATE%%]]' , [[%%REVE-AMT%%]] , '[[%%REVE-TYPE%%]]' )
+		]]>
+	</insertBusTxnAmt>
+	<updateBusTxnAmt>
+		<![CDATA[
+		update DB2IBANK.BUSTXNLIMIT
+		set amt = amt+[[%%REVE-AMT%%]] 
+		where acct_no='[[%%REVE-ACCT-NO%%]]' and date='[[%%REVE-DATE%%]]' and type='[[%%REVE-TYPE%%]]'
+		]]>
+	</updateBusTxnAmt>
+	<getBusTxnAmt2>
+		<![CDATA[
+		select * from bustxnlimit 
+		where acct_no in ('[[%%REVE-ACCT-NO%%]]') and type in ('1','2','3') and date = '[[%%REVE-DATE%%]]' 
+		order by acct_no,type
+		]]>
+	</getBusTxnAmt2>
+	<insertBusMsgPool><![CDATA[ 
+			insert into DB2IBANK.BUSMSGPOOL (REFNO,OWNER,USERID,TXNNAME,STATUS,EXECSTATUS,FLAG,CATG,STARTDATE,ADDDATE) values('[[%%REVE-REFNO%%]]' , '[[%%REVE-OWNER%%]]' , '[[%%REVE-USERID%%]]' , '[[%%REVE-TXNNAME%%]]' , '[[%%REVE-STATUS%%]]' , '[[%%REVE-EXECSTATUS%%]]' , '[[%%REVE-FLAG%%]]' , '[[%%REVE-CATG%%]]' , '[[%%REVE-STARTDATE%%]]' , '[[%%REVE-ADDDATE%%]]')
+	 ]]></insertBusMsgPool>
+	 <delBusMsgPool><![CDATA[ 
+			DELETE FROM DB2IBANK.BUSMSGPOOL WHERE OWNER='[[%%REVE-OWNER%%]]' and USERID='[[%%REVE-USERID%%]]'  and REFNO IN ( [[%%REVE-REFNO%%]]  )
+	 ]]></delBusMsgPool>
+	 <CntBusMsgPool><![CDATA[ 
+	        Select CATG CATGTYPE, count(CATG) CATGCNT FROM BUSMSGPOOL GROUP BY CATG,OWNER,USERID,FLAG HAVING OWNER='[[%%REVE-OWNER%%]]' and USERID='[[%%REVE-USERID%%]]' and FLAG='0'
+	  ]]></CntBusMsgPool>		
+</SQL>

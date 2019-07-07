@@ -1,0 +1,66 @@
+<Warning_Info>
+Note: This file be created and maintained by Javascript Menu Builder PLATINUM 1.0.
+It may cause the project file can't be opened correctly if you modify it by yourself!
+</Warning_Info>
+<Product_Name>
+Javascript Menu Builder PLATINUM
+</Product_Name>
+<Product_Version>
+1.0
+</Product_Version>
+<Applet_Parameters>
+2000#$@1#$@10#$@1#$@1000#$@0#$@0#$@0#$@120#$@20#$@10#$@1#$@C0C0C0#$@5#$@1#$@.#$@scrollup_black.gif#$@scrolldown_black.gif#$@arrowright_black.gif#$@8#$@8#$@0#$@main#$@0#$@6#$@000000#$@FFFFFF#$@FFFFFF#$@408080#$@Arial,Verdana,Tahoma#$@11#$@false#$@false#$@arrowdown_black.gif#$@
+</Applet_Parameters>
+<Item_Parameters>
+基金下單#$@LoadAP?pageid=IF0101001&aptype=YESFUND#$@1#$@_self#$@#$@0#$@1#$@
+基金申購#$@LoadAP?pageid=IF0101001&aptype=YESFUND#$@0#$@_self#$@#$@1#$@1_1#$@
+基金贖回#$@LoadAP?pageid=IF0401000&aptype=YESFUND#$@0#$@_self#$@#$@1#$@1_2#$@
+基金轉換#$@LoadAP?pageid=IF0501000&aptype=YESFUND#$@0#$@_self#$@#$@1#$@1_3#$@
+交易資料變更#$@LoadAP?pageid=IF0601000&aptype=YESFUND#$@0#$@_self#$@#$@1#$@1_4#$@
+基金資產查詢#$@LoadAP?pageid=IF0701000&aptype=YESFUND#$@1#$@_self#$@#$@0#$@2#$@
+個人化投資報告#$@LoadAP?pageid=IF0401000&aptype=YESFUND#$@0#$@_self#$@#$@1#$@2_1#$@
+歷史資料查詢#$@LoadAP?pageid=IF0801000&aptype=YESFUND#$@0#$@_self#$@#$@1#$@2_2#$@
+基金動態#$@#$@1#$@_self#$@#$@0#$@3#$@
+國內基金#$@http://ubot.moneydj.com/#$@1#$@_self#$@#$@1#$@3_1#$@
+投信公司績效比較#$@http://ubot.moneydj.com/w/wq/wq01.djhtm#$@0#$@_self#$@#$@2#$@3_1_1#$@
+基金類別績效排行#$@http://ubot.moneydj.com/w/wq/wq02.djhtm#$@0#$@_self#$@#$@2#$@3_1_2#$@
+投信公司淨值表#$@http://ubot.moneydj.com/w/ww/ww01.djhtm#$@0#$@_self#$@#$@2#$@3_1_3#$@
+投信公司列表#$@http://ubot.moneydj.com/w/wp/wp00.djhtm#$@0#$@_self#$@#$@2#$@3_1_4#$@
+投信公司旗下基金#$@http://ubot.moneydj.com/w/wp/wp02.djhtm#$@0#$@_self#$@#$@2#$@3_1_5#$@
+基金持股狀況#$@http://ubot.moneydj.com/w/wr/wr04.djhtm#$@0#$@_self#$@#$@2#$@3_1_6#$@
+基金基本資料#$@http://ubot.moneydj.com/w/wr/wr01.djhtm#$@0#$@_self#$@#$@2#$@3_1_7#$@
+國外基金#$@#$@1#$@_self#$@#$@1#$@3_2#$@
+基金績效比較#$@http://ubot.moneydj.com/w/wd/wd03_NA_NA_NA.asp.htm#$@0#$@_self#$@#$@2#$@3_2_1#$@
+投資地區績效排行#$@http://ubot.moneydj.com/w/wd/wd01_NA_NA_NA_NA.asp.htm#$@0#$@_self#$@#$@2#$@3_2_2#$@
+基金公司淨值表#$@http://ubot.moneydj.com/w/wc/wc02_1.asp.htm#$@0#$@_self#$@#$@2#$@3_2_3#$@
+基金績效表#$@http://ubot.moneydj.com/w/wb/wb03.asp.htm#$@0#$@_self#$@#$@2#$@3_2_4#$@
+基金持股狀況#$@http://ubot.moneydj.com/w/wb/wb04.djhtm#$@0#$@_self#$@#$@2#$@3_2_5#$@
+基金配息狀況#$@http://ubot.moneydj.com/w/wb/wb05.djhtm#$@0#$@_self#$@#$@2#$@3_2_6#$@
+基金公司基本資料#$@http://ubot.moneydj.com/w/wc/wc01.djhtm#$@0#$@_self#$@#$@2#$@3_2_7#$@
+基金公司旗下基金#$@http://ubot.moneydj.com/w/wc/wc02.djhtm#$@0#$@_self#$@#$@2#$@3_2_8#$@
+連動式債券#$@http://ubot.moneydj.com/BFT/TemplateCust.djhtm?a=ASPServerBFRM00]asp~^BrokerID~~ubot!FilterID~~K8030000#$@0#$@_self#$@#$@1#$@3_3#$@
+新聞天地#$@#$@1#$@_self#$@#$@0#$@4#$@
+國內基金新聞#$@http://ubot.moneydj.com/w/wu/wu01.asp.htm#$@0#$@_self#$@#$@1#$@4_1#$@
+國際財經新聞#$@http://ubot.moneydj.com /w/wa/wa02.asp.htm#$@0#$@_self#$@#$@1#$@4_2#$@
+金融情勢#$@http://ubot.moneydj.com /w/wh/wh05_1.asp.htm#$@0#$@_self#$@#$@1#$@4_3#$@
+各國經濟情勢#$@http://ubot.moneydj.com/w/wa/wa03_1.asp.htm#$@0#$@_self#$@#$@1#$@4_4#$@
+基金研究報告#$@http://ubot.moneydj.com/w/wh/wh01B_NA_0.asp.htm#$@0#$@_self#$@#$@1#$@4_5#$@
+基金學院#$@#$@1#$@_self#$@#$@0#$@5#$@
+金融辭庫#$@http://ubot.moneydj.com/z/glossary/glhome.asp.htm#$@0#$@_self#$@#$@1#$@5_1#$@
+基金買賣方式#$@http://ubot.moneydj.com/w/we/yp701002.htm#$@0#$@_self#$@#$@1#$@5_2#$@
+新手上路#$@http://ubot.moneydj.com/w/we/yp805000.htm#$@0#$@_self#$@#$@1#$@5_3#$@
+入學測驗#$@http://ubot.moneydj.com/w/we/YP801000.htm#$@0#$@_self#$@#$@1#$@5_4#$@
+初級班#$@http://ubot.moneydj.com/w/we/yp802000.htm#$@0#$@_self#$@#$@1#$@5_5#$@
+中級班#$@http://ubot.moneydj.com/w/we/YP803000.htm#$@0#$@_self#$@#$@1#$@5_6#$@
+高級班#$@http://ubot.moneydj.com/w/we/YP804000.htm#$@0#$@_self#$@#$@1#$@5_7#$@
+理財學院#$@#$@1#$@_self#$@#$@0#$@6#$@
+性向測試#$@http://ubot.moneydj.com/w/wg/wg01.asp.htm#$@0#$@_self#$@#$@1#$@6_1#$@
+基金速配#$@http://ubot.moneydj.com/w/wg/wg02.asp.htm#$@0#$@_self#$@#$@1#$@6_2#$@
+基金套餐#$@http://ubot.moneydj.com/w/wf/wf01.htm#$@0#$@_self#$@#$@1#$@6_3#$@
+單筆投資試算#$@http://ubot.moneydj.com/w/wg/YP503001.htm#$@0#$@_self#$@#$@1#$@6_4#$@
+定時定額試算#$@http://ubot.moneydj.com/w/wg/YP503002.htm#$@0#$@_self#$@#$@1#$@6_5#$@
+理財規劃#$@http://ubot.moneydj.com/w/wg/YP503003.htm#$@0#$@_self#$@#$@1#$@6_6#$@
+挑選基金#$@#$@1#$@_self#$@#$@0#$@7#$@
+國內基金#$@http://ubot.moneydj.com/w/wt/wt01.asp.htm#$@0#$@_self#$@#$@1#$@7_1#$@
+國外基金#$@http://ubot.moneydj.com/w/wd/wd02.asp.htm#$@0#$@_self#$@#$@1#$@7_2#$@
+</Item_Parameters>

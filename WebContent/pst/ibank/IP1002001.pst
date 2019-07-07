@@ -1,0 +1,205 @@
+<html>
+<head>
+<title>個人資料查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<script language="javascript">
+
+function chkSubmit(){
+	chkWord();
+	var email = document.getElementById("email2").value;
+	if(!chkEmail(email)){
+		return;
+	}
+	//document.IP1002001.chgEmail.disabled = true;
+	document.IP1002001.chksubmit2.disabled = true;
+	document.IP1002001.submit();
+}
+
+function chkWord(){
+	var w = '[[%%SEND-CONTACT-ADDR1%%]]';
+	var len = w.length;
+	if(w.substr(0,1)=="台"){
+		document.IP1002001.SEND_CONTACT_ADDR1.value = '臺' + w.substr(1,len-1);
+	}
+	else{
+		document.IP1002001.SEND_CONTACT_ADDR1.value = w;
+	}
+}
+
+
+function showCName(){
+   var cname='[[%%SEND-NAME%%]]';
+   if(cname.length < 4){
+   		cname = cname.substring(0,1)+replaceWord(cname.length-1);
+   }
+   else{
+   		cname = cname.substring(0,2)+replaceWord(cname.length-2);
+   }   
+   if(cname.length > 8){      
+      return cname.substring(0,8)+"(略)";
+   }else{
+      return cname;
+   }
+}
+
+function chkEM(){	
+	var EA = document.getElementById("email").value;
+	if(EA!="undefined"&&EA!=""){
+		document.getElementById("email2").value = replaceEmail(EA);
+	}else{
+		document.getElementById("email2").value = "";
+	}
+}
+
+function chgEmailSelect(tp){
+	if(tp=="變更"){
+		document.IP1002001.SEND_EMAIL_ADDR2.disabled = false;
+		document.IP1002001.SEND_EMAIL_ADDR2.style.backgroundColor = "#FFFFFF";
+		document.IP1002001.SEND_EMAIL_ADDR2.value = "";
+		document.IP1002001.chksubmit2.disabled = false;
+		document.IP1002001.chgEmail.value = "不變更";
+	}
+	else if(tp=="不變更"){
+		document.IP1002001.SEND_EMAIL_ADDR2.disabled = true;
+		document.IP1002001.SEND_EMAIL_ADDR2.style.backgroundColor = "#e5eecc";
+		//document.IP1002001.SEND_EMAIL_ADDR2.value = "";
+		chkEM();
+		//document.getElementById("email").value = replaceEmail('abc@aa.bb.cc');
+		document.IP1002001.chksubmit2.disabled = true;
+		document.IP1002001.chgEmail.value = "變更";
+	}
+}
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+ 　
+<img src="graph/point.gif" width="12" height="12">
+<b>個人設定&gt;<font color="#0066FF">基本資料查詢/變更</font><font color="#003399"><font color="#0066FF"></font></font></b><br>
+
+<form method="POST" action="LoadAP" name="IP1002001">
+<table width="500" border="0" cellpadding="0" cellspacing="0" align="center">
+      </table>
+      <!--
+      <table width="150" border="0" align="center">
+        <tr>
+          <td> 
+            <div align="right">
+              <input type="button" name="Submit3" value="變更個人資料" onClick="chkSubmit();">
+            </div>
+          </td>
+        </tr>
+      </table>
+      -->
+<table width="650" border="0">
+  <tr> 
+    <td colspan="4"> 
+      <table width="500" border="1" align="center" cellpadding="3" bordercolor="#999999">
+        <tr bgcolor="#C4CBB8"> 
+          <td colspan="2"> 
+            <div align="center">個人基本資料</div>
+          </td>
+        </tr>
+        <tr> 
+          <td width="122">姓名</td>
+          <td width="354">
+          <script>
+          	document.write(showCName());
+          </script>
+          &nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122">戶籍地址</td>
+          <td width="354">[[%%SEND-NATIVE-ADDR1%%]][[%%SEND-NATIVE-ADDR2%%]]
+          <script>
+	          var nativeAdd = '[[%%SEND-NATIVE-ADDR3%%]][[%%SEND-NATIVE-ADDR4%%]]';
+	          document.write(replaceWord(nativeAdd.length));
+          </script>
+          &nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122">通訊地址</td>
+          <td width="354">[[%%SEND-CONTACT-ZIP%%]]&nbsp;[[%%SEND-CONTACT-ADDR1%%]][[%%SEND-CONTACT-ADDR2%%]]
+          <script>
+	          var add3 = '[[%%SEND-CONTACT-ADDR3%%]]';
+	          document.write(replaceWord(add3.length));
+          </script>
+          &nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122">日間電話</td>
+          <td width="354"> 
+          <script>
+	          var dp = '[[%%SEND-DAILY-PHONE%%]]';
+	          document.write(replaceWord2(dp,1));
+          </script>
+          &nbsp;分機[[%%SEND-DAILY-PHONE-EXT%%]]&nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122">夜間電話</td>
+          <td width="354">
+          <script>
+          	var np = '[[%%SEND-NIGHT-PHONE%%]]';
+          	document.write(replaceWord2(np,1));
+          </script>
+          &nbsp;分機[[%%SEND-NIGHT-PHONE-EXT%%]]&nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122">行動電話</td>
+          <td width="354">
+          <script>
+          	var mp = '[[%%SEND-MPHONE%%]]';
+          	document.write(replaceWord2(mp,2));
+          </script>
+          &nbsp;
+          </td>
+        </tr>
+        <tr> 
+          <td width="122">E-mail</td>
+          <td width="354">
+          <input id="email2" name="SEND_EMAIL_ADDR2" value="[[%%SEND-EMAIL-ADDR%%]]" >
+          <!--
+          <input type="button" name="chgEmail" value="變更" onClick="chgEmailSelect(this.value)">
+          -->
+          &nbsp;</td>
+        </tr>
+      </table>
+      <table width="500" border="0" align="center" cellpadding="3" bordercolor="#999999">
+      	<tr> 
+          <td> 
+            <div align="center"> 
+             <input type="button" id="csb2" name="chksubmit2" value="變更" onclick="chkSubmit();" >
+            </div>
+          </td>
+        </tr>
+      </table>
+      <div align="center"> 
+        <table width="500" border="0" cellpadding="3">
+          <tr> 
+            <td>註：</br>
+						如欲變更除E-mail以外之個人基本通訊資料，請致電本行24小時客服專線02-25451788，進線後請按19轉接專人，或臨櫃各分行辦理；如須變更姓名、戶籍地址等欄位，請攜帶身分證及印鑑至原開戶行辦理。
+						</td>
+          </tr>
+        </table>        
+      </div>
+    </td>
+  </tr>  	
+</table>
+<input type="hidden" name="pageid" value="IP1002100">
+<input type="hidden" name="aptype" value="ibank">
+<input type="hidden" name="SEND_CONTACT_ADDR1" value="">
+<input type="hidden" id="email" name="SEND_EMAIL_ADDR" value="[[%%SEND-EMAIL-ADDR%%]]">
+<script>
+chkEM();
+</script>
+</form>
+</body>
+</html>

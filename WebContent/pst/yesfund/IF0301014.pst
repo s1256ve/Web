@@ -1,0 +1,34 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>基金申購</title>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0301014">
+<input type="hidden" name="pageid" value="IF0301015">
+<input type="hidden" name="SEND_CNAME" value="[[%%SEND-CNAME%%]]">
+<input type="hidden" name="SEND_ID" value="[[%%REVE-ID%%]]">
+<input type="hidden" name="SEND_FUND_ID" value="[[%%SEND-FUND-ID%%]]">
+<input type="hidden" name="SEND_FUND_CNAME" value="[[%%SEND-FUND-CNAME%%]]">
+<input type="hidden" name="SEND_SCHD_DATE" value="[[%%SEND-SCHD-DATE%%]]">
+<input type="hidden" name="SEND_SCHD_DATE2" value="[[%%SEND-SCHD-DATE2%%]]">
+<input type="hidden" name="SEND_SCHD_DATE3" value="[[%%SEND-SCHD-DATE3%%]]">
+<input type="hidden" name="SEND_SCHD_ALL" value="[[%%SEND-SCHD-ALL%%]]"> 
+<input type="hidden" name="SEND_BUY_AMT" value="[[%%SEND-BUY-AMT%%]]">
+<input type="hidden" name="SEND_FEE_AMT" value="[[%%SEND-FEE-AMT%%]]">
+<input type="hidden" name="HOW_TO_PAY" value="[[%%HOW-TO-PAY%%]]">
+<input type="hidden" name="SEND_ACCT_NO" value="[[%%SEND-ACCT-NO%%]]">
+<input type="hidden" name="SEND_CARD_NO" value="[[%%SEND-CARD-NO%%]]">
+<input type="hidden" name="SEND_EXP_DATE" value="[[%%SEND-EXP-DATE%%]]">
+<input type="hidden" name="REVE_ACCT_TYPE" value="[[%%REVE-ACCT-TYPE%%]]">
+<input type="hidden" name="REVE_CURRENCY_TYPE" value="[[%%REVE-CURRENCY-TYPE%%]]">
+<input type="hidden" name="REVE_INTACCT_NO" value="[[%%SEND-INTACCT-NO%%]]">
+<input type="hidden" name="SEND_RECOMMAND" value="[[%%SEND-RECOMMAND%%]]">
+</form>
+<script>
+	document.IF0301014.submit();
+</script>
+</body>
+</html>

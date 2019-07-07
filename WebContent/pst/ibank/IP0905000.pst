@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>掛失業務</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<script language="JavaScript">
+	function chksubmit(nextPageid){
+		document.submitform.pageid.value = nextPageid;
+		document.submitform.submit();
+	}
+</script>
+
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<link rel="stylesheet" type="text/css" media="all" href="theme/portal.css" />
+
+<body bgcolor="#FFFFFF" onLoad="" background="../graph/bg01.gif" leftmargin="0" topmargin="0">
+<p><b>掛失&gt;<font color="#003399"><font color="#0066FF">掛失業務</font></font><font color="#003399"><font color="#0066FF"><br>
+  </font></font></b></p>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5" height="69"><font color="#663300" face="Arial, Helvetica, sans-serif"> 
+      </font> 
+      <table width="500" border="0">
+        <tr> 
+          <td>　 掛失項目 <font color="#663300" face="Arial, Helvetica, sans-serif">　 
+            <select name="select2">
+              <option selected>==請選擇掛失項目==</option>
+              <option>金融卡</option>
+              <option>存　摺</option>
+              <option>印　鑑</option>
+            </select>
+            </font></td>
+        </tr>
+        <tr> 
+          <td>　帳　　 號<font color="#663300" face="Arial, Helvetica, sans-serif">　 
+            <select name="select">
+              <option selected>==請選擇帳號==</option>
+              <option>南東分行 綜存帳號 005-50-1254698</option>
+            </select>
+            </font></td>
+        </tr>
+        <tr>
+          <td>說明：<br>
+            （1） 國民現金卡片掛失請速撥國民現金服務專線02-27197777按9由專人服務；<br>
+            （2） 信用卡掛失請速撥信用卡掛失服務專線：（02）2717-6722或0800-008-855由專人服務；<br>
+            （3） 存摺或印鑑掛失，需另至本行補辦書面掛失手續。</td>
+        </tr>
+      </table>
+      <div align="center">
+        <input type="submit" name="Submit" value="確定">
+        <input type="submit" name="Submit2" value="取消">
+      </div>
+    </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="5" valign="bottom" height="1"></td>
+  </tr>
+</table>
+<div id="Layer1" style="position:absolute; left:404px; top:165px; width:138px; height:23px; z-index:1"><a href="page9-1-2ok.htm">金融卡</a><br>
+  <a href="page9-1-3ok.htm">存　摺</a><br>
+  <a href="page9-1-4ok.htm">印　鑑</a><br>
+</div>
+</body>
+</html>

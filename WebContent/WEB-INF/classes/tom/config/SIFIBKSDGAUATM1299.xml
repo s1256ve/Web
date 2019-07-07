@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- NCR VTR (composite to period) input Schema, Last updated date 2-2-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/NCR">
+	<field id="UATM1299i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='UATM129903' attr='I' default=''>
+        		<name>REVE-ACTOR</name>
+        		<length>0</length>
+        		<type>STRING</type>
+        		<description></description>
+     	</field>
+	<field id="UATM129902">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="UATM129956">
+		<name>REVE-PWD</name>
+		<length>10</length>
+		<type>String</type>
+		<description>使用者密碼</description>
+	</field>
+	<field id="UATM1299i02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>帳號</description>
+	</field>
+	<field id="UATM1299i03">
+		<name>REVE-PIN</name>
+		<security>DESYSDES</security>		
+		<length>4</length>
+		<type>String</type>
+		<description>PIN</description>
+	</field>
+	<field id="UATM1299i07">
+		<name>REVE-SCHD-DATE</name>
+		<length>8</length>
+		<type>String</type>
+		<description>預約日期</description>
+	</field>
+	<field id="UATM1299i04">
+		<name>REVE-RESERVED-1</name>
+		<length>4</length>
+		<type>String</type>
+		<description>保留-1</description>
+	</field>
+	<field id="UATM1299i05">
+		<name>REVE-SAVING-CODE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>存款類別</description>
+	</field>
+	<field id="UATM1299i06">
+		<name>REVE-PERIOD</name>
+		<length>2</length>
+		<type>String</type>
+		<description>期間別</description>
+	</field>
+	<field id="UATM1299i07">
+		<name>REVE-INT-CODE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>利率別</description>
+	</field>
+	<field id="UATM1299i08">
+		<name>REVE-CONTINUE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>續存記號</description>
+	</field>
+	<field id="UATM1299i09">
+		<name>REVE-RESERVED-2</name>
+		<length>4</length>
+		<type>String</type>
+		<description>保留-2</description>
+	</field>
+	<field id="UATM1299i10">
+		<name>REVE-TXN-AMT</name>
+		<length>12</length>
+		<type>String</type>
+		<description>交易金額</description>
+	</field>
+	<field id="UATM1299i11">
+		<name>REVE-FROM-CURRENCY</name>
+		<length>2</length>
+		<type>String</type>
+		<description>轉入幣別</description>
+	</field>
+	<field id="UATM1299i12">
+		<name>REVE-KB-IDX</name>
+		<length></length>
+		<type>String</type>
+		<description>螢幕鍵盤鎖引</description>
+	</field>
+	<field id="UATM1299i13">
+		<name>REVE-TXN-MEMO</name>
+		<length></length>
+		<type>String</type>
+		<description>交易附註</description>
+	</field>
+	<field id="UATM1299i14">
+		<name>REVE-TO-ACCTNO</name>
+		<length></length>
+		<type>String</type>
+		<description>轉入帳號</description>
+	</field>
+	<field id="UATM1299i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="UATM1299i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="UATM1299i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="UATM1299i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+</catalog>

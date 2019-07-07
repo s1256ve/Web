@@ -1,0 +1,64 @@
+<html>
+<head></head>
+<style>
+body{font:small/1.2em arial,helvetica,clean,sans-serif;font:x-small;margin:0;}
+</style>
+<script type="text/javascript">
+<!--
+/*************************************************************************
+  This code is from Dynamic Web Coding at http://www.dyn-web.com/
+  See Terms of Use at http://www.dyn-web.com/bus/terms.html
+  regarding conditions under which you may use this code.
+  This notice must be retained in the code as is!
+*************************************************************************/
+
+function getDocHeight(doc) {
+  var docHt = 0, sh, oh;
+  if (doc.height) docHt = doc.height;
+  else if (doc.body) {
+    if (doc.body.scrollHeight) docHt = sh = doc.body.scrollHeight;
+    if (doc.body.offsetHeight) docHt = oh = doc.body.offsetHeight;
+    if (sh && oh) docHt = Math.max(sh, oh);
+  }
+  return docHt;
+}
+
+function setIframeHeight(iframeName) {
+  var iframeWin = window.frames[iframeName];
+  var iframeEl = document.getElementById? document.getElementById(iframeName): document.all? document.all[iframeName]: null;
+  if ( iframeEl && iframeWin ) {
+    iframeEl.style.height = "auto"; // helps resize (for some) if new doc shorter than previous  
+    var docHt = getDocHeight(iframeWin.document);
+    // need to add to height to be sure it will all show
+    if (docHt){ 
+    	if (docHt<1540) docHt=1540;
+    	iframeEl.style.height = docHt + 30 + "px";
+    	//alert(docHt);
+    }
+  }
+}
+
+function loadIframe(iframeName, url) {
+  if ( window.frames[iframeName] ) {
+    window.frames[iframeName].location = url;   
+    return false;
+  }
+  else return true;
+}
+
+-->
+</script>
+<body onload="setIframeHeight('main');" leftmargin="0" topmargin="0" rightmargin="0" marginwidth="0" marginheight="0" width="800" height="600">
+   
+    <iframe name="top" style="position: absolute; top:0 ; left:0 ; z-index:0" width="780" height="78" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?pageid=IC0000001"/>
+    <iframe name="left" style="position: absolute; top:78 ; left:0 ; z-index:0" width="142" height="600" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?pageid=IC0000006"/>
+    <iframe name="mainmenu" style="position: absolute; top:78 ; left:142 ; z-index:0" width="638" height="50" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?pageid=IC0000007"/>
+    <!--依startap給值,default頁定義在portal/config/config.xml-->
+    <iframe name="main" style="position: absolute; top:120 ; left:142 ; z-index:0" width="638" height="1570" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="LoadAP?aptype=[[%%SEND-START-AP%%]]"/>
+    <!--iframe name="main" style="position: absolute; top:120 ; left:142 ; z-index:0" width="638" height="1500" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" src="LoadAP?aptype=IBANK"/-->
+    <iframe name="dowm" style="position: absolute ; top:1700 ; left:0 ; z-index:0 " width="780" height="22" frameborder="0" framespacing="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" scrolling="NO" src="LoadAP?pageid=IC0000004"/>
+
+</body>
+</html>
+
+

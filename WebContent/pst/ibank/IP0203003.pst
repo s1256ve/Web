@@ -1,0 +1,123 @@
+<html>
+<head>
+<title>台幣存款帳戶查詢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<!--取消畫面(1)-->
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<script language="JavaScript" SRC="script/acctfmt.js"></script>
+<script language="JavaScript" SRC="script/datefmt.js"></script>
+<script language="JavaScript" SRC="script/moneyfmt.js"></script>
+<script language="JavaScript">
+    function getSaveDate(sdate){
+        var saveDate = "";
+        if (sdate=="") return;
+        if (sdate.length>8){
+            saveDate = getRCDateStr(sdate.substr(0,8),0);
+        }
+        return saveDate;
+    }
+    function getChlName(channel){
+        if (channel=="") return "其它";
+        if (channel=="IBANK"){
+            return "網路預約";
+        }else{
+            return "其它";
+        }
+        return channel;
+    }
+	function windowclose(){
+	    alert('確定要關閉此視窗嗎?');
+	    window.close();
+	}
+</script>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+<b>　台幣存款帳戶查詢&gt;<font color="#003399"><font color="#0066FF">查詢/取消預約轉帳</font></font></b><font color="#003399"><font color="#0066FF"><b>&gt;</b></font></font><b><font color="#0066FF">待執行交易</font></b><br>
+<font color="#0000CC"><br>
+</font> 
+<table width="770" border="0">
+  <tr>
+    <td width="764">　您已成功取消下列預約轉帳交易!</td>
+  </tr>
+  <tr>
+    <td><font color="#0000CC"> </font> <font color="#0000CC"> </font> 
+      <table width="588" border="1" cellpadding="2" bordercolor="#999999">
+        <tr> 
+          <td width="100" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">轉出分行/帳號</div>
+          </td>
+          <td width="100" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">轉入銀行/帳號</div>
+          </td>
+          <td width="98" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">轉帳金額</div>
+          </td>
+          <td width="55" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">轉帳日</div>
+          </td>
+          <td width="55" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">預約日</div>
+          </td>
+          <td width="60" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">預約方式</div>
+          </td>
+          <td width="60" bgcolor="#C4CBB8" height="11"> 
+            <div align="center">預約序號</div>
+          </td>
+        </tr>
+        <tr> 
+          <td width="100" height="26">[[%%BR-NAME%%]]<br>
+            <SCRIPT language="JavaScript">     
+                    document.write(getAcctStr('[[%%FROM-ACCT-NO%%]]'));
+            </SCRIPT></td>
+          <td width="100" bgcolor="#FFFFDD" height="26"> [[%%BANK-NAME%%]][[%%BANK-CODE%%]]<br>
+            <SCRIPT language="JavaScript">     
+                    document.write(getAcctStr('[[%%TO-ACCT-NO%%]]'));
+            </SCRIPT></td>
+          <td width="98" height="26"> 
+            <div align="center">台幣
+            <SCRIPT language="JavaScript">     
+                    document.write(moneyAddDot2('[[%%TXN-AMT%%]]'));
+            </SCRIPT>
+            元</div>
+          </td>
+          <td width="55" height="26"> 
+            <div align="center">&nbsp;
+            <SCRIPT language="JavaScript">     
+                    document.write(getRCDateStr('[[%%SCHD-DATE%%]]',0));
+            </SCRIPT></div>
+          </td>
+          <td width="55" height="26"> 
+            <div align="center">&nbsp;
+            <SCRIPT language="JavaScript">     
+                    document.write(getSaveDate('[[%%TXN-SERNO%%]]'));
+            </SCRIPT></div>
+          </td>
+          <td width="60" height="26"> 
+            <div align="center">&nbsp;
+            <SCRIPT language="JavaScript">     
+                    document.write(getChlName('[[%%CHANNEL-ADD%%]]'));
+            </SCRIPT></div>
+          </td>
+          <td width="60" height="26">[[%%SCHD-SNO%%]]</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td> 
+      <table width="761" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td width="761" colspan="2"> 
+            <div align="center">　 
+              <input type="button" name="close" value="關閉本視窗" onclick="javascript:windowclose()">
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

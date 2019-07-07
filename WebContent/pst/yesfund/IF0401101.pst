@@ -1,0 +1,178 @@
+<html>
+<head>
+<title>基金申購</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<!--script language="JavaScript" SRC="script/PreviousPageBlock.js"></script-->
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI98051           2009.08.04     Alma 
+*
+***********************************************************************/
+</script>
+<script language="javascript">
+	var Errmsg = ""
+	
+	function hideAMT(){
+		document.IF0401101.REVE_UNITS.disabled=false;
+		document.IF0401101.REVE_UNITS.focus();
+		document.IF0401101.REVE_AMT.disabled=true;			
+	}
+	function hideUNITS(){
+		document.IF0401101.REVE_AMT.disabled=false;
+		document.IF0401101.REVE_AMT.focus();
+		document.IF0401101.REVE_UNITS.disabled=true;
+			
+	}
+	
+	function chkForm1(){
+		var rtnFlag = false
+		var iAcctLen = document.IF0401101.REVE_CHANGE_TYPE 
+			for (i=0;i<iAcctLen.length;i++){
+				if (iAcctLen[i].checked){
+				    	rtnFlag =  true;					
+					break;
+				}			
+			}
+			if (!rtnFlag) Errmsg="未選擇贖回方式";
+			return rtnFlag;	
+	}
+	function chkForm2(){
+		var rtnFlag = false
+		var AMTvalue = document.IF0401101.REVE_AMT.value  
+		var LIMITvalue = document.IF0401101.REVE_LIMIT_AMT.value
+		
+		if (AMTvalue.trim() == ""){
+			Errmsg="請輸入贖回金額";			
+		}else if(!checkNum(AMTvalue)){
+			Errmsg="贖回金額以元為單位";			
+		}else if(AMTvalue > [[%%REVE-AMT%%]] ){
+		     Errmsg="部份贖回金額不可大於原信託金額";
+		}else if (parseInt(AMTvalue) < parseInt(LIMITvalue)){			
+			Errmsg="部份贖回金額不可小於最低贖回金額";		
+		}else{
+			rtnFlag =  true;
+		}
+		return rtnFlag;
+	}	 
+
+	function chkSubmit(){
+	 
+	    if (chkForm2()) {
+	    	if (document.IF0401101.REVE_CURRENCY_NAME.value == "NTD"){
+	    		document.IF0401101.pageid.value = "IF0401110";
+	    		document.IF0401101.REVE_CURRENCY.value = "N";	    		
+	    	}else{
+	    		document.IF0401101.pageid.value = "IF0401110";
+	    		document.IF0401101.REVE_CURRENCY.value = "Y";
+	    	}
+	    	disableButton2(document.IF0401101.Submit, document.IF0401101.Submit2);		    
+			 	document.IF0401101.submit();
+		}else{
+				alert(Errmsg);
+				document.IF0401101.REVE_AMT.focus();	
+		}     
+    }
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0401101">
+<font color="#006666"><b>基金贖回&gt;</b></font><br>
+  <table width="770" border="0">
+    <tr> 
+    <td> 
+      <div align="center">請輸入欲贖回之信託金額</div>
+    </td>
+  </tr>
+</table>
+  <table width="770" border="0">
+    <tr> 
+    <td colspan="3">
+      <div align="center">
+          <table width="600" border="1" cellpadding="0" bordercolor="#999999">
+            <tr bgcolor="#C5DECF"> 
+            <td width="31%" height="16"> 
+                <div align="center">基金名稱</div>
+            </td>
+            <td width="33%" height="16"> 
+              <div align="center">信託金額</div>
+            </td>
+            <td width="36%" height="16"> 
+              <div align="center">贖回信託金額</div>
+            </td>
+          </tr>
+          <!--<tr bgcolor="#E7F1EE"> 
+            <td width="31%" height="24"> 
+              <input type="radio" name="REVE_CHANGE_TYPE" value="1" onClick="hideAMT();">
+              單位數</td>
+            <td width="33%" height="24"> 
+              <div align="center">[[%%REVE-UNITS%%]]</div>
+            </td>
+            <td width="36%" height="24"> 
+              <div align="center"> 
+                <input type="text" name="REVE_UNITS" value="[[%%REVE-UNITS%%]]" size="15">
+              </div>
+            </td>
+          </tr>-->
+          <tr bgcolor="#E7F1EE"> 
+              <td width="31%" height="25"> <!--  <input type="radio" name="REVE_CHANGE_TYPE" value="2" onClick="hideUNITS();"> --> 
+                [[%%REVE-FUND-CNAME%%]]</td>
+            <td width="33%"> 
+              <div align="center"> [[%%REVE-CURRENCY-NAME%%]]
+              	<script>
+              		document.write(moneyAddDot("[[%%REVE-AMT%%]]"));              	
+            	</script> 
+              </div>
+            </td>
+            <td width="36%"> 
+              <div align="center">[[%%REVE-CURRENCY-NAME%%]] 
+                <input type="text" name="REVE_AMT" value="" size="15">
+              </div>
+            </td>
+          </tr>
+        </table>
+          <table width="600" border="0">
+            <tr> 
+            <td><font color="#FF0000">★部份贖回之限制：</font>                        	     <br>
+		     	1.	台幣信託：國內基金不得低於NT$10,000；海外基金不得低於NT$30,000。<br>
+		     	2.	外幣信託：每筆不得低於USD1,000或其他等值外幣。
+          </tr>
+        </table>
+        <br>
+        <input type="button" name="Submit" value="下一步" onClick="chkSubmit();">
+        <input type="button" name="Submit2" value="上一頁" onClick="disableButton2(document.IF0401101.Submit, document.IF0401101.Submit2);history.back();">
+        
+      </div>
+    </td>
+  </tr>
+</table>
+<br>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid" value="">
+  <input type="hidden" name="REVE_CERT_NO" value="[[%%REVE-CERT-NO%%]]">
+  <input type="hidden" name="REVE_FUND_ID" value="[[%%REVE-FUND-ID%%]]">
+  <input type="hidden" name="REVE_FUND_CNAME" value="[[%%REVE-FUND-CNAME%%]]"> 
+  <input type="hidden" name="REVE_REF_PRICE" value="[[%%REVE-REF-PRICE%%]]">
+  <input type="hidden" name="REVE_REF_EXCHGRATE" value="[[%%REVE-REF-EXCHGRATE%%]]">
+  <input type="hidden" name="REVE_CVT_TYPE" value="[[%%REVE-CVT-TYPE%%]]">
+  <input type="hidden" name="REVE_FROM_AMT" value="[[%%REVE-FROM-AMT%%]]">
+  <input type="hidden" name="REVE_LIMIT_AMT" value="[[%%REVE-LIMIT-AMT%%]]">
+  <input type="hidden" name="REVE_ID_NO" value="[[%%REVE-ID-NO%%]]"> 
+  <input type="hidden" name="REVE_CURRENCY_NAME" value="[[%%REVE-CURRENCY-NAME%%]]">
+  <input type="hidden" name="REVE_CURRENCY_CODE" value="[[%%REVE-CURRENCY-CODE%%]]"> 
+  <input type="hidden" name="REVE_CURRENCY" value="">  
+  <input type="hidden" name="REVE_CHANGE_TYPE" value="2">   
+  <input type="hidden" name="REVE_SENDCURRENCY" value="[[%%REVE-SENDCURRENCY%%]]">
+</table>
+</form>
+</body>
+</html>

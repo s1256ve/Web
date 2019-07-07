@@ -1,0 +1,55 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+</head>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body { font-size: 9pt; color: #000000;line-height:12pt } form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+<body bgcolor="#FFFFFF" onLoad="" leftmargin="0" topmargin="0">
+<table width="630" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr> 
+    <td height="140"> <br>
+      <table width="600" border="1" align="center" cellspacing="0" cellpadding="0">
+        <tr bordercolor="#FFFFFF"> 
+          <td height="382" bgcolor="#FFFFE6"> 
+            <table width="550" border="0" align="center">
+              <tr> 
+                <td colspan="2"> 
+                  <div align="center"><font size="3"><br>
+                    </font> <strong>&quot;使用者代號 &quot; 及 &quot; 網路密碼 &quot; 設定注意事項 </strong> <strong><font size="3"><br>
+                    </font></strong><br>
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="2" height="258"> <ol>
+                  <li>使用者代號：請設定 6 至 12 碼 之代號，不得與「身分證字號」及「網路密碼」相同，且不得使用空白鍵及各種特殊符號 等非英數字 。 </li>
+                  <li>網路密碼：請設定 6 到 12 位之密碼，不得與「身分證字號」及「使用者代號」相同， 僅允許 使用 英數字及可見符號 。 </li>
+                  <li>「使用者代號」與「網路密碼」為登入網路銀行時之身分驗證，請務必妥善保管並熟記這二項個人機密資料，若不慎忘記「使用者代號」或「網路密碼」，請至網路銀行登入區下方「電子銀行申請/變更」，輸入個人資料及簡訊驗證碼後，重新設定使用者代號與網路密碼，無須臨櫃重新申請。</li>
+                  <li>請勿洩漏 “ 使用者代號或網 路 密碼 ” 給任何人，包含本行行員，尤其是不經意地告知詐騙集團。 </li>
+                  <li>請勿將 “ 使用者代號或網 路 密碼 ” 書寫於明顯且易讓他人取得之處。 </li>
+                  <li>請勿使用個人或公司之相關資料作為使用者代號或網路密碼，以避免遭有心人士猜到。例如身分證字號、統一編號、生日、連絡電話等，或與基本資料相關之具規則性排列，例如如身分證字號、統一編號、生日、連絡電話前 / 後四碼等。 </li>
+                  <li>請務必將一般網站的密碼（可能是明碼）與網路交易的密碼予以區分，以免被有心人士猜中或盜用。 </li>
+                  <li>請經常不定期變更密碼；當輸入密碼時，請注意不要被周遭他人窺視。 </li>
+                </ol></td>
+              </tr>
+          </table>          </td>
+        </tr>
+      </table>
+      <div align="center">        <br>
+        <br>
+      </div>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

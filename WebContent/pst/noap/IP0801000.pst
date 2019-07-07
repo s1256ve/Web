@@ -1,0 +1,138 @@
+<html>
+<head>
+<title>使用者登入作業</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI99036           2010.04.20     YiSyun
+*EAI99052           2010.8.25      David 
+***********************************************************************/
+</script>
+<SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="JavaScript"> 
+ 
+ function chkSID(sid){
+ 		var fSid = false
+	 	if (sid.length == 10){
+	 			sub1 = sid.charAt(1);
+	 			if ("0123456789".indexOf(sub1,0)<0){
+	 					fSid = checkUnionId(sid);	// 檢查統一證號		 
+	 			}else{
+	 					fSid = checkID(sid);	 // 檢查身分證字號			
+	 			} 				 	
+	 	}else if(sid.length == 11){
+	 					fSid = checkID(sid);	 // 檢查身分證字號	
+	 	}else{
+	 					alert("請重新輸入身分證字號或統一證號!");
+	 					document.IP0801000.REVE_ID_NO.focus();
+	 	} 	 	
+	 	return fSid;
+ }
+ 
+ function KeyPressChk1(){
+	var iKeyCode = window.event.keyCode
+	if (!(iKeyCode >= 48 && iKeyCode <=57)){
+		window.event.keyCode = 0;
+	}
+}
+ 
+ function checkData(){
+    var f = document.IP0801000;
+    var sid = f.REVE_ID_NO.value.trim();
+    
+    if (f.REVE_ID_NO.value==""){
+        alert('身份証字號不可空白!');
+        document.IP0801000.REVE_ID_NO.focus();
+        return;
+    }else if (f.REVE_ACCT_NO.value==""){
+        alert('銀行帳號不可空白!');
+        document.IP0801000.REVE_ACCT_NO.focus();
+        return;
+    }else if (f.PWD.value==""){
+        alert('電子金融密碼不可空白!');        
+        return;
+    }else if(!chkSID(sid)){    	   
+        return;
+    }else{       	  
+       f.REVE_ID_NO.value = sid.toUpperCase();
+       document.IP0801000.button1.disabled = true;
+       document.IP0801000.reset.disabled = true;
+       document.IP0801000.submit();
+   }
+ } 
+//-->
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" background="graph/bg01.gif" onLoad="" leftmargin="0" topmargin="0" onfocus="onTop();">
+<form name="IP0801000" method="POST" action="LoadAP">
+	<!--
+	<div >
+		<img src="graph/information02.gif" width="630" align="center">
+	</div>
+	-->
+　<b>首次登入</b>
+<table width="97%" border="0" cellpadding="3">
+  <tr> 
+    <td colspan="5" valign="bottom">
+      <table width="518" border="0" cellpadding="5" align="center">
+        <tr> 
+          <td width="191"> 
+            <div align="right">身分證字號：</div>
+          </td>
+          <td width="301">
+            <input type="text" name="REVE_ID_NO" value="" maxlength="11">
+          </td>
+          <td rowspan="2"><a href="#"><img src="graph/Learning_icon.gif" width="96" height="49" border="0" align="right" onClick="window.open('https://www.ubot.com.tw/UBOT2005/Learning/data/ubot120.asp','第一次啟動個人網路銀行','width=650,height=500')"></a></td>
+        </tr>
+        <tr> 
+          <td width="191" height="2"> 
+            <div align="right">聯邦銀行帳號( 任一組)：</div>
+          </td>
+          <td width="301" height="2"> 
+            <input type="text" name="REVE_ACCT_NO" value="" maxlength="12" onKeypress="KeyPressChk1()" onpaste="return false;" style="ime-mode:disabled">
+          </td>
+        </tr>
+        <tr> 
+          <td width="191"> 
+            <div align="right">語音密碼：</div>
+          </td>
+          <td width="301"> 
+            <input type="password" name="PWD" size="8" onclick="getKeyBoard2('IP0801000','PWD',' REVE_PWD','[[%%SEND-KB-KEYCODE%%]]','[[%%SEND-KB-KEYLETTER%%]]');onTop();" readonly>
+             </td>
+             
+        </tr>
+        
+      </table>
+   
+     
+      <div align="right">
+      	
+      	<a href="https://www.ubot.com.tw/f/graph/電子銀行服務申請(註銷)約定書.pdf" target="_blank" ><img src="graph/information03.gif"  border="0"  ></a>
+      	<div>
+      
+      <div align="center">
+        <input type="button" name="button1" value="確定" onclick="javascript:checkData();">
+        <input type="reset" name="reset" value="取消">
+      </div>
+     
+    </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="5" valign="bottom" height="1"></td>
+  </tr>
+  <input type="hidden" name="pageid" value="IP0801001">
+  <input type="hidden" name="REVE_PWD" value="">  
+</table>
+<br>
+      <div align="center">
+		<img src="graph/information02.gif"  align="center">
+	</div>
+ 
+</form>
+</body>
+</html>

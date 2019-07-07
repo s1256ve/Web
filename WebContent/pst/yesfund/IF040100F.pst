@@ -1,0 +1,556 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<style type="text/css">
+<!--
+.style3 {
+	font-size: 11pt;
+	line-height: 15pt;
+}
+-->
+</style>
+<script language="JavaScript">
+function selBranch03(branch03){
+	  var aryBranch = branch03.split("@");
+	  document.IF040100F.REVE_BR_CODE3.value = aryBranch[0];
+	  document.IF040100F.REVE_BR_NAME3.value = aryBranch[1];
+}
+
+function chkBank03(){
+    var bankCode = document.IF040100F.REVE_BANK_CODE3.value;
+    var bankName = document.IF040100F.REVE_BANK_NAME3.value;
+    var brCode = document.IF040100F.REVE_BR_CODE3.value;
+    var brName = document.IF040100F.REVE_BR_NAME3.value;  
+    var acct =  document.IF040100F.REVE_ACCT_NO3.value;
+    
+		if ((bankCode=="" || brCode=="" || acct=="")){
+			alert("請輸入 " + bankName + " 的分行及帳號" );
+			return false;		
+		}else{			
+	  	return true;
+		}	
+}
+
+function KeyPressChk1(){
+	var iKeyCode = window.event.keyCode
+	if (!(iKeyCode >= 48 && iKeyCode <=57)){
+		window.event.keyCode = 0;
+	}
+}
+
+function goPrint(){
+		if (chkBank03()){
+			print();
+			document.IF040100F.button2.disabled = false;
+	}  
+}
+
+function goNextStep(){
+	if (chkBank03()){
+			document.IF040100F.pageid.value="IF0401112";
+	  	document.IF040100F.submit();
+	}  	
+
+}
+
+function goBack(){
+		document.IF040100F.pageid.value="IF040100C";
+		document.IF040100F.submit();
+}
+
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="JavaScript" SRC="script/Fund01.js"></script>
+</head>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body {font-size: 9pt;color: #000000;line-height:12pt;margin-left:0px;} form {font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } 
+.page {page-break-before: always;}	
+.style1 {color: #0000FF}
+.style2 {color: #FF0000}
+	-->
+</style>
+<body bgcolor="#FFFFFF" onLoad="  " topmargin="0">
+<form method="post" action="LoadAP" name="IF040100F">
+<table width="640"  border="0" align="center">
+  <tr>
+    <td><p class="style3">請列印並填寫「聯邦銀行電子銀行服務申請 ( 註銷 ) 約定書」後，郵寄至</p>
+        <table width="100%"  border="0">
+          <tr>
+            <td width="13%" class="style3">分　　行：</td>
+            <td width="87%" class="style3">&nbsp;聯邦銀行&nbsp;[[%%REVE-BR-NAME%%]]              
+            </td>
+          </tr>
+          <tr>
+            <td class="style3">地　　址：</td>
+            <td class="style3">
+             [[%%SEND-BR-ADDR%%]]
+            </td>
+          </tr>
+          <tr>
+            <td class="style3">電　　話：</td>
+            <td class="style3">&nbsp;[[%%SEND-BR-TEL%%]]
+            </td>
+          </tr>
+        </table>
+        <p class="style3">辦理，
+  
+
+   或攜帶您填妥後之約定書及身分證與第二身分證明文件 ( 健保卡或駕照 ) 及基金印鑑章，至往來分行辦理，造成您的不便，尚祈見諒！ </p>        
+        <span class="style3">註：</span>
+    <table width="100%" border="0" cellspacing="0">
+      <tr>
+        <td valign="top" class="style3">1. </td>
+        <td class="style3">名詞定義：「個人網路銀行基金贖回約定轉入帳戶」係指客戶與本行以書面約定於個人網路銀行執行基金贖回交易時，限定轉入其本人設於本行或其他金融機構之存款帳戶，外幣信託僅限存入本行外匯存款帳戶。</td>
+      </tr>
+      <tr>
+        <td valign="top" class="style3">2.</td>
+        <td class="style3">約定贖回轉入帳戶，限本人之帳戶，台、外幣帳戶各以3戶為限。 </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<br><p class="page">
+<table width="640" border="1" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="699" colspan="3" bordercolor="#FFFFFF">      <div align="center"> <b><font color="#CC0000">＊＊<strong>聯邦銀行電子銀行服務申請（註銷）約定書</strong>＊＊</font></b> <br>
+          <table width="640" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="698" valign="top"><div align="right"><span class="style1">供申請基金網路服務使用</span><br>
+                <br>
+                立約定書人
+                    <input name="AName" type="text" value="[[%%SEND-CNAME%%]]" ReadOnly>
+                    ( 以下簡稱立約人 ) 茲向　聯邦商業銀行 ( 以下簡稱貴行 )
+                      <input type="checkbox" name="checkbox" value="checkbox" checked>
+                申請
+                <input type="checkbox" name="checkbox2" value="checkbox">
+                註銷本約定書內所選定之電子服務通路使用　貴行提供之金融服務（以下簡稱本服務），並同意及遵守下列各項約定：
+                  </div>
+                <table width="100%"  border="0" cellpadding="0">
+                    <tr>
+                      <td width="11%"><strong>第一條</strong></td>
+                      <td width="89%"><strong>契約之適用範圍</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">一、</td>
+                      <td>本契約係電子銀行服務之一般性共通約定，除依個別業務契約另有約定，從其約定外，悉依本契約之約定。</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">二、</td>
+                      <td>個別契約不得牴觸本契約。但個別契約對立約人之保護更有利者，從其約定。 </td>
+                    </tr>
+                    <tr>
+                      <td><strong>第二條</strong></td>
+                      <td><strong>名詞定義</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">一、</td>
+                      <td><strong>「電子銀行服務」 </strong>：指貴行藉由網際網路建構之電子服務通路，即個人網路銀行。</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">二、</td>
+                      <td><strong>「個人網路銀行」 </strong>：「網路銀行」係指立約人利用客戶端電腦經由網際網路與貴行資訊系統連線，取得貴行提供之金融服務。「個人網路銀行」係指貴行提供個人戶申請與使用之網路銀行服務。 </td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">三、</td>
+                      <td><strong>「電子訊息」 </strong>：指貴行或立約人經由各種電子服務通路互相連線傳遞之訊息。 </td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">四、</td>
+                      <td><strong>「使用者代號與網路密碼」 </strong>：立約人使用個人網路銀行各項金融服務，必須依系統要求輸入明碼之使用者代號或暗碼之網路密碼或同時輸入以上兩項資料，以供身分辨識與交易授權之用。 </td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">五、</td>
+                      <td><strong>「個人網路銀行基金贖回約定轉入帳戶」：</strong>指立約人與貴行以書面約定於個人網路銀行執行基金贖回交易時，限定轉入本人設於貴行或其他金融機構之存款帳戶，外幣信託僅限存入　貴行外匯存款帳戶。</td>
+                    </tr>
+                    <tr>
+                      <td><strong>第三條</strong></td>
+                      <td><strong>線上交易身分確認 </strong></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>立約人充分了解並同意以下列方式，作為立約人與貴行所有往來帳戶進行電子銀行服務時身分識別及交易授權依據：</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">一、</td>
+                      <td>立約人第一次使用個人網路銀行前，於網頁上設定使用者代號與網路密碼後，憑設定完成之使用者代號與網路密碼登入使用個人網路銀行服務。 </td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">二、</td>
+                      <td>設定完成且有效的使用者代號、網路密碼等二項資料，可由貴行依各種電子銀行服務規劃需要，選擇任一項或多項交叉使用作為提供服務之身分驗證機制。 </td>
+                    </tr>
+                    <tr>
+                      <td><strong>第四條</strong></td>
+                      <td><strong>電子訊息之接收與回應 </strong></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>立約人或貴行接收他方任何電子訊息，若無法辨識其內容時，視為自始未傳送。但可確定立約人身分時，貴行應將內容無法辨識之事實通知立約人。</td>
+                    </tr>
+                    <tr>
+                      <td><strong>第五條</strong></td>
+                      <td><strong>電子訊息之不執行</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">一、</td>
+                      <td>如有下列情形之一，貴行將不執行任何接收之電子訊息：</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">1.</td>
+                      <td>有相當理由懷疑電子訊息之真實性或所指定事項之正確性者。 </td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">2.</td>
+                      <td>貴行依據電子訊息處理，將違反相關法律、命令之規定者。 </td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">3.</td>
+                      <td>貴行無法於帳戶扣取立約人所應支付之費用者。</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">4.</td>
+                      <td>立約人有第十九條第二項所述情形之一者。</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">二、</td>
+                      <td>貴行不執行前項電子訊息者，應同時將不執行之結果通知立約人。立約人接獲通知後得以電話向貴行確認。 </td>
+                    </tr>
+                    <tr>
+                      <td><strong>第六條</strong></td>
+                      <td><strong>電子訊息交換作業時限</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">一、</td>
+                      <td>立約人使用貴行電子銀行服務時，經發出電子訊息傳送至貴行後即不得撤回、撤銷或修改。 </td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">二、</td>
+                      <td>各種電子銀行服務項目係依服務內容之不同分別訂定服務時間。立約人如逾當日交易服務時間始傳輸之各種帳務性交易者，視為逾時交易，該筆交易將依該服務項目之規劃決定處理方式，例如不予處理，或自動改於次一營業日處理。帳務性交易是否係逾時交易，以貴行電子銀行服務系統接獲檔案資料之時間為準，並以電子訊息回覆通知立約人判斷結果。立約人如逾時為帳務性交易致發生損失，概由立約人自行負責。貴行得依系統維護需求或其他因素暫停本項服務，立約人絕無異議。 </td>
+                    </tr>
+                    <tr>
+                      <td><strong>第七條</strong></td>
+                      <td><strong>費用</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">一、</td>
+                      <td>立約人願依貴行規定收費標準繳納服務費及其他費用。收費標準如有調整，立約人同意貴行得於調整日三十日前公告其內容，立約人於該期間內終止契約，逾期未終止者，視為同意調整後之收費標準。</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">二、</td>
+                      <td>立約人應付貴行之所有費用，均不包括任何稅捐。若有稅捐，立約人應另行支付之。</td>
+                    </tr>
+                    <tr>
+                      <td><strong>第八條</strong></td>
+                      <td><strong>立約人連線準備及其責任</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">一、</td>
+                      <td>立約人申請使用本契約之電子銀行服務項目，應自行備妥服務所需之軟體、硬體，以及其他與安全相關之設備，並自行備妥通訊網路連線所需服務。上述作業所需之費用及風險，由立約人自行負擔。貴行與立約人有特別約定者，必須與貴行為必要之測試後，始得連線。</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">二、</td>
+                      <td>立約人對使用本服務所需之軟硬體及相關文件，應負保管之責。</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">三、</td>
+                      <td>第一項軟硬體設備及相關文件如係由銀行所提供，銀行僅同意客戶於約定服務之範圍內使用，不得將之轉讓、轉借或以任何方式交付第三人。 倘因立約人之行為致侵害貴行或第三人之智慧財產權或其他權利，或因不當之操作使用致生損害時，應自負其責任。立約人如因電腦操作需要而安裝其他軟硬體，有與貴行所提供之軟硬體設備併用之必要者，應自行負擔其費用及風險。<p class="page"></td>
+                    </tr>
+                    <tr>
+                      <td><strong>第九條</strong></td>
+                      <td><strong>電子訊息錯誤之處理</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">&nbsp;</td>
+                      <td>電子訊息因不可歸責於貴行之事由而發生錯誤時，貴行不負更正責任，惟貴行同意提供必要之協助。但因可歸責於貴行之事由而發生錯誤時，貴行應負責更正。 </td>
+                    </tr>
+                    <tr>
+                      <td><strong>第十條</strong></td>
+                      <td><strong>授權及防範</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">一、</td>
+                      <td>立約人及貴行同意確保所傳送至對方之電子訊息均經合法授權。 </td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">二、</td>
+                      <td>立約人及貴行同意於發現有第三人冒用或盜用使用者代號、網路密碼或其他身分認證授權資訊，或發生其他任何未經合法授權之情形，應立即以電話或書面通知他方停止使用該服務並採取防範之措施。貴行接受通知前，對第三人使用該服務已發生之效力，除非貴行故意或重大過失而不知係未經合法授權之電子訊息，貴行不負責任。 </td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">三、</td>
+                      <td>為控管交易風險，貴行得依各種電子服務通路或交易類別，訂定單筆交易金額上限與總額交易上限相關規範，立約人同意配合相關服務規範之限制。 </td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">四、</td>
+                      <td>&nbsp; 立約人對於<strong>“使用者代號”</strong>、<strong>“網路密碼”</strong>等身分確認與授權資訊負保密義務，如有違反而遭致損失，立約人願負一切責任。 貴行資訊系統僅負責核對前列各項交易授權資料是否相符，其餘事項不負審查之責任，倘遭第三人冒用或盜用前列身分認證與授權資料或為不法情事，其結果應由立約人自行全部負責。 </td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">五、</td>
+                      <td>倘立約人連續輸入網路密碼錯誤達四次，貴行將自動停止立約人利用網路密碼使用個人網路銀行服務。立約人隨時可透過網頁列印本申請約定書並簽蓋原留印鑑後，寄回貴行信託部，經該部重新設定即可再使用網路銀行服務。 </td>
+                    </tr>
+                    <tr>
+                      <td><strong>第十一條</strong></td>
+                      <td><strong>業務規範 </strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">&nbsp;</td>
+                      <td>立約人利用電子銀行服務從事各種業務往來，如無特別約定，需依循各種業務相關規範。 </td>
+                    </tr>
+                    <tr>
+                      <td><strong>第十二條</strong></td>
+                      <td><strong>資料安全</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">一、</td>
+                      <td> 立約人與貴行應確保電子訊息安全，防止非法進入系統、竊取、竄改或毀損業務記錄及資料。</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">二、</td>
+                      <td>立約人同意並接受貴行採用但不限於以下方式確保各種電子服務通路提供電子銀行服務之資料安全：</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">1.</td>
+                      <td>個人網路銀行利用 128bit SSL( Secure Socket layer) 通訊協定提供立約人與貴行間各種資料傳輸之隱密性與安全性。</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">2.</td>
+                      <td>其他經主管機關核可之資料加密保護機制。</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">3.</td>
+                      <td>立約人同意以前述安全機制完成傳送之電子訊息均為有效，立約人不得主張或抗辨該電子訊息不完整、錯誤、有瑕疵、無效或不成立。 </td>
+                    </tr>
+                    <tr>
+                      <td><strong>第十三條</strong></td>
+                      <td><strong>通路服務</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">&nbsp;</td>
+                      <td>立約人同意電子服務通路提供的服務項目與使用規範，由貴行依電子服務通路與服務特性規劃調整，並透過“使用手冊”、“公告”等方式通知相關說明。 </td>
+                    </tr>
+                    <tr>
+                      <td><strong>第十四條</strong></td>
+                      <td><strong>保密義務</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">&nbsp;</td>
+                      <td>立約人與貴行均應確保所交換之電子訊息或一方因使用或執行本契約服務而取得他方之資料，不洩漏予第三人，亦不可使用於與本契約無關之目的，且於經他方同意告知第三人時，應使第三人負本條之保密義務。</td>
+                    </tr>
+                    <tr>
+                      <td><strong>第十五條</strong></td>
+                      <td><strong>損害賠償責任 </strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">&nbsp;</td>
+                      <td>依本契約傳送或接收電子訊息，因可歸責於當事人一方之事由，致有遲延、遺漏或錯誤之情事，而致他方當事人受有損害時，該當事人僅就他方之積極損害（不包含所失利益）及其利息負賠償責任。 </td>
+                    </tr>
+                    <tr>
+                      <td><strong>第十六條</strong></td>
+                      <td><strong>不可抗力</strong></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td>立約人或貴行發生不可抗力情事時，對於本契約所生義務之不履行或遲延履行均不視為違約，亦無須負任何賠償責任。 </td>
+                    </tr>
+                    <tr>
+                      <td><strong>第十七條</strong></td>
+                      <td><strong>電子訊息之效力</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">一、</td>
+                      <td>立約人與貴行同意依本契約交換之電子訊息，其效力與書面文件相同，立約人與貴行就所生之任何糾紛，於審判、仲裁、調解或其他法定爭議處理程序中，均不得主張該電子訊息不具書面或簽名要件而歸於無效或不成立。</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">二、</td>
+                      <td>於前項之審判、仲裁、調解或其他法定爭議程序中，立約人與貴行同意相關之訊息以貴行保存之電子訊息紀錄證明之。</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">三、</td>
+                      <td>立約人利用本系統查詢所得到之利率、匯率、基金淨值等，僅為參考值，實際價格應以成交時貴行牌告或議定價格為準。</td>
+                    </tr>
+                    <tr>
+                      <td><strong>第十八條</strong></td>
+                      <td><strong>契約終止</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">一、</td>
+                      <td>立約人申請註銷本項業務終止本契約時，應親自或以書面親簽並加蓋原留印鑑委託代理人至貴行辦理。</td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">二、</td>
+                      <td>貴行欲終止本契約時，須於終止日三十日前以電子訊息或書面通知立約人。但立約人如有下列情事之一者，貴行得隨時以電子訊息或書面通知立約人終止本契約：<p class="page"></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">1.</td>
+                      <td> 立約人未經貴行同意，擅自將契約之權利或義務轉讓第三人者。 </td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">2.</td>
+                      <td>立約人違反本契約第十二條、第十四條、第十六條之規定者。 </td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">3.</td>
+                      <td> 立約人有第七條第一項所述情形之一者。 </td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">4.</td>
+                      <td>貴行無法於帳戶扣取立約人所應支付之費用者。 </td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">5.</td>
+                      <td>立約人違反本契約之其他約定，經催告改善或限期請求履行未果者。</td>
+                    </tr>
+                    <tr>
+                      <td><strong>第十九條</strong></td>
+                      <td><strong>契約修訂</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">&nbsp;</td>
+                      <td>貴行新增電子銀行服務之服務項目時，立約人授權貴行得依新增服務之特性規劃服務內容與提供方式，如新增服務項目影響立約人權益甚大，立約人應另以書面方式進行申請。 </td>
+                    </tr>
+                    <tr>
+                      <td><strong>第二十條</strong></td>
+                      <td><strong>法院管轄 </strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">&nbsp;</td>
+                      <td>因本契約而涉訟者，立約人與貴行同意以<strong>_____________</strong>地方法院為第一審管轄之法院。（如立約人空白未填，則以受理本約定書申請之貴行營業單位所在地的地方法院為有權管轄之法院。）</td>
+                    </tr>
+                    <tr>
+                      <td><strong>第二十一條</strong></td>
+                      <td><strong>標題</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">&nbsp;</td>
+                      <td>本契約各條標題，僅為查閱方便而設，不影響契約有關條款之解釋、說明及瞭解。</td>
+                    </tr>
+                    <tr>
+                      <td><strong>第二十二條</strong></td>
+                      <td> <strong>契約保存</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">一、</td>
+                      <td>本契約壹式貳份，由立約人與貴行各持乙份為憑。</td>
+                    </tr>
+                    <tr>
+                      <td height="66" align="right" valign="top">二、</td>
+                      <td>本合約書所列事項與各約定條款，立約人已經閱讀並確實明瞭，未來如有新增或刪減服務項目、調整計費、或分階段提供相關功能項目時，由貴行將前述資訊利用相關電子服務通路公告後，悉依　貴行或主管機關當時規定辦理，不另立書面約定。立約人並同意　貴行或　貴行關係企業得在經營經主管機關核定承辦之業務等特定目的下，搜集、電腦處理及利用個人資料。</td>
+                    </tr>
+                    <tr>
+                      <td><strong>第二十三條</strong></td>
+                      <td><strong> </strong><strong></strong><strong>約定事項</strong></td>
+                    </tr>
+                    <tr>
+                      <td align="right" valign="top">&nbsp;</td>
+                      <td><strong>個人網路銀行基金贖回約定轉入帳戶（限申請人本人帳戶，台、外幣帳戶各以3戶為限，外匯存款帳戶約定僅限  貴行帳戶;</strong>
+                      <span class="t1">請於申請 / 註銷欄位打ˇ，空白欄位請劃斜線予以註銷 </span><strong>） </strong>[AS/400 3-21] </td>
+                    </tr>
+                </table>
+ 									<table width="99%" border="1" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td width="16"><p align="center">申<br>請</p></td>
+                      <td width="18"><p align="center">註<br>銷</p></td>
+                      <td width="102"><p align="center">銀行名稱<br>及代號</p></td>
+                      <td width="88"><p align="center">分行名稱<br>及代號</p></td>
+                      <td><p align="center">轉&nbsp;&nbsp;&nbsp;入&nbsp;&nbsp;&nbsp;帳&nbsp;&nbsp;&nbsp;號<br></p></td>
+                      <td width="101" align="center"> 
+                        戶名<br>
+                          <span class="style2" >(限申請人帳戶)</span>
+                      </p></td>
+                      <td width="108" align="center"><p align="center">信託委託人印鑑<br><span class="style2">(申請人基金印鑑)</span></p></td>
+                      <td width="78" align="center"><p align="center">核章<br><span class="style2">(基金經辦)</span></p></td>
+                    </tr>
+                    <tr>
+                      <td width="16" height="0" valign="top"><p>&nbsp; </p></td>
+                      <td width="18" height="0" valign="top"><p>&nbsp; </p></td>
+                      <td width="102" height="30" valign="top">&nbsp;[[%%REVE-BANK-NAME1%%]]</td>
+                      <td width="88" height="0" valign="top">&nbsp;[[%%REVE-BR-NAME1%%]]</td>
+                      <td width="96" height="30" valign="top">&nbsp;[[%%REVE-ACCT-NO1%%]]</td>
+                      <td width="101" height="0" rowspan="3" valign="top"><p>&nbsp; </p>                        <p>&nbsp; </p>                        <p>&nbsp; </p></td>
+                      <td width="108" height="0" rowspan="3" valign="top"><p>&nbsp; </p>                        <p>&nbsp; </p>                        <p>&nbsp; </p></td>
+                      <td width="78" height="0" rowspan="3" valign="top"><p>&nbsp; </p>                        <p>&nbsp; </p>                        <p>&nbsp; </p></td>
+                    </tr>
+                    <tr>
+                      <td width="16" height="0" valign="top"><p>&nbsp; </p></td>
+                      <td width="18" height="0" valign="top"><p>&nbsp; </p></td>
+                      <td width="102" height="30" valign="top">&nbsp;[[%%REVE-BANK-NAME2%%]]</td>
+                      <td width="88" height="0" valign="top">&nbsp;[[%%REVE-BR-NAME2%%]]</td>
+                      <td width="96" height="0" valign="top">&nbsp;[[%%REVE-ACCT-NO2%%]]</td>
+                      </tr>
+                    <tr>
+                      <td width="16" height="0" valign="top"><p>&nbsp; </p></td>
+                      <td width="18" height="0" valign="top"><p>&nbsp; </p></td>
+                      <td width="102" height="30" valign="top">&nbsp;[[%%REVE-BANK-NAME3%%]]</td>
+                      <td width="88" height="0" valign="top"><select name="branch03" onChange="selBranch03(this.value);"><option selected>請選擇分行名稱</option>
+                      	<!--[[%%LOOP_SEC SEND-BID%%]]-->
+                      	  <option value="[[%%SEND-BID%%]]@[[%%SEND-BR-NAME%%]]">[[%%SEND-BR-NAME%%]]</option>
+                        <!--[[%%ELOOP_SEC%%]]-->	
+                      </select></td>
+                      <td width="96" height="0" valign="top"><input type="text" name="REVE_ACCT_NO3" size="16" maxlength="16" onKeypress="KeyPressChk1()" onpaste="return false;" style="ime-mode:disabled">  </td>
+                      </tr>
+                </table>
+                <div align="center"><br>
+                其餘未盡事宜，悉依　貴行綜合約定書之「特定金錢信託資金信託約定事項」辦理。</div>                <br>
+                 此　致 <br>
+              <strong>聯邦商業銀行</strong>                <table width="80%"  border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td><p>以上約定書內容業經立約人於合理期間內詳細審閱全部條款之內容無誤<strong> <br>
+                      立約人：</strong></p>
+                          <p><strong>　　　　___________________________________<span class="t1">（親簽並加蓋信託帳戶原留印鑑）</span></strong></p>
+                          <p class="t1"><strong>【注意事項：本申請約定書各頁請用原留印鑑加蓋騎縫章】 </strong></p>
+                          <p>身份證字號 / 統一編號：<strong>___</strong> <strong>___</strong> <strong>___</strong> <strong>___</strong> <strong>___</strong> <strong>___</strong> <strong>___</strong> <strong>___</strong> <strong>___ ___</strong></p>
+                          <p>電子郵件信箱： <strong>___</strong><strong>___</strong><strong>___</strong><strong>___</strong><strong>___</strong><strong>___</strong><strong>___</strong><strong>___</strong><strong>___</strong><strong>___</strong><strong>___</strong><strong>___</strong><strong>___</strong></p>
+                          <p>行動電話號碼：<strong>___ ___ ___ ___ -___ ___ ___ ___ ___ ___</strong></p>
+                          </td>
+                    </tr>
+                </table>
+                  <p>中　　華　　民　　國　<strong>_______　</strong>年　<strong>_______</strong>　月　<strong>_______</strong>　日 </p>
+                <p><br>
+                   　　　 覆核：<strong>____________________</strong>　 　經辦：<strong>____________________</strong>　 　驗印：<strong>____________________</strong></p></td>
+            </tr>
+        </table>
+      </div>
+      <div align="center">    </div></td>
+  </tr>
+</table><div align="center">
+<table width="640" border="0" align="center" cellpadding="3" cellspacing="3">
+<tr heigth="30"><td align="right" width="33%">
+   <input type="button" name="button1" onClick="goPrint();" value="列印申請書">
+</td>
+<td align="center" width="33%">
+	<input type="button" name="button2" onClick="goNextStep();" value="繼續基金贖回程序" disabled>
+</td>
+<td id="nextStep" width="33%">&nbsp;  
+   <input type="button" name="button3" onClick="goBack();" value="重填申請書">
+ </td>
+ </tr>
+ </table>
+ </div>
+<input type="hidden" name="pageid" value="IF0401112">
+<input type="hidden" name="REVE_BANK_CODE1" value="[[%%REVE-BANK-CODE1%%]]">
+<input type="hidden" name="REVE_BANK_NAME1" value="[[%%REVE-BANK-NAME1%%]]">
+<input type="hidden" name="REVE_BR_CODE1" value="[[%%REVE-BR-CODE1%%]]">
+<input type="hidden" name="REVE_BR_NAME1" value="[[%%REVE-BR-NAME1%%]]">
+<input type="hidden" name="REVE_ACCT_NO1" value="[[%%REVE-ACCT-NO1%%]]">
+<input type="hidden" name="REVE_BANK_CODE2" value="[[%%REVE-BANK-CODE2%%]]">
+<input type="hidden" name="REVE_BANK_NAME2" value="[[%%REVE-BANK-NAME2%%]]">
+<input type="hidden" name="REVE_BR_CODE2" value="[[%%REVE-BR-CODE2%%]]">
+<input type="hidden" name="REVE_BR_NAME2" value="[[%%REVE-BR-NAME2%%]]">
+<input type="hidden" name="REVE_ACCT_NO2" value="[[%%REVE-ACCT-NO2%%]]">
+<input type="hidden" name="REVE_BANK_CODE3" value="[[%%REVE-BANK-CODE3%%]]">
+<input type="hidden" name="REVE_BANK_NAME3" value="[[%%REVE-BANK-NAME3%%]]">
+<input type="hidden" name="REVE_BR_CODE3" value="">
+<input type="hidden" name="REVE_BR_NAME3" value="">
+<input type="hidden" name="REVE_CNAME" value="[[%%SEND-CNAME%%]]">
+<input type="hidden" name="REVE_BR_NAME" value="[[%%REVE-BR-NAME%%]]">
+<input type="hidden" name="REVE_BR_ADDR" value="[[%%SEND-BR-ADDR%%]]">
+<input type="hidden" name="REVE_BR_TEL" value="[[%%SEND-BR-TEL%%]]">
+</form>
+</body>
+</html>

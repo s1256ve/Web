@@ -1,0 +1,47 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<style type="text/css">
+<!--
+.style3 {
+	font-size: 11pt;
+	line-height: 15pt;
+}
+-->
+</style>
+<script language="JavaScript">
+
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="JavaScript" SRC="script/Fund01.js"></script>
+</head>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid #000000; background-color : #FFFFFF; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body {font-size: 9pt;color: #000000;line-height:12pt;margin-left:0px;} form {font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } 
+.page {page-break-before: always;}	
+.style1 {color: #0000FF}
+.style2 {color: #FF0000}
+	-->
+</style>
+<body bgcolor="#FFFFFF" onLoad="  " topmargin="0">
+<form method="post" action="LoadAP" name="IF040101C">
+<input type="hidden" name="pageid" value="IF040101D">
+<input type="hidden" name="REVE_BANK_CODE1" value="803">
+<input type="hidden" name="REVE_BANK_NAME1" value="聯邦銀行">
+<input type="hidden" name="REVE_CNAME" value="[[%%SEND-CNAME%%]]">
+<input type="hidden" name="REVE_BR_NAME" value="[[%%SEND-BR-NAME%%]]">
+<input type="hidden" name="REVE_BR_ADDR" value="[[%%SEND-BR-ADDR%%]]">
+<input type="hidden" name="REVE_BR_TEL" value="[[%%SEND-BR-TEL%%]]">
+</form>
+<script>
+		document.IF040101C.submit();
+</script>
+</body>
+</html>

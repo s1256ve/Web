@@ -1,0 +1,280 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>外匯帳戶查詢</title>
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------
+*EAI99063           2010.10.18     David
+*EAI100036          2011.07.01     Joe  
+*EAI100043          2011.07.14     David  
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+<script>
+var kbWin = null;
+function getKeyBoard()
+{
+ var Mytype="width=450,height=250,scrollbars=auto,center=yes,border=thin,help=no,status=no";
+ var PWD = "window.opener.document.IP0405100.PWD.value";  //show在畫面上的密碼個數
+ var KBPWD = "window.opener.document.IP0405100.REVE_PWD.value";  //User真正key的密碼
+       kbWin = window.open( "LoadAP?pageid=IP2001000&PWD="+PWD+"&KBPWD="+KBPWD+"&REVE_KB_KEYCODE="+document.IP0405100.REVE_KB_KEYCODE.value+"&REVE_KB_KEYLETTER="+document.IP0405100.REVE_KB_KEYLETTER.value,"newWindow",Mytype);
+}
+function onTop() {
+  	if (kbWin==null) return;
+  	if (kbWin != null && (!kbWin.closed)){
+  		kbWin.focus();	
+  	}
+}
+
+
+function chkSubmit(){
+	if (document.IP0405100.REVE_PWD.value == ""){
+	  alert("請輸入網路密碼");
+	  return;
+  }
+	document.IP0405100.Submit.disabled = true;
+	document.IP0405100.Submit2.disabled = true;
+	document.IP0405100.pageid.value = "IP0405101";
+	document.IP0405100.submit();
+}
+
+function chkSubmit2(){
+	document.IP0405100.Submit.disabled = true;
+	document.IP0405100.Submit2.disabled = true;
+	document.IP0405100.pageid.value = "IP0405000";
+	document.IP0405100.submit();
+}
+
+ function chkPerType(tmp){
+    	var intpay = tmp;
+    	if(intpay=="001M"){
+    		return "1個月";
+    	}
+    	else if(intpay=="003M"){
+    		return "3個月";
+    	}
+    	else if(intpay=="006M"){
+    		return "6個月";
+    	}
+    	else if(intpay=="009M"){
+    		return "9個月";
+    	}
+    	else if(intpay=="012M"){
+    		return "12個月";
+    	}
+    	else{
+    		return "無期限";
+    	}
+    }
+</script>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onfocus="onTop();" onLoad="" background="../graph/bg.gif" leftmargin="0" topmargin="0">
+
+  <br>
+<b>外匯存款帳戶查詢&gt;</b><b><font color="#003399"><font color="#0066FF">外匯綜存存單續存設定或中途解約
+	
+	<br>
+	<div align="right">	
+		<script>
+		document.write("資料時間:"+getRCDateStr("[[%%SYSDATE%%]]",0)+ " " +getRCTimeStr("[[%%SYSTIME%%]]",0));
+		if([[%%SYSTIME%%]]>160000)
+		alert("目前已逾營業時間16:00，若於營業日16:00後或非營業日執行外匯綜存定存解約交易，將於次一營業日凌晨執行解約並將本金及利息存入外匯綜存活期帳戶(解約利息計算至次一營業日)。");
+		</script>
+	</div>
+	</font></font></b><br>
+<br>
+<form name="IP0405100" method="POST" action="LoadAP">
+<table width="630" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td><table width="500" border="1" bordercolor="#999999" align="center">
+    	<tr> 
+          <td width="78" height="25" bgcolor="#C4CBB8">解約日期<br></td>
+          <td width="406">	
+          	<script>
+        			document.write(getRCDateStr("[[%%SYSDATE%%]]",3));
+        	</script>
+        	</td>
+        </tr>
+        <tr> 
+          <td width="78" height="25" bgcolor="#C4CBB8">定存存單號碼<br></td>
+          <td width="406">[[%%REVE_VCHR_NO%%]]</td>
+        </tr>
+        <tr> 
+          <td width="78" height="25" bgcolor="#C4CBB8">續存期間<br></td>
+          <td>
+           <script language="JavaScript">
+             document.write(chkPerType("[[%%SEND_PERIOD%%]]", 0));
+           </script>
+          </td>
+        </tr>
+        <tr> 
+          <td width="78" height="25" valign="top" bgcolor="#C4CBB8">存單金額</td>
+          <td width="406">[[%%SEND_CURRENCY%%]]&nbsp; 
+          <script language="JavaScript">
+                			//document.write(moneyFormat2(trimSpStr1("[[%%SEND_AMT%%]]")));
+                			//document.write(moneyAddDot("[[%%SEND_AMT%%]]"));
+                			document.write(moneyAddDot3("[[%%SEND_AMT%%]]"));
+				  </script>
+				  元<br>
+          </td>
+        </tr>
+        <tr>
+          <td height="25" valign="top" bgcolor="#C4CBB8">原存單起息日<br></td>
+          <td><span class="style1">
+          <script language="javascript">
+						document.write(getRCDateStr("[[%%SEND_INT_DATE%%]]", 3));
+          </script>
+          </span></td>
+        </tr>
+        <tr>
+          <td height="25" valign="top" bgcolor="#C4CBB8">原存單到期日<br></td>
+          <td><span class="style1">
+          <script language="javascript">
+						document.write(getRCDateStr("[[%%SEND_EXP_DATE%%]]", 3));
+          </script>
+          </span></td>
+        </tr>
+        <tr>
+          <td height="25" valign="top" bgcolor="#C4CBB8">利　　率<br></td>
+          <td>固定利率 
+          <script language="JavaScript">
+              document.write(eval([[%%SEND_INT_RATE%%]]));
+          </script>
+          %
+          </td>
+        </tr>
+        <tr>
+          <td height="25" valign="top" bgcolor="#C4CBB8">網路密碼</td>
+          <td>
+          <input type="password" name="PWD" size="8" onclick="getKeyBoard();onTop();" readonly>
+          <input type="hidden" name="REVE_PWD" value="">
+          &nbsp;
+          </td>
+        </tr>
+      </table>
+   <table width="100%" border="0">
+		  <tr>
+		    <td>註：<br>
+		    1.外匯綜存定存中途解約之利息計算方式，其計息期間及利率依其期別以存入當日本行牌告利率為準，按下<br>&nbsp;&nbsp;&nbsp;列方式計算：</td>
+		  </tr>
+		</table>
+		<table width="100%" border="0">
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td>a.未存滿一個月者，按實際天數，照外匯活期存款利率八折計息。</td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td>b.存滿一個月未滿三個月者，按其實存期間，照一個月期存款利率八折計息。</td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td>c.存滿三個月未滿六個月者，按其實存期間，照三個月期存款利率八折計息。</td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td>d.存滿六個月未滿九個月者，按其實存期間，照六個月期存款利率八折計息。</td>
+		  </tr>
+		  <tr>
+		    <td></td>
+		    <td></td>
+		    <td>e.存滿九個月未滿一年者，按其實存期間，照九個月期存款利率八折計息。</td>
+		  </tr>
+		  
+		</table>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0">
+        <tr>
+          <td>
+            2.中華民國境內居住之個人存戶，應於給付利息時扣取百分之十稅額；惟每次應扣繳稅額未超過新台幣二千元<br>&nbsp;&nbsp;&nbsp;者，免予扣繳；如非中華民國境內居住之個人存戶應於給付利息時扣取百分之二十稅額。
+          </td>
+        </tr>
+      </table>
+	<!--  
+      <table width="100%" border="0">
+        <tr>
+        	<td>
+        		3.因應102年1月1日二代健保補充保險費扣繳辦法上線，其利息補充保險費扣繳相關作業如下：
+        	</td>
+        </tr>
+      </table>
+      <table width="100%" border="0">
+        <tr>
+          <td></td>
+          <td></td>
+          <td>a.單次(筆)給付利息金額為新台幣5,000(含)~19,999元，於次年度由健保局開立繳款書向義務人收取。</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td>b.單次(筆) 給付利息金額為新台幣20,000元(含)以上，由本行給付利息時，即先代扣2%補充保險費。</td>
+        </tr>
+      </table>
+	-->
+	 
+      <table width="100%" border="0">
+        <tr>
+          <td>
+            3.若單次(筆)給付利息金額為新臺幣2萬元以上~1千萬元(含)以下(當金額超過1千萬元，以1千萬元計算)，由本<br>&nbsp;&nbsp;&nbsp;行給付利息時，即先代扣1.91%之補充保險費。
+          </td>
+        </tr>
+      </table>	
+      <table width="100%" border="0">
+		  <tr>
+		    <td>4.本交易如在營業日下午4點以前執行，定存單解約後之本金及利息將計算至當日並轉入外匯綜存活期帳戶。</td>
+		  </tr>
+		  </table>
+		  <table width="100%" border="0">
+		  <tr>
+		    <td>5.本交易如逾營業日下午4點後或非營業日執行，則於次一營業日凌晨將定存單解約後，再將本金及利息轉入<br>&nbsp;&nbsp;&nbsp;外匯綜存活期帳戶(解約利息計算至次一營業日)。</td>
+		  </tr>
+		  </table>
+		  </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+      <table width="630" border="0" cellpadding="0" cellspacing="0" align="left">
+        <tr> 
+          <td colspan="2"> 
+            <div align="center">　 
+              <input type="button" name="Submit" value="確定" onClick="chkSubmit();">
+              <input type="button" name="Submit2" value="取消" onClick="chkSubmit2();">
+            </div>
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<input type="hidden" name="pageid" value="IP0405101">
+<input type="hidden" name="REVE_VCHR_NO" value=[[%%REVE_VCHR_NO%%]]>
+<input type="hidden" name="SEND_PERIOD" value=[[%%SEND_PERIOD%%]]>
+<input type="hidden" name="REVE_ACCT_NO" value="[[%%REVE_ACCT_NO%%]]">
+<input type="hidden" name="SEND_INT_DATE" value=[[%%SEND_INT_DATE%%]]>
+<input type="hidden" name="SEND_EXP_DATE" value=[[%%SEND_EXP_DATE%%]]>
+<input type="hidden" name="SEND_CURRENCY" value=[[%%SEND_CURRENCY%%]]>
+<input type="hidden" name="SEND_AMT" value=[[%%SEND_AMT%%]]>
+<input type="hidden" name="SEND_INT_RATE" value=[[%%SEND_INT_RATE%%]]>
+<input type="hidden" name="SEND_PLEDGE" value=[[%%SEND_PLEDGE%%]]>
+<input type="hidden" name="SEND_CONTINUE" value=[[%%SEND_CONTINUE%%]]>
+<input type="hidden" name="REVE_KB_KEYCODE" value="[[%%SEND-KB-KEYCODE%%]]">
+<input type="hidden" name="REVE_KB_KEYLETTER" value="[[%%SEND-KB-KEYLETTER%%]]">
+<input type="hidden" name="SEND-BR-NAME" value="[[%%SEND-BR-NAME%%]]">
+<input type="hidden" name="SEND-BUSINESS-DAY" value="[[%%SEND-BUSINESS-DAY%%]]">
+</form>
+</body>
+</html>

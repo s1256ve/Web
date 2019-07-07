@@ -1,0 +1,223 @@
+<html>
+<head>
+<title>約定書</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript">
+
+	var nowDate=new Date();
+	var nowYear=nowDate.getFullYear()-1911;
+	var nowMonth=""+(nowDate.getMonth()+1);
+	if(nowMonth.length!=2){
+		nowMonth = "0" + nowMonth;
+	}
+	var nowDay=""+nowDate.getDate();
+	if(nowDay.length!=2){
+		nowDay = "0" + nowDay;
+	}
+	var nowHour=nowDate.getHours()+"";
+	var nowMin=nowDate.getMinutes()+"";
+	var nowSec=nowDate.getSeconds()+"";
+
+	if(nowHour.length<2){
+		nowHour = "0" + nowHour;
+	}
+	if(nowMin.length<2){
+		nowMin = "0" + nowMin;
+	}
+	if(nowSec.length<2){
+		nowSec = "0" + nowSec;
+	}
+	//約定書到期年月日
+	var regDate = '[[%%REVE-REG-DATE%%]]';
+	var regYY = regDate.substr(0,3);
+	var getMM = regDate.substr(3,2);
+	var getDD = regDate.substr(5,2);
+	function getRegYY(){
+		return regYY;
+	}
+	
+	function getRegMM(){
+		return getMM;
+	}
+	
+	function getRegDD(){
+		return getDD;
+	}
+	
+	function getSID(sid){
+		var sid = sid.substring(0,10);
+		return sid;	
+	}
+	
+	function getDateInfo(type){
+		if (type=="0") return nowDate;
+		if (type=="1") return nowYear;
+		if (type=="2") return nowMonth;
+		if (type=="3") return nowDay;
+		if (type=="4") return nowHour;
+		if (type=="5") return nowMin;
+		if (type=="6") return nowSec;
+		if (type=="7") return nowHour+":"+nowMin+":"+nowSec;
+	}
+	
+</SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" leftmargin="0" topmargin="0">
+<table width="630" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr> 
+    <td height="140"> <br>
+      <table width="600" border="1" align="center" cellspacing="0" cellpadding="0">
+        <tr bordercolor="#FFFFFF"> 
+          <td> <br>
+            <table width="550" border="0" align="center">
+              <tr> 
+                <td colspan="2"> 
+                  <div align="center"><font size="3"><br>
+                    <b>聯邦銀行電子銀行服務「非約定帳戶交易服務」申請/變更 約定書</b></font><br>
+                    <br>
+                  </div>
+                </td>
+              </tr>
+              <tr> 
+                <td colspan="2" height="354"> 立約定書人  茲向　聯邦商業銀行(以下簡稱貴行)申請 
+                  貴行「電子銀行服務」之個人網路銀行「非約定帳戶交易服務」，並同意及遵守下列約定事項：<br>
+                  <br>
+                  一、 「電子銀行服務」之個人網路銀行「非約定帳戶交易服務」係指立約人可於個人網路銀行及行動銀行(聯邦樂活APP)憑 貴行以簡訊傳送交易授權碼至立約人指定之手機門號，以供立約人進行交易授權，並在交易限額下從已約定轉出功能之帳戶轉入任一非約定帳戶之交易服務。<br>
+                  <br>
+                  二、 本約定書請立約人簽蓋原留印鑑，並郵寄或親送至本行任一營業單位完成申請手續，始生效力。<br>
+                  <br>
+                  三、 本服務交易限額為：每筆交易限額為新臺幣五萬元，每日交易限額為新臺幣十萬元，每月交易限額為新臺幣二十萬元。惟立約人得另訂較低之限額，並以萬元為單位、最低不得低於新臺幣一萬元。<br>
+                  <br>
+                  四、 上述約定條款若有異動或調整，由 貴行將異動資訊利用相關電子服務通路公告後，悉依　貴行或主管機關當時規定辦理，不另立書面約定。<br>
+                  <br>
+                  五、 立約人申請之項目[939]：<br>
+                  <table width="100%" border="0">
+                    <tr>
+                      <td valign="top"> 
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                          <tr> 
+                            <td colspan="2">申請本服務，約定手機門號：[[%%REVE-MOBILE%%]]，並另訂轉入非約定帳戶交易限額為： 
+                            </td>
+                          </tr>
+                          <tr> 
+                            <td width="2%">&nbsp;</td>
+                            <td width="98%">1. 每筆交易限額為新臺幣 <font color="#0000FF">[[%%REVE-RECLMT%%]]</font> 
+                              萬元<br>
+                              2. 每日交易限額為新臺幣<font color="#0000FF"> [[%%REVE-DAYLMT%%]] </font>萬元<br>
+                              3. 每月交易限額為新臺幣<font color="#0000FF"> [[%%REVE-MONLMT%%]] </font>萬元</td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  六、 餘悉依 貴行「電子銀行服務」之相關規定辦理。 <br>
+                  <br>
+                  此致<br>
+                  　　　聯邦商業銀行 
+                  <table width="100%" border="0">
+                    <tr> 
+                      <td width="59%"><div align="right">立 約 人：</div></td>
+                      <td width="41%"><p>&nbsp;</p>
+                        <p>　　　<br>
+                          <br>
+                        (親簽並加蓋原留印鑑)</p></td>
+                    </tr>
+                    <tr> 
+                      <td width="59%"> 
+                        <div align="right">身分證字號：</div>
+                      </td>
+                      <td width="41%">
+                      	<script language="javascript"> 
+        					document.write(getSID("[[%%REVE-ID-NO%%]]"));       		
+        				</script></td>
+                    </tr>
+                <!--<tr> 
+                      <td width="59%"> 
+                        <div align="right">E-mail：</div>
+                      </td>
+                      <td width="41%">[[%%REVE-EMAIL-ADDR%%]]</td>
+                    </tr>-->
+                    <tr> 
+                      <td width="59%"> 
+                        <div align="right">[[%%REVE-BR-NAME%%]]帳號：</div>
+                      </td>
+                      <td width="41%">
+                      	<script language="javascript"> 
+        					document.write(getAcctStr("[[%%REVE-ACCT-NO%%]]"));       		
+        				</script></td>
+                    </tr>
+                    
+                    <tr> 
+                      <td width="59%"> 
+                        <div align="right">申請時間：</div>
+                      </td>
+                      <td width="41%">中華民國<script language="javascript"> 
+	                      			var applyDate = "[[%%SYSDATE%%]]";
+	                      			var applyTime = "[[%%SYSTIME%%]]";
+						document.write(applyDate.substr(0,4)-1911);       		
+        					//document.write(getDateInfo("1"));       		
+        				</script>年<script language="javascript"> 
+        					document.write(applyDate.substr(4,2));       		
+        					//document.write(getDateInfo("2"));       		
+        				</script>月<script language="javascript"> 
+        					document.write(applyDate.substr(6,2));       		
+        					//document.write(getDateInfo("3"));     
+        				</script>日&nbsp;<script language="javascript"> 
+        					document.write(applyTime.substr(0,2) + ":" +
+        						       applyTime.substr(2,2) + ":" +
+        						       applyTime.substr(4,2) );  
+        					//document.write(getDateInfo("7"));       		
+        				</script></td>
+                    </tr>
+                  </table>
+                  <p> 覆核：　　　　　　　　　　　 經辦：　　　　　　 　　 　　　 驗印：
+                  </p>
+                  <hr size="1">
+                  請於約定書簽蓋原留印鑑後郵寄或親送至本行任一營業單位，由受理單位設定完成後，本行將以您存於個人基本資料內的EMAIL信箱通知 貴客戶啟用「非約定帳戶交易服務」訊息，
+                  建請 貴客戶維護個人基本資料連絡資訊之正確性，以利本行執行相關通知作業。
+                  <br>
+                  
+                  <!-- 
+                  <table width="100%" border="0">
+                    <tr> 
+                      <td width="18%"> 
+                        <div align="right">受理申請單位：</div>
+                      </td>
+                      <td width="82%">聯邦銀行 [[%%REVE-BR-NAME%%]]</td>
+                    </tr>
+                  <tr> 
+                      <td width="18%"> 
+                        <div align="right">郵寄地址：</div>
+                      </td>
+                      <td width="82%">[[%%REVE-BR-ADDR%%]]</td>
+                    </tr>
+                    <tr> 
+                      <td width="18%"> 
+                        <div align="right">聯絡電話：</div>
+                      </td>
+                      <td width="82%">[[%%REVE-BR-TEL%%]]</td>
+                    </tr>
+                  </table>
+                    -->
+                  
+                </td>
+              </tr>
+            </table>
+            <br>
+          </td>
+        </tr>
+      </table>
+      <div align="center"><br>
+        <br>
+        <input type="button" name="print" value="列印" onclick="print();">
+        <input type="button" name="close" value="關閉" onclick="window.close();">
+        <br>
+      </div>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

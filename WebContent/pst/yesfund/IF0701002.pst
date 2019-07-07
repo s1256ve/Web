@@ -1,0 +1,323 @@
+<html>
+<head>
+<title>基金申購</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<script language="javascript">
+
+function chkSubmit(){
+	document.IF0701002.pageid.value = "IF0701000";
+	document.IF0701002.submit();
+}
+
+function chkSubmit2(){
+	document.IF0701002.pageid.value = "IF0701001";
+	document.IF0701002.submit();
+}
+
+function chkSubmit3(){
+	document.IF0701002.pageid.value = "IF0701002";
+	document.IF0701002.submit();
+}
+
+function score(){
+	var s = parseInt("[[%%SEND-FIN-SCORES%%]]",10);
+	document.IF0701002.SCORES.value = s;
+}
+
+</script>
+<style type="text/css">
+<!--
+.t1 {font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+.t2 {font-size: 9pt; color: #000000; line-height:14pt}
+-->
+</style>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0" link="#FFFFFF">
+<form method="post" action="LoadAP" name="IF0701002">
+<font color="#006666"><b>個人化投資報告&gt;</b></font><br>
+  <table width="770" border="0">
+    <tr> 
+    <td colspan="3"> 
+          <br> 
+          <table width="765" border="0" cellspacing="0">
+            <tr>
+            <td>
+                <table width="770" border="0">
+                  <tr> 
+                  <td> 
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#6CCEFF">
+                      <tr> 
+                        <td width="3%"><img src="graph/fund/graph/008.gif" width="8" height="25" align="absmiddle"></td>
+                        <td width="94%"> 
+                          <div align="center"><a href="javascript:chkSubmit();" ><b>截至
+                            <script>
+                        	var date = getNowDate();
+				document.write(getRCDateStr(date, 0));
+                                </script>
+                            之投資組合明細</b></a>
+                            </div></td>
+                        <td width="3%"> 
+                          <div align="right"><img src="graph/fund/graph/009.gif" width="8" height="25" align="absmiddle"></div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td> 
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="FFB54A">
+                      <tr> 
+                        <td width="3%"><img src="graph/fund/graph/012.gif" width="8" height="25" align="absmiddle"></td>
+                        <td width="94%"> 
+                          <div align="center"><a href="javascript:chkSubmit2();" ><b>截至
+                            <script>
+                        	var date = getNowDate();
+				document.write(getRCDateStr(date, 0));
+                                </script>
+                            止投資未分配明細</b></a>
+                            </div></td>
+                        <td width="3%"> 
+                          <div align="right"><img src="graph/fund/graph/013.gif" width="8" height="25" align="absmiddle"></div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                 
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+                <table width="100%" border="1" bordercolor="#999999" cellpadding="0">
+                  <tr bgcolor="#55C87D"> 
+                  <td colspan="4" height="2"> 
+                    <div align="center">您目前的積分</div>
+                  </td>
+                </tr>
+                <tr> 
+                  <td colspan="4"> 
+                    <div align="center">                   
+                      <input type="text" name="SCORES">
+                    <script>
+                     score();
+                    </script>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+              <hr size="1">
+            </td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+</table>
+
+  <table width="770" border="0">
+    <tr>
+      <td><table width="770" border="1" align="center">
+          <tr>
+            <td colspan="3" bordercolor="#CCCCCC" bgcolor="#E7F1EE"><div align="center" class="t1">重要訊息通知</div></td>
+          </tr>
+          <tr>
+            <td colspan="3" bordercolor="#FFFFFF"><div align="center">
+                <table width="97%"  border="0">
+                  <tr>
+                    <td width="100%" class="t2">本行將自96年3月31日起終止「親親寶貝學習型理財計劃」，並自96年4月1日起給予在終止日前仍有庫存投資餘額的「親親寶貝」客戶，<strong>手續費率一律以5折優惠持續扣款，</strong><strong>且</strong><strong>不再累積學習積分</strong>。另自即日起至96年4月1日止，「親親寶貝」學習積分兌換活動，改以每200分兌換100元圖書禮券或保溫杯（若贈品兌換完畢，本行得以其他等值商品替代之），逾期未兌換視同放棄權利，<strong>原累積積分亦同時歸零</strong>。</td>
+                  </tr>
+                </table>
+            </div></td>
+          </tr>
+      </table></td>
+    </tr>
+  </table>
+  <div id="jumpx" style="color:navy"></div>
+<script>
+if (document.all||document.getElementById){
+jump=(document.getElementById)? document.getElementById("jumpx") : document.all.jumpx
+}
+else
+document.write(message)
+</script>
+<SCRIPT>
+////////////////////////////////////////////////////////////////////
+// Setting
+
+var rate = 20;  // Increase amount(The degree of the transmutation)
+
+
+////////////////////////////////////////////////////////////////////
+// Main routine
+
+var obj;        // The object which event occured in
+var act = 0;    // Flag during the action
+var elmH = 0;   // Hue
+var elmS = 128; // Saturation
+var elmV = 255; // value
+var clrOrg;     // A color before the change
+var TimerID;    // Timer ID
+
+
+if (navigator.appName.indexOf("Microsoft",0) != -1 && parseInt(navigator.appVersion) >= 4) {
+   Browser = true;
+} else {
+   Browser = false;
+}
+
+if (Browser) {
+   document.onmouseover = doRainbowAnchor;
+   document.onmouseout = stopRainbowAnchor;
+}
+
+
+//=============================================================================
+// doRainbow
+//  This function begins to change a color.
+//=============================================================================
+function doRainbow()
+{
+   if (Browser && act != 1) {
+       act = 1;
+       obj = event.srcElement;
+       clrOrg = obj.style.color;
+       TimerID = setInterval("ChangeColor()",100);
+   }
+}
+
+
+//=============================================================================
+// stopRainbow
+//  This function stops to change a color.
+//=============================================================================
+function stopRainbow()
+{
+   if (Browser && act != 0) {
+       obj.style.color = clrOrg;
+       clearInterval(TimerID);
+       act = 0;
+   }
+}
+
+
+//=============================================================================
+// doRainbowAnchor
+//  This function begins to change a color. (of a anchor, automatically)
+//=============================================================================
+function doRainbowAnchor()
+{
+   if (Browser && act != 1) {
+       obj = event.srcElement;
+
+       while (obj.tagName != 'A' && obj.tagName != 'BODY') {
+           obj = obj.parentElement;
+           if (obj.tagName == 'A' || obj.tagName == 'BODY')
+               break;
+       }
+
+       if (obj.tagName == 'A' && obj.href != '') {
+           act = 1;
+           clrOrg = obj.style.color;
+           TimerID = setInterval("ChangeColor()",100);
+       }
+   }
+}
+
+
+//=============================================================================
+// stopRainbowAnchor
+//  This function stops to change a color. (of a anchor, automatically)
+//=============================================================================
+function stopRainbowAnchor()
+{
+   if (Browser && act != 0) {
+       if (obj.tagName == 'A') {
+           obj.style.color = clrOrg;
+           clearInterval(TimerID);
+           act = 0;
+       }
+   }
+}
+
+
+//=============================================================================
+// Change Color
+//  This function changes a color actually.
+//=============================================================================
+function ChangeColor()
+{
+   obj.style.color = makeColor();
+}
+
+
+//=============================================================================
+// makeColor
+//  This function makes rainbow colors.
+//=============================================================================
+function makeColor()
+{
+   // Don't you think Color Gamut to look like Rainbow?
+
+   // HSVtoRGB
+   if (elmS == 0) {
+       elmR = elmV;    elmG = elmV;    elmB = elmV;
+   }
+   else {
+       t1 = elmV;
+       t2 = (255 - elmS) * elmV / 255;
+       t3 = elmH % 60;
+       t3 = (t1 - t2) * t3 / 60;
+
+       if (elmH < 60) {
+           elmR = t1;  elmB = t2;  elmG = t2 + t3;
+       }
+       else if (elmH < 120) {
+           elmG = t1;  elmB = t2;  elmR = t1 - t3;
+       }
+       else if (elmH < 180) {
+           elmG = t1;  elmR = t2;  elmB = t2 + t3;
+       }
+       else if (elmH < 240) {
+           elmB = t1;  elmR = t2;  elmG = t1 - t3;
+       }
+       else if (elmH < 300) {
+           elmB = t1;  elmG = t2;  elmR = t2 + t3;
+       }
+       else if (elmH < 360) {
+           elmR = t1;  elmG = t2;  elmB = t1 - t3;
+       }
+       else {
+           elmR = 0;   elmG = 0;   elmB = 0;
+       }
+   }
+
+   elmR = Math.floor(elmR);
+   elmG = Math.floor(elmG);
+   elmB = Math.floor(elmB);
+
+   clrRGB = '#' + elmR.toString(16) + elmG.toString(16) + elmB.toString(16);
+
+   elmH = elmH + rate;
+   if (elmH >= 360)
+       elmH = 0;
+
+   return clrRGB;
+}
+
+</SCRIPT>
+
+<br>
+  <table width="770" border="0">
+    <tr>
+    <td>
+      <div align="center"><img src="graph/fund/banner/468_001.gif" width="468" height="60"></div>
+    </td>
+  </tr>
+  <input type="hidden" name="pageid">
+  
+</table>
+</form>
+</body>
+</html>

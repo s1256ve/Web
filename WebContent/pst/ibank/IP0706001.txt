@@ -1,0 +1,62 @@
+綜存活存轉定存查詢第二頁資料庫綱要
+{主機交易使用UCPM1032}
+
+
+PARA
+value裡面所對應的是前一頁要帶進來的資料,
+varname則是本頁要使用前一頁資料所mapping的名稱.
+
+REVE-ACCT-NO		12	帳號	
+REVE-PIN		4	PIN	
+REVE-SAVING-CODE	1	存款類別	1: 定期存款
+						2: 存本取息按月 1 到11個月和 12 個月以上
+						3: 整存整付到期一次
+REVE-PERIOD		2	期間別	期間01~36(月) 3年。先以輸入期間判斷存款類別。1~11期、11以上分按月取息和整存整付
+REVE-INT-CODE		1	利率別		0: 固定
+						1: 機動
+REVE-CONTINUE		1	續存記號	0: 不續存
+						1: 續存
+REVE-TXN-AMT		12	交易金額	
+
+
+<?xml version="1.0" encoding="BIG5"?>
+<root>
+<argv type="PAGE"  varname="SEND-BR-NAME" value="SEND_BR_NAME" index="1"></argv>
+<argv type="PAGE"  varname="SEND-AVAL-BALANCE" value="SEND_AVAL_BALANCE" index="2"></argv>
+<argv type="PAGE"  varname="SEND-ACCT-NO" value="SEND_ACCT_NO" index="3"></argv>
+<argv type="PAGE"  varname="SEND-PERIOD" value="SEND_PERIOD" index="4"></argv>
+<argv type="PAGE"  varname="SEND-INT-CODE" value="SEND_INT_CODE" index="5"></argv>
+<argv type="PAGE"  varname="SEND-INT-PAY" value="SEND_INT_PAY" index="6"></argv>
+<argv type="PAGE"  varname="SEND-TITLE" value="SEND_TITLE" index="7"></argv>
+<argv type="PAGE"  varname="SEND-SC-CODE" value="SEND_SC_CODE" index="8"></argv>
+<argv type="PAGE"  varname="SEND-SAVING-CODE" value="SEND_SAVING_CODE" index="9"></argv>
+<argv type="PAGE"  varname="SEND-TXN-AMT" value="SEND_TXN_AMT" index="10"></argv>
+<argv type="PAGE"  varname="SEND-MEMO" value="SEND-MEMO" index="11"></argv>
+<argv type="PAGE"  varname="SEND-CONTINUE" value="SEND_CONTINUE" index="12"></argv>
+<argv type="PAGE"  varname="SEND-PAY-NAME" value="SEND_PAY_NAME" index="13"></argv>
+<argv type="PAGE"  varname="SEND-INT-NAME" value="SEND_INT_NAME" index="14"></argv>
+</root>
+
+
+SESSION
+對於前一頁資料的取得可以經由PARA或是SESSION所儲存的變數取得
+
+<?xml version="1.0" encoding="BIG5"?>
+<root>
+<argv type="VAR" sessname="AP_TYPE_NAME" value="APTYPE" index="1"></argv>
+<argv type="VAR" sessname="SESSIONID" value="SESSIONID" index="2"></argv>
+</root>
+
+TOM
+其中tomname所代表的是經由tom上傳主機所帶的值,名稱會對應到上行電文(REVE-****)
+value所代表的是由PAGE所塞入的值,名稱一般會使用相對應的下行電文(SEND-****)
+執行tom時我們會把value帶給tomname
+
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+<txnid>IBKUCPM1032</txnid>
+<argv type="VAR" tomname="TXNTYPE" value="APTYPE" index="1"></argv>
+<argv type="VAR" tomname="REVE-ACTOR" value="SESSIONID" index="2"></argv>
+<argv type="VAR" tomname="REVE-SESSION-ID" value="SESSIONID" index="3"></argv>
+<argv type="VAR" tomname="REVE-ACCT-NO" value="SEND-ACCT-NO" index="4"></argv>
+</root>

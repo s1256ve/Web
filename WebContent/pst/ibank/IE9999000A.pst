@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>訊息代號及說明</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg01.gif" leftmargin="0" topmargin="0">
+<b>訊息代號及說明<font color="#003399"><font color="#0066FF"></font></font></b><br>
+<br>
+<form name="form1">
+<table width="630" border="0">
+  <tr>
+    <td> 
+      <table width="75%" border="0" align="center">
+        <tr bgcolor="#C4CBB8"> 
+          <td colspan="2">訊息代號：</td>
+        </tr>
+        <tr> 
+          <td width="13%">&nbsp;</td>
+          <td width="87%"></td>
+         <!-- <td width="87%">[[%%ERRORCODE%%]]</td> -->
+        </tr>
+        <tr bgcolor="#C4CBB8"> 
+          <td colspan="2">說　　明：</td>
+        </tr>
+        <tr> 
+          <td width="13%">&nbsp;</td>
+          <td width="87%">您尚未設定EMAIL信箱，請先至「個人網路銀行>個人設定>個人基本資料維護-台幣帳戶基本資料變更」，或洽本行24小時客戶服務專線(02)2545-1788輸入速撥碼19，轉接客服專人協助設定後，再繼續進行交易。</td>
+          <!--<td width="87%">[[%%ERRORMSG%%]]</td> -->
+        </tr>
+        <tr> 
+          <td width="13%">
+            <!--input type="button" name="back" value="回上頁" onclick="javascript:history.back();"-->
+            <!--<input type="button" name="back" value="回上頁" onclick="javascript:redirect(this.value);">-->
+          </td>
+          <td width="87%">
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<SCRIPT language="JavaScript">
+<!--
+    var errorCode = '[[%%ERRORCODE%%]]';
+    var homepage = "https://172.16.2.251/web/default.htm";
+    if (errorCode=="PS013"){
+        form1.back.value='重新登入';       
+    }else{
+        form1.back.value='回上頁';     
+    }
+    
+    function redirect(back){
+        if (back=='回上頁'){
+            window.history.back();
+        }
+        if (back=='重新登入'){
+            parent.location.href = homepage;
+        }
+    }
+-->
+</SCRIPT>
+</form>
+</body>
+</html>

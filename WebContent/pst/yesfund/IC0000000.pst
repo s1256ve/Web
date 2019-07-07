@@ -1,0 +1,10 @@
+
+<html>
+<head>
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=big5">
+<title>IBM HTTP Server</title>
+</head> 
+
+<BODY onLoad='javaScript:window.location="[[%%HOSTNAME%%]]/LoadAPWeb/LoadAP?pageid=IC0200000&aptype=YESFUND&sessid=[[%%SESSIONID%%]]";'>
+</body>
+</html>

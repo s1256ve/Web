@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>基金申購</title>
+<script>
+/***********************************************************************
+* Remark Area
+* Create name	: YiSyun 
+* Change List:
+*SerialNo           Date Modified  Modified by   
+*-------------      ----------     ----------
+*EAI98031           2009.05.07     YiSyun 
+*EAI99052           2010.8.25      David 
+***********************************************************************/
+</script>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body onLoad="window.scrollTo(0,0);" bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" topmargin="0">
+<form method="post" action="LoadAP" name="IF0101003">
+<font color="#006666"><b>基金申購&gt;</b></font><br>
+
+  <table width="770" border="0">
+    <tr>
+    <td> 
+      <div align="center">依類別選擇欲申購的基金</div>
+    </td>
+    
+  </tr>
+</table>
+  <table width="770" border="0">
+    <tr> 
+    <td colspan="0" align="center"><font face="Arial, Helvetica, sans-serif"> 
+      <select onChange="javascript:window.open(this.options[this.selectedIndex].value,'main');" name="select2">
+        <option selected>==請選擇==</option>
+        <option value="http://www.yesfund.com.tw/w/wq/wq02ubot.djhtm">本行銷售國內基金績效排名查詢</option>
+        <option value="http://www.yesfund.com.tw/w/ww/ww01ubot.djhtm">本行銷售國內投信公司查詢</option>
+        <option value="http://www.yesfund.com.tw/w/wd/wd01ubot_NA_NA_NA_NA.djhtm">本行銷售國外基金績效排名查詢</option>
+        <option value="http://www.yesfund.com.tw/w/wc/wc02ubot.djhtm">本行銷售國外基金公司查詢</option>
+      </select>
+      </font>
+       </td>
+       <td>
+   <!--  <a href="#"><img src="graph/Learning_icon.gif" width="96" height="49" border="0"  onClick="window.open('https://web.ubot.com.tw/UBOT2005/Learning/data/ubot410.asp','基金申購','width=650,height=500')"></a>  -->
+       </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<br>
+</form>
+</body>
+</html>

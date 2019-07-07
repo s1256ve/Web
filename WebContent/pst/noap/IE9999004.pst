@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>使用者登入作業</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+/**********************************************************************
+*SerialNo           Date           Name
+*-------------      ----------     ----------------
+*EAI99052           2010.8.25      David 
+***********************************************************************/
+</script>
+<style type="text/css">
+<!--
+.news {
+	font-family: "細明體";
+	font-size: 12px;
+	line-height: 18px;
+	color: 666666;
+}
+-->
+</style>
+</head>
+<style type="text/css">
+<!--
+td{font-size: 9pt; color: #000000;line-height:12pt}
+    .t1{  font-size: 9pt; color: #cc0000; line-height:14pt; font-weight: bold}
+    .t2{  font-size: 8pt; color: #000000; line-height:11pt}
+    .t3{font-size: 9pt; color: #000000;line-height:14pt}
+    input{border : 1 solid A6A9AF; background-color : FCFFFA; font-family: "Arial"; font-size: 8pt; vertical-align: middle}
+    a:hover {  color: #000000; text-decoration: underline}
+    body {
+	font-size: 9pt;
+	color: #000000;
+	line-height:12pt;
+	background-color: F3FFEB;
+} form { font-size: 9pt; color: #000000;line-height:12pt } p { font-size: 9pt; color: #000000;line-height:12pt } select { font-size: 9pt; color: #000000;line-height:12pt } -->
+</style>
+<body bgcolor="#F3FFEB" onLoad="" leftmargin="0" topmargin="0" >
+
+<table width="95%" height="95%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td valign="top" bgcolor="F3FFEB"><span class="t3"><strong>登入個人網路銀行</strong></span><br>
+<br>
+<br>
+<table width="468" height="144" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td background="../graph/login0610_bg.gif">
+      <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="20">&nbsp;</td>
+          <td valign="top"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="74%" height="30" class="t1">系統維護，暫停部份服務</td>
+            </tr>
+            <tr>
+              <td valign="top" class="news">由於系統維護，本站暫停部份服務。 <br>
+                不便之處敬請見諒！</td>
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+      </td>
+  </tr>
+</table>
+<br>
+<br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="9"></td>
+  </tr>
+</table>
+<table width="576" height="161" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><iframe src="https://www.ubot.com.tw/UBOT2005/notice.asp" height="200" width="600" scrolling="auto"  frameborder="0" bgcolor="#F3FFEB"></iframe></td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+</body>
+</html>=

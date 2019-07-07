@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="BIG5"?>
+<!-- UCPM 2709 綜存到期改期續存. Last updated date 2-26-2002 -->
+<catalog xmlns="http://www.uitc.com.tw/catalog/TOM/UCPM">
+	<field id="2709i01">
+		<name>REVE-CODE</name>
+		<length>4</length>
+		<type>String</type>
+		<description>語音功能代碼</description>
+	</field>
+	<field id='2709i54' attr='I' default=''>
+        <name>REVE-ACTOR</name>
+        <length>0</length>
+        <type>STRING</type>
+        <description></description>
+     </field>
+	<field id="2709i55">
+		<name>REVE-SESSION-ID</name>
+		<length>10</length>
+		<type>String</type>
+		<description>Session ID</description>
+	</field>
+	<field id="2709i02">
+		<name>REVE-ACCT-NO</name>
+		<length>12</length>
+		<type>String</type>
+		<description>帳號</description>
+	</field>
+	<field id="2709i03">
+		<name>REVE-V-NO</name>
+		<length>8</length>
+		<type>String</type>
+		<description>存單字號</description>
+	</field>
+	<field id="2709i04">
+		<name>REVE-MARK</name>
+		<length>1</length>
+		<type>String</type>
+		<description>代號</description>
+	</field>
+	<field id="2709i05">
+		<name>REVE-ACCT-CODE</name>
+		<length>2</length>
+		<type>String</type>
+		<description>科目別</description>
+	</field>
+	<field id="2709i06">
+		<name>REVE-CHAR-CODE</name>
+		<length>2</length>
+		<type>String</type>
+		<description>性質別</description>
+	</field>
+	<field id="2709i07">
+		<name>REVE-TERM-CODE</name>
+		<length>2</length>
+		<type>String</type>
+		<description>期間</description>
+	</field>
+	<field id="2709i08">
+		<name>REVE-RATE-TYPE</name>
+		<length>2</length>
+		<type>String</type>
+		<description>利率型態</description>
+	</field>
+	<field id="2709i09">
+		<name>REVE-SC-CODE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>定利複利</description>
+	</field>
+	<field id="2709i10">
+		<name>SEND-PAY-NAME</name>
+		<length>1</length>
+		<type>String</type>
+		<description>領息方式</description>
+	</field>
+	<field id="2709i11">
+		<name>SEND-INT-NAME</name>
+		<length>1</length>
+		<type>String</type>
+		<description>計息方式</description>
+	</field>
+	<field id="2709i12">
+		<name>REVE-TITLE</name>
+		<length>1</length>
+		<type>String</type>
+		<description>定存種類</description>
+	</field>
+	<field id="2709i50">
+		<name>IPADDR</name>
+		<length>15</length>
+		<type>String</type>
+		<description>IP Address</description>
+	</field>
+	<field id="2709i51">
+		<name>TXNTYPE</name>
+		<length>20</length>
+		<type>String</type>
+		<description>Transaction Type</description>
+	</field>
+	<field id="2709i52">
+		<name>PBX-SID</name>
+		<length>5</length>
+		<type>String</type>
+		<description>語音線號碼</description>
+	</field>
+	<field id="2709i53">
+		<name>TXN-SNO</name>
+		<length>16</length>
+		<type>String</type>
+		<description>交易序號</description>
+	</field>
+		<field id="9" default="">
+		<name>REVE-KB-IDX</name>
+		<length>1</length>
+		<type>STRING</type>
+		<description>密碼索引</description>
+	</field>
+	<field id="9" default="">
+		<name>REVE-PWD</name>
+		<length>1</length>
+		<type>STRING</type>
+		<description>密碼</description>
+	</field>
+</catalog>

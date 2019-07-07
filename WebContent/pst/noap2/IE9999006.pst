@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-Hant">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5" />
+<title>無障礙網站訊息代號及說明</title>
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+<script language="JavaScript" src="script/accessible.js"></script>
+<script language="Javascript">
+
+function chkSubmit2(){
+	//var pageid = document.IE9999006.pageid.value;
+	//var aptype = document.IE9999006.aptype.value;
+	document.IE9999006.action = "LoadAP3?aptype=NOAP&pageid=IE9999006A";
+	//document.IE9999006.action = "LoadAP3?aptype="+aptype+"&pageid="+pageid;
+	document.IE9999006.submit();  
+
+}	
+</script>
+
+
+
+
+</head>
+
+<body>
+<form name="IE9999006" method="POST" action="LoadAP3">
+<input type=hidden name=fromPage value=[[%%pageid%%]]>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="aptype" value="">
+<input type="hidden" name="ERRORCODE" value="[[%%ERRORCODE%%]]">
+<input type="hidden" name="ERRORMSG" value="[[%%ERRORMSG%%]]">
+<script>
+chkSubmit2();
+</script>
+</form>
+</body>
+</html>

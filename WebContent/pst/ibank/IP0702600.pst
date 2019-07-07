@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>帳戶交易</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script>
+function chkSubmit(tmp){
+	if(tmp==1){
+		document.IP0702600.pageid.value = "IP0702610";
+		document.IP0702600.submit();
+	}
+	if(tmp==2){
+		document.IP0702600.pageid.value = "IP0702620";
+		document.IP0702600.submit();
+	}
+	if(tmp==3){
+		document.IP0702600.pageid.value = "IP0702630";
+		document.IP0702600.submit();
+	}
+}
+</script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg01.gif" leftmargin="0" topmargin="0">
+
+<form action=LoadAP method="post" name="IP0702600">
+<p><b>帳戶交易&gt;<font color="#003399"><font color="#0066FF">預約轉帳<br>
+  </font></font></b><b><font color="#003399"><font color="#0066FF"><br>
+  </font></font></b> 
+<table width="750" border="0">
+  <tr> 
+    <td colspan="5">
+      <div align="center">　<font face="Arial, Helvetica, sans-serif"> 
+        <input type="button" name="Submit" value="預約綜存活存轉定存" onClick='JavaScript:chkSubmit("1")'>
+        <input type="button" name="Submit2" value="預約活存轉存零存整付" onClick='JavaScript:chkSubmit("2")'>
+        <input type="button" name="Submit3" value="預約活存轉存吉祥理財儲蓄存款" onClick='JavaScript:chkSubmit("3")'>
+        </font> </div>
+    </td>
+  </tr>
+  <tr bgcolor="#663300"> 
+    <td colspan="5" valign="bottom" height="1"></td>
+  </tr>
+</table>
+<input type="hidden" name="pageid">
+</body>
+</html>

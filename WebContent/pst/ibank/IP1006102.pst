@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>線上申請</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+<link type="text/css" rel="stylesheet" href="theme/portal.css">
+<SCRIPT language="JavaScript">
+<!--
+	//約定書到期年月日
+	var regDate = '[[%%SEND-REG-DATE%%]]';
+	var regYY = regDate.substr(0,3);
+	var getMM = regDate.substr(3,2);
+	var getDD = regDate.substr(5,2);
+	function getRegYY(){
+		return regYY;
+	}
+	
+	function getRegMM(){
+		return getMM;
+	}
+	
+	function getRegDD(){
+		return getDD;
+	}
+	
+	function MM_openBrWindow(theURL,winName,features) { //v2.0
+	  window.open(theURL,winName,features);
+	}
+//-->
+</SCRIPT>
+<body bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+ 　<p><b>　服務台&gt;<font color="#0066FF">申請/變更/取消非約定帳戶</font><font color="#003399"><font color="#0066FF"> 
+  </font></font></b></p>
+<form method="POST" name="IP10061012" action="LoadAP">
+<table width="630" border="0">
+  <tr> 
+  　<td></td>
+    <td colspan="5"> 
+      <div align="center"></div>
+      <img src="graph/point.gif" width="12" height="12" align="absmiddle"><font color="#006600">申請簡訊動態密碼授權服務 
+      <font color="#663300" face="Arial, Helvetica, sans-serif"> </font></font><font color="#663300" face="Arial, Helvetica, sans-serif"><br>
+      </font> 
+      <table width="630" border="0">
+        <tr> 
+          <td><br>
+            您已完成「非約定帳戶交易服務」申請設定，<span class="t1">請按&quot;預覽約定書&quot;並列印之，簽蓋原留印鑑， 
+            
+              <script language="javascript">
+              /*  
+        					document.write(getRegYY());       		
+        				</script> <!-- 年--> <script language="javascript"> 
+        					document.write(getRegMM());       		
+        				</script><!--  月 --> <script language="javascript"> 
+        					document.write(getRegDD());
+        			*/ 		       		
+        		</script>
+        				
+        				郵寄或親送至下列單位/地址</span>，由申請單位審核無誤啟用後，本行將以E-mail通知您啟用「非約定帳戶交易服務」。
+            <table width="450" border="0" align="center">
+              <tr>
+                <td><font color="#0000CC">受理申請單位：聯邦銀行 [[%%SEND-BR-NAME%%]]<br>
+                  郵寄地址：[[%%SEND-BR-ADDR%%]]<br>
+                  聯絡電話：[[%%SEND-BR-TEL%%]] </font></td>
+              </tr>
+            </table>
+            
+          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <div align="center"> 
+              <input type="button" name="view" value="預覽約定書" onclick="MM_openBrWindow('LoadAP?aptype=IBANK&pageid=IP1006103&REVE_CNAME=[[%%SEND-CNAME%%]]&REVE_ID_NO=[[%%SEND-ID-NO%%]]&REVE_ACCT_NO=[[%%REVE-ACCT-NO%%]]&REVE_REG_SERIAL=[[%%SEND-REG-SERIAL%%]]&REVE_BID=[[%%SEND-BID%%]]&REVE_BR_NAME=[[%%SEND-BR-NAME%%]]&REVE_BR_ADDR=[[%%SEND-BR-ADDR%%]]&REVE_BR_TEL=[[%%SEND-BR-TEL%%]]&REVE_REG_DATE=[[%%SEND-REG-DATE%%]]&REVE_EMAIL_ADDR=[[%%REVE-EMAIL-ADDR%%]]&MOBILE=[[%%REVE-MOBILE%%]]&RECLMT=[[%%REVE-TEMP-RECLIMIT%%]]&DAYLMT=[[%%REVE-TEMP-DAYLIMIT%%]]&MONLMT=[[%%REVE-TEMP-MONLIMIT%%]]&SYSDATE=[[%%SEND-SYSDATE%%]]&SYSTIME=[[%%SEND-SYSTIME%%]]','NewWindow','toolbar=no,menubar=yes,scrollbars=yes,resizable=yes,width=640,height=480')">
+            </div>
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="5" valign="bottom" height="1" bgcolor="#663300"></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

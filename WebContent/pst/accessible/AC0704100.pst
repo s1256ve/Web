@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv:"content-language" content="zh-tw">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+  <title>約定轉帳交易</title>
+  <link href="css/index.css" rel="stylesheet">
+	<link href="css/2.css" rel="stylesheet">	
+	 <link href="css/accessibility.css" rel="stylesheet" >
+</head>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/Fund01.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/iBank.js"></SCRIPT>
+<script language="JavaScript" src="script/accessible.js"></script>
+<script language="Javascript">
+    //字串去空白
+    String.prototype.Trim=function(){return this.replace(/(^\s*)|(\s*$)/g,"");} 
+</script>	
+
+
+<script language="Javascript">	
+	
+	function chkStatus(acctno,brname,avalbalance,amtlmt,avaltfr,avallarge){
+		
+    var str = "";
+
+    var strinfo = acctno+'@'+brname+'@'+avalbalance+'@'+amtlmt+'@'+avaltfr+'@'+avallarge;
+	
+	
+        str = "<div class=\"step1_2\"><a href='#' onClick=\"chkSubmit('"+strinfo+"')\"><div class=\"step1_button\"   > "+brname+acctno+"新台幣"+trimDecimal(moneyAddDot(avalbalance))+"元</div></a></div>"; 
+		
+	    
+    
+    //alert('c='+c);
+	//alert('strinfo='+strinfo);
+    return str;
+}
+	
+	
+
+	function getAcctinfo(info){
+		
+	   
+      
+	   var actinfo = info.split('#');
+	   actinfo.splice(0,1);
+	   
+	   
+	   
+
+       //delete actinfo[0];
+
+	
+	    //var t = String(info);
+		
+		var string2 = actinfo.join("#");
+		
+		
+		
+	    document.AC0704100.TOACTINFO.value = string2;
+	
+		
+	   // alert('f.toactinfo.value='+document.AC0704100.toactinfo.value);
+	   
+	
+	}
+	function getAcctinfo1(info1){
+		
+	   
+      
+	   var actinfo1 = info1.split('#');
+	   actinfo1.splice(0,1);
+	   
+	   
+	   
+
+       //delete actinfo[0];
+
+	
+	    //var t = String(info);
+		
+		var string3 = actinfo1.join("#");
+		
+		
+		
+	    document.AC0704100.TOACTINFO1.value = string3;
+	
+		
+	    //alert('f.TOACTINFO1.value='+document.AC0704100.TOACTINFO1.value);
+	   
+	
+	}
+	
+	</script>
+	
+
+<script language="Javascript">
+    
+	function chkSubmit(actinfos){
+		
+	  var f = document.AC0704100;
+	  f.FROMACTINFO.value = actinfos;
+	  f.FROM_ACCT_NO.value = actinfos.split("@")[0];
+	  //alert(f.FROM_ACCT_NO.value);
+	  f.pageid.value="AC0704101";
+      f.action = "LoadAP3?pageid=AC0704101";
+      f.submit();
+		
+		//alert('f.fromactinfo.value='+f.fromactinfo.value);
+	}
+	
+function chkSubmit98(){
+	alert(' 您好，謝謝您使用網路銀行！\n'+
+	      '為了您的交易資料安全，\n'+
+	      '請記得在視線離開電腦前關閉使用中的瀏覽器，\n'+
+	      '以確保您剛剛的使用記錄不被他人窺探！');
+	      //'登出時間為 '+getNowTime());
+	
+	document.AC0704100.pageid.value="IC0000999";
+	document.AC0704100.aptype.value="NOAP";
+	document.AC0704100.target="_parent";
+	document.AC0704100.submit();    
+}
+
+function chkSubmit99(){
+	document.AC0704100.pageid.value="IC0000999";
+	document.AC0704100.aptype.value="NOAP";
+	document.AC0704100.target="_parent";
+	document.AC0704100.submit();    
+}
+
+</script>
+<body onload="initial();">
+<noscript>
+您的瀏覽器不支援JavaScript功能，若網頁功能無法正常使用時，請開啟瀏覽器JavaScript功能 
+</noscript> 
+<form method="post" name="AC0704100" action="LoadAP3">
+
+<header>
+	<div class="wrapper">
+		
+		<div class="headerBox">	
+			 <a href="#C"  title="跳到主要內容區塊" tabindex="1" style="position: absolute" class="sr_only">跳到主要內容區塊</a>
+			  <h1 class="no-effect"> <a class="logo" href="https://freebank.ubot.com.tw/" target="_parent"><img src="Accessible/logo.png" alt="聯邦銀行友善服務網" title="聯邦銀行友善服務網" width="300" height="37" hspace="10" border="0"></a></h1>	
+<div class="header-right">
+				<a href="#U" name="U" id="AU" accesskey="U" class="top" title="上方導覽區">:::</a> <a href="LoadAP3?aptype=IBANK&pageid=AC0000000" class="top">網站導覽</a> / <a href="LoadAP3?aptype=IBANK&pageid=AC0000001" class="top">金融友善服務準則</a>			
+		  </div>
+		</div>
+				
+		<div class="container">
+			<div class="logout">
+				<a href="#" onclick="chkSubmit98();"><img src="Accessible/main_button_02.gif" title="登出" alt="登出" border="0" align="absmiddle" ></a>
+			</div>
+			<div class="con1">
+				<div><div class="con1_left"><a accesskey="L" name="L" id="AL" title="左方區塊" href="#L" style="text-decoration:none;color:#666;">::: </a></div><div class="con1_right"><a href="LoadAP3?aptype=IBANK&pageid=AC0201000" target="_self"><img src="Accessible/left_button_01.gif" title="利率查詢" alt="利率查詢" width="233" height="60" border="0"></a></div></div><div><a href="LoadAP3?aptype=IBANK&pageid=AC0203000" target="_self"><img src="Accessible/left_button_02.gif" title="匯率查詢" alt="匯率查詢" width="233" height="60" border="0"></a></div><div><a href="LoadAP3?aptype=IBANK&pageid=IC000000B" target="_self"><img src="Accessible/left_button_03.gif" title="帳戶服務" alt="帳戶服務" width="233" height="60" border="0"></a></div><div><a href="LoadAP3?aptype=IBANK&pageid=AC0704100" target="_self"><img src="Accessible/left_button_04.gif" title="約定轉帳交易" alt="約定轉帳交易" width="233" height="60" border="0"></a></div><div><a href="LoadAP3?aptype=IBANK&pageid=AC1005000" target="_self"><img src="Accessible/left_button_05.gif" title="使用者代號變更" alt="使用者代號變更" width="233" height="60" border="0"></a></div><div><a href="LoadAP3?aptype=IBANK&pageid=AC1006000" target="_self"><img src="Accessible/left_button_06.gif" title="使用者密碼變更" alt="使用者密碼變更" width="233" height="60" border="0"></a></div>
+				<!--
+				<script>
+					getLeftmenu();
+				</script>
+				-->
+			</div>
+			<div class="con2">
+				<div><img src="Accessible/step01.gif" width="658" height="52" alt="共四步驟，目前為步驟1選擇轉出帳號"></div>
+                <input type="hidden" name="TOACTINFO1" value="">
+                <input type="hidden" name="TOACTINFO" value="">				
+				<h2 class="step1"><a accesskey="C" name="C" id="AC"  title="中央內容區塊" href="#C" style="text-decoration:none;color:#666;font-size:16px;">:::</a> 約定轉帳交易 步驟一</h2>
+				<div class="step1_1">選擇轉出帳號</div>
+		
+       <!--[[%%LOOP_SEC SEND-FROM-ACCT-NO%%]]-->
+		
+		
+		     <script>
+			 
+			    document.write(chkStatus('[[%%SEND-FROM-ACCT-NO%%]]','[[%%SEND-FROM-BR-NAME%%]]','[[%%SEND-FROM-AVAL-BALANCE%%]]','[[%%SEND-AMT-LMT%%]]','[[%%SEND-AVAL-TFR%%]]','[[%%SEND-AVAL-LARGE%%]]'));
+			  </script>
+			  
+			   
+			   
+        <!--[[%%ELOOP_SEC%%]]-->
+		
+		
+		
+		
+		<!--[[%%LOOP_SEC SEND-ACCT-NO%%]]-->
+		
+		     <script>
+			  
+			  
+                      var str = "803@[[%%SEND-ACCT-NO%%]]@聯邦銀行";
+			 
+				  
+			          var b =  b +'#'+ str;
+			  
+            
+			          getAcctinfo1(b);  
+						
+						
+              </script>
+		
+		
+		
+        <!--[[%%ELOOP_SEC%%]]-->   
+		
+	 
+						
+		
+		
+        <!--[[%%LOOP_SEC SEND-REG-ACCTNO%%]]-->
+		
+              <script>
+			  
+			  
+                      var str = "[[%%SEND-REG-BCODE%%]]@[[%%SEND-REG-ACCTNO%%]]@[[%%SEND-REG-BANK-NAME%%]]";
+			 
+				  
+			          var c =  c +'#'+ str;
+			  
+            
+			          getAcctinfo(c);  
+						
+						
+              </script>
+						
+						
+        <!--[[%%ELOOP_SEC%%]]-->    
+		
+			</div>								
+		</div>		
+   
+  </div>
+</header>
+
+<div class="footer">
+	<div class="wrapper">				
+	 	<div class="footerBox">
+	        <p class="copyright">	 			
+		 		<a accesskey="Q" name="Q" id="AQ"  title="網頁資訊" href="#Q" style="text-decoration:none;color:#666;">:::</a>
+		 		<strong>客服中心電話：(02)2545-1788、0800-089-888 &copy;聯邦商業銀行版權所有</strong>
+		 		<a href="https://www.handicap-free.nat.gov.tw/Applications/Detail?category=20171108152834" title="無障礙網站"><img src="Accessible/20a.jpg" alt="通過A檢測等級無障礙網頁檢測" width="88" height="31" border="0" /></a>	
+	 	    </p>
+		</div>
+	</div>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="aptype" value="IBANK">
+<input type="hidden" name="FROM_ACCT_NO" value="">
+<input type="hidden" name="FROM_BR_NAME" value="">
+<input type="hidden" name="FROM_AVAL_BALANCE" value="">
+<input type="hidden" name="SEND_AMT_LMT">
+<input type="hidden" name="SEND_AVAL_TFR">
+<input type="hidden" name="SEND_AVAL_LARGE">
+<input type="hidden" name="FROMACTINFO" value="">
+</div>
+		
+</form>
+</body>
+</html>

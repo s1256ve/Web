@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/***********************************************************************
+* Remark Area
+* Create name	: David 
+* Change List:
+* SerialNo           Date Modified  Modified by   
+* =========          =============  ===========
+* EAI99017           2010.02.26     Alant 
+***********************************************************************/
+-->
+
+<SQL>
+	
+	<logquery	where_0 =" ORDER BY APPSVCBEGIN.LOGID DESC"
+				where_1 =" WHERE STARTTIME >= '[[%%STARTTIME%%]]' AND 
+						 		 TXNID	    = '[[%%TXNID%%]]'     AND
+						 		 ( APPSVCEND.TXNMSGCODE LIKE '[[%%RTNMSGCODE%%]]%'    OR
+						 		 APPSVCEND.SYSMSGCODE LIKE '[[%%RTNMSGCODE%%]]%')
+						   ORDER BY APPSVCBEGIN.LOGID DESC"
+				where_2 =" WHERE STARTTIME >= '[[%%STARTTIME%%]]'					
+						   ORDER BY APPSVCBEGIN.LOGID DESC"
+				where_3 =" WHERE TXNID	   = '[[%%TXNID%%]]'     					
+						   ORDER BY APPSVCBEGIN.LOGID DESC"
+				where_4 =" WHERE ( APPSVCEND.TXNMSGCODE LIKE '[[%%RTNMSGCODE%%]]%'    OR
+						 		 APPSVCEND.SYSMSGCODE LIKE '[[%%RTNMSGCODE%%]]%')	
+						   ORDER BY APPSVCBEGIN.LOGID DESC"
+				where_5 =" WHERE STARTTIME >= '[[%%STARTTIME%%]] AND 
+								 TXNID	    = '[[%%TXNID%%]]'
+						   ORDER BY APPSVCBEGIN.LOGID DESC"
+				where_6 =" WHERE TXNID	    = '[[%%TXNID%%]]' AND 
+								 ( APPSVCEND.TXNMSGCODE LIKE '[[%%RTNMSGCODE%%]]%'    OR
+						 		 APPSVCEND.SYSMSGCODE LIKE '[[%%RTNMSGCODE%%]]%')
+						   ORDER BY APPSVCBEGIN.LOGID DESC"
+				where_7 =" WHERE STARTTIME >= '[[%%STARTTIME%%]]' AND 
+							 	 ( APPSVCEND.TXNMSGCODE LIKE '[[%%RTNMSGCODE%%]]%'    OR
+						 		 APPSVCEND.SYSMSGCODE LIKE '[[%%RTNMSGCODE%%]]%')
+						   ORDER BY APPSVCBEGIN.LOGID DESC"
+			    where_8 =" WHERE STARTTIME LIKE '[[%%STARTTIME%%]]%' AND
+        		                  TXNID LIKE '%[[%%TXNID%%]]%' AND 
+        		                  SID LIKE '[[%%SID%%]]%' AND 
+        		                  ACCTNO LIKE '[[%%ACCTNO%%]]%' AND 
+        		                  ( TXNMSGCODE LIKE '%[[%%MSGCODE%%]]%'  OR	
+        					      SYSMSGCODE LIKE '%[[%%MSGCODE%%]]%' ) ">
+					
+			SELECT APPSVCBEGIN.LOGID AS LOGID, SID , ACCTNO , TXNTYPE , TXNID , STARTTIME ,APPSVCEND.ENDTIME , 
+			COMEFROM , APPSVCEND.TXNMSGCODE , APPSVCEND.SYSMSGCODE , APPSVCEND.RUNTIME 
+			FROM (SELECT * FROM APPSVCBEGIN WHERE STARTTIME LIKE '[[%%STARTTIME%%]]%' AND TXNID LIKE '%[[%%TXNID%%]]%' 
+			AND SID LIKE '[[%%SID%%]]%' AND ACCTNO LIKE '[[%%ACCTNO%%]]%') AS APPSVCBEGIN  
+			LEFT OUTER JOIN ( SELECT * FROM DB2IBANK.APPSVCEND 
+			WHERE ( TXNMSGCODE LIKE '[[%%MSGCODE%%]]%'  OR SYSMSGCODE LIKE '[[%%MSGCODE%%]]%' )) AS APPSVCEND 
+			ON APPSVCBEGIN.LOGID   = APPSVCEND.LOGID 
+
+	</logquery>
+	<logquery2>
+			SELECT APPSVCBEGIN.LOGID AS LOGID, SID , ACCTNO , TXNTYPE , TXNID , STARTTIME ,APPSVCEND.ENDTIME , 
+			COMEFROM , APPSVCEND.TXNMSGCODE , APPSVCEND.SYSMSGCODE , APPSVCEND.RUNTIME 
+			FROM (SELECT * FROM APPSVCBEGIN WHERE STARTTIME >= '[[%%STARTTIME%%]]%') AS APPSVCBEGIN  
+			LEFT OUTER JOIN DB2IBANK.APPSVCEND  AS APPSVCEND 
+			ON APPSVCBEGIN.LOGID   = APPSVCEND.LOGID 
+	</logquery2>
+	
+	<getcust relation=""><![CDATA[
+			SELECT ID , NAME , UMA , IBANK , STATUS 
+			FROM DB2IBANK.CUSTOMER 
+        	WHERE ID  = '[[%%REVE-ID-NO%%]]'
+	]]></getcust>
+	
+	<logmaxid relation=""> 
+		SELECT MAX(LOGID) AS LID FROM DB2IBANK.APPSVCBEGIN
+		WHERE LOGID LIKE '[[%%LOGDATE%%]]%'	
+	</logmaxid>
+	
+	<gettxncur relation=""><![CDATA[
+		SELECT CODE , NAME , DESC FROM DB2IBANK.CURRENCY
+		WHERE FUNC_CODE = 1
+	]]></gettxncur>
+	
+	<getvar relation=""><![CDATA[
+	SELECT VNAME , VALUE , DESC 
+		       FROM DB2IBANK.GVAR
+       WHERE VNAME  = '[[%%REVE-VNAME%%]]'
+	]]></getvar>
+	
+	<!--<getacctlmt_day relation=""><![CDATA[
+	SELECT ACCT_NO , DATE , AMT 
+		       FROM DB2IBANK.TXNLIMIT
+       WHERE ACCT_NO  = '[[%%REVE-ACCT-NO%%]]' AND DATE='[[%%SYSDATE%%]]'  AND TYPE = '[[%%FUNC-CODE%%]]'
+	]]></getacctlmt_day>-->
+	
+	<getacctlmt_day relation=""><![CDATA[
+	SELECT SUM(AMT) AS AMT 
+		       FROM DB2IBANK.TXNLIMIT
+       WHERE SID  = '[[%%SEND-ID-NO%%]]' AND DATE='[[%%SYSDATE%%]]'  AND TYPE = '[[%%FUNC-CODE%%]]'
+	]]></getacctlmt_day>
+	
+	<!--<getacctlmt_mon relation=""><![CDATA[
+	SELECT SUM(AMT) AS AMT 
+		       FROM DB2IBANK.TXNLIMIT
+       WHERE ACCT_NO  = '[[%%REVE-ACCT-NO%%]]' AND DATE like '[[%%SYSDATE%%]]%'  AND TYPE = '[[%%FUNC-CODE%%]]'
+	]]></getacctlmt_mon>-->
+	
+	<getacctlmt_mon relation=""><![CDATA[
+	SELECT SUM(AMT) AS AMT 
+		       FROM DB2IBANK.TXNLIMIT
+       WHERE SID  = '[[%%SEND-ID-NO%%]]' AND DATE like '[[%%SYSDATE%%]]%'  AND TYPE = '[[%%FUNC-CODE%%]]'
+	]]></getacctlmt_mon>
+	
+	<gettxnlimit relation=""><![CDATA[
+	SELECT * FROM TXNLIMIT WHERE SID='[[%%REVE-ID-NO%%]]' AND TYPE='[[%%REVE-TXN-TYPE%%]]' AND DATE like '[[%%YYYYMM%%]]%'
+	]]></gettxnlimit>
+	
+	<getacctamt relation=""><![CDATA[
+	SELECT ACCT_NO , DATE , AMT 
+		       FROM DB2IBANK.TXNLIMIT
+       WHERE ACCT_NO  = '[[%%REVE-ACCT-NO%%]]' AND DATE='[[%%SYSDATE%%]]'  AND TYPE = '[[%%REVE-TXN-TYPE%%]]'
+	]]></getacctamt>
+	
+	<updtxnlmt relation=""><![CDATA[
+	UPDATE DB2IBANK.TXNLIMIT SET AMT = [[%%REVE-TXN-TOTAL%%]]
+       WHERE ACCT_NO  = '[[%%REVE-ACCT-NO%%]]' AND DATE = '[[%%SYSDATE%%]]' AND TYPE = '[[%%REVE-TXN-TYPE%%]]'
+	]]></updtxnlmt>
+	
+	<instxnlmt relation=""><![CDATA[
+	INSERT INTO DB2IBANK.TXNLIMIT ( SID , ACCT_NO , DATE , AMT , TYPE ) 
+       VALUES ( '[[%%REVE-ID-NO%%]]' , '[[%%REVE-ACCT-NO%%]]' , '[[%%SYSDATE%%]]' , [[%%REVE-TXN-TOTAL%%]] , '[[%%REVE-TXN-TYPE%%]]')
+	]]></instxnlmt>
+			
+	<getmailinfo relation=""><![CDATA[
+	SELECT KEY, SUBJECT,FROM 
+		       FROM DB2IBANK.MAILINFO
+       WHERE KEY  = '[[%%REVE-MAIL-KEY%%]]'
+	]]></getmailinfo>
+	
+	<getCalendarInfo relation=""><![CDATA[
+	SELECT * FROM calendar WHERE year = '[[%%REVE-YEAR%%]]' AND month = '[[%%REVE-MON%%]]' AND day = '[[%%REVE-DAY%%]]'
+	]]></getCalendarInfo>
+	
+	<!-- ==============================================================================
+	Check Company Function Rule (for YuanFu Securities Co.)
+	============================================================================== -->
+	<qrycmprule1 relation=""><![CDATA[
+	Select * from db2ibank.customers where customer_id='[[%%REVE-SID%%]]'
+	]]></qrycmprule1>
+	
+	<qrycmprule2 relation=""><![CDATA[
+	Select * from db2ibank.comprule where cid='[[%%CID%%]]' and
+			 fid='[[%%FID%%]]' and sid='[[%%REVE-SID%%]]' and acctno='[[%%REVE-ACCT-NO%%]]' and iswork='1'
+	]]></qrycmprule2>
+	
+	<updcmprule relation=""><![CDATA[
+	INSERT INTO DB2IBANK.COMPRULE VALUES( '[[%%REVE-CID%%]]' , '[[%%REVE-FID%%]]' , '[[%%IP%%]]' , '[[%%REVE-ID-NO%%]]' , '[[%%REVE-ACCT-NO%%]]' , '1' )
+	]]></updcmprule>
+	
+	<delcmprule relation=""><![CDATA[
+	DELETE FROM DB2IBANK.COMPRULE 
+	WHERE cid = '[[%%REVE-CID%%]]' AND fid = '[[%%REVE-FID%%]]' AND sid = '[[%%REVE-ID-NO%%]]' AND acctno = '[[%%REVE-ACCT-NO%%]]'
+	]]></delcmprule>
+	
+	<!-- ==============================================================================
+	For User Message
+	============================================================================== -->
+	<qryshowmsg relation=""><![CDATA[
+		SELECT * FROM db2ibank.MsgPool 
+		WHERE SID LIKE '[[%%REVE-ID-NO%%]]%' AND STARTDATE <= '[[%%REVE-CUR-DATE%%]]' AND ENDDATE >= '[[%%REVE-CUR-DATE%%]]' AND FLAG=0
+		ORDER BY MID DESC
+		FETCH FIRST 20 ROWS ONLY
+	]]></qryshowmsg>
+
+<!--
+	<delshowmsg relation=""><![CDATA[
+		DELETE FROM db2ibank.MsgPool 
+		WHERE MID = [[%%REVE-MID%%]]
+	]]></delshowmsg>
+-->
+	<delshowmsg relation=""><![CDATA[
+		UPDATE db2ibank.MsgPool 
+		SET Flag=1
+		WHERE MID = [[%%REVE-MID%%]]
+	]]></delshowmsg>
+	
+	<!-- ==============================================================================
+	For get STAN from table GVAR
+	============================================================================== -->	
+	<getstan><![CDATA[
+		SELECT * FROM DB2IBANK.GVAR WHERE VNAME = 'STAN'
+	]]></getstan>
+	
+	<updatestan><![CDATA[
+		UPDATE DB2IBANK.GVAR SET VALUE = '[[%%NEW-STAN%%]]' WHERE VNAME = 'STAN'
+	]]></updatestan>
+	
+	<getbusbatchno><![CDATA[
+		SELECT BATCHNO FROM BUSBATCHTXN
+	]]></getbusbatchno>
+	
+	<updbusbatchno1><![CDATA[
+		   UPDATE BUSBATCHTXN set BATCHNO = '[[%%N_BATCHNO%%]]'   WHERE BATCHNO = '[[%%O_BATCHNO%%]]'
+	]]></updbusbatchno1>
+	
+		<updbusbatchno2><![CDATA[
+		     UPDATE TXNDATA set BATCHNO = '[[%%N_BATCHNO%%]]'  WHERE BATCHNO = '[[%%O_BATCHNO%%]]'
+	   ]]></updbusbatchno2>
+	   
+	   	<updbusbatchno3><![CDATA[
+		     UPDATE APPROVE set REFNO = '[[%%N_REFNO%%]]'  WHERE REFNO = '[[%%O_REFNO%%]]'
+	   	]]></updbusbatchno3>
+	
+	<getbustxndata1><![CDATA[
+		SELECT REFNO FROM TXNDATA 
+	 ]]></getbustxndata1>
+	 
+	 <updbustxndata2><![CDATA[
+		UPDATE TXNDATA set REFNO='[[%%N_REFNO%%]]' WHERE REFNO='[[%%O_REFNO%%]]'
+	 ]]></updbustxndata2>
+	 
+	 <getSessLmt><![CDATA[
+			 SELECT COUNT ( * ) as SessCnt FROM DB2IBANK.SESSION
+	 ]]></getSessLmt>	
+</SQL>

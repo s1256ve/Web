@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>掛失業務</title>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<script language="JavaScript" SRC="script/PreviousPageBlock.js"></script>
+</head>
+
+<SCRIPT language="JavaScript" src="script/formatCheck.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/acctfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/datefmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/moneyfmt.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="script/keyboard.js"></SCRIPT>
+<script language="JavaScript">
+	function chksubmit(nextPageid){
+	    if (document.IP0901200.PWD.value == ''){
+	        alert('請輸入網路密碼');
+	        return;
+	    }
+		document.IP0901200.pageid.value = nextPageid;
+		document.IP0901200.submit();
+	}
+	
+	function chksubmit2(nextPageid){
+		document.IP0901200.pageid.value = nextPageid;
+		document.IP0901200.submit();
+	}
+</script>
+
+<link rel="stylesheet" type="text/css" media="all" href="theme/calendar-win2k-cold-1.css" title="win2k-cold-1" />
+<link rel="stylesheet" type="text/css" media="all" href="theme/portal.css" />
+
+<body onfocus="onTop();" bgcolor="#FFFFFF" onLoad="" background="graph/bg.gif" leftmargin="0" topmargin="0">
+
+<form name="IP0901200" method="POST" action="LoadAP" onSubmit='javascript:return chksubmit("");'>
+<b>　服務台&gt;<font color="#0066FF">掛失服務</font></b><p>
+　<img src="graph/point.gif" width="12" height="12">存摺掛失<br>
+</p>
+<table width="630" border="0">
+  <tr> 
+    <td colspan="5"> 
+      <table width="223" border="0" align="center" cellspacing="0" cellpadding="0">
+        <tr> 
+          <td><br>
+            <font color="#0000CC">存摺掛失 確認</font> <font color="#663300" face="Arial, Helvetica, sans-serif"></font> <br><br>
+            <table width="100%" border="1" bordercolor="#999999">
+              <tr> 
+                <td bgcolor="#C4CBB8" width="31%" align="center">帳號</td>
+                <td height="30" width="69%" align="center">
+                <SCRIPT language="JavaScript">
+                	document.write(getAcctStr('[[%%REVE-ACCT-NO%%]]')); 
+                </Script>
+                </td>
+              </tr>
+              <tr> 
+                <td height="36" bgcolor="#C4CBB8" width="31%" align="center">網路密碼 <font color="#663300" face="Arial, Helvetica, sans-serif"> 
+                  </font></td>
+                <td height="30" width="69%" align="center">
+                <input type="password" name="PWD" size="8" onClick="javascript:getKeyBoard('IP0901200','PWD','REVE_PWD','[[%%SEND-KB-KEYCODE%%]]','[[%%SEND-KB-KEYLETTER%%]]');onTop();" readonly>
+                </td>
+              </tr>
+            </table>
+            <br>
+		<div align="center">
+			<input type="button" value="確認" onClick='JavaScript:chksubmit("IP0901201");'> &nbsp;&nbsp;
+              		<input type="button" value="取消" onClick='JavaScript:chksubmit2("IP0901000");'>
+		</div>
+            </td>
+        </tr>
+      </table>
+      <font color="#663300" face="Arial, Helvetica, sans-serif"> </font> </td>
+  </tr>
+</table>
+<input type="hidden" name="pageid" value="">
+<input type="hidden" name="REVE_ACCT_NO" value="[[%%REVE-ACCT-NO%%]]">
+<input type="hidden" name="REVE_PWD" value="">
+</form>
+</body>
+</html>
